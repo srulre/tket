@@ -802,247 +802,258 @@ $(function() {
 <div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160; </div>
 <div class="line"><a name="l00747"></a><span class="lineno"><a class="line" href="namespacetket_1_1Transforms.html#a785fe1a41cd91c03521e78093520ff80">  747</a></span>&#160;<a class="code" href="classtket_1_1Transform.html">Transform</a> <a class="code" href="namespacetket_1_1Transforms.html#a785fe1a41cd91c03521e78093520ff80">compose_phase_poly_boxes</a>() {</div>
 <div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="classtket_1_1Transform.html">Transform</a>([](<a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ) {</div>
-<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;    <a class="code" href="classtket_1_1CircToPhasePolyConversion.html">CircToPhasePolyConversion</a> conv = <a class="code" href="classtket_1_1CircToPhasePolyConversion.html">CircToPhasePolyConversion</a>(circ);</div>
-<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;    conv.<a class="code" href="classtket_1_1CircToPhasePolyConversion.html#aa995fd77c75b9dddcaf326b3dc2e2255">convert</a>();</div>
-<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;    circ = conv.<a class="code" href="classtket_1_1CircToPhasePolyConversion.html#a9630554dcf32d3c5cbe8d9ad78bcd644">get_circuit</a>();</div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;  });</div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;}</div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160; </div>
-<div class="line"><a name="l00756"></a><span class="lineno"><a class="line" href="namespacetket_1_1Transforms.html#aa529d9f5779cbfdaa4b5a846e504de43">  756</a></span>&#160;<a class="code" href="classtket_1_1Transform.html">Transform</a> <a class="code" href="namespacetket_1_1Transforms.html#aa529d9f5779cbfdaa4b5a846e504de43">decompose_SWAP</a>(<span class="keyword">const</span> <a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;replacement_circuit) {</div>
-<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="classtket_1_1Transform.html">Transform</a>([=](<a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ) {</div>
-<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;    <span class="keywordflow">if</span> (!replacement_circuit.<a class="code" href="classtket_1_1Circuit.html#a45e9b3908532efc7e7d2bdaf309e3d9d">is_simple</a>()) <span class="keywordflow">throw</span> <a class="code" href="classtket_1_1SimpleOnly.html">SimpleOnly</a>();</div>
-<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;    <span class="keywordflow">return</span> circ.<a class="code" href="classtket_1_1Circuit.html#a7ac875c3a725b691b6ec1fc5b8613a2f">substitute_all</a>(replacement_circuit, <a class="code" href="namespacetket.html#a218e50abe75d86161d9b5ef3e556877f">get_op_ptr</a>(<a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a46fc23bc4e4d57e5469a39658a6dd3e8">OpType::SWAP</a>));</div>
-<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;  });</div>
-<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;}</div>
-<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160; </div>
-<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> swap_sub(</div>
-<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;    <a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ, <span class="keyword">const</span> <a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;swap_circ_1, <span class="keyword">const</span> <a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;swap_circ_2,</div>
-<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;    <a class="code" href="structtket_1_1Subcircuit.html">Subcircuit</a> &amp;sub, <span class="keyword">const</span> std::pair&lt;port_t, port_t&gt; &amp;port_comp) {</div>
-<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;  std::pair&lt;port_t, port_t&gt; comp = {0, 1};</div>
-<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;  <span class="comment">// Ports only come in 2 cases, {0,1} or {1,0}. if {0,1} (first case),</span></div>
-<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;  <span class="comment">// swap_circ_1 leaves a CX{0,1} next to current CX{0,1}, if not we can assume</span></div>
-<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;  <span class="comment">// second case.</span></div>
-<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;  <span class="keywordflow">if</span> (port_comp == comp)</div>
-<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;    circ.<a class="code" href="classtket_1_1Circuit.html#a7b1bacb65c517890d2a40cb2892c5b1f">substitute</a>(swap_circ_1, sub, <a class="code" href="classtket_1_1Circuit.html#ad46024dc8be3d44e15fbcdb474552cc6a93cba07454f06a4a960172bbd6e2a435">Circuit::VertexDeletion::Yes</a>);</div>
-<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;  <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;    circ.<a class="code" href="classtket_1_1Circuit.html#a7b1bacb65c517890d2a40cb2892c5b1f">substitute</a>(swap_circ_2, sub, <a class="code" href="classtket_1_1Circuit.html#ad46024dc8be3d44e15fbcdb474552cc6a93cba07454f06a4a960172bbd6e2a435">Circuit::VertexDeletion::Yes</a>);</div>
-<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;}</div>
-<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160; </div>
-<div class="line"><a name="l00776"></a><span class="lineno"><a class="line" href="namespacetket_1_1Transforms.html#aacebf9ac8d1a3f978cab3ca3611de2e1">  776</a></span>&#160;<a class="code" href="classtket_1_1Transform.html">Transform</a> <a class="code" href="namespacetket_1_1Transforms.html#aacebf9ac8d1a3f978cab3ca3611de2e1">decompose_SWAP_to_CX</a>(<span class="keyword">const</span> <a class="code" href="classtket_1_1Architecture.html">Architecture</a> &amp;arc) {</div>
-<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;  <span class="comment">// Note that the default argument will be out of scope at call-time!</span></div>
-<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;  <span class="comment">//  =&gt; we replace the default empty Architecture with nullptr</span></div>
-<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;  <span class="comment">// we need to keep arc as a pointer as there is no such thing as</span></div>
-<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;  <span class="comment">// optional references in std</span></div>
-<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;  <span class="keyword">const</span> <a class="code" href="classtket_1_1Architecture.html">Architecture</a> *arc_ptr = arc.<a class="code" href="classtket_1_1graphs_1_1AbstractGraph.html#a1dd52e51660aae6f70754eb64167e8f7">n_nodes</a>() ? &amp;arc : <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="classtket_1_1Transform.html">Transform</a>([arc_ptr](<a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ) {</div>
-<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;    <span class="keywordtype">bool</span> success = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;    std::vector&lt;std::pair&lt;Vertex, bool&gt;&gt; bin;</div>
-<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;    <span class="keywordflow">for</span> (<a class="code" href="classtket_1_1Circuit_1_1CommandIterator.html">Circuit::CommandIterator</a> it = circ.<a class="code" href="classtket_1_1Circuit.html#a95642db488aba1180130eb56a8afd308">begin</a>(); it != circ.<a class="code" href="classtket_1_1Circuit.html#a4c1ba7a1a2cb25f81a2beb0b31e53e5c">end</a>(); ++it) {</div>
-<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;      if (it-&gt;get_op_ptr()-&gt;get_type() == OpType::SWAP) {</div>
-<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;        unit_vector_t qbs = it-&gt;get_args();</div>
-<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;        node_vector_t nodes = {qbs.begin(), qbs.end()};</div>
-<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;        if (arc_ptr != nullptr &amp;&amp; arc_ptr-&gt;node_exists(nodes[0]) &amp;&amp;</div>
-<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;            arc_ptr-&gt;node_exists(nodes[1]) &amp;&amp;</div>
-<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;            arc_ptr-&gt;edge_exists(nodes[1], nodes[0])) {</div>
-<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;          bin.push_back({it.get_vertex(), true});</div>
-<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;        } else {</div>
-<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;          bin.push_back({it.get_vertex(), false});</div>
-<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;        }</div>
-<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;      }</div>
-<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;    }</div>
-<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160; </div>
-<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;    <span class="keywordflow">for</span> (std::pair&lt;Vertex, bool&gt; v : bin) {</div>
-<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;      success = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;      <span class="comment">// Get predecessor vertices and successor vertices and find subcircuit for</span></div>
-<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;      <span class="comment">// replacement</span></div>
-<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;      <a class="code" href="namespacetket.html#aecaec372664e1c2f33ff81d9a5c58ce2">VertexVec</a> preds = circ.<a class="code" href="classtket_1_1Circuit.html#a09fc52c1c4dd3a2fe49ff29085189d85">get_predecessors</a>(v.first);</div>
-<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;      <a class="code" href="namespacetket.html#aecaec372664e1c2f33ff81d9a5c58ce2">VertexVec</a> succs = circ.<a class="code" href="classtket_1_1Circuit.html#ac2e140d9a8d14e70fcb55e3885079be3">get_successors</a>(v.first);</div>
-<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;      <a class="code" href="namespacetket.html#a814cee1be1a70fcc4a804f93212b5013">EdgeVec</a> in_edges = circ.<a class="code" href="classtket_1_1Circuit.html#ae8535df2648de60d406815eae4d5a2de">get_in_edges</a>(v.first);</div>
-<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;      <a class="code" href="namespacetket.html#a814cee1be1a70fcc4a804f93212b5013">EdgeVec</a> out_edges = circ.<a class="code" href="classtket_1_1Circuit.html#a596b60f3400da0dd1d8371ad2eb409a1">get_all_out_edges</a>(v.first);</div>
-<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;      <a class="code" href="structtket_1_1Subcircuit.html">Subcircuit</a> sub = {in_edges, out_edges, {v.first}};</div>
-<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160; </div>
-<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;      <span class="keywordflow">if</span> (preds.size() == 1 &amp;&amp;</div>
-<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;          circ.<a class="code" href="classtket_1_1Circuit.html#aed06b975de918021ca3fb1716498c6d1">get_OpType_from_Vertex</a>(preds[0]) == <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a833e36d1a5a93dedb10c85f50ced9ce7">OpType::CX</a>) {</div>
-<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;        <span class="comment">// if conditions requires that there is a CX gate before SWAP</span></div>
-<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;        swap_sub(</div>
-<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;            circ, CircPool::SWAP_using_CX_0(), CircPool::SWAP_using_CX_1(), sub,</div>
-<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;            {circ.get_source_port(in_edges[0]),</div>
-<div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;             circ.get_source_port(in_edges[1])});</div>
-<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;          succs.size() == 1 &amp;&amp;</div>
-<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;          circ.<a class="code" href="classtket_1_1Circuit.html#aed06b975de918021ca3fb1716498c6d1">get_OpType_from_Vertex</a>(succs[0]) == <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a833e36d1a5a93dedb10c85f50ced9ce7">OpType::CX</a>) {</div>
-<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;        <span class="comment">// if no CX gate before SWAP, check after.</span></div>
-<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;        swap_sub(</div>
-<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;            circ, <a class="code" href="namespacetket_1_1CircPool.html#a4bfbfe42e6fc8601c89778e5c904814b">CircPool::SWAP_using_CX_0</a>(), <a class="code" href="namespacetket_1_1CircPool.html#a94e076b8d66f9e32decb4ff2c389e1e2">CircPool::SWAP_using_CX_1</a>(), sub,</div>
-<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;            {circ.<a class="code" href="classtket_1_1Circuit.html#a67a31cecc11607854f62205234891c05">get_target_port</a>(out_edges[0]),</div>
-<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;             circ.<a class="code" href="classtket_1_1Circuit.html#a67a31cecc11607854f62205234891c05">get_target_port</a>(out_edges[1])});</div>
-<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (v.second) {</div>
-<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;        <span class="comment">// We assume in general that a CX gate saving is desired over H gate</span></div>
-<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;        <span class="comment">// savings. If SWAP doesn&#39;t lend itself to annihlation though, the SWAP</span></div>
-<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;        <span class="comment">// is inserted to reduce number of H gates added in a &#39;directed&#39; CX</span></div>
-<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;        <span class="comment">// decomposition.</span></div>
-<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;        <span class="comment">// SWAP_using_CX_1 is added if the backwards direction is available on</span></div>
-<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;        <span class="comment">// the architecture</span></div>
-<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;        circ.<a class="code" href="classtket_1_1Circuit.html#a7b1bacb65c517890d2a40cb2892c5b1f">substitute</a>(</div>
-<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;            <a class="code" href="namespacetket_1_1CircPool.html#a94e076b8d66f9e32decb4ff2c389e1e2">CircPool::SWAP_using_CX_1</a>(), sub, <a class="code" href="classtket_1_1Circuit.html#ad46024dc8be3d44e15fbcdb474552cc6a93cba07454f06a4a960172bbd6e2a435">Circuit::VertexDeletion::Yes</a>);</div>
-<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;      } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;        <span class="comment">// SWAP_using_CX_0 is added as a default option</span></div>
-<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;        circ.<a class="code" href="classtket_1_1Circuit.html#a7b1bacb65c517890d2a40cb2892c5b1f">substitute</a>(</div>
-<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;            <a class="code" href="namespacetket_1_1CircPool.html#a4bfbfe42e6fc8601c89778e5c904814b">CircPool::SWAP_using_CX_0</a>(), sub, <a class="code" href="classtket_1_1Circuit.html#ad46024dc8be3d44e15fbcdb474552cc6a93cba07454f06a4a960172bbd6e2a435">Circuit::VertexDeletion::Yes</a>);</div>
-<div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;      }</div>
-<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;    }</div>
-<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;    <span class="keywordflow">return</span> success;</div>
-<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;  });</div>
-<div class="line"><a name="l00841"></a><span class="lineno">  841</span>&#160;}</div>
-<div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160; </div>
-<div class="line"><a name="l00843"></a><span class="lineno"><a class="line" href="namespacetket_1_1Transforms.html#aedc2a6c73363553bc6a3fcc7d4fe1e1d">  843</a></span>&#160;<a class="code" href="classtket_1_1Transform.html">Transform</a> <a class="code" href="namespacetket_1_1Transforms.html#aedc2a6c73363553bc6a3fcc7d4fe1e1d">decompose_BRIDGE_to_CX</a>() {</div>
-<div class="line"><a name="l00844"></a><span class="lineno">  844</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="classtket_1_1Transform.html">Transform</a>([](<a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ) {</div>
-<div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;    <span class="keywordtype">bool</span> success = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;    <span class="comment">// Collect all BRIDGE type vertices</span></div>
-<div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;    std::vector&lt;std::pair&lt;Vertex, bool&gt;&gt; bin;</div>
-<div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160;    BGL_FORALL_VERTICES(v, circ.<a class="code" href="classtket_1_1Circuit.html#aa2661c079a17a04f213ec8221718efc1">dag</a>, <a class="code" href="namespacetket.html#acaa3eca1694fd98b7188f988764af8f0">DAG</a>) {</div>
-<div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;      <span class="keywordflow">if</span> (circ.<a class="code" href="classtket_1_1Circuit.html#aed06b975de918021ca3fb1716498c6d1">get_OpType_from_Vertex</a>(v) == <a class="code" href="GateUnitaryMatrixFixedMatrices_8cpp.html#a3dd61be7cd33bb7fa1709da22b8c0281">OpType::BRIDGE</a>) {</div>
-<div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;        bin.push_back({v, <span class="keyword">false</span>});</div>
-<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;      }</div>
-<div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;      <span class="keywordflow">if</span> (circ.<a class="code" href="classtket_1_1Circuit.html#aed06b975de918021ca3fb1716498c6d1">get_OpType_from_Vertex</a>(v) == OpType::Conditional) {</div>
-<div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160;        <span class="keyword">const</span> <a class="code" href="classtket_1_1Conditional.html">Conditional</a> &amp;b =</div>
-<div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;            <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><a class="code" href="classtket_1_1Conditional.html">Conditional</a> &amp;<span class="keyword">&gt;</span>(*circ.<a class="code" href="classtket_1_1Circuit.html#a15fd2bc465a81f45f79171d50590a520">get_Op_ptr_from_Vertex</a>(v));</div>
-<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;        <span class="keywordflow">if</span> (b.<a class="code" href="classtket_1_1Conditional.html#ab7608e854d63f262895583b328c75424">get_op</a>()-&gt;get_type() == <a class="code" href="GateUnitaryMatrixFixedMatrices_8cpp.html#a3dd61be7cd33bb7fa1709da22b8c0281">OpType::BRIDGE</a>) {</div>
-<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160;          bin.push_back({v, <span class="keyword">true</span>});</div>
-<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;        }</div>
-<div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;      }</div>
-<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;    }</div>
-<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160; </div>
-<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;    <span class="keyword">auto</span> BRIDGE_sub =</div>
-<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;        [&amp;circ](std::pair&lt;Vertex, bool&gt; &amp;candidate, <a class="code" href="classtket_1_1Circuit.html">Circuit</a> BRIDGE_circ) {</div>
-<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;          <span class="keywordflow">if</span> (candidate.second)</div>
-<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;            circ.<a class="code" href="classtket_1_1Circuit.html#a223094feeabeebcb16301c089a8834da">substitute_conditional</a>(</div>
-<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;                BRIDGE_circ, candidate.first, Circuit::VertexDeletion::Yes);</div>
-<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;          <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;            circ.<a class="code" href="classtket_1_1Circuit.html#a7b1bacb65c517890d2a40cb2892c5b1f">substitute</a>(</div>
-<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;                BRIDGE_circ, candidate.first, Circuit::VertexDeletion::Yes);</div>
-<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;        };</div>
-<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160; </div>
-<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;    <span class="keywordflow">for</span> (std::pair&lt;Vertex, bool&gt; v : bin) {</div>
-<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;      <span class="comment">// Get predecessor vertices and successor vertices and find subcircuit for</span></div>
-<div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;      <span class="comment">// replacement</span></div>
-<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;      success = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;      <a class="code" href="namespacetket.html#aecaec372664e1c2f33ff81d9a5c58ce2">VertexVec</a> preds = circ.<a class="code" href="classtket_1_1Circuit.html#a09fc52c1c4dd3a2fe49ff29085189d85">get_predecessors</a>(v.first);</div>
-<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;      <a class="code" href="namespacetket.html#aecaec372664e1c2f33ff81d9a5c58ce2">VertexVec</a> succs = circ.<a class="code" href="classtket_1_1Circuit.html#ac2e140d9a8d14e70fcb55e3885079be3">get_successors</a>(v.first);</div>
-<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;      <a class="code" href="namespacetket.html#a814cee1be1a70fcc4a804f93212b5013">EdgeVec</a> in_edges = circ.<a class="code" href="classtket_1_1Circuit.html#ae8535df2648de60d406815eae4d5a2de">get_in_edges</a>(v.first);</div>
-<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;      <a class="code" href="namespacetket.html#a814cee1be1a70fcc4a804f93212b5013">EdgeVec</a> out_edges = circ.<a class="code" href="classtket_1_1Circuit.html#a596b60f3400da0dd1d8371ad2eb409a1">get_all_out_edges</a>(v.first);</div>
-<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;      <a class="code" href="structtket_1_1Subcircuit.html">Subcircuit</a> sub = {in_edges, out_edges, {v.first}};</div>
-<div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160; </div>
-<div class="line"><a name="l00881"></a><span class="lineno">  881</span>&#160;      <span class="keywordtype">bool</span> done = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00882"></a><span class="lineno">  882</span>&#160;      <span class="keywordflow">if</span> (preds.size() &lt; 3) {  <span class="comment">// Implies some predecessor vertices are in a</span></div>
-<div class="line"><a name="l00883"></a><span class="lineno">  883</span>&#160;                               <span class="comment">// multi-qubit op together</span></div>
-<div class="line"><a name="l00884"></a><span class="lineno">  884</span>&#160;        <a class="code" href="namespacetket.html#aecaec372664e1c2f33ff81d9a5c58ce2">VertexVec</a> comps = {</div>
-<div class="line"><a name="l00885"></a><span class="lineno">  885</span>&#160;            circ.<a class="code" href="classtket_1_1Circuit.html#a90c4935d28c1c7a05a5430862afb3c3f">source</a>(in_edges[0]), circ.<a class="code" href="classtket_1_1Circuit.html#a90c4935d28c1c7a05a5430862afb3c3f">source</a>(in_edges[1]),</div>
-<div class="line"><a name="l00886"></a><span class="lineno">  886</span>&#160;            circ.<a class="code" href="classtket_1_1Circuit.html#a90c4935d28c1c7a05a5430862afb3c3f">source</a>(in_edges[2])};</div>
-<div class="line"><a name="l00887"></a><span class="lineno">  887</span>&#160;        <span class="keywordflow">if</span> (comps[0] ==</div>
-<div class="line"><a name="l00888"></a><span class="lineno">  888</span>&#160;            comps[1]) {  <span class="comment">// First two qubits in BRIDGE in multi-qubit op</span></div>
-<div class="line"><a name="l00889"></a><span class="lineno">  889</span>&#160;          BRIDGE_sub(v, <a class="code" href="namespacetket_1_1CircPool.html#ad9e886e0e7cbb35904ccbfe3aa36a886">CircPool::BRIDGE_using_CX_0</a>());</div>
-<div class="line"><a name="l00890"></a><span class="lineno">  890</span>&#160;          done = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00891"></a><span class="lineno">  891</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (comps[2] == comps[1]) {  <span class="comment">// Second two qubits in BRIDGE in</span></div>
-<div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;                                            <span class="comment">// multi-qubit op together before</span></div>
-<div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;                                            <span class="comment">// BRIDGE</span></div>
-<div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;          BRIDGE_sub(v, <a class="code" href="namespacetket_1_1CircPool.html#a0603064dbf9ee5184d4f569443263e69">CircPool::BRIDGE_using_CX_1</a>());</div>
-<div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;          done = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;        }</div>
-<div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;      }</div>
-<div class="line"><a name="l00898"></a><span class="lineno">  898</span>&#160;      <span class="keywordflow">if</span> (succs.size() &lt; 3 &amp;&amp; !done) {  <span class="comment">// Implies some successor vertices are</span></div>
-<div class="line"><a name="l00899"></a><span class="lineno">  899</span>&#160;                                        <span class="comment">// in a multiq-ubit op together</span></div>
-<div class="line"><a name="l00900"></a><span class="lineno">  900</span>&#160;        <a class="code" href="namespacetket.html#aecaec372664e1c2f33ff81d9a5c58ce2">VertexVec</a> comps = {</div>
-<div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;            circ.<a class="code" href="classtket_1_1Circuit.html#af523ff39367bf72c26155a4493d25daa">target</a>(out_edges[0]), circ.<a class="code" href="classtket_1_1Circuit.html#af523ff39367bf72c26155a4493d25daa">target</a>(out_edges[1]),</div>
-<div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160;            circ.<a class="code" href="classtket_1_1Circuit.html#af523ff39367bf72c26155a4493d25daa">target</a>(out_edges[2])};</div>
-<div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;        <span class="keywordflow">if</span> (comps[0] == comps[1]) {  <span class="comment">// First two qubits in BRIDGE in</span></div>
-<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;                                     <span class="comment">// multi-qubit op together before BRIDGE</span></div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;    <span class="comment">// replace wireswaps with three CX</span></div>
+<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;    <span class="keywordflow">while</span> (circ.<a class="code" href="classtket_1_1Circuit.html#a3694942914dae4f6929f36a347304b46">has_implicit_wireswaps</a>()) {</div>
+<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;      qubit_map_t perm = circ.implicit_qubit_permutation();</div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;      for (const std::pair&lt;const Qubit, Qubit&gt; &amp;pair : perm) {</div>
+<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;        if (pair.first != pair.second) {</div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;          circ.replace_implicit_wire_swap(pair.first, pair.second);</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;          break;</div>
+<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;        }</div>
+<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;      }</div>
+<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;    }</div>
+<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160; </div>
+<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;    <a class="code" href="classtket_1_1CircToPhasePolyConversion.html">CircToPhasePolyConversion</a> conv = <a class="code" href="classtket_1_1CircToPhasePolyConversion.html">CircToPhasePolyConversion</a>(circ);</div>
+<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;    conv.<a class="code" href="classtket_1_1CircToPhasePolyConversion.html#aa995fd77c75b9dddcaf326b3dc2e2255">convert</a>();</div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;    circ = conv.<a class="code" href="classtket_1_1CircToPhasePolyConversion.html#a9630554dcf32d3c5cbe8d9ad78bcd644">get_circuit</a>();</div>
+<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;  });</div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;}</div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160; </div>
+<div class="line"><a name="l00767"></a><span class="lineno"><a class="line" href="namespacetket_1_1Transforms.html#aa529d9f5779cbfdaa4b5a846e504de43">  767</a></span>&#160;<a class="code" href="classtket_1_1Transform.html">Transform</a> <a class="code" href="namespacetket_1_1Transforms.html#aa529d9f5779cbfdaa4b5a846e504de43">decompose_SWAP</a>(<span class="keyword">const</span> <a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;replacement_circuit) {</div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="classtket_1_1Transform.html">Transform</a>([=](<a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ) {</div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;    <span class="keywordflow">if</span> (!replacement_circuit.<a class="code" href="classtket_1_1Circuit.html#a45e9b3908532efc7e7d2bdaf309e3d9d">is_simple</a>()) <span class="keywordflow">throw</span> <a class="code" href="classtket_1_1SimpleOnly.html">SimpleOnly</a>();</div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;    <span class="keywordflow">return</span> circ.<a class="code" href="classtket_1_1Circuit.html#a7ac875c3a725b691b6ec1fc5b8613a2f">substitute_all</a>(replacement_circuit, <a class="code" href="namespacetket.html#a218e50abe75d86161d9b5ef3e556877f">get_op_ptr</a>(<a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a46fc23bc4e4d57e5469a39658a6dd3e8">OpType::SWAP</a>));</div>
+<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;  });</div>
+<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;}</div>
+<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160; </div>
+<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> swap_sub(</div>
+<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;    <a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ, <span class="keyword">const</span> <a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;swap_circ_1, <span class="keyword">const</span> <a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;swap_circ_2,</div>
+<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;    <a class="code" href="structtket_1_1Subcircuit.html">Subcircuit</a> &amp;sub, <span class="keyword">const</span> std::pair&lt;port_t, port_t&gt; &amp;port_comp) {</div>
+<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;  std::pair&lt;port_t, port_t&gt; comp = {0, 1};</div>
+<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;  <span class="comment">// Ports only come in 2 cases, {0,1} or {1,0}. if {0,1} (first case),</span></div>
+<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;  <span class="comment">// swap_circ_1 leaves a CX{0,1} next to current CX{0,1}, if not we can assume</span></div>
+<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;  <span class="comment">// second case.</span></div>
+<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;  <span class="keywordflow">if</span> (port_comp == comp)</div>
+<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;    circ.<a class="code" href="classtket_1_1Circuit.html#a7b1bacb65c517890d2a40cb2892c5b1f">substitute</a>(swap_circ_1, sub, <a class="code" href="classtket_1_1Circuit.html#ad46024dc8be3d44e15fbcdb474552cc6a93cba07454f06a4a960172bbd6e2a435">Circuit::VertexDeletion::Yes</a>);</div>
+<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;  <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;    circ.<a class="code" href="classtket_1_1Circuit.html#a7b1bacb65c517890d2a40cb2892c5b1f">substitute</a>(swap_circ_2, sub, <a class="code" href="classtket_1_1Circuit.html#ad46024dc8be3d44e15fbcdb474552cc6a93cba07454f06a4a960172bbd6e2a435">Circuit::VertexDeletion::Yes</a>);</div>
+<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;}</div>
+<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160; </div>
+<div class="line"><a name="l00787"></a><span class="lineno"><a class="line" href="namespacetket_1_1Transforms.html#aacebf9ac8d1a3f978cab3ca3611de2e1">  787</a></span>&#160;<a class="code" href="classtket_1_1Transform.html">Transform</a> <a class="code" href="namespacetket_1_1Transforms.html#aacebf9ac8d1a3f978cab3ca3611de2e1">decompose_SWAP_to_CX</a>(<span class="keyword">const</span> <a class="code" href="classtket_1_1Architecture.html">Architecture</a> &amp;arc) {</div>
+<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;  <span class="comment">// Note that the default argument will be out of scope at call-time!</span></div>
+<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;  <span class="comment">//  =&gt; we replace the default empty Architecture with nullptr</span></div>
+<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;  <span class="comment">// we need to keep arc as a pointer as there is no such thing as</span></div>
+<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;  <span class="comment">// optional references in std</span></div>
+<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;  <span class="keyword">const</span> <a class="code" href="classtket_1_1Architecture.html">Architecture</a> *arc_ptr = arc.<a class="code" href="classtket_1_1graphs_1_1AbstractGraph.html#a1dd52e51660aae6f70754eb64167e8f7">n_nodes</a>() ? &amp;arc : <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="classtket_1_1Transform.html">Transform</a>([arc_ptr](<a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ) {</div>
+<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;    <span class="keywordtype">bool</span> success = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;    std::vector&lt;std::pair&lt;Vertex, bool&gt;&gt; bin;</div>
+<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;    <span class="keywordflow">for</span> (<a class="code" href="classtket_1_1Circuit_1_1CommandIterator.html">Circuit::CommandIterator</a> it = circ.<a class="code" href="classtket_1_1Circuit.html#a95642db488aba1180130eb56a8afd308">begin</a>(); it != circ.<a class="code" href="classtket_1_1Circuit.html#a4c1ba7a1a2cb25f81a2beb0b31e53e5c">end</a>(); ++it) {</div>
+<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;      if (it-&gt;get_op_ptr()-&gt;get_type() == OpType::SWAP) {</div>
+<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;        unit_vector_t qbs = it-&gt;get_args();</div>
+<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;        node_vector_t nodes = {qbs.begin(), qbs.end()};</div>
+<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;        if (arc_ptr != nullptr &amp;&amp; arc_ptr-&gt;node_exists(nodes[0]) &amp;&amp;</div>
+<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;            arc_ptr-&gt;node_exists(nodes[1]) &amp;&amp;</div>
+<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;            arc_ptr-&gt;edge_exists(nodes[1], nodes[0])) {</div>
+<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;          bin.push_back({it.get_vertex(), true});</div>
+<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;        } else {</div>
+<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;          bin.push_back({it.get_vertex(), false});</div>
+<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;        }</div>
+<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;      }</div>
+<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;    }</div>
+<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160; </div>
+<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;    <span class="keywordflow">for</span> (std::pair&lt;Vertex, bool&gt; v : bin) {</div>
+<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;      success = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;      <span class="comment">// Get predecessor vertices and successor vertices and find subcircuit for</span></div>
+<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;      <span class="comment">// replacement</span></div>
+<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;      <a class="code" href="namespacetket.html#aecaec372664e1c2f33ff81d9a5c58ce2">VertexVec</a> preds = circ.<a class="code" href="classtket_1_1Circuit.html#a09fc52c1c4dd3a2fe49ff29085189d85">get_predecessors</a>(v.first);</div>
+<div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;      <a class="code" href="namespacetket.html#aecaec372664e1c2f33ff81d9a5c58ce2">VertexVec</a> succs = circ.<a class="code" href="classtket_1_1Circuit.html#ac2e140d9a8d14e70fcb55e3885079be3">get_successors</a>(v.first);</div>
+<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;      <a class="code" href="namespacetket.html#a814cee1be1a70fcc4a804f93212b5013">EdgeVec</a> in_edges = circ.<a class="code" href="classtket_1_1Circuit.html#ae8535df2648de60d406815eae4d5a2de">get_in_edges</a>(v.first);</div>
+<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;      <a class="code" href="namespacetket.html#a814cee1be1a70fcc4a804f93212b5013">EdgeVec</a> out_edges = circ.<a class="code" href="classtket_1_1Circuit.html#a596b60f3400da0dd1d8371ad2eb409a1">get_all_out_edges</a>(v.first);</div>
+<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;      <a class="code" href="structtket_1_1Subcircuit.html">Subcircuit</a> sub = {in_edges, out_edges, {v.first}};</div>
+<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160; </div>
+<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;      <span class="keywordflow">if</span> (preds.size() == 1 &amp;&amp;</div>
+<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;          circ.<a class="code" href="classtket_1_1Circuit.html#aed06b975de918021ca3fb1716498c6d1">get_OpType_from_Vertex</a>(preds[0]) == <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a833e36d1a5a93dedb10c85f50ced9ce7">OpType::CX</a>) {</div>
+<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;        <span class="comment">// if conditions requires that there is a CX gate before SWAP</span></div>
+<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;        swap_sub(</div>
+<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;            circ, CircPool::SWAP_using_CX_0(), CircPool::SWAP_using_CX_1(), sub,</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;            {circ.get_source_port(in_edges[0]),</div>
+<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;             circ.get_source_port(in_edges[1])});</div>
+<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;          succs.size() == 1 &amp;&amp;</div>
+<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;          circ.<a class="code" href="classtket_1_1Circuit.html#aed06b975de918021ca3fb1716498c6d1">get_OpType_from_Vertex</a>(succs[0]) == <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a833e36d1a5a93dedb10c85f50ced9ce7">OpType::CX</a>) {</div>
+<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;        <span class="comment">// if no CX gate before SWAP, check after.</span></div>
+<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;        swap_sub(</div>
+<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;            circ, <a class="code" href="namespacetket_1_1CircPool.html#a4bfbfe42e6fc8601c89778e5c904814b">CircPool::SWAP_using_CX_0</a>(), <a class="code" href="namespacetket_1_1CircPool.html#a94e076b8d66f9e32decb4ff2c389e1e2">CircPool::SWAP_using_CX_1</a>(), sub,</div>
+<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;            {circ.<a class="code" href="classtket_1_1Circuit.html#a67a31cecc11607854f62205234891c05">get_target_port</a>(out_edges[0]),</div>
+<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;             circ.<a class="code" href="classtket_1_1Circuit.html#a67a31cecc11607854f62205234891c05">get_target_port</a>(out_edges[1])});</div>
+<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (v.second) {</div>
+<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;        <span class="comment">// We assume in general that a CX gate saving is desired over H gate</span></div>
+<div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;        <span class="comment">// savings. If SWAP doesn&#39;t lend itself to annihlation though, the SWAP</span></div>
+<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;        <span class="comment">// is inserted to reduce number of H gates added in a &#39;directed&#39; CX</span></div>
+<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;        <span class="comment">// decomposition.</span></div>
+<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;        <span class="comment">// SWAP_using_CX_1 is added if the backwards direction is available on</span></div>
+<div class="line"><a name="l00841"></a><span class="lineno">  841</span>&#160;        <span class="comment">// the architecture</span></div>
+<div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160;        circ.<a class="code" href="classtket_1_1Circuit.html#a7b1bacb65c517890d2a40cb2892c5b1f">substitute</a>(</div>
+<div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;            <a class="code" href="namespacetket_1_1CircPool.html#a94e076b8d66f9e32decb4ff2c389e1e2">CircPool::SWAP_using_CX_1</a>(), sub, <a class="code" href="classtket_1_1Circuit.html#ad46024dc8be3d44e15fbcdb474552cc6a93cba07454f06a4a960172bbd6e2a435">Circuit::VertexDeletion::Yes</a>);</div>
+<div class="line"><a name="l00844"></a><span class="lineno">  844</span>&#160;      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;        <span class="comment">// SWAP_using_CX_0 is added as a default option</span></div>
+<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;        circ.<a class="code" href="classtket_1_1Circuit.html#a7b1bacb65c517890d2a40cb2892c5b1f">substitute</a>(</div>
+<div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;            <a class="code" href="namespacetket_1_1CircPool.html#a4bfbfe42e6fc8601c89778e5c904814b">CircPool::SWAP_using_CX_0</a>(), sub, <a class="code" href="classtket_1_1Circuit.html#ad46024dc8be3d44e15fbcdb474552cc6a93cba07454f06a4a960172bbd6e2a435">Circuit::VertexDeletion::Yes</a>);</div>
+<div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160;      }</div>
+<div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;    }</div>
+<div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;    <span class="keywordflow">return</span> success;</div>
+<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;  });</div>
+<div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;}</div>
+<div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160; </div>
+<div class="line"><a name="l00854"></a><span class="lineno"><a class="line" href="namespacetket_1_1Transforms.html#aedc2a6c73363553bc6a3fcc7d4fe1e1d">  854</a></span>&#160;<a class="code" href="classtket_1_1Transform.html">Transform</a> <a class="code" href="namespacetket_1_1Transforms.html#aedc2a6c73363553bc6a3fcc7d4fe1e1d">decompose_BRIDGE_to_CX</a>() {</div>
+<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="classtket_1_1Transform.html">Transform</a>([](<a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ) {</div>
+<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160;    <span class="keywordtype">bool</span> success = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;    <span class="comment">// Collect all BRIDGE type vertices</span></div>
+<div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;    std::vector&lt;std::pair&lt;Vertex, bool&gt;&gt; bin;</div>
+<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;    BGL_FORALL_VERTICES(v, circ.<a class="code" href="classtket_1_1Circuit.html#aa2661c079a17a04f213ec8221718efc1">dag</a>, <a class="code" href="namespacetket.html#acaa3eca1694fd98b7188f988764af8f0">DAG</a>) {</div>
+<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;      <span class="keywordflow">if</span> (circ.<a class="code" href="classtket_1_1Circuit.html#aed06b975de918021ca3fb1716498c6d1">get_OpType_from_Vertex</a>(v) == <a class="code" href="GateUnitaryMatrixFixedMatrices_8cpp.html#a3dd61be7cd33bb7fa1709da22b8c0281">OpType::BRIDGE</a>) {</div>
+<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;        bin.push_back({v, <span class="keyword">false</span>});</div>
+<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;      }</div>
+<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;      <span class="keywordflow">if</span> (circ.<a class="code" href="classtket_1_1Circuit.html#aed06b975de918021ca3fb1716498c6d1">get_OpType_from_Vertex</a>(v) == OpType::Conditional) {</div>
+<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;        <span class="keyword">const</span> <a class="code" href="classtket_1_1Conditional.html">Conditional</a> &amp;b =</div>
+<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;            <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><a class="code" href="classtket_1_1Conditional.html">Conditional</a> &amp;<span class="keyword">&gt;</span>(*circ.<a class="code" href="classtket_1_1Circuit.html#a15fd2bc465a81f45f79171d50590a520">get_Op_ptr_from_Vertex</a>(v));</div>
+<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;        <span class="keywordflow">if</span> (b.<a class="code" href="classtket_1_1Conditional.html#ab7608e854d63f262895583b328c75424">get_op</a>()-&gt;get_type() == <a class="code" href="GateUnitaryMatrixFixedMatrices_8cpp.html#a3dd61be7cd33bb7fa1709da22b8c0281">OpType::BRIDGE</a>) {</div>
+<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;          bin.push_back({v, <span class="keyword">true</span>});</div>
+<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;        }</div>
+<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;      }</div>
+<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;    }</div>
+<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160; </div>
+<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;    <span class="keyword">auto</span> BRIDGE_sub =</div>
+<div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;        [&amp;circ](std::pair&lt;Vertex, bool&gt; &amp;candidate, <a class="code" href="classtket_1_1Circuit.html">Circuit</a> BRIDGE_circ) {</div>
+<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;          <span class="keywordflow">if</span> (candidate.second)</div>
+<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;            circ.<a class="code" href="classtket_1_1Circuit.html#a223094feeabeebcb16301c089a8834da">substitute_conditional</a>(</div>
+<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;                BRIDGE_circ, candidate.first, Circuit::VertexDeletion::Yes);</div>
+<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;          <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;            circ.<a class="code" href="classtket_1_1Circuit.html#a7b1bacb65c517890d2a40cb2892c5b1f">substitute</a>(</div>
+<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;                BRIDGE_circ, candidate.first, Circuit::VertexDeletion::Yes);</div>
+<div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160;        };</div>
+<div class="line"><a name="l00881"></a><span class="lineno">  881</span>&#160; </div>
+<div class="line"><a name="l00882"></a><span class="lineno">  882</span>&#160;    <span class="keywordflow">for</span> (std::pair&lt;Vertex, bool&gt; v : bin) {</div>
+<div class="line"><a name="l00883"></a><span class="lineno">  883</span>&#160;      <span class="comment">// Get predecessor vertices and successor vertices and find subcircuit for</span></div>
+<div class="line"><a name="l00884"></a><span class="lineno">  884</span>&#160;      <span class="comment">// replacement</span></div>
+<div class="line"><a name="l00885"></a><span class="lineno">  885</span>&#160;      success = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00886"></a><span class="lineno">  886</span>&#160;      <a class="code" href="namespacetket.html#aecaec372664e1c2f33ff81d9a5c58ce2">VertexVec</a> preds = circ.<a class="code" href="classtket_1_1Circuit.html#a09fc52c1c4dd3a2fe49ff29085189d85">get_predecessors</a>(v.first);</div>
+<div class="line"><a name="l00887"></a><span class="lineno">  887</span>&#160;      <a class="code" href="namespacetket.html#aecaec372664e1c2f33ff81d9a5c58ce2">VertexVec</a> succs = circ.<a class="code" href="classtket_1_1Circuit.html#ac2e140d9a8d14e70fcb55e3885079be3">get_successors</a>(v.first);</div>
+<div class="line"><a name="l00888"></a><span class="lineno">  888</span>&#160;      <a class="code" href="namespacetket.html#a814cee1be1a70fcc4a804f93212b5013">EdgeVec</a> in_edges = circ.<a class="code" href="classtket_1_1Circuit.html#ae8535df2648de60d406815eae4d5a2de">get_in_edges</a>(v.first);</div>
+<div class="line"><a name="l00889"></a><span class="lineno">  889</span>&#160;      <a class="code" href="namespacetket.html#a814cee1be1a70fcc4a804f93212b5013">EdgeVec</a> out_edges = circ.<a class="code" href="classtket_1_1Circuit.html#a596b60f3400da0dd1d8371ad2eb409a1">get_all_out_edges</a>(v.first);</div>
+<div class="line"><a name="l00890"></a><span class="lineno">  890</span>&#160;      <a class="code" href="structtket_1_1Subcircuit.html">Subcircuit</a> sub = {in_edges, out_edges, {v.first}};</div>
+<div class="line"><a name="l00891"></a><span class="lineno">  891</span>&#160; </div>
+<div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;      <span class="keywordtype">bool</span> done = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;      <span class="keywordflow">if</span> (preds.size() &lt; 3) {  <span class="comment">// Implies some predecessor vertices are in a</span></div>
+<div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;                               <span class="comment">// multi-qubit op together</span></div>
+<div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;        <a class="code" href="namespacetket.html#aecaec372664e1c2f33ff81d9a5c58ce2">VertexVec</a> comps = {</div>
+<div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;            circ.<a class="code" href="classtket_1_1Circuit.html#a90c4935d28c1c7a05a5430862afb3c3f">source</a>(in_edges[0]), circ.<a class="code" href="classtket_1_1Circuit.html#a90c4935d28c1c7a05a5430862afb3c3f">source</a>(in_edges[1]),</div>
+<div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;            circ.<a class="code" href="classtket_1_1Circuit.html#a90c4935d28c1c7a05a5430862afb3c3f">source</a>(in_edges[2])};</div>
+<div class="line"><a name="l00898"></a><span class="lineno">  898</span>&#160;        <span class="keywordflow">if</span> (comps[0] ==</div>
+<div class="line"><a name="l00899"></a><span class="lineno">  899</span>&#160;            comps[1]) {  <span class="comment">// First two qubits in BRIDGE in multi-qubit op</span></div>
+<div class="line"><a name="l00900"></a><span class="lineno">  900</span>&#160;          BRIDGE_sub(v, <a class="code" href="namespacetket_1_1CircPool.html#ad9e886e0e7cbb35904ccbfe3aa36a886">CircPool::BRIDGE_using_CX_0</a>());</div>
+<div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;          done = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (comps[2] == comps[1]) {  <span class="comment">// Second two qubits in BRIDGE in</span></div>
+<div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;                                            <span class="comment">// multi-qubit op together before</span></div>
+<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;                                            <span class="comment">// BRIDGE</span></div>
 <div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;          BRIDGE_sub(v, <a class="code" href="namespacetket_1_1CircPool.html#a0603064dbf9ee5184d4f569443263e69">CircPool::BRIDGE_using_CX_1</a>());</div>
 <div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160;          done = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00907"></a><span class="lineno">  907</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (comps[2] == comps[1]) {  <span class="comment">// Second two qubits in BRIDGE in</span></div>
-<div class="line"><a name="l00908"></a><span class="lineno">  908</span>&#160;                                            <span class="comment">// multi-qubit op together before</span></div>
-<div class="line"><a name="l00909"></a><span class="lineno">  909</span>&#160;                                            <span class="comment">// BRIDGE</span></div>
-<div class="line"><a name="l00910"></a><span class="lineno">  910</span>&#160;          BRIDGE_sub(v, <a class="code" href="namespacetket_1_1CircPool.html#ad9e886e0e7cbb35904ccbfe3aa36a886">CircPool::BRIDGE_using_CX_0</a>());</div>
-<div class="line"><a name="l00911"></a><span class="lineno">  911</span>&#160;          done = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00912"></a><span class="lineno">  912</span>&#160;        }</div>
-<div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;      }</div>
-<div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;      <span class="keywordflow">if</span> (!done) {  <span class="comment">// default decomposition</span></div>
-<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;        BRIDGE_sub(v, <a class="code" href="namespacetket_1_1CircPool.html#a0603064dbf9ee5184d4f569443263e69">CircPool::BRIDGE_using_CX_1</a>());</div>
-<div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;      }</div>
-<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;    }</div>
-<div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;    <span class="keywordflow">return</span> success;</div>
-<div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;  });</div>
-<div class="line"><a name="l00920"></a><span class="lineno">  920</span>&#160;}</div>
-<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160; </div>
-<div class="line"><a name="l00922"></a><span class="lineno"><a class="line" href="namespacetket_1_1Transforms.html#aaf31d7ea658935d1bd052285919074e6">  922</a></span>&#160;<a class="code" href="classtket_1_1Transform.html">Transform</a> <a class="code" href="namespacetket_1_1Transforms.html#aaf31d7ea658935d1bd052285919074e6">decompose_CX_directed</a>(<span class="keyword">const</span> <a class="code" href="classtket_1_1Architecture.html">Architecture</a> &amp;arc) {</div>
-<div class="line"><a name="l00923"></a><span class="lineno">  923</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="classtket_1_1Transform.html">Transform</a>([arc](<a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ) {</div>
-<div class="line"><a name="l00924"></a><span class="lineno">  924</span>&#160;    <span class="keywordtype">bool</span> success = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00925"></a><span class="lineno">  925</span>&#160;    <span class="comment">// Collect all CX type vertices</span></div>
-<div class="line"><a name="l00926"></a><span class="lineno">  926</span>&#160;    std::vector&lt;std::pair&lt;Vertex, bool&gt;&gt; bin;</div>
-<div class="line"><a name="l00927"></a><span class="lineno">  927</span>&#160;    <span class="keywordflow">for</span> (<a class="code" href="classtket_1_1Circuit_1_1CommandIterator.html">Circuit::CommandIterator</a> it = circ.<a class="code" href="classtket_1_1Circuit.html#a95642db488aba1180130eb56a8afd308">begin</a>(); it != circ.<a class="code" href="classtket_1_1Circuit.html#a4c1ba7a1a2cb25f81a2beb0b31e53e5c">end</a>(); ++it) {</div>
-<div class="line"><a name="l00928"></a><span class="lineno">  928</span>&#160;      if (it-&gt;get_op_ptr()-&gt;get_type() == OpType::CX) {</div>
-<div class="line"><a name="l00929"></a><span class="lineno">  929</span>&#160;        unit_vector_t qbs = it-&gt;get_args();</div>
-<div class="line"><a name="l00930"></a><span class="lineno">  930</span>&#160;        node_vector_t nodes = {qbs.begin(), qbs.end()};</div>
-<div class="line"><a name="l00931"></a><span class="lineno">  931</span>&#160;        if (!arc.edge_exists(nodes[0], nodes[1]) &amp;&amp;</div>
-<div class="line"><a name="l00932"></a><span class="lineno">  932</span>&#160;            arc.edge_exists(nodes[1], nodes[0])) {</div>
-<div class="line"><a name="l00933"></a><span class="lineno">  933</span>&#160;          <span class="comment">// Implies CX gate is valid, and needs flipping to respect</span></div>
-<div class="line"><a name="l00934"></a><span class="lineno">  934</span>&#160;          <span class="comment">// Architecture</span></div>
-<div class="line"><a name="l00935"></a><span class="lineno">  935</span>&#160;          bin.push_back({it.get_vertex(), false});</div>
-<div class="line"><a name="l00936"></a><span class="lineno">  936</span>&#160;        }</div>
-<div class="line"><a name="l00937"></a><span class="lineno">  937</span>&#160;      }</div>
-<div class="line"><a name="l00938"></a><span class="lineno">  938</span>&#160;      if (it-&gt;get_op_ptr()-&gt;get_type() == OpType::Conditional) {</div>
-<div class="line"><a name="l00939"></a><span class="lineno">  939</span>&#160;        const Conditional &amp;b =</div>
-<div class="line"><a name="l00940"></a><span class="lineno">  940</span>&#160;            static_cast&lt;const Conditional &amp;&gt;(*it-&gt;get_op_ptr());</div>
-<div class="line"><a name="l00941"></a><span class="lineno">  941</span>&#160;        if (b.get_op()-&gt;get_type() == OpType::CX) {</div>
-<div class="line"><a name="l00942"></a><span class="lineno">  942</span>&#160;          qubit_vector_t qbs = it-&gt;get_qubits();</div>
-<div class="line"><a name="l00943"></a><span class="lineno">  943</span>&#160;          node_vector_t nodes = {qbs.begin(), qbs.end()};</div>
-<div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160;          if (!arc.edge_exists(nodes[0], nodes[1]) &amp;&amp;</div>
-<div class="line"><a name="l00945"></a><span class="lineno">  945</span>&#160;              arc.edge_exists(nodes[1], nodes[0])) {</div>
-<div class="line"><a name="l00946"></a><span class="lineno">  946</span>&#160;            <span class="comment">// Implies CX gate is valid, and needs flipping to respect</span></div>
-<div class="line"><a name="l00947"></a><span class="lineno">  947</span>&#160;            <span class="comment">// Architecture</span></div>
-<div class="line"><a name="l00948"></a><span class="lineno">  948</span>&#160;            bin.push_back({it.get_vertex(), true});</div>
-<div class="line"><a name="l00949"></a><span class="lineno">  949</span>&#160;          }</div>
-<div class="line"><a name="l00950"></a><span class="lineno">  950</span>&#160;        }</div>
-<div class="line"><a name="l00951"></a><span class="lineno">  951</span>&#160;        if (b.get_op()-&gt;get_type() == OpType::CircBox) {</div>
-<div class="line"><a name="l00952"></a><span class="lineno">  952</span>&#160;          qubit_vector_t qbs = it-&gt;get_qubits();</div>
-<div class="line"><a name="l00953"></a><span class="lineno">  953</span>&#160;          std::shared_ptr&lt;const Box&gt; box_ptr =</div>
-<div class="line"><a name="l00954"></a><span class="lineno">  954</span>&#160;              std::dynamic_pointer_cast&lt;const Box&gt;(b.get_op());</div>
-<div class="line"><a name="l00955"></a><span class="lineno">  955</span>&#160;          qubit_vector_t all_qubits = box_ptr-&gt;to_circuit().get()-&gt;all_qubits();</div>
-<div class="line"><a name="l00956"></a><span class="lineno">  956</span>&#160;          if (all_qubits.size() != 3)</div>
-<div class="line"><a name="l00957"></a><span class="lineno">  957</span>&#160;            throw std::logic_error(<span class="stringliteral">&quot;Box being opened not a BRIDGE gate.&quot;</span>);</div>
-<div class="line"><a name="l00958"></a><span class="lineno">  958</span>&#160;          std::map&lt;Qubit, Qubit&gt; rmap = {</div>
-<div class="line"><a name="l00959"></a><span class="lineno">  959</span>&#160;              {all_qubits[0], qbs[0]},</div>
-<div class="line"><a name="l00960"></a><span class="lineno">  960</span>&#160;              {all_qubits[1], qbs[1]},</div>
-<div class="line"><a name="l00961"></a><span class="lineno">  961</span>&#160;              {all_qubits[2], qbs[2]}};</div>
-<div class="line"><a name="l00962"></a><span class="lineno">  962</span>&#160;          box_ptr-&gt;to_circuit()-&gt;rename_units(rmap);</div>
-<div class="line"><a name="l00963"></a><span class="lineno">  963</span>&#160;          <a class="code" href="namespacetket_1_1Transforms.html#aaf31d7ea658935d1bd052285919074e6">decompose_CX_directed</a>(arc).apply(*box_ptr-&gt;to_circuit());</div>
-<div class="line"><a name="l00964"></a><span class="lineno">  964</span>&#160;        }</div>
-<div class="line"><a name="l00965"></a><span class="lineno">  965</span>&#160;      }</div>
-<div class="line"><a name="l00966"></a><span class="lineno">  966</span>&#160;    }</div>
-<div class="line"><a name="l00967"></a><span class="lineno">  967</span>&#160;    <span class="keywordflow">for</span> (std::pair&lt;Vertex, bool&gt; v : bin) {</div>
-<div class="line"><a name="l00968"></a><span class="lineno">  968</span>&#160;      <span class="keywordflow">if</span> (!v.second) {</div>
-<div class="line"><a name="l00969"></a><span class="lineno">  969</span>&#160;        Subcircuit sub = {</div>
-<div class="line"><a name="l00970"></a><span class="lineno">  970</span>&#160;            circ.get_in_edges(v.first),</div>
-<div class="line"><a name="l00971"></a><span class="lineno">  971</span>&#160;            circ.get_all_out_edges(v.first),</div>
-<div class="line"><a name="l00972"></a><span class="lineno">  972</span>&#160;            {v.first}};</div>
-<div class="line"><a name="l00973"></a><span class="lineno">  973</span>&#160;        circ.<a class="code" href="classtket_1_1Circuit.html#a7b1bacb65c517890d2a40cb2892c5b1f">substitute</a>(</div>
-<div class="line"><a name="l00974"></a><span class="lineno">  974</span>&#160;            <a class="code" href="namespacetket_1_1CircPool.html#ae5b4265bcab517f800956b06fff25882">CircPool::CX_using_flipped_CX</a>(), sub, Circuit::VertexDeletion::Yes);</div>
-<div class="line"><a name="l00975"></a><span class="lineno">  975</span>&#160;      }</div>
-<div class="line"><a name="l00976"></a><span class="lineno">  976</span>&#160;      <span class="keywordflow">if</span> (v.second) {</div>
-<div class="line"><a name="l00977"></a><span class="lineno">  977</span>&#160;        circ.substitute_conditional(</div>
-<div class="line"><a name="l00978"></a><span class="lineno">  978</span>&#160;            CircPool::CX_using_flipped_CX(), v.first,</div>
-<div class="line"><a name="l00979"></a><span class="lineno">  979</span>&#160;            Circuit::VertexDeletion::Yes);</div>
-<div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160;      }</div>
-<div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;      success = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;    }</div>
-<div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160;    <span class="keywordflow">return</span> success;</div>
-<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;  });</div>
-<div class="line"><a name="l00985"></a><span class="lineno">  985</span>&#160;}</div>
-<div class="line"><a name="l00986"></a><span class="lineno">  986</span>&#160; </div>
-<div class="line"><a name="l00987"></a><span class="lineno">  987</span>&#160;}  <span class="comment">// namespace Transforms</span></div>
-<div class="line"><a name="l00988"></a><span class="lineno">  988</span>&#160; </div>
-<div class="line"><a name="l00989"></a><span class="lineno">  989</span>&#160;}  <span class="comment">// namespace tket</span></div>
+<div class="line"><a name="l00907"></a><span class="lineno">  907</span>&#160;        }</div>
+<div class="line"><a name="l00908"></a><span class="lineno">  908</span>&#160;      }</div>
+<div class="line"><a name="l00909"></a><span class="lineno">  909</span>&#160;      <span class="keywordflow">if</span> (succs.size() &lt; 3 &amp;&amp; !done) {  <span class="comment">// Implies some successor vertices are</span></div>
+<div class="line"><a name="l00910"></a><span class="lineno">  910</span>&#160;                                        <span class="comment">// in a multiq-ubit op together</span></div>
+<div class="line"><a name="l00911"></a><span class="lineno">  911</span>&#160;        <a class="code" href="namespacetket.html#aecaec372664e1c2f33ff81d9a5c58ce2">VertexVec</a> comps = {</div>
+<div class="line"><a name="l00912"></a><span class="lineno">  912</span>&#160;            circ.<a class="code" href="classtket_1_1Circuit.html#af523ff39367bf72c26155a4493d25daa">target</a>(out_edges[0]), circ.<a class="code" href="classtket_1_1Circuit.html#af523ff39367bf72c26155a4493d25daa">target</a>(out_edges[1]),</div>
+<div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;            circ.<a class="code" href="classtket_1_1Circuit.html#af523ff39367bf72c26155a4493d25daa">target</a>(out_edges[2])};</div>
+<div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;        <span class="keywordflow">if</span> (comps[0] == comps[1]) {  <span class="comment">// First two qubits in BRIDGE in</span></div>
+<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;                                     <span class="comment">// multi-qubit op together before BRIDGE</span></div>
+<div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;          BRIDGE_sub(v, <a class="code" href="namespacetket_1_1CircPool.html#a0603064dbf9ee5184d4f569443263e69">CircPool::BRIDGE_using_CX_1</a>());</div>
+<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;          done = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (comps[2] == comps[1]) {  <span class="comment">// Second two qubits in BRIDGE in</span></div>
+<div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;                                            <span class="comment">// multi-qubit op together before</span></div>
+<div class="line"><a name="l00920"></a><span class="lineno">  920</span>&#160;                                            <span class="comment">// BRIDGE</span></div>
+<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160;          BRIDGE_sub(v, <a class="code" href="namespacetket_1_1CircPool.html#ad9e886e0e7cbb35904ccbfe3aa36a886">CircPool::BRIDGE_using_CX_0</a>());</div>
+<div class="line"><a name="l00922"></a><span class="lineno">  922</span>&#160;          done = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00923"></a><span class="lineno">  923</span>&#160;        }</div>
+<div class="line"><a name="l00924"></a><span class="lineno">  924</span>&#160;      }</div>
+<div class="line"><a name="l00925"></a><span class="lineno">  925</span>&#160;      <span class="keywordflow">if</span> (!done) {  <span class="comment">// default decomposition</span></div>
+<div class="line"><a name="l00926"></a><span class="lineno">  926</span>&#160;        BRIDGE_sub(v, <a class="code" href="namespacetket_1_1CircPool.html#a0603064dbf9ee5184d4f569443263e69">CircPool::BRIDGE_using_CX_1</a>());</div>
+<div class="line"><a name="l00927"></a><span class="lineno">  927</span>&#160;      }</div>
+<div class="line"><a name="l00928"></a><span class="lineno">  928</span>&#160;    }</div>
+<div class="line"><a name="l00929"></a><span class="lineno">  929</span>&#160;    <span class="keywordflow">return</span> success;</div>
+<div class="line"><a name="l00930"></a><span class="lineno">  930</span>&#160;  });</div>
+<div class="line"><a name="l00931"></a><span class="lineno">  931</span>&#160;}</div>
+<div class="line"><a name="l00932"></a><span class="lineno">  932</span>&#160; </div>
+<div class="line"><a name="l00933"></a><span class="lineno"><a class="line" href="namespacetket_1_1Transforms.html#aaf31d7ea658935d1bd052285919074e6">  933</a></span>&#160;<a class="code" href="classtket_1_1Transform.html">Transform</a> <a class="code" href="namespacetket_1_1Transforms.html#aaf31d7ea658935d1bd052285919074e6">decompose_CX_directed</a>(<span class="keyword">const</span> <a class="code" href="classtket_1_1Architecture.html">Architecture</a> &amp;arc) {</div>
+<div class="line"><a name="l00934"></a><span class="lineno">  934</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="classtket_1_1Transform.html">Transform</a>([arc](<a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ) {</div>
+<div class="line"><a name="l00935"></a><span class="lineno">  935</span>&#160;    <span class="keywordtype">bool</span> success = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00936"></a><span class="lineno">  936</span>&#160;    <span class="comment">// Collect all CX type vertices</span></div>
+<div class="line"><a name="l00937"></a><span class="lineno">  937</span>&#160;    std::vector&lt;std::pair&lt;Vertex, bool&gt;&gt; bin;</div>
+<div class="line"><a name="l00938"></a><span class="lineno">  938</span>&#160;    <span class="keywordflow">for</span> (<a class="code" href="classtket_1_1Circuit_1_1CommandIterator.html">Circuit::CommandIterator</a> it = circ.<a class="code" href="classtket_1_1Circuit.html#a95642db488aba1180130eb56a8afd308">begin</a>(); it != circ.<a class="code" href="classtket_1_1Circuit.html#a4c1ba7a1a2cb25f81a2beb0b31e53e5c">end</a>(); ++it) {</div>
+<div class="line"><a name="l00939"></a><span class="lineno">  939</span>&#160;      if (it-&gt;get_op_ptr()-&gt;get_type() == OpType::CX) {</div>
+<div class="line"><a name="l00940"></a><span class="lineno">  940</span>&#160;        unit_vector_t qbs = it-&gt;get_args();</div>
+<div class="line"><a name="l00941"></a><span class="lineno">  941</span>&#160;        node_vector_t nodes = {qbs.begin(), qbs.end()};</div>
+<div class="line"><a name="l00942"></a><span class="lineno">  942</span>&#160;        if (!arc.edge_exists(nodes[0], nodes[1]) &amp;&amp;</div>
+<div class="line"><a name="l00943"></a><span class="lineno">  943</span>&#160;            arc.edge_exists(nodes[1], nodes[0])) {</div>
+<div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160;          <span class="comment">// Implies CX gate is valid, and needs flipping to respect</span></div>
+<div class="line"><a name="l00945"></a><span class="lineno">  945</span>&#160;          <span class="comment">// Architecture</span></div>
+<div class="line"><a name="l00946"></a><span class="lineno">  946</span>&#160;          bin.push_back({it.get_vertex(), false});</div>
+<div class="line"><a name="l00947"></a><span class="lineno">  947</span>&#160;        }</div>
+<div class="line"><a name="l00948"></a><span class="lineno">  948</span>&#160;      }</div>
+<div class="line"><a name="l00949"></a><span class="lineno">  949</span>&#160;      if (it-&gt;get_op_ptr()-&gt;get_type() == OpType::Conditional) {</div>
+<div class="line"><a name="l00950"></a><span class="lineno">  950</span>&#160;        const Conditional &amp;b =</div>
+<div class="line"><a name="l00951"></a><span class="lineno">  951</span>&#160;            static_cast&lt;const Conditional &amp;&gt;(*it-&gt;get_op_ptr());</div>
+<div class="line"><a name="l00952"></a><span class="lineno">  952</span>&#160;        if (b.get_op()-&gt;get_type() == OpType::CX) {</div>
+<div class="line"><a name="l00953"></a><span class="lineno">  953</span>&#160;          qubit_vector_t qbs = it-&gt;get_qubits();</div>
+<div class="line"><a name="l00954"></a><span class="lineno">  954</span>&#160;          node_vector_t nodes = {qbs.begin(), qbs.end()};</div>
+<div class="line"><a name="l00955"></a><span class="lineno">  955</span>&#160;          if (!arc.edge_exists(nodes[0], nodes[1]) &amp;&amp;</div>
+<div class="line"><a name="l00956"></a><span class="lineno">  956</span>&#160;              arc.edge_exists(nodes[1], nodes[0])) {</div>
+<div class="line"><a name="l00957"></a><span class="lineno">  957</span>&#160;            <span class="comment">// Implies CX gate is valid, and needs flipping to respect</span></div>
+<div class="line"><a name="l00958"></a><span class="lineno">  958</span>&#160;            <span class="comment">// Architecture</span></div>
+<div class="line"><a name="l00959"></a><span class="lineno">  959</span>&#160;            bin.push_back({it.get_vertex(), true});</div>
+<div class="line"><a name="l00960"></a><span class="lineno">  960</span>&#160;          }</div>
+<div class="line"><a name="l00961"></a><span class="lineno">  961</span>&#160;        }</div>
+<div class="line"><a name="l00962"></a><span class="lineno">  962</span>&#160;        if (b.get_op()-&gt;get_type() == OpType::CircBox) {</div>
+<div class="line"><a name="l00963"></a><span class="lineno">  963</span>&#160;          qubit_vector_t qbs = it-&gt;get_qubits();</div>
+<div class="line"><a name="l00964"></a><span class="lineno">  964</span>&#160;          std::shared_ptr&lt;const Box&gt; box_ptr =</div>
+<div class="line"><a name="l00965"></a><span class="lineno">  965</span>&#160;              std::dynamic_pointer_cast&lt;const Box&gt;(b.get_op());</div>
+<div class="line"><a name="l00966"></a><span class="lineno">  966</span>&#160;          qubit_vector_t all_qubits = box_ptr-&gt;to_circuit().get()-&gt;all_qubits();</div>
+<div class="line"><a name="l00967"></a><span class="lineno">  967</span>&#160;          if (all_qubits.size() != 3)</div>
+<div class="line"><a name="l00968"></a><span class="lineno">  968</span>&#160;            throw std::logic_error(<span class="stringliteral">&quot;Box being opened not a BRIDGE gate.&quot;</span>);</div>
+<div class="line"><a name="l00969"></a><span class="lineno">  969</span>&#160;          std::map&lt;Qubit, Qubit&gt; rmap = {</div>
+<div class="line"><a name="l00970"></a><span class="lineno">  970</span>&#160;              {all_qubits[0], qbs[0]},</div>
+<div class="line"><a name="l00971"></a><span class="lineno">  971</span>&#160;              {all_qubits[1], qbs[1]},</div>
+<div class="line"><a name="l00972"></a><span class="lineno">  972</span>&#160;              {all_qubits[2], qbs[2]}};</div>
+<div class="line"><a name="l00973"></a><span class="lineno">  973</span>&#160;          box_ptr-&gt;to_circuit()-&gt;rename_units(rmap);</div>
+<div class="line"><a name="l00974"></a><span class="lineno">  974</span>&#160;          <a class="code" href="namespacetket_1_1Transforms.html#aaf31d7ea658935d1bd052285919074e6">decompose_CX_directed</a>(arc).apply(*box_ptr-&gt;to_circuit());</div>
+<div class="line"><a name="l00975"></a><span class="lineno">  975</span>&#160;        }</div>
+<div class="line"><a name="l00976"></a><span class="lineno">  976</span>&#160;      }</div>
+<div class="line"><a name="l00977"></a><span class="lineno">  977</span>&#160;    }</div>
+<div class="line"><a name="l00978"></a><span class="lineno">  978</span>&#160;    <span class="keywordflow">for</span> (std::pair&lt;Vertex, bool&gt; v : bin) {</div>
+<div class="line"><a name="l00979"></a><span class="lineno">  979</span>&#160;      <span class="keywordflow">if</span> (!v.second) {</div>
+<div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160;        Subcircuit sub = {</div>
+<div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;            circ.get_in_edges(v.first),</div>
+<div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;            circ.get_all_out_edges(v.first),</div>
+<div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160;            {v.first}};</div>
+<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;        circ.<a class="code" href="classtket_1_1Circuit.html#a7b1bacb65c517890d2a40cb2892c5b1f">substitute</a>(</div>
+<div class="line"><a name="l00985"></a><span class="lineno">  985</span>&#160;            <a class="code" href="namespacetket_1_1CircPool.html#ae5b4265bcab517f800956b06fff25882">CircPool::CX_using_flipped_CX</a>(), sub, Circuit::VertexDeletion::Yes);</div>
+<div class="line"><a name="l00986"></a><span class="lineno">  986</span>&#160;      }</div>
+<div class="line"><a name="l00987"></a><span class="lineno">  987</span>&#160;      <span class="keywordflow">if</span> (v.second) {</div>
+<div class="line"><a name="l00988"></a><span class="lineno">  988</span>&#160;        circ.substitute_conditional(</div>
+<div class="line"><a name="l00989"></a><span class="lineno">  989</span>&#160;            CircPool::CX_using_flipped_CX(), v.first,</div>
+<div class="line"><a name="l00990"></a><span class="lineno">  990</span>&#160;            Circuit::VertexDeletion::Yes);</div>
+<div class="line"><a name="l00991"></a><span class="lineno">  991</span>&#160;      }</div>
+<div class="line"><a name="l00992"></a><span class="lineno">  992</span>&#160;      success = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00993"></a><span class="lineno">  993</span>&#160;    }</div>
+<div class="line"><a name="l00994"></a><span class="lineno">  994</span>&#160;    <span class="keywordflow">return</span> success;</div>
+<div class="line"><a name="l00995"></a><span class="lineno">  995</span>&#160;  });</div>
+<div class="line"><a name="l00996"></a><span class="lineno">  996</span>&#160;}</div>
+<div class="line"><a name="l00997"></a><span class="lineno">  997</span>&#160; </div>
+<div class="line"><a name="l00998"></a><span class="lineno">  998</span>&#160;}  <span class="comment">// namespace Transforms</span></div>
+<div class="line"><a name="l00999"></a><span class="lineno">  999</span>&#160; </div>
+<div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160;}  <span class="comment">// namespace tket</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclasstket_1_1Circuit_html_a7ac875c3a725b691b6ec1fc5b8613a2f"><div class="ttname"><a href="classtket_1_1Circuit.html#a7ac875c3a725b691b6ec1fc5b8613a2f">tket::Circuit::substitute_all</a></div><div class="ttdeci">bool substitute_all(const Circuit &amp;to_insert, const Op_ptr op)</div><div class="ttdoc">Subsitute all vertices matching the given op with the given circuit.</div><div class="ttdef"><b>Definition:</b> <a href="macro__manipulation_8cpp_source.html#l00499">macro_manipulation.cpp:499</a></div></div>
 <div class="ttc" id="anamespacetket_html_a75405147f5ffd3ff1ff1118fba63bcd0"><div class="ttname"><a href="namespacetket.html#a75405147f5ffd3ff1ff1118fba63bcd0">tket::Op_ptr</a></div><div class="ttdeci">std::shared_ptr&lt; const Op &gt; Op_ptr</div><div class="ttdef"><b>Definition:</b> <a href="OpPtr_8hpp_source.html#l00023">OpPtr.hpp:23</a></div></div>
@@ -1053,8 +1064,8 @@ $(function() {
 <div class="ttc" id="anamespacetket_1_1Transforms_html_aefaeaababb6b384030bc96a88da4d967"><div class="ttname"><a href="namespacetket_1_1Transforms.html#aefaeaababb6b384030bc96a88da4d967">tket::Transforms::decompose_ZX_to_cliffords</a></div><div class="ttdeci">Transform decompose_ZX_to_cliffords()</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00604">Decomposition.cpp:604</a></div></div>
 <div class="ttc" id="anamespacetket_1_1Transforms_html_a71005e0ba2d95e2bf2e2d355723a13f5"><div class="ttname"><a href="namespacetket_1_1Transforms.html#a71005e0ba2d95e2bf2e2d355723a13f5">tket::Transforms::decompose_PhaseGadgets</a></div><div class="ttdeci">Transform decompose_PhaseGadgets()</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00671">Decomposition.cpp:671</a></div></div>
 <div class="ttc" id="anamespacetket_html_a13e81344da4794f2648eb9a7b286fcf3a464c865608c43e719808fdfada936330"><div class="ttname"><a href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a464c865608c43e719808fdfada936330">tket::OpType::XXPhase</a></div><div class="ttdeci">@ XXPhase</div></div>
-<div class="ttc" id="anamespacetket_1_1Transforms_html_aa529d9f5779cbfdaa4b5a846e504de43"><div class="ttname"><a href="namespacetket_1_1Transforms.html#aa529d9f5779cbfdaa4b5a846e504de43">tket::Transforms::decompose_SWAP</a></div><div class="ttdeci">Transform decompose_SWAP(const Circuit &amp;replacement_circuit)</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00756">Decomposition.cpp:756</a></div></div>
-<div class="ttc" id="anamespacetket_1_1Transforms_html_aedc2a6c73363553bc6a3fcc7d4fe1e1d"><div class="ttname"><a href="namespacetket_1_1Transforms.html#aedc2a6c73363553bc6a3fcc7d4fe1e1d">tket::Transforms::decompose_BRIDGE_to_CX</a></div><div class="ttdeci">Transform decompose_BRIDGE_to_CX()</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00843">Decomposition.cpp:843</a></div></div>
+<div class="ttc" id="anamespacetket_1_1Transforms_html_aa529d9f5779cbfdaa4b5a846e504de43"><div class="ttname"><a href="namespacetket_1_1Transforms.html#aa529d9f5779cbfdaa4b5a846e504de43">tket::Transforms::decompose_SWAP</a></div><div class="ttdeci">Transform decompose_SWAP(const Circuit &amp;replacement_circuit)</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00767">Decomposition.cpp:767</a></div></div>
+<div class="ttc" id="anamespacetket_1_1Transforms_html_aedc2a6c73363553bc6a3fcc7d4fe1e1d"><div class="ttname"><a href="namespacetket_1_1Transforms.html#aedc2a6c73363553bc6a3fcc7d4fe1e1d">tket::Transforms::decompose_BRIDGE_to_CX</a></div><div class="ttdeci">Transform decompose_BRIDGE_to_CX()</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00854">Decomposition.cpp:854</a></div></div>
 <div class="ttc" id="anamespacetket_html_a0bf6a146dadc36738e597ab8892a09f5"><div class="ttname"><a href="namespacetket.html#a0bf6a146dadc36738e597ab8892a09f5">tket::Vertex</a></div><div class="ttdeci">boost::graph_traits&lt; DAG &gt;::vertex_descriptor Vertex</div><div class="ttdef"><b>Definition:</b> <a href="DAGDefs_8hpp_source.html#l00066">DAGDefs.hpp:66</a></div></div>
 <div class="ttc" id="anamespacetket_1_1CircPool_html_a0603064dbf9ee5184d4f569443263e69"><div class="ttname"><a href="namespacetket_1_1CircPool.html#a0603064dbf9ee5184d4f569443263e69">tket::CircPool::BRIDGE_using_CX_1</a></div><div class="ttdeci">const Circuit &amp; BRIDGE_using_CX_1()</div><div class="ttdoc">Equivalent to BRIDGE, using four CX, first CX has control on qubit 1.</div><div class="ttdef"><b>Definition:</b> <a href="CircPool_8cpp_source.html#l00033">CircPool.cpp:33</a></div></div>
 <div class="ttc" id="anamespacetket_html_a13e81344da4794f2648eb9a7b286fcf3ac1d9f50f86825a1a2302ec2449c17196"><div class="ttname"><a href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac1d9f50f86825a1a2302ec2449c17196">tket::OpType::H</a></div><div class="ttdeci">@ H</div></div>
@@ -1130,7 +1141,7 @@ $(function() {
 <div class="ttc" id="aclasstket_1_1Circuit_html_ad46024dc8be3d44e15fbcdb474552cc6a93cba07454f06a4a960172bbd6e2a435"><div class="ttname"><a href="classtket_1_1Circuit.html#ad46024dc8be3d44e15fbcdb474552cc6a93cba07454f06a4a960172bbd6e2a435">tket::Circuit::VertexDeletion::Yes</a></div><div class="ttdeci">@ Yes</div></div>
 <div class="ttc" id="aPhasePoly_8hpp_html"><div class="ttname"><a href="PhasePoly_8hpp.html">PhasePoly.hpp</a></div></div>
 <div class="ttc" id="aCircPool_8hpp_html"><div class="ttname"><a href="CircPool_8hpp.html">CircPool.hpp</a></div></div>
-<div class="ttc" id="anamespacetket_1_1Transforms_html_aaf31d7ea658935d1bd052285919074e6"><div class="ttname"><a href="namespacetket_1_1Transforms.html#aaf31d7ea658935d1bd052285919074e6">tket::Transforms::decompose_CX_directed</a></div><div class="ttdeci">Transform decompose_CX_directed(const Architecture &amp;arc)</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00922">Decomposition.cpp:922</a></div></div>
+<div class="ttc" id="anamespacetket_1_1Transforms_html_aaf31d7ea658935d1bd052285919074e6"><div class="ttname"><a href="namespacetket_1_1Transforms.html#aaf31d7ea658935d1bd052285919074e6">tket::Transforms::decompose_CX_directed</a></div><div class="ttdeci">Transform decompose_CX_directed(const Architecture &amp;arc)</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00933">Decomposition.cpp:933</a></div></div>
 <div class="ttc" id="aRebase_8hpp_html"><div class="ttname"><a href="Rebase_8hpp.html">Rebase.hpp</a></div></div>
 <div class="ttc" id="aclasstket_1_1Circuit_html_ac2e140d9a8d14e70fcb55e3885079be3"><div class="ttname"><a href="classtket_1_1Circuit.html#ac2e140d9a8d14e70fcb55e3885079be3">tket::Circuit::get_successors</a></div><div class="ttdeci">VertexVec get_successors(const Vertex &amp;vert) const</div><div class="ttdef"><b>Definition:</b> <a href="setters__and__getters_8cpp_source.html#l00282">setters_and_getters.cpp:282</a></div></div>
 <div class="ttc" id="aGateUnitaryMatrixFixedMatrices_8cpp_html_a3dd61be7cd33bb7fa1709da22b8c0281"><div class="ttname"><a href="GateUnitaryMatrixFixedMatrices_8cpp.html#a3dd61be7cd33bb7fa1709da22b8c0281">BRIDGE</a></div><div class="ttdeci">Matrix8cd BRIDGE</div><div class="ttdef"><b>Definition:</b> <a href="GateUnitaryMatrixFixedMatrices_8cpp_source.html#l00048">GateUnitaryMatrixFixedMatrices.cpp:48</a></div></div>
@@ -1145,7 +1156,7 @@ $(function() {
 <div class="ttc" id="aclasstket_1_1Circuit_html_ab9bafba71bfd701726af8f9407ea0abf"><div class="ttname"><a href="classtket_1_1Circuit.html#ab9bafba71bfd701726af8f9407ea0abf">tket::Circuit::get_next_pair</a></div><div class="ttdeci">std::pair&lt; Vertex, Edge &gt; get_next_pair(const Vertex &amp;current_vertex, const Edge &amp;inedge) const</div><div class="ttdef"><b>Definition:</b> <a href="setters__and__getters_8cpp_source.html#l00601">setters_and_getters.cpp:601</a></div></div>
 <div class="ttc" id="aclasstket_1_1Circuit_1_1CommandIterator_html"><div class="ttname"><a href="classtket_1_1Circuit_1_1CommandIterator.html">tket::Circuit::CommandIterator</a></div><div class="ttdef"><b>Definition:</b> <a href="Circuit_8hpp_source.html#l00316">Circuit.hpp:316</a></div></div>
 <div class="ttc" id="aclasstket_1_1Circuit_html_a87763c01e9430173ebff697ccbe2e762"><div class="ttname"><a href="classtket_1_1Circuit.html#a87763c01e9430173ebff697ccbe2e762">tket::Circuit::remove_vertices</a></div><div class="ttdeci">void remove_vertices(const VertexSet &amp;surplus, GraphRewiring graph_rewiring, VertexDeletion vertex_deletion)</div><div class="ttdef"><b>Definition:</b> <a href="basic__circ__manip_8cpp_source.html#l00298">basic_circ_manip.cpp:298</a></div></div>
-<div class="ttc" id="anamespacetket_1_1Transforms_html_aacebf9ac8d1a3f978cab3ca3611de2e1"><div class="ttname"><a href="namespacetket_1_1Transforms.html#aacebf9ac8d1a3f978cab3ca3611de2e1">tket::Transforms::decompose_SWAP_to_CX</a></div><div class="ttdeci">Transform decompose_SWAP_to_CX(const Architecture &amp;arc)</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00776">Decomposition.cpp:776</a></div></div>
+<div class="ttc" id="anamespacetket_1_1Transforms_html_aacebf9ac8d1a3f978cab3ca3611de2e1"><div class="ttname"><a href="namespacetket_1_1Transforms.html#aacebf9ac8d1a3f978cab3ca3611de2e1">tket::Transforms::decompose_SWAP_to_CX</a></div><div class="ttdeci">Transform decompose_SWAP_to_CX(const Architecture &amp;arc)</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00787">Decomposition.cpp:787</a></div></div>
 <div class="ttc" id="anamespacetket_html_a342a289d54f4f5f5a405373c07aca66aa21c2e59531c8710156d34a3c30ac81d5"><div class="ttname"><a href="namespacetket.html#a342a289d54f4f5f5a405373c07aca66aa21c2e59531c8710156d34a3c30ac81d5">tket::Z</a></div><div class="ttdeci">@ Z</div></div>
 <div class="ttc" id="anamespacetket_html_aecaec372664e1c2f33ff81d9a5c58ce2"><div class="ttname"><a href="namespacetket.html#aecaec372664e1c2f33ff81d9a5c58ce2">tket::VertexVec</a></div><div class="ttdeci">std::vector&lt; Vertex &gt; VertexVec</div><div class="ttdef"><b>Definition:</b> <a href="DAGDefs_8hpp_source.html#l00069">DAGDefs.hpp:69</a></div></div>
 <div class="ttc" id="anamespacetket_html_a218e50abe75d86161d9b5ef3e556877f"><div class="ttname"><a href="namespacetket.html#a218e50abe75d86161d9b5ef3e556877f">tket::get_op_ptr</a></div><div class="ttdeci">Op_ptr get_op_ptr(OpType chosen_type, const Expr &amp;param, unsigned n_qubits=0)</div><div class="ttdoc">Get an operation with a given type, single parameter and qubit count.</div><div class="ttdef"><b>Definition:</b> <a href="OpPtrFunctions_8cpp_source.html#l00023">OpPtrFunctions.cpp:23</a></div></div>
@@ -1154,6 +1165,7 @@ $(function() {
 <div class="ttc" id="anamespacetket_1_1Transforms_html_a6195d1cae2fc9f46bc761c981188c26d"><div class="ttname"><a href="namespacetket_1_1Transforms.html#a6195d1cae2fc9f46bc761c981188c26d">tket::Transforms::decompose_cliffords_std</a></div><div class="ttdeci">Transform decompose_cliffords_std()</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00560">Decomposition.cpp:560</a></div></div>
 <div class="ttc" id="anamespacetket_1_1CircPool_html_a4bfbfe42e6fc8601c89778e5c904814b"><div class="ttname"><a href="namespacetket_1_1CircPool.html#a4bfbfe42e6fc8601c89778e5c904814b">tket::CircPool::SWAP_using_CX_0</a></div><div class="ttdeci">const Circuit &amp; SWAP_using_CX_0()</div><div class="ttdoc">Equivalent to SWAP, using three CX, outer CX have control on qubit 0.</div><div class="ttdef"><b>Definition:</b> <a href="CircPool_8cpp_source.html#l00208">CircPool.cpp:208</a></div></div>
 <div class="ttc" id="anamespacetket_1_1Transforms_html_a43adf4cb25bec02a6eb9188afa0b93b2"><div class="ttname"><a href="namespacetket_1_1Transforms.html#a43adf4cb25bec02a6eb9188afa0b93b2">tket::Transforms::decompose_multi_qubits_CX</a></div><div class="ttdeci">Transform decompose_multi_qubits_CX()</div><div class="ttdoc">Decomposes all multi-qubit unitary gates into CX and single-qubit gates.</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00134">Decomposition.cpp:134</a></div></div>
+<div class="ttc" id="aclasstket_1_1Circuit_html_a3694942914dae4f6929f36a347304b46"><div class="ttname"><a href="classtket_1_1Circuit.html#a3694942914dae4f6929f36a347304b46">tket::Circuit::has_implicit_wireswaps</a></div><div class="ttdeci">bool has_implicit_wireswaps() const</div><div class="ttdoc">Whether the circuit contains implicit wireswaps.</div><div class="ttdef"><b>Definition:</b> <a href="macro__circ__info_8cpp_source.html#l00268">macro_circ_info.cpp:268</a></div></div>
 <div class="ttc" id="aGatePtr_8hpp_html"><div class="ttname"><a href="GatePtr_8hpp.html">GatePtr.hpp</a></div></div>
 <div class="ttc" id="aclasstket_1_1Conditional_html"><div class="ttname"><a href="classtket_1_1Conditional.html">tket::Conditional</a></div><div class="ttdoc">Decorates another op, adding a QASM-style classical condition.</div><div class="ttdef"><b>Definition:</b> <a href="Conditional_8hpp_source.html#l00028">Conditional.hpp:28</a></div></div>
 <div class="ttc" id="anamespacetket_html_a6817cd1c8a5630b406c86a59173edd21"><div class="ttname"><a href="namespacetket.html#a6817cd1c8a5630b406c86a59173edd21">tket::Expr</a></div><div class="ttdeci">SymEngine::Expression Expr</div><div class="ttdoc">Representation of a phase as a multiple of .</div><div class="ttdef"><b>Definition:</b> <a href="Expression_8hpp_source.html#l00034">Expression.hpp:34</a></div></div>
