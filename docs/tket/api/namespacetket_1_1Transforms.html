@@ -307,6 +307,7 @@ Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:ae524dc4530ede8cb1f5a72ac7277f0ad"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#ae524dc4530ede8cb1f5a72ac7277f0ad">id</a></td></tr>
+<tr class="memdesc:ae524dc4530ede8cb1f5a72ac7277f0ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identity transform (does nothing, returns false)  <a href="namespacetket_1_1Transforms.html#ae524dc4530ede8cb1f5a72ac7277f0ad">More...</a><br /></td></tr>
 <tr class="separator:ae524dc4530ede8cb1f5a72ac7277f0ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -1697,7 +1698,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Combinator_8cpp_source.html#l00039">39</a> of file <a class="el" href="Combinator_8cpp_source.html">Combinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Combinator_8cpp_source.html#l00041">41</a> of file <a class="el" href="Combinator_8cpp_source.html">Combinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -1727,7 +1728,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Combinator_8cpp_source.html#l00068">68</a> of file <a class="el" href="Combinator_8cpp_source.html">Combinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Combinator_8cpp_source.html#l00070">70</a> of file <a class="el" href="Combinator_8cpp_source.html">Combinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -1757,7 +1758,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Combinator_8cpp_source.html#l00047">47</a> of file <a class="el" href="Combinator_8cpp_source.html">Combinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Combinator_8cpp_source.html#l00049">49</a> of file <a class="el" href="Combinator_8cpp_source.html">Combinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -1807,7 +1808,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Combinator_8cpp_source.html#l00028">28</a> of file <a class="el" href="Combinator_8cpp_source.html">Combinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Combinator_8cpp_source.html#l00030">30</a> of file <a class="el" href="Combinator_8cpp_source.html">Combinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -2169,7 +2170,7 @@ Variables</h2></td></tr>
 
 <p>Squash sequences of 3-qubit instructions into their canonical 20-CX form. </p>
 <p>The circuit should comprise only CX and single-qubit gates. The transform may perform a combination of 2-qubit (KAK) and 3-qubit decompositions of subcircuits, but only does so if this reduces the CX count.</p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classtket_1_1Transform.html">Transform</a> implementing the squash </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classtket_1_1Transform.html" title="A transformation of a circuit that preserves its semantics.">Transform</a> implementing the squash </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="ThreeQubitSquash_8cpp_source.html#l00295">295</a> of file <a class="el" href="ThreeQubitSquash_8cpp_source.html">ThreeQubitSquash.cpp</a>.</p>
 
@@ -2395,11 +2396,12 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= Transform([](<span class="keyword">const</span> Circuit&amp;) {</div>
-<div class="line">  <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line">})</div>
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">    Transform([](Circuit&amp;, std::shared_ptr&lt;unit_bimaps_t&gt;) { <span class="keywordflow">return</span> <span class="keyword">false</span>; })</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="Transform_8hpp_source.html#l00041">41</a> of file <a class="el" href="Transform_8hpp_source.html">Transform.hpp</a>.</p>
+<p>Identity transform (does nothing, returns false) </p>
+
+<p class="definition">Definition at line <a class="el" href="Transform_8hpp_source.html#l00087">87</a> of file <a class="el" href="Transform_8hpp_source.html">Transform.hpp</a>.</p>
 
 </div>
 </div>

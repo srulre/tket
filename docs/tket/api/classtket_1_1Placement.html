@@ -118,9 +118,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a135275b3d2f65303787ea2254fd08384"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af301afb4e2cc3beab0db87a28fcbaeeb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Placement.html#af301afb4e2cc3beab0db87a28fcbaeeb">Placement</a> ()</td></tr>
 <tr class="separator:af301afb4e2cc3beab0db87a28fcbaeeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a187436e2462a0e899e72d8f1feda5146"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Placement.html#a187436e2462a0e899e72d8f1feda5146">place</a> (<a class="el" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ_) const</td></tr>
-<tr class="memdesc:a187436e2462a0e899e72d8f1feda5146"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modify qubits in place.  <a href="classtket_1_1Placement.html#a187436e2462a0e899e72d8f1feda5146">More...</a><br /></td></tr>
-<tr class="separator:a187436e2462a0e899e72d8f1feda5146"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5bc93717ab2ecfdae173a9738f12ca8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Placement.html#ae5bc93717ab2ecfdae173a9738f12ca8">place</a> (<a class="el" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ_, std::shared_ptr&lt; <a class="el" href="structtket_1_1unit__bimaps__t.html">unit_bimaps_t</a> &gt; maps=nullptr) const</td></tr>
+<tr class="memdesc:ae5bc93717ab2ecfdae173a9738f12ca8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modify qubits in place.  <a href="classtket_1_1Placement.html#ae5bc93717ab2ecfdae173a9738f12ca8">More...</a><br /></td></tr>
+<tr class="separator:ae5bc93717ab2ecfdae173a9738f12ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa15629e9b4604d3bd4ac707e28e9c66d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacetket.html#a966ac0999b4d9e8b395ed7c69f0fbeb6">qubit_mapping_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Placement.html#aa15629e9b4604d3bd4ac707e28e9c66d">get_placement_map</a> (const <a class="el" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ_) const</td></tr>
 <tr class="separator:aa15629e9b4604d3bd4ac707e28e9c66d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18153c65fbe7de0125d1b8989a7fac49"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="namespacetket.html#a966ac0999b4d9e8b395ed7c69f0fbeb6">qubit_mapping_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Placement.html#a18153c65fbe7de0125d1b8989a7fac49">get_all_placement_maps</a> (const <a class="el" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ_) const</td></tr>
@@ -132,9 +132,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a6dff2c0391161edc9a918a8b51358674"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Placement.html#a6dff2c0391161edc9a918a8b51358674">place_with_map</a> (<a class="el" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ_, <a class="el" href="namespacetket.html#a966ac0999b4d9e8b395ed7c69f0fbeb6">qubit_mapping_t</a> &amp;map_)</td></tr>
-<tr class="memdesc:a6dff2c0391161edc9a918a8b51358674"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relabel circuit qubits to device nodes according to given map.  <a href="classtket_1_1Placement.html#a6dff2c0391161edc9a918a8b51358674">More...</a><br /></td></tr>
-<tr class="separator:a6dff2c0391161edc9a918a8b51358674"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf0d86cae4d52b0dcd44144a443bbab5"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Placement.html#aaf0d86cae4d52b0dcd44144a443bbab5">place_with_map</a> (<a class="el" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ, <a class="el" href="namespacetket.html#a966ac0999b4d9e8b395ed7c69f0fbeb6">qubit_mapping_t</a> &amp;map_, std::shared_ptr&lt; <a class="el" href="structtket_1_1unit__bimaps__t.html">unit_bimaps_t</a> &gt; maps=nullptr)</td></tr>
+<tr class="memdesc:aaf0d86cae4d52b0dcd44144a443bbab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relabel circuit qubits to device nodes according to given map.  <a href="classtket_1_1Placement.html#aaf0d86cae4d52b0dcd44144a443bbab5">More...</a><br /></td></tr>
+<tr class="separator:aaf0d86cae4d52b0dcd44144a443bbab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabd479eb56902417060ccd545654d596"><td class="memItemLeft" align="right" valign="top">static const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Placement.html#aabd479eb56902417060ccd545654d596">unplaced_reg</a> ()</td></tr>
 <tr class="separator:aabd479eb56902417060ccd545654d596"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -145,7 +145,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Placement_8hpp_source.html#l00213">213</a> of file <a class="el" href="Placement_8hpp_source.html">Placement.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Placement_8hpp_source.html#l00214">214</a> of file <a class="el" href="Placement_8hpp_source.html">Placement.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a135275b3d2f65303787ea2254fd08384"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a135275b3d2f65303787ea2254fd08384">&#9670;&nbsp;</a></span>Placement() <span class="overload">[1/2]</span></h2>
@@ -171,7 +171,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Placement_8hpp_source.html#l00215">215</a> of file <a class="el" href="Placement_8hpp_source.html">Placement.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Placement_8hpp_source.html#l00216">216</a> of file <a class="el" href="Placement_8hpp_source.html">Placement.hpp</a>.</p>
 
 </div>
 </div>
@@ -198,7 +198,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Placement_8hpp_source.html#l00216">216</a> of file <a class="el" href="Placement_8hpp_source.html">Placement.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Placement_8hpp_source.html#l00217">217</a> of file <a class="el" href="Placement_8hpp_source.html">Placement.hpp</a>.</p>
 
 </div>
 </div>
@@ -225,7 +225,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Placement_8hpp_source.html#l00241">241</a> of file <a class="el" href="Placement_8hpp_source.html">Placement.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Placement_8hpp_source.html#l00245">245</a> of file <a class="el" href="Placement_8hpp_source.html">Placement.hpp</a>.</p>
 
 </div>
 </div>
@@ -256,7 +256,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classtket_1_1NoiseAwarePlacement.html#a27abc4bd25bce7263793ef6bd5da3289">tket::NoiseAwarePlacement</a>, <a class="el" href="classtket_1_1GraphPlacement.html#a471f1c121385ab2374639156914cd4b3">tket::GraphPlacement</a>, and <a class="el" href="classtket_1_1LinePlacement.html#ab5cf718581207d2114c2442bc7b7e565">tket::LinePlacement</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Placement_8cpp_source.html#l00147">147</a> of file <a class="el" href="Placement_8cpp_source.html">Placement.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Placement_8cpp_source.html#l00152">152</a> of file <a class="el" href="Placement_8cpp_source.html">Placement.cpp</a>.</p>
 
 </div>
 </div>
@@ -283,7 +283,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Placement_8hpp_source.html#l00240">240</a> of file <a class="el" href="Placement_8hpp_source.html">Placement.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Placement_8hpp_source.html#l00244">244</a> of file <a class="el" href="Placement_8hpp_source.html">Placement.hpp</a>.</p>
 
 </div>
 </div>
@@ -313,12 +313,12 @@ Protected Attributes</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classtket_1_1NoiseAwarePlacement.html#a970eb4e729376ce37adf1da2dd4886e8">tket::NoiseAwarePlacement</a>, <a class="el" href="classtket_1_1GraphPlacement.html#a24c33f8f074d79c587a2eb4971147424">tket::GraphPlacement</a>, and <a class="el" href="classtket_1_1LinePlacement.html#a356a7bde86a4738ddf9ea97d670773da">tket::LinePlacement</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Placement_8cpp_source.html#l00141">141</a> of file <a class="el" href="Placement_8cpp_source.html">Placement.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Placement_8cpp_source.html#l00146">146</a> of file <a class="el" href="Placement_8cpp_source.html">Placement.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a187436e2462a0e899e72d8f1feda5146"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a187436e2462a0e899e72d8f1feda5146">&#9670;&nbsp;</a></span>place()</h2>
+<a id="ae5bc93717ab2ecfdae173a9738f12ca8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5bc93717ab2ecfdae173a9738f12ca8">&#9670;&nbsp;</a></span>place()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -327,21 +327,31 @@ Protected Attributes</h2></td></tr>
           <td class="memname">bool tket::Placement::place </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classtket_1_1Circuit.html">Circuit</a> &amp;&#160;</td>
-          <td class="paramname"><em>circ_</em></td><td>)</td>
-          <td> const</td>
+          <td class="paramname"><em>circ_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structtket_1_1unit__bimaps__t.html">unit_bimaps_t</a> &gt;&#160;</td>
+          <td class="paramname"><em>maps</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Modify qubits in place. </p>
-<dl class="section return"><dt>Returns</dt><dd>true iff circuit is modified </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true iff circuit or maps are modified </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Placement_8cpp_source.html#l00130">130</a> of file <a class="el" href="Placement_8cpp_source.html">Placement.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a6dff2c0391161edc9a918a8b51358674"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6dff2c0391161edc9a918a8b51358674">&#9670;&nbsp;</a></span>place_with_map()</h2>
+<a id="aaf0d86cae4d52b0dcd44144a443bbab5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf0d86cae4d52b0dcd44144a443bbab5">&#9670;&nbsp;</a></span>place_with_map()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -353,13 +363,19 @@ Protected Attributes</h2></td></tr>
           <td class="memname">bool tket::Placement::place_with_map </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classtket_1_1Circuit.html">Circuit</a> &amp;&#160;</td>
-          <td class="paramname"><em>circ_</em>, </td>
+          <td class="paramname"><em>circ</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="namespacetket.html#a966ac0999b4d9e8b395ed7c69f0fbeb6">qubit_mapping_t</a> &amp;&#160;</td>
-          <td class="paramname"><em>map_</em>&#160;</td>
+          <td class="paramname"><em>map_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structtket_1_1unit__bimaps__t.html">unit_bimaps_t</a> &gt;&#160;</td>
+          <td class="paramname"><em>maps</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -375,9 +391,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Relabel circuit qubits to device nodes according to given map. </p>
-<dl class="section return"><dt>Returns</dt><dd>true iff circuit was modified </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true iff circuit or maps were modified </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Placement_8cpp_source.html#l00135">135</a> of file <a class="el" href="Placement_8cpp_source.html">Placement.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Placement_8cpp_source.html#l00136">136</a> of file <a class="el" href="Placement_8cpp_source.html">Placement.cpp</a>.</p>
 
 </div>
 </div>
@@ -429,7 +445,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Placement_8hpp_source.html#l00241">241</a> of file <a class="el" href="Placement_8hpp_source.html">Placement.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Placement_8hpp_source.html#l00245">245</a> of file <a class="el" href="Placement_8hpp_source.html">Placement.hpp</a>.</p>
 
 </div>
 </div>
