@@ -1502,6 +1502,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aaa887e5f888ccafbec6d589bfcbdad3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacetket.html#a6aac7c33e30bd03cd80947edc87ada23">csd_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket.html#aaa887e5f888ccafbec6d589bfcbdad3a">CS_decomp</a> (const Eigen::MatrixXcd &amp;u)</td></tr>
 <tr class="memdesc:aaa887e5f888ccafbec6d589bfcbdad3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute a cosine-sine decomposition of a unitary matrix.  <a href="namespacetket.html#aaa887e5f888ccafbec6d589bfcbdad3a">More...</a><br /></td></tr>
 <tr class="separator:aaa887e5f888ccafbec6d589bfcbdad3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab48d410dc7f979bc68c3522f88e59521"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket.html#ab48d410dc7f979bc68c3522f88e59521">approx_0</a> (const <a class="el" href="namespacetket.html#a6817cd1c8a5630b406c86a59173edd21">Expr</a> &amp;e, double tol=<a class="el" href="namespacetket.html#a9cdfe3f23ec01d10a956474db74c9fc1">EPS</a>)</td></tr>
+<tr class="memdesc:ab48d410dc7f979bc68c3522f88e59521"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if an expression is approximately zero.  <a href="namespacetket.html#ab48d410dc7f979bc68c3522f88e59521">More...</a><br /></td></tr>
+<tr class="separator:ab48d410dc7f979bc68c3522f88e59521"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1db5e6f999597e66a6e5203cf4540be"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket.html#ac1db5e6f999597e66a6e5203cf4540be">fmodn</a> (double x, unsigned n)</td></tr>
 <tr class="memdesc:ac1db5e6f999597e66a6e5203cf4540be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate modulo n in the range [0,n)  <a href="namespacetket.html#ac1db5e6f999597e66a6e5203cf4540be">More...</a><br /></td></tr>
 <tr class="separator:ac1db5e6f999597e66a6e5203cf4540be"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -4641,6 +4644,46 @@ template&lt;typename A , typename B &gt; </div>
 
 </div>
 </div>
+<a id="ab48d410dc7f979bc68c3522f88e59521"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab48d410dc7f979bc68c3522f88e59521">&#9670;&nbsp;</a></span>approx_0()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tket::approx_0 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacetket.html#a6817cd1c8a5630b406c86a59173edd21">Expr</a> &amp;&#160;</td>
+          <td class="paramname"><em>e</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>tol</em> = <code><a class="el" href="namespacetket.html#a9cdfe3f23ec01d10a956474db74c9fc1">EPS</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Test if an expression is approximately zero. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>expression </td></tr>
+    <tr><td class="paramname">tol</td><td>tolerance</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether <code>e</code> is within <code>tol</code> of zero </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00022">22</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a01b63390ffcecbc96da0872d116f05cf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a01b63390ffcecbc96da0872d116f05cf">&#9670;&nbsp;</a></span>approx_eq()</h2>
 
@@ -4691,7 +4734,7 @@ template&lt;typename A , typename B &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether <code>x</code> is within <code>tol</code> of <code>y</code> modulo <code>mod</code> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00028">28</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00033">33</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
 
 </div>
 </div>
@@ -5482,7 +5525,7 @@ template&lt;typename T &gt; </div>
 <p>Return cos(e*pi/2) </p>
 <p>If e is within <code>EPS</code> of an integer then it is rounded so that the result can be evaluated. </p>
 
-<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00095">95</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00100">100</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
 
 </div>
 </div>
@@ -5843,7 +5886,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00121">121</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00126">126</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
 
 </div>
 </div>
@@ -5896,7 +5939,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00125">125</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00130">130</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
 
 </div>
 </div>
@@ -5956,7 +5999,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00108">108</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00113">113</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
 
 </div>
 </div>
@@ -6016,7 +6059,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00115">115</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00120">120</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
 
 </div>
 </div>
@@ -6036,7 +6079,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00051">51</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00056">56</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
 
 </div>
 </div>
@@ -6056,7 +6099,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00059">59</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00064">64</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
 
 </div>
 </div>
@@ -6097,7 +6140,7 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value of expression modulo n, iff it has no free symbols </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00067">67</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00072">72</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
 
 </div>
 </div>
@@ -6151,7 +6194,7 @@ template&lt;typename T &gt; </div>
 
 <p>Set of all free symbols contained in the expression. </p>
 
-<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00033">33</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00038">38</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
 
 </div>
 </div>
@@ -6173,7 +6216,7 @@ template&lt;typename T &gt; </div>
 
 <p>Set of all free symbols contained in the expressions in the vector. </p>
 
-<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00041">41</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00046">46</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
 
 </div>
 </div>
@@ -6294,7 +6337,7 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>y s.t. y == x (mod n) and 0 &lt;= y &lt; n </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00022">22</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00027">27</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
 
 </div>
 </div>
@@ -8037,7 +8080,7 @@ circuit has no symbolic parameters</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>2x2 unitary matrix </dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>no symbolic parameters </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Rotation_8cpp_source.html#l00461">461</a> of file <a class="el" href="Rotation_8cpp_source.html">Rotation.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rotation_8cpp_source.html#l00456">456</a> of file <a class="el" href="Rotation_8cpp_source.html">Rotation.cpp</a>.</p>
 
 </div>
 </div>
@@ -9877,7 +9920,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Rotation_8cpp_source.html#l00352">352</a> of file <a class="el" href="Rotation_8cpp_source.html">Rotation.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rotation_8cpp_source.html#l00347">347</a> of file <a class="el" href="Rotation_8cpp_source.html">Rotation.cpp</a>.</p>
 
 </div>
 </div>
@@ -11295,7 +11338,7 @@ template&lt;typename BoxT &gt; </div>
 <p>Return sin(e*pi/2) </p>
 <p>If e is within <code>EPS</code> of an integer then it is rounded so that the result can be evaluated. </p>
 
-<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00104">104</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Expression_8cpp_source.html#l00109">109</a> of file <a class="el" href="Expression_8cpp_source.html">Expression.cpp</a>.</p>
 
 </div>
 </div>
@@ -11626,7 +11669,7 @@ template&lt;typename BoxT &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>[a,b,c,t] where a,b,c are the TK1 angles and t is the phase </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Rotation_8cpp_source.html#l00365">365</a> of file <a class="el" href="Rotation_8cpp_source.html">Rotation.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rotation_8cpp_source.html#l00360">360</a> of file <a class="el" href="Rotation_8cpp_source.html">Rotation.cpp</a>.</p>
 
 </div>
 </div>
