@@ -3,7 +3,7 @@ var searchData=
   ['rangepredicateop_3463',['RangePredicateOp',['../classtket_1_1RangePredicateOp.html#a18b5ef51d7e35c9ddab21b0ac2c609ef',1,'tket::RangePredicateOp']]],
   ['rank_3464',['rank',['../classtket_1_1SymplecticTableau.html#ade134fb083cbbdc20cfd1af6e24ca430',1,'tket::SymplecticTableau']]],
   ['rebase_5fcirq_3465',['rebase_cirq',['../namespacetket_1_1Transforms.html#ac6dd9c61017c16afef9744f88a453603',1,'tket::Transforms']]],
-  ['rebase_5ffactory_3466',['rebase_factory',['../namespacetket_1_1Transforms.html#a9c34b7638155972fbebf574a3c0031c6',1,'tket::Transforms']]],
+  ['rebase_5ffactory_3466',['rebase_factory',['../namespacetket_1_1Transforms.html#a1ba677344960523d7af5fd3fd30559a0',1,'tket::Transforms']]],
   ['rebase_5fhqs_3467',['rebase_HQS',['../namespacetket_1_1Transforms.html#a4cd109b6756dd4cb1dc550c6771830cf',1,'tket::Transforms']]],
   ['rebase_5foqc_3468',['rebase_OQC',['../namespacetket_1_1Transforms.html#a67de26f587685a91f36d37ec5fc94b60',1,'tket::Transforms']]],
   ['rebase_5fprojectq_3469',['rebase_projectq',['../namespacetket_1_1Transforms.html#a3353ba8797c6e1945a4823e926dea825',1,'tket::Transforms']]],

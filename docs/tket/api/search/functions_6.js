@@ -22,7 +22,7 @@ var searchData=
   ['gen_5fpairwise_5fpauli_5fgadgets_2942',['gen_pairwise_pauli_gadgets',['../namespacetket.html#a397234e6a5bd81a30153dadbe26fb6b2',1,'tket']]],
   ['gen_5fplacement_5fpass_2943',['gen_placement_pass',['../namespacetket.html#a2ef1dd16aa2e2ffae269f18d6b9bbf1d',1,'tket']]],
   ['gen_5fplacement_5fpass_5fphase_5fpoly_2944',['gen_placement_pass_phase_poly',['../namespacetket.html#a5f80c7c3cd3cd366678f3f636f1df16d',1,'tket']]],
-  ['gen_5frebase_5fpass_2945',['gen_rebase_pass',['../namespacetket.html#abbd9e439893a135ef75fe4e0002b04e7',1,'tket']]],
+  ['gen_5frebase_5fpass_2945',['gen_rebase_pass',['../namespacetket.html#a34305d272d68d85c37a01168526275a1',1,'tket']]],
   ['gen_5frename_5fqubits_5fpass_2946',['gen_rename_qubits_pass',['../namespacetket.html#ad2efc79966cabc6d9028cd8d7aea5631',1,'tket']]],
   ['gen_5frouting_5fpass_2947',['gen_routing_pass',['../namespacetket.html#aaf585e6899778ef16796bf57480e519d',1,'tket']]],
   ['gen_5fsimplify_5finitial_2948',['gen_simplify_initial',['../namespacetket.html#a561aa1506457519e30179b6d9e516a8a',1,'tket']]],

@@ -8,7 +8,7 @@ var searchData=
   ['rebase_2ecpp_1490',['Rebase.cpp',['../Rebase_8cpp.html',1,'']]],
   ['rebase_2ehpp_1491',['Rebase.hpp',['../Rebase_8hpp.html',1,'']]],
   ['rebase_5fcirq_1492',['rebase_cirq',['../namespacetket_1_1Transforms.html#ac6dd9c61017c16afef9744f88a453603',1,'tket::Transforms']]],
-  ['rebase_5ffactory_1493',['rebase_factory',['../namespacetket_1_1Transforms.html#a9c34b7638155972fbebf574a3c0031c6',1,'tket::Transforms']]],
+  ['rebase_5ffactory_1493',['rebase_factory',['../namespacetket_1_1Transforms.html#a1ba677344960523d7af5fd3fd30559a0',1,'tket::Transforms']]],
   ['rebase_5fhqs_1494',['rebase_HQS',['../namespacetket_1_1Transforms.html#a4cd109b6756dd4cb1dc550c6771830cf',1,'tket::Transforms']]],
   ['rebase_5foqc_1495',['rebase_OQC',['../namespacetket_1_1Transforms.html#a67de26f587685a91f36d37ec5fc94b60',1,'tket::Transforms']]],
   ['rebase_5fprojectq_1496',['rebase_projectq',['../namespacetket_1_1Transforms.html#a3353ba8797c6e1945a4823e926dea825',1,'tket::Transforms']]],
