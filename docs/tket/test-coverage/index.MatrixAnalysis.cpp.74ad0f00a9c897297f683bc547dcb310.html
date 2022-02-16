@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2022-02-15 16:34:57</td>
+      <td>2022-02-16 15:40:09</td>
     </tr>
   </table>
 </div>
@@ -7381,7 +7381,7 @@
       <td class="lineno"><a id="l626" href="#l626">626</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">106074</td>
+      <td class="linecount coveredLine">107571</td>
       <td class="src coveredLine"><span class="kt">unsigned</span> <span class="n">get_matrix_size</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">number_of_qubits</span><span class="p">)</span> <span class="p">{</span></td>
     </tr>
 
@@ -7415,12 +7415,12 @@
         <details class="linebranchDetails">
         <summary class="linebranchSummary">2/2</summary>
         <div class="linebranchContents">
-          <div class="takenBranch">&check; Branch 0 taken 105073 times.</div>
+          <div class="takenBranch">&check; Branch 0 taken 106570 times.</div>
           <div class="takenBranch">&check; Branch 1 taken 1001 times.</div>
         </div>
         </details>
       </td>
-      <td class="linecount coveredLine">106074</td>
+      <td class="linecount coveredLine">107571</td>
       <td class="src coveredLine">  <span class="k">if</span> <span class="p">(</span><span class="n">number_of_qubits</span> <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;::</span><span class="n">digits</span><span class="p">)</span> <span class="p">{</span></td>
     </tr>
 
@@ -7428,7 +7428,7 @@
       <td class="lineno"><a id="l631" href="#l631">631</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">105073</td>
+      <td class="linecount coveredLine">106570</td>
       <td class="src coveredLine">    <span class="kt">unsigned</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></td>
     </tr>
 
@@ -7436,7 +7436,7 @@
       <td class="lineno"><a id="l632" href="#l632">632</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">105073</td>
+      <td class="linecount coveredLine">106570</td>
       <td class="src coveredLine">    <span class="n">size</span> <span class="o">&lt;&lt;=</span> <span class="n">number_of_qubits</span><span class="p">;</span></td>
     </tr>
 
@@ -7444,7 +7444,7 @@
       <td class="lineno"><a id="l633" href="#l633">633</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">105073</td>
+      <td class="linecount coveredLine">106570</td>
       <td class="src coveredLine">    <span class="k">return</span> <span class="n">size</span><span class="p">;</span></td>
     </tr>
 
@@ -7527,7 +7527,7 @@
       <td class="lineno"><a id="l640" href="#l640">640</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">38532</td>
+      <td class="linecount coveredLine">39031</td>
       <td class="src coveredLine"><span class="kt">unsigned</span> <span class="n">get_number_of_qubits</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">matrix_size</span><span class="p">)</span> <span class="p">{</span></td>
     </tr>
 
@@ -7535,7 +7535,7 @@
       <td class="lineno"><a id="l641" href="#l641">641</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">38532</td>
+      <td class="linecount coveredLine">39031</td>
       <td class="src coveredLine">  <span class="kt">unsigned</span> <span class="n">n_qubits</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span><span class="p">)</span><span class="n">log2</span><span class="p">(</span><span class="n">matrix_size</span><span class="p">);</span></td>
     </tr>
 
@@ -7545,14 +7545,14 @@
         <details class="linebranchDetails">
         <summary class="linebranchSummary">3/4</summary>
         <div class="linebranchContents">
-          <div class="takenBranch">&check; Branch 1 taken 38532 times.</div>
+          <div class="takenBranch">&check; Branch 1 taken 39031 times.</div>
           <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
-          <div class="takenBranch">&check; Branch 3 taken 35310 times.</div>
+          <div class="takenBranch">&check; Branch 3 taken 35809 times.</div>
           <div class="takenBranch">&check; Branch 4 taken 3222 times.</div>
         </div>
         </details>
       </td>
-      <td class="linecount coveredLine">38532</td>
+      <td class="linecount coveredLine">39031</td>
       <td class="src coveredLine">  <span class="k">if</span> <span class="p">(</span><span class="n">get_matrix_size</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">)</span> <span class="o">==</span> <span class="n">matrix_size</span><span class="p">)</span> <span class="p">{</span></td>
     </tr>
 
@@ -7560,7 +7560,7 @@
       <td class="lineno"><a id="l643" href="#l643">643</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">35310</td>
+      <td class="linecount coveredLine">35809</td>
       <td class="src coveredLine">    <span class="k">return</span> <span class="n">n_qubits</span><span class="p">;</span></td>
     </tr>
 
@@ -7656,7 +7656,7 @@
       <td class="lineno"><a id="l651" href="#l651">651</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">33035</td>
+      <td class="linecount coveredLine">33534</td>
       <td class="src coveredLine"><span class="n">SparseMatrixXcd</span> <span class="n">get_sparse_matrix</span><span class="p">(</span></td>
     </tr>
 
@@ -7672,7 +7672,7 @@
       <td class="lineno"><a id="l653" href="#l653">653</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">33035</td>
+      <td class="linecount coveredLine">33534</td>
       <td class="src coveredLine">  <span class="n">SparseMatrixXcd</span> <span class="n">matr</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">);</span></td>
     </tr>
 
@@ -7682,12 +7682,12 @@
         <details class="linebranchDetails">
         <summary class="linebranchSummary">1/2</summary>
         <div class="linebranchContents">
-          <div class="takenBranch">&check; Branch 3 taken 33035 times.</div>
+          <div class="takenBranch">&check; Branch 3 taken 33534 times.</div>
           <div class="notTakenBranch">&cross; Branch 4 not taken.</div>
         </div>
         </details>
       </td>
-      <td class="linecount coveredLine">33035</td>
+      <td class="linecount coveredLine">33534</td>
       <td class="src coveredLine">  <span class="n">matr</span><span class="p">.</span><span class="n">setFromTriplets</span><span class="p">(</span><span class="n">triplets</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(),</span> <span class="n">triplets</span><span class="p">.</span><span class="n">cend</span><span class="p">());</span></td>
     </tr>
 
@@ -7695,7 +7695,7 @@
       <td class="lineno"><a id="l655" href="#l655">655</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">33035</td>
+      <td class="linecount coveredLine">33534</td>
       <td class="src coveredLine">  <span class="k">return</span> <span class="n">matr</span><span class="p">;</span></td>
     </tr>
 
@@ -7719,7 +7719,7 @@
       <td class="lineno"><a id="l658" href="#l658">658</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">32547</td>
+      <td class="linecount coveredLine">33046</td>
       <td class="src coveredLine"><span class="n">SparseMatrixXcd</span> <span class="n">get_sparse_square_matrix</span><span class="p">(</span></td>
     </tr>
 
@@ -7735,7 +7735,7 @@
       <td class="lineno"><a id="l660" href="#l660">660</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">32547</td>
+      <td class="linecount coveredLine">33046</td>
       <td class="src coveredLine">  <span class="k">return</span> <span class="n">get_sparse_matrix</span><span class="p">(</span><span class="n">triplets</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">rows</span><span class="p">);</span></td>
     </tr>
 
@@ -7879,7 +7879,7 @@
       <td class="lineno"><a id="l678" href="#l678">678</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">31144</td>
+      <td class="linecount coveredLine">31643</td>
       <td class="src coveredLine"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TripletCd</span><span class="o">&gt;</span> <span class="n">get_triplets</span><span class="p">(</span></td>
     </tr>
 
@@ -7895,7 +7895,7 @@
       <td class="lineno"><a id="l680" href="#l680">680</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">31144</td>
+      <td class="linecount coveredLine">31643</td>
       <td class="src coveredLine">  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TripletCd</span><span class="o">&gt;</span> <span class="n">triplets</span><span class="p">;</span></td>
     </tr>
 
@@ -7905,12 +7905,12 @@
         <details class="linebranchDetails">
         <summary class="linebranchSummary">2/2</summary>
         <div class="linebranchContents">
-          <div class="takenBranch">&check; Branch 1 taken 86334 times.</div>
-          <div class="takenBranch">&check; Branch 2 taken 31144 times.</div>
+          <div class="takenBranch">&check; Branch 1 taken 87332 times.</div>
+          <div class="takenBranch">&check; Branch 2 taken 31643 times.</div>
         </div>
         </details>
       </td>
-      <td class="linecount coveredLine">117478</td>
+      <td class="linecount coveredLine">118975</td>
       <td class="src coveredLine">  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">jj</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">jj</span> <span class="o">&lt;</span> <span class="n">matr</span><span class="p">.</span><span class="n">cols</span><span class="p">();</span> <span class="o">++</span><span class="n">jj</span><span class="p">)</span> <span class="p">{</span></td>
     </tr>
 
@@ -7920,12 +7920,12 @@
         <details class="linebranchDetails">
         <summary class="linebranchSummary">2/2</summary>
         <div class="linebranchContents">
-          <div class="takenBranch">&check; Branch 1 taken 272236 times.</div>
-          <div class="takenBranch">&check; Branch 2 taken 86334 times.</div>
+          <div class="takenBranch">&check; Branch 1 taken 274232 times.</div>
+          <div class="takenBranch">&check; Branch 2 taken 87332 times.</div>
         </div>
         </details>
       </td>
-      <td class="linecount coveredLine">358570</td>
+      <td class="linecount coveredLine">361564</td>
       <td class="src coveredLine">    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">ii</span> <span class="o">&lt;</span> <span class="n">matr</span><span class="p">.</span><span class="n">rows</span><span class="p">();</span> <span class="o">++</span><span class="n">ii</span><span class="p">)</span> <span class="p">{</span></td>
     </tr>
 
@@ -7935,14 +7935,14 @@
         <details class="linebranchDetails">
         <summary class="linebranchSummary">3/4</summary>
         <div class="linebranchContents">
-          <div class="takenBranch">&check; Branch 1 taken 272236 times.</div>
+          <div class="takenBranch">&check; Branch 1 taken 274232 times.</div>
           <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
-          <div class="takenBranch">&check; Branch 4 taken 111718 times.</div>
-          <div class="takenBranch">&check; Branch 5 taken 160518 times.</div>
+          <div class="takenBranch">&check; Branch 4 taken 112716 times.</div>
+          <div class="takenBranch">&check; Branch 5 taken 161516 times.</div>
         </div>
         </details>
       </td>
-      <td class="linecount coveredLine">272236</td>
+      <td class="linecount coveredLine">274232</td>
       <td class="src coveredLine">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">matr</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="n">abs_epsilon</span><span class="p">))</span> <span class="p">{</span></td>
     </tr>
 
@@ -7952,14 +7952,14 @@
         <details class="linebranchDetails">
         <summary class="linebranchSummary">2/4</summary>
         <div class="linebranchContents">
-          <div class="takenBranch">&check; Branch 1 taken 111718 times.</div>
+          <div class="takenBranch">&check; Branch 1 taken 112716 times.</div>
           <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
-          <div class="takenBranch">&check; Branch 4 taken 111718 times.</div>
+          <div class="takenBranch">&check; Branch 4 taken 112716 times.</div>
           <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
         </div>
         </details>
       </td>
-      <td class="linecount coveredLine">111718</td>
+      <td class="linecount coveredLine">112716</td>
       <td class="src coveredLine">        <span class="n">triplets</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">,</span> <span class="n">matr</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">));</span></td>
     </tr>
 
@@ -7991,7 +7991,7 @@
       <td class="lineno"><a id="l688" href="#l688">688</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">31144</td>
+      <td class="linecount coveredLine">31643</td>
       <td class="src coveredLine">  <span class="k">return</span> <span class="n">triplets</span><span class="p">;</span></td>
     </tr>
 
