@@ -164,7 +164,7 @@ $(function() {
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  Eigen::Matrix4cd L = schur.matrixU();</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  Eigen::Matrix4cd <a class="code" href="GateUnitaryMatrixFixedMatrices_8cpp.html#afdffb91c41fcbf6d0bc8de4f6cf62626">T</a> = schur.matrixT();</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="comment">// By construction T is unitary and upper-triangular, hence diagonal.</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  <a class="code" href="Assert_8hpp.html#a906c9b56f8e09ec106616a091c5fc7e8">TKET_ASSERT</a>(<a class="code" href="GateUnitaryMatrixFixedMatrices_8cpp.html#afdffb91c41fcbf6d0bc8de4f6cf62626">T</a>.isDiagonal());</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(<a class="code" href="GateUnitaryMatrixFixedMatrices_8cpp.html#afdffb91c41fcbf6d0bc8de4f6cf62626">T</a>.isDiagonal());</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  <span class="comment">// 2. Let D = sqrt(T)</span></div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  Eigen::Matrix4cd D = Eigen::Matrix4cd::Zero();</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; 4; i++) {</div>
@@ -453,7 +453,7 @@ $(function() {
 <div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;            M(1, 1) = M(3, 3) = M(5, 5) = M(7, 7) = u(1, 1);</div>
 <div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;          <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;            <a class="code" href="Assert_8hpp.html#a906c9b56f8e09ec106616a091c5fc7e8">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid index&quot;</span>);</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;            <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid index&quot;</span>);</div>
 <div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        }</div>
 <div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;      }</div>
@@ -477,7 +477,7 @@ $(function() {
 <div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;                    M(6, 7) = M(7, 6) = 1;</div>
 <div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;                <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;              <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                <a class="code" href="Assert_8hpp.html#a906c9b56f8e09ec106616a091c5fc7e8">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid index&quot;</span>);</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid index&quot;</span>);</div>
 <div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            }</div>
 <div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;          <span class="keywordflow">case</span> 1:</div>
@@ -491,7 +491,7 @@ $(function() {
 <div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;                    M(6, 7) = M(7, 6) = 1;</div>
 <div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;                <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;              <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;                <a class="code" href="Assert_8hpp.html#a906c9b56f8e09ec106616a091c5fc7e8">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid index&quot;</span>);</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;                <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid index&quot;</span>);</div>
 <div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;            }</div>
 <div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;          <span class="keywordflow">case</span> 2:</div>
@@ -505,11 +505,11 @@ $(function() {
 <div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;                    M(6, 6) = M(7, 5) = 1;</div>
 <div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;                <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;              <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;                <a class="code" href="Assert_8hpp.html#a906c9b56f8e09ec106616a091c5fc7e8">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid index&quot;</span>);</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;                <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid index&quot;</span>);</div>
 <div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;            }</div>
 <div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;          <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;            <a class="code" href="Assert_8hpp.html#a906c9b56f8e09ec106616a091c5fc7e8">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid index&quot;</span>);</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;            <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid index&quot;</span>);</div>
 <div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;        }</div>
 <div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;      }</div>
@@ -531,6 +531,7 @@ $(function() {
 <div class="ttc" id="anamespacetket_html_a75405147f5ffd3ff1ff1118fba63bcd0"><div class="ttname"><a href="namespacetket.html#a75405147f5ffd3ff1ff1118fba63bcd0">tket::Op_ptr</a></div><div class="ttdeci">std::shared_ptr&lt; const Op &gt; Op_ptr</div><div class="ttdef"><b>Definition:</b> <a href="OpPtr_8hpp_source.html#l00023">OpPtr.hpp:23</a></div></div>
 <div class="ttc" id="anamespacetket_html_aeb9514facc20f8f193747a8196f7614d"><div class="ttname"><a href="namespacetket.html#aeb9514facc20f8f193747a8196f7614d">tket::PI</a></div><div class="ttdeci">constexpr double PI</div><div class="ttdef"><b>Definition:</b> <a href="Constants_8hpp_source.html#l00041">Constants.hpp:41</a></div></div>
 <div class="ttc" id="anamespacetket_html_aa08fc2d553413efa43b68fa1269fba77"><div class="ttname"><a href="namespacetket.html#aa08fc2d553413efa43b68fa1269fba77">tket::unit_map_t</a></div><div class="ttdeci">std::map&lt; UnitID, UnitID &gt; unit_map_t</div><div class="ttdef"><b>Definition:</b> <a href="UnitID_8hpp_source.html#l00262">UnitID.hpp:262</a></div></div>
+<div class="ttc" id="aAssert_8hpp_html_ae053544861204d4c3f5e8422252ca22e"><div class="ttname"><a href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a></div><div class="ttdeci">#define TKET_ASSERT(condition)</div><div class="ttdoc">If condition is not satisfied, log a diagnostic message and abort.</div><div class="ttdef"><b>Definition:</b> <a href="Assert_8hpp_source.html#l00076">Assert.hpp:76</a></div></div>
 <div class="ttc" id="aThreeQubitConversion_8hpp_html"><div class="ttname"><a href="ThreeQubitConversion_8hpp.html">ThreeQubitConversion.hpp</a></div></div>
 <div class="ttc" id="aclasstket_1_1Circuit_html_a0baec82ad9c0308fd2655607d30caf3d"><div class="ttname"><a href="classtket_1_1Circuit.html#a0baec82ad9c0308fd2655607d30caf3d">tket::Circuit::n_qubits</a></div><div class="ttdeci">unsigned n_qubits() const</div><div class="ttdef"><b>Definition:</b> <a href="setters__and__getters_8cpp_source.html#l00259">setters_and_getters.cpp:259</a></div></div>
 <div class="ttc" id="anamespacetket_html_a13e81344da4794f2648eb9a7b286fcf3ac1d9f50f86825a1a2302ec2449c17196"><div class="ttname"><a href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac1d9f50f86825a1a2302ec2449c17196">tket::OpType::H</a></div><div class="ttdeci">@ H</div></div>
@@ -569,7 +570,6 @@ $(function() {
 <div class="ttc" id="anamespacetket_html_a13e81344da4794f2648eb9a7b286fcf3aca877e9e6cc89dfdd87b1797169c9a9e"><div class="ttname"><a href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aca877e9e6cc89dfdd87b1797169c9a9e">tket::OpType::Rz</a></div><div class="ttdeci">@ Rz</div></div>
 <div class="ttc" id="aCircuit_8hpp_html"><div class="ttname"><a href="Circuit_8hpp.html">Circuit.hpp</a></div></div>
 <div class="ttc" id="aclasstket_1_1Circuit_html_a1e25972d9f6e767128fdc294a628a95b"><div class="ttname"><a href="classtket_1_1Circuit.html#a1e25972d9f6e767128fdc294a628a95b">tket::Circuit::all_qubits</a></div><div class="ttdeci">qubit_vector_t all_qubits() const</div><div class="ttdef"><b>Definition:</b> <a href="setters__and__getters_8cpp_source.html#l00116">setters_and_getters.cpp:116</a></div></div>
-<div class="ttc" id="aAssert_8hpp_html_a906c9b56f8e09ec106616a091c5fc7e8"><div class="ttname"><a href="Assert_8hpp.html#a906c9b56f8e09ec106616a091c5fc7e8">TKET_ASSERT</a></div><div class="ttdeci">#define TKET_ASSERT(b)</div><div class="ttdoc">If the condition b is not satisfied, log a diagnostic message and abort.</div><div class="ttdef"><b>Definition:</b> <a href="Assert_8hpp_source.html#l00025">Assert.hpp:25</a></div></div>
 <div class="ttc" id="anamespacetket_html_a68999408b52ab2f0f191f814ec93f4de"><div class="ttname"><a href="namespacetket.html#a68999408b52ab2f0f191f814ec93f4de">tket::Complex</a></div><div class="ttdeci">std::complex&lt; double &gt; Complex</div><div class="ttdoc">Complex number.</div><div class="ttdef"><b>Definition:</b> <a href="Constants_8hpp_source.html#l00029">Constants.hpp:29</a></div></div>
 <div class="ttc" id="anamespacetket_html_a4789ee8e9c894506ddeeb3c0653bc021"><div class="ttname"><a href="namespacetket.html#a4789ee8e9c894506ddeeb3c0653bc021">tket::i_</a></div><div class="ttdeci">constexpr Complex i_(0, 1)</div><div class="ttdoc">A fixed square root of -1.</div></div>
 <!-- start footer part -->

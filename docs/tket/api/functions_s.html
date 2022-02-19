@@ -106,11 +106,15 @@ $(function() {
 , <a class="el" href="classtket_1_1ClassicalOp.html#a6ed48aa70b522b5fb1bdb6e5d6beb186">tket::ClassicalOp</a>
 , <a class="el" href="classtket_1_1Conditional.html#a7a2076f6af8669b0d186a5c4c2921fec">tket::Conditional</a>
 , <a class="el" href="classtket_1_1Gate.html#a51140cc1a7bae94f56e681485b73bb3d">tket::Gate</a>
+, <a class="el" href="classtket_1_1LexiRouteRoutingMethod.html#ad60eade99927f00770d543de7a82f083">tket::LexiRouteRoutingMethod</a>
 , <a class="el" href="classtket_1_1MetaOp.html#aadab205395486dad5a1b2382a2ae62b2">tket::MetaOp</a>
+, <a class="el" href="classtket_1_1MultiGateReorderRoutingMethod.html#a48a9a8c12a83ab947efa24a84a044d18">tket::MultiGateReorderRoutingMethod</a>
 , <a class="el" href="classtket_1_1Op.html#a77ea214cee91f2366aa4ee3f2aabcd4f">tket::Op</a>
+, <a class="el" href="classtket_1_1RoutingMethod.html#a8ac0209ce7e2c54b0c728e9cbcca87aa">tket::RoutingMethod</a>
 </li>
 <li>set()
 : <a class="el" href="classtket_1_1QubitPauliString.html#aecc5d900260684d6df47fec5926e638c">tket::QubitPauliString</a>
+, <a class="el" href="classtket_1_1tsa__internal_1_1TrivialTSA.html#a93113af88523e9acfd78569d90c5b4f0">tket::tsa_internal::TrivialTSA</a>
 </li>
 <li>set_box_id
 : <a class="el" href="classtket_1_1Box.html#a184d60741239409a147c8efec73751c4">tket::Box</a>
@@ -118,19 +122,15 @@ $(function() {
 <li>set_config()
 : <a class="el" href="classtket_1_1GraphPlacement.html#a5d691df7c56601f028a9d89d43ab4126">tket::GraphPlacement</a>
 , <a class="el" href="classtket_1_1NoiseAwarePlacement.html#a599d9985c0006c3a2d65786e75f3ae76">tket::NoiseAwarePlacement</a>
-, <a class="el" href="classtket_1_1RoutingTester.html#acfde5651f5ed1022e3f56ab2f07d84a4">tket::RoutingTester</a>
-</li>
-<li>set_default_initial_map()
-: <a class="el" href="classtket_1_1RoutingTester.html#aefcb2b7b047ea3015592853a3c6709ae">tket::RoutingTester</a>
-</li>
-<li>set_interaction()
-: <a class="el" href="classtket_1_1RoutingTester.html#ab3ffe15b22d53a49aa78b478cdce6fbc">tket::RoutingTester</a>
 </li>
 <li>set_name()
 : <a class="el" href="classtket_1_1Circuit.html#a1093e9abb719dcb06b44e99afc2b3b94">tket::Circuit</a>
 </li>
-<li>set_qmap()
-: <a class="el" href="classtket_1_1RoutingTester.html#abae8e57ace3d68405726b4353489e2b2">tket::RoutingTester</a>
+<li>set_quantum_boundary()
+: <a class="el" href="structtket_1_1MappingFrontier.html#a7fa0cf1a5dc4f40d5088ceaa9deeb970">tket::MappingFrontier</a>
+</li>
+<li>set_seed()
+: <a class="el" href="classtket_1_1RNG.html#aba76f4c96666433460200fbcf9cde566">tket::RNG</a>
 </li>
 <li>set_vertex_Op_ptr()
 : <a class="el" href="classtket_1_1Circuit.html#a1a90339e88a1f6b0d67f93801db5e07f">tket::Circuit</a>
@@ -173,8 +173,13 @@ $(function() {
 <li>SingleQubitSquash()
 : <a class="el" href="classtket_1_1SingleQubitSquash.html#a359352d77ff35adf3f8e3dd90c09942b">tket::SingleQubitSquash</a>
 </li>
+<li>SingleSequenceData()
+: <a class="el" href="structtket_1_1tsa__internal_1_1FilteredSwapSequences_1_1SingleSequenceData.html#af68dae11bbc494c2b51e4aa2c36ed0ce">tket::tsa_internal::FilteredSwapSequences::SingleSequenceData</a>
+</li>
 <li>size()
 : <a class="el" href="classtket_1_1Cycle.html#aab67471adf37fcfa26d7ffbd0332f7b4">tket::Cycle</a>
+, <a class="el" href="classtket_1_1tsa__internal_1_1VectorListHybridSkeleton.html#a394aa1d45acc9a0bedd1cd64415aa892">tket::tsa_internal::VectorListHybridSkeleton</a>
+, <a class="el" href="classtket_1_1VectorListHybrid.html#add329e55d8d33d42b9a979d541b68498">tket::VectorListHybrid&lt; T &gt;</a>
 </li>
 <li>size_t
 : <a class="el" href="classtket_1_1graphs_1_1detail_1_1TreeSearchBase.html#a32c3dc49a4c8ebd66f57e0c84777df65">tket::graphs::detail::TreeSearchBase&lt; Graph, BoostPMap &gt;</a>
@@ -184,7 +189,7 @@ $(function() {
 </li>
 <li>slice
 : <a class="el" href="structtket_1_1CutFrontier.html#a22120e5c31a86d7c1c24417699aa2395">tket::CutFrontier</a>
-, <a class="el" href="structtket_1_1RoutingFrontier.html#a150781ed071de88171c5e253989e0576">tket::RoutingFrontier</a>
+, <a class="el" href="structtket_1_1PlacementFrontier.html#a16d610596819f19dbfa4da89f16f1cab">tket::PlacementFrontier</a>
 </li>
 <li>slice_begin()
 : <a class="el" href="classtket_1_1Circuit.html#ad080ee725cc232a7bed21fe690e928f4">tket::Circuit</a>
@@ -199,7 +204,8 @@ $(function() {
 : <a class="el" href="classtket_1_1Circuit_1_1SliceIterator.html#a7c9744c7f2593a07ce5f17282ecf869e">tket::Circuit::SliceIterator</a>
 </li>
 <li>solve()
-: <a class="el" href="classtket_1_1Routing.html#a52acce905be71f5f77e3186e5abff862">tket::Routing</a>
+: <a class="el" href="classtket_1_1LexiRoute.html#a6c1bf3c122ba51ddfa2095850ecb99cc">tket::LexiRoute</a>
+, <a class="el" href="classtket_1_1MultiGateReorder.html#a6ca8e0a439ce63d42f05663514bfdb10">tket::MultiGateReorder</a>
 </li>
 <li>source()
 : <a class="el" href="classtket_1_1Circuit.html#a90c4935d28c1c7a05a5430862afb3c3f">tket::Circuit</a>
@@ -235,11 +241,11 @@ $(function() {
 : <a class="el" href="classtket_1_1CompilationUnit.html#a1c0e93192af49ac4ca9547e3215c5e44">tket::CompilationUnit</a>
 , <a class="el" href="classtket_1_1StandardPass.html#a271a7d6ed2a4aab2e48dfcd244b3ce3f">tket::StandardPass</a>
 </li>
+<li>start_v_index
+: <a class="el" href="structtket_1_1tsa__internal_1_1CyclicShiftCostEstimate.html#a0dea7cd87d3b585f0edabb6bfe82fe0f">tket::tsa_internal::CyclicShiftCostEstimate</a>
+</li>
 <li>state_expectation()
 : <a class="el" href="classtket_1_1QubitPauliString.html#acaa4de7961a1c6a3848fae684905ba35">tket::QubitPauliString</a>
-</li>
-<li>Stats()
-: <a class="el" href="structtket_1_1Routing_1_1Stats.html#aca8b058df396231569407829f663d5b9">tket::Routing::Stats</a>
 </li>
 <li>SteinerForest()
 : <a class="el" href="classtket_1_1aas_1_1SteinerForest.html#a24a2caa068a8c63f226d452c468b9578">tket::aas::SteinerForest</a>
@@ -261,7 +267,7 @@ $(function() {
 : <a class="el" href="structtket_1_1zx_1_1ZXDiagram_1_1Subdiagram.html#a2c67be1868e8f3c7c6e93732a01023fd">tket::zx::ZXDiagram::Subdiagram</a>
 </li>
 <li>substitute()
-: <a class="el" href="classtket_1_1Circuit.html#a7b1bacb65c517890d2a40cb2892c5b1f">tket::Circuit</a>
+: <a class="el" href="classtket_1_1Circuit.html#aa098edee5577673861002bef53298d19">tket::Circuit</a>
 </li>
 <li>substitute_all()
 : <a class="el" href="classtket_1_1Circuit.html#a7ac875c3a725b691b6ec1fc5b8613a2f">tket::Circuit</a>
@@ -273,19 +279,20 @@ $(function() {
 : <a class="el" href="classtket_1_1Circuit.html#a07a089546a91fdf33d4409c903bb661a">tket::Circuit</a>
 </li>
 <li>success
-: <a class="el" href="structtket_1_1SwapResults.html#acbc98fc13e7cff9f8ef856716447e168">tket::SwapResults</a>
+: <a class="el" href="structtket_1_1tsa__internal_1_1ExactMappingLookup_1_1Result.html#ab9a0076ee7d675d14516abb95640b30d">tket::tsa_internal::ExactMappingLookup::Result</a>
+, <a class="el" href="structtket_1_1tsa__internal_1_1VertexMapResizing_1_1Result.html#ad359cbb86af1f52e45313d96c79f8e8e">tket::tsa_internal::VertexMapResizing::Result</a>
 </li>
 <li>SWAP()
 : <a class="el" href="structtket_1_1internal_1_1GateUnitaryMatrixImplementations.html#a81e7f193c92f46f9bae4c7caebe7c19d">tket::internal::GateUnitaryMatrixImplementations</a>
 </li>
-<li>swap
-: <a class="el" href="structtket_1_1SwapResults.html#a5f76c474ea7eef0d2cec4312589b0727">tket::SwapResults</a>
+<li>SwapHash
+: <a class="el" href="structtket_1_1tsa__internal_1_1SwapConversion.html#a1456ce60c357ab31ab4ee3ea1e58f027">tket::tsa_internal::SwapConversion</a>
 </li>
-<li>swap_count
-: <a class="el" href="structtket_1_1Routing_1_1Stats.html#a3eac542f6a05c299ca922919235d89ca">tket::Routing::Stats</a>
+<li>swaps
+: <a class="el" href="structtket_1_1tsa__internal_1_1ExactMappingLookup_1_1Result.html#a912ef5f82d972f2dc7492376fb0b9e40">tket::tsa_internal::ExactMappingLookup::Result</a>
 </li>
-<li>swap_decreases()
-: <a class="el" href="classtket_1_1RoutingTester.html#a87b59e6ff0aa8b98a268c060abfc1d01">tket::RoutingTester</a>
+<li>swaps_code
+: <a class="el" href="structtket_1_1tsa__internal_1_1FilteredSwapSequences_1_1SingleSequenceData.html#aac7ffec0e45da5e1da38ad7bc66d40c5">tket::tsa_internal::FilteredSwapSequences::SingleSequenceData</a>
 </li>
 <li>SX()
 : <a class="el" href="structtket_1_1internal_1_1GateUnitaryMatrixImplementations.html#a453e0cdcee8a589ef84d54c6edad6576">tket::internal::GateUnitaryMatrixImplementations</a>
@@ -298,7 +305,7 @@ $(function() {
 </li>
 <li>symbol_substitution()
 : <a class="el" href="classtket_1_1CircBox.html#a85bae8f262612c87a52f314d79d9da51">tket::CircBox</a>
-, <a class="el" href="classtket_1_1Circuit.html#a4bec48b5aa35ddbc71e3523cd8f67f97">tket::Circuit</a>
+, <a class="el" href="classtket_1_1Circuit.html#aa0389d010c9481a9abf4d4265cea728d">tket::Circuit</a>
 , <a class="el" href="classtket_1_1ClassicalExpBox.html#a8a61f42dc0a17cdf03166346e89dc64a">tket::ClassicalExpBox&lt; T &gt;</a>
 , <a class="el" href="classtket_1_1ClassicalOp.html#ae6151df446afa2a7a0355ce640bcd5cc">tket::ClassicalOp</a>
 , <a class="el" href="classtket_1_1Conditional.html#a8ed4be419894151b11b712716f258835">tket::Conditional</a>
@@ -321,11 +328,11 @@ $(function() {
 , <a class="el" href="classtket_1_1zx_1_1BoundaryGen.html#afe02be3e04093c227fdf519c1bde8b19">tket::zx::BoundaryGen</a>
 , <a class="el" href="classtket_1_1zx_1_1DirectedGen.html#a035ea60f2f512d21ba021ef6d9fa8449">tket::zx::DirectedGen</a>
 , <a class="el" href="classtket_1_1zx_1_1ZXBox.html#ac8afe797c7742f6eeac2cbfef6fe7f31">tket::zx::ZXBox</a>
-, <a class="el" href="classtket_1_1zx_1_1ZXDiagram.html#a0abead569d8e88ef256b48e88696c218">tket::zx::ZXDiagram</a>
+, <a class="el" href="classtket_1_1zx_1_1ZXDiagram.html#a397ccfad48399858f194ed05ed159813">tket::zx::ZXDiagram</a>
 , <a class="el" href="classtket_1_1zx_1_1ZXGen.html#af4252aa5cf2d0af142bfcfa0efc8913b">tket::zx::ZXGen</a>
 </li>
 <li>SymplecticTableau()
-: <a class="el" href="classtket_1_1SymplecticTableau.html#ac74e8bab33c61f90f6462097583873f1">tket::SymplecticTableau</a>
+: <a class="el" href="classtket_1_1SymplecticTableau.html#a11c0f4e421044c6d07842b11f81196f6">tket::SymplecticTableau</a>
 </li>
 <li>synth_circuit
 : <a class="el" href="classtket_1_1aas_1_1SteinerForest.html#add6aa6032bb0db5c890f482f03effdaa">tket::aas::SteinerForest</a>

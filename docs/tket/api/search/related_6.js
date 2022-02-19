@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['routingtester_4337',['RoutingTester',['../classtket_1_1Routing.html#a2ef8c8a7dd0c96869877ed4d8a9de902',1,'tket::Routing']]]
+  ['set_5fbox_5fid_4857',['set_box_id',['../classtket_1_1Box.html#a184d60741239409a147c8efec73751c4',1,'tket::Box']]],
+  ['standardpass_4858',['StandardPass',['../classtket_1_1CompilationUnit.html#a1c0e93192af49ac4ca9547e3215c5e44',1,'tket::CompilationUnit']]]
 ];

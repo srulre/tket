@@ -1,21 +1,7 @@
 var searchData=
 [
-  ['op_2ecpp_2442',['Op.cpp',['../Op_8cpp.html',1,'']]],
-  ['op_2ehpp_2443',['Op.hpp',['../Op_8hpp.html',1,'']]],
-  ['opdesc_2ecpp_2444',['OpDesc.cpp',['../OpDesc_8cpp.html',1,'']]],
-  ['opdesc_2ehpp_2445',['OpDesc.hpp',['../OpDesc_8hpp.html',1,'']]],
-  ['opjson_2ecpp_2446',['OpJson.cpp',['../OpJson_8cpp.html',1,'']]],
-  ['opjsonfactory_2ecpp_2447',['OpJsonFactory.cpp',['../OpJsonFactory_8cpp.html',1,'']]],
-  ['opjsonfactory_2ehpp_2448',['OpJsonFactory.hpp',['../OpJsonFactory_8hpp.html',1,'']]],
-  ['opptr_2ehpp_2449',['OpPtr.hpp',['../OpPtr_8hpp.html',1,'']]],
-  ['opptrfunctions_2ecpp_2450',['OpPtrFunctions.cpp',['../OpPtrFunctions_8cpp.html',1,'']]],
-  ['opptrfunctions_2ehpp_2451',['OpPtrFunctions.hpp',['../OpPtrFunctions_8hpp.html',1,'']]],
-  ['optimisationpass_2ecpp_2452',['OptimisationPass.cpp',['../OptimisationPass_8cpp.html',1,'']]],
-  ['optimisationpass_2ehpp_2453',['OptimisationPass.hpp',['../OptimisationPass_8hpp.html',1,'']]],
-  ['optype_2ehpp_2454',['OpType.hpp',['../OpType_8hpp.html',1,'']]],
-  ['optypefunctions_2ecpp_2455',['OpTypeFunctions.cpp',['../OpTypeFunctions_8cpp.html',1,'']]],
-  ['optypefunctions_2ehpp_2456',['OpTypeFunctions.hpp',['../OpTypeFunctions_8hpp.html',1,'']]],
-  ['optypeinfo_2ecpp_2457',['OpTypeInfo.cpp',['../OpTypeInfo_8cpp.html',1,'']]],
-  ['optypeinfo_2ehpp_2458',['OpTypeInfo.hpp',['../OpTypeInfo_8hpp.html',1,'']]],
-  ['optypejson_2ecpp_2459',['OpTypeJson.cpp',['../OpTypeJson_8cpp.html',1,'']]]
+  ['neighboursfromarchitecture_2ecpp_2773',['NeighboursFromArchitecture.cpp',['../NeighboursFromArchitecture_8cpp.html',1,'']]],
+  ['neighboursfromarchitecture_2ehpp_2774',['NeighboursFromArchitecture.hpp',['../NeighboursFromArchitecture_8hpp.html',1,'']]],
+  ['neighboursinterface_2ecpp_2775',['NeighboursInterface.cpp',['../NeighboursInterface_8cpp.html',1,'']]],
+  ['neighboursinterface_2ehpp_2776',['NeighboursInterface.hpp',['../NeighboursInterface_8hpp.html',1,'']]]
 ];

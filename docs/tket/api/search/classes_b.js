@@ -1,14 +1,20 @@
 var searchData=
 [
-  ['mapcost_2151',['MapCost',['../structtket_1_1MapCost.html',1,'tket']]],
-  ['maxnqubitspredicate_2152',['MaxNQubitsPredicate',['../classtket_1_1MaxNQubitsPredicate.html',1,'tket']]],
-  ['maxtwoqubitgatespredicate_2153',['MaxTwoQubitGatesPredicate',['../classtket_1_1MaxTwoQubitGatesPredicate.html',1,'tket']]],
-  ['measurementbitmap_2154',['MeasurementBitMap',['../structtket_1_1MeasurementSetup_1_1MeasurementBitMap.html',1,'tket::MeasurementSetup']]],
-  ['measurementsetup_2155',['MeasurementSetup',['../classtket_1_1MeasurementSetup.html',1,'tket']]],
-  ['metaop_2156',['MetaOp',['../classtket_1_1MetaOp.html',1,'tket']]],
-  ['missingedge_2157',['MissingEdge',['../classtket_1_1MissingEdge.html',1,'tket']]],
-  ['missingvertex_2158',['MissingVertex',['../classtket_1_1MissingVertex.html',1,'tket']]],
-  ['modifyingop_2159',['ModifyingOp',['../classtket_1_1ModifyingOp.html',1,'tket']]],
-  ['monomorpher_2160',['Monomorpher',['../classtket_1_1Monomorpher.html',1,'tket']]],
-  ['multibitop_2161',['MultiBitOp',['../classtket_1_1MultiBitOp.html',1,'tket']]]
+  ['mapcost_2416',['MapCost',['../structtket_1_1MapCost.html',1,'tket']]],
+  ['mappingfrontier_2417',['MappingFrontier',['../structtket_1_1MappingFrontier.html',1,'tket']]],
+  ['mappingfrontiererror_2418',['MappingFrontierError',['../classtket_1_1MappingFrontierError.html',1,'tket']]],
+  ['mappingmanager_2419',['MappingManager',['../classtket_1_1MappingManager.html',1,'tket']]],
+  ['mappingmanagererror_2420',['MappingManagerError',['../classtket_1_1MappingManagerError.html',1,'tket']]],
+  ['maxnqubitspredicate_2421',['MaxNQubitsPredicate',['../classtket_1_1MaxNQubitsPredicate.html',1,'tket']]],
+  ['maxtwoqubitgatespredicate_2422',['MaxTwoQubitGatesPredicate',['../classtket_1_1MaxTwoQubitGatesPredicate.html',1,'tket']]],
+  ['measurementbitmap_2423',['MeasurementBitMap',['../structtket_1_1MeasurementSetup_1_1MeasurementBitMap.html',1,'tket::MeasurementSetup']]],
+  ['measurementsetup_2424',['MeasurementSetup',['../classtket_1_1MeasurementSetup.html',1,'tket']]],
+  ['metaop_2425',['MetaOp',['../classtket_1_1MetaOp.html',1,'tket']]],
+  ['missingedge_2426',['MissingEdge',['../classtket_1_1MissingEdge.html',1,'tket']]],
+  ['missingvertex_2427',['MissingVertex',['../classtket_1_1MissingVertex.html',1,'tket']]],
+  ['modifyingop_2428',['ModifyingOp',['../classtket_1_1ModifyingOp.html',1,'tket']]],
+  ['monomorpher_2429',['Monomorpher',['../classtket_1_1Monomorpher.html',1,'tket']]],
+  ['multibitop_2430',['MultiBitOp',['../classtket_1_1MultiBitOp.html',1,'tket']]],
+  ['multigatereorder_2431',['MultiGateReorder',['../classtket_1_1MultiGateReorder.html',1,'tket']]],
+  ['multigatereorderroutingmethod_2432',['MultiGateReorderRoutingMethod',['../classtket_1_1MultiGateReorderRoutingMethod.html',1,'tket']]]
 ];

@@ -1,13 +1,15 @@
 var searchData=
 [
-  ['i_3851',['I',['../namespacestd__clifford__decomp.html#ae884a740cf1249e01bfee84f628baea8',1,'std_clifford_decomp']]],
-  ['id_3852',['id',['../namespacetket_1_1Transforms.html#ae524dc4530ede8cb1f5a72ac7277f0ad',1,'tket::Transforms']]],
-  ['id_5f_3853',['id_',['../classtket_1_1Box.html#ae84a71045285a6e144e82c34fead6182',1,'tket::Box::id_()'],['../structtket_1_1BoundaryElement.html#a03b719d2261555cf25756ca13b495c65',1,'tket::BoundaryElement::id_()']]],
-  ['in_5f_3854',['in_',['../structtket_1_1BoundaryElement.html#ac60c40e10bc5a2ae10cfd5aaf76561c9',1,'tket::BoundaryElement']]],
-  ['indices_3855',['indices',['../structtket_1_1CycleCom.html#a9b942c2fb4cfcb34b1af8226afeef33e',1,'tket::CycleCom']]],
-  ['initial_3856',['initial',['../structtket_1_1unit__bimaps__t.html#a1fca0baa886897fdae1f4e5d254e4d21',1,'tket::unit_bimaps_t']]],
-  ['interactions_5flimit_3857',['interactions_limit',['../structtket_1_1RoutingConfig.html#ab40bdee93d2ebcd19840b1c7cab74beb',1,'tket::RoutingConfig']]],
-  ['invert_3858',['invert',['../structtket_1_1MeasurementSetup_1_1MeasurementBitMap.html#af9d500a65edb9ef7311cc63f02185ac4',1,'tket::MeasurementSetup::MeasurementBitMap']]],
-  ['is_5fdirected_3859',['is_directed',['../namespacetket_1_1graphs_1_1utils.html#a255e98d680b4e852561d0cc464466beb',1,'tket::graphs::utils']]],
-  ['iswapmax_3860',['ISWAPMax',['../GateUnitaryMatrixFixedMatrices_8cpp.html#a85426d4ae6732fe3b374714d8945d595',1,'GateUnitaryMatrixFixedMatrices.cpp']]]
+  ['i_4327',['I',['../namespacestd__clifford__decomp.html#ae884a740cf1249e01bfee84f628baea8',1,'std_clifford_decomp']]],
+  ['id_4328',['id',['../namespacetket_1_1Transforms.html#ae524dc4530ede8cb1f5a72ac7277f0ad',1,'tket::Transforms']]],
+  ['id_5f_4329',['id_',['../classtket_1_1Box.html#ae84a71045285a6e144e82c34fead6182',1,'tket::Box::id_()'],['../structtket_1_1BoundaryElement.html#a03b719d2261555cf25756ca13b495c65',1,'tket::BoundaryElement::id_()']]],
+  ['identity_4330',['identity',['../structtket_1_1tsa__internal_1_1CanonicalRelabelling_1_1Result.html#a5532b11dadd2c0b05f64fcab33bca5de',1,'tket::tsa_internal::CanonicalRelabelling::Result']]],
+  ['in_5f_4331',['in_',['../structtket_1_1BoundaryElement.html#ac60c40e10bc5a2ae10cfd5aaf76561c9',1,'tket::BoundaryElement']]],
+  ['indices_4332',['indices',['../structtket_1_1CycleCom.html#a9b942c2fb4cfcb34b1af8226afeef33e',1,'tket::CycleCom']]],
+  ['initial_4333',['initial',['../structtket_1_1unit__bimaps__t.html#a1fca0baa886897fdae1f4e5d254e4d21',1,'tket::unit_bimaps_t']]],
+  ['initial_5fsegment_5fsize_4334',['initial_segment_size',['../structtket_1_1tsa__internal_1_1SwapListSegmentOptimiser_1_1Output.html#a7b86dbc013041d030cfe55bc88848a75',1,'tket::tsa_internal::SwapListSegmentOptimiser::Output']]],
+  ['invalid_5findex_4335',['INVALID_INDEX',['../namespacetket_1_1tsa__internal.html#a8e1a54a863c1e61f8ce4465aa2d181b1',1,'tket::tsa_internal']]],
+  ['invert_4336',['invert',['../structtket_1_1MeasurementSetup_1_1MeasurementBitMap.html#af9d500a65edb9ef7311cc63f02185ac4',1,'tket::MeasurementSetup::MeasurementBitMap']]],
+  ['is_5fdirected_4337',['is_directed',['../namespacetket_1_1graphs_1_1utils.html#a255e98d680b4e852561d0cc464466beb',1,'tket::graphs::utils']]],
+  ['iswapmax_4338',['ISWAPMax',['../GateUnitaryMatrixFixedMatrices_8cpp.html#a85426d4ae6732fe3b374714d8945d595',1,'GateUnitaryMatrixFixedMatrices.cpp']]]
 ];

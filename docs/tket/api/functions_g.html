@@ -105,17 +105,11 @@ $(function() {
 , <a class="el" href="classtket_1_1Unitary3qBox.html#a60c7ffa0d1845aed6e773cdf0789fd45">tket::Unitary3qBox</a>
 , <a class="el" href="classtket_1_1UnitaryTableauBox.html#a111c0d9dd0207ff8bb0767ffc1812a9d">tket::UnitaryTableauBox</a>
 </li>
-<li>generate_distance_vector()
-: <a class="el" href="classtket_1_1RoutingTester.html#a430ed7529f2e7b8b6a7db9389e4dc6b6">tket::RoutingTester</a>
-</li>
 <li>generic_postcons_
 : <a class="el" href="structtket_1_1PostConditions.html#a778f928a156fc91079707babf2974cfb">tket::PostConditions</a>
 </li>
 <li>get()
 : <a class="el" href="classtket_1_1QubitPauliString.html#a6d8d24780da3f37153a555e7dc07b633">tket::QubitPauliString</a>
-</li>
-<li>get_active_nodes()
-: <a class="el" href="classtket_1_1Routing.html#aeca51d737f4ab4284bb19f840dbcd54a">tket::Routing</a>
 </li>
 <li>get_all_circuits()
 : <a class="el" href="classtket_1_1FrameRandomisation.html#a86bc548572fcf3dc4c7265f384cdebd4">tket::FrameRandomisation</a>
@@ -144,9 +138,15 @@ $(function() {
 <li>get_allowed_types()
 : <a class="el" href="classtket_1_1GateSetPredicate.html#a877044ab9bff6feb2c596af1612c9b64">tket::GateSetPredicate</a>
 </li>
+<li>get_and_remove_element()
+: <a class="el" href="classtket_1_1RNG.html#ab2695067d257eee2e17be1461a4be0b6">tket::RNG</a>
+</li>
 <li>get_arch()
 : <a class="el" href="classtket_1_1ConnectivityPredicate.html#acf907d6ff9ba352f43cbab7c60f8a7c2">tket::ConnectivityPredicate</a>
 , <a class="el" href="classtket_1_1DirectednessPredicate.html#ac2d9f4185bb7b29802c39f29ce427b79">tket::DirectednessPredicate</a>
+</li>
+<li>get_architecture()
+: <a class="el" href="classtket_1_1ArchitectureMapping.html#ad4c0870c1c8b2b2d823a7f0ce733c8f9">tket::ArchitectureMapping</a>
 </li>
 <li>get_architecture_ref()
 : <a class="el" href="classtket_1_1Placement.html#a641b6157555469b1c127472d40d8f50a">tket::Placement</a>
@@ -185,9 +185,6 @@ $(function() {
 </li>
 <li>get_checked_parameters()
 : <a class="el" href="structtket_1_1internal_1_1GateUnitaryMatrixUtils.html#a9b241f46557a0587293ae96c67600469">tket::internal::GateUnitaryMatrixUtils</a>
-</li>
-<li>get_circ()
-: <a class="el" href="classtket_1_1RoutingTester.html#acb9e4fd4f8c0fe479e6cce413612b672">tket::RoutingTester</a>
 </li>
 <li>get_circ_index()
 : <a class="el" href="structtket_1_1MeasurementSetup_1_1MeasurementBitMap.html#a33854a5f2c217e97db54ffbcf7a3e71c">tket::MeasurementSetup::MeasurementBitMap</a>
@@ -272,12 +269,16 @@ $(function() {
 : <a class="el" href="classtket_1_1CycleFinder.html#a9a031272425dfe33e66a62f03e06b93b">tket::CycleFinder</a>
 , <a class="el" href="classtket_1_1FrameRandomisation.html#a3d2d9327796ee39e60ecb6679b15f708">tket::FrameRandomisation</a>
 , <a class="el" href="classtket_1_1FrameRandomisationTester.html#a4b94744571e1f8121f035f4854c4d563">tket::FrameRandomisationTester</a>
+, <a class="el" href="classtket_1_1tsa__internal_1_1CyclesGrowthManager.html#a9ef17feed0203f23afa35fda55478fc3">tket::tsa_internal::CyclesGrowthManager</a>
 </li>
 <li>get_def()
 : <a class="el" href="classtket_1_1CompositeGateDef.html#a07d2da2f94f5fa27f529436ddaa44ab8">tket::CompositeGateDef</a>
 </li>
 <li>get_default_named_params()
 : <a class="el" href="classtket_1_1graphs_1_1detail_1_1TreeSearchBase.html#a9f349830112cad22cbeaeb8b0841cd5d">tket::graphs::detail::TreeSearchBase&lt; Graph, BoostPMap &gt;</a>
+</li>
+<li>get_default_to_quantum_boundary_unit_map()
+: <a class="el" href="structtket_1_1MappingFrontier.html#acdc2fca14954211458b1d7c39a488c9e">tket::MappingFrontier</a>
 </li>
 <li>get_degree()
 : <a class="el" href="classtket_1_1graphs_1_1DirectedGraphBase.html#addb1542d900b157b176a377d4215aca8">tket::graphs::DirectedGraphBase&lt; T &gt;</a>
@@ -318,14 +319,26 @@ $(function() {
 <li>get_edgelist()
 : <a class="el" href="classtket_1_1aas_1_1IterationOrder.html#a862bd6bd4669db744e38c0241bf5c87f">tket::aas::IterationOrder</a>
 </li>
+<li>get_edges()
+: <a class="el" href="classtket_1_1ArchitectureMapping.html#a827870cb582f7eb9d639ba07537d21b6">tket::ArchitectureMapping</a>
+</li>
+<li>get_edges_bitset()
+: <a class="el" href="structtket_1_1tsa__internal_1_1SwapConversion.html#a0dbb6849f5451a204ebfdfdf2a3cc7d0">tket::tsa_internal::SwapConversion</a>
+</li>
 <li>get_edges_it()
 : <a class="el" href="classtket_1_1graphs_1_1DirectedGraphBase.html#a85b9a2a5c3ea70a74a8dff758045e15c">tket::graphs::DirectedGraphBase&lt; T &gt;</a>
 </li>
 <li>get_edgetype()
 : <a class="el" href="classtket_1_1Circuit.html#a26d7fe7443ea870ffdfd0bf99dd23de1">tket::Circuit</a>
 </li>
+<li>get_element()
+: <a class="el" href="classtket_1_1RNG.html#aea22895cd317d9589cc2cb52aa519cd8">tket::RNG</a>
+</li>
 <li>get_error()
 : <a class="el" href="classtket_1_1DeviceCharacterisation.html#af684f2b01c5defdd75f6e43ffa337c8e">tket::DeviceCharacterisation</a>
+</li>
+<li>get_error_message()
+: <a class="el" href="classtket_1_1AssertMessage.html#a2e896676b95120fe20633a45a032d763">tket::AssertMessage</a>
 </li>
 <li>get_error_prefix()
 : <a class="el" href="structtket_1_1internal_1_1GateUnitaryMatrixUtils.html#a0a075c9fc27084a4c6863407321d4df9">tket::internal::GateUnitaryMatrixUtils</a>
@@ -343,6 +356,9 @@ $(function() {
 <li>get_frame()
 : <a class="el" href="classtket_1_1Cycle.html#a2afead1e9e615396f724f227ac1bc1dd">tket::Cycle</a>
 </li>
+<li>get_frontier_subcircuit()
+: <a class="el" href="structtket_1_1MappingFrontier.html#afd371175ee6c1fefe88a671668760d3f">tket::MappingFrontier</a>
+</li>
 <li>get_gate()
 : <a class="el" href="classtket_1_1CustomGate.html#a9a995bc63580007a97eab8bd4b106f01">tket::CustomGate</a>
 </li>
@@ -354,6 +370,9 @@ $(function() {
 </li>
 <li>get_guarantee()
 : <a class="el" href="classtket_1_1BasePass.html#a871dbf3b4b26400e773dce69900f6165">tket::BasePass</a>
+</li>
+<li>get_hash_from_swap()
+: <a class="el" href="structtket_1_1tsa__internal_1_1SwapConversion.html#a1652d9749640e4e09f4492b2562c4a5c">tket::tsa_internal::SwapConversion</a>
 </li>
 <li>get_id()
 : <a class="el" href="classtket_1_1Box.html#aaf3a1fb6a5d57482794581043b0a0b48">tket::Box</a>
@@ -383,8 +402,11 @@ $(function() {
 <li>get_inner_edges()
 : <a class="el" href="classtket_1_1graphs_1_1detail_1_1BicomponentGraph.html#a76539061bffd9bacb74219079a17c9fc">tket::graphs::detail::BicomponentGraph&lt; T &gt;</a>
 </li>
-<li>get_interaction()
-: <a class="el" href="classtket_1_1RoutingTester.html#af3eea9effa0d37cde44a1a4e73c83d70">tket::RoutingTester</a>
+<li>get_invalid_id()
+: <a class="el" href="classtket_1_1VectorListHybrid.html#af225d4fb58118bf1df830b36e344dcb5">tket::VectorListHybrid&lt; T &gt;</a>
+</li>
+<li>get_invalid_index()
+: <a class="el" href="classtket_1_1tsa__internal_1_1VectorListHybridSkeleton.html#ac5ff17d13af3e144b23392cc69807b1c">tket::tsa_internal::VectorListHybridSkeleton</a>
 </li>
 <li>get_invert()
 : <a class="el" href="structtket_1_1MeasurementSetup_1_1MeasurementBitMap.html#a2769b0061309e700b3275a491917cf21">tket::MeasurementSetup::MeasurementBitMap</a>
@@ -402,6 +424,9 @@ $(function() {
 <li>get_layers()
 : <a class="el" href="classtket_1_1SquareGrid.html#a2267683b727a06fa9035bd82b76a9721">tket::SquareGrid</a>
 </li>
+<li>get_lexicographical_distances()
+: <a class="el" href="classtket_1_1LexicographicalComparison.html#a8103b0840f3b5ad65c96c687b2e2c10c">tket::LexicographicalComparison</a>
+</li>
 <li>get_linear_out_edges()
 : <a class="el" href="classtket_1_1Circuit.html#a485fed4fa32450d67381940a9ec4e32b">tket::Circuit</a>
 </li>
@@ -410,6 +435,9 @@ $(function() {
 </li>
 <li>get_lines()
 : <a class="el" href="classtket_1_1Architecture.html#aaab81220f8d2f8d935b917a23313154f">tket::Architecture</a>
+</li>
+<li>get_lookup_result()
+: <a class="el" href="classtket_1_1tsa__internal_1_1FilteredSwapSequences.html#aa456cc3914f33c8e7cd24e1144c9162c">tket::tsa_internal::FilteredSwapSequences</a>
 </li>
 <li>get_matrix()
 : <a class="el" href="classtket_1_1ProjectorAssertionBox.html#ab45e81985e02d856ab172ab29e9f6ad2">tket::ProjectorAssertionBox</a>
@@ -420,8 +448,15 @@ $(function() {
 <li>get_matrix_and_phase()
 : <a class="el" href="classtket_1_1ExpBox.html#ab5d523aae41fd52c9c9bbe0a95728dd2">tket::ExpBox</a>
 </li>
+<li>get_max_depth()
+: <a class="el" href="classtket_1_1LexiRouteRoutingMethod.html#a24ec751b97d27c1a729e010ab6ca64d5">tket::LexiRouteRoutingMethod</a>
+, <a class="el" href="classtket_1_1MultiGateReorderRoutingMethod.html#a0cea9191eebb50e5086817399bf8a42b">tket::MultiGateReorderRoutingMethod</a>
+</li>
 <li>get_max_element()
 : <a class="el" href="classtket_1_1aas_1_1SteinerTree.html#a0ce6070ba2455d7d72ac9f6eb33950a0">tket::aas::SteinerTree</a>
+</li>
+<li>get_max_size()
+: <a class="el" href="classtket_1_1MultiGateReorderRoutingMethod.html#aab5a97f2f41efd097d70619bfc9d1428">tket::MultiGateReorderRoutingMethod</a>
 </li>
 <li>get_metric()
 : <a class="el" href="classtket_1_1RepeatWithMetricPass.html#a069b5dddd283f752ae229de522339ec7">tket::RepeatWithMetricPass</a>
@@ -495,7 +530,8 @@ $(function() {
 : <a class="el" href="classtket_1_1Circuit.html#ab9bafba71bfd701726af8f9407ea0abf">tket::Circuit</a>
 </li>
 <li>get_node()
-: <a class="el" href="classtket_1_1graphs_1_1DirectedGraphBase.html#ac5d30252c7ed95dc540cdf05d0f1a40d">tket::graphs::DirectedGraphBase&lt; T &gt;</a>
+: <a class="el" href="classtket_1_1ArchitectureMapping.html#a57892870a941899b66ffd3656b8715c8">tket::ArchitectureMapping</a>
+, <a class="el" href="classtket_1_1graphs_1_1DirectedGraphBase.html#ac5d30252c7ed95dc540cdf05d0f1a40d">tket::graphs::DirectedGraphBase&lt; T &gt;</a>
 </li>
 <li>get_nodes()
 : <a class="el" href="classtket_1_1graphs_1_1ColouringPriority.html#ac42f4e3976514ea6292f08989b80fe52">tket::graphs::ColouringPriority</a>
@@ -515,6 +551,9 @@ $(function() {
 </li>
 <li>get_number_of_parameters()
 : <a class="el" href="classtket_1_1internal_1_1GateUnitaryMatrixVariableQubits.html#a6271654e4b8090735381e18cc2b05266">tket::internal::GateUnitaryMatrixVariableQubits</a>
+</li>
+<li>get_number_of_swaps()
+: <a class="el" href="structtket_1_1tsa__internal_1_1SwapConversion.html#a8b118290f993c22bf2e875ddee602b64">tket::tsa_internal::SwapConversion</a>
 </li>
 <li>get_number_of_vertices()
 : <a class="el" href="classtket_1_1graphs_1_1AdjacencyData.html#a60fa8fd6778a9c8946c618f6bdcc530e">tket::graphs::AdjacencyData</a>
@@ -542,6 +581,9 @@ $(function() {
 <li>get_opgroup_from_Vertex()
 : <a class="el" href="classtket_1_1Circuit.html#ad18f7058fbf9ef26be4a33ebd4bbd5af">tket::Circuit</a>
 </li>
+<li>get_options()
+: <a class="el" href="classtket_1_1tsa__internal_1_1CyclesGrowthManager.html#a39fa5b27034cc739c4bbd5b5aebc583a">tket::tsa_internal::CyclesGrowthManager</a>
+</li>
 <li>get_OpType_from_Vertex()
 : <a class="el" href="classtket_1_1Circuit.html#aed06b975de918021ca3fb1716498c6d1">tket::Circuit</a>
 </li>
@@ -565,6 +607,9 @@ $(function() {
 <li>get_param()
 : <a class="el" href="classtket_1_1zx_1_1BasicGen.html#a8fdb779b3ac859525bb7c36bf741acb3">tket::zx::BasicGen</a>
 </li>
+<li>get_parameters()
+: <a class="el" href="classtket_1_1tsa__internal_1_1PartialMappingLookup.html#ae7e877615b73f36cde00913a85c208e4">tket::tsa_internal::PartialMappingLookup</a>
+</li>
 <li>get_params()
 : <a class="el" href="classtket_1_1CustomGate.html#a0669096152405e194e95b0c7e43b9909">tket::CustomGate</a>
 , <a class="el" href="classtket_1_1Gate.html#a1f5bbb062aaff445103c6972007c4f36">tket::Gate</a>
@@ -575,7 +620,7 @@ $(function() {
 , <a class="el" href="classtket_1_1Op.html#a785df73a0d9ae54a994564d301bdc2eb">tket::Op</a>
 </li>
 <li>get_parents()
-: <a class="el" href="classtket_1_1graphs_1_1detail_1_1TreeSearchBase.html#a41938113eb274d0137e2ba4b457039ba">tket::graphs::detail::TreeSearchBase&lt; Graph, BoostPMap &gt;</a>
+: <a class="el" href="classtket_1_1graphs_1_1detail_1_1TreeSearchBase.html#a2067293fa3fd006ef5c09637aa393110">tket::graphs::detail::TreeSearchBase&lt; Graph, BoostPMap &gt;</a>
 </li>
 <li>get_pass()
 : <a class="el" href="classtket_1_1RepeatPass.html#afbba96b63d2e0f907a91358e47c75486">tket::RepeatPass</a>
@@ -593,6 +638,9 @@ $(function() {
 </li>
 <li>get_paulis()
 : <a class="el" href="classtket_1_1PauliExpBox.html#adb1941d953cd65a12cd2cd9a85d14cdc">tket::PauliExpBox</a>
+</li>
+<li>get_permutation()
+: <a class="el" href="classtket_1_1RNG.html#ac2313dc460aa5ff8a6bf6ad32587be6e">tket::RNG</a>
 </li>
 <li>get_phase()
 : <a class="el" href="classtket_1_1Circuit.html#acbe448bcbe244f1b2f2316a40e28df6c">tket::Circuit</a>
@@ -668,6 +716,9 @@ $(function() {
 <li>get_scalar()
 : <a class="el" href="classtket_1_1zx_1_1ZXDiagram.html#a0f1618a969d0fbe3368c6f134ec695c5">tket::zx::ZXDiagram</a>
 </li>
+<li>get_segment_optimiser()
+: <a class="el" href="classtket_1_1tsa__internal_1_1SwapListTableOptimiser.html#a957a3ae3bb78f40d8aa87bf56e1065fb">tket::tsa_internal::SwapListTableOptimiser</a>
+</li>
 <li>get_selected_comps()
 : <a class="el" href="classtket_1_1graphs_1_1detail_1_1BicomponentGraphTester.html#a47cf061aa0adc7fb7e285700d0ee57a3">tket::graphs::detail::BicomponentGraphTester</a>
 </li>
@@ -693,8 +744,8 @@ $(function() {
 <li>get_size()
 : <a class="el" href="classtket_1_1aas_1_1PathHandler.html#aadb4097e24f6282db813611c4ec0d442">tket::aas::PathHandler</a>
 </li>
-<li>get_slicefrontier()
-: <a class="el" href="classtket_1_1Routing.html#af4206f79ccde63c0a9f04674a44a1535">tket::Routing</a>
+<li>get_size_t()
+: <a class="el" href="classtket_1_1RNG.html#aa742441bbe5aa1d2da0ecf07f42067aa">tket::RNG</a>
 </li>
 <li>get_slices()
 : <a class="el" href="classtket_1_1Circuit.html#a810b3fb1f2c9ca19f5319bf4ea5751a3">tket::Circuit</a>
@@ -708,15 +759,21 @@ $(function() {
 <li>get_stabilisers()
 : <a class="el" href="classtket_1_1StabiliserAssertionBox.html#a3052b7f9da213e8233cdb21b2ffa0ed5">tket::StabiliserAssertionBox</a>
 </li>
-<li>get_stats()
-: <a class="el" href="classtket_1_1Routing.html#a7fc20e40d0001cb47fce83ea678b1e71">tket::Routing</a>
-</li>
 <li>get_successors()
 : <a class="el" href="classtket_1_1Circuit.html#ac2e140d9a8d14e70fcb55e3885079be3">tket::Circuit</a>
 , <a class="el" href="classtket_1_1Program.html#a57610b5b6c6cd1bcf5b5bb365ec8bd78">tket::Program</a>
 </li>
 <li>get_successors_of_type()
 : <a class="el" href="classtket_1_1Circuit.html#a1ed0b4c8c4ac1264580eefb6998800d1">tket::Circuit</a>
+</li>
+<li>get_swap_from_hash()
+: <a class="el" href="structtket_1_1tsa__internal_1_1SwapConversion.html#a7c434c0fedc5651a38bf7bf17bb8ce66">tket::tsa_internal::SwapConversion</a>
+</li>
+<li>get_swaps()
+: <a class="el" href="structtket_1_1BestTsaWithArch.html#a2d5f5734b3ebac455acb486abcfb8bb9">tket::BestTsaWithArch</a>
+</li>
+<li>get_table()
+: <a class="el" href="structtket_1_1tsa__internal_1_1SwapSequenceTable.html#ad1e27b57f37c7d310efafe34d48b9ba7">tket::tsa_internal::SwapSequenceTable</a>
 </li>
 <li>get_tableau()
 : <a class="el" href="classtket_1_1UnitaryTableauBox.html#af018db3f2eeecb3a567986e24f8aedfa">tket::UnitaryTableauBox</a>
@@ -730,6 +787,9 @@ $(function() {
 <li>get_tk1_angles()
 : <a class="el" href="classtket_1_1Gate.html#a026820e5c811badc04ded6bcabb3a5be">tket::Gate</a>
 </li>
+<li>get_total_number_of_entries()
+: <a class="el" href="classtket_1_1tsa__internal_1_1FilteredSwapSequences.html#a499ea77982581103416ba9bc11182019">tket::tsa_internal::FilteredSwapSequences</a>
+</li>
 <li>get_type()
 : <a class="el" href="classtket_1_1Op.html#ab36355c0f04fd893d986aed73ffd5f95">tket::Op</a>
 , <a class="el" href="classtket_1_1zx_1_1ZXGen.html#afecc9935066c9b7bf0ea5275e89a5a4a">tket::zx::ZXGen</a>
@@ -738,12 +798,12 @@ $(function() {
 : <a class="el" href="classtket_1_1Circuit_1_1SliceIterator.html#aa0a70ff3e070ad5b8e10a64ec572ae1d">tket::Circuit::SliceIterator</a>
 </li>
 <li>get_undirected_connectivity()
-: <a class="el" href="classtket_1_1graphs_1_1DirectedGraph.html#a8d3d82f0ae953281ebf989922671499d">tket::graphs::DirectedGraph&lt; T &gt;</a>
+: <a class="el" href="classtket_1_1graphs_1_1DirectedGraph.html#a37fb07dbed6695ebbee1659959756300">tket::graphs::DirectedGraph&lt; T &gt;</a>
 , <a class="el" href="classtket_1_1graphs_1_1DirectedGraphBase.html#aeac8f89f54e246d907afdba48564fd86">tket::graphs::DirectedGraphBase&lt; T &gt;</a>
 </li>
 <li>get_unitary()
 : <a class="el" href="classtket_1_1Gate.html#ae11edd0093980d96ec12d5da3bc6cb8a">tket::Gate</a>
-, <a class="el" href="structtket_1_1GateUnitaryMatrix.html#ad21c8ce352d7cf0e00fd8a7869236eef">tket::GateUnitaryMatrix</a>
+, <a class="el" href="structtket_1_1GateUnitaryMatrix.html#adca5a15e2082784fc446a994241cdf1e">tket::GateUnitaryMatrix</a>
 , <a class="el" href="classtket_1_1Op.html#a8036a6e71f1a9c064f692aedb654ddec">tket::Op</a>
 , <a class="el" href="classtket_1_1Unitary1qBox.html#a295a4d1ddb2a19dd07a0d127baefa945">tket::Unitary1qBox</a>
 , <a class="el" href="classtket_1_1Unitary2qBox.html#a6e0a72bad7228234af78d66510bb4bfd">tket::Unitary2qBox</a>
@@ -752,6 +812,9 @@ $(function() {
 <li>get_unitary_triplets()
 : <a class="el" href="structtket_1_1GateUnitaryMatrix.html#aaa7ce38e6d12191d3ab45f62f761f278">tket::GateUnitaryMatrix</a>
 , <a class="el" href="structtket_1_1internal_1_1GateUnitarySparseMatrix.html#a9e1cf54605137a86fcc9655527ba91c9">tket::internal::GateUnitarySparseMatrix</a>
+</li>
+<li>get_updated_distances()
+: <a class="el" href="classtket_1_1LexicographicalComparison.html#afad3ea1c0392991dfd2bf036a732d599">tket::LexicographicalComparison</a>
 </li>
 <li>get_value()
 : <a class="el" href="classtket_1_1Conditional.html#a25778cd3ca4a94d2c18011cebbfb00f5">tket::Conditional</a>
@@ -763,7 +826,8 @@ $(function() {
 , <a class="el" href="classtket_1_1SetBitsOp.html#ad5349eb57f349f143ed0dc9e2d4c68a9">tket::SetBitsOp</a>
 </li>
 <li>get_vertex()
-: <a class="el" href="classtket_1_1Circuit_1_1CommandIterator.html#aa800a86d1a392d27015a2ba58a439f4c">tket::Circuit::CommandIterator</a>
+: <a class="el" href="classtket_1_1ArchitectureMapping.html#a8562aa64aea3874cc051932dfc1325cd">tket::ArchitectureMapping</a>
+, <a class="el" href="classtket_1_1Circuit_1_1CommandIterator.html#aa800a86d1a392d27015a2ba58a439f4c">tket::Circuit::CommandIterator</a>
 , <a class="el" href="classtket_1_1Command.html#ae589146b32b1f6bf1c9667601bbe55f0">tket::Command</a>
 </li>
 <li>get_vertex_pair()
@@ -828,7 +892,7 @@ $(function() {
 , <a class="el" href="classtket_1_1graphs_1_1utils_1_1detail_1_1graph__utils__helper__with__map_3_01Derived_00_01Graph4f93c7182dd20c8b27502165efbd87e3.html#a4d210cadd17e373baabf9f0c6878f368">tket::graphs::utils::detail::graph_utils_helper_with_map&lt; Derived, Graph, Map, void, true &gt;</a>
 </li>
 <li>GraphColouringResult()
-: <a class="el" href="structtket_1_1graphs_1_1GraphColouringResult.html#ad00e86e7a8da3db910efee984eb800e2">tket::graphs::GraphColouringResult</a>
+: <a class="el" href="structtket_1_1graphs_1_1GraphColouringResult.html#aa2b79b63483ca99b7543400560c145fb">tket::graphs::GraphColouringResult</a>
 </li>
 <li>GraphPlacement()
 : <a class="el" href="classtket_1_1GraphPlacement.html#aa4646a1320e40df2c4dfac77cc94ad16">tket::GraphPlacement</a>

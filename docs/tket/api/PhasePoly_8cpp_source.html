@@ -295,7 +295,7 @@ $(function() {
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;      <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        pp_it-&gt;second += com.get_op_ptr()-&gt;get_params().at(0);</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    } <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;      <a class="code" href="Assert_8hpp.html#a906c9b56f8e09ec106616a091c5fc7e8">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Only CXs and Rzs allowed in Phase Polynomials&quot;</span>);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;      <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Only CXs and Rzs allowed in Phase Polynomials&quot;</span>);</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;  }</div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;}</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
@@ -443,7 +443,7 @@ $(function() {
 <div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    <span class="comment">// no other type should be in this list</span></div>
 <div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <span class="keywordtype">bool</span> expected = (post_ot == <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac1d9f50f86825a1a2302ec2449c17196">OpType::H</a>) || (post_ot == <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a0cbbe0321e0c40dfa77a159ef6bfad6b">OpType::Measure</a>) ||</div>
 <div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                    (post_ot == <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a2b31634e3cfef1bfdd7d0d2cdfdc3f9d">OpType::Collapse</a>) || (post_ot == <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a526d688f37a86d3c3f27d0c5016eb71d">OpType::Reset</a>);</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <a class="code" href="Assert_8hpp.html#a906c9b56f8e09ec106616a091c5fc7e8">TKET_ASSERT</a>(expected);</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(expected);</div>
 <div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    <a class="code" href="namespacetket.html#ab5d7d59fd0591d97f8e298235db6ee27">unit_vector_t</a> qbs = post_com.get_args();</div>
 <div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <span class="keywordtype">unsigned</span> qb = qubit_indices_.at(<a class="code" href="classtket_1_1Qubit.html">Qubit</a>(qbs[0]));</div>
 <div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="keywordflow">if</span> (post_ot == <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a0cbbe0321e0c40dfa77a159ef6bfad6b">OpType::Measure</a>) {</div>
@@ -573,7 +573,7 @@ $(function() {
 <div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;          box_circ_.<a class="code" href="classtket_1_1Circuit.html#aa55737dd6ce4273d3b1843de50022405">add_op</a>&lt;<span class="keywordtype">unsigned</span>&gt;(<a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a833e36d1a5a93dedb10c85f50ced9ce7">OpType::CX</a>, {ctrl, target});</div>
 <div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;        } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;          <span class="comment">// no other types should be in this list</span></div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;          <a class="code" href="Assert_8hpp.html#a906c9b56f8e09ec106616a091c5fc7e8">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid Qubit Type in Phase Poly Box creation&quot;</span>);</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;          <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid Qubit Type in Phase Poly Box creation&quot;</span>);</div>
 <div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;        }</div>
 <div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;      }</div>
@@ -599,7 +599,7 @@ $(function() {
 <div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;          }</div>
 <div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;          <span class="keywordflow">default</span>: {</div>
 <div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;            <span class="comment">// no other types should be in this list</span></div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;            <a class="code" href="Assert_8hpp.html#a906c9b56f8e09ec106616a091c5fc7e8">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid Qubit Type in Phase Poly Box creation&quot;</span>);</div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;            <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid Qubit Type in Phase Poly Box creation&quot;</span>);</div>
 <div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;          }</div>
 <div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;        }</div>
 <div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;        <span class="keywordflow">break</span>;</div>
@@ -624,7 +624,7 @@ $(function() {
 <div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;          }</div>
 <div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;          <span class="keywordflow">default</span>: {</div>
 <div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;            <span class="comment">// no other types should be in this list</span></div>
-<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;            <a class="code" href="Assert_8hpp.html#a906c9b56f8e09ec106616a091c5fc7e8">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid Qubit Type in Phase Poly Box creation&quot;</span>);</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;            <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid Qubit Type in Phase Poly Box creation&quot;</span>);</div>
 <div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;          }</div>
 <div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;        }</div>
 <div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;        <span class="keywordflow">break</span>;</div>
@@ -649,7 +649,7 @@ $(function() {
 <div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;          }</div>
 <div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;          <span class="keywordflow">default</span>: {</div>
 <div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;            <span class="comment">// no other types should be in this list</span></div>
-<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;            <a class="code" href="Assert_8hpp.html#a906c9b56f8e09ec106616a091c5fc7e8">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid Qubit Type in Phase Poly Box creation&quot;</span>);</div>
+<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;            <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(!<span class="stringliteral">&quot;Invalid Qubit Type in Phase Poly Box creation&quot;</span>);</div>
 <div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;          }</div>
 <div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;        }</div>
 <div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;        <span class="keywordflow">break</span>;</div>
@@ -676,6 +676,7 @@ $(function() {
 <div class="ttc" id="anamespacetket_html_ab5d7d59fd0591d97f8e298235db6ee27"><div class="ttname"><a href="namespacetket.html#ab5d7d59fd0591d97f8e298235db6ee27">tket::unit_vector_t</a></div><div class="ttdeci">std::vector&lt; UnitID &gt; unit_vector_t</div><div class="ttdef"><b>Definition:</b> <a href="UnitID_8hpp_source.html#l00261">UnitID.hpp:261</a></div></div>
 <div class="ttc" id="aclasstket_1_1Circuit_html_ab7e16f962d96486edd2f55b3cd83c58a"><div class="ttname"><a href="classtket_1_1Circuit.html#ab7e16f962d96486edd2f55b3cd83c58a">tket::Circuit::add_barrier</a></div><div class="ttdeci">Vertex add_barrier(const std::vector&lt; unsigned &gt; &amp;qubits, const std::vector&lt; unsigned &gt; &amp;bits={})</div><div class="ttdef"><b>Definition:</b> <a href="basic__circ__manip_8cpp_source.html#l00089">basic_circ_manip.cpp:89</a></div></div>
 <div class="ttc" id="anamespacetket_html_aa08fc2d553413efa43b68fa1269fba77"><div class="ttname"><a href="namespacetket.html#aa08fc2d553413efa43b68fa1269fba77">tket::unit_map_t</a></div><div class="ttdeci">std::map&lt; UnitID, UnitID &gt; unit_map_t</div><div class="ttdef"><b>Definition:</b> <a href="UnitID_8hpp_source.html#l00262">UnitID.hpp:262</a></div></div>
+<div class="ttc" id="aAssert_8hpp_html_ae053544861204d4c3f5e8422252ca22e"><div class="ttname"><a href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a></div><div class="ttdeci">#define TKET_ASSERT(condition)</div><div class="ttdoc">If condition is not satisfied, log a diagnostic message and abort.</div><div class="ttdef"><b>Definition:</b> <a href="Assert_8hpp_source.html#l00076">Assert.hpp:76</a></div></div>
 <div class="ttc" id="aclasstket_1_1Circuit_html_a4bec48b5aa35ddbc71e3523cd8f67f97"><div class="ttname"><a href="classtket_1_1Circuit.html#a4bec48b5aa35ddbc71e3523cd8f67f97">tket::Circuit::symbol_substitution</a></div><div class="ttdeci">void symbol_substitution(const symbol_map_t &amp;symbol_map)</div><div class="ttdef"><b>Definition:</b> <a href="Circuit_8cpp_source.html#l00137">Circuit.cpp:137</a></div></div>
 <div class="ttc" id="anamespacetket_html_a450cc2961f11bfc1999916262675f08f"><div class="ttname"><a href="namespacetket.html#a450cc2961f11bfc1999916262675f08f">tket::qubit_map_t</a></div><div class="ttdeci">std::map&lt; Qubit, Qubit &gt; qubit_map_t</div><div class="ttdef"><b>Definition:</b> <a href="UnitID_8hpp_source.html#l00266">UnitID.hpp:266</a></div></div>
 <div class="ttc" id="aclasstket_1_1Box_html_a4c2988f015c0388ce050594e443d7a9f"><div class="ttname"><a href="classtket_1_1Box.html#a4c2988f015c0388ce050594e443d7a9f">tket::Box::circ_</a></div><div class="ttdeci">std::shared_ptr&lt; Circuit &gt; circ_</div><div class="ttdef"><b>Definition:</b> <a href="Boxes_8hpp_source.html#l00083">Boxes.hpp:83</a></div></div>
@@ -745,7 +746,6 @@ $(function() {
 <div class="ttc" id="aBoxes_8hpp_html"><div class="ttname"><a href="Boxes_8hpp.html">Boxes.hpp</a></div></div>
 <div class="ttc" id="aclasstket_1_1Qubit_html"><div class="ttname"><a href="classtket_1_1Qubit.html">tket::Qubit</a></div><div class="ttdoc">Location holding a qubit.</div><div class="ttdef"><b>Definition:</b> <a href="UnitID_8hpp_source.html#l00150">UnitID.hpp:150</a></div></div>
 <div class="ttc" id="aCircuit_8hpp_html"><div class="ttname"><a href="Circuit_8hpp.html">Circuit.hpp</a></div></div>
-<div class="ttc" id="aAssert_8hpp_html_a906c9b56f8e09ec106616a091c5fc7e8"><div class="ttname"><a href="Assert_8hpp.html#a906c9b56f8e09ec106616a091c5fc7e8">TKET_ASSERT</a></div><div class="ttdeci">#define TKET_ASSERT(b)</div><div class="ttdoc">If the condition b is not satisfied, log a diagnostic message and abort.</div><div class="ttdef"><b>Definition:</b> <a href="Assert_8hpp_source.html#l00025">Assert.hpp:25</a></div></div>
 <div class="ttc" id="aclasstket_1_1Box_html"><div class="ttname"><a href="classtket_1_1Box.html">tket::Box</a></div><div class="ttdoc">Abstract class for an operation from which a circuit can be extracted.</div><div class="ttdef"><b>Definition:</b> <a href="Boxes_8hpp_source.html#l00036">Boxes.hpp:36</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

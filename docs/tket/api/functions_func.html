@@ -77,11 +77,14 @@ $(function() {
 <li>accepts()
 : <a class="el" href="classtket_1_1AbstractSquasher.html#a608b002a1b187b864fe974e34a14078b">tket::AbstractSquasher</a>
 </li>
+<li>add_ancilla()
+: <a class="el" href="structtket_1_1MappingFrontier.html#a2eb8a882bb8e3ea5da1e57c937498b54">tket::MappingFrontier</a>
+</li>
 <li>add_assertion()
 : <a class="el" href="classtket_1_1Circuit.html#abab4ab6884140ee072edfc6e463b5dee">tket::Circuit</a>
 </li>
 <li>add_barrier()
-: <a class="el" href="classtket_1_1Circuit.html#ab7e16f962d96486edd2f55b3cd83c58a">tket::Circuit</a>
+: <a class="el" href="classtket_1_1Circuit.html#a0b9d123bbef6669b9f794904a219c192">tket::Circuit</a>
 </li>
 <li>add_bit()
 : <a class="el" href="classtket_1_1Circuit.html#a4c5221cf74e7905b86ab4e7a7d7dce2e">tket::Circuit</a>
@@ -96,6 +99,9 @@ $(function() {
 <li>add_box()
 : <a class="el" href="classtket_1_1Circuit.html#ab318d01a5d43faf2b240ca2db4fae917">tket::Circuit</a>
 </li>
+<li>add_bridge()
+: <a class="el" href="structtket_1_1MappingFrontier.html#a79935f5f467750f240b5adc29cc63a23">tket::MappingFrontier</a>
+</li>
 <li>add_c_register()
 : <a class="el" href="classtket_1_1Circuit.html#aaaa8924b00abb5d1c2689e216f3348bb">tket::Circuit</a>
 , <a class="el" href="classtket_1_1Program.html#ad30e41fc020176cdd9b1b29c0acd5c5b">tket::Program</a>
@@ -109,9 +115,6 @@ $(function() {
 <li>add_connection()
 : <a class="el" href="classtket_1_1graphs_1_1DirectedGraph.html#abc2adbe1c2545b28c4f95848140410f6">tket::graphs::DirectedGraph&lt; T &gt;</a>
 , <a class="el" href="classtket_1_1graphs_1_1DirectedGraphBase.html#a88d4575579764bec5e372d5e274e066c">tket::graphs::DirectedGraphBase&lt; T &gt;</a>
-</li>
-<li>add_distributed_cx()
-: <a class="el" href="classtket_1_1RoutingTester.html#a33517e93801b753ba4decf11136c1b30">tket::RoutingTester</a>
 </li>
 <li>add_edge()
 : <a class="el" href="classtket_1_1Circuit.html#adda8e3f5de51e96edfce9ebf648e0556">tket::Circuit</a>
@@ -133,7 +136,7 @@ $(function() {
 , <a class="el" href="classtket_1_1graphs_1_1DirectedGraphBase.html#ae7e47de5604a69f15fc3d4a28e48a787">tket::graphs::DirectedGraphBase&lt; T &gt;</a>
 </li>
 <li>add_op()
-: <a class="el" href="classtket_1_1Circuit.html#a585954a90df889b9acab4ef4cfa7a988">tket::Circuit</a>
+: <a class="el" href="classtket_1_1Circuit.html#a24add5116085fb77e652c12888511481">tket::Circuit</a>
 , <a class="el" href="classtket_1_1Program.html#a9326aa0999746f7bdd40fde95274f54c">tket::Program</a>
 </li>
 <li>add_operation_list()
@@ -162,6 +165,9 @@ $(function() {
 <li>add_row_globally()
 : <a class="el" href="classtket_1_1aas_1_1SteinerForest.html#a8a05bcaea896615bdbae1e5bdeacba07">tket::aas::SteinerForest</a>
 </li>
+<li>add_swap()
+: <a class="el" href="structtket_1_1MappingFrontier.html#afe4f9579d3287a67832684123470a35d">tket::MappingFrontier</a>
+</li>
 <li>add_vertex()
 : <a class="el" href="classtket_1_1Circuit.html#aeb3739efdf8267ed4441f5677874d2a3">tket::Circuit</a>
 , <a class="el" href="classtket_1_1Program.html#a5fd8ca62d9fb6df09973f62283c0afbf">tket::Program</a>
@@ -177,10 +183,13 @@ $(function() {
 : <a class="el" href="classtket_1_1zx_1_1ZXDiagram.html#a114fcf8b5b12079289350458eb39f76c">tket::zx::ZXDiagram</a>
 </li>
 <li>AdjacencyData()
-: <a class="el" href="classtket_1_1graphs_1_1AdjacencyData.html#a91fcf945521e231caa9ba90a529fb2ff">tket::graphs::AdjacencyData</a>
+: <a class="el" href="classtket_1_1graphs_1_1AdjacencyData.html#a83a0621f7ef245d5a070782a98ec049c">tket::graphs::AdjacencyData</a>
 </li>
-<li>advance_frontier()
-: <a class="el" href="classtket_1_1RoutingTester.html#acc2813cd4cea694c932f4255cc504622">tket::RoutingTester</a>
+<li>advance_frontier_boundary()
+: <a class="el" href="structtket_1_1MappingFrontier.html#aa620c9642c9583fd645d32a128de07f6">tket::MappingFrontier</a>
+</li>
+<li>advance_next_2qb_slice()
+: <a class="el" href="structtket_1_1MappingFrontier.html#a13da953c9d705d4903d79fdfccca920a">tket::MappingFrontier</a>
 </li>
 <li>all_bits()
 : <a class="el" href="classtket_1_1Circuit.html#a79b731d8d4d889642d254aa394abf828">tket::Circuit</a>
@@ -223,8 +232,22 @@ $(function() {
 <li>append_if_else()
 : <a class="el" href="classtket_1_1Program.html#a3afb3f4a798f7dd244fd16ec770c24a1">tket::Program</a>
 </li>
+<li>append_partial_solution()
+: <a class="el" href="classtket_1_1BestFullTsa.html#a12ccc08a710814401d93a5dbb765e6cb">tket::BestFullTsa</a>
+, <a class="el" href="classtket_1_1tsa__internal_1_1CyclesCandidateManager.html#a66bcb3fd75792a3df5571c4539a7a64a">tket::tsa_internal::CyclesCandidateManager</a>
+, <a class="el" href="classtket_1_1tsa__internal_1_1CyclesPartialTsa.html#af79540a195b6ca9f2f464c59ead53aec">tket::tsa_internal::CyclesPartialTsa</a>
+, <a class="el" href="classtket_1_1tsa__internal_1_1HybridTsa.html#a7559e2eede7c480f553687ec7b47bbe9">tket::tsa_internal::HybridTsa</a>
+, <a class="el" href="classtket_1_1tsa__internal_1_1PartialTsaInterface.html#af711f1d7412bbaa5bc399b0513519fcc">tket::tsa_internal::PartialTsaInterface</a>
+, <a class="el" href="classtket_1_1tsa__internal_1_1TrivialTSA.html#a41fcc803c5f9acc94855509b085b0c6a">tket::tsa_internal::TrivialTSA</a>
+</li>
 <li>append_qubits()
 : <a class="el" href="classtket_1_1Circuit.html#ae2b5a1a2ac608e97840bbd613d7951eb">tket::Circuit</a>
+</li>
+<li>append_solution()
+: <a class="el" href="structtket_1_1BestTsaWithArch.html#a39c6455300f5c24c7ab38cc41a81aace">tket::BestTsaWithArch</a>
+</li>
+<li>append_to_vector()
+: <a class="el" href="classtket_1_1VectorListHybrid.html#ab0c71e7bbfbbedac81662feff4e11550">tket::VectorListHybrid&lt; T &gt;</a>
 </li>
 <li>append_while()
 : <a class="el" href="classtket_1_1Program.html#ab0397c75368d673d3b9b6ee03df1f10d">tket::Program</a>
@@ -260,7 +283,7 @@ $(function() {
 : <a class="el" href="classtket_1_1SymplecticTableau.html#af93335f0d3097f718622cf4d2b36aaa4">tket::SymplecticTableau</a>
 </li>
 <li>apply_gate_at_end()
-: <a class="el" href="classtket_1_1CliffTableau.html#a63864b037b60d6897ccd864862035149">tket::CliffTableau</a>
+: <a class="el" href="classtket_1_1CliffTableau.html#a43d4da147c657b1f4c456aeda4da0f78">tket::CliffTableau</a>
 , <a class="el" href="classtket_1_1PauliGraph.html#aa17f3c7ef32b70673a7eab97d830c92f">tket::PauliGraph</a>
 , <a class="el" href="classtket_1_1UnitaryTableau.html#a99b6b9a2e573b496caa256d255b1a326">tket::UnitaryTableau</a>
 </li>
@@ -302,16 +325,13 @@ $(function() {
 , <a class="el" href="classtket_1_1UnitaryTableau.html#af6884361af702d3c4e5744e92bae6ebd">tket::UnitaryTableau</a>
 </li>
 <li>Architecture()
-: <a class="el" href="classtket_1_1Architecture.html#ae22008df521f0f02ebe3a7621b12112c">tket::Architecture</a>
-</li>
-<li>ArchitectureFull()
-: <a class="el" href="classtket_1_1ArchitectureFull.html#ad603787df609ed558b7d426b4cc89963">tket::ArchitectureFull</a>
+: <a class="el" href="classtket_1_1Architecture.html#a74f9708c198b4964794a40449c446668">tket::Architecture</a>
 </li>
 <li>ArchitectureInvalidity()
 : <a class="el" href="classtket_1_1ArchitectureInvalidity.html#a8e83e4179cc63803a25bab9e56cc86c1">tket::ArchitectureInvalidity</a>
 </li>
-<li>ArchitectureMismatch()
-: <a class="el" href="classtket_1_1ArchitectureMismatch.html#af24df3111de02f7b2c83d7fd812371c3">tket::ArchitectureMismatch</a>
+<li>ArchitectureMapping()
+: <a class="el" href="classtket_1_1ArchitectureMapping.html#aed3743189b9c08ee009a2c95752720c6">tket::ArchitectureMapping</a>
 </li>
 <li>args_from_frontier()
 : <a class="el" href="classtket_1_1Circuit.html#a3da4e8b21648f5dbf99a8765d4dc8752">tket::Circuit</a>
@@ -319,8 +339,20 @@ $(function() {
 <li>assert_valid()
 : <a class="el" href="classtket_1_1Circuit.html#ab6cd6f507fedf41a47a39b56d21f51da">tket::Circuit</a>
 </li>
+<li>AssertMessage()
+: <a class="el" href="classtket_1_1AssertMessage.html#a079f176f42627aef38813a74fc54ae75">tket::AssertMessage</a>
+</li>
 <li>assign_vertices()
 : <a class="el" href="classtket_1_1FrameRandomisation.html#a343de2301ef8bf39d9e9afe0f15009d8">tket::FrameRandomisation</a>
+</li>
+<li>at()
+: <a class="el" href="classtket_1_1VectorListHybrid.html#a0598a3333b2e56abde8e4b9f1fb7ce09">tket::VectorListHybrid&lt; T &gt;</a>
+</li>
+<li>attempt_to_close_cycles()
+: <a class="el" href="classtket_1_1tsa__internal_1_1CyclesGrowthManager.html#ab92b605ea7beaf9b15030fe046985f3a">tket::tsa_internal::CyclesGrowthManager</a>
+</li>
+<li>attempt_to_grow()
+: <a class="el" href="classtket_1_1tsa__internal_1_1CyclesGrowthManager.html#a86745c85d688c5c97bb10ae9c4c72b83">tket::tsa_internal::CyclesGrowthManager</a>
 </li>
 </ul>
 </div><!-- contents -->

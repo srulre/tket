@@ -119,6 +119,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4d2081b182c6cb76486d87874b58fcb2"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html#a4d2081b182c6cb76486d87874b58fcb2">edge_exists</a> (const T &amp;node1, const T &amp;node2) const =0</td></tr>
 <tr class="memdesc:a4d2081b182c6cb76486d87874b58fcb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if an edge exists between two nodes.  <a href="classtket_1_1graphs_1_1AbstractGraph.html#a4d2081b182c6cb76486d87874b58fcb2">More...</a><br /></td></tr>
 <tr class="separator:a4d2081b182c6cb76486d87874b58fcb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae74ff1ba287f22fb1544d21365e221a9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html#ae74ff1ba287f22fb1544d21365e221a9">bidirectional_edge_exists</a> (const T &amp;node1, const T &amp;node2) const</td></tr>
+<tr class="memdesc:ae74ff1ba287f22fb1544d21365e221a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if an edge exists between two nodes.  <a href="classtket_1_1graphs_1_1AbstractGraph.html#ae74ff1ba287f22fb1544d21365e221a9">More...</a><br /></td></tr>
+<tr class="separator:ae74ff1ba287f22fb1544d21365e221a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac76d6e2555455487441603e255b6251c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html#ac76d6e2555455487441603e255b6251c">node_exists</a> (const T &amp;node) const</td></tr>
 <tr class="memdesc:ac76d6e2555455487441603e255b6251c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a node exists.  <a href="classtket_1_1graphs_1_1AbstractGraph.html#ac76d6e2555455487441603e255b6251c">More...</a><br /></td></tr>
 <tr class="separator:ac76d6e2555455487441603e255b6251c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -282,11 +285,53 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00079">79</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00084">84</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae74ff1ba287f22fb1544d21365e221a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae74ff1ba287f22fb1544d21365e221a9">&#9670;&nbsp;</a></span>bidirectional_edge_exists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html">tket::graphs::AbstractGraph</a>&lt; T &gt;::bidirectional_edge_exists </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>node1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>node2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if an edge exists between two nodes. </p>
+
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00057">57</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+
+</div>
+</div>
 <a id="a4d2081b182c6cb76486d87874b58fcb2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4d2081b182c6cb76486d87874b58fcb2">&#9670;&nbsp;</a></span>edge_exists()</h2>
 
@@ -387,7 +432,7 @@ template&lt;typename T &gt; </div>
 
 <p>All nodes as a vector. </p>
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00063">63</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00068">68</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -491,7 +536,7 @@ template&lt;typename T &gt; </div>
 
 <p>Number of nodes. </p>
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00068">68</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00073">73</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -523,7 +568,7 @@ template&lt;typename T &gt; </div>
 
 <p>Check if a node exists. </p>
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00057">57</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00062">62</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -554,7 +599,7 @@ template&lt;typename T &gt; </div>
 
 <p>Reference to the underlying node set. </p>
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00060">60</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00065">65</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 
 </div>
 </div>
