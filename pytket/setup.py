@@ -110,6 +110,8 @@ class CMakeBuild(build_ext):
             tket_req = tket_reqs[0]
             directory = conaninfo[tket_req]["package_folder"]
             tket_libs = [
+                "symengine",
+                "teuchos",
                 "tket-Utils",
                 "tket-ZX",
                 "tket-OpType",
@@ -134,7 +136,9 @@ class CMakeBuild(build_ext):
                 "tket-Predicates",
             ]
             for tket_lib in tket_libs:
-                shutil.copy(os.path.join(directory, "lib", libfile(tket_lib)), extdir)
+                file_to_copy = os.path.join(directory, "lib", libfile(tket_lib))
+                if os.path.exists(file_to_copy):
+                    shutil.copy(file_to_copy, extdir)
 
     def cmake_config(self, extdir, extsource):
 
