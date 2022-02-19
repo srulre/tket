@@ -91,6 +91,7 @@ class TketConan(ConanFile):
     def configure(self):
         # Disable features that are still under the LGPL.
         self.options["eigen"].MPL2_only = True
+        self.options["symengine"].shared = True
         if self.options.spdlog_ho:
             # Use header-only version of spdlog/fmt to avoid linker warnings and
             # runtime errors due to undefined symbol `pthread_cond_clockwait`. See
