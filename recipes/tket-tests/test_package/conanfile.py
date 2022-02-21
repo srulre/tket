@@ -45,10 +45,11 @@ class TketTestsTestConan(ConanFile):
         if not tools.cross_building(self):
             lib_files = os.listdir(os.path.join(self.install_folder, "lib"))
             for lib_file in lib_files:
-                copyfile(
-                    os.path.join(self.install_folder, "lib", lib_file),
-                    os.path.join("bin", lib_file),
-                )
+                if os.path.isfile(lib_file):
+                    copyfile(
+                        os.path.join(self.install_folder, "lib", lib_file),
+                        os.path.join("bin", lib_file),
+                    )
             cmd_extra = "" if platform.system() == "Linux" else ' "~[latex]"'
             os.chdir("bin")
             self.run(os.path.join(os.curdir, "test_tket" + cmd_extra))
