@@ -105,40 +105,16 @@ class CMakeBuild(build_ext):
                 ]
             )
             reqs = conaninfo["conanfile.txt"]["requires"]
-            tket_reqs = [req for req in reqs if req.startswith("tket/")]
-            assert len(tket_reqs) == 1
-            tket_req = tket_reqs[0]
-            directory = conaninfo[tket_req]["package_folder"]
-            tket_libs = [
-                "symengine",
-                "teuchos",
-                "tket-Utils",
-                "tket-ZX",
-                "tket-OpType",
-                "tket-Clifford",
-                "tket-Ops",
-                "tket-Graphs",
-                "tket-Gate",
-                "tket-PauliGraph",
-                "tket-Circuit",
-                "tket-Architecture",
-                "tket-Simulation",
-                "tket-Diagonalisation",
-                "tket-Program",
-                "tket-Characterisation",
-                "tket-Converters",
-                "tket-TokenSwapping",
-                "tket-Placement",
-                "tket-Mapping",
-                "tket-MeasurementSetup",
-                "tket-Transformations",
-                "tket-ArchAwareSynth",
-                "tket-Predicates",
-            ]
-            for tket_lib in tket_libs:
-                file_to_copy = os.path.join(directory, "lib", libfile(tket_lib))
-                if os.path.exists(file_to_copy):
-                    shutil.copy(file_to_copy, extdir)
+            for comp in ["symengine", "tket"]:
+                comp_reqs = [req for req in reqs if req.startswith(comp + "/")]
+                assert len(comp_reqs) == 1
+                comp_req = comp_reqs[0]
+                lib_dir = os.path.join(conaninfo[comp_req]["package_folder"], "lib")
+                lib_files = os.listdir(lib_dir)
+                for lib_file in lib_files:
+                    lib_path = os.path.join(lib_dir, lib_file)
+                    if os.path.isfile(lib_path):
+                        shutil.copy(lib_path, extdir)
 
     def cmake_config(self, extdir, extsource):
 
