@@ -106,10 +106,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a830859d04674f5a1b4a4af6a6eb9ed20"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1MultiGateReorderRoutingMethod.html#a830859d04674f5a1b4a4af6a6eb9ed20">MultiGateReorderRoutingMethod</a> (unsigned _max_depth=10, unsigned _max_size=10)</td></tr>
 <tr class="memdesc:a830859d04674f5a1b4a4af6a6eb9ed20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checking and Routing methods redefined using <a class="el" href="classtket_1_1MultiGateReorder.html">MultiGateReorder</a>.  <a href="classtket_1_1MultiGateReorderRoutingMethod.html#a830859d04674f5a1b4a4af6a6eb9ed20">More...</a><br /></td></tr>
 <tr class="separator:a830859d04674f5a1b4a4af6a6eb9ed20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acefcd37b6de5fd0b5ed240be6d1c9378"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1MultiGateReorderRoutingMethod.html#acefcd37b6de5fd0b5ed240be6d1c9378">check_method</a> (const std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;, const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;) const override</td></tr>
-<tr class="separator:acefcd37b6de5fd0b5ed240be6d1c9378"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2efc835520a507a71d3f6bffb9a3e20c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacetket.html#aa08fc2d553413efa43b68fa1269fba77">unit_map_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1MultiGateReorderRoutingMethod.html#a2efc835520a507a71d3f6bffb9a3e20c">routing_method</a> (std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;mapping_frontier, const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;architecture) const override</td></tr>
-<tr class="separator:a2efc835520a507a71d3f6bffb9a3e20c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3326e4f8cbf4d2b6b031b1a0716753cb"><td class="memItemLeft" align="right" valign="top">std::pair&lt; bool, <a class="el" href="namespacetket.html#aa08fc2d553413efa43b68fa1269fba77">unit_map_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1MultiGateReorderRoutingMethod.html#a3326e4f8cbf4d2b6b031b1a0716753cb">routing_method</a> (std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;mapping_frontier, const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;architecture) const override</td></tr>
+<tr class="separator:a3326e4f8cbf4d2b6b031b1a0716753cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48a9a8c12a83ab947efa24a84a044d18"><td class="memItemLeft" align="right" valign="top">nlohmann::json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1MultiGateReorderRoutingMethod.html#a48a9a8c12a83ab947efa24a84a044d18">serialize</a> () const override</td></tr>
 <tr class="separator:a48a9a8c12a83ab947efa24a84a044d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0cea9191eebb50e5086817399bf8a42b"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1MultiGateReorderRoutingMethod.html#a0cea9191eebb50e5086817399bf8a42b">get_max_depth</a> () const</td></tr>
@@ -129,7 +127,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="MultiGateReorder_8hpp_source.html#l00047">47</a> of file <a class="el" href="MultiGateReorder_8hpp_source.html">MultiGateReorder.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MultiGateReorder_8hpp_source.html#l00049">49</a> of file <a class="el" href="MultiGateReorder_8hpp_source.html">MultiGateReorder.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a830859d04674f5a1b4a4af6a6eb9ed20"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a830859d04674f5a1b4a4af6a6eb9ed20">&#9670;&nbsp;</a></span>MultiGateReorderRoutingMethod()</h2>
@@ -166,52 +164,11 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="MultiGateReorder_8cpp_source.html#l00232">232</a> of file <a class="el" href="MultiGateReorder_8cpp_source.html">MultiGateReorder.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MultiGateReorder_8cpp_source.html#l00237">237</a> of file <a class="el" href="MultiGateReorder_8cpp_source.html">MultiGateReorder.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="acefcd37b6de5fd0b5ed240be6d1c9378"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acefcd37b6de5fd0b5ed240be6d1c9378">&#9670;&nbsp;</a></span>check_method()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool tket::MultiGateReorderRoutingMethod::check_method </td>
-          <td>(</td>
-          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>mapping_frontier</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;&#160;</td>
-          <td class="paramname"><em>architecture</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>true if method can route subcircuit, false if not </dd></dl>
-
-<p>Reimplemented from <a class="el" href="classtket_1_1RoutingMethod.html#acc1b7e019af22a541e21419b7d4351c4">tket::RoutingMethod</a>.</p>
-
-<p class="definition">Definition at line <a class="el" href="MultiGateReorder_8cpp_source.html#l00236">236</a> of file <a class="el" href="MultiGateReorder_8cpp_source.html">MultiGateReorder.cpp</a>.</p>
-
-</div>
-</div>
 <a id="aebcddda27a1faf7da2d5e917941b4214"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aebcddda27a1faf7da2d5e917941b4214">&#9670;&nbsp;</a></span>deserialize()</h2>
 
@@ -236,7 +193,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MultiGateReorder_8cpp_source.html#l00286">286</a> of file <a class="el" href="MultiGateReorder_8cpp_source.html">MultiGateReorder.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MultiGateReorder_8cpp_source.html#l00264">264</a> of file <a class="el" href="MultiGateReorder_8cpp_source.html">MultiGateReorder.cpp</a>.</p>
 
 </div>
 </div>
@@ -256,7 +213,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Maximum number of layers of gates checked for commutation. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="MultiGateReorder_8cpp_source.html#l00270">270</a> of file <a class="el" href="MultiGateReorder_8cpp_source.html">MultiGateReorder.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MultiGateReorder_8cpp_source.html#l00248">248</a> of file <a class="el" href="MultiGateReorder_8cpp_source.html">MultiGateReorder.cpp</a>.</p>
 
 </div>
 </div>
@@ -276,12 +233,12 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Maximum number of gates checked for commutation. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="MultiGateReorder_8cpp_source.html#l00274">274</a> of file <a class="el" href="MultiGateReorder_8cpp_source.html">MultiGateReorder.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MultiGateReorder_8cpp_source.html#l00252">252</a> of file <a class="el" href="MultiGateReorder_8cpp_source.html">MultiGateReorder.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a2efc835520a507a71d3f6bffb9a3e20c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2efc835520a507a71d3f6bffb9a3e20c">&#9670;&nbsp;</a></span>routing_method()</h2>
+<a id="a3326e4f8cbf4d2b6b031b1a0716753cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3326e4f8cbf4d2b6b031b1a0716753cb">&#9670;&nbsp;</a></span>routing_method()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -290,7 +247,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacetket.html#aa08fc2d553413efa43b68fa1269fba77">unit_map_t</a> tket::MultiGateReorderRoutingMethod::routing_method </td>
+          <td class="memname">std::pair&lt; bool, <a class="el" href="namespacetket.html#aa08fc2d553413efa43b68fa1269fba77">unit_map_t</a> &gt; tket::MultiGateReorderRoutingMethod::routing_method </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>mapping_frontier</em>, </td>
@@ -320,11 +277,11 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Logical to Physical mapping at boundary due to modification. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether circuit is modified and Logical to Physical mapping at boundary due to modification (always empty) </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classtket_1_1RoutingMethod.html#aa355999e1b48a4369b20ffcc4350d80d">tket::RoutingMethod</a>.</p>
+<p>Reimplemented from <a class="el" href="classtket_1_1RoutingMethod.html#a49d561abe4de90d9973bc689b0649004">tket::RoutingMethod</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="MultiGateReorder_8cpp_source.html#l00262">262</a> of file <a class="el" href="MultiGateReorder_8cpp_source.html">MultiGateReorder.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MultiGateReorder_8cpp_source.html#l00241">241</a> of file <a class="el" href="MultiGateReorder_8cpp_source.html">MultiGateReorder.cpp</a>.</p>
 
 </div>
 </div>
@@ -353,7 +310,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1RoutingMethod.html#a8ac0209ce7e2c54b0c728e9cbcca87aa">tket::RoutingMethod</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="MultiGateReorder_8cpp_source.html#l00278">278</a> of file <a class="el" href="MultiGateReorder_8cpp_source.html">MultiGateReorder.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MultiGateReorder_8cpp_source.html#l00256">256</a> of file <a class="el" href="MultiGateReorder_8cpp_source.html">MultiGateReorder.cpp</a>.</p>
 
 </div>
 </div>

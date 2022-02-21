@@ -99,12 +99,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a841344c07c4c8a48f62c51b3cccc1459"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3638459a2742286943eed6c04910b02"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1RoutingMethod.html#aa3638459a2742286943eed6c04910b02">~RoutingMethod</a> ()</td></tr>
 <tr class="separator:aa3638459a2742286943eed6c04910b02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc1b7e019af22a541e21419b7d4351c4"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1RoutingMethod.html#acc1b7e019af22a541e21419b7d4351c4">check_method</a> (const std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;, const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;) const</td></tr>
-<tr class="memdesc:acc1b7e019af22a541e21419b7d4351c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">check_method returns true if held method can route given circuit.  <a href="classtket_1_1RoutingMethod.html#acc1b7e019af22a541e21419b7d4351c4">More...</a><br /></td></tr>
-<tr class="separator:acc1b7e019af22a541e21419b7d4351c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa355999e1b48a4369b20ffcc4350d80d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacetket.html#aa08fc2d553413efa43b68fa1269fba77">unit_map_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1RoutingMethod.html#aa355999e1b48a4369b20ffcc4350d80d">routing_method</a> (std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;, const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;) const</td></tr>
-<tr class="memdesc:aa355999e1b48a4369b20ffcc4350d80d"><td class="mdescLeft">&#160;</td><td class="mdescRight">routing_method modifies circuit held in mapping_frontier with gates for the purpose of moving circuit closer to one physically permitted by given architecture.  <a href="classtket_1_1RoutingMethod.html#aa355999e1b48a4369b20ffcc4350d80d">More...</a><br /></td></tr>
-<tr class="separator:aa355999e1b48a4369b20ffcc4350d80d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49d561abe4de90d9973bc689b0649004"><td class="memItemLeft" align="right" valign="top">virtual std::pair&lt; bool, <a class="el" href="namespacetket.html#aa08fc2d553413efa43b68fa1269fba77">unit_map_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1RoutingMethod.html#a49d561abe4de90d9973bc689b0649004">routing_method</a> (std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;, const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;) const</td></tr>
+<tr class="memdesc:a49d561abe4de90d9973bc689b0649004"><td class="mdescLeft">&#160;</td><td class="mdescRight">routing_method modifies circuit held in mapping_frontier with gates for the purpose of moving circuit closer to one physically permitted by given architecture.  <a href="classtket_1_1RoutingMethod.html#a49d561abe4de90d9973bc689b0649004">More...</a><br /></td></tr>
+<tr class="separator:a49d561abe4de90d9973bc689b0649004"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ac0209ce7e2c54b0c728e9cbcca87aa"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1RoutingMethod.html#a8ac0209ce7e2c54b0c728e9cbcca87aa">serialize</a> () const</td></tr>
 <tr class="separator:a8ac0209ce7e2c54b0c728e9cbcca87aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -167,8 +164,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="acc1b7e019af22a541e21419b7d4351c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc1b7e019af22a541e21419b7d4351c4">&#9670;&nbsp;</a></span>check_method()</h2>
+<a id="a49d561abe4de90d9973bc689b0649004"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49d561abe4de90d9973bc689b0649004">&#9670;&nbsp;</a></span>routing_method()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -177,51 +174,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool tket::RoutingMethod::check_method </td>
-          <td>(</td>
-          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>check_method returns true if held method can route given circuit. </p>
-<p>This is completed by converting boundary subcircuit to a <a class="el" href="classtket_1_1Circuit.html" title="A circuit.">Circuit</a> object which is then passed to check_subcircuit_ as defined in constructor.</p>
-<p>Overloded parameter mapping_frontier contains boundary of gates to be checked for method. Overloaded parameter architecture is the architecture method works with if permitted. </p><dl class="section return"><dt>Returns</dt><dd>true if method can route subcircuit, false if not </dd></dl>
-
-<p>Reimplemented in <a class="el" href="classtket_1_1RoutingMethodCircuit.html#a59513885751ba680d7a33bdd28314163">tket::RoutingMethodCircuit</a>, <a class="el" href="classtket_1_1LexiRouteRoutingMethod.html#ab2a318d675028171fd468a2ed0e60f00">tket::LexiRouteRoutingMethod</a>, and <a class="el" href="classtket_1_1MultiGateReorderRoutingMethod.html#acefcd37b6de5fd0b5ed240be6d1c9378">tket::MultiGateReorderRoutingMethod</a>.</p>
-
-<p class="definition">Definition at line <a class="el" href="RoutingMethod_8hpp_source.html#l00037">37</a> of file <a class="el" href="RoutingMethod_8hpp_source.html">RoutingMethod.hpp</a>.</p>
-
-</div>
-</div>
-<a id="aa355999e1b48a4369b20ffcc4350d80d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa355999e1b48a4369b20ffcc4350d80d">&#9670;&nbsp;</a></span>routing_method()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="namespacetket.html#aa08fc2d553413efa43b68fa1269fba77">unit_map_t</a> tket::RoutingMethod::routing_method </td>
+          <td class="memname">virtual std::pair&lt;bool, <a class="el" href="namespacetket.html#aa08fc2d553413efa43b68fa1269fba77">unit_map_t</a>&gt; tket::RoutingMethod::routing_method </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;&#160;</td>
           <td class="paramname">, </td>
@@ -246,12 +199,13 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>routing_method modifies circuit held in mapping_frontier with gates for the purpose of moving circuit closer to one physically permitted by given architecture. </p>
-<p>Returns new initial mapping of qubits incase permutation via swap network is then required, or new ancilla qubits are added. This is completed by converting boundaty subcircuit in mapping frontier to a <a class="el" href="classtket_1_1Circuit.html" title="A circuit.">Circuit</a> object which is then passed to route_subcircuit_ as defined in the constructor.</p>
-<p>Overloaded parameter mapping_frontier contains boundary of routed/unrouted circuit for modifying. Overloaded parameter architecture provides physical constraints </p><dl class="section return"><dt>Returns</dt><dd>Logical to Physical mapping at boundary due to modification. </dd></dl>
+<p>Returns a pair with a bool returning whether any modification was made and a new initial mapping of qubits in case permutation via swap network is then required, or new ancilla qubits are added. This is completed by converting boundary subcircuit in mapping frontier to a <a class="el" href="classtket_1_1Circuit.html" title="A circuit.">Circuit</a> object which is then passed to route_subcircuit_ as defined in the constructor.</p>
+<p>Overloaded parameter mapping_frontier contains boundary of routed/unrouted circuit for modifying. Overloaded parameter architecture provides physical constraints</p>
+<dl class="section return"><dt>Returns</dt><dd>Whether circuit is modified and Logical to Physical mapping at boundary due to modification. </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classtket_1_1LexiRouteRoutingMethod.html#a8f6a3db2484f09094471541c1d599bbb">tket::LexiRouteRoutingMethod</a>, <a class="el" href="classtket_1_1MultiGateReorderRoutingMethod.html#a2efc835520a507a71d3f6bffb9a3e20c">tket::MultiGateReorderRoutingMethod</a>, and <a class="el" href="classtket_1_1RoutingMethodCircuit.html#ad13bcee3e6e78cc87deed66126e4c5ed">tket::RoutingMethodCircuit</a>.</p>
+<p>Reimplemented in <a class="el" href="classtket_1_1LexiRouteRoutingMethod.html#a02944808d9afaea8e4fab21e0822331a">tket::LexiRouteRoutingMethod</a>, <a class="el" href="classtket_1_1MultiGateReorderRoutingMethod.html#a3326e4f8cbf4d2b6b031b1a0716753cb">tket::MultiGateReorderRoutingMethod</a>, and <a class="el" href="classtket_1_1RoutingMethodCircuit.html#a0d51db36762de3cab2e61084cb1afc25">tket::RoutingMethodCircuit</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="RoutingMethod_8hpp_source.html#l00058">58</a> of file <a class="el" href="RoutingMethod_8hpp_source.html">RoutingMethod.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RoutingMethod_8hpp_source.html#l00045">45</a> of file <a class="el" href="RoutingMethod_8hpp_source.html">RoutingMethod.hpp</a>.</p>
 
 </div>
 </div>
@@ -280,7 +234,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classtket_1_1LexiRouteRoutingMethod.html#ad60eade99927f00770d543de7a82f083">tket::LexiRouteRoutingMethod</a>, and <a class="el" href="classtket_1_1MultiGateReorderRoutingMethod.html#a48a9a8c12a83ab947efa24a84a044d18">tket::MultiGateReorderRoutingMethod</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="RoutingMethod_8hpp_source.html#l00064">64</a> of file <a class="el" href="RoutingMethod_8hpp_source.html">RoutingMethod.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RoutingMethod_8hpp_source.html#l00051">51</a> of file <a class="el" href="RoutingMethod_8hpp_source.html">RoutingMethod.hpp</a>.</p>
 
 </div>
 </div>

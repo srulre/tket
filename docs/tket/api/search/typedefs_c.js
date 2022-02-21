@@ -1,16 +1,16 @@
 var searchData=
 [
-  ['op_5ferrors_5ft_4544',['op_errors_t',['../namespacetket.html#a3086e008655f39df9787385006122999',1,'tket']]],
-  ['op_5flink_5ferrors_5ft_4545',['op_link_errors_t',['../namespacetket.html#a77bd68a44ff7052274e29588cc6cb135',1,'tket']]],
-  ['op_5fnode_5ferrors_5ft_4546',['op_node_errors_t',['../namespacetket.html#a898c434c90155261b12c45ebb3a944d2',1,'tket']]],
-  ['op_5fptr_4547',['Op_ptr',['../namespacetket.html#a75405147f5ffd3ff1ff1118fba63bcd0',1,'tket']]],
-  ['op_5fsignature_5ft_4548',['op_signature_t',['../namespacetket.html#ac9cc41e0b406b456fabc9ae1e4517ebd',1,'tket']]],
-  ['operation_4549',['Operation',['../namespacetket_1_1aas.html#abd5a702995ecefda4e636030f64eef50',1,'tket::aas']]],
-  ['operationlist_4550',['OperationList',['../namespacetket_1_1aas.html#a5f5d1059ef961691f786cbd77e9af667',1,'tket::aas']]],
-  ['operatorsum_4551',['OperatorSum',['../namespacetket.html#a587e3bb9386c6c74187167f2542de7e6',1,'tket']]],
-  ['opt_5freg_5finfo_5ft_4552',['opt_reg_info_t',['../namespacetket.html#aac8d5583b1b3ff11dd2a4d2f5b249cc4',1,'tket']]],
-  ['optuint_4553',['OptUInt',['../namespacetket.html#afb7113bcf1713474bf62cfae5415e5d6',1,'tket']]],
-  ['optypeset_4554',['OpTypeSet',['../namespacetket.html#a165b1d270a350af87f1c7a63d68f9276',1,'tket']]],
-  ['optypevector_4555',['OpTypeVector',['../namespacetket.html#a01a257c14a99e345adc91eae22db0c06',1,'tket']]],
-  ['outwireiterator_4556',['OutWireIterator',['../namespacetket_1_1zx.html#af1a5af8912bdb344127a0a52280659d0',1,'tket::zx']]]
+  ['op_5ferrors_5ft_4542',['op_errors_t',['../namespacetket.html#a3086e008655f39df9787385006122999',1,'tket']]],
+  ['op_5flink_5ferrors_5ft_4543',['op_link_errors_t',['../namespacetket.html#a77bd68a44ff7052274e29588cc6cb135',1,'tket']]],
+  ['op_5fnode_5ferrors_5ft_4544',['op_node_errors_t',['../namespacetket.html#a898c434c90155261b12c45ebb3a944d2',1,'tket']]],
+  ['op_5fptr_4545',['Op_ptr',['../namespacetket.html#a75405147f5ffd3ff1ff1118fba63bcd0',1,'tket']]],
+  ['op_5fsignature_5ft_4546',['op_signature_t',['../namespacetket.html#ac9cc41e0b406b456fabc9ae1e4517ebd',1,'tket']]],
+  ['operation_4547',['Operation',['../namespacetket_1_1aas.html#abd5a702995ecefda4e636030f64eef50',1,'tket::aas']]],
+  ['operationlist_4548',['OperationList',['../namespacetket_1_1aas.html#a5f5d1059ef961691f786cbd77e9af667',1,'tket::aas']]],
+  ['operatorsum_4549',['OperatorSum',['../namespacetket.html#a587e3bb9386c6c74187167f2542de7e6',1,'tket']]],
+  ['opt_5freg_5finfo_5ft_4550',['opt_reg_info_t',['../namespacetket.html#aac8d5583b1b3ff11dd2a4d2f5b249cc4',1,'tket']]],
+  ['optuint_4551',['OptUInt',['../namespacetket.html#afb7113bcf1713474bf62cfae5415e5d6',1,'tket']]],
+  ['optypeset_4552',['OpTypeSet',['../namespacetket.html#a165b1d270a350af87f1c7a63d68f9276',1,'tket']]],
+  ['optypevector_4553',['OpTypeVector',['../namespacetket.html#a01a257c14a99e345adc91eae22db0c06',1,'tket']]],
+  ['outwireiterator_4554',['OutWireIterator',['../namespacetket_1_1zx.html#af1a5af8912bdb344127a0a52280659d0',1,'tket::zx']]]
 ];

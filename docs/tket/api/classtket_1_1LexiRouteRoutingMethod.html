@@ -106,10 +106,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aeda12233bac5464795eb92884ec3e944"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1LexiRouteRoutingMethod.html#aeda12233bac5464795eb92884ec3e944">LexiRouteRoutingMethod</a> (unsigned _max_depth=100)</td></tr>
 <tr class="memdesc:aeda12233bac5464795eb92884ec3e944"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checking and Routing methods redefined using <a class="el" href="classtket_1_1LexiRoute.html" title="A class for modifiying a Circuit held in a MappingFrontier object with either an Architecture permitt...">LexiRoute</a>.  <a href="classtket_1_1LexiRouteRoutingMethod.html#aeda12233bac5464795eb92884ec3e944">More...</a><br /></td></tr>
 <tr class="separator:aeda12233bac5464795eb92884ec3e944"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2a318d675028171fd468a2ed0e60f00"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1LexiRouteRoutingMethod.html#ab2a318d675028171fd468a2ed0e60f00">check_method</a> (const std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;, const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;) const override</td></tr>
-<tr class="separator:ab2a318d675028171fd468a2ed0e60f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f6a3db2484f09094471541c1d599bbb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacetket.html#aa08fc2d553413efa43b68fa1269fba77">unit_map_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1LexiRouteRoutingMethod.html#a8f6a3db2484f09094471541c1d599bbb">routing_method</a> (std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;mapping_frontier, const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;architecture) const override</td></tr>
-<tr class="separator:a8f6a3db2484f09094471541c1d599bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02944808d9afaea8e4fab21e0822331a"><td class="memItemLeft" align="right" valign="top">std::pair&lt; bool, <a class="el" href="namespacetket.html#aa08fc2d553413efa43b68fa1269fba77">unit_map_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1LexiRouteRoutingMethod.html#a02944808d9afaea8e4fab21e0822331a">routing_method</a> (std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;mapping_frontier, const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;architecture) const override</td></tr>
+<tr class="separator:a02944808d9afaea8e4fab21e0822331a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24ec751b97d27c1a729e010ab6ca64d5"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1LexiRouteRoutingMethod.html#a24ec751b97d27c1a729e010ab6ca64d5">get_max_depth</a> () const</td></tr>
 <tr class="separator:a24ec751b97d27c1a729e010ab6ca64d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad60eade99927f00770d543de7a82f083"><td class="memItemLeft" align="right" valign="top">nlohmann::json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1LexiRouteRoutingMethod.html#ad60eade99927f00770d543de7a82f083">serialize</a> () const override</td></tr>
@@ -159,47 +157,6 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab2a318d675028171fd468a2ed0e60f00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab2a318d675028171fd468a2ed0e60f00">&#9670;&nbsp;</a></span>check_method()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool tket::LexiRouteRoutingMethod::check_method </td>
-          <td>(</td>
-          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>true if method can route subcircuit, false if not </dd></dl>
-
-<p>Reimplemented from <a class="el" href="classtket_1_1RoutingMethod.html#acc1b7e019af22a541e21419b7d4351c4">tket::RoutingMethod</a>.</p>
-
-<p class="definition">Definition at line <a class="el" href="LexiRoute_8cpp_source.html#l00512">512</a> of file <a class="el" href="LexiRoute_8cpp_source.html">LexiRoute.cpp</a>.</p>
-
-</div>
-</div>
 <a id="ac1ef6eee2715b2da30498be083d86a01"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac1ef6eee2715b2da30498be083d86a01">&#9670;&nbsp;</a></span>deserialize()</h2>
 
@@ -224,7 +181,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LexiRoute_8cpp_source.html#l00537">537</a> of file <a class="el" href="LexiRoute_8cpp_source.html">LexiRoute.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LexiRoute_8cpp_source.html#l00531">531</a> of file <a class="el" href="LexiRoute_8cpp_source.html">LexiRoute.cpp</a>.</p>
 
 </div>
 </div>
@@ -244,12 +201,12 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Max depth used in lookahead </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="LexiRoute_8cpp_source.html#l00526">526</a> of file <a class="el" href="LexiRoute_8cpp_source.html">LexiRoute.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LexiRoute_8cpp_source.html#l00520">520</a> of file <a class="el" href="LexiRoute_8cpp_source.html">LexiRoute.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a8f6a3db2484f09094471541c1d599bbb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f6a3db2484f09094471541c1d599bbb">&#9670;&nbsp;</a></span>routing_method()</h2>
+<a id="a02944808d9afaea8e4fab21e0822331a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02944808d9afaea8e4fab21e0822331a">&#9670;&nbsp;</a></span>routing_method()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -258,7 +215,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacetket.html#aa08fc2d553413efa43b68fa1269fba77">unit_map_t</a> tket::LexiRouteRoutingMethod::routing_method </td>
+          <td class="memname">std::pair&lt; bool, <a class="el" href="namespacetket.html#aa08fc2d553413efa43b68fa1269fba77">unit_map_t</a> &gt; tket::LexiRouteRoutingMethod::routing_method </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>mapping_frontier</em>, </td>
@@ -284,15 +241,15 @@ Static Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mapping_frontier</td><td>Contains boundary of routed/unrouted circuit for modifying </td></tr>
-    <tr><td class="paramname">architecture</td><td><a class="el" href="classtket_1_1Architecture.html">Architecture</a> providing physical constraints </td></tr>
+    <tr><td class="paramname">architecture</td><td><a class="el" href="classtket_1_1Architecture.html">Architecture</a> providing physical constraints</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Map between relabelled <a class="el" href="classtket_1_1Qubit.html" title="Location holding a qubit.">Qubit</a>, always empty. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true bool, map between relabelled <a class="el" href="classtket_1_1Qubit.html" title="Location holding a qubit.">Qubit</a>, always empty. </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classtket_1_1RoutingMethod.html#aa355999e1b48a4369b20ffcc4350d80d">tket::RoutingMethod</a>.</p>
+<p>Reimplemented from <a class="el" href="classtket_1_1RoutingMethod.html#a49d561abe4de90d9973bc689b0649004">tket::RoutingMethod</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="LexiRoute_8cpp_source.html#l00518">518</a> of file <a class="el" href="LexiRoute_8cpp_source.html">LexiRoute.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LexiRoute_8cpp_source.html#l00512">512</a> of file <a class="el" href="LexiRoute_8cpp_source.html">LexiRoute.cpp</a>.</p>
 
 </div>
 </div>
@@ -321,7 +278,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1RoutingMethod.html#a8ac0209ce7e2c54b0c728e9cbcca87aa">tket::RoutingMethod</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="LexiRoute_8cpp_source.html#l00530">530</a> of file <a class="el" href="LexiRoute_8cpp_source.html">LexiRoute.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LexiRoute_8cpp_source.html#l00524">524</a> of file <a class="el" href="LexiRoute_8cpp_source.html">LexiRoute.cpp</a>.</p>
 
 </div>
 </div>

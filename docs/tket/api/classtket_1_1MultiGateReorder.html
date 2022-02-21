@@ -87,9 +87,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abbb28af2076f21a4d3bf485c65eff235"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1MultiGateReorder.html#abbb28af2076f21a4d3bf485c65eff235">MultiGateReorder</a> (const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;_architecture, std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;_mapping_frontier)</td></tr>
 <tr class="memdesc:abbb28af2076f21a4d3bf485c65eff235"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Constructor.  <a href="classtket_1_1MultiGateReorder.html#abbb28af2076f21a4d3bf485c65eff235">More...</a><br /></td></tr>
 <tr class="separator:abbb28af2076f21a4d3bf485c65eff235"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ca8e0a439ce63d42f05663514bfdb10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1MultiGateReorder.html#a6ca8e0a439ce63d42f05663514bfdb10">solve</a> (unsigned max_depth, unsigned max_size)</td></tr>
-<tr class="memdesc:a6ca8e0a439ce63d42f05663514bfdb10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to commute any multi-qubit gates to the quantum frontier.  <a href="classtket_1_1MultiGateReorder.html#a6ca8e0a439ce63d42f05663514bfdb10">More...</a><br /></td></tr>
-<tr class="separator:a6ca8e0a439ce63d42f05663514bfdb10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd2ad586361fc8cf22317c63427904fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1MultiGateReorder.html#afd2ad586361fc8cf22317c63427904fa">solve</a> (unsigned max_depth, unsigned max_size)</td></tr>
+<tr class="memdesc:afd2ad586361fc8cf22317c63427904fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to commute any multi-qubit gates to the quantum frontier.  <a href="classtket_1_1MultiGateReorder.html#afd2ad586361fc8cf22317c63427904fa">More...</a><br /></td></tr>
+<tr class="separator:afd2ad586361fc8cf22317c63427904fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
@@ -135,14 +135,14 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a6ca8e0a439ce63d42f05663514bfdb10"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ca8e0a439ce63d42f05663514bfdb10">&#9670;&nbsp;</a></span>solve()</h2>
+<a id="afd2ad586361fc8cf22317c63427904fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd2ad586361fc8cf22317c63427904fa">&#9670;&nbsp;</a></span>solve()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void tket::MultiGateReorder::solve </td>
+          <td class="memname">bool tket::MultiGateReorder::solve </td>
           <td>(</td>
           <td class="paramtype">unsigned&#160;</td>
           <td class="paramname"><em>max_depth</em>, </td>
@@ -165,10 +165,11 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">max_depth</td><td>Maximum number of layers of gates checked for commutation. </td></tr>
-    <tr><td class="paramname">max_size</td><td>Maximum number of gates checked for commutation. </td></tr>
+    <tr><td class="paramname">max_size</td><td>Maximum number of gates checked for commutation.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>true if modification made </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="MultiGateReorder_8cpp_source.html#l00188">188</a> of file <a class="el" href="MultiGateReorder_8cpp_source.html">MultiGateReorder.cpp</a>.</p>
 
