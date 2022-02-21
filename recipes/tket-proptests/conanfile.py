@@ -42,3 +42,4 @@ class TketProptestsConan(ConanFile):
         if platform.system() == "Windows":
             executable_filename = executable_filename + ".exe"
         self.copy(executable_filename)
+        self.copy("*.dylib", dst="bin", keep_path=False)
