@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2022-02-19 14:49:21</td>
+      <td>2022-02-21 21:49:37</td>
     </tr>
   </table>
 </div>
@@ -41,13 +41,13 @@
     <tr>
       <th scope="row">Lines:</th>
       <td>0</td>
-      <td>10</td>
+      <td>8</td>
       <td class="coverage-none">0.0%</td>
     </tr>
     <tr>
       <th scope="row">Branches:</th>
       <td>0</td>
-      <td>4</td>
+      <td>6</td>
       <td class="coverage-none">0.0%</td>
     </tr>
   </table>
@@ -271,7 +271,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -279,7 +279,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * check_method returns true if held method can route given circuit.</span></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -287,7 +287,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * This is completed by converting boundary subcircuit to a Circuit object</span></td>
+      <td class="src "><span class="cm">   * routing_method modifies circuit held in mapping_frontier with gates for the</span></td>
     </tr>
 
     <tr class="source-line">
@@ -295,7 +295,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * which is then passed to check_subcircuit_ as defined in constructor.</span></td>
+      <td class="src "><span class="cm">   * purpose of moving circuit closer to one physically permitted by given</span></td>
     </tr>
 
     <tr class="source-line">
@@ -303,7 +303,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   *</span></td>
+      <td class="src "><span class="cm">   * architecture. Returns a pair with a bool returning whether any modification</span></td>
     </tr>
 
     <tr class="source-line">
@@ -311,7 +311,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Overloded parameter mapping_frontier contains boundary of gates to be</span></td>
+      <td class="src "><span class="cm">   * was made and a new initial mapping of qubits in case permutation via swap</span></td>
     </tr>
 
     <tr class="source-line">
@@ -319,7 +319,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * checked for method.</span></td>
+      <td class="src "><span class="cm">   * network is then required, or new ancilla qubits are added. This is</span></td>
     </tr>
 
     <tr class="source-line">
@@ -327,7 +327,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Overloaded parameter architecture is the architecture method works with</span></td>
+      <td class="src "><span class="cm">   * completed by converting boundary subcircuit in mapping frontier to a</span></td>
     </tr>
 
     <tr class="source-line">
@@ -335,7 +335,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * if permitted.</span></td>
+      <td class="src "><span class="cm">   * Circuit object which is then passed to route_subcircuit_ as defined in the</span></td>
     </tr>
 
     <tr class="source-line">
@@ -343,7 +343,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @return true if method can route subcircuit, false if not</span></td>
+      <td class="src "><span class="cm">   * constructor.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -351,131 +351,11 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l37" href="#l37">37</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine">  <span class="k">virtual</span> <span class="kt">bool</span> <span class="n">check_method</span><span class="p">(</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l38" href="#l38">38</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">MappingFrontier</span><span class="o">&gt;&amp;</span> <span class="cm">/*mapping_frontier*/</span><span class="p">,</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l39" href="#l39">39</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">ArchitecturePtr</span><span class="o">&amp;</span> <span class="cm">/*architecture*/</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l40" href="#l40">40</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine">    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l41" href="#l41">41</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="p">}</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l42" href="#l42">42</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l43" href="#l43">43</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l44" href="#l44">44</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm">   * routing_method modifies circuit held in mapping_frontier with gates for the</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l45" href="#l45">45</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm">   * purpose of moving circuit closer to one physically permitted by given</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l46" href="#l46">46</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm">   * architecture. Returns new initial mapping of qubits incase permutation via</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l47" href="#l47">47</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm">   * swap network is then required, or new ancilla qubits are added.</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l48" href="#l48">48</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm">   * This is completed by converting boundaty subcircuit in mapping frontier to</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l49" href="#l49">49</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm">   * a Circuit object which is then passed to route_subcircuit_ as defined in</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l50" href="#l50">50</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm">   * the constructor.</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l51" href="#l51">51</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
       <td class="src "><span class="cm">   *</span></td>
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l52" href="#l52">52</a></td>
+      <td class="lineno"><a id="l37" href="#l37">37</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -483,7 +363,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l53" href="#l53">53</a></td>
+      <td class="lineno"><a id="l38" href="#l38">38</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -491,7 +371,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l54" href="#l54">54</a></td>
+      <td class="lineno"><a id="l39" href="#l39">39</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -499,15 +379,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l55" href="#l55">55</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @return Logical to Physical mapping at boundary due to modification.</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l56" href="#l56">56</a></td>
+      <td class="lineno"><a id="l40" href="#l40">40</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -515,7 +387,31 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l57" href="#l57">57</a></td>
+      <td class="lineno"><a id="l41" href="#l41">41</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="cm">   * @return Whether circuit is modified and Logical to Physical mapping at</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l42" href="#l42">42</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="cm">   * boundary due to modification.</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l43" href="#l43">43</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="cm">   *</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l44" href="#l44">44</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -523,15 +419,15 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l58" href="#l58">58</a></td>
+      <td class="lineno"><a id="l45" href="#l45">45</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine">  <span class="k">virtual</span> <span class="n">unit_map_t</span> <span class="n">routing_method</span><span class="p">(</span></td>
+      <td class="src uncoveredLine">  <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="n">unit_map_t</span><span class="o">&gt;</span> <span class="n">routing_method</span><span class="p">(</span></td>
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l59" href="#l59">59</a></td>
+      <td class="lineno"><a id="l46" href="#l46">46</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -539,7 +435,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l60" href="#l60">60</a></td>
+      <td class="lineno"><a id="l47" href="#l47">47</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -547,15 +443,15 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l61" href="#l61">61</a></td>
+      <td class="lineno"><a id="l48" href="#l48">48</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine">    <span class="k">return</span> <span class="p">{};</span></td>
+      <td class="src uncoveredLine">    <span class="k">return</span> <span class="p">{</span><span class="nb">false</span><span class="p">,</span> <span class="p">{}};</span></td>
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l62" href="#l62">62</a></td>
+      <td class="lineno"><a id="l49" href="#l49">49</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -563,7 +459,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l63" href="#l63">63</a></td>
+      <td class="lineno"><a id="l50" href="#l50">50</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -571,7 +467,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l64" href="#l64">64</a></td>
+      <td class="lineno"><a id="l51" href="#l51">51</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount uncoveredLine">&cross;</td>
@@ -579,7 +475,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l65" href="#l65">65</a></td>
+      <td class="lineno"><a id="l52" href="#l52">52</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount uncoveredLine">&cross;</td>
@@ -587,7 +483,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l66" href="#l66">66</a></td>
+      <td class="lineno"><a id="l53" href="#l53">53</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount uncoveredLine">&cross;</td>
@@ -595,7 +491,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l67" href="#l67">67</a></td>
+      <td class="lineno"><a id="l54" href="#l54">54</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount uncoveredLine">&cross;</td>
@@ -603,7 +499,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l68" href="#l68">68</a></td>
+      <td class="lineno"><a id="l55" href="#l55">55</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -611,7 +507,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l69" href="#l69">69</a></td>
+      <td class="lineno"><a id="l56" href="#l56">56</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -619,7 +515,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l70" href="#l70">70</a></td>
+      <td class="lineno"><a id="l57" href="#l57">57</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -627,7 +523,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l71" href="#l71">71</a></td>
+      <td class="lineno"><a id="l58" href="#l58">58</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -635,7 +531,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l72" href="#l72">72</a></td>
+      <td class="lineno"><a id="l59" href="#l59">59</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -643,7 +539,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l73" href="#l73">73</a></td>
+      <td class="lineno"><a id="l60" href="#l60">60</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -651,7 +547,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l74" href="#l74">74</a></td>
+      <td class="lineno"><a id="l61" href="#l61">61</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>

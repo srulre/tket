@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2022-02-19 14:49:21</td>
+      <td>2022-02-21 21:49:37</td>
     </tr>
   </table>
 </div>
@@ -1447,7 +1447,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @return true if method can route subcircuit, false if not</span></td>
+      <td class="src "><span class="cm">   * @param mapping_frontier Contains boundary of routed/unrouted circuit for</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1455,7 +1455,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   * modifying</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1463,7 +1463,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">bool</span> <span class="nf">check_method</span><span class="p">(</span></td>
+      <td class="src "><span class="cm">   * @param architecture Architecture providing physical constraints</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1471,7 +1471,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">MappingFrontier</span><span class="o">&gt;&amp;</span> <span class="cm">/*mapping_frontier*/</span><span class="p">,</span></td>
+      <td class="src "><span class="cm">   *</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1479,7 +1479,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">ArchitecturePtr</span><span class="o">&amp;</span> <span class="cm">/*architecture*/</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span></td>
+      <td class="src "><span class="cm">   * @return true bool, map between relabelled Qubit, always empty.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1487,7 +1487,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="cm">   *</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1495,7 +1495,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1503,7 +1503,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param mapping_frontier Contains boundary of routed/unrouted circuit for</span></td>
+      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="n">unit_map_t</span><span class="o">&gt;</span> <span class="n">routing_method</span><span class="p">(</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1511,7 +1511,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * modifying</span></td>
+      <td class="src ">      <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">MappingFrontier</span><span class="o">&gt;&amp;</span> <span class="n">mapping_frontier</span><span class="p">,</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1519,7 +1519,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param architecture Architecture providing physical constraints</span></td>
+      <td class="src ">      <span class="k">const</span> <span class="n">ArchitecturePtr</span><span class="o">&amp;</span> <span class="n">architecture</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1527,7 +1527,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @return Map between relabelled Qubit, always empty.</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -1535,7 +1535,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   *</span></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1543,7 +1543,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   * @return Max depth used in lookahead</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1551,7 +1551,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">unit_map_t</span> <span class="nf">routing_method</span><span class="p">(</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1559,7 +1559,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">MappingFrontier</span><span class="o">&gt;&amp;</span> <span class="n">mapping_frontier</span><span class="p">,</span></td>
+      <td class="src ">  <span class="kt">unsigned</span> <span class="nf">get_max_depth</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1567,7 +1567,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">ArchitecturePtr</span><span class="o">&amp;</span> <span class="n">architecture</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -1575,7 +1575,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src ">  <span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span> <span class="n">serialize</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1583,7 +1583,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -1591,7 +1591,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @return Max depth used in lookahead</span></td>
+      <td class="src ">  <span class="k">static</span> <span class="n">LexiRouteRoutingMethod</span> <span class="nf">deserialize</span><span class="p">(</span><span class="k">const</span> <span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="o">&amp;</span> <span class="n">j</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1599,7 +1599,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -1607,7 +1607,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">unsigned</span> <span class="nf">get_max_depth</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></td>
+      <td class="src "> <span class="k">private</span><span class="o">:</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1615,7 +1615,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src ">  <span class="kt">unsigned</span> <span class="n">max_depth_</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1623,7 +1623,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span> <span class="n">serialize</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span></td>
+      <td class="src "><span class="p">};</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1639,7 +1639,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="k">static</span> <span class="n">LexiRouteRoutingMethod</span> <span class="nf">deserialize</span><span class="p">(</span><span class="k">const</span> <span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="o">&amp;</span> <span class="n">j</span><span class="p">);</span></td>
+      <td class="src "><span class="n">JSON_DECL</span><span class="p">(</span><span class="n">LexiRouteRoutingMethod</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1655,59 +1655,11 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "> <span class="k">private</span><span class="o">:</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l200" href="#l200">200</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="kt">unsigned</span> <span class="n">max_depth_</span><span class="p">;</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l201" href="#l201">201</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="p">};</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l202" href="#l202">202</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l203" href="#l203">203</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="n">JSON_DECL</span><span class="p">(</span><span class="n">LexiRouteRoutingMethod</span><span class="p">);</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l204" href="#l204">204</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l205" href="#l205">205</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
       <td class="src "><span class="p">}</span>  <span class="c1">// namespace tket</span></td>
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l206" href="#l206">206</a></td>
+      <td class="lineno"><a id="l200" href="#l200">200</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
