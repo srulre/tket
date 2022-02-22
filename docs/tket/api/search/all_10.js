@@ -111,7 +111,7 @@ var searchData=
   ['pop_5ffront_1587',['pop_front',['../classtket_1_1VectorListHybrid.html#a7bead1695c11a4f1cd42b9f19054eae5',1,'tket::VectorListHybrid']]],
   ['port_5ft_1588',['port_t',['../namespacetket.html#a85e7f8d119b3b35dd331a339729f4cfb',1,'tket']]],
   ['ports_1589',['ports',['../structtket_1_1EdgeProperties.html#a0f985b19014b5af833dacc7b2eb13c11',1,'tket::EdgeProperties']]],
-  ['postconditions_1590',['PostConditions',['../structtket_1_1PostConditions.html',1,'tket']]],
+  ['postconditions_1590',['PostConditions',['../structtket_1_1PostConditions.html',1,'tket::PostConditions'],['../structtket_1_1PostConditions.html#a3abdc38e74fd189f79071a1c6cee8b2f',1,'tket::PostConditions::PostConditions()']]],
   ['postcons_5f_1591',['postcons_',['../classtket_1_1BasePass.html#a80c889ff7173ff26b93d3e71e5ed628a',1,'tket::BasePass']]],
   ['power_5fof_5fi_1592',['power_of_i',['../PauliExpBoxUnitaryCalculator_8cpp.html#ad475dede438df5f57696ae07808aaf19',1,'PauliExpBoxUnitaryCalculator.cpp']]],
   ['powercycle_1593',['PowerCycle',['../classtket_1_1PowerCycle.html',1,'tket::PowerCycle'],['../classtket_1_1PowerCycle.html#aed4f2fdf69ff7e72c6481ec3e6c3e9e5',1,'tket::PowerCycle::PowerCycle()']]],
