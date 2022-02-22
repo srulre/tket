@@ -35,18 +35,6 @@ class CMakeExtension(Extension):
         self.sourcedir = os.path.abspath(sourcedir)
 
 
-def libfile(name):
-    sysname = platform.system()
-    if sysname == "Linux":
-        return "lib" + name + ".so"
-    elif sysname == "Darwin":
-        return "lib" + name + ".dylib"
-    elif sysname == "Windows":
-        return name + ".dll"
-    else:
-        return None
-
-
 class CMakeBuild(build_ext):
     def run(self):
         try:
@@ -111,7 +99,7 @@ class CMakeBuild(build_ext):
                     for lib_file in lib_files:
                         lib_path = os.path.join(lib_dir, lib_file)
                         if os.path.isfile(lib_path):
-                            shutil.copy(lib_path, extdir)
+                            shutil.copy(lib_path, extdir, follow_symlinks=False)
 
     def cmake_config(self, extdir, extsource):
 
