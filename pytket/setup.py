@@ -81,7 +81,7 @@ class CMakeBuild(build_ext):
                 _future = list(pool.map(self.build_extension, self.extensions))
 
         if platform.system() in ["Darwin", "Windows"]:
-            # Hack to put the tket library alongside the extension libraries
+            # Hack to put the needed libraries alongside the extension libraries
             conan_tket_profile = os.getenv("CONAN_TKET_PROFILE", default="tket")
             conaninfo = dict(
                 [
@@ -104,17 +104,14 @@ class CMakeBuild(build_ext):
                     )
                 ]
             )
-            reqs = conaninfo["conanfile.txt"]["requires"]
-            for comp in ["symengine", "tket"]:
-                comp_reqs = [req for req in reqs if req.startswith(comp + "/")]
-                assert len(comp_reqs) == 1
-                comp_req = comp_reqs[0]
-                lib_dir = os.path.join(conaninfo[comp_req]["package_folder"], "lib")
-                lib_files = os.listdir(lib_dir)
-                for lib_file in lib_files:
-                    lib_path = os.path.join(lib_dir, lib_file)
-                    if os.path.isfile(lib_path):
-                        shutil.copy(lib_path, extdir)
+            for comp, info in conaninfo.items():
+                if comp.startswith("symengine/") or comp.startswith("tket/"):
+                    lib_dir = os.path.join(info["package_folder"], "lib")
+                    lib_files = os.listdir(lib_dir)
+                    for lib_file in lib_files:
+                        lib_path = os.path.join(lib_dir, lib_file)
+                        if os.path.isfile(lib_path):
+                            shutil.copy(lib_path, extdir)
 
     def cmake_config(self, extdir, extsource):
 
