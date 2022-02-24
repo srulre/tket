@@ -391,110 +391,111 @@ $(function() {
 <div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;}</div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160; </div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;PauliGraph::TopSortIterator::TopSortIterator()</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    : current_vert_(boost::graph_traits&lt;<a class="code" href="namespacetket.html#a8a9606fbe0ad1915072a80a4d86917ab">PauliDAG</a>&gt;::null_vertex()) {}</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160; </div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;PauliGraph::TopSortIterator::TopSortIterator(<span class="keyword">const</span> PauliGraph &amp;pg) {</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;  <span class="keywordflow">if</span> (pg.start_line_.empty()) {</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    current_vert_ = boost::graph_traits&lt;PauliDAG&gt;::null_vertex();</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;  }</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;  pg_ = &amp;pg;</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> &amp;vert : pg.start_line_) {</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    search_set_.insert({pg.graph_[vert].tensor_, vert});</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;  }</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;  current_vert_ = search_set_.begin()-&gt;second;</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;  search_set_.erase(search_set_.begin());</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;  visited_ = {current_vert_};</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> &amp;child : pg_-&gt;get_successors(current_vert_)) {</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    search_set_.insert({pg.graph_[child].tensor_, child});</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;  }</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;}</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160; </div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="keyword">const</span> <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> &amp;<a class="code" href="namespacetket.html#af3c38597810d8995eb79aaa64f5d28d6">PauliGraph::TopSortIterator::operator*</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;  <span class="keywordflow">return</span> current_vert_;</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;}</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160; </div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;<span class="keyword">const</span> <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> *PauliGraph::TopSortIterator::operator-&gt;()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;  <span class="keywordflow">return</span> &amp;current_vert_;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;}</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160; </div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<span class="keywordtype">bool</span> PauliGraph::TopSortIterator::operator==(</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    <span class="keyword">const</span> TopSortIterator &amp;other)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;  <span class="keywordflow">return</span> this-&gt;current_vert_ == other.current_vert_;</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;}</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160; </div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="keywordtype">bool</span> PauliGraph::TopSortIterator::operator!=(</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    <span class="keyword">const</span> TopSortIterator &amp;other)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;  <span class="keywordflow">return</span> !(*<span class="keyword">this</span> == other);</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;}</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160; </div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;PauliGraph::TopSortIterator PauliGraph::TopSortIterator::operator++(<span class="keywordtype">int</span>) {</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;  PauliGraph::TopSortIterator it = *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  ++*<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;  <span class="keywordflow">return</span> it;</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;}</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160; </div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;PauliGraph::TopSortIterator &amp;PauliGraph::TopSortIterator::operator++() {</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;  <span class="keywordtype">bool</span> found_next = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;  <span class="keywordflow">while</span> (!found_next &amp;&amp; !search_set_.empty()) {</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    current_vert_ = search_set_.begin()-&gt;second;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    search_set_.erase(search_set_.begin());</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160; </div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    <span class="comment">// Check that we have visited all parents</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    found_next = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> &amp;parent : pg_-&gt;get_predecessors(current_vert_)) {</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;      <span class="keywordflow">if</span> (visited_.find(parent) == visited_.end()) {</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        found_next = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;      }</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    }</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;  }</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;  <span class="keywordflow">if</span> (found_next) {</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    visited_.insert(current_vert_);</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> &amp;child : pg_-&gt;get_successors(current_vert_)) {</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;      search_set_.insert({pg_-&gt;graph_[child].tensor_, child});</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    }</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    *<span class="keyword">this</span> = TopSortIterator();</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;  }</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;  <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;}</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160; </div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;PauliGraph::TopSortIterator PauliGraph::begin()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;  <span class="keywordflow">return</span> TopSortIterator(*<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;}</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160; </div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;PauliGraph::TopSortIterator PauliGraph::end()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;  <span class="keywordflow">return</span> TopSortIterator();</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;}</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160; </div>
-<div class="line"><a name="l00393"></a><span class="lineno"><a class="line" href="classtket_1_1PauliGraph.html#a7113c825208a252572247158e85d1e8e">  393</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classtket_1_1PauliGraph.html#a7113c825208a252572247158e85d1e8e">PauliGraph::to_graphviz_file</a>(<span class="keyword">const</span> std::string &amp;filename)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;  std::ofstream dot_file(filename);</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;  <a class="code" href="classtket_1_1PauliGraph.html#a303c94af79a1d9d7f0b52bc61cc621ec">to_graphviz</a>(dot_file);</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;}</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160; </div>
-<div class="line"><a name="l00398"></a><span class="lineno"><a class="line" href="classtket_1_1PauliGraph.html#a303c94af79a1d9d7f0b52bc61cc621ec">  398</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classtket_1_1PauliGraph.html#a303c94af79a1d9d7f0b52bc61cc621ec">PauliGraph::to_graphviz</a>(std::ostream &amp;out)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;  out &lt;&lt; <span class="stringliteral">&quot;digraph G {\n&quot;</span>;</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160; </div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;  std::map&lt;PauliVert, unsigned&gt; index_map;</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;  <span class="keywordtype">unsigned</span> i = 0;</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;  BGL_FORALL_VERTICES(v, graph_, <a class="code" href="namespacetket.html#a8a9606fbe0ad1915072a80a4d86917ab">PauliDAG</a>) {</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    index_map.insert({v, i});</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    out &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; [label = \&quot;&quot;</span> &lt;&lt; graph_[v].tensor_.to_str() &lt;&lt; <span class="stringliteral">&quot;, &quot;</span></div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        &lt;&lt; graph_[v].angle_ &lt;&lt; <span class="stringliteral">&quot;\&quot;];\n&quot;</span>;</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    ++i;</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;  }</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160; </div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;  BGL_FORALL_EDGES(e, graph_, <a class="code" href="namespacetket.html#a8a9606fbe0ad1915072a80a4d86917ab">PauliDAG</a>) {</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> v_so = source(e);</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> v_ta = target(e);</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    out &lt;&lt; index_map.at(v_so) &lt;&lt; <span class="stringliteral">&quot; -&gt; &quot;</span> &lt;&lt; index_map.at(v_ta) &lt;&lt; <span class="stringliteral">&quot;;\n&quot;</span>;</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;  }</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160; </div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;  out &lt;&lt; <span class="stringliteral">&quot;}&quot;</span>;</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;}</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160; </div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;}  <span class="comment">// namespace tket</span></div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    : pg_(nullptr),</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;      current_vert_(boost::graph_traits&lt;<a class="code" href="namespacetket.html#a8a9606fbe0ad1915072a80a4d86917ab">PauliDAG</a>&gt;::null_vertex()) {}</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160; </div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;PauliGraph::TopSortIterator::TopSortIterator(<span class="keyword">const</span> PauliGraph &amp;pg) {</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;  <span class="keywordflow">if</span> (pg.start_line_.empty()) {</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    current_vert_ = boost::graph_traits&lt;PauliDAG&gt;::null_vertex();</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;  }</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;  pg_ = &amp;pg;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> &amp;vert : pg.start_line_) {</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    search_set_.insert({pg.graph_[vert].tensor_, vert});</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;  }</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;  current_vert_ = search_set_.begin()-&gt;second;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;  search_set_.erase(search_set_.begin());</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;  visited_ = {current_vert_};</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> &amp;child : pg_-&gt;get_successors(current_vert_)) {</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    search_set_.insert({pg.graph_[child].tensor_, child});</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;  }</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;}</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160; </div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="keyword">const</span> <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> &amp;<a class="code" href="namespacetket.html#af3c38597810d8995eb79aaa64f5d28d6">PauliGraph::TopSortIterator::operator*</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;  <span class="keywordflow">return</span> current_vert_;</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;}</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160; </div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<span class="keyword">const</span> <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> *PauliGraph::TopSortIterator::operator-&gt;()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;  <span class="keywordflow">return</span> &amp;current_vert_;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;}</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160; </div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="keywordtype">bool</span> PauliGraph::TopSortIterator::operator==(</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    <span class="keyword">const</span> TopSortIterator &amp;other)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;  <span class="keywordflow">return</span> this-&gt;current_vert_ == other.current_vert_;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;}</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160; </div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="keywordtype">bool</span> PauliGraph::TopSortIterator::operator!=(</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="keyword">const</span> TopSortIterator &amp;other)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;  <span class="keywordflow">return</span> !(*<span class="keyword">this</span> == other);</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;}</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160; </div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;PauliGraph::TopSortIterator PauliGraph::TopSortIterator::operator++(<span class="keywordtype">int</span>) {</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  PauliGraph::TopSortIterator it = *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;  ++*<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;  <span class="keywordflow">return</span> it;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;}</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160; </div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;PauliGraph::TopSortIterator &amp;PauliGraph::TopSortIterator::operator++() {</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;  <span class="keywordtype">bool</span> found_next = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;  <span class="keywordflow">while</span> (!found_next &amp;&amp; !search_set_.empty()) {</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    current_vert_ = search_set_.begin()-&gt;second;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    search_set_.erase(search_set_.begin());</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160; </div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <span class="comment">// Check that we have visited all parents</span></div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    found_next = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> &amp;parent : pg_-&gt;get_predecessors(current_vert_)) {</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;      <span class="keywordflow">if</span> (visited_.find(parent) == visited_.end()) {</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        found_next = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;      }</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    }</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;  }</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;  <span class="keywordflow">if</span> (found_next) {</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    visited_.insert(current_vert_);</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> &amp;child : pg_-&gt;get_successors(current_vert_)) {</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;      search_set_.insert({pg_-&gt;graph_[child].tensor_, child});</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    }</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    *<span class="keyword">this</span> = TopSortIterator();</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;  }</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;  <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;}</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160; </div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;PauliGraph::TopSortIterator PauliGraph::begin()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;  <span class="keywordflow">return</span> TopSortIterator(*<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;}</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160; </div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;PauliGraph::TopSortIterator PauliGraph::end()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;  <span class="keywordflow">return</span> TopSortIterator();</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;}</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160; </div>
+<div class="line"><a name="l00394"></a><span class="lineno"><a class="line" href="classtket_1_1PauliGraph.html#a7113c825208a252572247158e85d1e8e">  394</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classtket_1_1PauliGraph.html#a7113c825208a252572247158e85d1e8e">PauliGraph::to_graphviz_file</a>(<span class="keyword">const</span> std::string &amp;filename)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;  std::ofstream dot_file(filename);</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;  <a class="code" href="classtket_1_1PauliGraph.html#a303c94af79a1d9d7f0b52bc61cc621ec">to_graphviz</a>(dot_file);</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;}</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160; </div>
+<div class="line"><a name="l00399"></a><span class="lineno"><a class="line" href="classtket_1_1PauliGraph.html#a303c94af79a1d9d7f0b52bc61cc621ec">  399</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classtket_1_1PauliGraph.html#a303c94af79a1d9d7f0b52bc61cc621ec">PauliGraph::to_graphviz</a>(std::ostream &amp;out)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;  out &lt;&lt; <span class="stringliteral">&quot;digraph G {\n&quot;</span>;</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160; </div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;  std::map&lt;PauliVert, unsigned&gt; index_map;</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;  <span class="keywordtype">unsigned</span> i = 0;</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;  BGL_FORALL_VERTICES(v, graph_, <a class="code" href="namespacetket.html#a8a9606fbe0ad1915072a80a4d86917ab">PauliDAG</a>) {</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    index_map.insert({v, i});</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    out &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; [label = \&quot;&quot;</span> &lt;&lt; graph_[v].tensor_.to_str() &lt;&lt; <span class="stringliteral">&quot;, &quot;</span></div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;        &lt;&lt; graph_[v].angle_ &lt;&lt; <span class="stringliteral">&quot;\&quot;];\n&quot;</span>;</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    ++i;</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;  }</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160; </div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;  BGL_FORALL_EDGES(e, graph_, <a class="code" href="namespacetket.html#a8a9606fbe0ad1915072a80a4d86917ab">PauliDAG</a>) {</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> v_so = source(e);</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    <a class="code" href="namespacetket.html#a3a4a5a3d5e67f03fda86c9e60a795291">PauliVert</a> v_ta = target(e);</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    out &lt;&lt; index_map.at(v_so) &lt;&lt; <span class="stringliteral">&quot; -&gt; &quot;</span> &lt;&lt; index_map.at(v_ta) &lt;&lt; <span class="stringliteral">&quot;;\n&quot;</span>;</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;  }</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160; </div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;  out &lt;&lt; <span class="stringliteral">&quot;}&quot;</span>;</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;}</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160; </div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;}  <span class="comment">// namespace tket</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="anamespacetket_html_a73b575c3d79beb9b887bad4b966990fb"><div class="ttname"><a href="namespacetket.html#a73b575c3d79beb9b887bad4b966990fb">tket::PauliEdge</a></div><div class="ttdeci">boost::graph_traits&lt; PauliDAG &gt;::edge_descriptor PauliEdge</div><div class="ttdef"><b>Definition:</b> <a href="PauliGraph_8hpp_source.html#l00040">PauliGraph.hpp:40</a></div></div>
 <div class="ttc" id="anamespacetket_html_a13e81344da4794f2648eb9a7b286fcf3a5206560a306a2e085a437fd258eb57ce"><div class="ttname"><a href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a5206560a306a2e085a437fd258eb57ce">tket::OpType::V</a></div><div class="ttdeci">@ V</div></div>
@@ -530,7 +531,7 @@ $(function() {
 <div class="ttc" id="anamespacetket_html_a13e81344da4794f2648eb9a7b286fcf3a46fc23bc4e4d57e5469a39658a6dd3e8"><div class="ttname"><a href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a46fc23bc4e4d57e5469a39658a6dd3e8">tket::OpType::SWAP</a></div><div class="ttdeci">@ SWAP</div><div class="ttdoc">Swap two qubits.</div></div>
 <div class="ttc" id="aclasstket_1_1UnitID_html"><div class="ttname"><a href="classtket_1_1UnitID.html">tket::UnitID</a></div><div class="ttdoc">Location holding a bit or qubit of information.</div><div class="ttdef"><b>Definition:</b> <a href="UnitID_8hpp_source.html#l00065">UnitID.hpp:65</a></div></div>
 <div class="ttc" id="anamespacetket_html_a13e81344da4794f2648eb9a7b286fcf3a928568b84963ceb76aaaa2cae9afdbfa"><div class="ttname"><a href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a928568b84963ceb76aaaa2cae9afdbfa">tket::OpType::CZ</a></div><div class="ttdeci">@ CZ</div><div class="ttdoc">Controlled OpType::Z.</div></div>
-<div class="ttc" id="aclasstket_1_1PauliGraph_html_a7113c825208a252572247158e85d1e8e"><div class="ttname"><a href="classtket_1_1PauliGraph.html#a7113c825208a252572247158e85d1e8e">tket::PauliGraph::to_graphviz_file</a></div><div class="ttdeci">void to_graphviz_file(const std::string &amp;filename) const</div><div class="ttdoc">Visualisation of the dependency graph.</div><div class="ttdef"><b>Definition:</b> <a href="PauliGraph_8cpp_source.html#l00393">PauliGraph.cpp:393</a></div></div>
+<div class="ttc" id="aclasstket_1_1PauliGraph_html_a7113c825208a252572247158e85d1e8e"><div class="ttname"><a href="classtket_1_1PauliGraph.html#a7113c825208a252572247158e85d1e8e">tket::PauliGraph::to_graphviz_file</a></div><div class="ttdeci">void to_graphviz_file(const std::string &amp;filename) const</div><div class="ttdoc">Visualisation of the dependency graph.</div><div class="ttdef"><b>Definition:</b> <a href="PauliGraph_8cpp_source.html#l00394">PauliGraph.cpp:394</a></div></div>
 <div class="ttc" id="anamespacetket_html_a13e81344da4794f2648eb9a7b286fcf3a833e36d1a5a93dedb10c85f50ced9ce7"><div class="ttname"><a href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a833e36d1a5a93dedb10c85f50ced9ce7">tket::OpType::CX</a></div><div class="ttdeci">@ CX</div><div class="ttdoc">Controlled OpType::X.</div></div>
 <div class="ttc" id="anamespacetket_html_a8a9606fbe0ad1915072a80a4d86917ab"><div class="ttname"><a href="namespacetket.html#a8a9606fbe0ad1915072a80a4d86917ab">tket::PauliDAG</a></div><div class="ttdeci">boost::adjacency_list&lt; boost::listS, boost::listS, boost::bidirectionalS, PauliGadgetProperties, DependencyEdgeProperties &gt; PauliDAG</div><div class="ttdef"><b>Definition:</b> <a href="PauliGraph_8hpp_source.html#l00038">PauliGraph.hpp:38</a></div></div>
 <div class="ttc" id="anamespacetket_html_a13e81344da4794f2648eb9a7b286fcf3a3093b0af32d5a67378a948d9e90ac005"><div class="ttname"><a href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a3093b0af32d5a67378a948d9e90ac005">tket::OpType::ZZPhase</a></div><div class="ttdeci">@ ZZPhase</div></div>
@@ -561,7 +562,7 @@ $(function() {
 <div class="ttc" id="anamespacetket_html_a4789ee8e9c894506ddeeb3c0653bc021"><div class="ttname"><a href="namespacetket.html#a4789ee8e9c894506ddeeb3c0653bc021">tket::i_</a></div><div class="ttdeci">constexpr Complex i_(0, 1)</div><div class="ttdoc">A fixed square root of -1.</div></div>
 <div class="ttc" id="anamespacetket_1_1graphs_1_1utils_html_a1925bcb64c0e436dfa570d40eda59ebc"><div class="ttname"><a href="namespacetket_1_1graphs_1_1utils.html#a1925bcb64c0e436dfa570d40eda59ebc">tket::graphs::utils::remove_vertex</a></div><div class="ttdeci">void remove_vertex(vertex&lt; Graph &gt; v, Graph &amp;graph)</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8hpp_source.html#l00073">Utils.hpp:73</a></div></div>
 <div class="ttc" id="aclasstket_1_1QubitPauliTensor_html_a437838e8949b35fef8905b0449a06b4b"><div class="ttname"><a href="classtket_1_1QubitPauliTensor.html#a437838e8949b35fef8905b0449a06b4b">tket::QubitPauliTensor::string</a></div><div class="ttdeci">QubitPauliString string</div><div class="ttdef"><b>Definition:</b> <a href="PauliStrings_8hpp_source.html#l00345">PauliStrings.hpp:345</a></div></div>
-<div class="ttc" id="aclasstket_1_1PauliGraph_html_a303c94af79a1d9d7f0b52bc61cc621ec"><div class="ttname"><a href="classtket_1_1PauliGraph.html#a303c94af79a1d9d7f0b52bc61cc621ec">tket::PauliGraph::to_graphviz</a></div><div class="ttdeci">void to_graphviz(std::ostream &amp;out) const</div><div class="ttdef"><b>Definition:</b> <a href="PauliGraph_8cpp_source.html#l00398">PauliGraph.cpp:398</a></div></div>
+<div class="ttc" id="aclasstket_1_1PauliGraph_html_a303c94af79a1d9d7f0b52bc61cc621ec"><div class="ttname"><a href="classtket_1_1PauliGraph.html#a303c94af79a1d9d7f0b52bc61cc621ec">tket::PauliGraph::to_graphviz</a></div><div class="ttdeci">void to_graphviz(std::ostream &amp;out) const</div><div class="ttdef"><b>Definition:</b> <a href="PauliGraph_8cpp_source.html#l00399">PauliGraph.cpp:399</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

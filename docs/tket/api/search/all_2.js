@@ -12,7 +12,7 @@ var searchData=
   ['basic_153',['Basic',['../namespacetket_1_1zx.html#a1dfd6ba927de6d65e68751fef88b62e1a972e73b7a882d0802a4e3a16946a2f94',1,'tket::zx']]],
   ['basic_5fcirc_5fmanip_2ecpp_154',['basic_circ_manip.cpp',['../basic__circ__manip_8cpp.html',1,'']]],
   ['basic_5fwires_155',['basic_wires',['../classtket_1_1zx_1_1Rewrite.html#a00fe95c5fefa22c5b8221c501cc35254',1,'tket::zx::Rewrite']]],
-  ['basicgen_156',['BasicGen',['../classtket_1_1zx_1_1BasicGen.html',1,'tket::zx::BasicGen'],['../classtket_1_1zx_1_1BasicGen.html#af3a6f80b3d8d2118a88f0aa27e2ab919',1,'tket::zx::BasicGen::BasicGen()']]],
+  ['basicgen_156',['BasicGen',['../classtket_1_1zx_1_1BasicGen.html',1,'tket::zx::BasicGen'],['../classtket_1_1zx_1_1BasicGen.html#afb1d4d8350244c759bdcc78b0c8e514c',1,'tket::zx::BasicGen::BasicGen()']]],
   ['basicoptimisation_2ecpp_157',['BasicOptimisation.cpp',['../BasicOptimisation_8cpp.html',1,'']]],
   ['basicoptimisation_2ehpp_158',['BasicOptimisation.hpp',['../BasicOptimisation_8hpp.html',1,'']]],
   ['basisorder_159',['BasisOrder',['../namespacetket.html#a72f88f920d51eb69a8614990da593fa6',1,'tket']]],
