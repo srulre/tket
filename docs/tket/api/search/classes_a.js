@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['largecliquesresult_2437',['LargeCliquesResult',['../structtket_1_1graphs_1_1LargeCliquesResult.html',1,'tket::graphs']]],
-  ['lexicographicalcomparison_2438',['LexicographicalComparison',['../classtket_1_1LexicographicalComparison.html',1,'tket']]],
-  ['lexicographicalcomparisonerror_2439',['LexicographicalComparisonError',['../classtket_1_1LexicographicalComparisonError.html',1,'tket']]],
-  ['lexiroute_2440',['LexiRoute',['../classtket_1_1LexiRoute.html',1,'tket']]],
-  ['lexirouteerror_2441',['LexiRouteError',['../classtket_1_1LexiRouteError.html',1,'tket']]],
-  ['lexirouteroutingmethod_2442',['LexiRouteRoutingMethod',['../classtket_1_1LexiRouteRoutingMethod.html',1,'tket']]],
-  ['lineplacement_2443',['LinePlacement',['../classtket_1_1LinePlacement.html',1,'tket']]]
+  ['largecliquesresult_2444',['LargeCliquesResult',['../structtket_1_1graphs_1_1LargeCliquesResult.html',1,'tket::graphs']]],
+  ['lexicographicalcomparison_2445',['LexicographicalComparison',['../classtket_1_1LexicographicalComparison.html',1,'tket']]],
+  ['lexicographicalcomparisonerror_2446',['LexicographicalComparisonError',['../classtket_1_1LexicographicalComparisonError.html',1,'tket']]],
+  ['lexiroute_2447',['LexiRoute',['../classtket_1_1LexiRoute.html',1,'tket']]],
+  ['lexirouteerror_2448',['LexiRouteError',['../classtket_1_1LexiRouteError.html',1,'tket']]],
+  ['lexirouteroutingmethod_2449',['LexiRouteRoutingMethod',['../classtket_1_1LexiRouteRoutingMethod.html',1,'tket']]],
+  ['lineplacement_2450',['LinePlacement',['../classtket_1_1LinePlacement.html',1,'tket']]]
 ];
