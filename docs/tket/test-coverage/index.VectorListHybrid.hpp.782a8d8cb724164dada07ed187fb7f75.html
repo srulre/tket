@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2022-02-24 13:44:37</td>
+      <td>2022-02-25 10:34:36</td>
     </tr>
   </table>
 </div>
@@ -41,14 +41,14 @@
     <tr>
       <th scope="row">Lines:</th>
       <td>76</td>
-      <td>84</td>
-      <td class="coverage-high">90.5%</td>
+      <td>94</td>
+      <td class="coverage-medium">80.9%</td>
     </tr>
     <tr>
       <th scope="row">Branches:</th>
       <td>11</td>
-      <td>16</td>
-      <td class="coverage-low">68.8%</td>
+      <td>20</td>
+      <td class="coverage-low">55.0%</td>
     </tr>
   </table>
 </div>
@@ -3572,7 +3572,7 @@
       <td class="lineno"><a id="l437" href="#l437">437</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">2676881</td>
+      <td class="linecount coveredLine">2676924</td>
       <td class="src coveredLine"><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">VectorListHybrid</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">ID</span><span class="o">&gt;</span> <span class="n">VectorListHybrid</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">previous</span><span class="p">(</span></td>
     </tr>
 
@@ -3588,7 +3588,7 @@
       <td class="lineno"><a id="l439" href="#l439">439</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">2676881</td>
+      <td class="linecount coveredLine">2676924</td>
       <td class="src coveredLine">  <span class="k">return</span> <span class="n">optional_id</span><span class="p">(</span><span class="n">m_links_data</span><span class="p">.</span><span class="n">previous</span><span class="p">(</span><span class="n">id</span><span class="p">));</span></td>
     </tr>
 
@@ -4080,48 +4080,48 @@
       <td class="lineno"><a id="l497" href="#l497">497</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="kt">void</span> <span class="n">VectorListHybrid</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">append_to_vector</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">vect</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span></td>
+      <td class="linecount uncoveredLine">&cross;</td>
+      <td class="src uncoveredLine"><span class="kt">void</span> <span class="n">VectorListHybrid</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">append_to_vector</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">vect</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l498" href="#l498">498</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="n">vect</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">vect</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">+</span> <span class="n">size</span><span class="p">());</span></td>
+      <td class="linecount uncoveredLine">&cross;</td>
+      <td class="src uncoveredLine">  <span class="n">vect</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">vect</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">+</span> <span class="n">size</span><span class="p">());</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l499" href="#l499">499</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="k">for</span> <span class="p">(</span><span class="n">ID</span> <span class="n">current_index</span> <span class="o">=</span> <span class="n">m_links_data</span><span class="p">.</span><span class="n">front_index</span><span class="p">();</span></td>
+      <td class="linecount uncoveredLine">&cross;</td>
+      <td class="src uncoveredLine">  <span class="k">for</span> <span class="p">(</span><span class="n">ID</span> <span class="n">current_index</span> <span class="o">=</span> <span class="n">m_links_data</span><span class="p">.</span><span class="n">front_index</span><span class="p">();</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l500" href="#l500">500</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src ">       <span class="n">current_index</span> <span class="o">!=</span> <span class="n">m_links_data</span><span class="p">.</span><span class="n">get_invalid_index</span><span class="p">();</span></td>
+      <td class="linecount uncoveredLine">&cross;</td>
+      <td class="src uncoveredLine">       <span class="n">current_index</span> <span class="o">!=</span> <span class="n">m_links_data</span><span class="p">.</span><span class="n">get_invalid_index</span><span class="p">();</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l501" href="#l501">501</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src ">       <span class="n">current_index</span> <span class="o">=</span> <span class="n">m_links_data</span><span class="p">.</span><span class="n">next</span><span class="p">(</span><span class="n">current_index</span><span class="p">))</span> <span class="p">{</span></td>
+      <td class="linecount uncoveredLine">&cross;</td>
+      <td class="src uncoveredLine">       <span class="n">current_index</span> <span class="o">=</span> <span class="n">m_links_data</span><span class="p">.</span><span class="n">next</span><span class="p">(</span><span class="n">current_index</span><span class="p">))</span> <span class="p">{</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l502" href="#l502">502</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src ">    <span class="n">vect</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">m_data</span><span class="p">[</span><span class="n">current_index</span><span class="p">]);</span></td>
+      <td class="linecount uncoveredLine">&cross;</td>
+      <td class="src uncoveredLine">    <span class="n">vect</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">m_data</span><span class="p">[</span><span class="n">current_index</span><span class="p">]);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -4160,32 +4160,32 @@
       <td class="lineno"><a id="l507" href="#l507">507</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">VectorListHybrid</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">to_vector</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span></td>
+      <td class="linecount uncoveredLine">&cross;</td>
+      <td class="src uncoveredLine"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">VectorListHybrid</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">to_vector</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l508" href="#l508">508</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">result</span><span class="p">;</span></td>
+      <td class="linecount uncoveredLine">&cross;</td>
+      <td class="src uncoveredLine">  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">result</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l509" href="#l509">509</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="n">append_to_vector</span><span class="p">(</span><span class="n">result</span><span class="p">);</span></td>
+      <td class="linecount uncoveredLine">&cross;</td>
+      <td class="src uncoveredLine">  <span class="n">append_to_vector</span><span class="p">(</span><span class="n">result</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l510" href="#l510">510</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="k">return</span> <span class="n">result</span><span class="p">;</span></td>
+      <td class="linecount uncoveredLine">&cross;</td>
+      <td class="src uncoveredLine">  <span class="k">return</span> <span class="n">result</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
