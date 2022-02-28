@@ -299,322 +299,330 @@ $(function() {
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;          }</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;          ++jt;</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        }</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;          n_edges &gt; 2 &amp;&amp;</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;          this-&gt;mapping_frontier_-&gt;circuit_.get_OpType_from_Vertex(v0) !=</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;              <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a48656da7a6e48c6887d94f4c69c731b6">OpType::Barrier</a>) {</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        <span class="keywordflow">if</span> (label_check == CheckLabellingValidity::Yes) <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <span class="keywordflow">if</span> (route_check == CheckRoutingValidity::Yes) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <span class="keywordflow">throw</span> LexiRouteError(</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            <span class="stringliteral">&quot;LexiRoute only supports non-Barrier vertices with 1 or 2 edges.&quot;</span>);</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;      }</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    }</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;  }</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;  <span class="keywordflow">if</span> (label_check == CheckLabellingValidity::Yes ||</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;      route_check == CheckRoutingValidity::Yes) {</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keywordflow">return</span> all_placed;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;  }</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;  <span class="comment">// =&gt; either route_check true and all_placed so valid</span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;  <span class="comment">// or !route_check and !label_check so return true and discard</span></div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;}</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160; </div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<a class="code" href="namespacetket.html#a58227251a0754eedcc656c2552afae55">swap_set_t</a> LexiRoute::get_candidate_swaps() {</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;  <a class="code" href="namespacetket.html#a58227251a0754eedcc656c2552afae55">swap_set_t</a> candidate_swaps;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; interaction : this-&gt;interacting_uids_) {</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    Node assigned_first = Node(this-&gt;labelling_[interaction.first]);</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    std::vector&lt;Node&gt; adjacent_uids_0 =</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        this-&gt;architecture_-&gt;nodes_at_distance(assigned_first, 1);</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(adjacent_uids_0.size() != 0);</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> Node&amp; neighbour : adjacent_uids_0) {</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;      <span class="keywordflow">if</span> (candidate_swaps.find({neighbour, assigned_first}) ==</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;          candidate_swaps.end()) {</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        candidate_swaps.insert({assigned_first, neighbour});</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;      }</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    }</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    Node assigned_second = Node(this-&gt;labelling_[interaction.second]);</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    std::vector&lt;Node&gt; adjacent_uids_1 =</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        this-&gt;architecture_-&gt;nodes_at_distance(assigned_second, 1);</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(adjacent_uids_1.size() != 0);</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> Node&amp; neighbour : adjacent_uids_1) {</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;      <span class="keywordflow">if</span> (candidate_swaps.find({neighbour, assigned_second}) ==</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;          candidate_swaps.end()) {</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        candidate_swaps.insert({assigned_second, neighbour});</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;      }</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    }</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;  }</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;  <span class="keywordflow">return</span> candidate_swaps;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;}</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160; </div>
-<div class="line"><a name="l00276"></a><span class="lineno"><a class="line" href="namespacetket.html#a0a5eb1dcb9733fcb29a5721c46b5f344">  276</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacetket.html#a0a5eb1dcb9733fcb29a5721c46b5f344">is_vertex_CX</a>(<span class="keyword">const</span> <a class="code" href="classtket_1_1Circuit.html">Circuit</a>&amp; circ_, <span class="keyword">const</span> <a class="code" href="namespacetket.html#a0bf6a146dadc36738e597ab8892a09f5">Vertex</a>&amp; v) {</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;  <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3">OpType</a> ot = circ_.<a class="code" href="classtket_1_1Circuit.html#aed06b975de918021ca3fb1716498c6d1">get_OpType_from_Vertex</a>(v);</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;  <span class="keywordflow">if</span> (ot != <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a833e36d1a5a93dedb10c85f50ced9ce7">OpType::CX</a>) {</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <span class="keywordflow">if</span> (ot == <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a9d3afea73e90192d96dda8d38c87a4fe">OpType::Conditional</a>) {</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;      <span class="keyword">const</span> <a class="code" href="classtket_1_1Conditional.html">Conditional</a>&amp; b =</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;          <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><a class="code" href="classtket_1_1Conditional.html">Conditional</a>&amp;<span class="keyword">&gt;</span>(*circ_.<a class="code" href="classtket_1_1Circuit.html#a15fd2bc465a81f45f79171d50590a520">get_Op_ptr_from_Vertex</a>(v));</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;      <span class="keywordflow">if</span> (b.<a class="code" href="classtket_1_1Conditional.html#ab7608e854d63f262895583b328c75424">get_op</a>()-&gt;get_type() != <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a833e36d1a5a93dedb10c85f50ced9ce7">OpType::CX</a>) {</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;      }</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    }</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;  }</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;}</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;std::pair&lt;bool, bool&gt; LexiRoute::check_bridge(</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    <span class="keyword">const</span> std::pair&lt;Node, Node&gt;&amp; swap, <span class="keywordtype">unsigned</span> lookahead) {</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;  std::pair&lt;bool, bool&gt; output = {<span class="keyword">false</span>, <span class="keyword">false</span>};</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;  <span class="comment">// first confirm whether it even has an interaction</span></div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;  <span class="keyword">auto</span> it = this-&gt;interacting_uids_.find(swap.first);</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;  <span class="keywordflow">if</span> (it != this-&gt;interacting_uids_.end()) {  <span class="comment">// =&gt; in interaction</span></div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <span class="keywordflow">if</span> (this-&gt;architecture_-&gt;get_distance(swap.first, Node(it-&gt;second)) ==</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        2) {  <span class="comment">// =&gt; could be bridge</span></div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;      <span class="comment">// below should always return correct object given prior checks</span></div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;      <a class="code" href="namespacetket.html#a5d011cbb0539a2b400d1bb186190dad0">VertPort</a> vp =</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;          (*this-&gt;mapping_frontier_-&gt;linear_boundary-&gt;find(swap.first)).second;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;      <a class="code" href="namespacetket.html#a6a99d9f2b64decd8803090cc890e1e7d">Edge</a> out_edge = this-&gt;mapping_frontier_-&gt;circuit_.get_nth_out_edge(</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;          vp.first, vp.second);</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;      output.first = <a class="code" href="namespacetket.html#a0a5eb1dcb9733fcb29a5721c46b5f344">is_vertex_CX</a>(</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;          this-&gt;mapping_frontier_-&gt;circuit_,</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;          this-&gt;mapping_frontier_-&gt;circuit_.target(out_edge));</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    }</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;  }</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;  <span class="comment">// repeat for second swap</span></div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;  it = this-&gt;interacting_uids_.find(swap.second);</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;  <span class="keywordflow">if</span> (it != this-&gt;interacting_uids_.end()) {</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <span class="keywordflow">if</span> (this-&gt;architecture_-&gt;get_distance(swap.second, Node(it-&gt;second)) == 2) {</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;      <a class="code" href="namespacetket.html#a5d011cbb0539a2b400d1bb186190dad0">VertPort</a> vp =</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;          (*this-&gt;mapping_frontier_-&gt;linear_boundary-&gt;find(swap.second)).second;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;      <a class="code" href="namespacetket.html#a6a99d9f2b64decd8803090cc890e1e7d">Edge</a> out_edge = this-&gt;mapping_frontier_-&gt;circuit_.get_nth_out_edge(</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;          vp.first, vp.second);</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;      output.second = <a class="code" href="namespacetket.html#a0a5eb1dcb9733fcb29a5721c46b5f344">is_vertex_CX</a>(</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;          this-&gt;mapping_frontier_-&gt;circuit_,</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;          this-&gt;mapping_frontier_-&gt;circuit_.target(out_edge));</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    }</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;  }</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;  <span class="keywordflow">if</span> ((output.first &amp;&amp; output.second) || (!output.first &amp;&amp; !output.second)) {</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    <span class="keywordflow">return</span> {0, 0};</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;  }</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;  <span class="comment">// implies conditions are set to at least check if BRIDGE is better</span></div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;  <a class="code" href="namespacetket.html#a58227251a0754eedcc656c2552afae55">swap_set_t</a> candidate_swaps = {</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;      swap,</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;      {swap.first,</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;       swap.first}};  <span class="comment">// second swap here will just compare the base case</span></div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160; </div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;  <span class="comment">// as with best swap finder, we create a set of candidate swap gates and</span></div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;  <span class="comment">// then find best, except with only 2 swap (best swap and no swap)</span></div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;  <span class="keywordflow">while</span> (candidate_swaps.size() &gt; 1 <span class="comment">/*some lookahead parameter*/</span>) {</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    this-&gt;mapping_frontier_-&gt;advance_next_2qb_slice(lookahead);</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    <span class="comment">// true bool means it only sets interacting uids if both uids are in</span></div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    <span class="comment">// architecture</span></div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    this-&gt;set_interacting_uids(</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        AssignedOnly::Yes, CheckRoutingValidity::No,</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        CheckLabellingValidity::No);</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    <span class="comment">// if 0, just take first swap rather than place</span></div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    <span class="keywordflow">if</span> (this-&gt;interacting_uids_.size() == 0) {</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;      candidate_swaps = {*candidate_swaps.begin()};</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;      <a class="code" href="namespacetket.html#a85464c8b1d835684b674404eda0e0014">interacting_nodes_t</a> convert_uids;</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; p : this-&gt;interacting_uids_) {</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        convert_uids.insert(</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;            {Node(this-&gt;labelling_[p.first]),</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;             Node(this-&gt;labelling_[p.second])});</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;      }</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;      LexicographicalComparison lookahead_lc(this-&gt;architecture_, convert_uids);</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;      lookahead_lc.remove_swaps_lexicographical(candidate_swaps);</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    }</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;  }</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  <span class="comment">// condition implies bridge is chosen</span></div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;  <span class="comment">// if both remained then lexicographically equivalent under given conditions</span></div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;  <span class="comment">// so either can be added with same consequences (for given hyper</span></div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;  <span class="comment">// parameters)</span></div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;  <span class="keywordflow">if</span> (*candidate_swaps.begin() == swap) {</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    output = {0, 0};</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;  }</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;  <span class="keywordflow">return</span> output;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;}</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160; </div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;<span class="comment">// Returns the distance between n1 and p1 and the distance between n2 and p2,</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;<span class="comment">// distance ordered (greatest first)</span></div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="keyword">const</span> std::pair&lt;size_t, size_t&gt; LexiRoute::pair_distances(</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <span class="keyword">const</span> Node&amp; p0_first, <span class="keyword">const</span> Node&amp; p0_second, <span class="keyword">const</span> Node&amp; p1_first,</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    <span class="keyword">const</span> Node&amp; p1_second)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;  {</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">bool</span> valid = this-&gt;architecture_-&gt;node_exists(p0_first) &amp;&amp;</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                       this-&gt;architecture_-&gt;node_exists(p0_second) &amp;&amp;</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                       this-&gt;architecture_-&gt;node_exists(p1_first) &amp;&amp;</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                       this-&gt;architecture_-&gt;node_exists(p1_second);</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(valid);</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;  }</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;  <span class="keywordtype">size_t</span> curr_dist1 = this-&gt;architecture_-&gt;get_distance(p0_first, p0_second);</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;  <span class="keywordtype">size_t</span> curr_dist2 = this-&gt;architecture_-&gt;get_distance(p1_first, p1_second);</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;  <span class="keywordflow">return</span> (curr_dist1 &gt; curr_dist2) ? std::make_pair(curr_dist1, curr_dist2)</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                                   : std::make_pair(curr_dist2, curr_dist1);</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;}</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160; </div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;<span class="keywordtype">void</span> LexiRoute::remove_swaps_decreasing(<a class="code" href="namespacetket.html#a58227251a0754eedcc656c2552afae55">swap_set_t</a>&amp; swaps) {</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;  <a class="code" href="namespacetket.html#a58227251a0754eedcc656c2552afae55">swap_set_t</a> remaining_swaps;</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;  Node pair_first, pair_second;</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; swap : swaps) {</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="keyword">auto</span> it = this-&gt;interacting_uids_.find(swap.first);</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    <span class="comment">// =&gt; swap.first is in interaction</span></div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="keywordflow">if</span> (it != this-&gt;interacting_uids_.end()) {</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;      <span class="comment">// find its pair</span></div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;      pair_first = Node(it-&gt;second);</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;      <span class="comment">// =&gt; not interacting, assign pair to self (will give lexicographic</span></div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;      <span class="comment">// distance 0)</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;      pair_first = swap.first;</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    }</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="comment">// =&gt; UnitID in SWAP are interacting</span></div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="keywordflow">if</span> (pair_first == swap.second) {</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;      <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    }</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    <span class="keyword">auto</span> jt = this-&gt;interacting_uids_.find(swap.second);</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    <span class="comment">// =&gt; swap.second is in interaction</span></div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    <span class="keywordflow">if</span> (jt != this-&gt;interacting_uids_.end()) {</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;      pair_second = Node(jt-&gt;second);</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;      pair_second = swap.second;</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    }</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    <span class="comment">// =&gt; UnitID in SWAP are interacting</span></div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="comment">// Check should alrady be done with earlier continue</span></div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(pair_second != swap.first);</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160; </div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    <span class="keyword">const</span> std::pair&lt;size_t, size_t&gt;&amp; curr_dists =</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;        this-&gt;pair_distances(swap.first, pair_first, swap.second, pair_second);</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    <span class="keyword">const</span> std::pair&lt;size_t, size_t&gt;&amp; news_dists =</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;        this-&gt;pair_distances(swap.second, pair_first, swap.first, pair_second);</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <span class="keywordflow">if</span> (news_dists &gt;= curr_dists) {</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;      <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    }</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    remaining_swaps.insert(swap);</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;  }</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;}</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160; </div>
-<div class="line"><a name="l00423"></a><span class="lineno"><a class="line" href="classtket_1_1LexiRoute.html#a4a1c6352da4536f6fa0515c7302e8ecd">  423</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classtket_1_1LexiRoute.html#a4a1c6352da4536f6fa0515c7302e8ecd">LexiRoute::solve_labelling</a>() {</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;  <span class="keywordtype">bool</span> all_labelled = this-&gt;set_interacting_uids(</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;      AssignedOnly::No, CheckRoutingValidity::No, CheckLabellingValidity::Yes);</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;  <span class="keywordflow">if</span> (!all_labelled) {</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    this-&gt;update_labelling();</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    this-&gt;mapping_frontier_-&gt;update_linear_boundary_uids(this-&gt;labelling_);</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;  }</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;}</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160; </div>
-<div class="line"><a name="l00434"></a><span class="lineno"><a class="line" href="classtket_1_1LexiRoute.html#a8a56b1aacf09e2c8dc7921d701ddce92">  434</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classtket_1_1LexiRoute.html#a8a56b1aacf09e2c8dc7921d701ddce92">LexiRoute::solve</a>(<span class="keywordtype">unsigned</span> lookahead) {</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;  <span class="comment">// work out if valid</span></div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160; </div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;  <span class="keywordtype">bool</span> all_labelled = this-&gt;set_interacting_uids(</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;      AssignedOnly::No, CheckRoutingValidity::Yes, CheckLabellingValidity::No);</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;  <span class="keywordflow">if</span> (!all_labelled) {</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;  }</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160; </div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;  <span class="comment">// store a copy of the original this-&gt;mapping_frontier_-&gt;quantum_boundray</span></div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;  <span class="comment">// this object will be updated and reset throughout the swap picking procedure</span></div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;  <span class="comment">// so need to return it to original setting at end</span></div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;  <a class="code" href="namespacetket.html#a1d2b39b141fc098257835665b8d5830f">unit_vertport_frontier_t</a> copy;</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> std::pair&lt;UnitID, VertPort&gt;&amp; pair :</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;       this-&gt;mapping_frontier_-&gt;linear_boundary-&gt;get&lt;<a class="code" href="structtket_1_1TagKey.html">TagKey</a>&gt;()) {</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    copy.insert({pair.first, pair.second});</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;  }</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;  <a class="code" href="namespacetket.html#a58227251a0754eedcc656c2552afae55">swap_set_t</a> candidate_swaps = this-&gt;get_candidate_swaps();</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;  this-&gt;remove_swaps_decreasing(candidate_swaps);</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;  <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(candidate_swaps.size() != 0);</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;  <span class="comment">// Only want to substitute a single swap</span></div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;  <span class="comment">// check next layer of interacting qubits and remove swaps until only one</span></div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;  <span class="comment">// lexicographically superior swap is left</span></div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;  <span class="keywordtype">unsigned</span> counter = 0;</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;  <span class="keywordflow">while</span> (candidate_swaps.size() &gt; 1 &amp;&amp; counter &lt; lookahead) {</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    <span class="comment">// if 0, just take first swap rather than place</span></div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    <span class="keywordflow">if</span> (this-&gt;interacting_uids_.size() == 0) {</div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;      <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;      <a class="code" href="namespacetket.html#a85464c8b1d835684b674404eda0e0014">interacting_nodes_t</a> convert_uids;</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; p : this-&gt;interacting_uids_) {</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;        convert_uids.insert(</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;            {<a class="code" href="classtket_1_1Node.html">Node</a>(this-&gt;labelling_[p.first]),</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;             <a class="code" href="classtket_1_1Node.html">Node</a>(this-&gt;labelling_[p.second])});</div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;      }</div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;      <a class="code" href="classtket_1_1LexicographicalComparison.html">LexicographicalComparison</a> lookahead_lc(this-&gt;architecture_, convert_uids);</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;      lookahead_lc.<a class="code" href="classtket_1_1LexicographicalComparison.html#a2914592c31eeccff210ad217efd986d1">remove_swaps_lexicographical</a>(candidate_swaps);</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;    }</div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    counter++;</div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;    this-&gt;mapping_frontier_-&gt;advance_next_2qb_slice(lookahead);</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    <span class="comment">// true bool means it only sets interacting uids if both uids are in</span></div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;    <span class="comment">// architecture</span></div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    this-&gt;set_interacting_uids(</div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;        AssignedOnly::Yes, CheckRoutingValidity::No,</div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;        CheckLabellingValidity::No);</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;  }</div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;  <span class="comment">// find best swap</span></div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;  <span class="keyword">auto</span> it = candidate_swaps.end();</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;  --it;</div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160; </div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;  std::pair&lt;Node, Node&gt; chosen_swap = *it;</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;  this-&gt;mapping_frontier_-&gt;set_linear_boundary(copy);</div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160; </div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;  this-&gt;set_interacting_uids(</div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;      AssignedOnly::No, CheckRoutingValidity::No, CheckLabellingValidity::No);</div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;  std::pair&lt;bool, bool&gt; check = this-&gt;check_bridge(chosen_swap, lookahead);</div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;  <span class="comment">// set for final time, to allow gates to be correctly inserted, but then leave</span></div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;  <span class="comment">// as is</span></div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;  <span class="comment">// insert gates</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;      }</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    }</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;  }</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160; </div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;  <span class="comment">// conditions for proceeding with labelling</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;  <span class="keywordflow">if</span> (label_check == CheckLabellingValidity::Yes) {</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordflow">if</span> (all_placed) {</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    }</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;  }</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;  <span class="comment">// this should have left early when first found</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;  <span class="keywordflow">if</span> (route_check == CheckRoutingValidity::Yes) {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keywordflow">if</span> (all_placed) {</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;      <span class="keywordflow">if</span> (interacting_uids_.size() &gt; 0) {</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;      }</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    }</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;  }</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;  <span class="comment">// =&gt; either route_check true and all_placed so valid</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;  <span class="comment">// or !route_check and !label_check so return true and discard</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;}</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<a class="code" href="namespacetket.html#a58227251a0754eedcc656c2552afae55">swap_set_t</a> LexiRoute::get_candidate_swaps() {</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;  <a class="code" href="namespacetket.html#a58227251a0754eedcc656c2552afae55">swap_set_t</a> candidate_swaps;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; interaction : this-&gt;interacting_uids_) {</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    Node assigned_first = Node(this-&gt;labelling_[interaction.first]);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    std::vector&lt;Node&gt; adjacent_uids_0 =</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        this-&gt;architecture_-&gt;nodes_at_distance(assigned_first, 1);</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(adjacent_uids_0.size() != 0);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> Node&amp; neighbour : adjacent_uids_0) {</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;      <span class="keywordflow">if</span> (candidate_swaps.find({neighbour, assigned_first}) ==</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;          candidate_swaps.end()) {</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        candidate_swaps.insert({assigned_first, neighbour});</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;      }</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    }</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    Node assigned_second = Node(this-&gt;labelling_[interaction.second]);</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    std::vector&lt;Node&gt; adjacent_uids_1 =</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        this-&gt;architecture_-&gt;nodes_at_distance(assigned_second, 1);</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(adjacent_uids_1.size() != 0);</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> Node&amp; neighbour : adjacent_uids_1) {</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;      <span class="keywordflow">if</span> (candidate_swaps.find({neighbour, assigned_second}) ==</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;          candidate_swaps.end()) {</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        candidate_swaps.insert({assigned_second, neighbour});</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;      }</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    }</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;  }</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;  <span class="keywordflow">return</span> candidate_swaps;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;}</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160; </div>
+<div class="line"><a name="l00284"></a><span class="lineno"><a class="line" href="namespacetket.html#a0a5eb1dcb9733fcb29a5721c46b5f344">  284</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacetket.html#a0a5eb1dcb9733fcb29a5721c46b5f344">is_vertex_CX</a>(<span class="keyword">const</span> <a class="code" href="classtket_1_1Circuit.html">Circuit</a>&amp; circ_, <span class="keyword">const</span> <a class="code" href="namespacetket.html#a0bf6a146dadc36738e597ab8892a09f5">Vertex</a>&amp; v) {</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;  <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3">OpType</a> ot = circ_.<a class="code" href="classtket_1_1Circuit.html#aed06b975de918021ca3fb1716498c6d1">get_OpType_from_Vertex</a>(v);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;  <span class="keywordflow">if</span> (ot != <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a833e36d1a5a93dedb10c85f50ced9ce7">OpType::CX</a>) {</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <span class="keywordflow">if</span> (ot == <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a9d3afea73e90192d96dda8d38c87a4fe">OpType::Conditional</a>) {</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;      <span class="keyword">const</span> <a class="code" href="classtket_1_1Conditional.html">Conditional</a>&amp; b =</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;          <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><a class="code" href="classtket_1_1Conditional.html">Conditional</a>&amp;<span class="keyword">&gt;</span>(*circ_.<a class="code" href="classtket_1_1Circuit.html#a15fd2bc465a81f45f79171d50590a520">get_Op_ptr_from_Vertex</a>(v));</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;      <span class="keywordflow">if</span> (b.<a class="code" href="classtket_1_1Conditional.html#ab7608e854d63f262895583b328c75424">get_op</a>()-&gt;get_type() != <a class="code" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a833e36d1a5a93dedb10c85f50ced9ce7">OpType::CX</a>) {</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;      }</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    }</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;  }</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;}</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160; </div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;std::pair&lt;bool, bool&gt; LexiRoute::check_bridge(</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <span class="keyword">const</span> std::pair&lt;Node, Node&gt;&amp; swap, <span class="keywordtype">unsigned</span> lookahead) {</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;  std::pair&lt;bool, bool&gt; output = {<span class="keyword">false</span>, <span class="keyword">false</span>};</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;  <span class="comment">// first confirm whether it even has an interaction</span></div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;  <span class="keyword">auto</span> it = this-&gt;interacting_uids_.find(swap.first);</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;  <span class="keywordflow">if</span> (it != this-&gt;interacting_uids_.end()) {  <span class="comment">// =&gt; in interaction</span></div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <span class="keywordflow">if</span> (this-&gt;architecture_-&gt;get_distance(swap.first, Node(it-&gt;second)) ==</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        2) {  <span class="comment">// =&gt; could be bridge</span></div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;      <span class="comment">// below should always return correct object given prior checks</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;      <a class="code" href="namespacetket.html#a5d011cbb0539a2b400d1bb186190dad0">VertPort</a> vp =</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;          (*this-&gt;mapping_frontier_-&gt;linear_boundary-&gt;find(swap.first)).second;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;      <a class="code" href="namespacetket.html#a6a99d9f2b64decd8803090cc890e1e7d">Edge</a> out_edge = this-&gt;mapping_frontier_-&gt;circuit_.get_nth_out_edge(</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;          vp.first, vp.second);</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;      output.first = <a class="code" href="namespacetket.html#a0a5eb1dcb9733fcb29a5721c46b5f344">is_vertex_CX</a>(</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;          this-&gt;mapping_frontier_-&gt;circuit_,</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;          this-&gt;mapping_frontier_-&gt;circuit_.target(out_edge));</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    }</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;  }</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;  <span class="comment">// repeat for second swap</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;  it = this-&gt;interacting_uids_.find(swap.second);</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;  <span class="keywordflow">if</span> (it != this-&gt;interacting_uids_.end()) {</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keywordflow">if</span> (this-&gt;architecture_-&gt;get_distance(swap.second, Node(it-&gt;second)) == 2) {</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;      <a class="code" href="namespacetket.html#a5d011cbb0539a2b400d1bb186190dad0">VertPort</a> vp =</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;          (*this-&gt;mapping_frontier_-&gt;linear_boundary-&gt;find(swap.second)).second;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;      <a class="code" href="namespacetket.html#a6a99d9f2b64decd8803090cc890e1e7d">Edge</a> out_edge = this-&gt;mapping_frontier_-&gt;circuit_.get_nth_out_edge(</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;          vp.first, vp.second);</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;      output.second = <a class="code" href="namespacetket.html#a0a5eb1dcb9733fcb29a5721c46b5f344">is_vertex_CX</a>(</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;          this-&gt;mapping_frontier_-&gt;circuit_,</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;          this-&gt;mapping_frontier_-&gt;circuit_.target(out_edge));</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    }</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;  }</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;  <span class="keywordflow">if</span> ((output.first &amp;&amp; output.second) || (!output.first &amp;&amp; !output.second)) {</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    <span class="keywordflow">return</span> {0, 0};</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;  }</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;  <span class="comment">// implies conditions are set to at least check if BRIDGE is better</span></div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;  <a class="code" href="namespacetket.html#a58227251a0754eedcc656c2552afae55">swap_set_t</a> candidate_swaps = {</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;      swap,</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;      {swap.first,</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;       swap.first}};  <span class="comment">// second swap here will just compare the base case</span></div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160; </div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;  <span class="comment">// as with best swap finder, we create a set of candidate swap gates and</span></div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;  <span class="comment">// then find best, except with only 2 swap (best swap and no swap)</span></div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;  <span class="keywordflow">while</span> (candidate_swaps.size() &gt; 1 <span class="comment">/*some lookahead parameter*/</span>) {</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    this-&gt;mapping_frontier_-&gt;advance_next_2qb_slice(lookahead);</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    <span class="comment">// true bool means it only sets interacting uids if both uids are in</span></div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    <span class="comment">// architecture</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    this-&gt;set_interacting_uids(</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        AssignedOnly::Yes, CheckRoutingValidity::No,</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        CheckLabellingValidity::No);</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    <span class="comment">// if 0, just take first swap rather than place</span></div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="keywordflow">if</span> (this-&gt;interacting_uids_.size() == 0) {</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;      candidate_swaps = {*candidate_swaps.begin()};</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;      <a class="code" href="namespacetket.html#a85464c8b1d835684b674404eda0e0014">interacting_nodes_t</a> convert_uids;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; p : this-&gt;interacting_uids_) {</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;        convert_uids.insert(</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;            {Node(this-&gt;labelling_[p.first]),</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;             Node(this-&gt;labelling_[p.second])});</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;      }</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;      LexicographicalComparison lookahead_lc(this-&gt;architecture_, convert_uids);</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;      lookahead_lc.remove_swaps_lexicographical(candidate_swaps);</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    }</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;  }</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;  <span class="comment">// condition implies bridge is chosen</span></div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;  <span class="comment">// if both remained then lexicographically equivalent under given conditions</span></div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;  <span class="comment">// so either can be added with same consequences (for given hyper</span></div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;  <span class="comment">// parameters)</span></div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;  <span class="keywordflow">if</span> (*candidate_swaps.begin() == swap) {</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    output = {0, 0};</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;  }</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;  <span class="keywordflow">return</span> output;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;}</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160; </div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;<span class="comment">// Returns the distance between n1 and p1 and the distance between n2 and p2,</span></div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="comment">// distance ordered (greatest first)</span></div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="keyword">const</span> std::pair&lt;size_t, size_t&gt; LexiRoute::pair_distances(</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    <span class="keyword">const</span> Node&amp; p0_first, <span class="keyword">const</span> Node&amp; p0_second, <span class="keyword">const</span> Node&amp; p1_first,</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    <span class="keyword">const</span> Node&amp; p1_second)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;  {</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">bool</span> valid = this-&gt;architecture_-&gt;node_exists(p0_first) &amp;&amp;</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                       this-&gt;architecture_-&gt;node_exists(p0_second) &amp;&amp;</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;                       this-&gt;architecture_-&gt;node_exists(p1_first) &amp;&amp;</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                       this-&gt;architecture_-&gt;node_exists(p1_second);</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(valid);</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;  }</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;  <span class="keywordtype">size_t</span> curr_dist1 = this-&gt;architecture_-&gt;get_distance(p0_first, p0_second);</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;  <span class="keywordtype">size_t</span> curr_dist2 = this-&gt;architecture_-&gt;get_distance(p1_first, p1_second);</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;  <span class="keywordflow">return</span> (curr_dist1 &gt; curr_dist2) ? std::make_pair(curr_dist1, curr_dist2)</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;                                   : std::make_pair(curr_dist2, curr_dist1);</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;}</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160; </div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="keywordtype">void</span> LexiRoute::remove_swaps_decreasing(<a class="code" href="namespacetket.html#a58227251a0754eedcc656c2552afae55">swap_set_t</a>&amp; swaps) {</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;  <a class="code" href="namespacetket.html#a58227251a0754eedcc656c2552afae55">swap_set_t</a> remaining_swaps;</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;  Node pair_first, pair_second;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; swap : swaps) {</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <span class="keyword">auto</span> it = this-&gt;interacting_uids_.find(swap.first);</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="comment">// =&gt; swap.first is in interaction</span></div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="keywordflow">if</span> (it != this-&gt;interacting_uids_.end()) {</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;      <span class="comment">// find its pair</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;      pair_first = Node(it-&gt;second);</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;      <span class="comment">// =&gt; not interacting, assign pair to self (will give lexicographic</span></div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;      <span class="comment">// distance 0)</span></div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;      pair_first = swap.first;</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    }</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    <span class="comment">// =&gt; UnitID in SWAP are interacting</span></div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    <span class="keywordflow">if</span> (pair_first == swap.second) {</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;      <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    }</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="keyword">auto</span> jt = this-&gt;interacting_uids_.find(swap.second);</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    <span class="comment">// =&gt; swap.second is in interaction</span></div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    <span class="keywordflow">if</span> (jt != this-&gt;interacting_uids_.end()) {</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;      pair_second = Node(jt-&gt;second);</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;      pair_second = swap.second;</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    }</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <span class="comment">// =&gt; UnitID in SWAP are interacting</span></div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    <span class="comment">// Check should alrady be done with earlier continue</span></div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(pair_second != swap.first);</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160; </div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    <span class="keyword">const</span> std::pair&lt;size_t, size_t&gt;&amp; curr_dists =</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;        this-&gt;pair_distances(swap.first, pair_first, swap.second, pair_second);</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    <span class="keyword">const</span> std::pair&lt;size_t, size_t&gt;&amp; news_dists =</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;        this-&gt;pair_distances(swap.second, pair_first, swap.first, pair_second);</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    <span class="keywordflow">if</span> (news_dists &gt;= curr_dists) {</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;      <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    }</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    remaining_swaps.insert(swap);</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;  }</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;}</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160; </div>
+<div class="line"><a name="l00431"></a><span class="lineno"><a class="line" href="classtket_1_1LexiRoute.html#a4a1c6352da4536f6fa0515c7302e8ecd">  431</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classtket_1_1LexiRoute.html#a4a1c6352da4536f6fa0515c7302e8ecd">LexiRoute::solve_labelling</a>() {</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;  <span class="keywordtype">bool</span> all_labelled = this-&gt;set_interacting_uids(</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;      AssignedOnly::No, CheckRoutingValidity::No, CheckLabellingValidity::Yes);</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;  <span class="keywordflow">if</span> (!all_labelled) {</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    this-&gt;update_labelling();</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    this-&gt;mapping_frontier_-&gt;update_linear_boundary_uids(this-&gt;labelling_);</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;  }</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;}</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160; </div>
+<div class="line"><a name="l00442"></a><span class="lineno"><a class="line" href="classtket_1_1LexiRoute.html#a8a56b1aacf09e2c8dc7921d701ddce92">  442</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classtket_1_1LexiRoute.html#a8a56b1aacf09e2c8dc7921d701ddce92">LexiRoute::solve</a>(<span class="keywordtype">unsigned</span> lookahead) {</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;  <span class="comment">// work out if valid</span></div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160; </div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;  <span class="keywordtype">bool</span> all_labelled = this-&gt;set_interacting_uids(</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;      AssignedOnly::No, CheckRoutingValidity::Yes, CheckLabellingValidity::No);</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;  <span class="keywordflow">if</span> (!all_labelled) {</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;  }</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160; </div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;  <span class="comment">// store a copy of the original this-&gt;mapping_frontier_-&gt;quantum_boundray</span></div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;  <span class="comment">// this object will be updated and reset throughout the swap picking procedure</span></div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;  <span class="comment">// so need to return it to original setting at end</span></div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;  <a class="code" href="namespacetket.html#a1d2b39b141fc098257835665b8d5830f">unit_vertport_frontier_t</a> copy;</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> std::pair&lt;UnitID, VertPort&gt;&amp; pair :</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;       this-&gt;mapping_frontier_-&gt;linear_boundary-&gt;get&lt;<a class="code" href="structtket_1_1TagKey.html">TagKey</a>&gt;()) {</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    copy.insert({pair.first, pair.second});</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;  }</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;  <a class="code" href="namespacetket.html#a58227251a0754eedcc656c2552afae55">swap_set_t</a> candidate_swaps = this-&gt;get_candidate_swaps();</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;  this-&gt;remove_swaps_decreasing(candidate_swaps);</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;  <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(candidate_swaps.size() != 0);</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;  <span class="comment">// Only want to substitute a single swap</span></div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;  <span class="comment">// check next layer of interacting qubits and remove swaps until only one</span></div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;  <span class="comment">// lexicographically superior swap is left</span></div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;  <span class="keywordtype">unsigned</span> counter = 0;</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;  <span class="keywordflow">while</span> (candidate_swaps.size() &gt; 1 &amp;&amp; counter &lt; lookahead) {</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    <span class="comment">// if 0, just take first swap rather than place</span></div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    <span class="keywordflow">if</span> (this-&gt;interacting_uids_.size() == 0) {</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;      <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;      <a class="code" href="namespacetket.html#a85464c8b1d835684b674404eda0e0014">interacting_nodes_t</a> convert_uids;</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; p : this-&gt;interacting_uids_) {</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;        convert_uids.insert(</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;            {<a class="code" href="classtket_1_1Node.html">Node</a>(this-&gt;labelling_[p.first]),</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;             <a class="code" href="classtket_1_1Node.html">Node</a>(this-&gt;labelling_[p.second])});</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;      }</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;      <a class="code" href="classtket_1_1LexicographicalComparison.html">LexicographicalComparison</a> lookahead_lc(this-&gt;architecture_, convert_uids);</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;      lookahead_lc.<a class="code" href="classtket_1_1LexicographicalComparison.html#a2914592c31eeccff210ad217efd986d1">remove_swaps_lexicographical</a>(candidate_swaps);</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;    }</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;    counter++;</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;    this-&gt;mapping_frontier_-&gt;advance_next_2qb_slice(lookahead);</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;    <span class="comment">// true bool means it only sets interacting uids if both uids are in</span></div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    <span class="comment">// architecture</span></div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;    this-&gt;set_interacting_uids(</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;        AssignedOnly::Yes, CheckRoutingValidity::No,</div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;        CheckLabellingValidity::No);</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;  }</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;  <span class="comment">// find best swap</span></div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;  <span class="keyword">auto</span> it = candidate_swaps.end();</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;  --it;</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160; </div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;  std::pair&lt;Node, Node&gt; chosen_swap = *it;</div>
 <div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;  this-&gt;mapping_frontier_-&gt;set_linear_boundary(copy);</div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;  <span class="keywordflow">if</span> (!check.first &amp;&amp; !check.second) {</div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;    <span class="comment">// update circuit with new swap</span></div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;    <span class="comment">// final_labelling is initial labelling permuted by single swap</span></div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;    this-&gt;mapping_frontier_-&gt;add_swap(chosen_swap.first, chosen_swap.second);</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;    <span class="comment">// only need to reset in bridge case</span></div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;    this-&gt;set_interacting_uids(</div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;        AssignedOnly::No, CheckRoutingValidity::No, CheckLabellingValidity::No);</div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160; </div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;    <span class="keyword">auto</span> add_ordered_bridge = [&amp;](<span class="keyword">const</span> <a class="code" href="classtket_1_1Node.html">Node</a>&amp; n) {</div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;      <span class="keyword">auto</span> it0 = this-&gt;mapping_frontier_-&gt;linear_boundary-&gt;find(n);</div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;      <span class="comment">// this should implicitly be the case if this logic is reached</span></div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;      <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(it0 != this-&gt;mapping_frontier_-&gt;linear_boundary-&gt;end());</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160; </div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;      <a class="code" href="classtket_1_1Node.html">Node</a> other_node = <a class="code" href="classtket_1_1Node.html">Node</a>(this-&gt;interacting_uids_[n]);</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;      <span class="keyword">auto</span> it1 = this-&gt;mapping_frontier_-&gt;linear_boundary-&gt;find(other_node);</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;      <span class="comment">// this should implicitly be the case if this logic is reached</span></div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;      <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(it1 != this-&gt;mapping_frontier_-&gt;linear_boundary-&gt;end());</div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160; </div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;      <span class="keyword">auto</span> path = this-&gt;architecture_-&gt;get_path(n, other_node);</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;      <a class="code" href="classtket_1_1Node.html">Node</a> central = <a class="code" href="classtket_1_1Node.html">Node</a>(path[1]);</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160; </div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;  this-&gt;set_interacting_uids(</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;      AssignedOnly::No, CheckRoutingValidity::No, CheckLabellingValidity::No);</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;  std::pair&lt;bool, bool&gt; check = this-&gt;check_bridge(chosen_swap, lookahead);</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;  <span class="comment">// set for final time, to allow gates to be correctly inserted, but then leave</span></div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;  <span class="comment">// as is</span></div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;  <span class="comment">// insert gates</span></div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;  this-&gt;mapping_frontier_-&gt;set_linear_boundary(copy);</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;  <span class="keywordflow">if</span> (!check.first &amp;&amp; !check.second) {</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;    <span class="comment">// update circuit with new swap</span></div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;    <span class="comment">// final_labelling is initial labelling permuted by single swap</span></div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;    this-&gt;mapping_frontier_-&gt;add_swap(chosen_swap.first, chosen_swap.second);</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    <span class="comment">// only need to reset in bridge case</span></div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;    this-&gt;set_interacting_uids(</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;        AssignedOnly::No, CheckRoutingValidity::No, CheckLabellingValidity::No);</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160; </div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;    <span class="keyword">auto</span> add_ordered_bridge = [&amp;](<span class="keyword">const</span> <a class="code" href="classtket_1_1Node.html">Node</a>&amp; n) {</div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;      <span class="keyword">auto</span> it0 = this-&gt;mapping_frontier_-&gt;linear_boundary-&gt;find(n);</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;      <span class="comment">// this should implicitly be the case if this logic is reached</span></div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;      <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(it0 != this-&gt;mapping_frontier_-&gt;linear_boundary-&gt;end());</div>
 <div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160; </div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;      <a class="code" href="namespacetket.html#a6a99d9f2b64decd8803090cc890e1e7d">Edge</a> n_edge = this-&gt;mapping_frontier_-&gt;circuit_.get_nth_out_edge(</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;          it0-&gt;second.first, it0-&gt;second.second);</div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;      <a class="code" href="namespacetket.html#a6a99d9f2b64decd8803090cc890e1e7d">Edge</a> other_edge = this-&gt;mapping_frontier_-&gt;circuit_.get_nth_out_edge(</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;          it1-&gt;second.first, it1-&gt;second.second);</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;      <a class="code" href="classtket_1_1Node.html">Node</a> other_node = <a class="code" href="classtket_1_1Node.html">Node</a>(this-&gt;interacting_uids_[n]);</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;      <span class="keyword">auto</span> it1 = this-&gt;mapping_frontier_-&gt;linear_boundary-&gt;find(other_node);</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;      <span class="comment">// this should implicitly be the case if this logic is reached</span></div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;      <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(it1 != this-&gt;mapping_frontier_-&gt;linear_boundary-&gt;end());</div>
 <div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160; </div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;      <span class="keywordtype">unsigned</span> port0 =</div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;          this-&gt;mapping_frontier_-&gt;circuit_.get_target_port(n_edge);</div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;      <span class="keywordtype">unsigned</span> port1 =</div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;          this-&gt;mapping_frontier_-&gt;circuit_.get_target_port(other_edge);</div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;      <span class="comment">// compare port ordering to get control vs target</span></div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;      <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(port0 != port1);</div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;      <span class="keywordflow">if</span> (port0 &lt; port1) {</div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;        this-&gt;mapping_frontier_-&gt;add_bridge(n, central, other_node);</div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;      } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;        this-&gt;mapping_frontier_-&gt;add_bridge(other_node, central, n);</div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;      }</div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;    };</div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160; </div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;    <span class="keywordflow">if</span> (check.first) {</div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;      add_ordered_bridge(chosen_swap.first);</div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;    }</div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;    <span class="keywordflow">if</span> (check.second) {</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;      add_ordered_bridge(chosen_swap.second);</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;    }</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;  }</div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;}</div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160; </div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;}  <span class="comment">// namespace tket</span></div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;      <span class="keyword">auto</span> path = this-&gt;architecture_-&gt;get_path(n, other_node);</div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;      <a class="code" href="classtket_1_1Node.html">Node</a> central = <a class="code" href="classtket_1_1Node.html">Node</a>(path[1]);</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160; </div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;      <a class="code" href="namespacetket.html#a6a99d9f2b64decd8803090cc890e1e7d">Edge</a> n_edge = this-&gt;mapping_frontier_-&gt;circuit_.get_nth_out_edge(</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;          it0-&gt;second.first, it0-&gt;second.second);</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;      <a class="code" href="namespacetket.html#a6a99d9f2b64decd8803090cc890e1e7d">Edge</a> other_edge = this-&gt;mapping_frontier_-&gt;circuit_.get_nth_out_edge(</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;          it1-&gt;second.first, it1-&gt;second.second);</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160; </div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;      <span class="keywordtype">unsigned</span> port0 =</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;          this-&gt;mapping_frontier_-&gt;circuit_.get_target_port(n_edge);</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;      <span class="keywordtype">unsigned</span> port1 =</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;          this-&gt;mapping_frontier_-&gt;circuit_.get_target_port(other_edge);</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;      <span class="comment">// compare port ordering to get control vs target</span></div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;      <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(port0 != port1);</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;      <span class="keywordflow">if</span> (port0 &lt; port1) {</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;        this-&gt;mapping_frontier_-&gt;add_bridge(n, central, other_node);</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;        this-&gt;mapping_frontier_-&gt;add_bridge(other_node, central, n);</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;      }</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;    };</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160; </div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;    <span class="keywordflow">if</span> (check.first) {</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;      add_ordered_bridge(chosen_swap.first);</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;    }</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;    <span class="keywordflow">if</span> (check.second) {</div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;      add_ordered_bridge(chosen_swap.second);</div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;    }</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;  }</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;}</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160; </div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;}  <span class="comment">// namespace tket</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclasstket_1_1LexicographicalComparison_html_a2914592c31eeccff210ad217efd986d1"><div class="ttname"><a href="classtket_1_1LexicographicalComparison.html#a2914592c31eeccff210ad217efd986d1">tket::LexicographicalComparison::remove_swaps_lexicographical</a></div><div class="ttdeci">void remove_swaps_lexicographical(swap_set_t &amp;candidate_swaps) const</div><div class="ttdoc">For each swap in candidate_swaps, removes swap from set if the distance vector produced by modifying ...</div><div class="ttdef"><b>Definition:</b> <a href="LexicographicalComparison_8cpp_source.html#l00120">LexicographicalComparison.cpp:120</a></div></div>
 <div class="ttc" id="anamespacetket_html_a75405147f5ffd3ff1ff1118fba63bcd0"><div class="ttname"><a href="namespacetket.html#a75405147f5ffd3ff1ff1118fba63bcd0">tket::Op_ptr</a></div><div class="ttdeci">std::shared_ptr&lt; const Op &gt; Op_ptr</div><div class="ttdef"><b>Definition:</b> <a href="OpPtr_8hpp_source.html#l00023">OpPtr.hpp:23</a></div></div>
@@ -631,7 +639,7 @@ $(function() {
 <div class="ttc" id="anamespacetket_html_a58227251a0754eedcc656c2552afae55"><div class="ttname"><a href="namespacetket.html#a58227251a0754eedcc656c2552afae55">tket::swap_set_t</a></div><div class="ttdeci">std::set&lt; swap_t &gt; swap_set_t</div><div class="ttdef"><b>Definition:</b> <a href="LexicographicalComparison_8hpp_source.html#l00025">LexicographicalComparison.hpp:25</a></div></div>
 <div class="ttc" id="anamespacetket_html_a6a99d9f2b64decd8803090cc890e1e7d"><div class="ttname"><a href="namespacetket.html#a6a99d9f2b64decd8803090cc890e1e7d">tket::Edge</a></div><div class="ttdeci">boost::graph_traits&lt; DAG &gt;::edge_descriptor Edge</div><div class="ttdef"><b>Definition:</b> <a href="DAGDefs_8hpp_source.html#l00084">DAGDefs.hpp:84</a></div></div>
 <div class="ttc" id="anamespacetket_html_ae0783a3ad2fcb131346b928d76ad0699"><div class="ttname"><a href="namespacetket.html#ae0783a3ad2fcb131346b928d76ad0699">tket::node_set_t</a></div><div class="ttdeci">std::set&lt; Node &gt; node_set_t</div><div class="ttdef"><b>Definition:</b> <a href="UnitID_8hpp_source.html#l00273">UnitID.hpp:273</a></div></div>
-<div class="ttc" id="anamespacetket_html_a0a5eb1dcb9733fcb29a5721c46b5f344"><div class="ttname"><a href="namespacetket.html#a0a5eb1dcb9733fcb29a5721c46b5f344">tket::is_vertex_CX</a></div><div class="ttdeci">bool is_vertex_CX(const Circuit &amp;circ_, const Vertex &amp;v)</div><div class="ttdef"><b>Definition:</b> <a href="LexiRoute_8cpp_source.html#l00276">LexiRoute.cpp:276</a></div></div>
+<div class="ttc" id="anamespacetket_html_a0a5eb1dcb9733fcb29a5721c46b5f344"><div class="ttname"><a href="namespacetket.html#a0a5eb1dcb9733fcb29a5721c46b5f344">tket::is_vertex_CX</a></div><div class="ttdeci">bool is_vertex_CX(const Circuit &amp;circ_, const Vertex &amp;v)</div><div class="ttdef"><b>Definition:</b> <a href="LexiRoute_8cpp_source.html#l00284">LexiRoute.cpp:284</a></div></div>
 <div class="ttc" id="aJson_8hpp_html"><div class="ttname"><a href="Json_8hpp.html">Json.hpp</a></div></div>
 <div class="ttc" id="anamespacetket_html_a13e81344da4794f2648eb9a7b286fcf3a9d3afea73e90192d96dda8d38c87a4fe"><div class="ttname"><a href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a9d3afea73e90192d96dda8d38c87a4fe">tket::OpType::Conditional</a></div><div class="ttdeci">@ Conditional</div><div class="ttdoc">See Conditional.</div></div>
 <div class="ttc" id="anamespacetket_html_a4c73a949b027dea7f23b1d5a1bdd526ea033b1e7914d380b381c8b7f9f131328d"><div class="ttname"><a href="namespacetket.html#a4c73a949b027dea7f23b1d5a1bdd526ea033b1e7914d380b381c8b7f9f131328d">tket::EdgeType::Quantum</a></div><div class="ttdeci">@ Quantum</div><div class="ttdoc">A wire carrying quantum information, corresponding to some allocated Qubit.</div></div>
@@ -648,11 +656,11 @@ $(function() {
 <div class="ttc" id="aclasstket_1_1Circuit_html_a15fd2bc465a81f45f79171d50590a520"><div class="ttname"><a href="classtket_1_1Circuit.html#a15fd2bc465a81f45f79171d50590a520">tket::Circuit::get_Op_ptr_from_Vertex</a></div><div class="ttdeci">const Op_ptr get_Op_ptr_from_Vertex(const Vertex &amp;vert) const</div><div class="ttdef"><b>Definition:</b> <a href="setters__and__getters_8cpp_source.html#l00567">setters_and_getters.cpp:567</a></div></div>
 <div class="ttc" id="anamespacetket_1_1graphs_1_1utils_html_a5c1c7cc38ccceb996115dde9a8121f7e"><div class="ttname"><a href="namespacetket_1_1graphs_1_1utils.html#a5c1c7cc38ccceb996115dde9a8121f7e">tket::graphs::utils::max_degree_nodes</a></div><div class="ttdeci">std::set&lt; vertex&lt; Graph &gt; &gt; max_degree_nodes(const Graph &amp;g)</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8hpp_source.html#l00186">Utils.hpp:186</a></div></div>
 <div class="ttc" id="aclasstket_1_1Conditional_html"><div class="ttname"><a href="classtket_1_1Conditional.html">tket::Conditional</a></div><div class="ttdoc">Decorates another op, adding a QASM-style classical condition.</div><div class="ttdef"><b>Definition:</b> <a href="Conditional_8hpp_source.html#l00028">Conditional.hpp:28</a></div></div>
-<div class="ttc" id="aclasstket_1_1LexiRoute_html_a4a1c6352da4536f6fa0515c7302e8ecd"><div class="ttname"><a href="classtket_1_1LexiRoute.html#a4a1c6352da4536f6fa0515c7302e8ecd">tket::LexiRoute::solve_labelling</a></div><div class="ttdeci">bool solve_labelling()</div><div class="ttdoc">When called an &quot;unlabelled&quot; Qubit in the Circuit may be relabelled to a Node in the Architecture,...</div><div class="ttdef"><b>Definition:</b> <a href="LexiRoute_8cpp_source.html#l00423">LexiRoute.cpp:423</a></div></div>
+<div class="ttc" id="aclasstket_1_1LexiRoute_html_a4a1c6352da4536f6fa0515c7302e8ecd"><div class="ttname"><a href="classtket_1_1LexiRoute.html#a4a1c6352da4536f6fa0515c7302e8ecd">tket::LexiRoute::solve_labelling</a></div><div class="ttdeci">bool solve_labelling()</div><div class="ttdoc">When called an &quot;unlabelled&quot; Qubit in the Circuit may be relabelled to a Node in the Architecture,...</div><div class="ttdef"><b>Definition:</b> <a href="LexiRoute_8cpp_source.html#l00431">LexiRoute.cpp:431</a></div></div>
 <div class="ttc" id="anamespacetket_html_a13e81344da4794f2648eb9a7b286fcf3a48656da7a6e48c6887d94f4c69c731b6"><div class="ttname"><a href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a48656da7a6e48c6887d94f4c69c731b6">tket::OpType::Barrier</a></div><div class="ttdeci">@ Barrier</div><div class="ttdoc">No-op that must be preserved by compilation.</div></div>
 <div class="ttc" id="astructtket_1_1TagKey_html"><div class="ttname"><a href="structtket_1_1TagKey.html">tket::TagKey</a></div><div class="ttdef"><b>Definition:</b> <a href="SequencedContainers_8hpp_source.html#l00025">SequencedContainers.hpp:25</a></div></div>
 <div class="ttc" id="aclasstket_1_1Qubit_html"><div class="ttname"><a href="classtket_1_1Qubit.html">tket::Qubit</a></div><div class="ttdoc">Location holding a qubit.</div><div class="ttdef"><b>Definition:</b> <a href="UnitID_8hpp_source.html#l00151">UnitID.hpp:151</a></div></div>
-<div class="ttc" id="aclasstket_1_1LexiRoute_html_a8a56b1aacf09e2c8dc7921d701ddce92"><div class="ttname"><a href="classtket_1_1LexiRoute.html#a8a56b1aacf09e2c8dc7921d701ddce92">tket::LexiRoute::solve</a></div><div class="ttdeci">bool solve(unsigned lookahead)</div><div class="ttdoc">When called, LexiRoute::solve will modify the Circuit held in MappingFrontier object passed at class ...</div><div class="ttdef"><b>Definition:</b> <a href="LexiRoute_8cpp_source.html#l00434">LexiRoute.cpp:434</a></div></div>
+<div class="ttc" id="aclasstket_1_1LexiRoute_html_a8a56b1aacf09e2c8dc7921d701ddce92"><div class="ttname"><a href="classtket_1_1LexiRoute.html#a8a56b1aacf09e2c8dc7921d701ddce92">tket::LexiRoute::solve</a></div><div class="ttdeci">bool solve(unsigned lookahead)</div><div class="ttdoc">When called, LexiRoute::solve will modify the Circuit held in MappingFrontier object passed at class ...</div><div class="ttdef"><b>Definition:</b> <a href="LexiRoute_8cpp_source.html#l00442">LexiRoute.cpp:442</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
