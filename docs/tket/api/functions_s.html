@@ -103,9 +103,11 @@ $(function() {
 </li>
 <li>serialize()
 : <a class="el" href="classtket_1_1Box.html#addabb883016cedf81dd28311190d1e1a">tket::Box</a>
+, <a class="el" href="classtket_1_1BoxDecompositionRoutingMethod.html#a8aabd0e881c4fb6a7b147c02d2a4773a">tket::BoxDecompositionRoutingMethod</a>
 , <a class="el" href="classtket_1_1ClassicalOp.html#a6ed48aa70b522b5fb1bdb6e5d6beb186">tket::ClassicalOp</a>
 , <a class="el" href="classtket_1_1Conditional.html#a7a2076f6af8669b0d186a5c4c2921fec">tket::Conditional</a>
 , <a class="el" href="classtket_1_1Gate.html#a51140cc1a7bae94f56e681485b73bb3d">tket::Gate</a>
+, <a class="el" href="classtket_1_1LexiLabellingMethod.html#a4e76a60542df66b87fbc705f9267fff9">tket::LexiLabellingMethod</a>
 , <a class="el" href="classtket_1_1LexiRouteRoutingMethod.html#ad60eade99927f00770d543de7a82f083">tket::LexiRouteRoutingMethod</a>
 , <a class="el" href="classtket_1_1MetaOp.html#aadab205395486dad5a1b2382a2ae62b2">tket::MetaOp</a>
 , <a class="el" href="classtket_1_1MultiGateReorderRoutingMethod.html#a48a9a8c12a83ab947efa24a84a044d18">tket::MultiGateReorderRoutingMethod</a>
@@ -204,8 +206,12 @@ $(function() {
 : <a class="el" href="classtket_1_1Circuit_1_1SliceIterator.html#a7c9744c7f2593a07ce5f17282ecf869e">tket::Circuit::SliceIterator</a>
 </li>
 <li>solve()
-: <a class="el" href="classtket_1_1LexiRoute.html#a6c1bf3c122ba51ddfa2095850ecb99cc">tket::LexiRoute</a>
+: <a class="el" href="classtket_1_1BoxDecomposition.html#a9b13b9d172236dcec6f90c0e7f3d01e9">tket::BoxDecomposition</a>
+, <a class="el" href="classtket_1_1LexiRoute.html#a8a56b1aacf09e2c8dc7921d701ddce92">tket::LexiRoute</a>
 , <a class="el" href="classtket_1_1MultiGateReorder.html#afd2ad586361fc8cf22317c63427904fa">tket::MultiGateReorder</a>
+</li>
+<li>solve_labelling()
+: <a class="el" href="classtket_1_1LexiRoute.html#a4a1c6352da4536f6fa0515c7302e8ecd">tket::LexiRoute</a>
 </li>
 <li>source()
 : <a class="el" href="classtket_1_1Circuit.html#a90c4935d28c1c7a05a5430862afb3c3f">tket::Circuit</a>
@@ -272,11 +278,14 @@ $(function() {
 <li>substitute_all()
 : <a class="el" href="classtket_1_1Circuit.html#a7ac875c3a725b691b6ec1fc5b8613a2f">tket::Circuit</a>
 </li>
+<li>substitute_box_vertex()
+: <a class="el" href="classtket_1_1Circuit.html#afdd80e9186a676c064f8698fbfcebc09">tket::Circuit</a>
+</li>
 <li>substitute_conditional()
 : <a class="el" href="classtket_1_1Circuit.html#a223094feeabeebcb16301c089a8834da">tket::Circuit</a>
 </li>
 <li>substitute_named()
-: <a class="el" href="classtket_1_1Circuit.html#a59bcd4d4dd48cf2353ffa13bc11c4d39">tket::Circuit</a>
+: <a class="el" href="classtket_1_1Circuit.html#a07a089546a91fdf33d4409c903bb661a">tket::Circuit</a>
 </li>
 <li>success
 : <a class="el" href="structtket_1_1tsa__internal_1_1ExactMappingLookup_1_1Result.html#ab9a0076ee7d675d14516abb95640b30d">tket::tsa_internal::ExactMappingLookup::Result</a>
@@ -309,7 +318,7 @@ $(function() {
 </li>
 <li>symbol_substitution()
 : <a class="el" href="classtket_1_1CircBox.html#a85bae8f262612c87a52f314d79d9da51">tket::CircBox</a>
-, <a class="el" href="classtket_1_1Circuit.html#aa0389d010c9481a9abf4d4265cea728d">tket::Circuit</a>
+, <a class="el" href="classtket_1_1Circuit.html#a4bec48b5aa35ddbc71e3523cd8f67f97">tket::Circuit</a>
 , <a class="el" href="classtket_1_1ClassicalExpBox.html#a8a61f42dc0a17cdf03166346e89dc64a">tket::ClassicalExpBox&lt; T &gt;</a>
 , <a class="el" href="classtket_1_1ClassicalOp.html#ae6151df446afa2a7a0355ce640bcd5cc">tket::ClassicalOp</a>
 , <a class="el" href="classtket_1_1Conditional.html#a8ed4be419894151b11b712716f258835">tket::Conditional</a>
@@ -333,7 +342,7 @@ $(function() {
 , <a class="el" href="classtket_1_1zx_1_1DirectedGen.html#a035ea60f2f512d21ba021ef6d9fa8449">tket::zx::DirectedGen</a>
 , <a class="el" href="classtket_1_1zx_1_1PhasedGen.html#a77d7e3c4d332e52781cfd95b6da56535">tket::zx::PhasedGen</a>
 , <a class="el" href="classtket_1_1zx_1_1ZXBox.html#ac8afe797c7742f6eeac2cbfef6fe7f31">tket::zx::ZXBox</a>
-, <a class="el" href="classtket_1_1zx_1_1ZXDiagram.html#a0abead569d8e88ef256b48e88696c218">tket::zx::ZXDiagram</a>
+, <a class="el" href="classtket_1_1zx_1_1ZXDiagram.html#a344523f9dc95d0f21ae4a5c2d1ee29e5">tket::zx::ZXDiagram</a>
 , <a class="el" href="classtket_1_1zx_1_1ZXGen.html#af4252aa5cf2d0af142bfcfa0efc8913b">tket::zx::ZXGen</a>
 </li>
 <li>SymplecticTableau()

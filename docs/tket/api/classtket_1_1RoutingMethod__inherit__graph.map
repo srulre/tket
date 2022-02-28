@@ -1,6 +1,8 @@
 <map id="tket::RoutingMethod" name="tket::RoutingMethod">
-<area shape="rect" id="node1" title=" " alt="" coords="5,64,160,91"/>
-<area shape="rect" id="node2" href="$classtket_1_1LexiRouteRoutingMethod.html" title=" " alt="" coords="209,5,427,32"/>
-<area shape="rect" id="node3" href="$classtket_1_1MultiGateReorderRoutingMethod.html" title=" " alt="" coords="208,57,428,98"/>
-<area shape="rect" id="node4" href="$classtket_1_1RoutingMethodCircuit.html" title=" " alt="" coords="220,123,416,149"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,122,160,149"/>
+<area shape="rect" id="node2" href="$classtket_1_1BoxDecompositionRoutingMethod.html" title=" " alt="" coords="208,5,436,47"/>
+<area shape="rect" id="node3" href="$classtket_1_1LexiLabellingMethod.html" title=" " alt="" coords="227,71,417,98"/>
+<area shape="rect" id="node4" href="$classtket_1_1LexiRouteRoutingMethod.html" title=" " alt="" coords="213,122,431,149"/>
+<area shape="rect" id="node5" href="$classtket_1_1MultiGateReorderRoutingMethod.html" title=" " alt="" coords="212,173,432,215"/>
+<area shape="rect" id="node6" href="$classtket_1_1RoutingMethodCircuit.html" title=" " alt="" coords="224,239,420,266"/>
 </map>

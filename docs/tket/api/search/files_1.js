@@ -1,17 +1,19 @@
 var searchData=
 [
-  ['basic_5fcirc_5fmanip_2ecpp_2647',['basic_circ_manip.cpp',['../basic__circ__manip_8cpp.html',1,'']]],
-  ['basicoptimisation_2ecpp_2648',['BasicOptimisation.cpp',['../BasicOptimisation_8cpp.html',1,'']]],
-  ['basicoptimisation_2ehpp_2649',['BasicOptimisation.hpp',['../BasicOptimisation_8hpp.html',1,'']]],
-  ['bestfulltsa_2ecpp_2650',['BestFullTsa.cpp',['../BestFullTsa_8cpp.html',1,'']]],
-  ['bestfulltsa_2ehpp_2651',['BestFullTsa.hpp',['../BestFullTsa_8hpp.html',1,'']]],
-  ['besttsawitharch_2ecpp_2652',['BestTsaWithArch.cpp',['../BestTsaWithArch_8cpp.html',1,'']]],
-  ['besttsawitharch_2ehpp_2653',['BestTsaWithArch.hpp',['../BestTsaWithArch_8hpp.html',1,'']]],
-  ['bimapheaders_2ehpp_2654',['BiMapHeaders.hpp',['../BiMapHeaders_8hpp.html',1,'']]],
-  ['bitoperations_2ecpp_2655',['BitOperations.cpp',['../BitOperations_8cpp.html',1,'']]],
-  ['bitoperations_2ehpp_2656',['BitOperations.hpp',['../BitOperations_8hpp.html',1,'']]],
-  ['boxes_2ecpp_2657',['Boxes.cpp',['../Boxes_8cpp.html',1,'']]],
-  ['boxes_2ehpp_2658',['Boxes.hpp',['../Boxes_8hpp.html',1,'']]],
-  ['bruteforcecolouring_2ecpp_2659',['BruteForceColouring.cpp',['../BruteForceColouring_8cpp.html',1,'']]],
-  ['bruteforcecolouring_2ehpp_2660',['BruteForceColouring.hpp',['../BruteForceColouring_8hpp.html',1,'']]]
+  ['basic_5fcirc_5fmanip_2ecpp_2664',['basic_circ_manip.cpp',['../basic__circ__manip_8cpp.html',1,'']]],
+  ['basicoptimisation_2ecpp_2665',['BasicOptimisation.cpp',['../BasicOptimisation_8cpp.html',1,'']]],
+  ['basicoptimisation_2ehpp_2666',['BasicOptimisation.hpp',['../BasicOptimisation_8hpp.html',1,'']]],
+  ['bestfulltsa_2ecpp_2667',['BestFullTsa.cpp',['../BestFullTsa_8cpp.html',1,'']]],
+  ['bestfulltsa_2ehpp_2668',['BestFullTsa.hpp',['../BestFullTsa_8hpp.html',1,'']]],
+  ['besttsawitharch_2ecpp_2669',['BestTsaWithArch.cpp',['../BestTsaWithArch_8cpp.html',1,'']]],
+  ['besttsawitharch_2ehpp_2670',['BestTsaWithArch.hpp',['../BestTsaWithArch_8hpp.html',1,'']]],
+  ['bimapheaders_2ehpp_2671',['BiMapHeaders.hpp',['../BiMapHeaders_8hpp.html',1,'']]],
+  ['bitoperations_2ecpp_2672',['BitOperations.cpp',['../BitOperations_8cpp.html',1,'']]],
+  ['bitoperations_2ehpp_2673',['BitOperations.hpp',['../BitOperations_8hpp.html',1,'']]],
+  ['boxdecomposition_2ecpp_2674',['BoxDecomposition.cpp',['../BoxDecomposition_8cpp.html',1,'']]],
+  ['boxdecomposition_2ehpp_2675',['BoxDecomposition.hpp',['../BoxDecomposition_8hpp.html',1,'']]],
+  ['boxes_2ecpp_2676',['Boxes.cpp',['../Boxes_8cpp.html',1,'']]],
+  ['boxes_2ehpp_2677',['Boxes.hpp',['../Boxes_8hpp.html',1,'']]],
+  ['bruteforcecolouring_2ecpp_2678',['BruteForceColouring.cpp',['../BruteForceColouring_8cpp.html',1,'']]],
+  ['bruteforcecolouring_2ehpp_2679',['BruteForceColouring.hpp',['../BruteForceColouring_8hpp.html',1,'']]]
 ];

@@ -87,12 +87,15 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa76c079dd74b261d68b43cca1b1b49e7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1LexiRoute.html#aa76c079dd74b261d68b43cca1b1b49e7">LexiRoute</a> (const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;_architecture, std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;_mapping_frontier)</td></tr>
-<tr class="memdesc:aa76c079dd74b261d68b43cca1b1b49e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Constructor.  <a href="classtket_1_1LexiRoute.html#aa76c079dd74b261d68b43cca1b1b49e7">More...</a><br /></td></tr>
-<tr class="separator:aa76c079dd74b261d68b43cca1b1b49e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c1bf3c122ba51ddfa2095850ecb99cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1LexiRoute.html#a6c1bf3c122ba51ddfa2095850ecb99cc">solve</a> (unsigned lookahead)</td></tr>
-<tr class="memdesc:a6c1bf3c122ba51ddfa2095850ecb99cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">When called, <a class="el" href="classtket_1_1LexiRoute.html#a6c1bf3c122ba51ddfa2095850ecb99cc" title="When called, LexiRoute::solve will modify the Circuit held in MappingFrontier object passed at class ...">LexiRoute::solve</a> will modify the <a class="el" href="classtket_1_1Circuit.html" title="A circuit.">Circuit</a> held in <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> object passed at class construction.  <a href="classtket_1_1LexiRoute.html#a6c1bf3c122ba51ddfa2095850ecb99cc">More...</a><br /></td></tr>
-<tr class="separator:a6c1bf3c122ba51ddfa2095850ecb99cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85674d1a2df1ff80ea4c1d5ef17ef400"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1LexiRoute.html#a85674d1a2df1ff80ea4c1d5ef17ef400">LexiRoute</a> (const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;_architecture, <a class="el" href="namespacetket.html#a6f41065ab0b4ecd3f4672c64f3afbecc">MappingFrontier_ptr</a> &amp;_mapping_frontier)</td></tr>
+<tr class="memdesc:a85674d1a2df1ff80ea4c1d5ef17ef400"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Constructor.  <a href="classtket_1_1LexiRoute.html#a85674d1a2df1ff80ea4c1d5ef17ef400">More...</a><br /></td></tr>
+<tr class="separator:a85674d1a2df1ff80ea4c1d5ef17ef400"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a56b1aacf09e2c8dc7921d701ddce92"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1LexiRoute.html#a8a56b1aacf09e2c8dc7921d701ddce92">solve</a> (unsigned lookahead)</td></tr>
+<tr class="memdesc:a8a56b1aacf09e2c8dc7921d701ddce92"><td class="mdescLeft">&#160;</td><td class="mdescRight">When called, <a class="el" href="classtket_1_1LexiRoute.html#a8a56b1aacf09e2c8dc7921d701ddce92" title="When called, LexiRoute::solve will modify the Circuit held in MappingFrontier object passed at class ...">LexiRoute::solve</a> will modify the <a class="el" href="classtket_1_1Circuit.html" title="A circuit.">Circuit</a> held in <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> object passed at class construction.  <a href="classtket_1_1LexiRoute.html#a8a56b1aacf09e2c8dc7921d701ddce92">More...</a><br /></td></tr>
+<tr class="separator:a8a56b1aacf09e2c8dc7921d701ddce92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a1c6352da4536f6fa0515c7302e8ecd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1LexiRoute.html#a4a1c6352da4536f6fa0515c7302e8ecd">solve_labelling</a> ()</td></tr>
+<tr class="memdesc:a4a1c6352da4536f6fa0515c7302e8ecd"><td class="mdescLeft">&#160;</td><td class="mdescRight">When called an "unlabelled" <a class="el" href="classtket_1_1Qubit.html" title="Location holding a qubit.">Qubit</a> in the <a class="el" href="classtket_1_1Circuit.html" title="A circuit.">Circuit</a> may be relabelled to a <a class="el" href="classtket_1_1Node.html" title="Architectural qubit location.">Node</a> in the <a class="el" href="classtket_1_1Architecture.html">Architecture</a>, or an "unlabelled" <a class="el" href="classtket_1_1Qubit.html" title="Location holding a qubit.">Qubit</a> may have its path merged with an ancilla qubit.  <a href="classtket_1_1LexiRoute.html#a4a1c6352da4536f6fa0515c7302e8ecd">More...</a><br /></td></tr>
+<tr class="separator:a4a1c6352da4536f6fa0515c7302e8ecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class for modifiying a <a class="el" href="classtket_1_1Circuit.html" title="A circuit.">Circuit</a> held in a <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> object with either an <a class="el" href="classtket_1_1Architecture.html">Architecture</a> permitted single SWAP gate or BRIDGE gate. </p>
@@ -101,8 +104,8 @@ qubit routing problem" -&gt; arXiv:1902.08091 </p>
 
 <p class="definition">Definition at line <a class="el" href="LexiRoute_8hpp_source.html#l00037">37</a> of file <a class="el" href="LexiRoute_8hpp_source.html">LexiRoute.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa76c079dd74b261d68b43cca1b1b49e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa76c079dd74b261d68b43cca1b1b49e7">&#9670;&nbsp;</a></span>LexiRoute()</h2>
+<a id="a85674d1a2df1ff80ea4c1d5ef17ef400"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85674d1a2df1ff80ea4c1d5ef17ef400">&#9670;&nbsp;</a></span>LexiRoute()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -116,7 +119,7 @@ qubit routing problem" -&gt; arXiv:1902.08091 </p>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacetket.html#a6f41065ab0b4ecd3f4672c64f3afbecc">MappingFrontier_ptr</a> &amp;&#160;</td>
           <td class="paramname"><em>_mapping_frontier</em>&#160;</td>
         </tr>
         <tr>
@@ -141,14 +144,14 @@ qubit routing problem" -&gt; arXiv:1902.08091 </p>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a6c1bf3c122ba51ddfa2095850ecb99cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c1bf3c122ba51ddfa2095850ecb99cc">&#9670;&nbsp;</a></span>solve()</h2>
+<a id="a8a56b1aacf09e2c8dc7921d701ddce92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a56b1aacf09e2c8dc7921d701ddce92">&#9670;&nbsp;</a></span>solve()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void tket::LexiRoute::solve </td>
+          <td class="memname">bool tket::LexiRoute::solve </td>
           <td>(</td>
           <td class="paramtype">unsigned&#160;</td>
           <td class="paramname"><em>lookahead</em></td><td>)</td>
@@ -157,16 +160,40 @@ qubit routing problem" -&gt; arXiv:1902.08091 </p>
       </table>
 </div><div class="memdoc">
 
-<p>When called, <a class="el" href="classtket_1_1LexiRoute.html#a6c1bf3c122ba51ddfa2095850ecb99cc" title="When called, LexiRoute::solve will modify the Circuit held in MappingFrontier object passed at class ...">LexiRoute::solve</a> will modify the <a class="el" href="classtket_1_1Circuit.html" title="A circuit.">Circuit</a> held in <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> object passed at class construction. </p>
-<p>Either a SWAP gate will be inserted at the input boundary of the held <a class="el" href="classtket_1_1Circuit.html" title="A circuit.">Circuit</a> or a CX gate will be transformed into a BRIDGE gate. The added SWAP or BRIDGE gate will be valid for the <a class="el" href="classtket_1_1Architecture.html">Architecture</a> passed at class construction. Additionally, an "unlabelled" <a class="el" href="classtket_1_1Qubit.html" title="Location holding a qubit.">Qubit</a> in the <a class="el" href="classtket_1_1Circuit.html" title="A circuit.">Circuit</a> may be relabelled to a <a class="el" href="classtket_1_1Node.html" title="Architectural qubit location.">Node</a> in the <a class="el" href="classtket_1_1Architecture.html">Architecture</a>, or an "unlabelled" <a class="el" href="classtket_1_1Qubit.html" title="Location holding a qubit.">Qubit</a> may have its path merged with an ancilla qubit. The decision making is based on the heuristic outlined in arXiv:1902.08091.</p>
+<p>When called, <a class="el" href="classtket_1_1LexiRoute.html#a8a56b1aacf09e2c8dc7921d701ddce92" title="When called, LexiRoute::solve will modify the Circuit held in MappingFrontier object passed at class ...">LexiRoute::solve</a> will modify the <a class="el" href="classtket_1_1Circuit.html" title="A circuit.">Circuit</a> held in <a class="el" href="structtket_1_1MappingFrontier.html">MappingFrontier</a> object passed at class construction. </p>
+<p>Either a SWAP gate will be inserted at the input boundary of the held <a class="el" href="classtket_1_1Circuit.html" title="A circuit.">Circuit</a> or a CX gate will be transformed into a BRIDGE gate. The added SWAP or BRIDGE gate will be valid for the <a class="el" href="classtket_1_1Architecture.html">Architecture</a> passed at class construction. The decision making is based on the heuristic outlined in arXiv:1902.08091.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lookahead</td><td>Number of slices to lookahead at when determining best SWAP or BRIDGE </td></tr>
+    <tr><td class="paramname">lookahead</td><td>Number of slices to lookahead at when determining best SWAP or BRIDGE</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>True if solve has modified circuit for mapping purposes </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="LexiRoute_8cpp_source.html#l00397">397</a> of file <a class="el" href="LexiRoute_8cpp_source.html">LexiRoute.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LexiRoute_8cpp_source.html#l00435">435</a> of file <a class="el" href="LexiRoute_8cpp_source.html">LexiRoute.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a4a1c6352da4536f6fa0515c7302e8ecd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a1c6352da4536f6fa0515c7302e8ecd">&#9670;&nbsp;</a></span>solve_labelling()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tket::LexiRoute::solve_labelling </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>When called an "unlabelled" <a class="el" href="classtket_1_1Qubit.html" title="Location holding a qubit.">Qubit</a> in the <a class="el" href="classtket_1_1Circuit.html" title="A circuit.">Circuit</a> may be relabelled to a <a class="el" href="classtket_1_1Node.html" title="Architectural qubit location.">Node</a> in the <a class="el" href="classtket_1_1Architecture.html">Architecture</a>, or an "unlabelled" <a class="el" href="classtket_1_1Qubit.html" title="Location holding a qubit.">Qubit</a> may have its path merged with an ancilla qubit. </p>
+<p>The decision making is based on the heuristic outlined in arXiv:1902.08091.</p>
+<dl class="section return"><dt>Returns</dt><dd>True if solve_labelling has modified circuit for mapping purposes </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="LexiRoute_8cpp_source.html#l00424">424</a> of file <a class="el" href="LexiRoute_8cpp_source.html">LexiRoute.cpp</a>.</p>
 
 </div>
 </div>
