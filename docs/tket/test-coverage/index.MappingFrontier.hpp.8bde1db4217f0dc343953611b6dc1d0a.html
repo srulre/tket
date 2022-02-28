@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2022-02-28 17:34:35</td>
+      <td>2022-02-28 20:27:39</td>
     </tr>
   </table>
 </div>
@@ -335,7 +335,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * quantum_boundary stored as vertport so that correct edge can be recovered</span></td>
+      <td class="src "><span class="cm"> * linear_boundary stored as vertport so that correct edge can be recovered</span></td>
     </tr>
 
     <tr class="source-line">
@@ -487,7 +487,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">unit_vertport_frontier_t</span><span class="o">&gt;</span> <span class="n">quantum_boundary</span><span class="p">;</span></td>
+      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">unit_vertport_frontier_t</span><span class="o">&gt;</span> <span class="n">linear_boundary</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -503,7 +503,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">b_frontier_t</span><span class="o">&gt;</span> <span class="n">classical_boundary</span><span class="p">;</span></td>
+      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">b_frontier_t</span><span class="o">&gt;</span> <span class="n">boolean_boundary</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -879,7 +879,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * update_quantum_boundary_uids</span></td>
+      <td class="src "><span class="cm">   * update_linear_boundary_uids</span></td>
     </tr>
 
     <tr class="source-line">
@@ -911,7 +911,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * are labelled physical, update_quantum_boundary updates UnitID in</span></td>
+      <td class="src "><span class="cm">   * are labelled physical, update_linear_boundary updates UnitID in</span></td>
     </tr>
 
     <tr class="source-line">
@@ -919,7 +919,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * this-&gt;quantum_boundary to reflect this change Also updates this-&gt;circuit_</span></td>
+      <td class="src "><span class="cm">   * this-&gt;linear_boundary to reflect this change Also updates this-&gt;circuit_</span></td>
     </tr>
 
     <tr class="source-line">
@@ -943,7 +943,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param relabel_map map between current UnitID&#39;s in quantum_boundary and new</span></td>
+      <td class="src "><span class="cm">   * @param relabel_map map between current UnitID&#39;s in linear_boundary and new</span></td>
     </tr>
 
     <tr class="source-line">
@@ -967,7 +967,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">void</span> <span class="nf">update_quantum_boundary_uids</span><span class="p">(</span><span class="k">const</span> <span class="n">unit_map_t</span><span class="o">&amp;</span> <span class="n">relabel_map</span><span class="p">);</span></td>
+      <td class="src ">  <span class="kt">void</span> <span class="nf">update_linear_boundary_uids</span><span class="p">(</span><span class="k">const</span> <span class="n">unit_map_t</span><span class="o">&amp;</span> <span class="n">relabel_map</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1095,7 +1095,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * get_default_to_quantum_boundary_unit_map</span></td>
+      <td class="src "><span class="cm">   * get_default_to_linear_boundary_unit_map</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1135,7 +1135,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">unit_map_t</span> <span class="nf">get_default_to_quantum_boundary_unit_map</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></td>
+      <td class="src ">  <span class="n">unit_map_t</span> <span class="nf">get_default_to_linear_boundary_unit_map</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1175,7 +1175,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * quantum_boundary. This directly modifies circuit_.</span></td>
+      <td class="src "><span class="cm">   * linear_boundary. This directly modifies circuit_.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1183,7 +1183,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Updates quantum_boundary to reflect new edges.</span></td>
+      <td class="src "><span class="cm">   * Updates linear_boundary to reflect new edges.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1479,7 +1479,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Assigns the quantum_boundary_ attribute to that passed to method.</span></td>
+      <td class="src "><span class="cm">   * Assigns the linear_boundary_ attribute to that passed to method.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1511,7 +1511,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">void</span> <span class="nf">set_quantum_boundary</span><span class="p">(</span><span class="k">const</span> <span class="n">unit_vertport_frontier_t</span><span class="o">&amp;</span> <span class="n">new_boundary</span><span class="p">);</span></td>
+      <td class="src ">  <span class="kt">void</span> <span class="nf">set_linear_boundary</span><span class="p">(</span><span class="k">const</span> <span class="n">unit_vertport_frontier_t</span><span class="o">&amp;</span> <span class="n">new_boundary</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
