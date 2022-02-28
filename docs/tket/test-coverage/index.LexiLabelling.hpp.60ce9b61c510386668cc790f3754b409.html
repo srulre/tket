@@ -22,7 +22,7 @@
     </tr>
     <tr>
       <th scope="row">File:</th>
-      <td>Mapping/include/Mapping/RoutingMethod.hpp</td>
+      <td>Mapping/include/Mapping/LexiLabelling.hpp</td>
     </tr>
     <tr>
       <th scope="row">Date:</th>
@@ -41,14 +41,14 @@
     <tr>
       <th scope="row">Lines:</th>
       <td>0</td>
-      <td>8</td>
+      <td>1</td>
       <td class="coverage-none">0.0%</td>
     </tr>
     <tr>
       <th scope="row">Branches:</th>
       <td>0</td>
-      <td>6</td>
-      <td class="coverage-none">0.0%</td>
+      <td>0</td>
+      <td class="coverage-unknown">-%</td>
     </tr>
   </table>
 </div>
@@ -199,7 +199,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cp">#include</span> <span class="cpf">&quot;Mapping/MappingFrontier.hpp&quot;</span><span class="cp"></span></td>
+      <td class="src "><span class="cp">#include</span> <span class="cpf">&quot;Mapping/LexiRoute.hpp&quot;</span><span class="cp"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -207,7 +207,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cp">#include</span> <span class="cpf">&quot;Utils/Json.hpp&quot;</span><span class="cp"></span></td>
+      <td class="src "><span class="cp">#include</span> <span class="cpf">&quot;Mapping/RoutingMethod.hpp&quot;</span><span class="cp"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -239,7 +239,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="k">class</span> <span class="nc">RoutingMethod</span> <span class="p">{</span></td>
+      <td class="src "><span class="k">class</span> <span class="nc">LexiLabellingMethod</span> <span class="o">:</span> <span class="k">public</span> <span class="n">RoutingMethod</span> <span class="p">{</span></td>
     </tr>
 
     <tr class="source-line">
@@ -254,16 +254,16 @@
       <td class="lineno"><a id="l24" href="#l24">24</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine">  <span class="n">RoutingMethod</span><span class="p">(){};</span></td>
+      <td class="linecount "></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l25" href="#l25">25</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine">  <span class="k">virtual</span> <span class="o">~</span><span class="n">RoutingMethod</span><span class="p">()</span> <span class="p">{}</span></td>
+      <td class="linecount "></td>
+      <td class="src "><span class="cm">   * Checking and Routing methods redefined for dynamically assigning qubits to</span></td>
     </tr>
 
     <tr class="source-line">
@@ -271,7 +271,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="cm">   * some Architecture.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -279,15 +279,15 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l28" href="#l28">28</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm">   * routing_method modifies circuit held in mapping_frontier with gates for the</span></td>
+      <td class="linecount uncoveredLine">&cross;</td>
+      <td class="src uncoveredLine">  <span class="n">LexiLabellingMethod</span><span class="p">(){};</span></td>
     </tr>
 
     <tr class="source-line">
@@ -295,7 +295,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * purpose of moving circuit closer to one physically permitted by given</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -303,7 +303,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * architecture. Returns a pair with a bool returning whether any modification</span></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -311,7 +311,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * was made and a new initial mapping of qubits in case permutation via swap</span></td>
+      <td class="src "><span class="cm">   * @param mapping_frontier Contains boundary of routed/unrouted circuit for</span></td>
     </tr>
 
     <tr class="source-line">
@@ -319,7 +319,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * network is then required, or new ancilla qubits are added. This is</span></td>
+      <td class="src "><span class="cm">   * modifying</span></td>
     </tr>
 
     <tr class="source-line">
@@ -327,7 +327,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * completed by converting boundary subcircuit in mapping frontier to a</span></td>
+      <td class="src "><span class="cm">   * @param architecture Architecture providing physical constraints</span></td>
     </tr>
 
     <tr class="source-line">
@@ -335,7 +335,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Circuit object which is then passed to route_subcircuit_ as defined in the</span></td>
+      <td class="src "><span class="cm">   * @return True if transformation made, Logical to Physical mapping at</span></td>
     </tr>
 
     <tr class="source-line">
@@ -343,7 +343,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * constructor.</span></td>
+      <td class="src "><span class="cm">   * boundary due to modification.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -359,7 +359,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Overloaded parameter mapping_frontier contains boundary of routed/unrouted</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -367,7 +367,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * circuit for modifying.</span></td>
+      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="n">unit_map_t</span><span class="o">&gt;</span> <span class="n">routing_method</span><span class="p">(</span></td>
     </tr>
 
     <tr class="source-line">
@@ -375,7 +375,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Overloaded parameter architecture provides physical constraints</span></td>
+      <td class="src ">      <span class="n">MappingFrontier_ptr</span><span class="o">&amp;</span> <span class="n">mapping_frontier</span><span class="p">,</span></td>
     </tr>
 
     <tr class="source-line">
@@ -383,7 +383,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   *</span></td>
+      <td class="src ">      <span class="k">const</span> <span class="n">ArchitecturePtr</span><span class="o">&amp;</span> <span class="n">architecture</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -391,7 +391,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @return Whether circuit is modified and Logical to Physical mapping at</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -399,7 +399,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * boundary due to modification.</span></td>
+      <td class="src ">  <span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span> <span class="n">serialize</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -407,7 +407,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   *</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -415,99 +415,11 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src ">  <span class="k">static</span> <span class="n">LexiLabellingMethod</span> <span class="nf">deserialize</span><span class="p">(</span><span class="k">const</span> <span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="o">&amp;</span> <span class="n">j</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l45" href="#l45">45</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine">  <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="n">unit_map_t</span><span class="o">&gt;</span> <span class="n">routing_method</span><span class="p">(</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l46" href="#l46">46</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">      <span class="n">MappingFrontier_ptr</span><span class="o">&amp;</span> <span class="cm">/*mapping_frontier*/</span><span class="p">,</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l47" href="#l47">47</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">ArchitecturePtr</span><span class="o">&amp;</span> <span class="cm">/*architecture*/</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l48" href="#l48">48</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine">    <span class="k">return</span> <span class="p">{</span><span class="nb">false</span><span class="p">,</span> <span class="p">{}};</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l49" href="#l49">49</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="p">}</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l50" href="#l50">50</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l51" href="#l51">51</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine">  <span class="k">virtual</span> <span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span> <span class="n">serialize</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l52" href="#l52">52</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine">    <span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span> <span class="n">j</span><span class="p">;</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l53" href="#l53">53</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine">    <span class="n">j</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;RoutingMethod&quot;</span><span class="p">;</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l54" href="#l54">54</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine">    <span class="k">return</span> <span class="n">j</span><span class="p">;</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l55" href="#l55">55</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="p">}</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l56" href="#l56">56</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -515,31 +427,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l57" href="#l57">57</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l58" href="#l58">58</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">RoutingMethod</span><span class="o">&gt;</span> <span class="n">RoutingMethodPtr</span><span class="p">;</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l59" href="#l59">59</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l60" href="#l60">60</a></td>
+      <td class="lineno"><a id="l46" href="#l46">46</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -547,7 +435,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l61" href="#l61">61</a></td>
+      <td class="lineno"><a id="l47" href="#l47">47</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>

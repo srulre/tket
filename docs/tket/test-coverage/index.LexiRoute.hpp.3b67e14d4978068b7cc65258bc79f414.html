@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2022-02-25 14:13:18</td>
+      <td>2022-02-28 17:34:35</td>
     </tr>
   </table>
 </div>
@@ -431,7 +431,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">MappingFrontier</span><span class="o">&gt;&amp;</span> <span class="n">_mapping_frontier</span><span class="p">);</span></td>
+      <td class="src ">      <span class="n">MappingFrontier_ptr</span><span class="o">&amp;</span> <span class="n">_mapping_frontier</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -487,7 +487,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * be valid for the Architecture passed at class construction. Additionally,</span></td>
+      <td class="src "><span class="cm">   * be valid for the Architecture passed at class construction.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -495,7 +495,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * an &quot;unlabelled&quot; Qubit in the Circuit may be relabelled to a Node in the</span></td>
+      <td class="src "><span class="cm">   * The decision making is based on the heuristic outlined in arXiv:1902.08091.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -503,7 +503,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Architecture, or an &quot;unlabelled&quot; Qubit may have its path merged with an</span></td>
+      <td class="src "><span class="cm">   *</span></td>
     </tr>
 
     <tr class="source-line">
@@ -511,7 +511,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * ancilla qubit.</span></td>
+      <td class="src "><span class="cm">   * @param lookahead Number of slices to lookahead at when determining best</span></td>
     </tr>
 
     <tr class="source-line">
@@ -519,7 +519,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * The decision making is based on the heuristic outlined in arXiv:1902.08091.</span></td>
+      <td class="src "><span class="cm">   * SWAP or BRIDGE</span></td>
     </tr>
 
     <tr class="source-line">
@@ -535,7 +535,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param lookahead Number of slices to lookahead at when determining best</span></td>
+      <td class="src "><span class="cm">   * @return True if solve has modified circuit for mapping purposes</span></td>
     </tr>
 
     <tr class="source-line">
@@ -543,7 +543,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * SWAP or BRIDGE</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -551,7 +551,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src ">  <span class="kt">bool</span> <span class="nf">solve</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">lookahead</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -559,7 +559,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">void</span> <span class="nf">solve</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">lookahead</span><span class="p">);</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -567,7 +567,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -575,7 +575,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "> <span class="k">private</span><span class="o">:</span></td>
+      <td class="src "><span class="cm">   * When called an &quot;unlabelled&quot; Qubit in the Circuit may be relabelled to a</span></td>
     </tr>
 
     <tr class="source-line">
@@ -583,7 +583,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="cm">   * Node in the Architecture, or an &quot;unlabelled&quot; Qubit may have its path merged</span></td>
     </tr>
 
     <tr class="source-line">
@@ -591,7 +591,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * this-&gt;interacting_uids_ attribute is a map where key is one UnitID</span></td>
+      <td class="src "><span class="cm">   * with an ancilla qubit. The decision making is based on the heuristic</span></td>
     </tr>
 
     <tr class="source-line">
@@ -599,7 +599,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * and value is the UnitID it needs to be adjacent to.</span></td>
+      <td class="src "><span class="cm">   * outlined in arXiv:1902.08091.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -607,7 +607,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * This map is implicitly updated whenever a logical SWAP is inserted.</span></td>
+      <td class="src "><span class="cm">   *</span></td>
     </tr>
 
     <tr class="source-line">
@@ -615,7 +615,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * set_interacting_uids determines this map for the first parallel set of</span></td>
+      <td class="src "><span class="cm">   * @return True if solve_labelling has modified circuit for mapping purposes</span></td>
     </tr>
 
     <tr class="source-line">
@@ -623,7 +623,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * interacting UnitID in the Circuit held in this-&gt;mapping_frontier_</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -631,7 +631,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param assigned_only If true, only include interactions where both UnitID</span></td>
+      <td class="src ">  <span class="kt">bool</span> <span class="nf">solve_labelling</span><span class="p">();</span></td>
     </tr>
 
     <tr class="source-line">
@@ -639,7 +639,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * are in this-&gt;architecture_.</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -647,7 +647,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "> <span class="k">private</span><span class="o">:</span></td>
     </tr>
 
     <tr class="source-line">
@@ -655,7 +655,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">void</span> <span class="n">set_interacting_uids</span><span class="p">(</span><span class="kt">bool</span> <span class="n">assigned_only</span> <span class="o">=</span> <span class="nb">false</span><span class="p">);</span></td>
+      <td class="src ">  <span class="cm">/** Only considers two-qubit vertices if both qubits are labelled to</span></td>
     </tr>
 
     <tr class="source-line">
@@ -663,7 +663,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="cm">   * Architecture */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -671,7 +671,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src ">  <span class="k">enum</span> <span class="k">class</span> <span class="nc">AssignedOnly</span> <span class="p">{</span> <span class="n">Yes</span><span class="p">,</span> <span class="n">No</span> <span class="p">};</span></td>
     </tr>
 
     <tr class="source-line">
@@ -679,7 +679,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * If there is some &quot;free&quot; Node in Architecture at distance &quot;distances&quot; on</span></td>
+      <td class="src ">  <span class="cm">/** Returns a bool confirming if vertices are valid for LexiRoute::solve */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -687,7 +687,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * the connectivity graph, assign (relable) UnitID assignee to it. &quot;free&quot;</span></td>
+      <td class="src ">  <span class="k">enum</span> <span class="k">class</span> <span class="nc">CheckRoutingValidity</span> <span class="p">{</span> <span class="n">Yes</span><span class="p">,</span> <span class="n">No</span> <span class="p">};</span></td>
     </tr>
 
     <tr class="source-line">
@@ -695,7 +695,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * =&gt; not in Circuit. If no unassigned node at distances from root, return</span></td>
+      <td class="src ">  <span class="cm">/** Returns a bool confirming if vertices are valid for</span></td>
     </tr>
 
     <tr class="source-line">
@@ -703,7 +703,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * false.</span></td>
+      <td class="src "><span class="cm">   * LexiRoute::solve_labelling */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -711,7 +711,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param assignee UnitID not in Architecture to relabel</span></td>
+      <td class="src ">  <span class="k">enum</span> <span class="k">class</span> <span class="nc">CheckLabellingValidity</span> <span class="p">{</span> <span class="n">Yes</span><span class="p">,</span> <span class="n">No</span> <span class="p">};</span></td>
     </tr>
 
     <tr class="source-line">
@@ -719,7 +719,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param root Node in Architecture</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -727,7 +727,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param distances Distance at which to find free Node from root at</span></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -735,7 +735,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @return True if assigned, else False</span></td>
+      <td class="src "><span class="cm">   * this-&gt;interacting_uids_ attribute is a map where key is one UnitID</span></td>
     </tr>
 
     <tr class="source-line">
@@ -743,7 +743,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   * and value is the UnitID it needs to be adjacent to.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -751,7 +751,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">bool</span> <span class="nf">assign_at_distance</span><span class="p">(</span></td>
+      <td class="src "><span class="cm">   * This map is implicitly updated whenever a logical SWAP is inserted.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -759,7 +759,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">UnitID</span><span class="o">&amp;</span> <span class="n">assignee</span><span class="p">,</span> <span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">root</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">distances</span><span class="p">);</span></td>
+      <td class="src "><span class="cm">   * set_interacting_uids determines this map for the first parallel set of</span></td>
     </tr>
 
     <tr class="source-line">
@@ -767,7 +767,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="cm">   * interacting UnitID in the Circuit held in this-&gt;mapping_frontier_</span></td>
     </tr>
 
     <tr class="source-line">
@@ -775,7 +775,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="cm">   * @param assigned_only If Yes, only include interactions where both UnitID</span></td>
     </tr>
 
     <tr class="source-line">
@@ -783,7 +783,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * If this-&gt;set_interacting_uids assigned_only bool is false then the</span></td>
+      <td class="src "><span class="cm">   * are in this-&gt;architecture_.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -791,7 +791,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * this-&gt;interacting_uids attribute may have key and value UnitID not in</span></td>
+      <td class="src "><span class="cm">   * @param route_check If Yes, return false if solve not possible</span></td>
     </tr>
 
     <tr class="source-line">
@@ -799,7 +799,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * this-&gt;architecture_.</span></td>
+      <td class="src "><span class="cm">   * @param label_check If Yes, return false if solve_labelling not possible</span></td>
     </tr>
 
     <tr class="source-line">
@@ -807,7 +807,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * update_labelling assigns these non-architecture UnitID to some Architecture</span></td>
+      <td class="src "><span class="cm">   *</span></td>
     </tr>
 
     <tr class="source-line">
@@ -815,7 +815,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * UnitID, updating the this-&gt;labelling_ attribute.</span></td>
+      <td class="src "><span class="cm">   * @return bool depending on ENUM conditions</span></td>
     </tr>
 
     <tr class="source-line">
@@ -823,7 +823,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @return True if anything relabelled, else false</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -831,7 +831,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src ">  <span class="kt">bool</span> <span class="nf">set_interacting_uids</span><span class="p">(</span></td>
     </tr>
 
     <tr class="source-line">
@@ -839,7 +839,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">bool</span> <span class="nf">update_labelling</span><span class="p">();</span></td>
+      <td class="src ">      <span class="n">AssignedOnly</span> <span class="n">assigned_only</span><span class="p">,</span> <span class="n">CheckRoutingValidity</span> <span class="n">route_check</span><span class="p">,</span></td>
     </tr>
 
     <tr class="source-line">
@@ -847,7 +847,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src ">      <span class="n">CheckLabellingValidity</span> <span class="n">label_check</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -855,7 +855,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -863,7 +863,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Returns a set of pair of UnitID, each denoting a SWAP.</span></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -871,7 +871,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Returned SWAP have at least one UnitID in interacting_uids_.</span></td>
+      <td class="src "><span class="cm">   * If there is some &quot;free&quot; Node in Architecture at distance &quot;distances&quot; on</span></td>
     </tr>
 
     <tr class="source-line">
@@ -879,7 +879,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * This is such that enacting any of these SWAP will alter the distance</span></td>
+      <td class="src "><span class="cm">   * the connectivity graph, assign (relable) UnitID assignee to it. &quot;free&quot;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -887,7 +887,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * between some interacting UnitID.</span></td>
+      <td class="src "><span class="cm">   * =&gt; not in Circuit. If no unassigned node at distances from root, return</span></td>
     </tr>
 
     <tr class="source-line">
@@ -895,7 +895,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @return std::pair&lt;UnitID, UnitID&gt; suitable for addition to Circuit</span></td>
+      <td class="src "><span class="cm">   * false.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -903,7 +903,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   * @param assignee UnitID not in Architecture to relabel</span></td>
     </tr>
 
     <tr class="source-line">
@@ -911,7 +911,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">swap_set_t</span> <span class="nf">get_candidate_swaps</span><span class="p">();</span></td>
+      <td class="src "><span class="cm">   * @param root Node in Architecture</span></td>
     </tr>
 
     <tr class="source-line">
@@ -919,7 +919,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="cm">   * @param distances Distance at which to find free Node from root at</span></td>
     </tr>
 
     <tr class="source-line">
@@ -927,7 +927,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="cm">   * @return True if assigned, else False</span></td>
     </tr>
 
     <tr class="source-line">
@@ -935,7 +935,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Proposed swap will have two Node</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -943,7 +943,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Each of these Node may be in some interaction in the first layer of circuit</span></td>
+      <td class="src ">  <span class="kt">bool</span> <span class="nf">assign_at_distance</span><span class="p">(</span></td>
     </tr>
 
     <tr class="source-line">
@@ -951,7 +951,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * held in mapping_frontier. If either of these Node are in an interaction,</span></td>
+      <td class="src ">      <span class="k">const</span> <span class="n">UnitID</span><span class="o">&amp;</span> <span class="n">assignee</span><span class="p">,</span> <span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">root</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">distances</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -959,7 +959,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * check whether said interaction is a CX interaction, and if the pair of Node</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -967,7 +967,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * in the interaction are at distance 2. If true, compare lexicographical</span></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -975,7 +975,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * distances between no swap and given swap assuming distance 2 interactions</span></td>
+      <td class="src "><span class="cm">   * If this-&gt;set_interacting_uids assigned_only bool is false then the</span></td>
     </tr>
 
     <tr class="source-line">
@@ -983,7 +983,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * are  complete. If no swap is better, update return object to reflect this.</span></td>
+      <td class="src "><span class="cm">   * this-&gt;interacting_uids attribute may have key and value UnitID not in</span></td>
     </tr>
 
     <tr class="source-line">
@@ -991,7 +991,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param swap Pair of Node comprising SWAP for checking</span></td>
+      <td class="src "><span class="cm">   * this-&gt;architecture_.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -999,7 +999,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param lookahead Number of steps of lookahead emplyed for comparison</span></td>
+      <td class="src "><span class="cm">   * update_labelling assigns these non-architecture UnitID to some Architecture</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1007,7 +1007,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @return Pair of bool, where true implies BRIDGE to be added</span></td>
+      <td class="src "><span class="cm">   * UnitID, updating the this-&gt;labelling_ attribute.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1015,7 +1015,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   * @return True if anything relabelled, else false</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1023,7 +1023,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="kt">bool</span><span class="o">&gt;</span> <span class="n">check_bridge</span><span class="p">(</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1031,7 +1031,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">Node</span><span class="p">,</span> <span class="n">Node</span><span class="o">&gt;&amp;</span> <span class="n">swap</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">lookahead</span><span class="p">);</span></td>
+      <td class="src ">  <span class="kt">bool</span> <span class="nf">update_labelling</span><span class="p">();</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1055,7 +1055,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Returns a pair of distances, where the distances are between n1 &amp; p1, and</span></td>
+      <td class="src "><span class="cm">   * Returns a set of pair of UnitID, each denoting a SWAP.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1063,7 +1063,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * n2 &amp; p2. Pair object is ordered such that the greatest distance is first.</span></td>
+      <td class="src "><span class="cm">   * Returned SWAP have at least one UnitID in interacting_uids_.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1071,7 +1071,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   *</span></td>
+      <td class="src "><span class="cm">   * This is such that enacting any of these SWAP will alter the distance</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1079,7 +1079,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param p0_first First Node in first interaction to find distance between</span></td>
+      <td class="src "><span class="cm">   * between some interacting UnitID.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1087,7 +1087,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param p0_second Second Node in first interaction to find distance between</span></td>
+      <td class="src "><span class="cm">   * @return std::pair&lt;UnitID, UnitID&gt; suitable for addition to Circuit</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1095,7 +1095,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param p1_first First Node in second interaction to find distance between</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1103,7 +1103,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param p1_second Second Node in second interaction to find distance between</span></td>
+      <td class="src ">  <span class="n">swap_set_t</span> <span class="nf">get_candidate_swaps</span><span class="p">();</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1111,7 +1111,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @return Pair of size_t, being distances on architecture graph</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -1119,7 +1119,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1127,7 +1127,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span> <span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">pair_distances</span><span class="p">(</span></td>
+      <td class="src "><span class="cm">   * Proposed swap will have two Node</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1135,7 +1135,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">p0_first</span><span class="p">,</span> <span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">p0_second</span><span class="p">,</span> <span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">p1_first</span><span class="p">,</span></td>
+      <td class="src "><span class="cm">   * Each of these Node may be in some interaction in the first layer of circuit</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1143,7 +1143,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">p1_second</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span></td>
+      <td class="src "><span class="cm">   * held in mapping_frontier. If either of these Node are in an interaction,</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1151,7 +1151,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="cm">   * check whether said interaction is a CX interaction, and if the pair of Node</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1159,7 +1159,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="cm">   * in the interaction are at distance 2. If true, compare lexicographical</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1167,7 +1167,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * It is always expected that at least one Node in a SWAP will be in some</span></td>
+      <td class="src "><span class="cm">   * distances between no swap and given swap assuming distance 2 interactions</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1175,7 +1175,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * interaction. This method checks that the given swap will strictly decrease</span></td>
+      <td class="src "><span class="cm">   * are  complete. If no swap is better, update return object to reflect this.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1183,7 +1183,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * the distance for this interaction, and removes it from the swaps set if</span></td>
+      <td class="src "><span class="cm">   * @param swap Pair of Node comprising SWAP for checking</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1191,7 +1191,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * not.</span></td>
+      <td class="src "><span class="cm">   * @param lookahead Number of steps of lookahead emplyed for comparison</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1199,7 +1199,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   *</span></td>
+      <td class="src "><span class="cm">   * @return Pair of bool, where true implies BRIDGE to be added</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1207,7 +1207,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param swaps Potential swaps to remove from</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1215,7 +1215,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="kt">bool</span><span class="o">&gt;</span> <span class="n">check_bridge</span><span class="p">(</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1223,7 +1223,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">void</span> <span class="nf">remove_swaps_decreasing</span><span class="p">(</span><span class="n">swap_set_t</span><span class="o">&amp;</span> <span class="n">swaps</span><span class="p">);</span></td>
+      <td class="src ">      <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">Node</span><span class="p">,</span> <span class="n">Node</span><span class="o">&gt;&amp;</span> <span class="n">swap</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">lookahead</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1239,7 +1239,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="c1">// Architecture all new physical operations must respect</span></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1247,7 +1247,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">ArchitecturePtr</span> <span class="n">architecture_</span><span class="p">;</span></td>
+      <td class="src "><span class="cm">   * Returns a pair of distances, where the distances are between n1 &amp; p1, and</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1255,7 +1255,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="c1">//   Contains circuit for finding SWAP from and non-routed/routed boundary</span></td>
+      <td class="src "><span class="cm">   * n2 &amp; p2. Pair object is ordered such that the greatest distance is first.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1263,7 +1263,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">MappingFrontier</span><span class="o">&gt;&amp;</span> <span class="n">mapping_frontier_</span><span class="p">;</span></td>
+      <td class="src "><span class="cm">   *</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1271,7 +1271,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="c1">//   Map between UnitID and UnitID they interact with at boundary</span></td>
+      <td class="src "><span class="cm">   * @param p0_first First Node in first interaction to find distance between</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1279,7 +1279,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">unit_map_t</span> <span class="n">interacting_uids_</span><span class="p">;</span></td>
+      <td class="src "><span class="cm">   * @param p0_second Second Node in first interaction to find distance between</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1287,7 +1287,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="c1">//   Map between original circuit UnitID and new UnitID due to dynamic</span></td>
+      <td class="src "><span class="cm">   * @param p1_first First Node in second interaction to find distance between</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1295,7 +1295,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="c1">//   placement</span></td>
+      <td class="src "><span class="cm">   * @param p1_second Second Node in second interaction to find distance between</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1303,7 +1303,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">unit_map_t</span> <span class="n">labelling_</span><span class="p">;</span></td>
+      <td class="src "><span class="cm">   * @return Pair of size_t, being distances on architecture graph</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1311,7 +1311,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="c1">//   Set tracking which Architecture Node are present in Circuit</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1319,7 +1319,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">assigned_nodes_</span><span class="p">;</span></td>
+      <td class="src ">  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span> <span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">pair_distances</span><span class="p">(</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1327,7 +1327,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">};</span></td>
+      <td class="src ">      <span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">p0_first</span><span class="p">,</span> <span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">p0_second</span><span class="p">,</span> <span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">p1_first</span><span class="p">,</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1335,7 +1335,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src ">      <span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">p1_second</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1343,7 +1343,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="c1">// Child class of RoutingMethod, with overloaded methods for routing</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -1351,7 +1351,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="c1">// MappingFrontier objects</span></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1359,7 +1359,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="k">class</span> <span class="nc">LexiRouteRoutingMethod</span> <span class="o">:</span> <span class="k">public</span> <span class="n">RoutingMethod</span> <span class="p">{</span></td>
+      <td class="src "><span class="cm">   * It is always expected that at least one Node in a SWAP will be in some</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1367,7 +1367,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "> <span class="k">public</span><span class="o">:</span></td>
+      <td class="src "><span class="cm">   * interaction. This method checks that the given swap will strictly decrease</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1375,7 +1375,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="cm">   * the distance for this interaction, and removes it from the swaps set if</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1383,7 +1383,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Checking and Routing methods redefined using LexiRoute. Only circuit depth,</span></td>
+      <td class="src "><span class="cm">   * not.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1391,7 +1391,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * corresponding to lookahead, is a required parameter.</span></td>
+      <td class="src "><span class="cm">   *</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1399,7 +1399,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   *</span></td>
+      <td class="src "><span class="cm">   * @param swaps Potential swaps to remove from</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1407,7 +1407,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param _max_depth Number of layers of gates checked inr outed subcircuit.</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1415,7 +1415,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src ">  <span class="kt">void</span> <span class="nf">remove_swaps_decreasing</span><span class="p">(</span><span class="n">swap_set_t</span><span class="o">&amp;</span> <span class="n">swaps</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1423,7 +1423,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">LexiRouteRoutingMethod</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">_max_depth</span> <span class="o">=</span> <span class="mi">100</span><span class="p">);</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -1431,7 +1431,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src ">  <span class="c1">// Architecture all new physical operations must respect</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1439,7 +1439,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src ">  <span class="n">ArchitecturePtr</span> <span class="n">architecture_</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1447,7 +1447,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param mapping_frontier Contains boundary of routed/unrouted circuit for</span></td>
+      <td class="src ">  <span class="c1">//   Contains circuit for finding SWAP from and non-routed/routed boundary</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1455,7 +1455,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * modifying</span></td>
+      <td class="src ">  <span class="n">MappingFrontier_ptr</span><span class="o">&amp;</span> <span class="n">mapping_frontier_</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1463,7 +1463,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param architecture Architecture providing physical constraints</span></td>
+      <td class="src ">  <span class="c1">//   Map between UnitID and UnitID they interact with at boundary</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1471,7 +1471,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   *</span></td>
+      <td class="src ">  <span class="n">unit_map_t</span> <span class="n">interacting_uids_</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1479,7 +1479,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @return true bool, map between relabelled Qubit, always empty.</span></td>
+      <td class="src ">  <span class="c1">//   Map between original circuit UnitID and new UnitID due to dynamic</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1487,7 +1487,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   *</span></td>
+      <td class="src ">  <span class="c1">//   placement</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1495,7 +1495,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src ">  <span class="n">unit_map_t</span> <span class="n">labelling_</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1503,7 +1503,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="n">unit_map_t</span><span class="o">&gt;</span> <span class="n">routing_method</span><span class="p">(</span></td>
+      <td class="src ">  <span class="c1">//   Set tracking which Architecture Node are present in Circuit</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1511,7 +1511,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">MappingFrontier</span><span class="o">&gt;&amp;</span> <span class="n">mapping_frontier</span><span class="p">,</span></td>
+      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">assigned_nodes_</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1519,7 +1519,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">ArchitecturePtr</span><span class="o">&amp;</span> <span class="n">architecture</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span></td>
+      <td class="src "><span class="p">};</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1535,131 +1535,11 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l185" href="#l185">185</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @return Max depth used in lookahead</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l186" href="#l186">186</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l187" href="#l187">187</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="kt">unsigned</span> <span class="nf">get_max_depth</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l188" href="#l188">188</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l189" href="#l189">189</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span> <span class="n">serialize</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l190" href="#l190">190</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l191" href="#l191">191</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="k">static</span> <span class="n">LexiRouteRoutingMethod</span> <span class="nf">deserialize</span><span class="p">(</span><span class="k">const</span> <span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="o">&amp;</span> <span class="n">j</span><span class="p">);</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l192" href="#l192">192</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l193" href="#l193">193</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "> <span class="k">private</span><span class="o">:</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l194" href="#l194">194</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="kt">unsigned</span> <span class="n">max_depth_</span><span class="p">;</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l195" href="#l195">195</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="p">};</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l196" href="#l196">196</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l197" href="#l197">197</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="n">JSON_DECL</span><span class="p">(</span><span class="n">LexiRouteRoutingMethod</span><span class="p">);</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l198" href="#l198">198</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l199" href="#l199">199</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
       <td class="src "><span class="p">}</span>  <span class="c1">// namespace tket</span></td>
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l200" href="#l200">200</a></td>
+      <td class="lineno"><a id="l185" href="#l185">185</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
