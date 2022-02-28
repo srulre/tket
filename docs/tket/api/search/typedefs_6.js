@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['gate_5ferror_5ft_4607',['gate_error_t',['../namespacetket.html#a22e4394fc5a6761fb19b0a50e6226620',1,'tket']]],
-  ['gate_5fptr_4608',['Gate_ptr',['../namespacetket.html#a2301654e82cbcf188ca05907e97d5738',1,'tket']]],
-  ['graycode_4609',['GrayCode',['../namespacetket.html#a5ab9799f95de83b6e55f91ffd1d82087',1,'tket']]]
+  ['gate_5ferror_5ft_4609',['gate_error_t',['../namespacetket.html#a22e4394fc5a6761fb19b0a50e6226620',1,'tket']]],
+  ['gate_5fptr_4610',['Gate_ptr',['../namespacetket.html#a2301654e82cbcf188ca05907e97d5738',1,'tket']]],
+  ['graycode_4611',['GrayCode',['../namespacetket.html#a5ab9799f95de83b6e55f91ffd1d82087',1,'tket']]]
 ];
