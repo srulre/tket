@@ -110,7 +110,7 @@ $(function() {
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keywordflow">if</span> (found_unplaced_qubit) {</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    std::shared_ptr&lt;unit_frontier_t&gt; next_frontier =</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="namespacetket.html#abf7deec416a58dac4c1be03f36c41e55">frontier_convert_vertport_to_edge</a>(</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            mapping_frontier-&gt;circuit_, mapping_frontier-&gt;quantum_boundary);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            mapping_frontier-&gt;circuit_, mapping_frontier-&gt;linear_boundary);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="structtket_1_1CutFrontier.html">CutFrontier</a> next_cut = mapping_frontier-&gt;circuit_.next_cut(</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        next_frontier, std::make_shared&lt;b_frontier_t&gt;());</div>
@@ -171,7 +171,7 @@ $(function() {
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;      }</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    mapping_frontier-&gt;update_quantum_boundary_uids(qubit_to_nodes_place);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    mapping_frontier-&gt;update_linear_boundary_uids(qubit_to_nodes_place);</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    mapping_frontier-&gt;circuit_.rename_units(qubit_to_nodes_place);</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">return</span> {<span class="keyword">true</span>, {}};</div>

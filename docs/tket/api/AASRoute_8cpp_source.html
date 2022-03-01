@@ -103,7 +103,7 @@ $(function() {
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">const</span> <a class="code" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a>&amp; architecture)<span class="keyword"> const </span>{</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  std::shared_ptr&lt;unit_frontier_t&gt; next_frontier =</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;      <a class="code" href="namespacetket.html#abf7deec416a58dac4c1be03f36c41e55">frontier_convert_vertport_to_edge</a>(</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;          mapping_frontier-&gt;circuit_, mapping_frontier-&gt;quantum_boundary);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;          mapping_frontier-&gt;circuit_, mapping_frontier-&gt;linear_boundary);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <a class="code" href="structtket_1_1CutFrontier.html">CutFrontier</a> next_cut = mapping_frontier-&gt;circuit_.next_cut(</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;      next_frontier, std::make_shared&lt;b_frontier_t&gt;());</div>
