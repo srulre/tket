@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Changelog &mdash; pytket 0.19.2 documentation</title>
+  <title>Changelog &mdash; pytket 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -31,7 +31,7 @@
             <a href="index.html" class="icon icon-home"> pytket
           </a>
               <div class="version">
-                0.19
+                1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -45,6 +45,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#march-2022">1.0.0 (March 2022)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#february-2022">0.19.2 (February 2022)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id1">0.19.1 (February 2022)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">0.19.0 (February 2022)</a></li>
@@ -86,7 +87,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="telemetry_data_policy.html">Telemetry Data Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source Attribution</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More Documentation:</span></p>
@@ -101,11 +101,12 @@
 <li class="toctree-l1"><a class="reference internal" href="pauli.html">pytket.pauli</a></li>
 <li class="toctree-l1"><a class="reference internal" href="passes.html">pytket.passes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="predicates.html">pytket.predicates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="program.html">pytket.program</a></li>
 <li class="toctree-l1"><a class="reference internal" href="partition.html">pytket.partition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qasm.html">pytket.qasm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quipper.html">pytket.quipper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="routing.html">pytket.routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">pytket.architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="placement.html">pytket.placement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">pytket.mapping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tableau.html">pytket.tableau</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transform.html">pytket.transform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tailoring.html">pytket.tailoring</a></li>
@@ -141,6 +142,73 @@
              
   <section id="changelog">
 <h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline"></a></h1>
+<section id="march-2022">
+<h2>1.0.0 (March 2022)<a class="headerlink" href="#march-2022" title="Permalink to this headline"></a></h2>
+<p>API changes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Rebase&lt;Target&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">SquashHQS</span></code> methods are removed. Specifically:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">RebaseHQS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RebaseProjectQ</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RebasePyZX</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RebaseQuil</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RebaseUMD</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RebaseUFR</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RebaseOQC</span></code></p></li>
+</ul>
+</li>
+<li><p>The deprecated <code class="docutils literal notranslate"><span class="pre">QubitPauliString.to_dict</span></code> method is removed. (Use the
+<code class="docutils literal notranslate"><span class="pre">map</span></code> property instead.)</p></li>
+<li><p>The deprecated <code class="docutils literal notranslate"><span class="pre">Backend.compile_circuit</span></code> method is removed. (Use
+<code class="docutils literal notranslate"><span class="pre">get_compiled_circuit</span></code> instead.)</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">routing</span></code> module is removed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Placement</span></code>, <code class="docutils literal notranslate"><span class="pre">LinePlacement</span></code>, <code class="docutils literal notranslate"><span class="pre">GraphPlacement</span></code> and <code class="docutils literal notranslate"><span class="pre">NoiseAwarePlacement</span></code>
+are now imported from the <code class="docutils literal notranslate"><span class="pre">placement</span></code> module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Architecture</span></code>, <code class="docutils literal notranslate"><span class="pre">SquareGrid</span></code>, <code class="docutils literal notranslate"><span class="pre">RingArch</span></code> and <code class="docutils literal notranslate"><span class="pre">FullyConnected</span></code> are now
+imported from the <code class="docutils literal notranslate"><span class="pre">architecture</span></code> module.</p></li>
+<li><p>Methods for mapping logical to physical circuits are now available in the
+<code class="docutils literal notranslate"><span class="pre">mapping</span></code> module, with a new API and new functionality.</p></li>
+<li><p>The keyword parameter and property <code class="docutils literal notranslate"><span class="pre">def</span></code> is now called <code class="docutils literal notranslate"><span class="pre">definition</span></code> in
+<code class="docutils literal notranslate"><span class="pre">Circuit.add_custom_gate</span></code> and <code class="docutils literal notranslate"><span class="pre">CustomGateDef</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RebaseCustom</span></code> takes one allowed gateset parameter rather than separate single qubit and multiqubit gatesets.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Backend.characterisation</span></code> property is removed. (Use
+<code class="docutils literal notranslate"><span class="pre">Backend.backend_info</span></code> instead.)</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">QubitPauliOperator.from_OpenFermion</span></code> and
+<code class="docutils literal notranslate"><span class="pre">QubitPauliOperator.to_OpenFermion</span></code> methods are removed.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">pytket.program</span></code> module is removed.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">pytket.telemetry</span></code> module is removed.</p></li>
+</ul>
+<p>Major new features:</p>
+<ul class="simple">
+<li><p>New methods for mapping logical to physical circuits for some <code class="docutils literal notranslate"><span class="pre">Architecture</span></code>.
+The new method will use a list of user-given methods, each of them suitable only
+for a specific set of subcircuits. Users can add their own methods if they want to.
+All compiler passes in pytket are updated to use the new methods.
+The methods already given by pytket are <code class="docutils literal notranslate"><span class="pre">LexiRouteRoutingMethod</span></code>,
+<code class="docutils literal notranslate"><span class="pre">LexiLabellingMethod</span></code>, <code class="docutils literal notranslate"><span class="pre">MultiGateReorderRoutingMethod</span></code>,
+<code class="docutils literal notranslate"><span class="pre">AASRouteRoutingMethod</span></code>, <code class="docutils literal notranslate"><span class="pre">BoxDecompositionRoutingMethod</span></code>, and <code class="docutils literal notranslate"><span class="pre">AASLabellingMethod</span></code>.</p></li>
+</ul>
+<p>Minor new features:</p>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">delay_measures</span></code> option to <code class="docutils literal notranslate"><span class="pre">DefaultMappingPass</span></code>.</p></li>
+<li><p>New <code class="docutils literal notranslate"><span class="pre">pytket.passes.auto_rebase_pass</span></code> and <code class="docutils literal notranslate"><span class="pre">pytket.passes.auto_squash_pass</span></code>
+which attempt to construct rebase and squash passess given a target gate set from known
+decompositions.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">get_c_register</span></code>, <code class="docutils literal notranslate"><span class="pre">get_q_register</span></code>, <code class="docutils literal notranslate"><span class="pre">c_registers</span></code> and <code class="docutils literal notranslate"><span class="pre">q_registers</span></code> methods to <code class="docutils literal notranslate"><span class="pre">Circuit</span></code>.</p></li>
+<li><p>New <code class="docutils literal notranslate"><span class="pre">pytket.passes.NaivePlacementPass</span></code> which completes a basic relabelling of all Circuit Qubit
+not labelled as some Architecture Node to any available Architecture Node</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">opgroups</span></code> property to <code class="docutils literal notranslate"><span class="pre">Circuit</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Architecture</span></code> has new <code class="docutils literal notranslate"><span class="pre">valid_operation</span></code> method which returns true if passed UnitIDs that respect
+architecture constraints.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CircuitStatus</span></code> has several new optional properties such as time-stamps associated with status changes,
+queue position or detailed error information.</p></li>
+</ul>
+<p>Fixes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ConnectivityPredicate.implies()</span></code> checks for existence of isolated nodes as
+well as edges in second architecture.</p></li>
+</ul>
+</section>
 <section id="february-2022">
 <h2>0.19.2 (February 2022)<a class="headerlink" href="#february-2022" title="Permalink to this headline"></a></h2>
 <p>Fixes:</p>

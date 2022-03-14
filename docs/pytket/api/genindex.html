@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; pytket 0.19.2 documentation</title>
+  <title>Index &mdash; pytket 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -27,7 +27,7 @@
             <a href="index.html" class="icon icon-home"> pytket
           </a>
               <div class="version">
-                0.19
+                1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -42,7 +42,6 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="telemetry_data_policy.html">Telemetry Data Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source Attribution</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More Documentation:</span></p>
@@ -57,11 +56,12 @@
 <li class="toctree-l1"><a class="reference internal" href="pauli.html">pytket.pauli</a></li>
 <li class="toctree-l1"><a class="reference internal" href="passes.html">pytket.passes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="predicates.html">pytket.predicates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="program.html">pytket.program</a></li>
 <li class="toctree-l1"><a class="reference internal" href="partition.html">pytket.partition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qasm.html">pytket.qasm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quipper.html">pytket.quipper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="routing.html">pytket.routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">pytket.architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="placement.html">pytket.placement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">pytket.mapping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tableau.html">pytket.tableau</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transform.html">pytket.transform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tailoring.html">pytket.tailoring</a></li>
@@ -141,9 +141,17 @@
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.__hash__">__hash__ (pytket.circuit.Circuit attribute)</a>
 </li>
-      <li><a href="circuit.html#pytket.circuit.Bit.__init__">__init__() (pytket.circuit.Bit method)</a>
+      <li><a href="architecture.html#pytket.architecture.Architecture.__init__">__init__() (pytket.architecture.Architecture method)</a>
 
       <ul>
+        <li><a href="architecture.html#pytket.architecture.FullyConnected.__init__">(pytket.architecture.FullyConnected method)</a>
+</li>
+        <li><a href="architecture.html#pytket.architecture.RingArch.__init__">(pytket.architecture.RingArch method)</a>
+</li>
+        <li><a href="architecture.html#pytket.architecture.SquareGrid.__init__">(pytket.architecture.SquareGrid method)</a>
+</li>
+        <li><a href="circuit.html#pytket.circuit.Bit.__init__">(pytket.circuit.Bit method)</a>
+</li>
         <li><a href="circuit.html#pytket.circuit.BitRegister.__init__">(pytket.circuit.BitRegister method)</a>
 </li>
         <li><a href="circuit.html#pytket.circuit.CircBox.__init__">(pytket.circuit.CircBox method)</a>
@@ -174,6 +182,24 @@
 </li>
         <li><a href="circuit.html#pytket.circuit.Unitary3qBox.__init__">(pytket.circuit.Unitary3qBox method)</a>
 </li>
+        <li><a href="mapping.html#pytket.mapping.AASLabellingMethod.__init__">(pytket.mapping.AASLabellingMethod method)</a>
+</li>
+        <li><a href="mapping.html#pytket.mapping.AASRouteRoutingMethod.__init__">(pytket.mapping.AASRouteRoutingMethod method)</a>
+</li>
+        <li><a href="mapping.html#pytket.mapping.BoxDecompositionRoutingMethod.__init__">(pytket.mapping.BoxDecompositionRoutingMethod method)</a>
+</li>
+        <li><a href="mapping.html#pytket.mapping.LexiLabellingMethod.__init__">(pytket.mapping.LexiLabellingMethod method)</a>
+</li>
+        <li><a href="mapping.html#pytket.mapping.LexiRouteRoutingMethod.__init__">(pytket.mapping.LexiRouteRoutingMethod method)</a>
+</li>
+        <li><a href="mapping.html#pytket.mapping.MappingManager.__init__">(pytket.mapping.MappingManager method)</a>
+</li>
+        <li><a href="mapping.html#pytket.mapping.MultiGateReorderRoutingMethod.__init__">(pytket.mapping.MultiGateReorderRoutingMethod method)</a>
+</li>
+        <li><a href="mapping.html#pytket.mapping.RoutingMethod.__init__">(pytket.mapping.RoutingMethod method)</a>
+</li>
+        <li><a href="mapping.html#pytket.mapping.RoutingMethodCircuit.__init__">(pytket.mapping.RoutingMethodCircuit method)</a>
+</li>
         <li><a href="partition.html#pytket.partition.GraphColourMethod.__init__">(pytket.partition.GraphColourMethod method)</a>
 </li>
         <li><a href="partition.html#pytket.partition.MeasurementBitMap.__init__">(pytket.partition.MeasurementBitMap method)</a>
@@ -201,6 +227,14 @@
         <li><a href="pauli.html#pytket.pauli.PauliStabiliser.__init__">(pytket.pauli.PauliStabiliser method)</a>
 </li>
         <li><a href="pauli.html#pytket.pauli.QubitPauliString.__init__">(pytket.pauli.QubitPauliString method)</a>
+</li>
+        <li><a href="placement.html#pytket.placement.GraphPlacement.__init__">(pytket.placement.GraphPlacement method)</a>
+</li>
+        <li><a href="placement.html#pytket.placement.LinePlacement.__init__">(pytket.placement.LinePlacement method)</a>
+</li>
+        <li><a href="placement.html#pytket.placement.NoiseAwarePlacement.__init__">(pytket.placement.NoiseAwarePlacement method)</a>
+</li>
+        <li><a href="placement.html#pytket.placement.Placement.__init__">(pytket.placement.Placement method)</a>
 </li>
         <li><a href="predicates.html#pytket.predicates.CliffordCircuitPredicate.__init__">(pytket.predicates.CliffordCircuitPredicate method)</a>
 </li>
@@ -236,26 +270,6 @@
 </li>
         <li><a href="predicates.html#pytket.predicates.UserDefinedPredicate.__init__">(pytket.predicates.UserDefinedPredicate method)</a>
 </li>
-        <li><a href="program.html#pytket.program.Program.__init__">(pytket.program.Program method)</a>
-</li>
-        <li><a href="routing.html#pytket.routing.Architecture.__init__">(pytket.routing.Architecture method)</a>
-</li>
-        <li><a href="routing.html#pytket.routing.FullyConnected.__init__">(pytket.routing.FullyConnected method)</a>
-</li>
-        <li><a href="routing.html#pytket.routing.GraphPlacement.__init__">(pytket.routing.GraphPlacement method)</a>
-</li>
-        <li><a href="routing.html#pytket.routing.LinePlacement.__init__">(pytket.routing.LinePlacement method)</a>
-</li>
-        <li><a href="routing.html#pytket.routing.NodeGraph.__init__">(pytket.routing.NodeGraph method)</a>
-</li>
-        <li><a href="routing.html#pytket.routing.NoiseAwarePlacement.__init__">(pytket.routing.NoiseAwarePlacement method)</a>
-</li>
-        <li><a href="routing.html#pytket.routing.Placement.__init__">(pytket.routing.Placement method)</a>
-</li>
-        <li><a href="routing.html#pytket.routing.RingArch.__init__">(pytket.routing.RingArch method)</a>
-</li>
-        <li><a href="routing.html#pytket.routing.SquareGrid.__init__">(pytket.routing.SquareGrid method)</a>
-</li>
         <li><a href="tableau.html#pytket.tableau.UnitaryTableau.__init__">(pytket.tableau.UnitaryTableau method)</a>
 </li>
         <li><a href="tableau.html#pytket.tableau.UnitaryTableauBox.__init__">(pytket.tableau.UnitaryTableauBox method)</a>
@@ -272,9 +286,11 @@
 </li>
         <li><a href="transform.html#pytket.transform.Transform.__init__">(pytket.transform.Transform method)</a>
 </li>
-        <li><a href="zx.html#pytket.zx.BasicGen.__init__">(pytket.zx.BasicGen method)</a>
+        <li><a href="zx.html#pytket.zx.CliffordGen.__init__">(pytket.zx.CliffordGen method)</a>
 </li>
         <li><a href="zx.html#pytket.zx.DirectedGen.__init__">(pytket.zx.DirectedGen method)</a>
+</li>
+        <li><a href="zx.html#pytket.zx.PhasedGen.__init__">(pytket.zx.PhasedGen method)</a>
 </li>
         <li><a href="zx.html#pytket.zx.QuantumType.__init__">(pytket.zx.QuantumType method)</a>
 </li>
@@ -325,6 +341,10 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="mapping.html#pytket.mapping.AASLabellingMethod">AASLabellingMethod (class in pytket.mapping)</a>
+</li>
+      <li><a href="mapping.html#pytket.mapping.AASRouteRoutingMethod">AASRouteRoutingMethod (class in pytket.mapping)</a>
+</li>
       <li><a href="passes.html#pytket.passes.AASRouting">AASRouting() (in module pytket.passes)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_assertion">add_assertion() (pytket.circuit.Circuit method)</a>
@@ -332,11 +352,7 @@
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_barrier">add_barrier() (pytket.circuit.Circuit method)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_bit">add_bit() (pytket.circuit.Circuit method)</a>
-
-      <ul>
-        <li><a href="program.html#pytket.program.Program.add_bit">(pytket.program.Program method)</a>
 </li>
-      </ul></li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_blank_wires">add_blank_wires() (pytket.circuit.Circuit method)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_c_and">add_c_and() (pytket.circuit.Circuit method)</a>
@@ -360,11 +376,7 @@
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_c_range_predicate">add_c_range_predicate() (pytket.circuit.Circuit method)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_c_register">add_c_register() (pytket.circuit.Circuit method)</a>
-
-      <ul>
-        <li><a href="program.html#pytket.program.Program.add_c_register">(pytket.program.Program method)</a>
 </li>
-      </ul></li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_c_setbits">add_c_setbits() (pytket.circuit.Circuit method)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_c_transform">add_c_transform() (pytket.circuit.Circuit method)</a>
@@ -386,37 +398,25 @@
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_expbox">add_expbox() (pytket.circuit.Circuit method)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_gate">add_gate() (pytket.circuit.Circuit method)</a>
-
-      <ul>
-        <li><a href="program.html#pytket.program.Program.add_gate">(pytket.program.Program method)</a>
 </li>
-      </ul></li>
       <li><a href="partition.html#pytket.partition.MeasurementSetup.add_measurement_circuit">add_measurement_circuit() (pytket.partition.MeasurementSetup method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="backends.html#pytket.backends.backendinfo.BackendInfo.add_misc">add_misc() (pytket.backends.backendinfo.BackendInfo method)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_pauliexpbox">add_pauliexpbox() (pytket.circuit.Circuit method)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_phase">add_phase() (pytket.circuit.Circuit method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_phasepolybox">add_phasepolybox() (pytket.circuit.Circuit method)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_q_register">add_q_register() (pytket.circuit.Circuit method)</a>
-
-      <ul>
-        <li><a href="program.html#pytket.program.Program.add_q_register">(pytket.program.Program method)</a>
 </li>
-      </ul></li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_qcontrolbox">add_qcontrolbox() (pytket.circuit.Circuit method)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_qubit">add_qubit() (pytket.circuit.Circuit method)</a>
-
-      <ul>
-        <li><a href="program.html#pytket.program.Program.add_qubit">(pytket.program.Program method)</a>
 </li>
-      </ul></li>
       <li><a href="partition.html#pytket.partition.MeasurementSetup.add_result_for_term">add_result_for_term() (pytket.partition.MeasurementSetup method)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.add_unitary1qbox">add_unitary1qbox() (pytket.circuit.Circuit method)</a>
@@ -440,20 +440,8 @@
       <li><a href="classical.html#pytket.circuit.logic_exp.And">And (class in pytket.circuit.logic_exp)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.append">append() (pytket.circuit.Circuit method)</a>
-
-      <ul>
-        <li><a href="program.html#pytket.program.Program.append">(pytket.program.Program method)</a>
-</li>
-      </ul></li>
-      <li><a href="program.html#pytket.program.Program.append_circuit">append_circuit() (pytket.program.Program method)</a>
-</li>
-      <li><a href="program.html#pytket.program.Program.append_if">append_if() (pytket.program.Program method)</a>
-</li>
-      <li><a href="program.html#pytket.program.Program.append_if_else">append_if_else() (pytket.program.Program method)</a>
 </li>
       <li><a href="utils.html#pytket.utils.append_pauli_measurement">append_pauli_measurement() (in module pytket.utils)</a>
-</li>
-      <li><a href="program.html#pytket.program.Program.append_while">append_while() (pytket.program.Program method)</a>
 </li>
       <li><a href="passes.html#pytket.passes.BasePass.apply">apply() (pytket.passes.BasePass method)</a>
 
@@ -469,7 +457,7 @@
 </li>
       <li><a href="tableau.html#pytket.tableau.UnitaryTableau.apply_gate_at_front">apply_gate_at_front() (pytket.tableau.UnitaryTableau method)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.Architecture">Architecture (class in pytket.routing)</a>
+      <li><a href="architecture.html#pytket.architecture.Architecture">Architecture (class in pytket.architecture)</a>
 </li>
       <li><a href="circuit.html#pytket.circuit.Command.args">args (pytket.circuit.Command property)</a>
 </li>
@@ -497,8 +485,6 @@
 </li>
       <li><a href="zx.html#pytket.zx.Rewrite.basic_wires">basic_wires() (pytket.zx.Rewrite static method)</a>
 </li>
-      <li><a href="zx.html#pytket.zx.BasicGen">BasicGen (class in pytket.zx)</a>
-</li>
       <li><a href="circuit.html#pytket.circuit.BasisOrder">BasisOrder (class in pytket.circuit)</a>
 </li>
       <li><a href="classical.html#pytket.circuit.logic_exp.BinaryOp">BinaryOp (class in pytket.circuit.logic_exp)</a>
@@ -506,15 +492,11 @@
       <li><a href="circuit.html#pytket.circuit.Bit">Bit (class in pytket.circuit)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.bit_readout">bit_readout (pytket.circuit.Circuit property)</a>
-
-      <ul>
-        <li><a href="program.html#pytket.program.Program.bit_readout">(pytket.program.Program property)</a>
 </li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="classical.html#pytket.circuit.logic_exp.BitAnd">BitAnd (class in pytket.circuit.logic_exp)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="classical.html#pytket.circuit.logic_exp.BitEq">BitEq (class in pytket.circuit.logic_exp)</a>
 </li>
       <li><a href="classical.html#pytket.circuit.logic_exp.BitLogicExp">BitLogicExp (class in pytket.circuit.logic_exp)</a>
@@ -532,12 +514,12 @@
 </li>
         <li><a href="partition.html#pytket.partition.MeasurementBitMap.bits">(pytket.partition.MeasurementBitMap property)</a>
 </li>
-        <li><a href="program.html#pytket.program.Program.bits">(pytket.program.Program property)</a>
-</li>
       </ul></li>
       <li><a href="classical.html#pytket.circuit.logic_exp.BitWiseOp">BitWiseOp (class in pytket.circuit.logic_exp)</a>
 </li>
       <li><a href="classical.html#pytket.circuit.logic_exp.BitXor">BitXor (class in pytket.circuit.logic_exp)</a>
+</li>
+      <li><a href="mapping.html#pytket.mapping.BoxDecompositionRoutingMethod">BoxDecompositionRoutingMethod (class in pytket.mapping)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -545,17 +527,19 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="circuit_class.html#pytket.circuit.Circuit.c_registers">c_registers (pytket.circuit.Circuit property)</a>
+</li>
       <li><a href="utils.html#pytket.utils.spam.SpamCorrecter.calculate_matrices">calculate_matrices() (pytket.utils.spam.SpamCorrecter method)</a>
 </li>
       <li><a href="utils.html#pytket.utils.spam.SpamCorrecter.calibration_circuits">calibration_circuits() (pytket.utils.spam.SpamCorrecter method)</a>
 </li>
       <li><a href="backends.html#pytket.backends.Backend.cancel">cancel() (pytket.backends.Backend method)</a>
 </li>
+      <li><a href="backends.html#pytket.backends.status.CircuitStatus.cancelled_time">cancelled_time (pytket.backends.status.CircuitStatus attribute)</a>
+</li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.CCX">CCX() (pytket.circuit.Circuit method)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.CH">CH() (pytket.circuit.Circuit method)</a>
-</li>
-      <li><a href="backends.html#pytket.backends.Backend.characterisation">characterisation (pytket.backends.Backend property)</a>
 </li>
       <li><a href="predicates.html#pytket.predicates.CompilationUnit.check_all_predicates">check_all_predicates() (pytket.predicates.CompilationUnit method)</a>
 </li>
@@ -601,6 +585,8 @@
 </li>
       <li><a href="predicates.html#pytket.predicates.CliffordCircuitPredicate">CliffordCircuitPredicate (class in pytket.predicates)</a>
 </li>
+      <li><a href="zx.html#pytket.zx.CliffordGen">CliffordGen (class in pytket.zx)</a>
+</li>
       <li><a href="passes.html#pytket.passes.CliffordSimp">CliffordSimp() (in module pytket.passes)</a>
 </li>
       <li><a href="passes.html#pytket.passes.CNotSynthType">CNotSynthType (class in pytket.passes)</a>
@@ -623,17 +609,17 @@
       </ul></li>
       <li><a href="utils.html#pytket.utils.compare_statevectors">compare_statevectors() (in module pytket.utils)</a>
 </li>
-      <li><a href="utils.html#pytket.utils.compare_unitaries">compare_unitaries() (in module pytket.utils)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="utils.html#pytket.utils.compare_unitaries">compare_unitaries() (in module pytket.utils)</a>
+</li>
       <li><a href="passes.html#pytket.passes.script.compilation_pass_from_script">compilation_pass_from_script() (in module pytket.passes.script)</a>
 </li>
       <li><a href="passes.html#pytket.passes.script.compilation_pass_grammar">compilation_pass_grammar() (in module pytket.passes.script)</a>
 </li>
       <li><a href="predicates.html#pytket.predicates.CompilationUnit">CompilationUnit (class in pytket.predicates)</a>
 </li>
-      <li><a href="backends.html#pytket.backends.Backend.compile_circuit">compile_circuit() (pytket.backends.Backend method)</a>
+      <li><a href="backends.html#pytket.backends.status.CircuitStatus.completed_time">completed_time (pytket.backends.status.CircuitStatus attribute)</a>
 </li>
       <li><a href="pauli.html#pytket.pauli.QubitPauliString.compress">compress() (pytket.pauli.QubitPauliString method)</a>
 
@@ -671,7 +657,7 @@
 </li>
       <li><a href="utils.html#pytket.utils.counts_from_shot_table">counts_from_shot_table() (in module pytket.utils)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.Architecture.coupling">coupling (pytket.routing.Architecture property)</a>
+      <li><a href="architecture.html#pytket.architecture.Architecture.coupling">coupling (pytket.architecture.Architecture property)</a>
 </li>
       <li><a href="circuit.html#pytket.circuit.Op.create">create() (pytket.circuit.Op static method)</a>
 
@@ -753,8 +739,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="transform.html#pytket.transform.Transform.DecomposeSWAPtoCX">DecomposeSWAPtoCX() (pytket.transform.Transform static method)</a>
 </li>
-      <li><a href="circuit.html#pytket.circuit.CustomGateDef.def">def (pytket.circuit.CustomGateDef property)</a>
-</li>
       <li><a href="config.html#pytket.config.pytket_config.PytketConfig.default">default() (pytket.config.pytket_config.PytketConfig class method)</a>
 </li>
       <li><a href="backends.html#pytket.backends.Backend.default_compilation_pass">default_compilation_pass() (pytket.backends.Backend method)</a>
@@ -764,6 +748,8 @@
       <li><a href="predicates.html#pytket.predicates.DefaultRegisterPredicate">DefaultRegisterPredicate (class in pytket.predicates)</a>
 </li>
       <li><a href="circuit.html#pytket.circuit.CustomGateDef.define">define() (pytket.circuit.CustomGateDef static method)</a>
+</li>
+      <li><a href="circuit.html#pytket.circuit.CustomGateDef.definition">definition (pytket.circuit.CustomGateDef property)</a>
 </li>
       <li><a href="zx.html#pytket.zx.ZXDiagram.degree">degree() (pytket.zx.ZXDiagram method)</a>
 </li>
@@ -798,6 +784,10 @@
       <li><a href="backends.html#pytket.backends.Backend.empty_cache">empty_cache() (pytket.backends.Backend method)</a>
 </li>
       <li><a href="classical.html#pytket.circuit.logic_exp.Eq">Eq (class in pytket.circuit.logic_exp)</a>
+</li>
+      <li><a href="backends.html#pytket.backends.status.CircuitStatus.error_detail">error_detail (pytket.backends.status.CircuitStatus attribute)</a>
+</li>
+      <li><a href="backends.html#pytket.backends.status.CircuitStatus.error_time">error_time (pytket.backends.status.CircuitStatus attribute)</a>
 </li>
       <li><a href="passes.html#pytket.passes.EulerAngleReduction">EulerAngleReduction() (in module pytket.passes)</a>
 </li>
@@ -853,16 +843,16 @@
 </li>
       <li><a href="config.html#pytket.config.pytket_config.PytketExtConfig.from_default_config_file">from_default_config_file() (pytket.config.pytket_config.PytketExtConfig class method)</a>
 </li>
-      <li><a href="circuit_class.html#pytket.circuit.Circuit.from_dict">from_dict() (pytket.circuit.Circuit static method)</a>
+      <li><a href="architecture.html#pytket.architecture.Architecture.from_dict">from_dict() (pytket.architecture.Architecture static method)</a>
 
       <ul>
+        <li><a href="architecture.html#pytket.architecture.FullyConnected.from_dict">(pytket.architecture.FullyConnected static method)</a>
+</li>
+        <li><a href="circuit_class.html#pytket.circuit.Circuit.from_dict">(pytket.circuit.Circuit static method)</a>
+</li>
         <li><a href="passes.html#pytket.passes.BasePass.from_dict">(pytket.passes.BasePass static method)</a>
 </li>
-        <li><a href="routing.html#pytket.routing.Architecture.from_dict">(pytket.routing.Architecture static method)</a>
-</li>
-        <li><a href="routing.html#pytket.routing.FullyConnected.from_dict">(pytket.routing.FullyConnected static method)</a>
-</li>
-        <li><a href="routing.html#pytket.routing.Placement.from_dict">(pytket.routing.Placement static method)</a>
+        <li><a href="placement.html#pytket.placement.Placement.from_dict">(pytket.placement.Placement static method)</a>
 </li>
         <li><a href="backends.html#pytket.backends.backendinfo.BackendInfo.from_dict">(pytket.backends.backendinfo.BackendInfo class method)</a>
 </li>
@@ -895,7 +885,7 @@
         <li><a href="utils.html#pytket.utils.QubitPauliOperator.from_list">(pytket.utils.QubitPauliOperator class method)</a>
 </li>
       </ul></li>
-      <li><a href="utils.html#pytket.utils.QubitPauliOperator.from_OpenFermion">from_OpenFermion() (pytket.utils.QubitPauliOperator class method)</a>
+      <li><a href="optype.html#pytket.circuit.OpType.from_name">from_name() (pytket.circuit.OpType static method)</a>
 </li>
       <li><a href="config.html#pytket.config.pytket_config.PytketExtConfig.from_pytketconfig">from_pytketconfig() (pytket.config.pytket_config.PytketExtConfig class method)</a>
 </li>
@@ -907,7 +897,7 @@
 </li>
       <li><a href="passes.html#pytket.passes.FullPeepholeOptimise">FullPeepholeOptimise() (in module pytket.passes)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.FullyConnected">FullyConnected (class in pytket.routing)</a>
+      <li><a href="architecture.html#pytket.architecture.FullyConnected">FullyConnected (class in pytket.architecture)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -921,6 +911,8 @@
 </li>
       <li><a href="utils.html#pytket.utils.gen_term_sequence_circuit">gen_term_sequence_circuit() (in module pytket.utils)</a>
 </li>
+      <li><a href="architecture.html#pytket.architecture.Architecture.get_adjacent_nodes">get_adjacent_nodes() (pytket.architecture.Architecture method)</a>
+</li>
       <li><a href="tailoring.html#pytket.tailoring.FrameRandomisation.get_all_circuits">get_all_circuits() (pytket.tailoring.FrameRandomisation method)</a>
 
       <ul>
@@ -932,6 +924,8 @@
       <li><a href="backends.html#pytket.backends.backendresult.BackendResult.get_bitlist">get_bitlist() (pytket.backends.backendresult.BackendResult method)</a>
 </li>
       <li><a href="zx.html#pytket.zx.ZXDiagram.get_boundary">get_boundary() (pytket.zx.ZXDiagram method)</a>
+</li>
+      <li><a href="circuit_class.html#pytket.circuit.Circuit.get_c_register">get_c_register() (pytket.circuit.Circuit method)</a>
 </li>
       <li><a href="circuit.html#pytket.circuit.CircBox.get_circuit">get_circuit() (pytket.circuit.CircBox method)</a>
 
@@ -958,11 +952,7 @@
 </li>
       </ul></li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.get_commands">get_commands() (pytket.circuit.Circuit method)</a>
-
-      <ul>
-        <li><a href="program.html#pytket.program.Program.get_commands">(pytket.program.Program method)</a>
 </li>
-      </ul></li>
       <li><a href="backends.html#pytket.backends.Backend.get_compiled_circuit">get_compiled_circuit() (pytket.backends.Backend method)</a>
 </li>
       <li><a href="backends.html#pytket.backends.Backend.get_compiled_circuits">get_compiled_circuits() (pytket.backends.Backend method)</a>
@@ -976,6 +966,8 @@
       <li><a href="backends.html#pytket.backends.backendresult.BackendResult.get_debug_info">get_debug_info() (pytket.backends.backendresult.BackendResult method)</a>
 </li>
       <li><a href="backends.html#pytket.backends.backendresult.BackendResult.get_density_matrix">get_density_matrix() (pytket.backends.backendresult.BackendResult method)</a>
+</li>
+      <li><a href="architecture.html#pytket.architecture.Architecture.get_distance">get_distance() (pytket.architecture.Architecture method)</a>
 </li>
       <li><a href="backends.html#pytket.backends.backendresult.BackendResult.get_distribution">get_distribution() (pytket.backends.backendresult.BackendResult method)</a>
 </li>
@@ -1033,11 +1025,13 @@
 </li>
       <li><a href="circuit.html#pytket.circuit.PauliExpBox.get_phase">get_phase() (pytket.circuit.PauliExpBox method)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.Placement.get_placement_map">get_placement_map() (pytket.routing.Placement method)</a>
+      <li><a href="placement.html#pytket.placement.Placement.get_placement_map">get_placement_map() (pytket.placement.Placement method)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.Placement.get_placement_maps">get_placement_maps() (pytket.routing.Placement method)</a>
+      <li><a href="placement.html#pytket.placement.Placement.get_placement_maps">get_placement_maps() (pytket.placement.Placement method)</a>
 </li>
       <li><a href="passes.html#pytket.passes.RepeatUntilSatisfiedPass.get_predicate">get_predicate() (pytket.passes.RepeatUntilSatisfiedPass method)</a>
+</li>
+      <li><a href="circuit_class.html#pytket.circuit.Circuit.get_q_register">get_q_register() (pytket.circuit.Circuit method)</a>
 </li>
       <li><a href="backends.html#pytket.backends.backendresult.BackendResult.get_qbitlist">get_qbitlist() (pytket.backends.backendresult.BackendResult method)</a>
 </li>
@@ -1101,7 +1095,7 @@
 </li>
       <li><a href="partition.html#pytket.partition.GraphColourMethod">GraphColourMethod (class in pytket.partition)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.GraphPlacement">GraphPlacement (class in pytket.routing)</a>
+      <li><a href="placement.html#pytket.placement.GraphPlacement">GraphPlacement (class in pytket.placement)</a>
 </li>
       <li><a href="passes.html#pytket.passes.GuidedPauliSimp">GuidedPauliSimp() (in module pytket.passes)</a>
 </li>
@@ -1171,11 +1165,15 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="logging.html#pytket.logging.level">level (class in pytket.logging)</a>
 </li>
-      <li><a href="circuit.html#pytket.circuit.PhasePolyBox.linear_transformation">linear_transformation (pytket.circuit.PhasePolyBox property)</a>
+      <li><a href="mapping.html#pytket.mapping.LexiLabellingMethod">LexiLabellingMethod (class in pytket.mapping)</a>
+</li>
+      <li><a href="mapping.html#pytket.mapping.LexiRouteRoutingMethod">LexiRouteRoutingMethod (class in pytket.mapping)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="routing.html#pytket.routing.LinePlacement">LinePlacement (class in pytket.routing)</a>
+      <li><a href="circuit.html#pytket.circuit.PhasePolyBox.linear_transformation">linear_transformation (pytket.circuit.PhasePolyBox property)</a>
+</li>
+      <li><a href="placement.html#pytket.placement.LinePlacement">LinePlacement (class in pytket.placement)</a>
 </li>
       <li><a href="config.html#pytket.config.load_config_file">load_config_file() (in module pytket.config)</a>
 </li>
@@ -1188,6 +1186,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pauli.html#pytket.pauli.QubitPauliString.map">map (pytket.pauli.QubitPauliString property)</a>
+</li>
+      <li><a href="mapping.html#pytket.mapping.MappingManager">MappingManager (class in pytket.mapping)</a>
 </li>
       <li><a href="predicates.html#pytket.predicates.MaxNQubitsPredicate">MaxNQubitsPredicate (class in pytket.predicates)</a>
 </li>
@@ -1207,19 +1207,23 @@
 </li>
       <li><a href="backends.html#pytket.backends.status.CircuitStatus.message">message (pytket.backends.status.CircuitStatus attribute)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.GraphPlacement.modify_config">modify_config() (pytket.routing.GraphPlacement method)</a>
+      <li><a href="placement.html#pytket.placement.GraphPlacement.modify_config">modify_config() (pytket.placement.GraphPlacement method)</a>
 
       <ul>
-        <li><a href="routing.html#pytket.routing.NoiseAwarePlacement.modify_config">(pytket.routing.NoiseAwarePlacement method)</a>
+        <li><a href="placement.html#pytket.placement.NoiseAwarePlacement.modify_config">(pytket.placement.NoiseAwarePlacement method)</a>
 </li>
       </ul></li>
       <li>
     module
 
       <ul>
+        <li><a href="architecture.html#module-pytket.architecture">pytket.architecture</a>
+</li>
         <li><a href="circuit.html#module-pytket.circuit">pytket.circuit</a>
 </li>
         <li><a href="logging.html#module-pytket.logging">pytket.logging</a>
+</li>
+        <li><a href="mapping.html#module-pytket.mapping">pytket.mapping</a>
 </li>
         <li><a href="partition.html#module-pytket.partition">pytket.partition</a>
 </li>
@@ -1227,11 +1231,9 @@
 </li>
         <li><a href="pauli.html#module-pytket.pauli">pytket.pauli</a>
 </li>
+        <li><a href="placement.html#module-pytket.placement">pytket.placement</a>
+</li>
         <li><a href="predicates.html#module-pytket.predicates">pytket.predicates</a>
-</li>
-        <li><a href="program.html#module-pytket.program">pytket.program</a>
-</li>
-        <li><a href="routing.html#module-pytket.routing">pytket.routing</a>
 </li>
         <li><a href="tableau.html#module-pytket.tableau">pytket.tableau</a>
 </li>
@@ -1272,6 +1274,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="mapping.html#pytket.mapping.MultiGateReorderRoutingMethod">MultiGateReorderRoutingMethod (class in pytket.mapping)</a>
+</li>
       <li><a href="zx.html#pytket.zx.ZXDiagram.multiply_scalar">multiply_scalar() (pytket.zx.ZXDiagram method)</a>
 </li>
   </ul></td>
@@ -1305,6 +1309,8 @@
       <li><a href="zx.html#pytket.zx.ZXDiagram.n_vertices">n_vertices (pytket.zx.ZXDiagram property)</a>
 </li>
       <li><a href="zx.html#pytket.zx.ZXDiagram.n_wires">n_wires (pytket.zx.ZXDiagram property)</a>
+</li>
+      <li><a href="passes.html#pytket.passes.NaivePlacementPass">NaivePlacementPass() (in module pytket.passes)</a>
 </li>
       <li><a href="circuit.html#pytket.circuit.BasisOrder.name">name (pytket.circuit.BasisOrder property)</a>
 
@@ -1356,19 +1362,17 @@
 </li>
       <li><a href="circuit.html#pytket.circuit.Node">Node (class in pytket.circuit)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.NodeGraph">NodeGraph (class in pytket.routing)</a>
-</li>
-      <li><a href="routing.html#pytket.routing.Architecture.nodes">nodes (pytket.routing.Architecture property)</a>
+      <li><a href="architecture.html#pytket.architecture.Architecture.nodes">nodes (pytket.architecture.Architecture property)</a>
 
       <ul>
-        <li><a href="routing.html#pytket.routing.FullyConnected.nodes">(pytket.routing.FullyConnected property)</a>
+        <li><a href="architecture.html#pytket.architecture.FullyConnected.nodes">(pytket.architecture.FullyConnected property)</a>
 </li>
         <li><a href="backends.html#pytket.backends.backendinfo.BackendInfo.nodes">(pytket.backends.backendinfo.BackendInfo property)</a>
 </li>
       </ul></li>
       <li><a href="predicates.html#pytket.predicates.NoFastFeedforwardPredicate">NoFastFeedforwardPredicate (class in pytket.predicates)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.NoiseAwarePlacement">NoiseAwarePlacement (class in pytket.routing)</a>
+      <li><a href="placement.html#pytket.placement.NoiseAwarePlacement">NoiseAwarePlacement (class in pytket.placement)</a>
 </li>
       <li><a href="predicates.html#pytket.predicates.NoMidMeasurePredicate">NoMidMeasurePredicate (class in pytket.predicates)</a>
 </li>
@@ -1393,6 +1397,8 @@
 </li>
       </ul></li>
       <li><a href="circuit.html#pytket.circuit.Command.opgroup">opgroup (pytket.circuit.Command property)</a>
+</li>
+      <li><a href="circuit_class.html#pytket.circuit.Circuit.opgroups">opgroups (pytket.circuit.Circuit property)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.ops_of_type">ops_of_type() (pytket.circuit.Circuit method)</a>
 </li>
@@ -1426,8 +1432,12 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="zx.html#pytket.zx.Rewrite.parallel_h_removal">parallel_h_removal() (pytket.zx.Rewrite static method)</a>
 </li>
-      <li><a href="zx.html#pytket.zx.BasicGen.param">param (pytket.zx.BasicGen property)</a>
+      <li><a href="zx.html#pytket.zx.CliffordGen.param">param (pytket.zx.CliffordGen property)</a>
+
+      <ul>
+        <li><a href="zx.html#pytket.zx.PhasedGen.param">(pytket.zx.PhasedGen property)</a>
 </li>
+      </ul></li>
       <li><a href="circuit.html#pytket.circuit.CustomGate.params">params (pytket.circuit.CustomGate property)</a>
 
       <ul>
@@ -1466,17 +1476,19 @@
 </li>
       <li><a href="circuit.html#pytket.circuit.PhasePolyBox.phase_polynomial">phase_polynomial (pytket.circuit.PhasePolyBox property)</a>
 </li>
+      <li><a href="zx.html#pytket.zx.PhasedGen">PhasedGen (class in pytket.zx)</a>
+</li>
       <li><a href="circuit.html#pytket.circuit.PhasePolyBox">PhasePolyBox (class in pytket.circuit)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.Placement.place">place() (pytket.routing.Placement method)</a>
+      <li><a href="placement.html#pytket.placement.Placement.place">place() (pytket.placement.Placement method)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.place_with_map">place_with_map() (in module pytket.routing)</a>
+      <li><a href="placement.html#pytket.placement.place_with_map">place_with_map() (in module pytket.placement)</a>
 
       <ul>
-        <li><a href="routing.html#pytket.routing.Placement.place_with_map">(pytket.routing.Placement static method)</a>
+        <li><a href="placement.html#pytket.placement.Placement.place_with_map">(pytket.placement.Placement static method)</a>
 </li>
       </ul></li>
-      <li><a href="routing.html#pytket.routing.Placement">Placement (class in pytket.routing)</a>
+      <li><a href="placement.html#pytket.placement.Placement">Placement (class in pytket.placement)</a>
 </li>
       <li><a href="passes.html#pytket.passes.PlacementPass">PlacementPass() (in module pytket.passes)</a>
 </li>
@@ -1496,10 +1508,15 @@
 </li>
       <li><a href="backends.html#pytket.backends.Backend.process_circuits">process_circuits() (pytket.backends.Backend method)</a>
 </li>
-      <li><a href="program.html#pytket.program.Program">Program (class in pytket.program)</a>
-</li>
       <li><a href="circuit.html#pytket.circuit.ProjectorAssertionBox">ProjectorAssertionBox (class in pytket.circuit)</a>
 </li>
+      <li>
+    pytket.architecture
+
+      <ul>
+        <li><a href="architecture.html#module-pytket.architecture">module</a>
+</li>
+      </ul></li>
       <li>
     pytket.circuit
 
@@ -1515,12 +1532,21 @@
 </li>
       </ul></li>
       <li>
+    pytket.mapping
+
+      <ul>
+        <li><a href="mapping.html#module-pytket.mapping">module</a>
+</li>
+      </ul></li>
+      <li>
     pytket.partition
 
       <ul>
         <li><a href="partition.html#module-pytket.partition">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     pytket.passes
 
@@ -1535,27 +1561,18 @@
         <li><a href="pauli.html#module-pytket.pauli">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    pytket.placement
+
+      <ul>
+        <li><a href="placement.html#module-pytket.placement">module</a>
+</li>
+      </ul></li>
       <li>
     pytket.predicates
 
       <ul>
         <li><a href="predicates.html#module-pytket.predicates">module</a>
-</li>
-      </ul></li>
-      <li>
-    pytket.program
-
-      <ul>
-        <li><a href="program.html#module-pytket.program">module</a>
-</li>
-      </ul></li>
-      <li>
-    pytket.routing
-
-      <ul>
-        <li><a href="routing.html#module-pytket.routing">module</a>
 </li>
       </ul></li>
       <li>
@@ -1694,9 +1711,11 @@
 <h2 id="Q">Q</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="circuit_class.html#pytket.circuit.Circuit.q_registers">q_registers (pytket.circuit.Circuit property)</a>
+</li>
       <li><a href="circuit.html#pytket.circuit.QControlBox">QControlBox (class in pytket.circuit)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.SquareGrid.qind_to_squind">qind_to_squind() (pytket.routing.SquareGrid method)</a>
+      <li><a href="architecture.html#pytket.architecture.SquareGrid.qind_to_squind">qind_to_squind() (pytket.architecture.SquareGrid method)</a>
 </li>
       <li><a href="zx.html#pytket.zx.ZXGen.qtype">qtype (pytket.zx.ZXGen property)</a>
 </li>
@@ -1721,11 +1740,7 @@
       <li><a href="circuit_class.html#pytket.circuit.Circuit.qubit_is_discarded">qubit_is_discarded() (pytket.circuit.Circuit method)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.qubit_readout">qubit_readout (pytket.circuit.Circuit property)</a>
-
-      <ul>
-        <li><a href="program.html#pytket.program.Program.qubit_readout">(pytket.program.Program property)</a>
 </li>
-      </ul></li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.qubit_to_bit_map">qubit_to_bit_map (pytket.circuit.Circuit property)</a>
 </li>
       <li><a href="utils.html#pytket.utils.QubitPauliOperator">QubitPauliOperator (class in pytket.utils)</a>
@@ -1739,9 +1754,11 @@
       <ul>
         <li><a href="circuit.html#pytket.circuit.Command.qubits">(pytket.circuit.Command property)</a>
 </li>
-        <li><a href="program.html#pytket.program.Program.qubits">(pytket.program.Program property)</a>
-</li>
       </ul></li>
+      <li><a href="backends.html#pytket.backends.status.CircuitStatus.queue_position">queue_position (pytket.backends.status.CircuitStatus attribute)</a>
+</li>
+      <li><a href="backends.html#pytket.backends.status.CircuitStatus.queued_time">queued_time (pytket.backends.status.CircuitStatus attribute)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -1754,19 +1771,7 @@
 </li>
       <li><a href="backends.html#pytket.backends.Backend.rebase_pass">rebase_pass() (pytket.backends.Backend method)</a>
 </li>
-      <li><a href="passes.html#pytket.passes.RebaseCirq">RebaseCirq() (in module pytket.passes)</a>
-</li>
       <li><a href="passes.html#pytket.passes.RebaseCustom">RebaseCustom() (in module pytket.passes)</a>
-</li>
-      <li><a href="passes.html#pytket.passes.RebaseHQS">RebaseHQS() (in module pytket.passes)</a>
-</li>
-      <li><a href="passes.html#pytket.passes.RebaseOQC">RebaseOQC() (in module pytket.passes)</a>
-</li>
-      <li><a href="passes.html#pytket.passes.RebaseProjectQ">RebaseProjectQ() (in module pytket.passes)</a>
-</li>
-      <li><a href="passes.html#pytket.passes.RebasePyZX">RebasePyZX() (in module pytket.passes)</a>
-</li>
-      <li><a href="passes.html#pytket.passes.RebaseQuil">RebaseQuil() (in module pytket.passes)</a>
 </li>
       <li><a href="passes.html#pytket.passes.RebaseTket">RebaseTket() (in module pytket.passes)</a>
 </li>
@@ -1783,10 +1788,6 @@
       <li><a href="transform.html#pytket.transform.Transform.RebaseToRzRx">RebaseToRzRx() (pytket.transform.Transform static method)</a>
 </li>
       <li><a href="transform.html#pytket.transform.Transform.RebaseToTket">RebaseToTket() (pytket.transform.Transform static method)</a>
-</li>
-      <li><a href="passes.html#pytket.passes.RebaseUFR">RebaseUFR() (in module pytket.passes)</a>
-</li>
-      <li><a href="passes.html#pytket.passes.RebaseUMD">RebaseUMD() (in module pytket.passes)</a>
 </li>
       <li><a href="zx.html#pytket.zx.Rewrite.red_to_green">red_to_green() (pytket.zx.Rewrite static method)</a>
 </li>
@@ -1818,8 +1819,6 @@
 </li>
       <li><a href="classical.html#pytket.circuit.logic_exp.RegLeq">RegLeq (class in pytket.circuit.logic_exp)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="classical.html#pytket.circuit.logic_exp.RegLogicExp">RegLogicExp (class in pytket.circuit.logic_exp)</a>
 </li>
       <li><a href="classical.html#pytket.circuit.logic_exp.RegLt">RegLt (class in pytket.circuit.logic_exp)</a>
@@ -1832,6 +1831,8 @@
 </li>
       <li><a href="classical.html#pytket.circuit.logic_exp.RegXor">RegXor (class in pytket.circuit.logic_exp)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.remove_blank_wires">remove_blank_wires() (pytket.circuit.Circuit method)</a>
 </li>
       <li><a href="zx.html#pytket.zx.Rewrite.remove_interior_cliffords">remove_interior_cliffords() (pytket.zx.Rewrite static method)</a>
@@ -1880,15 +1881,21 @@
 </li>
       <li><a href="zx.html#pytket.zx.Rewrite">Rewrite (class in pytket.zx)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.RingArch">RingArch (class in pytket.routing)</a>
+      <li><a href="architecture.html#pytket.architecture.RingArch">RingArch (class in pytket.architecture)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.route">route() (in module pytket.routing)</a>
+      <li><a href="mapping.html#pytket.mapping.MappingManager.route_circuit">route_circuit() (pytket.mapping.MappingManager method)</a>
+</li>
+      <li><a href="mapping.html#pytket.mapping.RoutingMethod">RoutingMethod (class in pytket.mapping)</a>
+</li>
+      <li><a href="mapping.html#pytket.mapping.RoutingMethodCircuit">RoutingMethodCircuit (class in pytket.mapping)</a>
 </li>
       <li><a href="passes.html#pytket.passes.RoutingPass">RoutingPass() (in module pytket.passes)</a>
 </li>
       <li><a href="backends.html#pytket.backends.Backend.run_circuit">run_circuit() (pytket.backends.Backend method)</a>
 </li>
       <li><a href="backends.html#pytket.backends.Backend.run_circuits">run_circuits() (pytket.backends.Backend method)</a>
+</li>
+      <li><a href="backends.html#pytket.backends.status.CircuitStatus.running_time">running_time (pytket.backends.status.CircuitStatus attribute)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.Rx">Rx() (pytket.circuit.Circuit method)</a>
 </li>
@@ -1968,17 +1975,15 @@
 </li>
       <li><a href="zx.html#pytket.zx.Rewrite.spider_fusion">spider_fusion() (pytket.zx.Rewrite static method)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.SquareGrid">SquareGrid (class in pytket.routing)</a>
+      <li><a href="architecture.html#pytket.architecture.SquareGrid">SquareGrid (class in pytket.architecture)</a>
 </li>
       <li><a href="passes.html#pytket.passes.SquashCustom">SquashCustom() (in module pytket.passes)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="passes.html#pytket.passes.SquashHQS">SquashHQS() (in module pytket.passes)</a>
-</li>
       <li><a href="passes.html#pytket.passes.SquashTK1">SquashTK1() (in module pytket.passes)</a>
 </li>
-      <li><a href="routing.html#pytket.routing.SquareGrid.squind_to_qind">squind_to_qind() (pytket.routing.SquareGrid method)</a>
+      <li><a href="architecture.html#pytket.architecture.SquareGrid.squind_to_qind">squind_to_qind() (pytket.architecture.SquareGrid method)</a>
 </li>
       <li><a href="circuit.html#pytket.circuit.StabiliserAssertionBox">StabiliserAssertionBox (class in pytket.circuit)</a>
 </li>
@@ -1997,6 +2002,8 @@
       <li><a href="backends.html#pytket.backends.backendresult.StoredResult">StoredResult (class in pytket.backends.backendresult)</a>
 </li>
       <li><a href="pauli.html#pytket.pauli.PauliStabiliser.string">string (pytket.pauli.PauliStabiliser property)</a>
+</li>
+      <li><a href="backends.html#pytket.backends.status.CircuitStatus.submitted_time">submitted_time (pytket.backends.status.CircuitStatus attribute)</a>
 </li>
       <li><a href="utils.html#pytket.utils.QubitPauliOperator.subs">subs() (pytket.utils.QubitPauliOperator method)</a>
 </li>
@@ -2058,18 +2065,16 @@
         <li><a href="transform.html#pytket.transform.Transform.ThreeQubitSquash">(pytket.transform.Transform static method)</a>
 </li>
       </ul></li>
-      <li><a href="circuit_class.html#pytket.circuit.Circuit.to_dict">to_dict() (pytket.circuit.Circuit method)</a>
+      <li><a href="architecture.html#pytket.architecture.Architecture.to_dict">to_dict() (pytket.architecture.Architecture method)</a>
 
       <ul>
+        <li><a href="architecture.html#pytket.architecture.FullyConnected.to_dict">(pytket.architecture.FullyConnected method)</a>
+</li>
+        <li><a href="circuit_class.html#pytket.circuit.Circuit.to_dict">(pytket.circuit.Circuit method)</a>
+</li>
         <li><a href="passes.html#pytket.passes.BasePass.to_dict">(pytket.passes.BasePass method)</a>
 </li>
-        <li><a href="pauli.html#pytket.pauli.QubitPauliString.to_dict">(pytket.pauli.QubitPauliString method)</a>
-</li>
-        <li><a href="routing.html#pytket.routing.Architecture.to_dict">(pytket.routing.Architecture method)</a>
-</li>
-        <li><a href="routing.html#pytket.routing.FullyConnected.to_dict">(pytket.routing.FullyConnected method)</a>
-</li>
-        <li><a href="routing.html#pytket.routing.Placement.to_dict">(pytket.routing.Placement method)</a>
+        <li><a href="placement.html#pytket.placement.Placement.to_dict">(pytket.placement.Placement method)</a>
 </li>
         <li><a href="backends.html#pytket.backends.backendinfo.BackendInfo.to_dict">(pytket.backends.backendinfo.BackendInfo method)</a>
 </li>
@@ -2106,8 +2111,6 @@
         <li><a href="utils.html#pytket.utils.QubitPauliOperator.to_list">(pytket.utils.QubitPauliOperator method)</a>
 </li>
       </ul></li>
-      <li><a href="utils.html#pytket.utils.QubitPauliOperator.to_OpenFermion">to_OpenFermion() (pytket.utils.QubitPauliOperator method)</a>
-</li>
       <li><a href="utils.html#pytket.utils.OutcomeArray.to_readout">to_readout() (pytket.utils.OutcomeArray method)</a>
 </li>
       <li><a href="utils.html#pytket.utils.OutcomeArray.to_readouts">to_readouts() (pytket.utils.OutcomeArray method)</a>
@@ -2180,12 +2183,14 @@
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.valid_connectivity">valid_connectivity() (pytket.circuit.Circuit method)</a>
 </li>
-      <li><a href="circuit.html#pytket.circuit.Conditional.value">value (pytket.circuit.Conditional property)</a>
+      <li><a href="architecture.html#pytket.architecture.Architecture.valid_operation">valid_operation() (pytket.architecture.Architecture method)</a>
 </li>
-      <li><a href="circuit_class.html#pytket.circuit.Circuit.Vdg">Vdg() (pytket.circuit.Circuit method)</a>
+      <li><a href="circuit.html#pytket.circuit.Conditional.value">value (pytket.circuit.Conditional property)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="circuit_class.html#pytket.circuit.Circuit.Vdg">Vdg() (pytket.circuit.Circuit method)</a>
+</li>
       <li><a href="partition.html#pytket.partition.MeasurementSetup.verify">verify() (pytket.partition.MeasurementSetup method)</a>
 
       <ul>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytket.mapping &mdash; pytket 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pytket.tableau" href="tableau.html" />
+    <link rel="prev" title="pytket.placement" href="placement.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> pytket
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source Attribution</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">More Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://cqcl.github.io/pytket/manual/index.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://cqcl.github.io/pytket-extensions/api/index.html">Extensions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="backends.html">pytket.backends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="circuit.html">pytket.circuit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pauli.html">pytket.pauli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="passes.html">pytket.passes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="predicates.html">pytket.predicates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partition.html">pytket.partition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qasm.html">pytket.qasm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quipper.html">pytket.quipper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">pytket.architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="placement.html">pytket.placement</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pytket.mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tableau.html">pytket.tableau</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transform.html">pytket.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tailoring.html">pytket.tailoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zx.html">pytket.zx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">pytket.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">pytket.logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">pytket.config</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pytket</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>pytket.mapping</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/mapping.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pytket.mapping">
+<span id="pytket-mapping"></span><h1>pytket.mapping<a class="headerlink" href="#module-pytket.mapping" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytket.mapping.AASLabellingMethod">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.mapping.</span></span><span class="sig-name descname"><span class="pre">AASLabellingMethod</span></span><a class="headerlink" href="#pytket.mapping.AASLabellingMethod" title="Permalink to this definition"></a></dt>
+<dd><p>Defines a Labeling Method for aas for labelling all unplaced qubits in a circuit</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.mapping.AASLabellingMethod.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.mapping.AASLabellingMethod" title="pytket.mapping.AASLabellingMethod"><span class="pre">pytket.mapping.AASLabellingMethod</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.mapping.AASLabellingMethod.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>AASLabellingMethod constructor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytket.mapping.AASRouteRoutingMethod">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.mapping.</span></span><span class="sig-name descname"><span class="pre">AASRouteRoutingMethod</span></span><a class="headerlink" href="#pytket.mapping.AASRouteRoutingMethod" title="Permalink to this definition"></a></dt>
+<dd><p>Defines a RoutingMethod object for mapping circuits that uses the architecture aware synthesis method implemented in tket.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.mapping.AASRouteRoutingMethod.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.mapping.AASRouteRoutingMethod" title="pytket.mapping.AASRouteRoutingMethod"><span class="pre">pytket.mapping.AASRouteRoutingMethod</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">aaslookahead</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.mapping.AASRouteRoutingMethod.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>AASRouteRoutingMethod constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>aaslookahead</strong> – recursive interation depth of the architecture aware synthesis.method.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytket.mapping.BoxDecompositionRoutingMethod">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.mapping.</span></span><span class="sig-name descname"><span class="pre">BoxDecompositionRoutingMethod</span></span><a class="headerlink" href="#pytket.mapping.BoxDecompositionRoutingMethod" title="Permalink to this definition"></a></dt>
+<dd><p>Defines a RoutingMethod object for decomposing boxes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.mapping.BoxDecompositionRoutingMethod.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.mapping.BoxDecompositionRoutingMethod" title="pytket.mapping.BoxDecompositionRoutingMethod"><span class="pre">pytket.mapping.BoxDecompositionRoutingMethod</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.mapping.BoxDecompositionRoutingMethod.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>BoxDecompositionRoutingMethod constructor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytket.mapping.LexiLabellingMethod">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.mapping.</span></span><span class="sig-name descname"><span class="pre">LexiLabellingMethod</span></span><a class="headerlink" href="#pytket.mapping.LexiLabellingMethod" title="Permalink to this definition"></a></dt>
+<dd><p>Defines a RoutingMethod for labelling Qubits that uses the Lexicographical Comparison approach outlined in arXiv:1902.08091.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.mapping.LexiLabellingMethod.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.mapping.LexiLabellingMethod" title="pytket.mapping.LexiLabellingMethod"><span class="pre">pytket.mapping.LexiLabellingMethod</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.mapping.LexiLabellingMethod.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>LexiLabellingMethod constructor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytket.mapping.LexiRouteRoutingMethod">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.mapping.</span></span><span class="sig-name descname"><span class="pre">LexiRouteRoutingMethod</span></span><a class="headerlink" href="#pytket.mapping.LexiRouteRoutingMethod" title="Permalink to this definition"></a></dt>
+<dd><p>Defines a RoutingMethod object for mapping circuits that uses the Lexicographical Comparison approach outlined in arXiv:1902.08091.Only supports 1-qubit, 2-qubit and barrier gates.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.mapping.LexiRouteRoutingMethod.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.mapping.LexiRouteRoutingMethod" title="pytket.mapping.LexiRouteRoutingMethod"><span class="pre">pytket.mapping.LexiRouteRoutingMethod</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lookahead</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.mapping.LexiRouteRoutingMethod.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>LexiRoute constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>lookahead</strong> – Maximum depth of lookahead employed when picking SWAP for purpose of logical to physical mapping.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytket.mapping.MappingManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.mapping.</span></span><span class="sig-name descname"><span class="pre">MappingManager</span></span><a class="headerlink" href="#pytket.mapping.MappingManager" title="Permalink to this definition"></a></dt>
+<dd><p>Defined by a pytket Architecture object, maps Circuit logical qubits to physically permitted Architecture qubits. Mapping is completed by sequential routing (full or partial) of subcircuits. A custom method for routing (full or partial) of subcircuits can be defined in Python.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.mapping.MappingManager.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.mapping.MappingManager" title="pytket.mapping.MappingManager"><span class="pre">pytket.mapping.MappingManager</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">architecture</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.mapping.MappingManager.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>MappingManager constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>architecture</strong> – pytket Architecture object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.mapping.MappingManager.route_circuit">
+<span class="sig-name descname"><span class="pre">route_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.mapping.MappingManager" title="pytket.mapping.MappingManager"><span class="pre">pytket.mapping.MappingManager</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">routing_methods</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pytket.mapping.RoutingMethod" title="pytket.mapping.RoutingMethod"><span class="pre">pytket.mapping.RoutingMethod</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_isolated_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#pytket.mapping.MappingManager.route_circuit" title="Permalink to this definition"></a></dt>
+<dd><p>Maps from given logical circuit to physical circuit. Modification defined by route_subcircuit, but typically this proceeds by insertion of SWAP gates that permute logical qubits on physical qubits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>circuit</strong> – pytket circuit to be mapped</p></li>
+<li><p><strong>routing_methods</strong> – Ranked methods to use for routing subcircuits. In given order, each method is sequentially checked for viability, with the first viable method being used.</p></li>
+<li><p><strong>label_isolated_qubits</strong> – will not label qubits without gates or only single qubit gates on them if this is set false</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytket.mapping.MultiGateReorderRoutingMethod">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.mapping.</span></span><span class="sig-name descname"><span class="pre">MultiGateReorderRoutingMethod</span></span><a class="headerlink" href="#pytket.mapping.MultiGateReorderRoutingMethod" title="Permalink to this definition"></a></dt>
+<dd><p>Defines a RoutingMethod object for commuting physically permitted multi-qubit gates to the front of the subcircuit.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.mapping.MultiGateReorderRoutingMethod.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.mapping.MultiGateReorderRoutingMethod" title="pytket.mapping.MultiGateReorderRoutingMethod"><span class="pre">pytket.mapping.MultiGateReorderRoutingMethod</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.mapping.MultiGateReorderRoutingMethod.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>MultiGateReorderRoutingMethod constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_depth</strong> – Maximum number of layers of gates checked for simultaneous commutation.</p></li>
+<li><p><strong>max_size</strong> – Maximum number of gates checked for simultaneous commutation.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytket.mapping.RoutingMethod">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.mapping.</span></span><span class="sig-name descname"><span class="pre">RoutingMethod</span></span><a class="headerlink" href="#pytket.mapping.RoutingMethod" title="Permalink to this definition"></a></dt>
+<dd><p>Parent class for RoutingMethod, for inheritance purposes only, not for usage.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.mapping.RoutingMethod.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.mapping.RoutingMethod" title="pytket.mapping.RoutingMethod"><span class="pre">pytket.mapping.RoutingMethod</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.mapping.RoutingMethod.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytket.mapping.RoutingMethodCircuit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.mapping.</span></span><span class="sig-name descname"><span class="pre">RoutingMethodCircuit</span></span><a class="headerlink" href="#pytket.mapping.RoutingMethodCircuit" title="Permalink to this definition"></a></dt>
+<dd><p>The RoutingMethod class captures a method for partially mapping logical subcircuits to physical operations as permitted by some architecture. Ranked RoutingMethod objects are used by the MappingManager to route whole circuits.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.mapping.RoutingMethodCircuit.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.mapping.RoutingMethodCircuit" title="pytket.mapping.RoutingMethodCircuit"><span class="pre">pytket.mapping.RoutingMethodCircuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">route_subcircuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="circuit.html#pytket.circuit.UnitID" title="pytket.circuit.UnitID"><span class="pre">pytket.circuit.UnitID</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="circuit.html#pytket.circuit.UnitID" title="pytket.circuit.UnitID"><span class="pre">pytket.circuit.UnitID</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="circuit.html#pytket.circuit.UnitID" title="pytket.circuit.UnitID"><span class="pre">pytket.circuit.UnitID</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="circuit.html#pytket.circuit.UnitID" title="pytket.circuit.UnitID"><span class="pre">pytket.circuit.UnitID</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.mapping.RoutingMethodCircuit.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor for a routing method defined by partially routing subcircuits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>route_subcircuit</strong> – A function declaration that given a Circuit and Architecture object, returns a tuple containing a bool informing MappingManager whether to substitute the returned circuit into the circuit being routed, a new modified circuit, the initial logical to physical qubit mapping of the modified circuit and the permutation of logical to physical qubit mapping given operations in the modified circuit</p></li>
+<li><p><strong>max_size</strong> – The maximum number of gates permitted in a subcircuit</p></li>
+<li><p><strong>max_depth</strong> – The maximum permitted depth of a subcircuit.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="placement.html" class="btn btn-neutral float-left" title="pytket.placement" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tableau.html" class="btn btn-neutral float-right" title="pytket.tableau" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Cambridge Quantum Computing Ltd.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

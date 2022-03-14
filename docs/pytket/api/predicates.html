@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytket.predicates &mdash; pytket 0.19.2 documentation</title>
+  <title>pytket.predicates &mdash; pytket 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,7 +18,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="pytket.program" href="program.html" />
+    <link rel="next" title="pytket.partition" href="partition.html" />
     <link rel="prev" title="pytket.passes" href="passes.html" /> 
 </head>
 
@@ -30,7 +30,7 @@
             <a href="index.html" class="icon icon-home"> pytket
           </a>
               <div class="version">
-                0.19
+                1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -45,7 +45,6 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="telemetry_data_policy.html">Telemetry Data Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source Attribution</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More Documentation:</span></p>
@@ -60,11 +59,12 @@
 <li class="toctree-l1"><a class="reference internal" href="pauli.html">pytket.pauli</a></li>
 <li class="toctree-l1"><a class="reference internal" href="passes.html">pytket.passes</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">pytket.predicates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="program.html">pytket.program</a></li>
 <li class="toctree-l1"><a class="reference internal" href="partition.html">pytket.partition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qasm.html">pytket.qasm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quipper.html">pytket.quipper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="routing.html">pytket.routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">pytket.architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="placement.html">pytket.placement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">pytket.mapping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tableau.html">pytket.tableau</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transform.html">pytket.transform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tailoring.html">pytket.tailoring</a></li>
@@ -166,7 +166,7 @@
 <dd><p>Predicate asserting that a circuit satisfies a given connectivity graph. The graph is always considered to be undirected.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.predicates.ConnectivityPredicate.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.predicates.ConnectivityPredicate" title="pytket.predicates.ConnectivityPredicate"><span class="pre">pytket.predicates.ConnectivityPredicate</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">architecture</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="routing.html#pytket.routing.Architecture" title="pytket.routing.Architecture"><span class="pre">pytket.routing.Architecture</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.predicates.ConnectivityPredicate.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.predicates.ConnectivityPredicate" title="pytket.predicates.ConnectivityPredicate"><span class="pre">pytket.predicates.ConnectivityPredicate</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">architecture</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.predicates.ConnectivityPredicate.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>Construct from an <code class="xref py py-class docutils literal notranslate"><span class="pre">Architecture</span></code>.</p>
 </dd></dl>
 
@@ -190,7 +190,7 @@
 <dd><p>Predicate asserting that a circuit satisfies a given connectivity graph. The graph is always considered to be directed.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.predicates.DirectednessPredicate.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.predicates.DirectednessPredicate" title="pytket.predicates.DirectednessPredicate"><span class="pre">pytket.predicates.DirectednessPredicate</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">architecture</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="routing.html#pytket.routing.Architecture" title="pytket.routing.Architecture"><span class="pre">pytket.routing.Architecture</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.predicates.DirectednessPredicate.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.predicates.DirectednessPredicate" title="pytket.predicates.DirectednessPredicate"><span class="pre">pytket.predicates.DirectednessPredicate</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">architecture</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.predicates.DirectednessPredicate.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>Construct from an <code class="xref py py-class docutils literal notranslate"><span class="pre">Architecture</span></code>.</p>
 </dd></dl>
 
@@ -313,7 +313,7 @@
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytket.predicates.PlacementPredicate.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic simple">
-<li><p>__init__(self: pytket.predicates.PlacementPredicate, architecture: pytket.routing.Architecture) -&gt; None</p></li>
+<li><p>__init__(self: pytket.predicates.PlacementPredicate, architecture: pytket.architecture.Architecture) -&gt; None</p></li>
 </ol>
 <p>Construct from an <code class="xref py py-class docutils literal notranslate"><span class="pre">Architecture</span></code>.</p>
 <ol class="arabic simple" start="2">
@@ -374,7 +374,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="passes.html" class="btn btn-neutral float-left" title="pytket.passes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="program.html" class="btn btn-neutral float-right" title="pytket.program" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="partition.html" class="btn btn-neutral float-right" title="pytket.partition" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

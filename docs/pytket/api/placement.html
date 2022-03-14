@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytket.placement &mdash; pytket 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pytket.mapping" href="mapping.html" />
+    <link rel="prev" title="pytket.architecture" href="architecture.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> pytket
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source Attribution</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">More Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://cqcl.github.io/pytket/manual/index.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://cqcl.github.io/pytket-extensions/api/index.html">Extensions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="backends.html">pytket.backends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="circuit.html">pytket.circuit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pauli.html">pytket.pauli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="passes.html">pytket.passes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="predicates.html">pytket.predicates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partition.html">pytket.partition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qasm.html">pytket.qasm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quipper.html">pytket.quipper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">pytket.architecture</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pytket.placement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">pytket.mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tableau.html">pytket.tableau</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transform.html">pytket.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tailoring.html">pytket.tailoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zx.html">pytket.zx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">pytket.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">pytket.logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">pytket.config</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pytket</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>pytket.placement</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/placement.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pytket.placement">
+<span id="pytket-placement"></span><h1>pytket.placement<a class="headerlink" href="#module-pytket.placement" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytket.placement.GraphPlacement">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.placement.</span></span><span class="sig-name descname"><span class="pre">GraphPlacement</span></span><a class="headerlink" href="#pytket.placement.GraphPlacement" title="Permalink to this definition"></a></dt>
+<dd><p>The GraphPlacement class, contains methods for getting maps between Circuit Qubits and Architecture Nodes and for relabelling Circuit Qubits.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.placement.GraphPlacement.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.placement.GraphPlacement" title="pytket.placement.GraphPlacement"><span class="pre">pytket.placement.GraphPlacement</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.placement.GraphPlacement.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor for a GraphPlacement object. The Architecture object describes the connectivity between qubits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>arc</strong> – An Architecture object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.placement.GraphPlacement.modify_config">
+<span class="sig-name descname"><span class="pre">modify_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.placement.GraphPlacement" title="pytket.placement.GraphPlacement"><span class="pre">pytket.placement.GraphPlacement</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.placement.GraphPlacement.modify_config" title="Permalink to this definition"></a></dt>
+<dd><p>Overides default Placement parameters to given values. Timeout is in milliseconds
+:param **kwargs: Parameters for placement: (int)depth_limit=5, (int)max_interaction_edges=edges in the device graph, (int)max_matches=10000, (int)contraction_ratio=10, (int)timeout=60000.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytket.placement.LinePlacement">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.placement.</span></span><span class="sig-name descname"><span class="pre">LinePlacement</span></span><a class="headerlink" href="#pytket.placement.LinePlacement" title="Permalink to this definition"></a></dt>
+<dd><p>The LinePlacement class, contains methods for getting maps between Circuit Qubits and Architecture Nodes and for relabelling Circuit Qubits.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.placement.LinePlacement.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.placement.LinePlacement" title="pytket.placement.LinePlacement"><span class="pre">pytket.placement.LinePlacement</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.placement.LinePlacement.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor for a LinePlacement object. The Architecture object describes the connectivity between qubits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>arc</strong> – An Architecture object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytket.placement.NoiseAwarePlacement">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.placement.</span></span><span class="sig-name descname"><span class="pre">NoiseAwarePlacement</span></span><a class="headerlink" href="#pytket.placement.NoiseAwarePlacement" title="Permalink to this definition"></a></dt>
+<dd><p>The NoiseAwarePlacement class, contains methods for getting maps between Circuit Qubits and Architecture Nodes and for relabelling Circuit Qubits. It uses gate error rates and readout errors to find the best placement map.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.placement.NoiseAwarePlacement.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.placement.NoiseAwarePlacement" title="pytket.placement.NoiseAwarePlacement"><span class="pre">pytket.placement.NoiseAwarePlacement</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_errors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="circuit.html#pytket.circuit.Node" title="pytket.circuit.Node"><span class="pre">pytket.circuit.Node</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_errors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="circuit.html#pytket.circuit.Node" title="pytket.circuit.Node"><span class="pre">pytket.circuit.Node</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="circuit.html#pytket.circuit.Node" title="pytket.circuit.Node"><span class="pre">pytket.circuit.Node</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">readout_errors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="circuit.html#pytket.circuit.Node" title="pytket.circuit.Node"><span class="pre">pytket.circuit.Node</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.placement.NoiseAwarePlacement.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor for a NoiseAwarePlacement object. The Architecture object describes the connectivity between qubits. The dictionaries passed as parameters indicate the average gate errors for single- and two-qubit gates as well as readout errors. If no error is given for a given node or pair of nodes, the fidelity is assumed to be 1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arc</strong> – An Architecture object</p></li>
+<li><p><strong>node_errors</strong> – a dictionary mapping nodes in the architecture to average single-qubit gate errors</p></li>
+<li><p><strong>link_errors</strong> – a dictionary mapping pairs of nodes in the architecture to average two-qubit gate errors</p></li>
+<li><p><strong>readout_errors</strong> – a dictionary mapping nodes in the architecture to average measurement readout errors.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.placement.NoiseAwarePlacement.modify_config">
+<span class="sig-name descname"><span class="pre">modify_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.placement.NoiseAwarePlacement" title="pytket.placement.NoiseAwarePlacement"><span class="pre">pytket.placement.NoiseAwarePlacement</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.placement.NoiseAwarePlacement.modify_config" title="Permalink to this definition"></a></dt>
+<dd><p>Overides default Placement parameters to given values. Timeout is in milliseconds
+:param **kwargs: Parameters for placement: (int)depth_limit=5, (int)max_interaction_edges=edges in the device graph, (int)max_matches=10000, (int)contraction_ratio=10, (int)timeout=60000.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytket.placement.Placement">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.placement.</span></span><span class="sig-name descname"><span class="pre">Placement</span></span><a class="headerlink" href="#pytket.placement.Placement" title="Permalink to this definition"></a></dt>
+<dd><p>The base Placement class, contains methods for getting maps between Circuit Qubits and Architecture Nodes and for relabelling Circuit Qubits.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.placement.Placement.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.placement.Placement" title="pytket.placement.Placement"><span class="pre">pytket.placement.Placement</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.placement.Placement.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor for a Placement object. The Architecture object describes the connectivity between qubits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>arc</strong> – An Architecture object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.placement.Placement.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">json</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.placement.Placement" title="pytket.placement.Placement"><span class="pre">pytket.placement.Placement</span></a></span></span><a class="headerlink" href="#pytket.placement.Placement.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Construct Placement instance from JSON serializable dict representation of the Placement.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.placement.Placement.get_placement_map">
+<span class="sig-name descname"><span class="pre">get_placement_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.placement.Placement" title="pytket.placement.Placement"><span class="pre">pytket.placement.Placement</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="circuit.html#pytket.circuit.Qubit" title="pytket.circuit.Qubit"><span class="pre">pytket.circuit.Qubit</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="circuit.html#pytket.circuit.Node" title="pytket.circuit.Node"><span class="pre">pytket.circuit.Node</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pytket.placement.Placement.get_placement_map" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a map from logical to physical qubits that is Architecture appropriate for the given Circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>circuit</strong> – The circuit a map is designed for.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dictionary mapping <code class="xref py py-class docutils literal notranslate"><span class="pre">Qubit</span></code> s to <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code> s</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.placement.Placement.get_placement_maps">
+<span class="sig-name descname"><span class="pre">get_placement_maps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.placement.Placement" title="pytket.placement.Placement"><span class="pre">pytket.placement.Placement</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="circuit.html#pytket.circuit.Qubit" title="pytket.circuit.Qubit"><span class="pre">pytket.circuit.Qubit</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="circuit.html#pytket.circuit.Node" title="pytket.circuit.Node"><span class="pre">pytket.circuit.Node</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pytket.placement.Placement.get_placement_maps" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a list of maps from logical to physical qubits that are Architecture appropriate for the given Circuit. Each map is estimated to given a similar SWAP overheard after routing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>circuit</strong> – The circuit the maps are designed for.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of dictionaries mapping <code class="xref py py-class docutils literal notranslate"><span class="pre">Qubit</span></code> s to <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code> s</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.placement.Placement.place">
+<span class="sig-name descname"><span class="pre">place</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.placement.Placement" title="pytket.placement.Placement"><span class="pre">pytket.placement.Placement</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#pytket.placement.Placement.place" title="Permalink to this definition"></a></dt>
+<dd><p>Relabels Circuit Qubits to Architecture Nodes and ‘unplaced’. For base Placement, all Qubits and labelled ‘unplaced’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>circuit</strong> – The Circuit being relabelled.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.placement.Placement.place_with_map">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">place_with_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">qmap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="circuit.html#pytket.circuit.Qubit" title="pytket.circuit.Qubit"><span class="pre">pytket.circuit.Qubit</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="circuit.html#pytket.circuit.Node" title="pytket.circuit.Node"><span class="pre">pytket.circuit.Node</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#pytket.placement.Placement.place_with_map" title="Permalink to this definition"></a></dt>
+<dd><p>Relabels Circuit Qubits to Architecture Nodes using given map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>circuit</strong> – The circuit being relabelled</p></li>
+<li><p><strong>qmap</strong> – The map from logical to physical qubits to apply.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.placement.Placement.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.placement.Placement" title="pytket.placement.Placement"><span class="pre">pytket.placement.Placement</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">json</span></span></span><a class="headerlink" href="#pytket.placement.Placement.to_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Return a JSON serializable dict representation of the Placement.
+:return: dict representing the Placement.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytket.placement.place_with_map">
+<span class="sig-prename descclassname"><span class="pre">pytket.placement.</span></span><span class="sig-name descname"><span class="pre">place_with_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">qmap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="circuit.html#pytket.circuit.Qubit" title="pytket.circuit.Qubit"><span class="pre">pytket.circuit.Qubit</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="circuit.html#pytket.circuit.Node" title="pytket.circuit.Node"><span class="pre">pytket.circuit.Node</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.placement.place_with_map" title="Permalink to this definition"></a></dt>
+<dd><p>Relabels Circuit Qubits according to a map. If provided map is partial, remaining Circuit Qubits are left ‘unplaced’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>circuit</strong> – The Circuit being relabelled.</p></li>
+<li><p><strong>qmap</strong> – The map from logical to physical qubits to apply.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="architecture.html" class="btn btn-neutral float-left" title="pytket.architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mapping.html" class="btn btn-neutral float-right" title="pytket.mapping" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Cambridge Quantum Computing Ltd.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

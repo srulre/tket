@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytket.passes &mdash; pytket 0.19.2 documentation</title>
+  <title>pytket.passes &mdash; pytket 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -31,7 +31,7 @@
             <a href="index.html" class="icon icon-home"> pytket
           </a>
               <div class="version">
-                0.19
+                1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -46,7 +46,6 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="telemetry_data_policy.html">Telemetry Data Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source Attribution</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More Documentation:</span></p>
@@ -64,11 +63,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="predicates.html">pytket.predicates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="program.html">pytket.program</a></li>
 <li class="toctree-l1"><a class="reference internal" href="partition.html">pytket.partition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qasm.html">pytket.qasm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quipper.html">pytket.quipper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="routing.html">pytket.routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">pytket.architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="placement.html">pytket.placement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">pytket.mapping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tableau.html">pytket.tableau</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transform.html">pytket.transform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tailoring.html">pytket.tailoring</a></li>
@@ -325,7 +325,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pytket.passes.AASRouting">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">AASRouting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="routing.html#pytket.routing.Architecture" title="pytket.routing.Architecture"><span class="pre">pytket.routing.Architecture</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.AASRouting" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">AASRouting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.AASRouting" title="Permalink to this definition"></a></dt>
 <dd><p>Construct a pass to relabel <code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code> Qubits to <code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code> Nodes, and then use architecture-aware synthesis to route the circuit. In the steps of the pass the circuit will be converted to CX, Rz, H gateset. The limited connectivity of the <code class="xref py py-class docutils literal notranslate"><span class="pre">Architecture</span></code> is used for the routing. The direction of the edges is ignored. The placement used is GraphPlacement. This pass can take a few parameters for the routing, described below:</p>
 <ul class="simple">
 <li><p>(unsigned) lookahead=1: parameter for the recursive iteration</p></li>
@@ -347,14 +347,14 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pytket.passes.CXMappingPass">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">CXMappingPass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="routing.html#pytket.routing.Architecture" title="pytket.routing.Architecture"><span class="pre">pytket.routing.Architecture</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">placer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="routing.html#pytket.routing.Placement" title="pytket.routing.Placement"><span class="pre">pytket.routing.Placement</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.CXMappingPass" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">CXMappingPass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">placer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="placement.html#pytket.placement.Placement" title="pytket.placement.Placement"><span class="pre">pytket.placement.Placement</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.CXMappingPass" title="Permalink to this definition"></a></dt>
 <dd><p>Construct a pass to convert all gates to CX, relabel <code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code> Qubits to :py:class’Architecture’ Nodes, route to the connectivty graph of a <code class="xref py py-class docutils literal notranslate"><span class="pre">Architecture</span></code> and decompose additional routing gates (SWAP and BRIDGE) to CX gates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>arc</strong> – The Architecture used for connectivity information.</p></li>
 <li><p><strong>placer</strong> – The placement used for relabelling.</p></li>
-<li><p><strong>**kwargs</strong> – Parameters for routing: (int)swap_lookahead=50, (int)bridge_lookahead=4, (int)bridge_interactions=2, (float)bridge_exponent=0, (bool)directed_cx=false, (bool)delay_measures=true</p></li>
+<li><p><strong>**kwargs</strong> – Parameters for routing: (bool)directed_cx=false, (bool)delay_measures=true</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -432,7 +432,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pytket.passes.DecomposeSwapsToCXs">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">DecomposeSwapsToCXs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="routing.html#pytket.routing.Architecture" title="pytket.routing.Architecture"><span class="pre">pytket.routing.Architecture</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">respect_direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.DecomposeSwapsToCXs" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">DecomposeSwapsToCXs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">respect_direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.DecomposeSwapsToCXs" title="Permalink to this definition"></a></dt>
 <dd><p>Construct a pass to decompose SWAP and BRIDGE gates to CX gates, constraining connectivity to an <code class="xref py py-class docutils literal notranslate"><span class="pre">Architecture</span></code>, optionally taking the directedness of the connectivity graph into account.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -462,11 +462,14 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pytket.passes.DefaultMappingPass">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">DefaultMappingPass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="routing.html#pytket.routing.Architecture" title="pytket.routing.Architecture"><span class="pre">pytket.routing.Architecture</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.DefaultMappingPass" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">DefaultMappingPass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay_measures</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.DefaultMappingPass" title="Permalink to this definition"></a></dt>
 <dd><p>Construct a pass to relabel <code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code> Qubits to <code class="xref py py-class docutils literal notranslate"><span class="pre">Architecture</span></code> Nodes, and then route to the connectivity graph of the given :py:class: ‘Architecture’. Edge direction is ignored. Placement used is GraphPlacement.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>arc</strong> – The Architecture used for connectivity information.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arc</strong> – The Architecture used for connectivity information.</p></li>
+<li><p><strong>delay_measures</strong> – Whether to commute measurements to the end of the circuit, defaulting to true.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a pass to perform the remapping</p>
@@ -506,14 +509,14 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pytket.passes.FullMappingPass">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">FullMappingPass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="routing.html#pytket.routing.Architecture" title="pytket.routing.Architecture"><span class="pre">pytket.routing.Architecture</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">placer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="routing.html#pytket.routing.Placement" title="pytket.routing.Placement"><span class="pre">pytket.routing.Placement</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.FullMappingPass" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">FullMappingPass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">placer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="placement.html#pytket.placement.Placement" title="pytket.placement.Placement"><span class="pre">pytket.placement.Placement</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="mapping.html#pytket.mapping.RoutingMethod" title="pytket.mapping.RoutingMethod"><span class="pre">pytket.mapping.RoutingMethod</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.FullMappingPass" title="Permalink to this definition"></a></dt>
 <dd><p>Construct a pass to relabel <code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code> Qubits to <code class="xref py py-class docutils literal notranslate"><span class="pre">Architecture</span></code> Nodes, and then route to the connectivity graph of an <code class="xref py py-class docutils literal notranslate"><span class="pre">Architecture</span></code>. Edge direction is ignored.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>arc</strong> – The architecture to use for connectivity information.</p></li>
 <li><p><strong>placer</strong> – The Placement used for relabelling.</p></li>
-<li><p><strong>**kwargs</strong> – Parameters for routing: (int)swap_lookahead=50, (int)bridge_lookahead=4, (int)bridge_interactions=2, (float)bridge_exponent=0.</p></li>
+<li><p><strong>config</strong> – Parameters for routing, a list of RoutingMethod, each method is checked and run if applicable in turn.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -566,6 +569,19 @@
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a KAK Decomposition pass using the given CX gate fidelity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytket.passes.NaivePlacementPass">
+<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">NaivePlacementPass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.NaivePlacementPass" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>architecture</strong> – The Architecture used for relabelling.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a pass to relabel <code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code> Qubits to <code class="xref py py-class docutils literal notranslate"><span class="pre">Architecture</span></code> Nodes</p>
 </dd>
 </dl>
 </dd></dl>
@@ -627,7 +643,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pytket.passes.PlacementPass">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">PlacementPass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">placer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="routing.html#pytket.routing.Placement" title="pytket.routing.Placement"><span class="pre">pytket.routing.Placement</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.PlacementPass" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">PlacementPass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">placer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="placement.html#pytket.placement.Placement" title="pytket.placement.Placement"><span class="pre">pytket.placement.Placement</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.PlacementPass" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>placer</strong> – The Placement used for relabelling.</p>
@@ -639,25 +655,18 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="pytket.passes.RebaseCirq">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">RebaseCirq</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.RebaseCirq" title="Permalink to this definition"></a></dt>
-<dd><p>Converts all gates to CZ, PhasedX and Rz.</p>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="pytket.passes.RebaseCustom">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">RebaseCustom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">multiqs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="optype.html#pytket.circuit.OpType" title="pytket.circuit.OpType"><span class="pre">pytket.circuit.OpType</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cx_replacement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">singleqs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="optype.html#pytket.circuit.OpType" title="pytket.circuit.OpType"><span class="pre">pytket.circuit.OpType</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tk1_replacement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Expression</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Expression</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Expression</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.RebaseCustom" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">RebaseCustom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gateset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="optype.html#pytket.circuit.OpType" title="pytket.circuit.OpType"><span class="pre">pytket.circuit.OpType</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cx_replacement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tk1_replacement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Expression</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Expression</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Expression</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.RebaseCustom" title="Permalink to this definition"></a></dt>
 <dd><p>Construct a custom rebase pass. This pass:
-(1) decomposes multi-qubit gates not in the set of gate types <cite>multiqs</cite> to CX gates;
-(2) if CX is not in <cite>multiqs</cite>, replaces CX gates with <cite>cx_replacement</cite>;
-(3) converts any single-qubit gates not in the gate type set <cite>singleqs</cite> to the form <span class="math notranslate nohighlight">\(\mathrm{Rz}(a)\mathrm{Rx}(b)\mathrm{Rz}(c)\)</span> (in matrix-multiplication order, i.e. reverse order in the circuit);
+(1) decomposes multi-qubit gates not in the set of gate types <cite>gateset</cite> to CX gates;
+(2) if CX is not in <cite>gateset</cite>, replaces CX gates with <cite>cx_replacement</cite>;
+(3) converts any single-qubit gates not in the gate type set to the form <span class="math notranslate nohighlight">\(\mathrm{Rz}(a)\mathrm{Rx}(b)\mathrm{Rz}(c)\)</span> (in matrix-multiplication order, i.e. reverse order in the circuit);
 (4) applies the <cite>tk1_replacement</cite> function to each of these triples <span class="math notranslate nohighlight">\((a,b,c)\)</span> to generate replacement circuits.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>multiqs</strong> – The allowed multi-qubit operations in the rebased circuit.</p></li>
-<li><p><strong>cx_replacement</strong> – The equivalent circuit to replace a CX gate in the desired basis.</p></li>
-<li><p><strong>singleqs</strong> – The allowed single-qubit operations in the rebased circuit.</p></li>
+<li><p><strong>gateset</strong> – The allowed multi-qubit operations in the rebased circuit.</p></li>
+<li><p><strong>cx_replacement</strong> – The equivalent circuit to replace a CX gate using two qubit gates from the desired basis (can use any single qubit OpTypes).</p></li>
 <li><p><strong>tk1_replacement</strong> – A function which, given the parameters of an Rz(a)Rx(b)Rz(c) triple, returns an equivalent circuit in the desired basis.</p></li>
 </ul>
 </dd>
@@ -668,51 +677,9 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="pytket.passes.RebaseHQS">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">RebaseHQS</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.RebaseHQS" title="Permalink to this definition"></a></dt>
-<dd><p>Converts all gates to ZZMax, PhasedX and Rz.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="pytket.passes.RebaseOQC">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">RebaseOQC</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.RebaseOQC" title="Permalink to this definition"></a></dt>
-<dd><p>Converts all gates to ECR, Rz and SX.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="pytket.passes.RebaseProjectQ">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">RebaseProjectQ</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.RebaseProjectQ" title="Permalink to this definition"></a></dt>
-<dd><p>Converts all gates to SWAP, CRz, CX, CZ, H, X, Y, Z, S, T, V, Rx, Ry and Rz.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="pytket.passes.RebasePyZX">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">RebasePyZX</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.RebasePyZX" title="Permalink to this definition"></a></dt>
-<dd><p>Converts all gates to SWAP, CX, CZ, H, X, Z, S, T, Rx and Rz.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="pytket.passes.RebaseQuil">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">RebaseQuil</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.RebaseQuil" title="Permalink to this definition"></a></dt>
-<dd><p>Converts all gates to CZ, Rx and Rz.</p>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="pytket.passes.RebaseTket">
 <span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">RebaseTket</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.RebaseTket" title="Permalink to this definition"></a></dt>
 <dd><p>Converts all gates to CX and TK1.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="pytket.passes.RebaseUFR">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">RebaseUFR</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.RebaseUFR" title="Permalink to this definition"></a></dt>
-<dd><p>Converts all gates to CX, Rz and H.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="pytket.passes.RebaseUMD">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">RebaseUMD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.RebaseUMD" title="Permalink to this definition"></a></dt>
-<dd><p>Converts all gates to XXPhase, PhasedX and Rz.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -746,19 +713,9 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pytket.passes.RoutingPass">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">RoutingPass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="routing.html#pytket.routing.Architecture" title="pytket.routing.Architecture"><span class="pre">pytket.routing.Architecture</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.RoutingPass" title="Permalink to this definition"></a></dt>
-<dd><p>Construct a pass to route to the connectivity graph of an <code class="xref py py-class docutils literal notranslate"><span class="pre">Architecture</span></code>. Edge direction is ignored.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>arc</strong> – The architecture to use for connectivity information.</p></li>
-<li><p><strong>**kwargs</strong> – Parameters for routing: (int)swap_lookahead=50, (int)bridge_lookahead=4, (int)bridge_interactions=2, (float)bridge_exponent=0.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a pass that routes to the given device architecture</p>
-</dd>
-</dl>
+<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">RoutingPass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.RoutingPass" title="Permalink to this definition"></a></dt>
+<dd><p>Construct a pass to route to the connectivity graph of an <code class="xref py py-class docutils literal notranslate"><span class="pre">Architecture</span></code>. Edge direction is ignored.
+:return: a pass that routes to the given device architecture</p>
 </dd></dl>
 
 <dl class="py function">
@@ -798,12 +755,6 @@
 </ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="pytket.passes.SquashHQS">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">SquashHQS</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.SquashHQS" title="Permalink to this definition"></a></dt>
-<dd><p>Squash Rz and PhasedX gate sequences into an optimal form.</p>
 </dd></dl>
 
 <dl class="py function">

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytket.zx &mdash; pytket 0.19.2 documentation</title>
+  <title>pytket.zx &mdash; pytket 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -30,7 +30,7 @@
             <a href="index.html" class="icon icon-home"> pytket
           </a>
               <div class="version">
-                0.19
+                1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -45,7 +45,6 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="telemetry_data_policy.html">Telemetry Data Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source Attribution</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More Documentation:</span></p>
@@ -60,11 +59,12 @@
 <li class="toctree-l1"><a class="reference internal" href="pauli.html">pytket.pauli</a></li>
 <li class="toctree-l1"><a class="reference internal" href="passes.html">pytket.passes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="predicates.html">pytket.predicates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="program.html">pytket.program</a></li>
 <li class="toctree-l1"><a class="reference internal" href="partition.html">pytket.partition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qasm.html">pytket.qasm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quipper.html">pytket.quipper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="routing.html">pytket.routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">pytket.architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="placement.html">pytket.placement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">pytket.mapping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tableau.html">pytket.tableau</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transform.html">pytket.transform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tailoring.html">pytket.tailoring</a></li>
@@ -101,17 +101,17 @@
   <section id="module-pytket.zx">
 <span id="pytket-zx"></span><h1>pytket.zx<a class="headerlink" href="#module-pytket.zx" title="Permalink to this headline"></a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="pytket.zx.BasicGen">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.zx.</span></span><span class="sig-name descname"><span class="pre">BasicGen</span></span><a class="headerlink" href="#pytket.zx.BasicGen" title="Permalink to this definition"></a></dt>
-<dd><p>Specialisation of <a class="reference internal" href="#pytket.zx.ZXGen" title="pytket.zx.ZXGen"><code class="xref py py-class docutils literal notranslate"><span class="pre">ZXGen</span></code></a> for arbitrary-arity, symmetric generators.</p>
+<dt class="sig sig-object py" id="pytket.zx.CliffordGen">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.zx.</span></span><span class="sig-name descname"><span class="pre">CliffordGen</span></span><a class="headerlink" href="#pytket.zx.CliffordGen" title="Permalink to this definition"></a></dt>
+<dd><p>Specialisation of <a class="reference internal" href="#pytket.zx.ZXGen" title="pytket.zx.ZXGen"><code class="xref py py-class docutils literal notranslate"><span class="pre">ZXGen</span></code></a> for arbitrary-arity, symmetric Clifford generators with a single boolean parameter.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="pytket.zx.BasicGen.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytket.zx.BasicGen.__init__" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="pytket.zx.CliffordGen.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytket.zx.CliffordGen.__init__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="pytket.zx.BasicGen.param">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">param</span></span><a class="headerlink" href="#pytket.zx.BasicGen.param" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="pytket.zx.CliffordGen.param">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">param</span></span><a class="headerlink" href="#pytket.zx.CliffordGen.param" title="Permalink to this definition"></a></dt>
 <dd><p>The parameter of the generator.</p>
 </dd></dl>
 
@@ -136,6 +136,23 @@
 <dt class="sig sig-object py" id="pytket.zx.DirectedGen.signature">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">signature</span></span><a class="headerlink" href="#pytket.zx.DirectedGen.signature" title="Permalink to this definition"></a></dt>
 <dd><p>A list of <a class="reference internal" href="#pytket.zx.QuantumType" title="pytket.zx.QuantumType"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumType</span></code></a> s indicating the expected <a class="reference internal" href="#pytket.zx.QuantumType" title="pytket.zx.QuantumType"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumType</span></code></a> at each port.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytket.zx.PhasedGen">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.zx.</span></span><span class="sig-name descname"><span class="pre">PhasedGen</span></span><a class="headerlink" href="#pytket.zx.PhasedGen" title="Permalink to this definition"></a></dt>
+<dd><p>Specialisation of <a class="reference internal" href="#pytket.zx.ZXGen" title="pytket.zx.ZXGen"><code class="xref py py-class docutils literal notranslate"><span class="pre">ZXGen</span></code></a> for arbitrary-arity, symmetric generators with a single continuous parameter.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.zx.PhasedGen.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytket.zx.PhasedGen.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pytket.zx.PhasedGen.param">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">param</span></span><a class="headerlink" href="#pytket.zx.PhasedGen.param" title="Permalink to this definition"></a></dt>
+<dd><p>The parameter of the generator.</p>
 </dd></dl>
 
 </dd></dl>
@@ -322,7 +339,7 @@
 </ol>
 <p>Constructs an empty ZX diagram.</p>
 <ol class="arabic simple" start="2">
-<li><p>__init__(self: pytket.zx.ZXDiagram, in: int, out: int, classical_in: int, classical_out: int) -&gt; None</p></li>
+<li><p>__init__(self: pytket.zx.ZXDiagram, inputs: int, outputs: int, classical_inputs: int, classical_outputs: int) -&gt; None</p></li>
 </ol>
 <p>Constructs an empty ZX diagram with a given number of unconnected boundary vertices.</p>
 <dl class="field-list simple">
@@ -708,6 +725,12 @@
 <p>ZSpider : A Z (green) spider. Parameterised by a single phase in half-turns. Can either be Quantum or Classical - Quantum spiders can only have Quantum wires, Quantum wires on Classical spiders act as two wires. Can have arbitrary degree. No ports.</p>
 <p>XSpider : An X (red) spider. Parameterised by a single phase in half-turns. Can either be Quantum or Classical - Quantum spiders can only have Quantum wires, Quantum wires on Classical spiders act as two wires. Can have arbitrary degree. No ports.</p>
 <p>Hbox : A Hadamard box for ZH diagrams. Parameterised by a single complex value. Can either be Quantum or Classical - Quantum spiders can only have Quantum wires, Quantum wires on Classical spiders act as two wires. Can have arbitrary degree. No ports.</p>
+<p>XY : A (postselected) XY qubit in MBQC. Corresponds to a Z spider with negative phase.</p>
+<p>XZ : A (postselected) XZ qubit in MBQC. Corresponds to a 0.5-phase (n+1)-ary Z spider connected to a phaseful 1-ary X spider.</p>
+<p>YZ : A (postselected) YZ qubit in MBQC. Corresponds to a 0-phase (n+1)-ary Z spider connected to a phaseful 1-ary X spider.</p>
+<p>PX : A (postselected) Pauli X qubit in MBQC. Corresponds to a Z spider with phase either 0 (param=False) or 1 (param=True).</p>
+<p>PY : A (postselected) Pauli Y qubit in MBQC. Corresponds to a Z spider with phase either -0.5 (param=False) or +0.5 (param=True).</p>
+<p>PZ : A (postselected) Pauli Z qubit in MBQC. Corresponds to a 0-phase (n+1)-ary Z spider connected to a 1-ary X spider with phase either 0 (param=False) or 1 (param=True).</p>
 <p>Triangle : A Triangle operator, [[1, 1], [0, 1]]. Can either be Quantum or Classical, only admitting wires of the same type. Port 0 for the base of the triangle (input), port 1 for the tip (output).</p>
 <p>ZXBox : A box encapsulating another <a class="reference internal" href="#pytket.zx.ZXDiagram" title="pytket.zx.ZXDiagram"><code class="xref py py-class docutils literal notranslate"><span class="pre">ZXDiagram</span></code></a>. Inherits ports from the boundary of the internal diagram, with port numbers matching the boundary order and <a class="reference internal" href="#pytket.zx.QuantumType" title="pytket.zx.QuantumType"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumType</span></code></a> admitted at each port matching that of the boundary vertex.</p>
 </div></blockquote>

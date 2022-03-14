@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytket.circuit &mdash; pytket 0.19.2 documentation</title>
+  <title>pytket.circuit &mdash; pytket 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -31,7 +31,7 @@
             <a href="index.html" class="icon icon-home"> pytket
           </a>
               <div class="version">
-                0.19
+                1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -46,7 +46,6 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="telemetry_data_policy.html">Telemetry Data Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source Attribution</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More Documentation:</span></p>
@@ -67,11 +66,12 @@
 <li class="toctree-l1"><a class="reference internal" href="pauli.html">pytket.pauli</a></li>
 <li class="toctree-l1"><a class="reference internal" href="passes.html">pytket.passes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="predicates.html">pytket.predicates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="program.html">pytket.program</a></li>
 <li class="toctree-l1"><a class="reference internal" href="partition.html">pytket.partition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qasm.html">pytket.qasm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quipper.html">pytket.quipper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="routing.html">pytket.routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">pytket.architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="placement.html">pytket.placement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">pytket.mapping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tableau.html">pytket.tableau</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transform.html">pytket.transform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tailoring.html">pytket.tailoring</a></li>
@@ -658,13 +658,13 @@ Every backend and matrix-based box has a BasisOrder option which can toggle betw
 <dd><p>A user-defined operation specified by a <a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.circuit.CircBox.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.CircBox" title="pytket.circuit.CircBox"><span class="pre">pytket.circuit.CircBox</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">circ</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.circuit.CircBox.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">pytket.circuit.CircBox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">circ:</span> <span class="pre">tket::Circuit</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.circuit.CircBox.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>Construct from a <a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.circuit.CircBox.get_circuit">
-<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.CircBox" title="pytket.circuit.CircBox"><span class="pre">pytket.circuit.CircBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></span><a class="headerlink" href="#pytket.circuit.CircBox.get_circuit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.CircBox" title="pytket.circuit.CircBox"><span class="pre">pytket.circuit.CircBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tket::Circuit</span></span></span><a class="headerlink" href="#pytket.circuit.CircBox.get_circuit" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the <a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a> described by the box</p>
@@ -686,7 +686,7 @@ Every backend and matrix-based box has a BasisOrder option which can toggle betw
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.circuit.Unitary1qBox.get_circuit">
-<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.Unitary1qBox" title="pytket.circuit.Unitary1qBox"><span class="pre">pytket.circuit.Unitary1qBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></span><a class="headerlink" href="#pytket.circuit.Unitary1qBox.get_circuit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.Unitary1qBox" title="pytket.circuit.Unitary1qBox"><span class="pre">pytket.circuit.Unitary1qBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tket::Circuit</span></span></span><a class="headerlink" href="#pytket.circuit.Unitary1qBox.get_circuit" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the <a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a> described by the box</p>
@@ -726,7 +726,7 @@ Every backend and matrix-based box has a BasisOrder option which can toggle betw
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.circuit.Unitary2qBox.get_circuit">
-<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.Unitary2qBox" title="pytket.circuit.Unitary2qBox"><span class="pre">pytket.circuit.Unitary2qBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></span><a class="headerlink" href="#pytket.circuit.Unitary2qBox.get_circuit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.Unitary2qBox" title="pytket.circuit.Unitary2qBox"><span class="pre">pytket.circuit.Unitary2qBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tket::Circuit</span></span></span><a class="headerlink" href="#pytket.circuit.Unitary2qBox.get_circuit" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the <a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a> described by the box</p>
@@ -766,7 +766,7 @@ Every backend and matrix-based box has a BasisOrder option which can toggle betw
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.circuit.Unitary3qBox.get_circuit">
-<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.Unitary3qBox" title="pytket.circuit.Unitary3qBox"><span class="pre">pytket.circuit.Unitary3qBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></span><a class="headerlink" href="#pytket.circuit.Unitary3qBox.get_circuit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.Unitary3qBox" title="pytket.circuit.Unitary3qBox"><span class="pre">pytket.circuit.Unitary3qBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tket::Circuit</span></span></span><a class="headerlink" href="#pytket.circuit.Unitary3qBox.get_circuit" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the <a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a> described by the box</p>
@@ -807,7 +807,7 @@ Every backend and matrix-based box has a BasisOrder option which can toggle betw
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.circuit.ExpBox.get_circuit">
-<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.ExpBox" title="pytket.circuit.ExpBox"><span class="pre">pytket.circuit.ExpBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></span><a class="headerlink" href="#pytket.circuit.ExpBox.get_circuit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.ExpBox" title="pytket.circuit.ExpBox"><span class="pre">pytket.circuit.ExpBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tket::Circuit</span></span></span><a class="headerlink" href="#pytket.circuit.ExpBox.get_circuit" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the <a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a> described by the box</p>
@@ -829,7 +829,7 @@ Every backend and matrix-based box has a BasisOrder option which can toggle betw
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.circuit.PauliExpBox.get_circuit">
-<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.PauliExpBox" title="pytket.circuit.PauliExpBox"><span class="pre">pytket.circuit.PauliExpBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></span><a class="headerlink" href="#pytket.circuit.PauliExpBox.get_circuit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.PauliExpBox" title="pytket.circuit.PauliExpBox"><span class="pre">pytket.circuit.PauliExpBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tket::Circuit</span></span></span><a class="headerlink" href="#pytket.circuit.PauliExpBox.get_circuit" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the <a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a> described by the box</p>
@@ -871,7 +871,7 @@ Every backend and matrix-based box has a BasisOrder option which can toggle betw
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.circuit.QControlBox.get_circuit">
-<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.QControlBox" title="pytket.circuit.QControlBox"><span class="pre">pytket.circuit.QControlBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></span><a class="headerlink" href="#pytket.circuit.QControlBox.get_circuit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.QControlBox" title="pytket.circuit.QControlBox"><span class="pre">pytket.circuit.QControlBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tket::Circuit</span></span></span><a class="headerlink" href="#pytket.circuit.QControlBox.get_circuit" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the <a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a> described by the box</p>
@@ -907,7 +907,7 @@ Every backend and matrix-based box has a BasisOrder option which can toggle betw
 <dd><p>A custom unitary gate definition, given as a composition of other gates</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.circuit.CustomGateDef.define">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">define</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">circ</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Symbol</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.circuit.CustomGateDef" title="pytket.circuit.CustomGateDef"><span class="pre">pytket.circuit.CustomGateDef</span></a></span></span><a class="headerlink" href="#pytket.circuit.CustomGateDef.define" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">define</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">name:</span> <span class="pre">str,</span> <span class="pre">circ:</span> <span class="pre">tket::Circuit,</span> <span class="pre">args:</span> <span class="pre">List[Symbol]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.circuit.CustomGateDef" title="pytket.circuit.CustomGateDef"><span class="pre">pytket.circuit.CustomGateDef</span></a></span></span><a class="headerlink" href="#pytket.circuit.CustomGateDef.define" title="Permalink to this definition"></a></dt>
 <dd><p>Define a new custom gate as a composite of other gates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -927,8 +927,8 @@ Every backend and matrix-based box has a BasisOrder option which can toggle betw
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="pytket.circuit.CustomGateDef.def">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">def</span></span><a class="headerlink" href="#pytket.circuit.CustomGateDef.def" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="pytket.circuit.CustomGateDef.definition">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">definition</span></span><a class="headerlink" href="#pytket.circuit.CustomGateDef.definition" title="Permalink to this definition"></a></dt>
 <dd><p>Return definition as a circuit.</p>
 </dd></dl>
 
@@ -946,7 +946,7 @@ Every backend and matrix-based box has a BasisOrder option which can toggle betw
 <dd><p>A user-defined gate defined by a parametrised <a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.circuit.CustomGate.get_circuit">
-<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.CustomGate" title="pytket.circuit.CustomGate"><span class="pre">pytket.circuit.CustomGate</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></span><a class="headerlink" href="#pytket.circuit.CustomGate.get_circuit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.CustomGate" title="pytket.circuit.CustomGate"><span class="pre">pytket.circuit.CustomGate</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tket::Circuit</span></span></span><a class="headerlink" href="#pytket.circuit.CustomGate.get_circuit" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the <a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a> described by the gate.</p>
@@ -1106,7 +1106,7 @@ Every backend and matrix-based box has a BasisOrder option which can toggle betw
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.circuit.ProjectorAssertionBox.get_circuit">
-<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.ProjectorAssertionBox" title="pytket.circuit.ProjectorAssertionBox"><span class="pre">pytket.circuit.ProjectorAssertionBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></span><a class="headerlink" href="#pytket.circuit.ProjectorAssertionBox.get_circuit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.ProjectorAssertionBox" title="pytket.circuit.ProjectorAssertionBox"><span class="pre">pytket.circuit.ProjectorAssertionBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tket::Circuit</span></span></span><a class="headerlink" href="#pytket.circuit.ProjectorAssertionBox.get_circuit" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the <a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a> described by the box</p>
@@ -1156,7 +1156,7 @@ Every backend and matrix-based box has a BasisOrder option which can toggle betw
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.circuit.StabiliserAssertionBox.get_circuit">
-<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.StabiliserAssertionBox" title="pytket.circuit.StabiliserAssertionBox"><span class="pre">pytket.circuit.StabiliserAssertionBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></span><a class="headerlink" href="#pytket.circuit.StabiliserAssertionBox.get_circuit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.StabiliserAssertionBox" title="pytket.circuit.StabiliserAssertionBox"><span class="pre">pytket.circuit.StabiliserAssertionBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tket::Circuit</span></span></span><a class="headerlink" href="#pytket.circuit.StabiliserAssertionBox.get_circuit" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the <a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a> described by the box</p>
