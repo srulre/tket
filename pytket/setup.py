@@ -26,6 +26,8 @@ from shutil import which
 import setuptools  # type: ignore
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext  # type: ignore
+from setuptools.command.develop import develop  # type: ignore
+from setuptools.command.install_scripts import install_scripts  # type: ignore
 from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
 
 
@@ -198,6 +200,27 @@ class bdist_wheel(_bdist_wheel):
             self.plat_name_supplied = True
 
 
+def finalize_libs():
+    if platform.system() == "Darwin":
+        """
+        For each libfile in _tket:
+        install_name_tool -change libsymengine.0.9.dylib @loader_path/libsymengine.0.9.dylib $libfile
+        """
+        pass
+
+
+class DevelopCommand(develop):
+    def run(self):
+        develop.run(self)
+        finalize_libs()
+
+
+class InstallScriptsCommand(install_scripts):
+    def run(self):
+        install_scripts.run(self)
+        finalize_libs()
+
+
 setup(
     name="pytket",
     author="Seyon Sivarajah",
@@ -222,7 +245,12 @@ setup(
     ext_modules=[
         CMakeExtension("pytket._tket.{}".format(binder)) for binder in binders
     ],
-    cmdclass={"build_ext": CMakeBuild, "bdist_wheel": bdist_wheel},
+    cmdclass={
+        "build_ext": CMakeBuild,
+        "bdist_wheel": bdist_wheel,
+        "develop": DevelopCommand,
+        "install_scripts": InstallScriptsCommand,
+    },
     classifiers=[
         "Environment :: Console",
         "Programming Language :: Python :: 3.8",
