@@ -1,11 +1,23 @@
 var searchData=
 [
-  ['r_5fconst_5fiterator_5ft_4713',['r_const_iterator_t',['../namespacetket.html#a9e8349e5eee70e6d65e55c225a0167ad',1,'tket']]],
-  ['readout_5ferror_5ft_4714',['readout_error_t',['../namespacetket.html#a97c5aa77894720f0dd93708e11b4185d',1,'tket']]],
-  ['register_5finfo_5ft_4715',['register_info_t',['../namespacetket.html#abb27af8bae904386e407c61014c8e510',1,'tket']]],
-  ['register_5ft_4716',['register_t',['../namespacetket.html#a0c364318363e43cfb441df48c8a6bb10',1,'tket']]],
-  ['resultvec_4717',['ResultVec',['../classtket_1_1NeighbourPlacements.html#a711946fa7b446156dc1c40be2fbf9765',1,'tket::NeighbourPlacements']]],
-  ['rewritefun_4718',['RewriteFun',['../classtket_1_1zx_1_1Rewrite.html#adedcb5889dbcfc2998420781689d87bc',1,'tket::zx::Rewrite']]],
-  ['right_5fmap_4719',['right_map',['../classtket_1_1graphs_1_1DirectedGraphBase.html#a7d953086d831f7b2093e72ad7161429a',1,'tket::graphs::DirectedGraphBase']]],
-  ['routingmethodptr_4720',['RoutingMethodPtr',['../namespacetket.html#a89f72898de88e44cf69e85ee09d30f19',1,'tket']]]
+  ['sequence_5fset_5ft_4631',['sequence_set_t',['../namespacetket.html#a681192e5f3d9b52875aa271821a7087e',1,'tket']]],
+  ['sequenced_5fbimap_5ft_4632',['sequenced_bimap_t',['../namespacetket.html#ab833809f61dc0113df230395ed560ea4',1,'tket']]],
+  ['sequenced_5fmap_5ft_4633',['sequenced_map_t',['../namespacetket.html#a28f9577cad4f1a896981f6105029ac03',1,'tket']]],
+  ['simpletransformation_4634',['SimpleTransformation',['../classtket_1_1Transform.html#a6235b0ea0326e7d860cbda3b89de6c92',1,'tket::Transform']]],
+  ['simuint_4635',['SimUInt',['../namespacetket_1_1tket__sim_1_1internal.html#ac9f00fbd46d4fb84f77cd2f5f469e663',1,'tket::tket_sim::internal']]],
+  ['size_5ft_4636',['size_t',['../classtket_1_1graphs_1_1detail_1_1TreeSearchBase.html#a32c3dc49a4c8ebd66f57e0c84777df65',1,'tket::graphs::detail::TreeSearchBase']]],
+  ['slice_4637',['Slice',['../namespacetket.html#a21f0f23e5214bb9a3a411cfa66359c5a',1,'tket']]],
+  ['slicevec_4638',['SliceVec',['../namespacetket.html#a7f608d87f31e578f78cd0be0b622a9c0',1,'tket']]],
+  ['sparsematrixxcd_4639',['SparseMatrixXcd',['../namespacetket.html#aabd6427a3073cbfb1dc0e36caa4609a8',1,'tket']]],
+  ['statevector_4640',['StateVector',['../namespacetket.html#a4be712a96dd59d03a8ada81a8c380d47',1,'tket']]],
+  ['swap_4641',['Swap',['../namespacetket.html#ae2eacf6ab35221f4acce2e51b150244a',1,'tket']]],
+  ['swap_5fset_5ft_4642',['swap_set_t',['../namespacetket.html#a58227251a0754eedcc656c2552afae55',1,'tket']]],
+  ['swap_5ft_4643',['swap_t',['../namespacetket.html#a1d1f68863e6dd51735b1184f7e98e700',1,'tket']]],
+  ['swaphash_4644',['SwapHash',['../structtket_1_1tsa__internal_1_1SwapConversion.html#a1456ce60c357ab31ab4ee3ea1e58f027',1,'tket::tsa_internal::SwapConversion']]],
+  ['swapid_4645',['SwapID',['../namespacetket.html#a4da63bf14adb07b8613f926b3733c6fd',1,'tket']]],
+  ['swaplist_4646',['SwapList',['../namespacetket.html#ae8a8548b749370f2d12478c8757ad439',1,'tket']]],
+  ['swapvec_4647',['SwapVec',['../classtket_1_1NeighbourPlacements.html#a24228fabb6782367b05edbf667c56f3d',1,'tket::NeighbourPlacements']]],
+  ['sym_4648',['Sym',['../namespacetket.html#a553aee55eda4452f31c63dc53ac06e7d',1,'tket']]],
+  ['symbol_5fmap_5ft_4649',['symbol_map_t',['../namespacetket.html#a1b74dba9cab2250364cda8a549168167',1,'tket']]],
+  ['symset_4650',['SymSet',['../namespacetket.html#ac74e9f3dd71c2a79be4ab7887d943fc2',1,'tket']]]
 ];

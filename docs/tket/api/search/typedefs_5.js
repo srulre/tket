@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['fgedge_4629',['FGEdge',['../namespacetket.html#aadca3a957554282b8b3cfc0d8444c36a',1,'tket']]],
-  ['fgedgevec_4630',['FGEdgeVec',['../namespacetket.html#a58be25acd80e1abaa2be2dcb4f509bae',1,'tket']]],
-  ['fgvert_4631',['FGVert',['../namespacetket.html#a7d04d49a7445cb2967f12e74bb1532f4',1,'tket']]],
-  ['fgvertvec_4632',['FGVertVec',['../namespacetket.html#afdee0ca280a75e1a1d49ccd817006f69',1,'tket']]],
-  ['flowgraph_4633',['FlowGraph',['../namespacetket.html#a86f98be3431c454eee2d1f7f3e72d373',1,'tket']]]
+  ['gate_5ferror_5ft_4544',['gate_error_t',['../namespacetket.html#a22e4394fc5a6761fb19b0a50e6226620',1,'tket']]],
+  ['gate_5fptr_4545',['Gate_ptr',['../namespacetket.html#a2301654e82cbcf188ca05907e97d5738',1,'tket']]],
+  ['graycode_4546',['GrayCode',['../namespacetket.html#a5ab9799f95de83b6e55f91ffd1d82087',1,'tket']]]
 ];
