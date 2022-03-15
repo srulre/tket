@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2022-03-11 13:24:49</td>
+      <td>2022-03-15 16:41:07</td>
     </tr>
   </table>
 </div>
@@ -1263,7 +1263,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src ">  <span class="kt">unsigned</span> <span class="n">tree_cost</span><span class="p">;</span>  <span class="c1">// the cost to reduce the Steiner tree alone</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1271,7 +1271,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * function to stream a steiner tree</span></td>
+      <td class="src ">  <span class="kt">int</span> <span class="n">last_operation_cost</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1279,7 +1279,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src ">  <span class="kt">unsigned</span> <span class="n">root</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1287,7 +1287,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">out</span><span class="p">,</span> <span class="k">const</span> <span class="n">SteinerTree</span> <span class="o">&amp;</span><span class="n">st</span><span class="p">);</span></td>
+      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">SteinerNodeType</span><span class="o">&gt;</span> <span class="n">node_types</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1295,7 +1295,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">num_neighbours</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1303,7 +1303,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">unsigned</span> <span class="n">tree_cost</span><span class="p">;</span>  <span class="c1">// the cost to reduce the Steiner tree alone</span></td>
+      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">tree_nodes</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1311,7 +1311,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">int</span> <span class="n">last_operation_cost</span><span class="p">;</span></td>
+      <td class="src "><span class="p">};</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1319,7 +1319,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">unsigned</span> <span class="n">root</span><span class="p">;</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -1327,7 +1327,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">SteinerNodeType</span><span class="o">&gt;</span> <span class="n">node_types</span><span class="p">;</span></td>
+      <td class="src "><span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1335,7 +1335,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">num_neighbours</span><span class="p">;</span></td>
+      <td class="src "><span class="cm"> * object to store and perform the swap nased cnot synthesis</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1343,7 +1343,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">tree_nodes</span><span class="p">;</span></td>
+      <td class="src "><span class="cm"> */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1351,7 +1351,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">};</span></td>
+      <td class="src "><span class="k">class</span> <span class="nc">CNotSwapSynth</span> <span class="p">{</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1359,7 +1359,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "> <span class="k">public</span><span class="o">:</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1367,7 +1367,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">/**</span></td>
+      <td class="src ">  <span class="n">CNotSwapSynth</span><span class="p">()</span> <span class="p">{}</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1375,7 +1375,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * object to store and perform the swap nased cnot synthesis</span></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1383,7 +1383,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> */</span></td>
+      <td class="src "><span class="cm">   * construct the object for the cnot swap synth and perform the reduction</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1391,7 +1391,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="k">class</span> <span class="nc">CNotSwapSynth</span> <span class="p">{</span></td>
+      <td class="src "><span class="cm">   * @param pathhandler path for reduction</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1399,7 +1399,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "> <span class="k">public</span><span class="o">:</span></td>
+      <td class="src "><span class="cm">   * @param CNOT_mat input of executed cnots which should be reduced</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1407,7 +1407,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">CNotSwapSynth</span><span class="p">()</span> <span class="p">{}</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1415,7 +1415,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src ">  <span class="k">explicit</span> <span class="n">CNotSwapSynth</span><span class="p">(</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1423,7 +1423,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * construct the object for the cnot swap synth and perform the reduction</span></td>
+      <td class="src ">      <span class="k">const</span> <span class="n">PathHandler</span> <span class="o">&amp;</span><span class="n">pathhandler</span><span class="p">,</span> <span class="k">const</span> <span class="n">DiagMatrix</span> <span class="o">&amp;</span><span class="n">CNOT_mat</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1431,7 +1431,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param pathhandler path for reduction</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -1439,7 +1439,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @param CNOT_mat input of executed cnots which should be reduced</span></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1447,7 +1447,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   * gives the calculated circuit</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1455,7 +1455,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="k">explicit</span> <span class="n">CNotSwapSynth</span><span class="p">(</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1463,7 +1463,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">PathHandler</span> <span class="o">&amp;</span><span class="n">pathhandler</span><span class="p">,</span> <span class="k">const</span> <span class="n">DiagMatrix</span> <span class="o">&amp;</span><span class="n">CNOT_mat</span><span class="p">);</span></td>
+      <td class="src ">  <span class="n">Circuit</span> <span class="nf">get_circuit</span><span class="p">();</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1487,7 +1487,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * gives the calculated circuit</span></td>
+      <td class="src "><span class="cm">   * checks if the matrix is id after reduction</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1495,7 +1495,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   * @return true if matrix is id</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1503,7 +1503,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">Circuit</span> <span class="nf">get_circuit</span><span class="p">();</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1511,7 +1511,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src ">  <span class="kt">bool</span> <span class="nf">valid_result</span><span class="p">();</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1519,7 +1519,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -1527,7 +1527,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * checks if the matrix is id after reduction</span></td>
+      <td class="src "> <span class="k">private</span><span class="o">:</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1535,7 +1535,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * @return true if matrix is id</span></td>
+      <td class="src ">  <span class="kt">void</span> <span class="n">add_swap</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">first</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">second</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1543,7 +1543,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src ">  <span class="kt">void</span> <span class="nf">cleanup_swaps</span><span class="p">();</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1551,7 +1551,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">bool</span> <span class="nf">valid_result</span><span class="p">();</span></td>
+      <td class="src ">  <span class="kt">unsigned</span> <span class="nf">swap_to_root</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">start_node</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">current_row</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1567,7 +1567,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src ">  <span class="n">PathHandler</span> <span class="n">paths</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1575,7 +1575,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * function to stream a CNotSwapSynth</span></td>
+      <td class="src ">  <span class="n">DiagMatrix</span> <span class="n">CNOT_matrix</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1583,7 +1583,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src ">  <span class="n">Circuit</span> <span class="n">circ</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1591,7 +1591,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">out</span><span class="p">,</span> <span class="k">const</span> <span class="n">CNotSwapSynth</span> <span class="o">&amp;</span><span class="n">cnot</span><span class="p">);</span></td>
+      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="p">,</span> <span class="kt">unsigned</span><span class="o">&gt;&gt;</span> <span class="n">swaps</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1599,7 +1599,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="p">};</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1607,7 +1607,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "> <span class="k">private</span><span class="o">:</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -1615,7 +1615,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">void</span> <span class="n">add_swap</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">first</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">second</span><span class="p">);</span></td>
+      <td class="src "><span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1623,7 +1623,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">void</span> <span class="nf">cleanup_swaps</span><span class="p">();</span></td>
+      <td class="src "><span class="cm"> * This method uses Kissinger &amp; de Meijer&#39;s Steiner-Gauss</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1631,7 +1631,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">unsigned</span> <span class="nf">swap_to_root</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">start_node</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">current_row</span><span class="p">);</span></td>
+      <td class="src "><span class="cm"> * (https://arxiv.org/abs/1904.00633), and reduces the CNOT_matrix, which is</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1639,7 +1639,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="cm"> * non-const. This function offers the recursive algorithm and the Hamilton</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1647,7 +1647,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">PathHandler</span> <span class="n">paths</span><span class="p">;</span></td>
+      <td class="src "><span class="cm"> * based algorithm</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1655,7 +1655,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">DiagMatrix</span> <span class="n">CNOT_matrix</span><span class="p">;</span></td>
+      <td class="src "><span class="cm"> * @param CNOT_matrix input of executed cnots which should be reduced</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1663,7 +1663,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">Circuit</span> <span class="n">circ</span><span class="p">;</span></td>
+      <td class="src "><span class="cm"> * @param paths pathhandler used for the reduction</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1671,7 +1671,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="p">,</span> <span class="kt">unsigned</span><span class="o">&gt;&gt;</span> <span class="n">swaps</span><span class="p">;</span></td>
+      <td class="src "><span class="cm"> * @param cnottype type of algorithm which could be CNotSynthType::Rec or</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1679,7 +1679,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">};</span></td>
+      <td class="src "><span class="cm"> * CNotSynthType::HamPath</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1687,7 +1687,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="cm"> * @return routed circuit</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1695,7 +1695,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">/**</span></td>
+      <td class="src "><span class="cm"> */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1703,7 +1703,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * This method uses Kissinger &amp; de Meijer&#39;s Steiner-Gauss</span></td>
+      <td class="src "><span class="n">Circuit</span> <span class="nf">aas_CNOT_synth</span><span class="p">(</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1711,7 +1711,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * (https://arxiv.org/abs/1904.00633), and reduces the CNOT_matrix, which is</span></td>
+      <td class="src ">    <span class="n">DiagMatrix</span> <span class="o">&amp;</span><span class="n">CNOT_matrix</span><span class="p">,</span> <span class="k">const</span> <span class="n">PathHandler</span> <span class="o">&amp;</span><span class="n">paths</span><span class="p">,</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1719,7 +1719,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * non-const. This function offers the recursive algorithm and the Hamilton</span></td>
+      <td class="src ">    <span class="n">CNotSynthType</span> <span class="n">cnottype</span> <span class="o">=</span> <span class="n">CNotSynthType</span><span class="o">::</span><span class="n">Rec</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1727,7 +1727,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * based algorithm</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -1735,7 +1735,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * @param CNOT_matrix input of executed cnots which should be reduced</span></td>
+      <td class="src "><span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1743,7 +1743,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * @param paths pathhandler used for the reduction</span></td>
+      <td class="src "><span class="cm"> * this method offers the swap bases cnot synth</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1751,7 +1751,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * @param cnottype type of algorithm which could be CNotSynthType::Rec or</span></td>
+      <td class="src "><span class="cm"> * @param CNOT_matrix input of executed cnots which should be reduced</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1759,7 +1759,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * CNotSynthType::HamPath</span></td>
+      <td class="src "><span class="cm"> * @param paths pathhandler used for the reduction</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1783,7 +1783,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="n">Circuit</span> <span class="nf">aas_CNOT_synth</span><span class="p">(</span></td>
+      <td class="src "><span class="n">Circuit</span> <span class="nf">aas_CNOT_synth_SWAP</span><span class="p">(</span><span class="n">DiagMatrix</span> <span class="o">&amp;</span><span class="n">CNOT_matrix</span><span class="p">,</span> <span class="k">const</span> <span class="n">PathHandler</span> <span class="o">&amp;</span><span class="n">paths</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1791,7 +1791,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">    <span class="n">DiagMatrix</span> <span class="o">&amp;</span><span class="n">CNOT_matrix</span><span class="p">,</span> <span class="k">const</span> <span class="n">PathHandler</span> <span class="o">&amp;</span><span class="n">paths</span><span class="p">,</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -1799,7 +1799,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">    <span class="n">CNotSynthType</span> <span class="n">cnottype</span> <span class="o">=</span> <span class="n">CNotSynthType</span><span class="o">::</span><span class="n">Rec</span><span class="p">);</span></td>
+      <td class="src "><span class="p">}</span>  <span class="c1">// namespace aas</span></td>
     </tr>
 
     <tr class="source-line">
@@ -1807,91 +1807,11 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l219" href="#l219">219</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm">/**</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l220" href="#l220">220</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm"> * this method offers the swap bases cnot synth</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l221" href="#l221">221</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm"> * @param CNOT_matrix input of executed cnots which should be reduced</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l222" href="#l222">222</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm"> * @param paths pathhandler used for the reduction</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l223" href="#l223">223</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm"> * @return routed circuit</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l224" href="#l224">224</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="cm"> */</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l225" href="#l225">225</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="n">Circuit</span> <span class="nf">aas_CNOT_synth_SWAP</span><span class="p">(</span><span class="n">DiagMatrix</span> <span class="o">&amp;</span><span class="n">CNOT_matrix</span><span class="p">,</span> <span class="k">const</span> <span class="n">PathHandler</span> <span class="o">&amp;</span><span class="n">paths</span><span class="p">);</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l226" href="#l226">226</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l227" href="#l227">227</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="p">}</span>  <span class="c1">// namespace aas</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l228" href="#l228">228</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
       <td class="src "><span class="p">}</span>  <span class="c1">// namespace tket</span></td>
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l229" href="#l229">229</a></td>
+      <td class="lineno"><a id="l219" href="#l219">219</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
