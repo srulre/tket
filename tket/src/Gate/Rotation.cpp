@@ -18,7 +18,6 @@
 
 #include "OpType/OpDesc.hpp"
 #include "OpType/OpType.hpp"
-#include "Utils/Symbols.hpp"
 
 namespace tket {
 

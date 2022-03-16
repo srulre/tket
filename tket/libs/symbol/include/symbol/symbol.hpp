@@ -25,6 +25,7 @@
 #endif
 
 #include <symengine/expression.h>
+#include <symengine/visitor.h> // for free_symbols
 
 #if !defined(_MSC_VER)
 #pragma GCC diagnostic pop

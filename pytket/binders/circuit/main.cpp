@@ -25,7 +25,6 @@
 #include "Ops/ClassicalOps.hpp"
 #include "Ops/Op.hpp"
 #include "Utils/Constants.hpp"
-#include "Utils/Symbols.hpp"
 #include "binder_json.hpp"
 #include "binder_utils.hpp"
 #include "typecast.hpp"
