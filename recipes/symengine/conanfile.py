@@ -61,6 +61,9 @@ class SymengineConan(ConanFile):
             self._cmake.definitions["BUILD_BENCHMARKS"] = False
             self._cmake.definitions["INTEGER_CLASS"] = self.options.integer_class
             self._cmake.definitions["MSVC_USE_MT"] = False
+            if self.settings.os == "Macos":
+                self._cmake.definitions["CMAKE_INSTALL_NAME_DIR"] = "@loader_path"
+                self._cmake.definitions["CMAKE_BUILD_WITH_INSTALL_NAME_DIR"] = True
             self._cmake.configure(
                 source_dir=os.path.join(self.source_folder, "symengine")
             )
