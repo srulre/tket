@@ -46,6 +46,7 @@ class TketConan(ConanFile):
         "eigen/3.4.0",
         "spdlog/1.9.2",
         "nlohmann_json/3.10.5",
+        "tket-symbol/0.1.0",
     )
 
     comps = [

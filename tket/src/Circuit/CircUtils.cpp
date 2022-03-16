@@ -16,6 +16,7 @@
 
 #include <cmath>
 #include <complex>
+#include <symbol/symbol.hpp>
 #include <vector>
 
 #include "CircPool.hpp"
@@ -23,7 +24,6 @@
 #include "Gate/GatePtr.hpp"
 #include "Gate/Rotation.hpp"
 #include "Utils/EigenConfig.hpp"
-#include "Utils/Expression.hpp"
 #include "Utils/MatrixAnalysis.hpp"
 #include "Utils/UnitID.hpp"
 

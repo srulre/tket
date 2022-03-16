@@ -14,6 +14,7 @@
 
 #include "symbol/symbol.hpp"
 
+#include <symengine/expression.h>
 #include <symengine/visitor.h>
 
 #include <map>
@@ -83,7 +84,7 @@ std::optional<double> eval_expr_mod(const Expr& e, unsigned n) {
   double val = reduced_val.value();
   double val4 = 4 * val;
   long nearest_val4 = std::lrint(val4);
-  if (std::abs(val4 - nearest_val4) < 4 * EPS) {
+  if (std::abs(val4 - nearest_val4) < 4 * SYMEPS) {
     val = nearest_val4 * 0.25;
   }
   return fmodn(val, n);
@@ -93,11 +94,13 @@ std::optional<double> eval_expr_mod(const Expr& e, unsigned n) {
 // to that exact multiple and the return value is exact.
 // Is is assumed that 0 <= x < 24.
 static Expr cos_pi_by_12_times(double x) {
+  static const double PI =
+      3.141'592'653'589'793'238'462'643'383'279'502'884'197'169'399'375'105'820'974;
   static const double pi_by_12 = PI / 12;
   static const Expr pi_by_12_sym =
       SymEngine::div(SymEngine::pi, SymEngine::integer(12));
   int n(x + 0.5);  // nearest integer to x (assuming x >= 0)
-  if (std::abs(x - n) < EPS) {
+  if (std::abs(x - n) < SYMEPS) {
     Expr z = SymEngine::cos(n * pi_by_12_sym);
     return z;
   } else {

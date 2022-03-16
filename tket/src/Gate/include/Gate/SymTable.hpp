@@ -14,7 +14,7 @@
 
 #pragma once
 
-#include "Utils/Expression.hpp"
+#include <symbol/symbol.hpp>
 
 namespace tket {
 

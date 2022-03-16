@@ -26,8 +26,7 @@ add_library(tket-${COMP}
     MatrixAnalysis.cpp
     PauliStrings.cpp
     RNG.cpp
-    CosSinDecomposition.cpp
-    Expression.cpp)
+    CosSinDecomposition.cpp)
 
 list(APPEND DEPS_${COMP})
 

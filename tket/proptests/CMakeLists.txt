@@ -56,4 +56,4 @@ target_link_libraries(proptest PRIVATE
     tket-Utils)
 
 target_link_libraries(proptest PRIVATE
-    ${CONAN_LIBS_FMT} ${CONAN_LIBS_SPDLOG} ${CONAN_LIBS_SYMENGINE})
+    ${CONAN_LIBS_FMT} ${CONAN_LIBS_SPDLOG} ${CONAN_LIBS_SYMENGINE} ${CONAN_LIBS_TKET-SYMBOL})

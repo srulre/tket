@@ -20,8 +20,9 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
+#include <symbol/symbol.hpp>
+
 #include "Utils/Exceptions.hpp"
-#include "Utils/Expression.hpp"
 #include "Utils/Symbols.hpp"
 #include "unit_downcast.hpp"
 

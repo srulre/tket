@@ -14,9 +14,10 @@
 
 #include "Rotation.hpp"
 
+#include <symbol/symbol.hpp>
+
 #include "OpType/OpDesc.hpp"
 #include "OpType/OpType.hpp"
-#include "Utils/Expression.hpp"
 #include "Utils/Symbols.hpp"
 
 namespace tket {

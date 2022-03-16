@@ -14,9 +14,10 @@
 
 #pragma once
 
+#include <symbol/symbol.hpp>
+
 #include "OpType/OpType.hpp"
 #include "Ops/OpPtr.hpp"
-#include "Utils/Expression.hpp"
 
 namespace tket {
 

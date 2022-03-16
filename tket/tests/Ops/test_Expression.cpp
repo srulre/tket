@@ -15,9 +15,9 @@
 #include <symengine/eval.h>
 
 #include <catch2/catch.hpp>
+#include <symbol/symbol.hpp>
 
 #include "../testutil.hpp"
-#include "Utils/Expression.hpp"
 
 namespace tket {
 namespace test_Expression {

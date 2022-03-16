@@ -15,9 +15,9 @@
 #pragma once
 
 #include <optional>
+#include <symbol/symbol.hpp>
 #include <unordered_set>
 
-#include "Utils/Expression.hpp"
 #include "ZX/Types.hpp"
 
 namespace tket {
