@@ -15,9 +15,9 @@
 #pragma once
 
 #include <fstream>
+#include <symbol/symbol.hpp>
 
 #include "Clifford/CliffTableau.hpp"
-#include "Utils/Expression.hpp"
 #include "Utils/GraphHeaders.hpp"
 #include "Utils/PauliStrings.hpp"
 #include "Utils/SequencedContainers.hpp"

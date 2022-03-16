@@ -15,6 +15,7 @@
 #include "Decomposition.hpp"
 
 #include <optional>
+#include <symbol/symbol.hpp>
 
 #include "Architecture/Architecture.hpp"
 #include "BasicOptimisation.hpp"
@@ -27,7 +28,6 @@
 #include "Rebase.hpp"
 #include "Replacement.hpp"
 #include "Transform.hpp"
-#include "Utils/Expression.hpp"
 
 namespace tket {
 

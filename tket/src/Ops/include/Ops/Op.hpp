@@ -24,6 +24,7 @@
 #include <ostream>
 #include <stdexcept>
 #include <string>
+#include <symbol/symbol.hpp>
 #include <utility>
 #include <vector>
 
@@ -32,7 +33,6 @@
 #include "OpType/OpTypeFunctions.hpp"
 #include "Utils/Constants.hpp"
 #include "Utils/Exceptions.hpp"
-#include "Utils/Expression.hpp"
 #include "Utils/Json.hpp"
 #include "Utils/PauliStrings.hpp"
 #include "Utils/UnitID.hpp"

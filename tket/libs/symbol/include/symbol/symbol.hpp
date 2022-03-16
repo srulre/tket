@@ -15,7 +15,20 @@
 #pragma once
 
 #include <nlohmann/json.hpp>
+
+#if !defined(_MSC_VER)
+#pragma GCC diagnostic push
+#if defined(__clang__)
+#pragma GCC diagnostic ignored "-Wambiguous-reversed-operator"
+#endif
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#endif
+
 #include <symengine/expression.h>
+
+#if !defined(_MSC_VER)
+#pragma GCC diagnostic pop
+#endif
 
 #include <map>
 #include <optional>
@@ -33,7 +46,7 @@ typedef SymEngine::RCP<const SymEngine::Basic> ExprPtr;
 /** Shared pointer to a free symbol */
 typedef SymEngine::RCP<const SymEngine::Symbol> Sym;
 
-} // namespace tket
+}  // namespace tket
 
 namespace nlohmann {
 
@@ -66,11 +79,7 @@ struct adl_serializer<tket::Sym> {
 namespace tket {
 
 /** Default tolerance for floating-point comparisons */
-constexpr double EPS = 1e-11;
-
-/** \f$ \pi \f$ */
-constexpr double PI =
-    3.141'592'653'589'793'238'462'643'383'279'502'884'197'169'399'375'105'820'974;
+constexpr double SYMEPS = 1e-11;
 
 struct SymCompareLess {
   bool operator()(const Sym& a, const Sym& b) const {
@@ -96,7 +105,7 @@ std::optional<std::complex<double>> eval_expr_c(const Expr& e);
 /**
  * Evaluate an expression modulo n
  *
- * The result will be in the half-interval [0,n). If it is within EPS of a
+ * The result will be in the half-interval [0,n). If it is within SYMEPS of a
  * multiple of 0.25 the result is clamped to an exact multiple.
  *
  * @param e expression to evaluate
@@ -108,16 +117,16 @@ std::optional<double> eval_expr_mod(const Expr& e, unsigned n = 2);
 /**
  * Return cos(e*pi/2)
  *
- * If e is within @p EPS of an integer then it is rounded so that the result can
- * be evaluated.
+ * If e is within @p SYMEPS of an integer then it is rounded so that the result
+ * can be evaluated.
  */
 Expr cos_halfpi_times(const Expr& e);
 
 /**
  * Return sin(e*pi/2)
  *
- * If e is within @p EPS of an integer then it is rounded so that the result can
- * be evaluated.
+ * If e is within @p SYMEPS of an integer then it is rounded so that the result
+ * can be evaluated.
  */
 Expr sin_halfpi_times(const Expr& e);
 
@@ -129,7 +138,7 @@ Expr sin_halfpi_times(const Expr& e);
  *
  * @return whether \p e is within \p tol of zero
  */
-bool approx_0(const Expr& e, double tol = EPS);
+bool approx_0(const Expr& e, double tol = SYMEPS);
 
 /**
  * Evaluate modulo n in the range [0,n)
@@ -151,7 +160,7 @@ double fmodn(double x, unsigned n);
  *
  * @return whether \p x is within \p tol of \p y modulo \p mod
  */
-bool approx_eq(double x, double y, unsigned mod = 2, double tol = EPS);
+bool approx_eq(double x, double y, unsigned mod = 2, double tol = SYMEPS);
 
 /**
  * Test approximate equality of expressions modulo n
@@ -165,7 +174,7 @@ bool approx_eq(double x, double y, unsigned mod = 2, double tol = EPS);
  * @retval false expressions are not within tolerance or could not ve evaluated
  */
 bool equiv_expr(
-    const Expr& e0, const Expr& e1, unsigned n = 2, double tol = EPS);
+    const Expr& e0, const Expr& e1, unsigned n = 2, double tol = SYMEPS);
 
 /**
  * Test approximate value of an expression modulo n
@@ -178,7 +187,7 @@ bool equiv_expr(
  * @retval true \p e is within \p tol of \p x modulo n
  * @retval false expression is not within tolerance or could not be evaluated
  */
-bool equiv_val(const Expr& e, double x, unsigned n = 2, double tol = EPS);
+bool equiv_val(const Expr& e, double x, unsigned n = 2, double tol = SYMEPS);
 
 /**
  * Test whether a expression is approximately 0 modulo n
@@ -190,7 +199,7 @@ bool equiv_val(const Expr& e, double x, unsigned n = 2, double tol = EPS);
  * @retval true \p e is within \p tol of 0 modulo n
  * @retval false expression is not within tolerance or could not be evaluated
  */
-bool equiv_0(const Expr& e, unsigned n = 2, double tol = EPS);
+bool equiv_0(const Expr& e, unsigned n = 2, double tol = SYMEPS);
 
 /**
  * Test whether an expression is approximately a Clifford angle (some multiple
@@ -204,6 +213,6 @@ bool equiv_0(const Expr& e, unsigned n = 2, double tol = EPS);
  * @retval u \f$ e \approx \frac12 u \pmod n \f$ where \f$ 0 \leq u < 2n \} \f$.
  */
 std::optional<unsigned> equiv_Clifford(
-    const Expr& e, unsigned n = 2, double tol = EPS);
+    const Expr& e, unsigned n = 2, double tol = SYMEPS);
 
 }  // namespace tket

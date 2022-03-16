@@ -13,13 +13,13 @@
 // limitations under the License.
 
 #include <memory>
+#include <symbol/symbol.hpp>
 
 #include "BasicOptimisation.hpp"
 #include "Decomposition.hpp"
 #include "Gate/Rotation.hpp"
 #include "SingleQubitSquash.hpp"
 #include "Transform.hpp"
-#include "Utils/Expression.hpp"
 
 namespace tket {
 

@@ -39,7 +39,7 @@ else()
 endif()
 
 list(APPEND TKET_EXTRA_LIBS
-    ${CONAN_LIBS_FMT} ${CONAN_LIBS_SPDLOG} ${CONAN_LIBS_SYMENGINE})
+    ${CONAN_LIBS_FMT} ${CONAN_LIBS_SPDLOG} ${CONAN_LIBS_SYMENGINE} ${CONAN_LIBS_TKET-SYMBOL})
 
 pybind11_add_module(circuit
     binders/circuit/main.cpp

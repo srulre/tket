@@ -14,8 +14,9 @@
 
 #pragma once
 
+#include <symbol/symbol.hpp>
+
 #include "Circuit.hpp"
-#include "Utils/Expression.hpp"
 
 namespace tket {
 
