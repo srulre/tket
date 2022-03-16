@@ -41,8 +41,8 @@
 namespace tket {
 namespace test_Circ {
 
-static std::pair<Op_ptr, Expr> op_to_tk1(const Op_ptr& op) {
-  std::vector<Expr> angles = as_gate_ptr(op)->get_tk1_angles();
+static std::pair<Op_ptr, symbol::Expr> op_to_tk1(const Op_ptr& op) {
+  std::vector<symbol::Expr> angles = as_gate_ptr(op)->get_tk1_angles();
   return {
       get_op_ptr(OpType::TK1, {angles[0], angles[1], angles[2]}), angles[3]};
 }
@@ -1019,10 +1019,11 @@ SCENARIO("circuit equality ", "[equality]") {
   GIVEN("Circuits with equivalent parameter expressions") {
     Circuit test1(2);
     test1.add_op<unsigned>(OpType::CX, {0, 1});
-    test1.add_op<unsigned>(OpType::Rx, Expr(1 / sqrt(2.)), {0});
+    test1.add_op<unsigned>(OpType::Rx, symbol::Expr(1 / sqrt(2.)), {0});
     Circuit test2(2);
     test2.add_op<unsigned>(OpType::CX, {0, 1});
-    test2.add_op<unsigned>(OpType::Rx, SymEngine::cos(Expr("pi") / 4), {0});
+    test2.add_op<unsigned>(
+        OpType::Rx, SymEngine::cos(symbol::Expr("pi") / 4), {0});
     REQUIRE(test1 == test2);
   }
   GIVEN("Circuits with known mismatches") {
@@ -1128,19 +1129,19 @@ SCENARIO("Test that subcircuits are correctly generated") {
 SCENARIO("Functions with symbolic ops") {
   GIVEN("A simple circuit with symbolics to instantiate") {
     Circuit circ(2);
-    Sym a = SymEngine::symbol("alpha");
-    Expr alpha(a);
-    Sym b = SymEngine::symbol("beta");
-    Expr e = -2 * Expr(b);
+    symbol::Sym a = SymEngine::symbol("alpha");
+    symbol::Expr alpha(a);
+    symbol::Sym b = SymEngine::symbol("beta");
+    symbol::Expr e = -2 * symbol::Expr(b);
     circ.add_op<unsigned>(OpType::Rz, alpha, {0});
     circ.add_op<unsigned>(OpType::PhaseGadget, e, {0, 1});
     REQUIRE(circ.is_symbolic());
-    SymSet symbols = circ.free_symbols();
+    symbol::SymSet symbols = circ.free_symbols();
     REQUIRE(symbols.size() == 2);
     REQUIRE(symbols.find(a) != symbols.end());
-    symbol_map_t symbol_map;
-    symbol_map[a] = Expr(0.5);
-    symbol_map[b] = Expr(0.7);
+    symbol::symbol_map_t symbol_map;
+    symbol_map[a] = symbol::Expr(0.5);
+    symbol_map[b] = symbol::Expr(0.7);
     circ.symbol_substitution(symbol_map);
     VertexVec vertices = circ.vertices_in_order();
     Op_ptr op2 = circ.get_Op_ptr_from_Vertex(vertices[2]);
@@ -1798,7 +1799,7 @@ SCENARIO("Decomposing a multi-qubit operation into CXs") {
   }
   GIVEN("A CU3 gate") {
     Circuit circ(2);
-    std::vector<Expr> p = {0.5, 0.5, 1.};
+    std::vector<symbol::Expr> p = {0.5, 0.5, 1.};
     Vertex v = circ.add_op<unsigned>(OpType::CU3, p, {0, 1});
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
@@ -1958,7 +1959,7 @@ SCENARIO("Decomposing a single qubit gate") {
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -1976,7 +1977,7 @@ SCENARIO("Decomposing a single qubit gate") {
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -1994,7 +1995,7 @@ SCENARIO("Decomposing a single qubit gate") {
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -2012,7 +2013,7 @@ SCENARIO("Decomposing a single qubit gate") {
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -2030,7 +2031,7 @@ SCENARIO("Decomposing a single qubit gate") {
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -2048,7 +2049,7 @@ SCENARIO("Decomposing a single qubit gate") {
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -2066,7 +2067,7 @@ SCENARIO("Decomposing a single qubit gate") {
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -2084,7 +2085,7 @@ SCENARIO("Decomposing a single qubit gate") {
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -2103,7 +2104,7 @@ SCENARIO("Decomposing a single qubit gate") {
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -2122,7 +2123,7 @@ SCENARIO("Decomposing a single qubit gate") {
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -2141,7 +2142,7 @@ SCENARIO("Decomposing a single qubit gate") {
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -2160,7 +2161,7 @@ SCENARIO("Decomposing a single qubit gate") {
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -2179,7 +2180,7 @@ SCENARIO("Decomposing a single qubit gate") {
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -2198,7 +2199,7 @@ SCENARIO("Decomposing a single qubit gate") {
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -2217,7 +2218,7 @@ SCENARIO("Decomposing a single qubit gate") {
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -2234,11 +2235,11 @@ SCENARIO("Decomposing a single qubit gate") {
     Circuit circ(1);
     Vertex v;
     WHEN("Taking a U3 gate") {
-      std::vector<Expr> params = {0.1, 0.8, 1.4};
+      std::vector<symbol::Expr> params = {0.1, 0.8, 1.4};
       v = circ.add_op<unsigned>(OpType::U3, params, {0});
     }
     WHEN("Taking a U2 gate") {
-      std::vector<Expr> params = {0.8, 1.4};
+      std::vector<symbol::Expr> params = {0.8, 1.4};
       v = circ.add_op<unsigned>(OpType::U2, params, {0});
     }
     WHEN("Taking a U1 gate") {
@@ -2251,12 +2252,12 @@ SCENARIO("Decomposing a single qubit gate") {
   }
   GIVEN("A PhasedX gate") {
     Circuit circ(1);
-    std::vector<Expr> params = {0.6, 1.3};
+    std::vector<symbol::Expr> params = {0.6, 1.3};
     Vertex v = circ.add_op<unsigned>(OpType::PhasedX, params, {0});
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     Circuit rep;
     WHEN("Default circuit replacement") {
-      std::pair<Op_ptr, Expr> rep_op = op_to_tk1(op);
+      std::pair<Op_ptr, symbol::Expr> rep_op = op_to_tk1(op);
       rep.add_blank_wires(1);
       rep.add_op<unsigned>(rep_op.first, {0});
       rep.add_phase(rep_op.second);
@@ -2404,12 +2405,12 @@ SCENARIO("Attempt to append multiple circuits sequentially") {
 
 SCENARIO("Represent symbolic operations correctly") {
   Circuit c(1);
-  Sym a = SymEngine::symbol("alpha");
-  Expr alpha(a);
+  symbol::Sym a = SymEngine::symbol("alpha");
+  symbol::Expr alpha(a);
   c.add_op<unsigned>(OpType::Rz, 0.5, {0});
   c.add_op<unsigned>(OpType::Rz, 0.5 * alpha, {0});
   REQUIRE(c.is_symbolic());
-  const SymSet symbols = c.free_symbols();
+  const symbol::SymSet symbols = c.free_symbols();
   REQUIRE(symbols.size() == 1);
   REQUIRE(symbols.find(a) != symbols.end());
   std::stringstream cmd_0, cmd_1;
@@ -2558,14 +2559,14 @@ SCENARIO("Testing add_op with Barrier type and add_barrier") {
   // TKET-377
   GIVEN("An attempt to add a Barrier with Qubit arguments") {
     Circuit c(1);
-    std::vector<Expr> params;
+    std::vector<symbol::Expr> params;
     qubit_vector_t qubits = c.all_qubits();
     REQUIRE_THROWS_AS(
         c.add_op(OpType::Barrier, params, qubits), CircuitInvalidity);
   }
   GIVEN("An attempt to add a Barrier with unsigned arguments") {
     Circuit c(1);
-    std::vector<Expr> params;
+    std::vector<symbol::Expr> params;
     uvec unsigneds{0};
     REQUIRE_THROWS_AS(
         c.add_op(OpType::Barrier, params, unsigneds), CircuitInvalidity);

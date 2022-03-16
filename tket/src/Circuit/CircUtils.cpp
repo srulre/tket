@@ -36,7 +36,7 @@ Eigen::Matrix2cd get_matrix(const Circuit &circ, const Vertex &vert) {
         "Cannot obtain matrix from gate: " + op->get_name() +
         ". Try rebasing to tket's internal representation.");
   }
-  std::vector<Expr> ps = op->get_params();
+  std::vector<symbol::Expr> ps = op->get_params();
   ps.push_back(0);
   return get_matrix_from_tk1_angles(ps);
 }
@@ -46,7 +46,8 @@ Eigen::Matrix2cd get_matrix_from_circ(const Circuit &circ) {
     throw CircuitInvalidity(
         "Getting Matrix: expected 1 qubit circuit, found " +
         std::to_string(circ.n_qubits()));
-  Complex factor = std::exp(i_ * PI * eval_expr(circ.get_phase()).value());
+  Complex factor =
+      std::exp(i_ * PI * symbol::eval_expr(circ.get_phase()).value());
   VertexVec qpath = circ.qubit_path_vertices(circ.all_qubits()[0]);
   unsigned N = qpath.size();
   if (N == 2) return factor * Eigen::Matrix2cd::Identity();
@@ -106,7 +107,7 @@ Eigen::Matrix4cd get_matrix_from_2qb_circ(const Circuit &circ) {
           if (o->get_desc().is_gate() && circ.n_in_edges(it->first) == 1 &&
               circ.n_out_edges(it->first) == 1) {
             const Op_ptr g = o;
-            std::vector<Expr> ps = as_gate_ptr(g)->get_tk1_angles();
+            std::vector<symbol::Expr> ps = as_gate_ptr(g)->get_tk1_angles();
             Eigen::Matrix2cd mat = get_matrix_from_tk1_angles(ps);
             if (uqb == 0) {
               v_to_op[it->first] =
@@ -129,7 +130,7 @@ Eigen::Matrix4cd get_matrix_from_2qb_circ(const Circuit &circ) {
       m = v_to_op[v] * m;
     }
   }
-  return std::exp(i_ * PI * eval_expr(circ.get_phase()).value()) * m;
+  return std::exp(i_ * PI * symbol::eval_expr(circ.get_phase()).value()) * m;
 }
 
 // TODO all cnots are in one direction: freedom to choose the optimal one
@@ -242,7 +243,8 @@ std::pair<Circuit, Complex> decompose_2cx_DV(const Eigen::Matrix4cd &U) {
   return {circ, std::conj(z0)};
 }
 
-Circuit phase_gadget(unsigned n_qubits, const Expr &t, CXConfigType cx_config) {
+Circuit phase_gadget(
+    unsigned n_qubits, const symbol::Expr &t, CXConfigType cx_config) {
   // Handle n_qubits==0 as a special case, or the calculations below
   // go badly wrong.
   Circuit new_circ(n_qubits);
@@ -331,7 +333,8 @@ Circuit phase_gadget(unsigned n_qubits, const Expr &t, CXConfigType cx_config) {
 }
 
 Circuit pauli_gadget(
-    const std::vector<Pauli> &paulis, const Expr &t, CXConfigType cx_config) {
+    const std::vector<Pauli> &paulis, const symbol::Expr &t,
+    CXConfigType cx_config) {
   unsigned n = paulis.size();
   Circuit circ(n);
   std::vector<unsigned> qubits;
@@ -379,7 +382,7 @@ Circuit pauli_gadget(
 
 Circuit with_CX(Gate_ptr op) {
   OpType optype = op->get_type();
-  std::vector<Expr> params = op->get_params();
+  std::vector<symbol::Expr> params = op->get_params();
   unsigned n = op->n_qubits();
   if (n == 0) {
     return Circuit();
@@ -465,12 +468,12 @@ Circuit with_CX(Gate_ptr op) {
 /**
  * Construct a circuit representing CnU1 using U1, CX, CCX and CnX gates.
  */
-static Circuit CnU1(unsigned n_controls, Expr lambda) {
+static Circuit CnU1(unsigned n_controls, symbol::Expr lambda) {
   // CnU1(x) decomposes recursively as:
   // C{n-1}U1(x/2)[ctrls]; U1(x/2)[tgt]; CnX; U1(-x/2)[tgt]; CnX
   // We don't actually use recursion; just iterate starting with the first U1:
   Circuit c(n_controls + 1);
-  Expr x = lambda / (1u << n_controls);
+  symbol::Expr x = lambda / (1u << n_controls);
   c.add_op<unsigned>(OpType::U1, x, {0});
   std::vector<unsigned> cnx_qbs = {0};
   for (unsigned i = 0; i < n_controls; i++) {
@@ -528,7 +531,7 @@ Circuit with_controls(const Circuit &c, unsigned n_controls) {
       bin, Circuit::GraphRewiring::No, Circuit::VertexDeletion::Yes);
 
   // Capture the phase. We may adjust this during replacements below.
-  Expr a = c1.get_phase();
+  symbol::Expr a = c1.get_phase();
 
   // 2. Replace all gates with controlled versions
   Circuit c2(n_controls + c_n_qubits);
@@ -545,7 +548,7 @@ Circuit with_controls(const Circuit &c, unsigned n_controls) {
       new_args[n_controls + i] = Qubit(n_controls + args[i].index()[0]);
     }
     OpType optype = op->get_type();
-    std::vector<Expr> params = op->get_params();
+    std::vector<symbol::Expr> params = op->get_params();
     switch (optype) {
       case OpType::noop:
         break;
@@ -560,11 +563,12 @@ Circuit with_controls(const Circuit &c, unsigned n_controls) {
         c2.add_op<Qubit>(OpType::CnRy, params, new_args);
         break;
       default: {
-        std::vector<Expr> tk1_angles = as_gate_ptr(op)->get_tk1_angles();
-        Expr theta = tk1_angles[1];
-        Expr phi = tk1_angles[0] - 0.5;
-        Expr lambda = tk1_angles[2] + 0.5;
-        Expr t = tk1_angles[3] - 0.5 * (tk1_angles[0] + tk1_angles[2]);
+        std::vector<symbol::Expr> tk1_angles =
+            as_gate_ptr(op)->get_tk1_angles();
+        symbol::Expr theta = tk1_angles[1];
+        symbol::Expr phi = tk1_angles[0] - 0.5;
+        symbol::Expr lambda = tk1_angles[2] + 0.5;
+        symbol::Expr t = tk1_angles[3] - 0.5 * (tk1_angles[0] + tk1_angles[2]);
         // Operation is U3(theta, phi, lambda) + phase t.
         // First absorb t in the overall phase.
         a += t;
@@ -584,7 +588,7 @@ Circuit with_controls(const Circuit &c, unsigned n_controls) {
   }
 
   // 3. Account for phase by appending a CnU1 to the control qubits.
-  if (!equiv_0(a)) {
+  if (!symbol::equiv_0(a)) {
     Circuit cnu1 = CnU1(n_controls - 1, a);
     c2.append(cnu1);
   }

@@ -83,7 +83,8 @@ Transform squash_1qb_to_pqp(
 // Produces: singleqs and any multi-qubit gates
 Transform squash_factory(
     const OpTypeSet& singleqs,
-    const std::function<Circuit(const Expr&, const Expr&, const Expr&)>&
+    const std::function<
+        Circuit(const symbol::Expr&, const symbol::Expr&, const symbol::Expr&)>&
         tk1_replacement);
 
 // commutes single qubit gates through SWAP gates, leaving them on the

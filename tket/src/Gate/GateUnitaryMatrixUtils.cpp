@@ -119,11 +119,11 @@ void GateUnitaryMatrixUtils::check_and_throw_upon_wrong_number_of_parameters(
 
 std::vector<double> GateUnitaryMatrixUtils::get_checked_parameters(
     const Gate& gate) {
-  const std::vector<Expr> parameter_expressions = gate.get_params();
+  const std::vector<symbol::Expr> parameter_expressions = gate.get_params();
   const unsigned int number_of_qubits = gate.n_qubits();
   std::vector<double> parameters(parameter_expressions.size());
   for (unsigned nn = 0; nn < parameters.size(); ++nn) {
-    const auto optional_value = eval_expr(parameter_expressions[nn]);
+    const auto optional_value = symbol::eval_expr(parameter_expressions[nn]);
     if (!optional_value) {
       std::stringstream ss;
       ss << get_error_prefix(gate.get_name(), number_of_qubits, parameters)

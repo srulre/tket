@@ -29,7 +29,7 @@ namespace tket {
  * @param cx_config which type of CX configuration to decompose into
  */
 void append_single_pauli_gadget(
-    Circuit& circ, const QubitPauliTensor& pauli, Expr angle,
+    Circuit& circ, const QubitPauliTensor& pauli, symbol::Expr angle,
     CXConfigType cx_config = CXConfigType::Snake);
 
 /**
@@ -48,8 +48,8 @@ void append_single_pauli_gadget(
  * @param cx_config which type of CX configuration to decompose into
  */
 void append_pauli_gadget_pair(
-    Circuit& circ, QubitPauliTensor pauli0, Expr angle0,
-    QubitPauliTensor pauli1, Expr angle1,
+    Circuit& circ, QubitPauliTensor pauli0, symbol::Expr angle0,
+    QubitPauliTensor pauli1, symbol::Expr angle1,
     CXConfigType cx_config = CXConfigType::Snake);
 
 }  // namespace tket

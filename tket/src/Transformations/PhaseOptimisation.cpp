@@ -67,7 +67,7 @@ static void recursive_smash_CX_PhaseGadgets(
       }
     }
     // Fix up the qubit count for the phase gadget we inserted.
-    std::vector<Expr> v_params =
+    std::vector<symbol::Expr> v_params =
         circ.get_Op_ptr_from_Vertex(vert)->get_params();
     circ.dag[vert].op =
         get_op_ptr(OpType::PhaseGadget, v_params, circ.n_in_edges(vert));

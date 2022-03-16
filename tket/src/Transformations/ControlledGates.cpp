@@ -39,7 +39,8 @@ typedef std::vector<std::pair<Edge, Vertex>>
     candidate_t;  // each CnX candidate to decompose needs a spare wire to put
                   // some extra controls on
 
-static Circuit lemma54(const Expr& angle);  // refers to rule lemma 5.4 in paper
+static Circuit lemma54(
+    const symbol::Expr& angle);  // refers to rule lemma 5.4 in paper
 static Circuit lemma72(unsigned control_m);  // rule lemma 7.2
 static void lemma73(
     Circuit& circ, const std::pair<Edge, Vertex>& pairy);  // rule lemma 7.3
@@ -328,10 +329,10 @@ Circuit cnx_normal_decomp(unsigned n) {
   // z rotation layer #2
   for (unsigned i = 0; i < n - 1; ++i) {
     unsigned m = n - 1 - i;
-    Expr ang = z_rots[i]->get_params()[0];
+    symbol::Expr ang = z_rots[i]->get_params()[0];
     circ.add_op<unsigned>(get_op_ptr(OpType::Rz, -ang), {m});
   }
-  Expr ang = z_rots[n - 2]->get_params()[0];
+  symbol::Expr ang = z_rots[n - 2]->get_params()[0];
   circ.add_op<unsigned>(get_op_ptr(OpType::Rz, -ang), {0});
 
   decomp_CCX().apply(circ);
@@ -341,10 +342,10 @@ Circuit cnx_normal_decomp(unsigned n) {
 
 /* assumes vert is controlled Ry with 1 control */
 /* decomposes CRy into 2 CXs and 2 Ry gates */
-static Circuit lemma54(const Expr& angle) {
+static Circuit lemma54(const symbol::Expr& angle) {
   Circuit new_circ(2);
-  std::vector<Expr> A_params = {angle / 2.};
-  std::vector<Expr> B_params = {-angle / 2.};
+  std::vector<symbol::Expr> A_params = {angle / 2.};
+  std::vector<symbol::Expr> B_params = {-angle / 2.};
   const Op_ptr A = get_op_ptr(OpType::Ry, A_params);
   const Op_ptr B = get_op_ptr(OpType::Ry, B_params);
   new_circ.add_op<unsigned>(A, {1});
@@ -372,7 +373,7 @@ static unsigned find_first_differing_val(
 // optimal decomposition of CnRy and CnZ for 2 < n < 8 according to 1995
 // paper... can do better with ZH calculus?
 static Circuit lemma71(
-    unsigned arity, const Expr& angle, const OpType& cr_type) {
+    unsigned arity, const symbol::Expr& angle, const OpType& cr_type) {
   unsigned m_controls = arity - 1;
   if (m_controls < 2)
     throw Unsupported(
@@ -390,8 +391,8 @@ static Circuit lemma71(
   unsigned n_square_roots = m_controls - 1;
 
   Circuit rep(arity);
-  Expr param;
-  std::optional<double> reduced = eval_expr_mod(angle, 4);
+  symbol::Expr param;
+  std::optional<double> reduced = symbol::eval_expr_mod(angle, 4);
   if (reduced)
     param = reduced.value();
   else
@@ -440,7 +441,7 @@ static Circuit lemma71(
     if (!bin.contains(v)) {
       OpType optype = rep.get_OpType_from_Vertex(v);
       if (optype == OpType::CRy || optype == OpType::CU1) {
-        Expr v_angle = rep.get_Op_ptr_from_Vertex(v)->get_params()[0];
+        symbol::Expr v_angle = rep.get_Op_ptr_from_Vertex(v)->get_params()[0];
         Circuit replacement = (optype == OpType::CRy)
                                   ? CircPool::CRy_using_CX(v_angle)
                                   : CircPool::CU1_using_CX(v_angle);
@@ -511,8 +512,10 @@ static void lemma73(Circuit& circ, const std::pair<Edge, Vertex>& pairy) {
 
   // make new circuit to substitute later
   Circuit new_circ(N);
-  const Op_ptr cnx_op1 = get_op_ptr(OpType::CnX, std::vector<Expr>{}, m1 + 1);
-  const Op_ptr cnx_op2 = get_op_ptr(OpType::CnX, std::vector<Expr>{}, m2 + 1);
+  const Op_ptr cnx_op1 =
+      get_op_ptr(OpType::CnX, std::vector<symbol::Expr>{}, m1 + 1);
+  const Op_ptr cnx_op2 =
+      get_op_ptr(OpType::CnX, std::vector<symbol::Expr>{}, m2 + 1);
   std::vector<unsigned> qbs_m1(m1 + 1);
   std::iota(qbs_m1.begin(), qbs_m1.begin() + m1, 0);
   qbs_m1[m1] = N - 1;
@@ -666,12 +669,12 @@ static void lemma73(Circuit& circ, const std::pair<Edge, Vertex>& pairy) {
 
 // N must be >= 3
 static void lemma79(
-    Circuit& replacement, unsigned N, const Expr& angle,
+    Circuit& replacement, unsigned N, const symbol::Expr& angle,
     candidate_t& CCX_candidates) {
   replacement.add_blank_wires(N);
 
-  std::vector<Expr> A_params = {angle / 2.};
-  std::vector<Expr> B_params = {-angle / 2.};
+  std::vector<symbol::Expr> A_params = {angle / 2.};
+  std::vector<symbol::Expr> B_params = {-angle / 2.};
   const Op_ptr A = get_op_ptr(OpType::CnRy, A_params, 2);
   const Op_ptr B = get_op_ptr(OpType::CnRy, B_params, 2);
 
@@ -679,7 +682,8 @@ static void lemma79(
   std::vector<unsigned> cnx_qbs(N - 1);
   std::iota(cnx_qbs.begin(), --cnx_qbs.end(), 0);
   cnx_qbs[N - 2] = N - 1;
-  const Op_ptr cnx = get_op_ptr(OpType::CnX, std::vector<Expr>{}, N - 1);
+  const Op_ptr cnx =
+      get_op_ptr(OpType::CnX, std::vector<symbol::Expr>{}, N - 1);
   Vertex firstCnX = replacement.add_op<unsigned>(cnx, cnx_qbs);
   Vertex vB = replacement.add_op<unsigned>(B, {N - 2, N - 1});  // B
   CCX_candidates.push_back(
@@ -703,7 +707,7 @@ Circuit decomposed_CnRy(const Op_ptr op, unsigned arity) {
     throw CircuitInvalidity("Operation not CnRy");
   }
   OpDesc desc = op->get_desc();
-  Expr angle = op->get_params()[0];
+  symbol::Expr angle = op->get_params()[0];
   Circuit rep;
   switch (arity) {
     case 0: {
@@ -739,7 +743,8 @@ Circuit decomposed_CnRy(const Op_ptr op, unsigned arity) {
         ++xnext;
         OpType type = rep.get_OpType_from_Vertex(*x);
         if (type == OpType::CnRy) {
-          Expr x_angle = rep.get_Op_ptr_from_Vertex(*x)->get_params()[0];
+          symbol::Expr x_angle =
+              rep.get_Op_ptr_from_Vertex(*x)->get_params()[0];
           Circuit new_circ = lemma54(x_angle);
           Subcircuit sub{rep.get_in_edges(*x), rep.get_all_out_edges(*x), {*x}};
           rep.substitute(new_circ, sub, Circuit::VertexDeletion::Yes);

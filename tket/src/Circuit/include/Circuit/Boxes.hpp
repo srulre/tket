@@ -132,7 +132,7 @@ class CircBox : public Box {
   Op_ptr symbol_substitution(
       const SymEngine::map_basic_basic &sub_map) const override;
 
-  SymSet free_symbols() const override;
+  symbol::SymSet free_symbols() const override;
 
   /**
    * Equality check between two CircBox instances
@@ -183,7 +183,7 @@ class Unitary1qBox : public Box {
     return Op_ptr();
   }
 
-  SymSet free_symbols() const override { return {}; }
+  symbol::SymSet free_symbols() const override { return {}; }
 
   /**
    * Equality check between two Unitary1qBox instances
@@ -244,7 +244,7 @@ class Unitary2qBox : public Box {
     return Op_ptr();
   }
 
-  SymSet free_symbols() const override { return {}; }
+  symbol::SymSet free_symbols() const override { return {}; }
 
   /**
    * Equality check between two Unitary2qBox instances
@@ -304,7 +304,7 @@ class Unitary3qBox : public Box {
     return Op_ptr();
   }
 
-  SymSet free_symbols() const override { return {}; }
+  symbol::SymSet free_symbols() const override { return {}; }
 
   /**
    * Equality check between two Unitary3qBox instances
@@ -370,7 +370,7 @@ class ExpBox : public Box {
     return Op_ptr();
   }
 
-  SymSet free_symbols() const override { return {}; }
+  symbol::SymSet free_symbols() const override { return {}; }
 
   /**
    * Equality check between two ExpBox instances
@@ -411,7 +411,7 @@ class PauliExpBox : public Box {
    * \f$ e^{-\frac12 i \pi t \sigma_0 \otimes \sigma_1 \otimes \cdots} \f$
    * where \f$ \sigma_i \in \{I,X,Y,Z\} \f$ are the Pauli operators.
    */
-  PauliExpBox(const std::vector<Pauli> &paulis, const Expr &t);
+  PauliExpBox(const std::vector<Pauli> &paulis, const symbol::Expr &t);
 
   /**
    * Construct from the empty vector
@@ -425,7 +425,7 @@ class PauliExpBox : public Box {
 
   ~PauliExpBox() override {}
 
-  SymSet free_symbols() const override;
+  symbol::SymSet free_symbols() const override;
 
   /**
    * Equality check between two PauliExpBox instances
@@ -439,7 +439,7 @@ class PauliExpBox : public Box {
   std::vector<Pauli> get_paulis() const { return paulis_; }
 
   /** Get the phase parameter */
-  Expr get_phase() const { return t_; }
+  symbol::Expr get_phase() const { return t_; }
 
   Op_ptr dagger() const override;
 
@@ -457,7 +457,7 @@ class PauliExpBox : public Box {
 
  private:
   std::vector<Pauli> paulis_;
-  Expr t_;
+  symbol::Expr t_;
 };
 
 class CompositeGateDef;
@@ -470,16 +470,16 @@ class CompositeGateDef : public std::enable_shared_from_this<CompositeGateDef> {
  public:
   CompositeGateDef(
       const std::string &name, const Circuit &def,
-      const std::vector<Sym> &args);
+      const std::vector<symbol::Sym> &args);
 
   static composite_def_ptr_t define_gate(
       const std::string &name, const Circuit &def,
-      const std::vector<Sym> &args);
+      const std::vector<symbol::Sym> &args);
 
-  Circuit instance(const std::vector<Expr> &params) const;
+  Circuit instance(const std::vector<symbol::Expr> &params) const;
 
   std::string get_name() const { return name_; }
-  std::vector<Sym> get_args() const { return args_; }
+  std::vector<symbol::Sym> get_args() const { return args_; }
   std::shared_ptr<Circuit> get_def() const { return def_; }
   unsigned n_args() const { return args_.size(); }
   op_signature_t signature() const;
@@ -489,20 +489,21 @@ class CompositeGateDef : public std::enable_shared_from_this<CompositeGateDef> {
  private:
   std::string name_;
   std::shared_ptr<Circuit> def_;
-  std::vector<Sym> args_;
+  std::vector<symbol::Sym> args_;
 
   CompositeGateDef() {}
 };
 
 class CustomGate : public Box {
  public:
-  CustomGate(const composite_def_ptr_t &gate, const std::vector<Expr> &params);
+  CustomGate(
+      const composite_def_ptr_t &gate, const std::vector<symbol::Expr> &params);
   CustomGate(const CustomGate &other);
 
-  SymSet free_symbols() const override;
+  symbol::SymSet free_symbols() const override;
 
   composite_def_ptr_t get_gate() const { return gate_; }
-  std::vector<Expr> get_params() const override { return params_; }
+  std::vector<symbol::Expr> get_params() const override { return params_; }
   std::string get_name(bool latex = false) const override;
 
   Op_ptr symbol_substitution(
@@ -526,7 +527,7 @@ class CustomGate : public Box {
 
  private:
   composite_def_ptr_t gate_;
-  const std::vector<Expr> params_;
+  const std::vector<symbol::Expr> params_;
 };
 
 /**
@@ -552,7 +553,7 @@ class QControlBox : public Box {
   Op_ptr symbol_substitution(
       const SymEngine::map_basic_basic &sub_map) const override;
 
-  SymSet free_symbols() const override;
+  symbol::SymSet free_symbols() const override;
 
   /**
    * Equality check between two QControlBox instances
@@ -609,7 +610,7 @@ class ProjectorAssertionBox : public Box {
     return Op_ptr();
   }
 
-  SymSet free_symbols() const override { return {}; }
+  symbol::SymSet free_symbols() const override { return {}; }
 
   /**
    * Equality check between two ProjectorAssertionBox instances
@@ -665,7 +666,7 @@ class StabiliserAssertionBox : public Box {
     return Op_ptr();
   }
 
-  SymSet free_symbols() const override { return {}; }
+  symbol::SymSet free_symbols() const override { return {}; }
 
   /**
    * Equality check between two StabiliserAssertionBox instances

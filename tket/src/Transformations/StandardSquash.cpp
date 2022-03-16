@@ -35,7 +35,8 @@ namespace Transforms {
  */
 class StandardSquasher : public AbstractSquasher {
  private:
-  using Func = std::function<Circuit(const Expr &, const Expr &, const Expr &)>;
+  using Func = std::function<Circuit(
+      const symbol::Expr &, const symbol::Expr &, const symbol::Expr &)>;
 
  public:
   StandardSquasher(const OpTypeSet &singleqs, const Func &tk1_replacement)
@@ -52,7 +53,7 @@ class StandardSquasher : public AbstractSquasher {
   }
 
   void append(Gate_ptr gate) override {
-    std::vector<Expr> angs = gate->get_tk1_angles();
+    std::vector<symbol::Expr> angs = gate->get_tk1_angles();
     combined.apply(Rotation(OpType::Rz, angs.at(2)));
     combined.apply(Rotation(OpType::Rx, angs.at(1)));
     combined.apply(Rotation(OpType::Rz, angs.at(0)));
@@ -84,7 +85,8 @@ class StandardSquasher : public AbstractSquasher {
 
 static bool standard_squash(
     Circuit &circ, const OpTypeSet &singleqs,
-    const std::function<Circuit(const Expr &, const Expr &, const Expr &)>
+    const std::function<Circuit(
+        const symbol::Expr &, const symbol::Expr &, const symbol::Expr &)>
         &tk1_replacement) {
   auto squasher = std::make_unique<StandardSquasher>(singleqs, tk1_replacement);
   return SingleQubitSquash(std::move(squasher), false).squash(circ);
@@ -92,7 +94,8 @@ static bool standard_squash(
 
 Transform squash_factory(
     const OpTypeSet &singleqs,
-    const std::function<Circuit(const Expr &, const Expr &, const Expr &)>
+    const std::function<Circuit(
+        const symbol::Expr &, const symbol::Expr &, const symbol::Expr &)>
         &tk1_replacement) {
   return Transform([=](Circuit &circ) {
     return standard_squash(circ, singleqs, tk1_replacement);

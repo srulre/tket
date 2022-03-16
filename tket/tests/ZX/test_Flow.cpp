@@ -127,7 +127,8 @@ SCENARIO("Testing flow verification") {
   }
   c.at(gc) = {gc, gd};
   // Correct YZ with I, Y, Z
-  diag.set_vertex_ZXGen_ptr(pa, ZXGen::create_gen(ZXType::YZ, Expr(1.2)));
+  diag.set_vertex_ZXGen_ptr(
+      pa, ZXGen::create_gen(ZXType::YZ, symbol::Expr(1.2)));
   cs = {{}, {pa, pd}, {pc}};
   for (const ZXVertSeqSet& cc : cs) {
     c.at(pa) = cc;
@@ -146,7 +147,8 @@ SCENARIO("Testing flow verification") {
     REQUIRE_THROWS_WITH(
         fl.verify(diag), "PX vertex must be corrected with a Y or Z");
   }
-  diag.set_vertex_ZXGen_ptr(pc, ZXGen::create_gen(ZXType::XY, Expr(0.2)));
+  diag.set_vertex_ZXGen_ptr(
+      pc, ZXGen::create_gen(ZXType::XY, symbol::Expr(0.2)));
   c.at(pc) = {outs.at(1)};
   // Correct PY with I, Y
   diag.set_vertex_ZXGen_ptr(pc, ZXGen::create_gen(ZXType::PY));
@@ -157,7 +159,8 @@ SCENARIO("Testing flow verification") {
     REQUIRE_THROWS_WITH(
         fl.verify(diag), "PY vertex must be corrected with an X or Z");
   }
-  diag.set_vertex_ZXGen_ptr(pc, ZXGen::create_gen(ZXType::XY, Expr(0.2)));
+  diag.set_vertex_ZXGen_ptr(
+      pc, ZXGen::create_gen(ZXType::XY, symbol::Expr(0.2)));
   c.at(pc) = {outs.at(1)};
   // Correct PZ with I, Z
   cs = {{}, {pc, outs.at(2)}};

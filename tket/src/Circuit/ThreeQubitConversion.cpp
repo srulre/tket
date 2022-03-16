@@ -351,7 +351,7 @@ Eigen::MatrixXcd get_3q_unitary(const Circuit &c) {
     Eigen::MatrixXcd M = Eigen::MatrixXcd::Zero(8, 8);
     switch (qbs.size()) {
       case 1: {
-        std::vector<Expr> angles = as_gate_ptr(op)->get_tk1_angles();
+        std::vector<symbol::Expr> angles = as_gate_ptr(op)->get_tk1_angles();
         Eigen::Matrix2cd u = get_matrix_from_tk1_angles(angles);
         // Construct the 8x8 matrix representing u.
         unsigned i = idx[qbs[0]];
@@ -442,7 +442,7 @@ Eigen::MatrixXcd get_3q_unitary(const Circuit &c) {
     U = M * U;
   }
 
-  return std::exp(i_ * PI * eval_expr(c.get_phase()).value()) * U;
+  return std::exp(i_ * PI * symbol::eval_expr(c.get_phase()).value()) * U;
 }
 
 }  // namespace tket

@@ -124,25 +124,25 @@ IndexMap Circuit::index_map() const {
   return im;
 }
 
-Expr Circuit::get_phase() const {
-  std::optional<double> x = eval_expr_mod(phase);
+symbol::Expr Circuit::get_phase() const {
+  std::optional<double> x = symbol::eval_expr_mod(phase);
   if (x) {
     return x.value();
   } else
     return phase;
 }
 
-void Circuit::add_phase(Expr a) { phase += a; }
+void Circuit::add_phase(symbol::Expr a) { phase += a; }
 
-void Circuit::symbol_substitution(const symbol_map_t &symbol_map) {
+void Circuit::symbol_substitution(const symbol::symbol_map_t &symbol_map) {
   SymEngine::map_basic_basic sub_map;
-  for (const std::pair<const Sym, Expr> &p : symbol_map) {
-    ExprPtr s = p.first;
-    ExprPtr e = p.second;
+  for (const std::pair<const symbol::Sym, symbol::Expr> &p : symbol_map) {
+    symbol::ExprPtr s = p.first;
+    symbol::ExprPtr e = p.second;
     // This is a workaround for a symengine issue: symengine currently has poor
     // handling of symbolic evaluations for atan2. However, this may not catch
     // every such issue, so we should revisit it.
-    if (approx_0(e)) {
+    if (symbol::approx_0(e)) {
       sub_map[s] = SymEngine::zero;
     } else {
       sub_map[s] = e;
@@ -152,10 +152,11 @@ void Circuit::symbol_substitution(const symbol_map_t &symbol_map) {
 }
 
 void Circuit::symbol_substitution(
-    const std::map<Sym, double, SymEngine::RCPBasicKeyLess> &symbol_map) {
-  symbol_map_t s_map;
-  for (std::pair<Sym, Expr> p : symbol_map) {
-    s_map[p.first] = Expr(p.second);
+    const std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess>
+        &symbol_map) {
+  symbol::symbol_map_t s_map;
+  for (std::pair<symbol::Sym, symbol::Expr> p : symbol_map) {
+    s_map[p.first] = symbol::Expr(p.second);
   }
   symbol_substitution(s_map);
 }
@@ -170,13 +171,13 @@ void Circuit::symbol_substitution(const SymEngine::map_basic_basic sub_map) {
   phase = phase.subs(sub_map);
 }
 
-const SymSet Circuit::free_symbols() const {
-  SymSet symbols;
+const symbol::SymSet Circuit::free_symbols() const {
+  symbol::SymSet symbols;
   BGL_FORALL_VERTICES(v, dag, DAG) {
-    const SymSet s = get_Op_ptr_from_Vertex(v)->free_symbols();
+    const symbol::SymSet s = get_Op_ptr_from_Vertex(v)->free_symbols();
     symbols.insert(s.begin(), s.end());
   }
-  SymSet phase_s = expr_free_symbols(phase);
+  symbol::SymSet phase_s = symbol::expr_free_symbols(phase);
   symbols.insert(phase_s.begin(), phase_s.end());
   return symbols;
 }
@@ -195,14 +196,14 @@ bool Circuit::circuit_equality(
   }
 
   if (except.count(Check::Phase) == 0) {
-    const Expr thisphase = this->get_phase();
-    const Expr othephase = other.get_phase();
-    check &= equiv_expr(thisphase, othephase);
+    const symbol::Expr thisphase = this->get_phase();
+    const symbol::Expr othephase = other.get_phase();
+    check &= symbol::equiv_expr(thisphase, othephase);
     if (throw_error && !check) {
       throw CircuitInequality(
           std::string("Circuit phases do not match: ") +
-          ExprPtr(thisphase)->__str__() +
-          " != " + ExprPtr(othephase)->__str__());
+          symbol::ExprPtr(thisphase)->__str__() +
+          " != " + symbol::ExprPtr(othephase)->__str__());
     }
   }
   if (except.count(Check::Units) == 0) {

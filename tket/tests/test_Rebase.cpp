@@ -39,9 +39,8 @@ SCENARIO("Building rebases with rebase_factory") {
     c.add_op<unsigned>(OpType::Rx, 0.4, {0});
     Circuit copy = c;
     Circuit blank(2);
-    auto blanker = [](const Expr&, const Expr&, const Expr&) {
-      return Circuit(1);
-    };
+    auto blanker = [](const symbol::Expr&, const symbol::Expr&,
+                      const symbol::Expr&) { return Circuit(1); };
     OpTypeSet gates = {OpType::S, OpType::V, OpType::Rx, OpType::CX};
     Transform t = Transforms::rebase_factory(gates, blank, blanker);
     REQUIRE(!t.apply(c));
@@ -54,9 +53,8 @@ SCENARIO("Building rebases with rebase_factory") {
     c.add_op<unsigned>(OpType::V, {0});
     const auto s0 = tket_sim::get_statevector(c);
     Circuit blank(2);
-    auto blanker = [](const Expr&, const Expr&, const Expr&) {
-      return Circuit(1);
-    };
+    auto blanker = [](const symbol::Expr&, const symbol::Expr&,
+                      const symbol::Expr&) { return Circuit(1); };
     Transform t = Transforms::rebase_factory(
         {OpType::S, OpType::V, OpType::H, OpType::CX}, blank, blanker);
     REQUIRE(t.apply(c));
@@ -75,9 +73,8 @@ SCENARIO("Building rebases with rebase_factory") {
     cx.add_op<unsigned>(OpType::H, {0});
     cx.add_op<unsigned>(OpType::CZ, {0, 1});
     cx.add_op<unsigned>(OpType::H, {0});
-    auto blanker = [](const Expr&, const Expr&, const Expr&) {
-      return Circuit(1);
-    };
+    auto blanker = [](const symbol::Expr&, const symbol::Expr&,
+                      const symbol::Expr&) { return Circuit(1); };
     Transform t = Transforms::rebase_factory(
         {OpType::S, OpType::V, OpType::H, OpType::CRz}, cx, blanker);
     REQUIRE(t.apply(c));
@@ -96,9 +93,8 @@ SCENARIO("Building rebases with rebase_factory") {
     cx.add_op<unsigned>(OpType::H, {0});
     cx.add_op<unsigned>(OpType::CZ, {0, 1});
     cx.add_op<unsigned>(OpType::H, {0});
-    auto blanker = [](const Expr&, const Expr&, const Expr&) {
-      return Circuit(1);
-    };
+    auto blanker = [](const symbol::Expr&, const symbol::Expr&,
+                      const symbol::Expr&) { return Circuit(1); };
     OpTypeSet gateset = {
         OpType::S, OpType::X, OpType::H, OpType::Sdg, OpType::CZ};
     Transform t = Transforms::rebase_factory(gateset, cx, blanker);
@@ -118,9 +114,8 @@ SCENARIO("Building rebases with rebase_factory") {
     c.add_op<unsigned>(OpType::V, {0});
     const auto s0 = tket_sim::get_statevector(c);
     Circuit blank(2);
-    auto blanker = [](const Expr&, const Expr&, const Expr&) {
-      return Circuit(1);
-    };
+    auto blanker = [](const symbol::Expr&, const symbol::Expr&,
+                      const symbol::Expr&) { return Circuit(1); };
     OpTypeSet gateset = {OpType::S, OpType::V, OpType::H, OpType::CX};
     Transform t = Transforms::rebase_factory(gateset, blank, blanker);
     REQUIRE(t.apply(c));
@@ -137,9 +132,8 @@ SCENARIO("Building rebases with rebase_factory") {
     c.add_op<unsigned>(OpType::V, {0});
     const auto s0 = tket_sim::get_statevector(c);
     Circuit blank(2);
-    auto blanker = [](const Expr&, const Expr&, const Expr&) {
-      return Circuit(1);
-    };
+    auto blanker = [](const symbol::Expr&, const symbol::Expr&,
+                      const symbol::Expr&) { return Circuit(1); };
     OpTypeSet gateset = {OpType::S, OpType::V, OpType::H, OpType::CX};
     Transform t = Transforms::rebase_factory(gateset, blank, blanker);
     REQUIRE(t.apply(c));
@@ -156,9 +150,8 @@ SCENARIO("Building rebases with rebase_factory") {
     c.add_op<unsigned>(OpType::SXdg, {0});
     const auto s0 = tket_sim::get_statevector(c);
     Circuit blank(2);
-    auto blanker = [](const Expr&, const Expr&, const Expr&) {
-      return Circuit(1);
-    };
+    auto blanker = [](const symbol::Expr&, const symbol::Expr&,
+                      const symbol::Expr&) { return Circuit(1); };
     OpTypeSet gateset = {OpType::S, OpType::V, OpType::H, OpType::CX};
     Transform t = Transforms::rebase_factory(gateset, blank, blanker);
     REQUIRE(t.apply(c));
@@ -173,15 +166,15 @@ SCENARIO("Building rebases with rebase_factory") {
     c.add_op<unsigned>(OpType::T, {0});
     const auto s0 = tket_sim::get_statevector(c);
     Circuit blank(2);
-    auto tk1_map = [](const Expr& theta, const Expr& phi, const Expr& lambda) {
+    auto tk1_map = [](const symbol::Expr& theta, const symbol::Expr& phi,
+                      const symbol::Expr& lambda) {
       Circuit u(1);
-      std::vector<Expr> params = {theta, phi, lambda};
+      std::vector<symbol::Expr> params = {theta, phi, lambda};
       u.add_op<unsigned>(OpType::TK1, params, {0});
       return u;
     };
-    auto blanker = [](const Expr&, const Expr&, const Expr&) {
-      return Circuit(1);
-    };
+    auto blanker = [](const symbol::Expr&, const symbol::Expr&,
+                      const symbol::Expr&) { return Circuit(1); };
     OpTypeSet gateset = {OpType::TK1, OpType::CX};
     Transform t = Transforms::rebase_factory(gateset, blank, tk1_map);
     REQUIRE(t.apply(c));
@@ -193,13 +186,14 @@ SCENARIO("Building rebases with rebase_factory") {
   }
   GIVEN("Rebasing a U3 sequence to Rz/Rx") {
     Circuit c(1);
-    std::vector<Expr> params0 = {0.19, 1.23, 0.58};
+    std::vector<symbol::Expr> params0 = {0.19, 1.23, 0.58};
     c.add_op<unsigned>(OpType::U3, params0, {0});
-    std::vector<Expr> params1 = {1.76, 1.05, 0.24};
+    std::vector<symbol::Expr> params1 = {1.76, 1.05, 0.24};
     c.add_op<unsigned>(OpType::U3, params1, {0});
     const auto s0 = tket_sim::get_statevector(c);
     Circuit blank(2);
-    auto rzrx_map = [](const Expr& alpha, const Expr& beta, const Expr& gamma) {
+    auto rzrx_map = [](const symbol::Expr& alpha, const symbol::Expr& beta,
+                       const symbol::Expr& gamma) {
       Circuit u(1);
       u.add_op<unsigned>(OpType::Rz, gamma, {0});
       u.add_op<unsigned>(OpType::Rx, beta, {0});
@@ -222,7 +216,8 @@ SCENARIO("Building rebases with rebase_factory") {
     c.add_op<unsigned>(OpType::T, {0});
     const auto s0 = tket_sim::get_statevector(c);
     Circuit blank(2);
-    auto rzrx_map = [](const Expr& alpha, const Expr& beta, const Expr& gamma) {
+    auto rzrx_map = [](const symbol::Expr& alpha, const symbol::Expr& beta,
+                       const symbol::Expr& gamma) {
       Circuit u(1);
       u.add_op<unsigned>(OpType::Rz, gamma, {0});
       u.add_op<unsigned>(OpType::Rx, beta, {0});
@@ -242,7 +237,7 @@ SCENARIO("Building rebases with rebase_factory") {
   }
   GIVEN("A circuit to be rebased to ProjectQ gateset") {
     Circuit c(2);
-    std::vector<Expr> params = {0.5, 0., 1.};
+    std::vector<symbol::Expr> params = {0.5, 0., 1.};
     c.add_op<unsigned>(OpType::U3, params, {0});
     c.add_op<unsigned>(OpType::CX, {0, 1});
     params = {1., 0., 1.};
@@ -329,8 +324,8 @@ SCENARIO("Decompose all boxes") {
   }
   GIVEN("A custom gate") {
     Circuit u(2);
-    Sym a = SymEngine::symbol("a");
-    Expr a_expr(a);
+    symbol::Sym a = SymEngine::symbol("a");
+    symbol::Expr a_expr(a);
     u.add_op<unsigned>(OpType::Ry, a_expr - 0.3, {0});
     u.add_op<unsigned>(OpType::CX, {0, 1});
     REQUIRE(u.is_symbolic());
@@ -338,7 +333,7 @@ SCENARIO("Decompose all boxes") {
     Circuit v(2);
     v.add_box(CustomGate(def, {0.5}), {0, 1});
     REQUIRE(!v.is_symbolic());
-    symbol_map_t smap = {{a, 0.5}};
+    symbol::symbol_map_t smap = {{a, 0.5}};
     u.symbol_substitution(smap);
     REQUIRE(!u.is_symbolic());
     bool success = Transforms::decomp_boxes().apply(v);
@@ -386,9 +381,9 @@ SCENARIO("Decompose all boxes") {
 SCENARIO("Check each Clifford case for tk1_to_rzh") {
   GIVEN("Each case") {
     struct RzHTestCase {
-      Expr alpha;
-      Expr beta;
-      Expr gamma;
+      symbol::Expr alpha;
+      symbol::Expr beta;
+      symbol::Expr gamma;
       unsigned expected_gates;
     };
     const std::vector<RzHTestCase> cases = {
@@ -412,9 +407,9 @@ SCENARIO("Check each Clifford case for tk1_to_rzh") {
 SCENARIO("Check cases for tk1_to_rzsx") {
   GIVEN("Each case") {
     struct RzSXTestCase {
-      Expr alpha;
-      Expr beta;
-      Expr gamma;
+      symbol::Expr alpha;
+      symbol::Expr beta;
+      symbol::Expr gamma;
       unsigned expected_gates;
     };
     const std::vector<RzSXTestCase> cases = {
@@ -441,9 +436,9 @@ SCENARIO("Check cases for tk1_to_rzsx") {
         {2., -0.5, 0, 5},       {2., 1.5, 0, 5},          {2., 3.5, 0, 5},
         {0.234, 3.5, 0.953, 5}, {0.234, 0.354, 0.953, 5},
     };
-    const Expr a_expr(SymEngine::symbol("a"));
-    const Expr b_expr(SymEngine::symbol("b"));
-    const Expr c_expr(SymEngine::symbol("c"));
+    const symbol::Expr a_expr(SymEngine::symbol("a"));
+    const symbol::Expr b_expr(SymEngine::symbol("b"));
+    const symbol::Expr c_expr(SymEngine::symbol("c"));
     const std::vector<RzSXTestCase> symbolic_cases = {
         {a_expr, 2, c_expr, 1},
         {a_expr, 1, c_expr, 4},

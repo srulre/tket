@@ -139,7 +139,7 @@ class ZXGen {
       std::optional<unsigned> port, QuantumType qtype) const = 0;
 
   // Set of all free symbols occurring in operation parameters
-  virtual SymSet free_symbols() const = 0;
+  virtual symbol::SymSet free_symbols() const = 0;
 
   /**
    * Operation with values substituted for symbols
@@ -172,7 +172,8 @@ class ZXGen {
   static ZXGen_ptr create_gen(
       ZXType type, QuantumType qtype = QuantumType::Quantum);
   static ZXGen_ptr create_gen(
-      ZXType type, const Expr& param, QuantumType qtype = QuantumType::Quantum);
+      ZXType type, const symbol::Expr& param,
+      QuantumType qtype = QuantumType::Quantum);
   static ZXGen_ptr create_gen(
       ZXType type, bool param, QuantumType qtype = QuantumType::Quantum);
 
@@ -196,7 +197,7 @@ class BoundaryGen : public ZXGen {
   virtual std::optional<QuantumType> get_qtype() const override;
   virtual bool valid_edge(
       std::optional<unsigned> port, QuantumType qtype) const override;
-  virtual SymSet free_symbols() const override;
+  virtual symbol::SymSet free_symbols() const override;
   virtual ZXGen_ptr symbol_substitution(
       const SymEngine::map_basic_basic& sub_map) const override;
   virtual std::string get_name(bool latex = false) const override;
@@ -212,8 +213,8 @@ class BoundaryGen : public ZXGen {
  * If the generator is Quantum, all adjacent wires must also be Quantum.
  * If the generator is Classical, adjacent wires can be either Quantum or
  * Classical.
- * Implementations include PhasedGen for generators with 1 Expr parameter or
- * CliffordGen for Clifford generators with 1 bool parameter.
+ * Implementations include PhasedGen for generators with 1 symbol::Expr
+ * parameter or CliffordGen for Clifford generators with 1 bool parameter.
  */
 class BasicGen : public ZXGen {
  public:
@@ -231,26 +232,27 @@ class BasicGen : public ZXGen {
 
 /**
  * Implementation of BasicGen for phased generators, e.g. spiders, Hbox.
- * Each generator has a single Expr parameter which is:
+ * Each generator has a single symbol::Expr parameter which is:
  * - A complex number for Hbox
  * - A real-valued phase in half-turns otherwise
  */
 class PhasedGen : public BasicGen {
  public:
   PhasedGen(
-      ZXType type, const Expr& param, QuantumType qtype = QuantumType::Quantum);
+      ZXType type, const symbol::Expr& param,
+      QuantumType qtype = QuantumType::Quantum);
 
-  Expr get_param() const;
+  symbol::Expr get_param() const;
 
   // Overrides from ZXGen
-  virtual SymSet free_symbols() const override;
+  virtual symbol::SymSet free_symbols() const override;
   virtual ZXGen_ptr symbol_substitution(
       const SymEngine::map_basic_basic& sub_map) const override;
   virtual std::string get_name(bool latex = false) const override;
   virtual bool operator==(const ZXGen& other) const override;
 
  protected:
-  const Expr param_;
+  const symbol::Expr param_;
 };
 
 /**
@@ -266,7 +268,7 @@ class CliffordGen : public BasicGen {
   bool get_param() const;
 
   // Overrides from ZXGen
-  virtual SymSet free_symbols() const override;
+  virtual symbol::SymSet free_symbols() const override;
   virtual ZXGen_ptr symbol_substitution(
       const SymEngine::map_basic_basic& sub_map) const override;
   virtual std::string get_name(bool latex = false) const override;
@@ -306,7 +308,7 @@ class DirectedGen : public ZXDirected {
   virtual std::optional<QuantumType> get_qtype() const override;
   virtual bool valid_edge(
       std::optional<unsigned> port, QuantumType qtype) const override;
-  virtual SymSet free_symbols() const override;
+  virtual symbol::SymSet free_symbols() const override;
   virtual ZXGen_ptr symbol_substitution(
       const SymEngine::map_basic_basic& sub_map) const override;
   virtual std::string get_name(bool latex = false) const override;
@@ -337,7 +339,7 @@ class ZXBox : public ZXDirected {
   virtual std::optional<QuantumType> get_qtype() const override;
   virtual bool valid_edge(
       std::optional<unsigned> port, QuantumType qtype) const override;
-  virtual SymSet free_symbols() const override;
+  virtual symbol::SymSet free_symbols() const override;
   virtual ZXGen_ptr symbol_substitution(
       const SymEngine::map_basic_basic& sub_map) const override;
   virtual std::string get_name(bool latex = false) const override;

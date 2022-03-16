@@ -23,6 +23,7 @@
 #include <vector>
 
 namespace tket {
+namespace symbol {
 
 bool approx_0(const Expr& e, double tol) {
   std::optional<double> v = eval_expr(e);
@@ -149,4 +150,5 @@ std::optional<unsigned> equiv_Clifford(const Expr& e, unsigned n, double tol) {
     return std::nullopt;
 }
 
+}  // namespace symbol
 }  // namespace tket

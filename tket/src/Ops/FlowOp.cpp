@@ -27,7 +27,7 @@ Op_ptr FlowOp::symbol_substitution(const SymEngine::map_basic_basic&) const {
   return Op_ptr();
 }
 
-SymSet FlowOp::free_symbols() const { return {}; }
+symbol::SymSet FlowOp::free_symbols() const { return {}; }
 
 std::optional<std::string> FlowOp::get_label() const { return label_; }
 

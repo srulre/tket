@@ -136,7 +136,8 @@ Transform synthesise_UMD() {
       const Op_ptr op_ptr = circ.get_Op_ptr_from_Vertex(v);
       OpType type = op_ptr->get_type();
       if (type == OpType::TK1) {
-        std::vector<Expr> tk1_angles = as_gate_ptr(op_ptr)->get_tk1_angles();
+        std::vector<symbol::Expr> tk1_angles =
+            as_gate_ptr(op_ptr)->get_tk1_angles();
         Circuit in_circ = CircPool::tk1_to_PhasedXRz(
             tk1_angles[0], tk1_angles[1], tk1_angles[2]);
         remove_redundancies().apply(in_circ);

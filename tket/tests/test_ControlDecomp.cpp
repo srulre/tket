@@ -163,7 +163,8 @@ SCENARIO("Test switch statement") {
       REQUIRE(circ.count_gates(OpType::Ry) == 2);
       VertexSet ry_set = circ.get_gates_of_type(OpType::Ry);
       for (const Vertex& v : ry_set) {
-        Expr param = (circ.get_Op_ptr_from_Vertex(v))->get_params().at(0);
+        symbol::Expr param =
+            (circ.get_Op_ptr_from_Vertex(v))->get_params().at(0);
         REQUIRE(
             (test_equiv_val(param, p / 2) || test_equiv_val(param, -p / 2)));
       }
@@ -184,7 +185,7 @@ SCENARIO("Test switch statement") {
           Circuit circ(N);
           std::vector<unsigned> qbs(N);
           std::iota(qbs.begin(), qbs.end(), 0);
-          std::vector<Expr> params1{1.95};
+          std::vector<symbol::Expr> params1{1.95};
           circ.add_op<unsigned>(OpType::CnRy, params1, qbs);
           REQUIRE(Transforms::decomp_controlled_Rys().apply(circ));
           const Eigen::MatrixXcd m = tket_sim::get_unitary(circ);

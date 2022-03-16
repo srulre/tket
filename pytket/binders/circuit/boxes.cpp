@@ -110,7 +110,7 @@ void init_boxes(py::module &m) {
       "An operation defined as the exponential of a tensor of Pauli "
       "operations and a (possibly symbolic) phase parameter.")
       .def(
-          py::init<const std::vector<Pauli> &, Expr>(),
+          py::init<const std::vector<Pauli> &, symbol::Expr>(),
           "Construct :math:`e^{-\\frac12 i \\pi t \\sigma_0 \\otimes "
           "\\sigma_1 \\otimes \\cdots}` from Pauli operators "
           ":math:`\\sigma_i \\in \\{I,X,Y,Z\\}` and a parameter "
@@ -201,7 +201,7 @@ void init_boxes(py::module &m) {
           "phase_polynomial",
           [](PhasePolyBox &ppoly) {
             const PhasePolynomial &phase_pol = ppoly.get_phase_polynomial();
-            std::map<py::tuple, Expr> outmap;
+            std::map<py::tuple, symbol::Expr> outmap;
             for (const auto &pair : phase_pol) {
               outmap.insert({py::tuple(py::cast(pair.first)), pair.second});
             }

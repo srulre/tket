@@ -23,7 +23,7 @@ void insert_into_gadget_map(
     gadget_map[pgp.tensor_] = pgp.angle_;
   else {
     QubitPauliTensor string_to_insert = pgp.tensor_ * iter->first;
-    Expr ang_to_insert = pgp.angle_ * iter->second;
+    symbol::Expr ang_to_insert = pgp.angle_ * iter->second;
     gadget_map.erase(iter);
     gadget_map[string_to_insert] = ang_to_insert;
   }

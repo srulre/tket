@@ -47,7 +47,7 @@ class ClassicalOp : public Op {
       const SymEngine::map_basic_basic &) const override {
     return Op_ptr();
   }
-  SymSet free_symbols() const override { return {}; }
+  symbol::SymSet free_symbols() const override { return {}; }
   unsigned n_qubits() const override { return 0; }
 
   op_signature_t get_signature() const override { return sig_; }

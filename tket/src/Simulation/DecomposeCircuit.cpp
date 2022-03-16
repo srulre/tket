@@ -94,7 +94,7 @@ static bool fill_triplets_directly_from_box(
 }
 
 static void add_global_phase(const Circuit& circ, GateNodesBuffer& buffer) {
-  const auto global_phase = eval_expr(circ.get_phase());
+  const auto global_phase = symbol::eval_expr(circ.get_phase());
   if (!global_phase) {
     throw NotImplemented("Circuit has symbolic global phase");
   }

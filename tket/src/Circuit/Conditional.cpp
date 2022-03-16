@@ -32,7 +32,7 @@ Op_ptr Conditional::symbol_substitution(
       op_->symbol_substitution(sub_map), width_, value_);
 }
 
-SymSet Conditional::free_symbols() const { return op_->free_symbols(); }
+symbol::SymSet Conditional::free_symbols() const { return op_->free_symbols(); }
 
 bool Conditional::is_equal(const Op& op_other) const {
   const Conditional& other = dynamic_cast<const Conditional&>(op_other);

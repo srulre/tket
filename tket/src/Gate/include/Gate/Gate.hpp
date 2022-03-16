@@ -42,10 +42,10 @@ class Gate : public Op {
    *
    * @return a, b, c and a global phase
    */
-  std::vector<Expr> get_tk1_angles() const;
-  std::vector<Expr> get_params() const override;
-  std::vector<Expr> get_params_reduced() const override;
-  SymSet free_symbols() const override;
+  std::vector<symbol::Expr> get_tk1_angles() const;
+  std::vector<symbol::Expr> get_params() const override;
+  std::vector<symbol::Expr> get_params_reduced() const override;
+  symbol::SymSet free_symbols() const override;
 
   unsigned n_qubits() const override;
 
@@ -71,13 +71,14 @@ class Gate : public Op {
   bool is_equal(const Op &other) const override;
 
   Gate(
-      OpType type, const std::vector<Expr> &params = {}, unsigned n_qubits = 0);
+      OpType type, const std::vector<symbol::Expr> &params = {},
+      unsigned n_qubits = 0);
 
   Gate();
 
  private:
   // vector of symbolic params
-  const std::vector<Expr> params_;
+  const std::vector<symbol::Expr> params_;
   unsigned n_qubits_; /**< Number of qubits, when not deducible from type */
 };
 

@@ -24,7 +24,8 @@
 namespace tket {
 namespace aas {
 
-typedef std::map<unsigned, std::list<std::pair<SteinerTree, Expr>>> CostedTrees;
+typedef std::map<unsigned, std::list<std::pair<SteinerTree, symbol::Expr>>>
+    CostedTrees;
 typedef std::vector<CostedTrees> TrialCostedTrees;
 typedef std::list<unsigned> ParityList;
 typedef std::pair<unsigned, OperationList> CostedOperations;

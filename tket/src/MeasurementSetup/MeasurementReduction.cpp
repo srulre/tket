@@ -37,7 +37,7 @@ MeasurementSetup measurement_reduction(
   MeasurementSetup ms;
   unsigned i = 0;
   for (const std::list<QubitPauliString>& terms : all_terms) {
-    std::list<std::pair<QubitPauliTensor, Expr>> gadgets;
+    std::list<std::pair<QubitPauliTensor, symbol::Expr>> gadgets;
     for (const QubitPauliString& string : terms) {
       QubitPauliTensor qps(string);
       gadgets.push_back({qps, 1.});
@@ -53,10 +53,11 @@ MeasurementSetup measurement_reduction(
     }
     ms.add_measurement_circuit(cliff_circ);
 
-    std::list<std::pair<QubitPauliTensor, Expr>>::const_iterator gadgets_iter =
-        gadgets.begin();
+    std::list<std::pair<QubitPauliTensor, symbol::Expr>>::const_iterator
+        gadgets_iter = gadgets.begin();
     for (const QubitPauliString& string : terms) {
-      const std::pair<QubitPauliTensor, Expr>& new_gadget = *gadgets_iter;
+      const std::pair<QubitPauliTensor, symbol::Expr>& new_gadget =
+          *gadgets_iter;
       std::vector<unsigned> bits;
       for (const std::pair<const Qubit, Pauli>& qp_pair :
            new_gadget.first.string.map) {

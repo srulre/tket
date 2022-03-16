@@ -21,7 +21,7 @@ std::unordered_set<std::string>& SymTable::get_registered_symbols() {
   return symbols;
 }
 
-Sym SymTable::fresh_symbol(const std::string& preferred) {
+symbol::Sym SymTable::fresh_symbol(const std::string& preferred) {
   std::string new_symbol = preferred;
   unsigned suffix = 0;
   while (get_registered_symbols().find(new_symbol) !=
@@ -37,7 +37,7 @@ void SymTable::register_symbol(const std::string& symbol) {
   get_registered_symbols().insert(symbol);
 }
 
-void SymTable::register_symbols(const SymSet& ss) {
+void SymTable::register_symbols(const symbol::SymSet& ss) {
   for (const auto& s : ss) {
     get_registered_symbols().insert(s->get_name());
   }

@@ -41,7 +41,7 @@ SCENARIO("Testing generator creation") {
   CHECK(zSpider.valid_edge(std::nullopt, QuantumType::Classical));
   CHECK_FALSE(zSpider.valid_edge(0, QuantumType::Quantum));
 
-  PhasedGen xSpider(ZXType::XSpider, Expr("2*a"), QuantumType::Quantum);
+  PhasedGen xSpider(ZXType::XSpider, symbol::Expr("2*a"), QuantumType::Quantum);
   CHECK(xSpider.get_name() == "Q-X(2*a)");
   CHECK(xSpider.get_type() == ZXType::XSpider);
   CHECK(xSpider.get_qtype() == QuantumType::Quantum);
@@ -49,8 +49,8 @@ SCENARIO("Testing generator creation") {
   CHECK(xSpider.valid_edge(std::nullopt, QuantumType::Quantum));
   CHECK_FALSE(xSpider.valid_edge(std::nullopt, QuantumType::Classical));
   SymEngine::map_basic_basic sub_map;
-  Sym a = SymEngine::symbol("a");
-  sub_map[a] = Expr(0.8);
+  symbol::Sym a = SymEngine::symbol("a");
+  sub_map[a] = symbol::Expr(0.8);
   CHECK(xSpider.symbol_substitution(sub_map)->get_name() == "Q-X(1.6)");
   CHECK(
       *xSpider.symbol_substitution(sub_map) ==
@@ -77,17 +77,18 @@ SCENARIO("Testing generator creation") {
 
 SCENARIO("Testing diagram creation & vertex/edge additions") {
   ZXDiagram diag(1, 1, 0, 0);
-  CHECK(diag.get_scalar() == Expr(1.));
+  CHECK(diag.get_scalar() == symbol::Expr(1.));
   CHECK_FALSE(diag.is_symbolic());
   diag.multiply_scalar(0.4);
-  diag.multiply_scalar(Expr("2*a"));
-  CHECK(diag.get_scalar() == Expr("0.8*a"));
+  diag.multiply_scalar(symbol::Expr("2*a"));
+  CHECK(diag.get_scalar() == symbol::Expr("0.8*a"));
   CHECK(diag.free_symbols().size() == 1);
 
   ZXVert zSpid_v = diag.add_vertex(ZXType::ZSpider, 0.1);
   ZXVert xSpid_v = diag.add_vertex(ZXType::XSpider, 3.4);
   ZXVert hbox_v = diag.add_vertex(
-      ZXType::Hbox, 6.7 * Expr("b") + 3 * Expr(i_), QuantumType::Classical);
+      ZXType::Hbox, 6.7 * symbol::Expr("b") + 3 * symbol::Expr(i_),
+      QuantumType::Classical);
 
   REQUIRE_THROWS_AS(diag.add_vertex(ZXType::ZXBox, 3.), ZXError);
 
@@ -160,12 +161,12 @@ SCENARIO("Testing diagram creation & vertex/edge additions") {
 
   CHECK(diag.free_symbols().size() == 2);
   SymEngine::map_basic_basic sub_map;
-  Sym a = SymEngine::symbol("a");
-  Sym b = SymEngine::symbol("b");
-  sub_map[a] = Expr(0.8);
+  symbol::Sym a = SymEngine::symbol("a");
+  symbol::Sym b = SymEngine::symbol("b");
+  sub_map[a] = symbol::Expr(0.8);
   diag.symbol_substitution(sub_map);
   CHECK(diag.free_symbols().size() == 1);
-  sub_map[b] = Expr(0.4);
+  sub_map[b] = symbol::Expr(0.4);
   diag.symbol_substitution(sub_map);
   CHECK(diag.free_symbols().size() == 0);
   CHECK(diag.get_name(hbox_v) == "C-H(2.68 + 3.0*I)");
@@ -214,7 +215,7 @@ SCENARIO("Check that diagram conversions achieve the correct form") {
     ZXVert qx = diag.add_vertex(ZXType::XSpider);
     ZXVert cz = diag.add_vertex(ZXType::ZSpider, QuantumType::Classical);
     ZXDiagram inner(1, 1, 0, 0);
-    ZXVert h = inner.add_vertex(ZXType::Hbox, Expr(i_));
+    ZXVert h = inner.add_vertex(ZXType::Hbox, symbol::Expr(i_));
     ZXVert tri = inner.add_vertex(ZXType::Triangle);
     ZXGen_ptr box = std::make_shared<const ZXBox>(inner);
     ZXVert b = diag.add_vertex(box);

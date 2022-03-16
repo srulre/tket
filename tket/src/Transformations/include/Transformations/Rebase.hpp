@@ -26,7 +26,8 @@ namespace Transforms {
 // gates Produces: gates in allowed_gates
 Transform rebase_factory(
     const OpTypeSet& allowed_gates, const Circuit& cx_replacement,
-    const std::function<Circuit(const Expr&, const Expr&, const Expr&)>&
+    const std::function<
+        Circuit(const symbol::Expr&, const symbol::Expr&, const symbol::Expr&)>&
         tk1_replacement);
 
 // Multiqs: CX

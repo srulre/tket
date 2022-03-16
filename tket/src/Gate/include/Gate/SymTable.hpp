@@ -33,11 +33,11 @@ void clear_symbol_table();
  */
 struct SymTable {
   /** Create a new symbol (not currently registered), and register it */
-  static Sym fresh_symbol(const std::string &preferred = "a");
+  static symbol::Sym fresh_symbol(const std::string &preferred = "a");
 
   static void register_symbol(const std::string &symbol);
 
-  static void register_symbols(const SymSet &ss);
+  static void register_symbols(const symbol::SymSet &ss);
 
  private:
   friend void test_Ops::clear_symbol_table();

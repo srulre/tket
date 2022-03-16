@@ -22,7 +22,7 @@
 namespace tket {
 
 void check_easy_diagonalise(
-    std::list<std::pair<QubitPauliTensor, Expr>> &gadgets,
+    std::list<std::pair<QubitPauliTensor, symbol::Expr>> &gadgets,
     std::set<Qubit> &qubits, Circuit &circ) {
   Conjugations conjugations;
   std::set<Qubit>::iterator qb_iter = qubits.begin();
@@ -31,7 +31,7 @@ void check_easy_diagonalise(
     ++next;
     Pauli p1 = Pauli::I;
     bool remove_qb = true;
-    for (const std::pair<QubitPauliTensor, Expr> &pgp : gadgets) {
+    for (const std::pair<QubitPauliTensor, symbol::Expr> &pgp : gadgets) {
       std::map<tket::Qubit, tket::Pauli>::const_iterator map_iter =
           pgp.first.string.map.find(*qb_iter);
       if (map_iter == pgp.first.string.map.end()) continue;
@@ -64,7 +64,7 @@ void check_easy_diagonalise(
       qubits.erase(qb_iter);
     }
   }
-  for (std::list<std::pair<QubitPauliTensor, Expr>>::iterator iter =
+  for (std::list<std::pair<QubitPauliTensor, symbol::Expr>>::iterator iter =
            gadgets.begin();
        iter != gadgets.end(); ++iter) {
     apply_conjugations(iter->first, conjugations);
@@ -73,7 +73,7 @@ void check_easy_diagonalise(
 
 std::optional<std::pair<Pauli, Pauli>> check_pair_compatibility(
     const Qubit &qb1, const Qubit &qb2,
-    const std::list<std::pair<QubitPauliTensor, Expr>> &gadgets) {
+    const std::list<std::pair<QubitPauliTensor, symbol::Expr>> &gadgets) {
   if (qb1 == qb2) return std::nullopt;
 
   /* Do exhaustive search for a Pauli A and Pauli B that
@@ -82,7 +82,7 @@ std::optional<std::pair<Pauli, Pauli>> check_pair_compatibility(
   for (Pauli pauli1 : paulis) {
     for (Pauli pauli2 : paulis) {
       bool found_pair = true;
-      for (const std::pair<QubitPauliTensor, Expr> &pgp : gadgets) {
+      for (const std::pair<QubitPauliTensor, symbol::Expr> &pgp : gadgets) {
         Pauli inner_p_1;
         QubitPauliMap::const_iterator iter1 = pgp.first.string.map.find(qb1);
         if (iter1 == pgp.first.string.map.end())
@@ -119,13 +119,13 @@ std::optional<std::pair<Pauli, Pauli>> check_pair_compatibility(
 }
 
 void greedy_diagonalise(
-    const std::list<std::pair<QubitPauliTensor, Expr>> &gadgets,
+    const std::list<std::pair<QubitPauliTensor, symbol::Expr>> &gadgets,
     std::set<Qubit> &qubits, Conjugations &conjugations, Circuit &circ,
     CXConfigType cx_config) {
   unsigned total_counter = UINT_MAX;
   QubitPauliMap to_diag;
-  for (std::list<std::pair<QubitPauliTensor, Expr>>::const_iterator pgp_iter =
-           gadgets.begin();
+  for (std::list<std::pair<QubitPauliTensor, symbol::Expr>>::const_iterator
+           pgp_iter = gadgets.begin();
        pgp_iter != gadgets.end(); ++pgp_iter) {
     unsigned support_counter = 0;
     QubitPauliMap to_diag_candidates;
@@ -244,7 +244,7 @@ void greedy_diagonalise(
 
 /* Diagonalise a set of Pauli Gadgets simultaneously using Cliffords*/
 Circuit mutual_diagonalise(
-    std::list<std::pair<QubitPauliTensor, Expr>> &gadgets,
+    std::list<std::pair<QubitPauliTensor, symbol::Expr>> &gadgets,
     std::set<Qubit> qubits, CXConfigType cx_config) {
   Circuit cliff_circ;
   for (const Qubit &qb : qubits) {
@@ -320,7 +320,7 @@ Circuit mutual_diagonalise(
     if (!found_match) {
       greedy_diagonalise(gadgets, qubits, conjugations, cliff_circ, cx_config);
     }
-    for (std::list<std::pair<QubitPauliTensor, Expr>>::iterator iter =
+    for (std::list<std::pair<QubitPauliTensor, symbol::Expr>>::iterator iter =
              gadgets.begin();
          iter != gadgets.end(); ++iter) {
       apply_conjugations(iter->first, conjugations);

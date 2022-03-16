@@ -486,30 +486,30 @@ SCENARIO("Testing two qubit decomposition with fidelity tradeoff") {
 SCENARIO("KAK Decomposition around symbolic gates") {
   GIVEN("Inefficient two-qubit circuit with symbolic gates") {
     Circuit circ(4);
-    Sym a = SymEngine::symbol("alpha");
-    Sym b = SymEngine::symbol("beta");
+    symbol::Sym a = SymEngine::symbol("alpha");
+    symbol::Sym b = SymEngine::symbol("beta");
     add_2qb_gates(circ, OpType::CX, {{0, 1}, {1, 0}, {0, 1}, {1, 0}});
-    circ.add_op<unsigned>(OpType::Rz, {Expr(a)}, {0});
+    circ.add_op<unsigned>(OpType::Rz, {symbol::Expr(a)}, {0});
     add_2qb_gates(circ, OpType::CX, {{0, 1}, {1, 0}, {0, 1}, {1, 0}});
-    circ.add_op<unsigned>(OpType::Rx, {-Expr(a)}, {0});
-    circ.add_op<unsigned>(OpType::Ry, {Expr(b)}, {1});
+    circ.add_op<unsigned>(OpType::Rx, {-symbol::Expr(a)}, {0});
+    circ.add_op<unsigned>(OpType::Ry, {symbol::Expr(b)}, {1});
     add_2qb_gates(circ, OpType::CX, {{2, 3}, {3, 2}});
-    circ.add_op<unsigned>(OpType::U2, {0.5, -Expr(b)}, {2});
+    circ.add_op<unsigned>(OpType::U2, {0.5, -symbol::Expr(b)}, {2});
     add_2qb_gates(circ, OpType::CX, {{2, 3}, {3, 2}, {2, 3}, {3, 2}});
     REQUIRE(Transforms::two_qubit_squash().apply(circ));
     REQUIRE(circ.count_gates(OpType::CX) == 8);
   }
   GIVEN("Efficient two-qubit circuit with symbolic gates") {
     Circuit circ(4);
-    Sym a = SymEngine::symbol("alpha");
-    Sym b = SymEngine::symbol("beta");
+    symbol::Sym a = SymEngine::symbol("alpha");
+    symbol::Sym b = SymEngine::symbol("beta");
     add_2qb_gates(circ, OpType::CX, {{0, 1}, {1, 0}, {0, 1}});
-    circ.add_op<unsigned>(OpType::Rz, {Expr(a)}, {0});
+    circ.add_op<unsigned>(OpType::Rz, {symbol::Expr(a)}, {0});
     add_2qb_gates(circ, OpType::CX, {{0, 1}, {1, 0}});
-    circ.add_op<unsigned>(OpType::Rx, {-Expr(a)}, {0});
-    circ.add_op<unsigned>(OpType::Ry, {Expr(b)}, {1});
+    circ.add_op<unsigned>(OpType::Rx, {-symbol::Expr(a)}, {0});
+    circ.add_op<unsigned>(OpType::Ry, {symbol::Expr(b)}, {1});
     circ.add_op<unsigned>(OpType::CX, {2, 3});
-    circ.add_op<unsigned>(OpType::U2, {0.5, -Expr(b)}, {2});
+    circ.add_op<unsigned>(OpType::U2, {0.5, -symbol::Expr(b)}, {2});
     add_2qb_gates(circ, OpType::CX, {{2, 3}, {3, 2}, {2, 3}});
     REQUIRE_FALSE(Transforms::two_qubit_squash().apply(circ));
   }

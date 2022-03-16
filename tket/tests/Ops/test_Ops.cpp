@@ -105,7 +105,7 @@ SCENARIO("Check op retrieval overloads are working correctly.", "[ops]") {
     const Op_ptr crx = (get_op_ptr(OpType::CRx, 0.5));
     CHECK(crx->get_name() == "CRx(0.5)");
     REQUIRE(*crx->transpose() == *crx);
-    std::vector<Expr> rhs = {Expr(-0.5)};
+    std::vector<symbol::Expr> rhs = {symbol::Expr(-0.5)};
     const Op_ptr cry = (get_op_ptr(OpType::CRy, 0.5));
     CHECK(cry->get_name() == "CRy(0.5)");
     CHECK(cry->get_params().size() == 1);
@@ -151,27 +151,32 @@ SCENARIO("Check op retrieval overloads are working correctly.", "[ops]") {
     const Op_ptr u2 = (get_op_ptr(OpType::U2, {0.5, -0.5}));
     CHECK(u2->get_name() == "U2(0.5, 1.5)");
     CHECK(u2->get_params().size() == 2);
-    std::vector<Expr> u2_params = {Expr(0.5), Expr{1.5}};
+    std::vector<symbol::Expr> u2_params = {
+        symbol::Expr(0.5), symbol::Expr{1.5}};
     REQUIRE(u2->transpose()->get_params() == u2_params);
     const Op_ptr u3 = (get_op_ptr(OpType::U3, {0.2, 0.5, -0.5}));
     CHECK(u3->get_name() == "U3(0.2, 0.5, 1.5)");
     CHECK(u3->get_params().size() == 3);
-    std::vector<Expr> u3_params = {Expr{-0.2}, Expr(-0.5), Expr{0.5}};
+    std::vector<symbol::Expr> u3_params = {
+        symbol::Expr{-0.2}, symbol::Expr(-0.5), symbol::Expr{0.5}};
     REQUIRE(u3->transpose()->get_params() == u3_params);
     const Op_ptr cu3 = (get_op_ptr(OpType::CU3, {0.2, 0.5, -0.5}));
     CHECK(cu3->get_name() == "CU3(0.2, 0.5, 1.5)");
     CHECK(cu3->get_params().size() == 3);
-    std::vector<Expr> cu3_params = {Expr{-0.2}, Expr(-0.5), Expr{0.5}};
+    std::vector<symbol::Expr> cu3_params = {
+        symbol::Expr{-0.2}, symbol::Expr(-0.5), symbol::Expr{0.5}};
     REQUIRE(cu3->transpose()->get_params() == cu3_params);
     const Op_ptr TK1 = (get_op_ptr(OpType::TK1, {0.2, 0.5, -0.5}));
     CHECK(TK1->get_name() == "TK1(0.2, 0.5, 3.5)");
     CHECK(TK1->get_params().size() == 3);
-    std::vector<Expr> tk1_params = {Expr{-0.5}, Expr(0.5), Expr{0.2}};
+    std::vector<symbol::Expr> tk1_params = {
+        symbol::Expr{-0.5}, symbol::Expr(0.5), symbol::Expr{0.2}};
     REQUIRE(TK1->transpose()->get_params() == tk1_params);
     const Op_ptr phasedx = (get_op_ptr(OpType::PhasedX, {0.5, -0.5}));
     CHECK(phasedx->get_name() == "PhasedX(0.5, 1.5)");
     CHECK(phasedx->get_params().size() == 2);
-    std::vector<Expr> phasedx_params = {Expr{0.5}, Expr(0.5)};
+    std::vector<symbol::Expr> phasedx_params = {
+        symbol::Expr{0.5}, symbol::Expr(0.5)};
     REQUIRE(phasedx->transpose()->get_params() == phasedx_params);
     const Op_ptr nphasedx = (get_op_ptr(OpType::NPhasedX, {0.5, -0.5}));
     CHECK(nphasedx->get_name() == "NPhasedX(0.5, 1.5)");
@@ -269,12 +274,12 @@ SCENARIO("Check op retrieval overloads are working correctly.", "[ops]") {
     const Op_ptr h = (get_op_ptr(OpType::Rx, 5.2));
     REQUIRE(h->get_name() == "Rx(1.2)");
     REQUIRE(h->get_params().size() == 1);
-    std::vector<Expr> rhs = {Expr(5.2)};
+    std::vector<symbol::Expr> rhs = {symbol::Expr(5.2)};
     REQUIRE(h->get_params() == rhs);
   }
 
   GIVEN("A multi parameter retrieval") {
-    std::vector<Expr> rhs = {Expr(3.2), Expr(1.2)};
+    std::vector<symbol::Expr> rhs = {symbol::Expr(3.2), symbol::Expr(1.2)};
     const Op_ptr h = (get_op_ptr(OpType::U2, rhs));
     REQUIRE(h->get_name() == "U2(1.2, 1.2)");
     REQUIRE(h->get_desc().n_params() == 2);
@@ -284,8 +289,8 @@ SCENARIO("Check op retrieval overloads are working correctly.", "[ops]") {
   GIVEN("Operations whose parameters have different domains") {
     Op_ptr op2 = get_op_ptr(OpType::U1, 6.4);
     Op_ptr op4 = get_op_ptr(OpType::CnRy, 6.4);
-    double param2 = eval_expr(op2->get_params_reduced()[0]).value();
-    double param4 = eval_expr(op4->get_params_reduced()[0]).value();
+    double param2 = symbol::eval_expr(op2->get_params_reduced()[0]).value();
+    double param4 = symbol::eval_expr(op4->get_params_reduced()[0]).value();
     REQUIRE(std::abs(param2 - 0.4) < ERR_EPS);
     REQUIRE(std::abs(param4 - 2.4) < ERR_EPS);
   }
@@ -294,18 +299,18 @@ SCENARIO("Check op retrieval overloads are working correctly.", "[ops]") {
 SCENARIO("Examples for is_singleq_unitary") {
   GIVEN("Some true positives") {
     REQUIRE((get_op_ptr(OpType::Z))->get_desc().is_singleq_unitary());
-    std::vector<Expr> params = {0.1, 0.2, 0.3};
+    std::vector<symbol::Expr> params = {0.1, 0.2, 0.3};
     REQUIRE((get_op_ptr(OpType::U3, params))->get_desc().is_singleq_unitary());
   }
   GIVEN("Variable-qubit gates") {
     REQUIRE(!(get_op_ptr(OpType::CnRy, 0.2))->get_desc().is_singleq_unitary());
-    REQUIRE(!(get_op_ptr(OpType::PhaseGadget, Expr(0.4)))
+    REQUIRE(!(get_op_ptr(OpType::PhaseGadget, symbol::Expr(0.4)))
                  ->get_desc()
                  .is_singleq_unitary());
   }
   GIVEN("Multi-qubit gates") {
     REQUIRE(!(get_op_ptr(OpType::CX))->get_desc().is_singleq_unitary());
-    REQUIRE(!(get_op_ptr(OpType::ZZPhase, Expr(0.5)))
+    REQUIRE(!(get_op_ptr(OpType::ZZPhase, symbol::Expr(0.5)))
                  ->get_desc()
                  .is_singleq_unitary());
     REQUIRE(!(get_op_ptr(OpType::CRz, 0.5))->get_desc().is_singleq_unitary());
@@ -337,16 +342,16 @@ SCENARIO("Check exceptions in basic Op methods", "[ops]") {
 
 SCENARIO("Check some daggers work correctly", "[ops]") {
   WHEN("Check U2 gets daggered correctly") {
-    Expr e(0.33);
-    Expr e2(1.33);
-    std::vector<Expr> exprs{e, e2};
+    symbol::Expr e(0.33);
+    symbol::Expr e2(1.33);
+    std::vector<symbol::Expr> exprs{e, e2};
     const Op_ptr op = get_op_ptr(OpType::U2, exprs);
     const Op_ptr daggered = (op)->dagger();
     REQUIRE(daggered->get_type() == OpType::U3);
-    std::vector<Expr> exprs2 = (daggered)->get_params();
+    std::vector<symbol::Expr> exprs2 = (daggered)->get_params();
     std::vector<double> vals;
     for (auto x : exprs2) {
-      std::optional<double> eval = eval_expr_mod(x);
+      std::optional<double> eval = symbol::eval_expr_mod(x);
       CHECK(eval);
       vals.push_back(eval.value());
     }
@@ -354,17 +359,17 @@ SCENARIO("Check some daggers work correctly", "[ops]") {
     REQUIRE(vals == correct);
   }
   WHEN("Check U3 gets daggered correctly") {
-    Expr e1(1.43);
-    Expr e2(0.15);
-    Expr e3(1.58);
-    std::vector<Expr> exprs{e1, e2, e3};
+    symbol::Expr e1(1.43);
+    symbol::Expr e2(0.15);
+    symbol::Expr e3(1.58);
+    std::vector<symbol::Expr> exprs{e1, e2, e3};
     const Op_ptr op = get_op_ptr(OpType::U3, exprs);
     const Op_ptr daggered = (op)->dagger();
     REQUIRE(daggered->get_type() == OpType::U3);
-    std::vector<Expr> exprs2 = (daggered)->get_params();
+    std::vector<symbol::Expr> exprs2 = (daggered)->get_params();
     std::vector<double> vals;
     for (auto x : exprs2) {
-      std::optional<double> eval = eval_expr_mod(x);
+      std::optional<double> eval = symbol::eval_expr_mod(x);
       CHECK(eval);
       vals.push_back(eval.value());
     }
@@ -372,17 +377,17 @@ SCENARIO("Check some daggers work correctly", "[ops]") {
     REQUIRE(vals == correct);
   }
   WHEN("Check CU3 gets daggered correctly") {
-    Expr e1(1.43);
-    Expr e2(0.15);
-    Expr e3(1.58);
-    std::vector<Expr> exprs{e1, e2, e3};
+    symbol::Expr e1(1.43);
+    symbol::Expr e2(0.15);
+    symbol::Expr e3(1.58);
+    std::vector<symbol::Expr> exprs{e1, e2, e3};
     const Op_ptr op = get_op_ptr(OpType::CU3, exprs);
     const Op_ptr daggered = (op)->dagger();
     REQUIRE(daggered->get_type() == OpType::CU3);
-    std::vector<Expr> exprs2 = (daggered)->get_params();
+    std::vector<symbol::Expr> exprs2 = (daggered)->get_params();
     std::vector<double> vals;
     for (auto x : exprs2) {
-      std::optional<double> eval = eval_expr_mod(x);
+      std::optional<double> eval = symbol::eval_expr_mod(x);
       CHECK(eval);
       vals.push_back(eval.value());
     }
@@ -390,16 +395,16 @@ SCENARIO("Check some daggers work correctly", "[ops]") {
     REQUIRE(vals == correct);
   }
   WHEN("Check HQS_1q gets daggered correctly") {
-    Expr e1(0.03);
-    Expr e2(1.95);
-    std::vector<Expr> exprs{e1, e2};
+    symbol::Expr e1(0.03);
+    symbol::Expr e2(1.95);
+    std::vector<symbol::Expr> exprs{e1, e2};
     const Op_ptr op = get_op_ptr(OpType::PhasedX, exprs);
     const Op_ptr daggered = (op)->dagger();
     REQUIRE(daggered->get_type() == OpType::PhasedX);
-    std::vector<Expr> exprs2 = (daggered)->get_params();
+    std::vector<symbol::Expr> exprs2 = (daggered)->get_params();
     std::vector<double> vals;
     for (auto x : exprs2) {
-      std::optional<double> eval = eval_expr_mod(x);
+      std::optional<double> eval = symbol::eval_expr_mod(x);
       CHECK(eval);
       vals.push_back(eval.value());
     }
@@ -451,16 +456,16 @@ SCENARIO("Check copying of expressions between circuits", "[ops]") {
   WHEN("Calling circuit copy constructor on symbolic circuit") {
     Circuit c(2);
     c.add_op<unsigned>(OpType::Rx, 0.5, {0});
-    Expr const_val(1.5);
+    symbol::Expr const_val(1.5);
     c.add_op<unsigned>(OpType::Rx, const_val, {1});
-    Sym a = SymEngine::symbol("alpha");
-    Sym b = SymEngine::symbol("beta");
-    Expr sym_a(a);
+    symbol::Sym a = SymEngine::symbol("alpha");
+    symbol::Sym b = SymEngine::symbol("beta");
+    symbol::Expr sym_a(a);
     c.add_op<unsigned>(OpType::Rz, sym_a, {0});
-    Expr sym_b(b);
+    symbol::Expr sym_b(b);
     c.add_op<unsigned>(OpType::Rz, sym_b, {1});
-    symbol_map_t smap;
-    smap[a] = Expr(1.7);
+    symbol::symbol_map_t smap;
+    smap[a] = symbol::Expr(1.7);
     c.symbol_substitution(smap);
     REQUIRE(c.is_symbolic());
     Circuit copy = c;
@@ -469,9 +474,9 @@ SCENARIO("Check copying of expressions between circuits", "[ops]") {
     Op_ptr rz0 = rz_cmds.front().get_op_ptr();
     Op_ptr rz1 = rz_cmds.back().get_op_ptr();
     if (test_equiv_val(rz0->get_params()[0], 1.7)) {
-      REQUIRE(!eval_expr_mod(rz1->get_params()[0]));
+      REQUIRE(!symbol::eval_expr_mod(rz1->get_params()[0]));
     } else {
-      REQUIRE(!eval_expr_mod(rz0->get_params()[0]));
+      REQUIRE(!symbol::eval_expr_mod(rz0->get_params()[0]));
       REQUIRE(test_equiv_val(rz1->get_params()[0], 1.7));
     }
   }
@@ -480,18 +485,18 @@ SCENARIO("Check copying of expressions between circuits", "[ops]") {
 SCENARIO("Check that fresh_symbol actually gives a unique symbol") {
   clear_symbol_table();
   GIVEN("Manually obtained fresh_symbols") {
-    Sym alpha = SymTable::fresh_symbol("a");
-    Sym alpha2 = SymTable::fresh_symbol("a_2");
-    Sym alpha1 = SymTable::fresh_symbol("a");
-    Sym alpha3 = SymTable::fresh_symbol("a");
+    symbol::Sym alpha = SymTable::fresh_symbol("a");
+    symbol::Sym alpha2 = SymTable::fresh_symbol("a_2");
+    symbol::Sym alpha1 = SymTable::fresh_symbol("a");
+    symbol::Sym alpha3 = SymTable::fresh_symbol("a");
     REQUIRE(alpha->get_name() == "a");
     REQUIRE(alpha1->get_name() == "a_1");
     REQUIRE(alpha2->get_name() == "a_2");
     REQUIRE(alpha3->get_name() == "a_3");
   }
   GIVEN("Symbols introduced by ops") {
-    get_op_ptr(OpType::Rx, Expr("2x+y"));
-    Sym x1 = SymTable::fresh_symbol("x");
+    get_op_ptr(OpType::Rx, symbol::Expr("2x+y"));
+    symbol::Sym x1 = SymTable::fresh_symbol("x");
     REQUIRE(x1->get_name() == "x_1");
   }
 }
@@ -500,8 +505,8 @@ SCENARIO("Custom Gates") {
   GIVEN("Basic manipulation") {
     // random 1qb gate
     Circuit setup(1);
-    Sym a = SymTable::fresh_symbol("a");
-    Expr ea(a);
+    symbol::Sym a = SymTable::fresh_symbol("a");
+    symbol::Expr ea(a);
     setup.add_op<unsigned>(OpType::TK1, {ea, 1.0353, 0.5372}, {0});
     composite_def_ptr_t def = CompositeGateDef::define_gate("g", setup, {a});
     CustomGate g(def, {0.2374});
@@ -510,14 +515,14 @@ SCENARIO("Custom Gates") {
     REQUIRE(c.n_gates() == 1);
     // expand definition
     Circuit expanded = setup;
-    symbol_map_t map = {{a, 0.2374}};
+    symbol::symbol_map_t map = {{a, 0.2374}};
     expanded.symbol_substitution(map);
     REQUIRE(*g.to_circuit() == expanded);
   }
   GIVEN("Multiple from the same definition") {
     Circuit setup(2);
-    Sym a = SymTable::fresh_symbol("a");
-    Expr b(SymTable::fresh_symbol("b"));
+    symbol::Sym a = SymTable::fresh_symbol("a");
+    symbol::Expr b(SymTable::fresh_symbol("b"));
     setup.add_op<unsigned>(OpType::CX, {0, 1});
     setup.add_op<unsigned>(OpType::Ry, {a}, {0});
     composite_def_ptr_t def = CompositeGateDef::define_gate("g", setup, {a});

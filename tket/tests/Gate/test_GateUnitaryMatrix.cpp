@@ -59,7 +59,7 @@ static ValuesMap get_values_map(const std::set<double>& values) {
 }
 
 static Eigen::MatrixXcd get_tket_sim_unitary(
-    OpType op_type, const std::vector<Expr>& current_values_expr,
+    OpType op_type, const std::vector<symbol::Expr>& current_values_expr,
     const std::vector<unsigned>& qubits) {
   Circuit circ(qubits.size());
   circ.add_op<unsigned>(op_type, current_values_expr, qubits);
@@ -90,7 +90,7 @@ static void write_error_information(
 static bool calculate_and_compare_unitaries(
     OpType op_type, const std::string& name,
     const std::vector<double>& current_values,
-    const std::vector<Expr>& current_values_expr,
+    const std::vector<symbol::Expr>& current_values_expr,
     const std::vector<unsigned>& qubits, const Eigen::MatrixXcd& unitary,
     std::stringstream& ss, bool no_previous_errors) {
   // Let's actually calculate using tket-sim and compare.
@@ -142,7 +142,7 @@ static bool compare_dense_unitary_with_triplets(
 static bool test_op_with_parameters(
     OpType op_type, const std::string& name,
     const std::vector<double>& current_values,
-    const std::vector<Expr>& current_values_expr,
+    const std::vector<symbol::Expr>& current_values_expr,
     const std::vector<unsigned>& qubits, std::stringstream& ss) {
   const Gate gate(op_type, current_values_expr, qubits.size());
   const auto unitary = GateUnitaryMatrix::get_unitary(gate);
@@ -205,7 +205,7 @@ static void test_op(
   std::vector<double> current_values(number_of_parameters);
   fill(current_values.begin(), current_values.end(), first_value);
 
-  std::vector<Expr> current_values_expr(number_of_parameters);
+  std::vector<symbol::Expr> current_values_expr(number_of_parameters);
   int remaining_messages = 3;
 
   std::vector<unsigned> qubits(number_of_qubits);
@@ -217,7 +217,7 @@ static void test_op(
     for (;;) {
       // Convert the doubles to expressions.
       for (size_t nn = 0; nn < current_values.size(); ++nn) {
-        current_values_expr[nn] = Expr(current_values[nn]);
+        current_values_expr[nn] = symbol::Expr(current_values[nn]);
       }
       if (!test_op_with_parameters(
               op_type, name, current_values, current_values_expr, qubits, ss)) {
@@ -267,8 +267,8 @@ SCENARIO("Test 1 qubit gates against TK1 angles") {
   const auto& gates_data = internal::GatesData::get();
   const auto& one_qubit_data = gates_data.input_data.at(1);
   std::vector<double> current_values;
-  std::vector<Expr> current_values_expr;
-  std::vector<Expr> tk1_angles;
+  std::vector<symbol::Expr> current_values_expr;
+  std::vector<symbol::Expr> tk1_angles;
 
   for (const auto& entry : one_qubit_data) {
     const auto& number_of_parameters = entry.first;
@@ -277,7 +277,7 @@ SCENARIO("Test 1 qubit gates against TK1 angles") {
     for (unsigned nn = 0; nn < number_of_parameters; ++nn) {
       const double value = 0.123456789 + nn * 0.2222233333;
       current_values[nn] = value;
-      current_values_expr[nn] = Expr(value);
+      current_values_expr[nn] = symbol::Expr(value);
     }
     const auto& ops = entry.second;
     for (auto op_type : ops) {
@@ -445,7 +445,7 @@ SCENARIO("Dagger pairs of gates without parameters") {
   };
 
   // No parameters
-  const std::vector<Expr> current_values_expr;
+  const std::vector<symbol::Expr> current_values_expr;
 
   for (const auto& entry : dagger_pairs) {
     const Gate gate1(entry.first, current_values_expr, 1);

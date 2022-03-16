@@ -185,58 +185,68 @@ const Circuit &ECR_using_CX();
 const Circuit &ZZMax_using_CX();
 
 /** Equivalent to CRz, using CX and Rz gates */
-Circuit CRz_using_CX(Expr alpha);
+Circuit CRz_using_CX(symbol::Expr alpha);
 
 /** Equivalent to CRx, using CX, H and Rx gates */
-Circuit CRx_using_CX(Expr alpha);
+Circuit CRx_using_CX(symbol::Expr alpha);
 
 /** Equivalent to CRy, using CX and Ry gates */
-Circuit CRy_using_CX(Expr alpha);
+Circuit CRy_using_CX(symbol::Expr alpha);
 
 /** Equivalent to CU1, using CX and U1 gates */
-Circuit CU1_using_CX(Expr lambda);
+Circuit CU1_using_CX(symbol::Expr lambda);
 
 /** Equivalent to CU1, using CX, U1 and U3 gates */
-Circuit CU3_using_CX(Expr theta, Expr phi, Expr lambda);
+Circuit CU3_using_CX(symbol::Expr theta, symbol::Expr phi, symbol::Expr lambda);
 
 /** Equivalent to ISWAP, using CX, U3 and Rz gates */
-Circuit ISWAP_using_CX(Expr alpha);
+Circuit ISWAP_using_CX(symbol::Expr alpha);
 
 /** Equivalent to XXPhase, using CX and U3 gates */
-Circuit XXPhase_using_CX(Expr alpha);
+Circuit XXPhase_using_CX(symbol::Expr alpha);
 
 /** Equivalent to YYPhase, using CX, Rz and U3 gates */
-Circuit YYPhase_using_CX(Expr alpha);
+Circuit YYPhase_using_CX(symbol::Expr alpha);
 
 /** Equivalent to ZZPhase, using CX and Rz gates */
-Circuit ZZPhase_using_CX(Expr alpha);
+Circuit ZZPhase_using_CX(symbol::Expr alpha);
 
 /** Equivalent to 3-qubit MS interaction, using CX and U3 gates */
-Circuit XXPhase3_using_CX(Expr alpha);
+Circuit XXPhase3_using_CX(symbol::Expr alpha);
 
 /** Equivalent to ESWAP, using CX, X, S, Ry and U1 gates */
-Circuit ESWAP_using_CX(Expr alpha);
+Circuit ESWAP_using_CX(symbol::Expr alpha);
 
 /** Equivalent to Fsim, using CX, X, S, U1 and U3 gates */
-Circuit FSim_using_CX(Expr alpha, Expr beta);
+Circuit FSim_using_CX(symbol::Expr alpha, symbol::Expr beta);
 
 /** Equivalent to PhasedISWAP, using CX, U3 and Rz gates */
-Circuit PhasedISWAP_using_CX(Expr p, Expr t);
+Circuit PhasedISWAP_using_CX(symbol::Expr p, symbol::Expr t);
 
 /** Unwrap NPhasedX, into number_of_qubits PhasedX gates */
-Circuit NPhasedX_using_CX(unsigned int number_of_qubits, Expr alpha, Expr beta);
+Circuit NPhasedX_using_CX(
+    unsigned int number_of_qubits, symbol::Expr alpha, symbol::Expr beta);
 
 // converts a TK1 gate to a PhasedXRz gate
 Circuit tk1_to_PhasedXRz(
-    const Expr &alpha, const Expr &beta, const Expr &gamma);
+    const symbol::Expr &alpha, const symbol::Expr &beta,
+    const symbol::Expr &gamma);
 
-Circuit tk1_to_rzrx(const Expr &alpha, const Expr &beta, const Expr &gamma);
+Circuit tk1_to_rzrx(
+    const symbol::Expr &alpha, const symbol::Expr &beta,
+    const symbol::Expr &gamma);
 
-Circuit tk1_to_rzh(const Expr &alpha, const Expr &beta, const Expr &gamma);
+Circuit tk1_to_rzh(
+    const symbol::Expr &alpha, const symbol::Expr &beta,
+    const symbol::Expr &gamma);
 
-Circuit tk1_to_rzsx(const Expr &alpha, const Expr &beta, const Expr &gamma);
+Circuit tk1_to_rzsx(
+    const symbol::Expr &alpha, const symbol::Expr &beta,
+    const symbol::Expr &gamma);
 
-Circuit tk1_to_tk1(const Expr &alpha, const Expr &beta, const Expr &gamma);
+Circuit tk1_to_tk1(
+    const symbol::Expr &alpha, const symbol::Expr &beta,
+    const symbol::Expr &gamma);
 
 }  // namespace CircPool
 

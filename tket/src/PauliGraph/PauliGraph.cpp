@@ -114,8 +114,8 @@ void PauliGraph::apply_gate_at_end(
     }
     case OpType::Rz: {
       QubitPauliTensor pauli = cliff_.get_zpauli(qbs.at(0));
-      Expr angle = gate.get_params().at(0);
-      std::optional<unsigned> cliff_angle = equiv_Clifford(angle);
+      symbol::Expr angle = gate.get_params().at(0);
+      std::optional<unsigned> cliff_angle = symbol::equiv_Clifford(angle);
       if (cliff_angle) {
         for (unsigned i = 0; i < cliff_angle.value(); i++) {
           cliff_.apply_gate_at_end(OpType::S, qbs);
@@ -126,8 +126,8 @@ void PauliGraph::apply_gate_at_end(
     }
     case OpType::Rx: {
       QubitPauliTensor pauli = cliff_.get_xpauli(qbs.at(0));
-      Expr angle = gate.get_params().at(0);
-      std::optional<unsigned> cliff_angle = equiv_Clifford(angle);
+      symbol::Expr angle = gate.get_params().at(0);
+      std::optional<unsigned> cliff_angle = symbol::equiv_Clifford(angle);
       if (cliff_angle) {
         for (unsigned i = 0; i < cliff_angle.value(); i++) {
           cliff_.apply_gate_at_end(OpType::V, qbs);
@@ -137,8 +137,8 @@ void PauliGraph::apply_gate_at_end(
       break;
     }
     case OpType::Ry: {
-      Expr angle = gate.get_params().at(0);
-      std::optional<unsigned> cliff_angle = equiv_Clifford(angle);
+      symbol::Expr angle = gate.get_params().at(0);
+      std::optional<unsigned> cliff_angle = symbol::equiv_Clifford(angle);
       if (cliff_angle) {
         if (cliff_angle.value() != 0) {
           cliff_.apply_gate_at_end(OpType::V, qbs);
@@ -175,8 +175,8 @@ void PauliGraph::apply_gate_at_end(
     }
     case OpType::PhaseGadget:
     case OpType::ZZPhase: {
-      Expr angle = gate.get_params().at(0);
-      std::optional<unsigned> cliff_angle = equiv_Clifford(angle);
+      symbol::Expr angle = gate.get_params().at(0);
+      std::optional<unsigned> cliff_angle = symbol::equiv_Clifford(angle);
       if (cliff_angle) {
         if (cliff_angle.value() != 0) {
           for (unsigned i = 1; i < qbs.size(); i++) {
@@ -199,8 +199,8 @@ void PauliGraph::apply_gate_at_end(
       break;
     }
     case OpType::XXPhase: {
-      Expr angle = gate.get_params().at(0);
-      std::optional<unsigned> cliff_angle = equiv_Clifford(angle);
+      symbol::Expr angle = gate.get_params().at(0);
+      std::optional<unsigned> cliff_angle = symbol::equiv_Clifford(angle);
       if (cliff_angle) {
         if (cliff_angle.value() != 0) {
           cliff_.apply_gate_at_end(OpType::CX, {qbs.at(1), qbs.at(0)});
@@ -217,8 +217,8 @@ void PauliGraph::apply_gate_at_end(
       break;
     }
     case OpType::YYPhase: {
-      Expr angle = gate.get_params().at(0);
-      std::optional<unsigned> cliff_angle = equiv_Clifford(angle);
+      symbol::Expr angle = gate.get_params().at(0);
+      std::optional<unsigned> cliff_angle = symbol::equiv_Clifford(angle);
       if (cliff_angle) {
         if (cliff_angle.value() != 0) {
           const Qubit &arg0 = qbs.at(0);
@@ -248,7 +248,7 @@ void PauliGraph::apply_gate_at_end(
 }
 
 void PauliGraph::apply_pauli_gadget_at_end(
-    const QubitPauliTensor &pauli, const Expr &angle) {
+    const QubitPauliTensor &pauli, const symbol::Expr &angle) {
   PauliVertSet to_search = end_line_;
   PauliVertSet commuted;
   PauliVert new_vert = boost::add_vertex(graph_);
@@ -282,7 +282,7 @@ void PauliGraph::apply_pauli_gadget_at_end(
         boost::remove_vertex(new_vert, graph_);
 
         std::optional<unsigned> cl_ang =
-            equiv_Clifford(graph_[to_compare].angle_);
+            symbol::equiv_Clifford(graph_[to_compare].angle_);
         if (cl_ang) {
           cliff_.apply_pauli_at_front(graph_[to_compare].tensor_, *cl_ang);
           start_line_.erase(to_compare);

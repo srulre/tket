@@ -29,7 +29,7 @@ Op_ptr MetaOp::symbol_substitution(const SymEngine::map_basic_basic&) const {
   return Op_ptr();
 }
 
-SymSet MetaOp::free_symbols() const { return {}; }
+symbol::SymSet MetaOp::free_symbols() const { return {}; }
 
 unsigned MetaOp::n_qubits() const {
   OptUInt n = desc_.n_qubits();

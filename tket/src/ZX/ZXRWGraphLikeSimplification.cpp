@@ -95,7 +95,7 @@ Rewrite Rewrite::remove_interior_cliffords() {
 }
 
 static void add_phase_to_vertices(
-    ZXDiagram& diag, const ZXVertSeqSet& verts, const Expr& phase) {
+    ZXDiagram& diag, const ZXVertSeqSet& verts, const symbol::Expr& phase) {
   for (const ZXVert& v : verts) {
     const PhasedGen& old_spid = diag.get_vertex_ZXGen<PhasedGen>(v);
     ZXGen_ptr new_spid = std::make_shared<const PhasedGen>(

@@ -26,7 +26,7 @@ class MetaOp : public Op {
   Op_ptr symbol_substitution(
       const SymEngine::map_basic_basic &sub_map) const override;
 
-  SymSet free_symbols() const override;
+  symbol::SymSet free_symbols() const override;
 
   unsigned n_qubits() const override;
 

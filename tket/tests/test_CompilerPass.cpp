@@ -365,9 +365,9 @@ SCENARIO("Test making (mostly routing) passes using PassGenerators") {
         static_cast<const Conditional&>(*cmds[1].get_op_ptr()).get_op();
 
     REQUIRE(op0->get_type() == OpType::Rz);
-    REQUIRE(op0->get_params() == std::vector<Expr>{0.285});
+    REQUIRE(op0->get_params() == std::vector<symbol::Expr>{0.285});
     REQUIRE(op1->get_type() == OpType::Rx);
-    REQUIRE(op1->get_params() == std::vector<Expr>{0.528});
+    REQUIRE(op1->get_params() == std::vector<symbol::Expr>{0.528});
   }
 
   GIVEN("Repeat synthesis passes") {
@@ -682,13 +682,13 @@ SCENARIO("PeepholeOptimise2Q and FullPeepholeOptimise") {
     REQUIRE(FullPeepholeOptimise()->apply(cu1));
   }
   GIVEN("A symbolic circuit") {
-    Sym a = SymEngine::symbol("alpha");
+    symbol::Sym a = SymEngine::symbol("alpha");
     Circuit circ(2);
     circ.add_op<unsigned>(OpType::ZZMax, {1, 0});
     circ.add_op<unsigned>(OpType::CH, {0, 1});
     circ.add_op<unsigned>(OpType::X, {1});
     circ.add_op<unsigned>(OpType::CX, {1, 0});
-    circ.add_op<unsigned>(OpType::Ry, 2 * Expr(a), {1});
+    circ.add_op<unsigned>(OpType::Ry, 2 * symbol::Expr(a), {1});
     circ.add_op<unsigned>(OpType::CX, {1, 0});
     CompilationUnit cu(circ);
     REQUIRE(PeepholeOptimise2Q()->apply(cu));
@@ -1036,7 +1036,7 @@ SCENARIO("RemoveRedundancies and phase") {
     REQUIRE(RemoveRedundancies()->apply(cu));
     const Circuit& c1 = cu.get_circ_ref();
     REQUIRE(c1.get_commands().size() == 0);
-    REQUIRE(equiv_val(c1.get_phase(), 1.));
+    REQUIRE(symbol::equiv_val(c1.get_phase(), 1.));
   }
 }
 

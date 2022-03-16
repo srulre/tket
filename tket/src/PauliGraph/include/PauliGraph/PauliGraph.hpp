@@ -27,7 +27,7 @@ class Gate;
 
 struct PauliGadgetProperties {
   QubitPauliTensor tensor_;
-  Expr angle_;
+  symbol::Expr angle_;
 };
 
 struct DependencyEdgeProperties {};
@@ -112,7 +112,7 @@ class PauliGraph {
    * tableau.
    */
   void apply_pauli_gadget_at_end(
-      const QubitPauliTensor &pauli, const Expr &angle);
+      const QubitPauliTensor &pauli, const symbol::Expr &angle);
 
   /**
    * Iterates through the vertices of a PauliGraph in a topological ordering.

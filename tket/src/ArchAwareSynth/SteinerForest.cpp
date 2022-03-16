@@ -42,7 +42,7 @@ SteinerForest::SteinerForest(
     ParityList parity_list = parity_column_to_list(parity.first);
     SteinerTree tree(paths, parity_list, *parity_list.begin());
     global_cost += tree.tree_cost;
-    std::pair<SteinerTree, Expr> parity_on_graph{tree, parity.second};
+    std::pair<SteinerTree, symbol::Expr> parity_on_graph{tree, parity.second};
 
     CostedTrees::iterator iter = current_trees.find(tree.tree_cost);
     if (iter == current_trees.end())

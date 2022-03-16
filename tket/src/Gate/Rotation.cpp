@@ -21,21 +21,21 @@
 
 namespace tket {
 
-static Expr atan2_bypi(const Expr &a, const Expr &b) {
-  std::optional<double> va = eval_expr(a);
-  std::optional<double> vb = eval_expr(b);
+static symbol::Expr atan2_bypi(const symbol::Expr &a, const symbol::Expr &b) {
+  std::optional<double> va = symbol::eval_expr(a);
+  std::optional<double> vb = symbol::eval_expr(b);
   if (va && vb) {
     double vva = va.value();
     double vvb = vb.value();
-    if (std::abs(vva) < EPS && std::abs(vvb) < EPS) return Expr(0.);
+    if (std::abs(vva) < EPS && std::abs(vvb) < EPS) return symbol::Expr(0.);
     return atan2(vva, vvb) / PI;
   } else {
     return SymEngine::div(SymEngine::atan2(a, b), SymEngine::pi);
   }
 }
 
-static Expr acos_bypi(const Expr &a) {
-  std::optional<double> va = eval_expr(a);
+static symbol::Expr acos_bypi(const symbol::Expr &a) {
+  std::optional<double> va = symbol::eval_expr(a);
   if (va) {
     double vva = va.value();
     // avoid undefined values due to rounding
@@ -50,23 +50,25 @@ static Expr acos_bypi(const Expr &a) {
 // SymEngine::div does not always spot when the numerator is a scalar multiple
 // of the denominator, for example in expressions like (-a + b) / (a - b) where
 // a and b are symbolic. This function picks out the common cases.
-static Expr expr_div(const Expr &num, const Expr &den) {
-  if (approx_0(SymEngine::expand(num - den))) return 1;
-  if (approx_0(SymEngine::expand(num + den))) return -1;
+static symbol::Expr expr_div(const symbol::Expr &num, const symbol::Expr &den) {
+  if (symbol::approx_0(SymEngine::expand(num - den))) return 1;
+  if (symbol::approx_0(SymEngine::expand(num + den))) return -1;
   return SymEngine::div(num, den);
 }
 
-static std::tuple<Expr, Expr, Expr> xyx_angles_from_coeffs(
-    const Expr &s, const Expr &i, const Expr &j, const Expr &k) {
+static std::tuple<symbol::Expr, symbol::Expr, symbol::Expr>
+xyx_angles_from_coeffs(
+    const symbol::Expr &s, const symbol::Expr &i, const symbol::Expr &j,
+    const symbol::Expr &k) {
   // Handle exceptional cases first.
-  bool s_zero = approx_0(s);
-  bool s_one = approx_0(s - 1);
-  bool i_zero = approx_0(i);
-  bool i_one = approx_0(i - 1);
-  bool j_zero = approx_0(j);
-  bool j_one = approx_0(j - 1);
-  bool k_zero = approx_0(k);
-  bool k_one = approx_0(k - 1);
+  bool s_zero = symbol::approx_0(s);
+  bool s_one = symbol::approx_0(s - 1);
+  bool i_zero = symbol::approx_0(i);
+  bool i_one = symbol::approx_0(i - 1);
+  bool j_zero = symbol::approx_0(j);
+  bool j_one = symbol::approx_0(j - 1);
+  bool k_zero = symbol::approx_0(k);
+  bool k_one = symbol::approx_0(k - 1);
   if (i_zero && j_zero && k_zero) {
     if (s_one)
       return {0, 0, 0};
@@ -118,45 +120,47 @@ static std::tuple<Expr, Expr, Expr> xyx_angles_from_coeffs(
   // 2 * atan2(B, A).
   // Finally, note that u must be well-defined because we have already dealt
   // with all cases where s = 0.
-  if (approx_0(SymEngine::expand(i * j + s * k))) {
-    Expr u = expr_div(i, s);
+  if (symbol::approx_0(SymEngine::expand(i * j + s * k))) {
+    symbol::Expr u = expr_div(i, s);
     if (SymEngine::free_symbols(u).empty()) {
-      Expr a = SymEngine::atan(u);
-      Expr q = 2 * atan2_bypi(j, s);
-      Expr two_a_by_pi = SymEngine::div(2 * a, SymEngine::pi);
-      return std::tuple<Expr, Expr, Expr>(two_a_by_pi, q, 0);
+      symbol::Expr a = SymEngine::atan(u);
+      symbol::Expr q = 2 * atan2_bypi(j, s);
+      symbol::Expr two_a_by_pi = SymEngine::div(2 * a, SymEngine::pi);
+      return std::tuple<symbol::Expr, symbol::Expr, symbol::Expr>(
+          two_a_by_pi, q, 0);
     }
-  } else if (approx_0(SymEngine::expand(i * j - s * k))) {
-    Expr u = expr_div(i, s);
+  } else if (symbol::approx_0(SymEngine::expand(i * j - s * k))) {
+    symbol::Expr u = expr_div(i, s);
     if (SymEngine::free_symbols(u).empty()) {
-      Expr a = SymEngine::atan(u);
-      Expr q = 2 * atan2_bypi(j, s);
-      Expr two_a_by_pi = SymEngine::div(2 * a, SymEngine::pi);
-      return std::tuple<Expr, Expr, Expr>(0, q, two_a_by_pi);
+      symbol::Expr a = SymEngine::atan(u);
+      symbol::Expr q = 2 * atan2_bypi(j, s);
+      symbol::Expr two_a_by_pi = SymEngine::div(2 * a, SymEngine::pi);
+      return std::tuple<symbol::Expr, symbol::Expr, symbol::Expr>(
+          0, q, two_a_by_pi);
     }
   }
 
   // Now the general case.
-  Expr a = atan2_bypi(i, s);
-  Expr b = atan2_bypi(k, j);
-  Expr q = acos_bypi(SymEngine::expand(s * s + i * i - j * j - k * k));
-  return std::tuple<Expr, Expr, Expr>(a - b, q, a + b);
+  symbol::Expr a = atan2_bypi(i, s);
+  symbol::Expr b = atan2_bypi(k, j);
+  symbol::Expr q = acos_bypi(SymEngine::expand(s * s + i * i - j * j - k * k));
+  return std::tuple<symbol::Expr, symbol::Expr, symbol::Expr>(a - b, q, a + b);
 }
 
-Rotation::Rotation(OpType optype, Expr a)
+Rotation::Rotation(OpType optype, symbol::Expr a)
     : i_(0), j_(0), k_(0), optype_(optype), a_(a) {
-  if (equiv_0(a, 4)) {
+  if (symbol::equiv_0(a, 4)) {
     rep_ = Rep::id;
     s_ = 1;
     i_ = j_ = k_ = 0;
-  } else if (equiv_0(a - 2, 4)) {
+  } else if (symbol::equiv_0(a - 2, 4)) {
     rep_ = Rep::minus_id;
     s_ = -1;
     i_ = j_ = k_ = 0;
   } else {
     rep_ = Rep::orth_rot;
-    s_ = cos_halfpi_times(a);
-    Expr t = sin_halfpi_times(a);
+    s_ = symbol::cos_halfpi_times(a);
+    symbol::Expr t = symbol::sin_halfpi_times(a);
     switch (optype) {
       case OpType::Rx:
         i_ = t;
@@ -175,11 +179,11 @@ Rotation::Rotation(OpType optype, Expr a)
   }
 }
 
-std::optional<Expr> Rotation::angle(OpType optype) const {
+std::optional<symbol::Expr> Rotation::angle(OpType optype) const {
   if (rep_ == Rep::id) {
-    return Expr(0);
+    return symbol::Expr(0);
   } else if (rep_ == Rep::minus_id) {
-    return Expr(2);
+    return symbol::Expr(2);
   } else if (rep_ == Rep::orth_rot && optype_ == optype) {
     return a_;
   } else {
@@ -187,16 +191,17 @@ std::optional<Expr> Rotation::angle(OpType optype) const {
   }
 }
 
-std::tuple<Expr, Expr, Expr> Rotation::to_pqp(OpType p, OpType q) const {
+std::tuple<symbol::Expr, symbol::Expr, symbol::Expr> Rotation::to_pqp(
+    OpType p, OpType q) const {
   if (rep_ == Rep::id) {
-    return {Expr(0), Expr(0), Expr(0)};
+    return {symbol::Expr(0), symbol::Expr(0), symbol::Expr(0)};
   } else if (rep_ == Rep::minus_id) {
-    return {Expr(2), Expr(0), Expr(0)};
+    return {symbol::Expr(2), symbol::Expr(0), symbol::Expr(0)};
   } else if (rep_ == Rep::orth_rot) {
     if (optype_ == p) {
-      return {a_, Expr(0), Expr(0)};
+      return {a_, symbol::Expr(0), symbol::Expr(0)};
     } else if (optype_ == q) {
-      return {Expr(0), a_, Expr(0)};
+      return {symbol::Expr(0), a_, symbol::Expr(0)};
     }
   }
   if (p == OpType::Rx && q == OpType::Ry) {
@@ -284,27 +289,32 @@ void Rotation::apply(const Rotation &other) {
   if (rep_ == Rep::orth_rot && other.rep_ == Rep::orth_rot) {
     if (optype_ == other.optype_) {
       a_ += other.a_;
-      if (equiv_0(a_, 4)) {
+      if (symbol::equiv_0(a_, 4)) {
         rep_ = Rep::id;
-      } else if (equiv_0(a_, 2)) {
+      } else if (symbol::equiv_0(a_, 2)) {
         rep_ = Rep::minus_id;
       }
     } else if (
-        (equiv_val(a_, 1., 4) || equiv_val(a_, -1., 4)) &&
-        (equiv_val(other.a_, 1., 4) || equiv_val(other.a_, -1., 4))) {
+        (symbol::equiv_val(a_, 1., 4) || symbol::equiv_val(a_, -1., 4)) &&
+        (symbol::equiv_val(other.a_, 1., 4) ||
+         symbol::equiv_val(other.a_, -1., 4))) {
       // We are in a subgroup of order 8
-      int m0 = equiv_val(a_, 1., 4) ? 1 : -1;
-      int m1 = equiv_val(other.a_, 1., 4) ? 1 : -1;
+      int m0 = symbol::equiv_val(a_, 1., 4) ? 1 : -1;
+      int m1 = symbol::equiv_val(other.a_, 1., 4) ? 1 : -1;
       std::tie(optype_, a_) = product.at({optype_, m0, other.optype_, m1});
     } else
       rep_ = Rep::quat;
   } else
     rep_ = Rep::quat;
 
-  Expr s1 = other.s_ * s_ - other.i_ * i_ - other.j_ * j_ - other.k_ * k_;
-  Expr i1 = other.s_ * i_ + other.i_ * s_ + other.j_ * k_ - other.k_ * j_;
-  Expr j1 = other.s_ * j_ - other.i_ * k_ + other.j_ * s_ + other.k_ * i_;
-  Expr k1 = other.s_ * k_ + other.i_ * j_ - other.j_ * i_ + other.k_ * s_;
+  symbol::Expr s1 =
+      other.s_ * s_ - other.i_ * i_ - other.j_ * j_ - other.k_ * k_;
+  symbol::Expr i1 =
+      other.s_ * i_ + other.i_ * s_ + other.j_ * k_ - other.k_ * j_;
+  symbol::Expr j1 =
+      other.s_ * j_ - other.i_ * k_ + other.j_ * s_ + other.k_ * i_;
+  symbol::Expr k1 =
+      other.s_ * k_ + other.i_ * j_ - other.j_ * i_ + other.k_ * s_;
   s_ = SymEngine::expand(s1);
   i_ = SymEngine::expand(i1);
   j_ = SymEngine::expand(j1);
@@ -312,11 +322,11 @@ void Rotation::apply(const Rotation &other) {
 
   if (rep_ == Rep::quat) {
     // See if we can simplify the representation.
-    bool i_zero = approx_0(i_);
-    bool j_zero = approx_0(j_);
-    bool k_zero = approx_0(k_);
+    bool i_zero = symbol::approx_0(i_);
+    bool j_zero = symbol::approx_0(j_);
+    bool k_zero = symbol::approx_0(k_);
     if (i_zero && j_zero && k_zero) {
-      if (approx_0(s_ - 1)) {
+      if (symbol::approx_0(s_ - 1)) {
         rep_ = Rep::id;
         s_ = 1;
         i_ = j_ = k_ = 0;
@@ -456,11 +466,11 @@ std::vector<double> tk1_angles_from_unitary(const Eigen::Matrix2cd &U) {
   return {a, b, c, p};
 }
 
-Eigen::Matrix2cd get_matrix_from_tk1_angles(std::vector<Expr> params) {
-  double alpha = eval_expr(params[0]).value();
-  double beta = eval_expr(params[1]).value();
-  double gamma = eval_expr(params[2]).value();
-  double t = eval_expr(params[3]).value();
+Eigen::Matrix2cd get_matrix_from_tk1_angles(std::vector<symbol::Expr> params) {
+  double alpha = symbol::eval_expr(params[0]).value();
+  double beta = symbol::eval_expr(params[1]).value();
+  double gamma = symbol::eval_expr(params[2]).value();
+  double t = symbol::eval_expr(params[3]).value();
   Eigen::Matrix2cd m;
   alpha *= PI;
   beta *= PI;

@@ -373,14 +373,14 @@ SCENARIO("Three-qubit squash") {
     CHECK_FALSE(Transforms::three_qubit_squash().apply(c));
   }
   GIVEN("A symbolic circuit") {
-    Sym a = SymEngine::symbol("alpha");
+    symbol::Sym a = SymEngine::symbol("alpha");
     Circuit c(2);
     c.add_op<unsigned>(OpType::CX, {1, 0});
     c.add_op<unsigned>(OpType::CX, {0, 1});
     c.add_op<unsigned>(OpType::H, {1});
     c.add_op<unsigned>(OpType::CX, {0, 1});
     c.add_op<unsigned>(OpType::CX, {1, 0});
-    c.add_op<unsigned>(OpType::Ry, 2 * Expr(a), {1});
+    c.add_op<unsigned>(OpType::Ry, 2 * symbol::Expr(a), {1});
     c.add_op<unsigned>(OpType::CX, {1, 0});
     CHECK(Transforms::three_qubit_squash().apply(c));
   }

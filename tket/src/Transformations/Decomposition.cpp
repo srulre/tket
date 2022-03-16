@@ -70,25 +70,26 @@ static bool convert_to_zxz(Circuit &circ) {
 }
 
 static bool convert_to_zyz(Circuit &circ) {
-  static const Expr half = SymEngine::div(Expr(1), Expr(2));
+  static const symbol::Expr half =
+      SymEngine::div(symbol::Expr(1), symbol::Expr(2));
   bool success = decompose_single_qubits_TK1().apply(circ);
   VertexList bin;
   BGL_FORALL_VERTICES(v, circ.dag, DAG) {
     if (circ.n_in_edges(v) != 1) continue;
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     if (op->get_type() == OpType::TK1) {
-      std::vector<Expr> params = op->get_params();
+      std::vector<symbol::Expr> params = op->get_params();
       Circuit replacement(1);
-      Expr a = params[2] + half;
-      Expr b = params[1];
-      Expr c = params[0] - half;
-      if (!equiv_0(a, 4)) {
+      symbol::Expr a = params[2] + half;
+      symbol::Expr b = params[1];
+      symbol::Expr c = params[0] - half;
+      if (!symbol::equiv_0(a, 4)) {
         replacement.add_op<unsigned>(OpType::Rz, a, {0});
       }
-      if (!equiv_0(b, 4)) {
+      if (!symbol::equiv_0(b, 4)) {
         replacement.add_op<unsigned>(OpType::Ry, b, {0});
       }
-      if (!equiv_0(c, 4)) {
+      if (!symbol::equiv_0(c, 4)) {
         replacement.add_op<unsigned>(OpType::Rz, c, {0});
       }
       Subcircuit sub = {
@@ -104,14 +105,15 @@ static bool convert_to_zyz(Circuit &circ) {
 }
 
 static bool convert_to_xyx(Circuit &circ) {
-  static const Expr half = SymEngine::div(Expr(1), Expr(2));
+  static const symbol::Expr half =
+      SymEngine::div(symbol::Expr(1), symbol::Expr(2));
   bool success = decompose_single_qubits_TK1().apply(circ);
   VertexList bin;
   BGL_FORALL_VERTICES(v, circ.dag, DAG) {
     if (circ.n_in_edges(v) != 1) continue;
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
     if (op->get_type() == OpType::TK1) {
-      std::vector<Expr> params = op->get_params();
+      std::vector<symbol::Expr> params = op->get_params();
       Circuit replacement(1);
       replacement.add_op<unsigned>(OpType::Ry, half, {0});
       replacement.add_op<unsigned>(OpType::Rx, params[2] + half, {0});
@@ -141,7 +143,7 @@ static bool convert_singleqs_TK1(Circuit &circ) {
     OpType optype = op->get_type();
     if (is_gate_type(optype) && !is_projective_type(optype) &&
         op->n_qubits() == 1 && optype != OpType::TK1) {
-      std::vector<Expr> tk1_angs = as_gate_ptr(op)->get_tk1_angles();
+      std::vector<symbol::Expr> tk1_angs = as_gate_ptr(op)->get_tk1_angles();
       Circuit rep(1);
       rep.add_op<unsigned>(
           OpType::TK1, {tk1_angs[0], tk1_angs[1], tk1_angs[2]}, {0});
@@ -163,8 +165,9 @@ Transform decompose_single_qubits_TK1() {
 Transform decompose_ZYZ_to_TK1() {
   return Transform([](Circuit &circ) {
     bool success = false;
-    static const Expr zero(0);
-    static const Expr half = SymEngine::div(Expr(1), Expr(2));
+    static const symbol::Expr zero(0);
+    static const symbol::Expr half =
+        SymEngine::div(symbol::Expr(1), symbol::Expr(2));
     VertexList bin;
     VertexVec inputs = circ.q_inputs();
     for (VertexVec::iterator i = inputs.begin(); i != inputs.end(); ++i) {
@@ -173,18 +176,18 @@ Transform decompose_ZYZ_to_TK1() {
       while (!is_final_q_type(circ.get_OpType_from_Vertex(v))) {
         if (circ.get_OpType_from_Vertex(v) == OpType::Rz) {
           const Op_ptr v_g = circ.get_Op_ptr_from_Vertex(v);
-          Expr angle_1 = v_g->get_params()[0];
+          symbol::Expr angle_1 = v_g->get_params()[0];
           Edge e1 = circ.get_next_edge(v, e);
           Vertex v2 = circ.target(e1);
           if (circ.get_OpType_from_Vertex(v2) == OpType::Ry) {
             const Op_ptr v2_g = circ.get_Op_ptr_from_Vertex(v2);
-            Expr angle_2 = v2_g->get_params()[0];
+            symbol::Expr angle_2 = v2_g->get_params()[0];
             Edge e2 = circ.get_next_edge(v2, e1);
             Vertex v3 = circ.target(e2);
             bin.push_back(v2);
             circ.remove_vertex(
                 v2, Circuit::GraphRewiring::Yes, Circuit::VertexDeletion::No);
-            Expr angle_3 = zero;
+            symbol::Expr angle_3 = zero;
             if (circ.get_OpType_from_Vertex(v3) == OpType::Rz) {
               const Op_ptr v3_g = circ.get_Op_ptr_from_Vertex(v3);
               angle_3 = v3_g->get_params()[0];
@@ -192,7 +195,7 @@ Transform decompose_ZYZ_to_TK1() {
                   v3, Circuit::GraphRewiring::Yes, Circuit::VertexDeletion::No);
               bin.push_back(v3);
             }
-            std::vector<Expr> new_params = {
+            std::vector<symbol::Expr> new_params = {
                 angle_3 + half, angle_2, angle_1 - half};
             circ.dag[v] = {get_op_ptr(OpType::TK1, new_params)};
           } else {
@@ -200,8 +203,8 @@ Transform decompose_ZYZ_to_TK1() {
           }
         } else if (circ.get_OpType_from_Vertex(v) == OpType::Ry) {
           const Op_ptr v_g = circ.get_Op_ptr_from_Vertex(v);
-          Expr angle_2 = v_g->get_params()[0];
-          Expr angle_3 = zero;
+          symbol::Expr angle_2 = v_g->get_params()[0];
+          symbol::Expr angle_3 = zero;
           Edge e1 = circ.get_next_edge(v, e);
           Vertex v2 = circ.target(e1);
           if (circ.get_OpType_from_Vertex(v2) == OpType::Rz) {
@@ -211,7 +214,8 @@ Transform decompose_ZYZ_to_TK1() {
                 v2, Circuit::GraphRewiring::Yes, Circuit::VertexDeletion::No);
             bin.push_back(v2);
           }
-          std::vector<Expr> new_params = {angle_3 + half, angle_2, -half};
+          std::vector<symbol::Expr> new_params = {
+              angle_3 + half, angle_2, -half};
           circ.dag[v] = {get_op_ptr(OpType::TK1, new_params)};
         }
         e = circ.get_next_edge(v, e);
@@ -239,7 +243,7 @@ Transform decompose_tk1_to_rzrx() {
       if (circ.get_OpType_from_Vertex(*it) == OpType::TK1) {
         success = true;
         const Op_ptr g = circ.get_Op_ptr_from_Vertex(*it);
-        const std::vector<Expr> &params = g->get_params();
+        const std::vector<symbol::Expr> &params = g->get_params();
         Circuit newcirc =
             CircPool::tk1_to_rzrx(params[0], params[1], params[2]);
         Subcircuit sc = {
@@ -296,26 +300,26 @@ Transform decompose_ZX_to_HQS1() {
       if (circ.get_OpType_from_Vertex(v) == OpType::Rx) {
         success = true;
         const Op_ptr g = circ.get_Op_ptr_from_Vertex(v);
-        Expr theta = g->get_params()[0];
+        symbol::Expr theta = g->get_params()[0];
         Vertex prev_vert = *circ.get_predecessors(v).begin();
         Vertex next_vert = *circ.get_successors(v).begin();
         if (circ.get_OpType_from_Vertex(prev_vert) == OpType::Rz &&
             circ.get_OpType_from_Vertex(next_vert) == OpType::Rz) {
           const Op_ptr prev_g = circ.get_Op_ptr_from_Vertex(prev_vert);
           const Op_ptr next_g = circ.get_Op_ptr_from_Vertex(next_vert);
-          Expr phi = next_g->get_params()[0];
-          std::vector<Expr> params{theta, phi};
+          symbol::Expr phi = next_g->get_params()[0];
+          std::vector<symbol::Expr> params{theta, phi};
           circ.dag[v].op = get_op_ptr(OpType::PhasedX, params);
           circ.remove_vertex(
               next_vert, Circuit::GraphRewiring::Yes,
               Circuit::VertexDeletion::No);
           to_bin.push_back(next_vert);
-          Expr new_param = prev_g->get_params()[0] + phi;
+          symbol::Expr new_param = prev_g->get_params()[0] + phi;
           circ.dag[prev_vert].op = get_op_ptr(OpType::Rz, new_param);
         } else {
           // if no Rz, initialise a PhasedX op with theta=Rx.params[0],phi=0
-          Expr phi(0);
-          std::vector<Expr> params{theta, phi};
+          symbol::Expr phi(0);
+          std::vector<symbol::Expr> params{theta, phi};
           circ.dag[v].op = get_op_ptr(OpType::PhasedX, params);
         }
       }
@@ -344,12 +348,13 @@ Transform decompose_MolmerSorensen() {
         Op_ptr next_g = circ.get_Op_ptr_from_Vertex(next);
         OpType next_type = next_g->get_type();
         if (is_single_qubit_type(next_type) && !is_projective_type(next_type)) {
-          std::vector<Expr> angles = as_gate_ptr(next_g)->get_tk1_angles();
-          if (equiv_0(angles[0], 2) && equiv_0(angles[2], 2)) {
-            Expr angle = angles[1];
-            Expr phase = angles[3];
-            if (!equiv_0(angles[0], 4)) phase += 1;
-            if (!equiv_0(angles[2], 4)) phase += 1;
+          std::vector<symbol::Expr> angles =
+              as_gate_ptr(next_g)->get_tk1_angles();
+          if (symbol::equiv_0(angles[0], 2) && symbol::equiv_0(angles[2], 2)) {
+            symbol::Expr angle = angles[1];
+            symbol::Expr phase = angles[3];
+            if (!symbol::equiv_0(angles[0], 4)) phase += 1;
+            if (!symbol::equiv_0(angles[2], 4)) phase += 1;
             Edge next_e = circ.get_nth_out_edge(next, 0);
             Vertex last = circ.target(next_e);
             if (circ.get_OpType_from_Vertex(last) == OpType::CX &&
@@ -568,12 +573,14 @@ Transform decompose_cliffords_std() {
           opT == OpType::U1 || opT == OpType::Rx || opT == OpType::Ry ||
           opT == OpType::Rz || opT == OpType::PhasedX) {
         const Op_ptr g = circ.get_Op_ptr_from_Vertex(v);
-        std::vector<Expr> tk1_param_exprs = as_gate_ptr(g)->get_tk1_angles();
+        std::vector<symbol::Expr> tk1_param_exprs =
+            as_gate_ptr(g)->get_tk1_angles();
         bool all_reduced = true;
         bool all_roundable = true;
         std::vector<int> iangles(3);
         for (int i = 0; i < 3; i++) {
-          std::optional<double> reduced = eval_expr_mod(tk1_param_exprs[i], 4);
+          std::optional<double> reduced =
+              symbol::eval_expr_mod(tk1_param_exprs[i], 4);
           if (!reduced)
             all_reduced = false;
           else {
@@ -610,8 +617,8 @@ Transform decompose_ZX_to_cliffords() {
       const Op_ptr op_ptr = circ.get_Op_ptr_from_Vertex(v);
       if (op_ptr->get_type() == OpType::Rz ||
           op_ptr->get_type() == OpType::Rx) {
-        Expr param = op_ptr->get_params()[0];
-        std::optional<double> reduced = eval_expr_mod(param, 4);
+        symbol::Expr param = op_ptr->get_params()[0];
+        std::optional<double> reduced = symbol::eval_expr_mod(param, 4);
         bool roundable = false;
         int iangle = 0;
         if (reduced) {
@@ -683,7 +690,7 @@ Transform decompose_PhaseGadgets() {
         Op_ptr g = circ.get_Op_ptr_from_Vertex(next_v);
         OpType type = g->get_type();
         if (type == OpType::Rz || type == OpType::U1 ||
-            (type == OpType::TK1 && equiv_0(g->get_params()[1]))) {
+            (type == OpType::TK1 && symbol::equiv_0(g->get_params()[1]))) {
           Vertex last_v = circ.get_next_pair(next_v, outs[1]).first;
           if (circ.get_OpType_from_Vertex(last_v) == OpType::CX &&
               circ.get_nth_in_edge(last_v, 0) == outs[0]) {
@@ -692,7 +699,7 @@ Transform decompose_PhaseGadgets() {
             big_bin.push_back(last_v);
             circ.remove_vertices(
                 bin, Circuit::GraphRewiring::Yes, Circuit::VertexDeletion::No);
-            Expr t = g->get_params()[0];
+            symbol::Expr t = g->get_params()[0];
             if (type == OpType::TK1) {
               t += g->get_params()[2];
             }
@@ -700,7 +707,8 @@ Transform decompose_PhaseGadgets() {
             if (type == OpType::U1) {
               circ.add_phase(t / 2);
             } else if (
-                type == OpType::TK1 && equiv_val(g->get_params()[1], 2, 4)) {
+                type == OpType::TK1 &&
+                symbol::equiv_val(g->get_params()[1], 2, 4)) {
               circ.add_phase(1);
             }
             success = true;
