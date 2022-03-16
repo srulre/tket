@@ -444,7 +444,7 @@ bool CliffordCircuitPredicate::verify(const Circuit& circ) const {
     OpDesc OD = op->get_desc();
     if (OD.is_gate() && !OD.is_clifford_gate() &&
         (!OD.is_parameterised_pauli_rotation() ||
-         !equiv_0(4 * op->get_params().at(0))))
+         !symbol::equiv_0(4 * op->get_params().at(0))))
       return false;
   }
   return true;

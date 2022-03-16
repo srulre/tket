@@ -42,7 +42,7 @@ struct SynthStruct {
 static void adjust_vectors(
     unsigned ctrl, unsigned tgt, std::list<SynthStruct>& Q) {
   for (SynthStruct& S : Q) {
-    for (std::pair<std::vector<bool>, Expr>& term : S.terms) {
+    for (std::pair<std::vector<bool>, symbol::Expr>& term : S.terms) {
       std::vector<bool>& vec = term.first;
       vec[ctrl] = vec[ctrl] ^ vec[tgt];
     }
@@ -58,7 +58,7 @@ static unsigned find_best_split(
   for (unsigned i : indices) {
     int num_ones = std::count_if(
         terms.begin(), terms.end(),
-        [=](const std::pair<std::vector<bool>, Expr>& term) {
+        [=](const std::pair<std::vector<bool>, symbol::Expr>& term) {
           return term.first[i];
         });
     int num_zeros = terms.size() - num_ones;
@@ -259,7 +259,7 @@ Op_ptr PhasePolyBox::symbol_substitution(
   return std::make_shared<PhasePolyBox>(new_circ);
 }
 
-SymSet PhasePolyBox::free_symbols() const {
+symbol::SymSet PhasePolyBox::free_symbols() const {
   return to_circuit()->free_symbols();
 }
 

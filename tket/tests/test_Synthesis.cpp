@@ -67,7 +67,7 @@ SCENARIO("Check commutation through multiqubit ops") {
           REQUIRE(circ == two_none);
         }
         AND_WHEN("Single qubit gate is added to the end") {
-          std::vector<Expr> vec{0.5};
+          std::vector<symbol::Expr> vec{0.5};
           const Op_ptr op_z = get_op_ptr(OpType::Rz, vec);
           const Op_ptr op_y = get_op_ptr(OpType::Ry, vec);
 
@@ -178,21 +178,21 @@ SCENARIO(
   }
   GIVEN("Circuits of symbolic phase gadgets") {
     Circuit circ(8);
-    Sym a = SymEngine::symbol("alpha");
-    Expr alpha(a);
-    Sym b = SymEngine::symbol("beta");
-    Expr beta(b);
-    Sym c = SymEngine::symbol("gamma");
-    Expr gamma(c);
+    symbol::Sym a = SymEngine::symbol("alpha");
+    symbol::Expr alpha(a);
+    symbol::Sym b = SymEngine::symbol("beta");
+    symbol::Expr beta(b);
+    symbol::Sym c = SymEngine::symbol("gamma");
+    symbol::Expr gamma(c);
     circ.add_op<unsigned>(OpType::PhaseGadget, alpha, {0, 1, 2, 3, 4, 5, 6, 7});
     circ.add_op<unsigned>(OpType::PhaseGadget, beta, {0});
     circ.add_op<unsigned>(OpType::PhaseGadget, gamma, {1, 2, 3, 4, 5});
     Transforms::decompose_multi_qubits_CX().apply(circ);
     Transforms::decompose_single_qubits_TK1().apply(circ);
-    symbol_map_t symbol_map;
-    symbol_map[a] = Expr(0.3);
-    symbol_map[b] = Expr(0.5);
-    symbol_map[c] = Expr(1.);
+    symbol::symbol_map_t symbol_map;
+    symbol_map[a] = symbol::Expr(0.3);
+    symbol_map[b] = symbol::Expr(0.5);
+    symbol_map[c] = symbol::Expr(1.);
     circ.symbol_substitution(symbol_map);
     REQUIRE(circ.get_slices().size() == 23);
     REQUIRE(circ.count_gates(OpType::TK1) == 3);
@@ -609,7 +609,8 @@ SCENARIO("Testing general 1qb squash") {
 
     auto cmds = circ.get_commands();
     expected_optypes = {OpType::Rz, OpType::Rx, OpType::CX, OpType::Rz};
-    std::vector<std::vector<Expr>> exp_params{{0.142}, {0.528}, {}, {0.143}};
+    std::vector<std::vector<symbol::Expr>> exp_params{
+        {0.142}, {0.528}, {}, {0.143}};
     for (unsigned i = 0; i < cmds.size(); ++i) {
       Op_ptr op = cmds[i].get_op_ptr();
       if (op->get_type() == OpType::Conditional) {
@@ -679,7 +680,8 @@ SCENARIO("Testing general 1qb squash") {
     circ.add_op<unsigned>(OpType::Rz, 1., {0});
     circ.add_op<unsigned>(OpType::Rx, 0.482, {0});
     Circuit copy = circ;
-    auto xzx = [](const Expr &a, const Expr &b, const Expr &c) {
+    auto xzx = [](const symbol::Expr &a, const symbol::Expr &b,
+                  const symbol::Expr &c) {
       Rotation r(OpType::Rz, c);
       r.apply(Rotation(OpType::Rx, b));
       r.apply(Rotation(OpType::Rz, a));
@@ -1231,7 +1233,7 @@ SCENARIO("Testing Synthesis OQC") {
   GIVEN("Circuit containing 2 2-qubit gates") {
     Circuit circ(2);
     circ.add_op<unsigned>(OpType::CX, {0, 1});
-    std::vector<Expr> vec{0.5};
+    std::vector<symbol::Expr> vec{0.5};
     const Op_ptr op_z = get_op_ptr(OpType::Rz, vec);
     const Op_ptr op_x = get_op_ptr(OpType::Rx, vec);
     circ.add_op<unsigned>(op_z, {0});
@@ -1244,10 +1246,10 @@ SCENARIO("Testing Synthesis OQC") {
 
   GIVEN("Circuit containing 2 2-qubit gates") {
     Circuit circ(2);
-    std::vector<Expr> vec{1.5};
+    std::vector<symbol::Expr> vec{1.5};
     const Op_ptr op_z = get_op_ptr(OpType::Rz, vec);
     const Op_ptr op_x = get_op_ptr(OpType::Rx, vec);
-    std::vector<Expr> vec2{-1.5};
+    std::vector<symbol::Expr> vec2{-1.5};
     const Op_ptr op_z2 = get_op_ptr(OpType::Rz, vec2);
     const Op_ptr op_x2 = get_op_ptr(OpType::Rx, vec2);
     circ.add_op<unsigned>(op_z, {0});
@@ -1265,7 +1267,7 @@ SCENARIO("Testing Synthesis OQC") {
   }
   GIVEN("A circuit with params=0") {
     Circuit circ(3);
-    std::vector<Expr> param = {0.};
+    std::vector<symbol::Expr> param = {0.};
     circ.add_op<unsigned>(OpType::Rx, param, {0});
     circ.add_op<unsigned>(OpType::Ry, param, {0});
     circ.add_op<unsigned>(OpType::Rx, param, {0});
@@ -1280,23 +1282,23 @@ SCENARIO("Testing Synthesis OQC") {
   }
   GIVEN("A nasty parameterised circuit") {
     Circuit circ(2);
-    std::vector<Expr> params1 = {0.5, 1., 0.854851};
-    std::vector<Expr> params2 = {0.5, 0., 1.854851};
+    std::vector<symbol::Expr> params1 = {0.5, 1., 0.854851};
+    std::vector<symbol::Expr> params2 = {0.5, 0., 1.854851};
     circ.add_op<unsigned>(OpType::U3, params1, {0});
     circ.add_op<unsigned>(OpType::U3, params2, {1});
     circ.add_op<unsigned>(OpType::S, {0});
     circ.add_op<unsigned>(OpType::CX, {1, 0});
-    std::vector<Expr> params3 = {0.142538};
-    std::vector<Expr> params4 = {-0.142538};
+    std::vector<symbol::Expr> params3 = {0.142538};
+    std::vector<symbol::Expr> params4 = {-0.142538};
     circ.add_op<unsigned>(OpType::Rz, params3, {0});
     circ.add_op<unsigned>(OpType::Ry, params4, {1});
     circ.add_op<unsigned>(OpType::CX, {1, 0});
-    std::vector<Expr> params5 = {0.5};
+    std::vector<symbol::Expr> params5 = {0.5};
     circ.add_op<unsigned>(OpType::Ry, params5, {1});
     circ.add_op<unsigned>(OpType::CX, {1, 0});
     circ.add_op<unsigned>(OpType::Sdg, {1});
-    std::vector<Expr> params6 = {0.5, 0.145149, 0.};
-    std::vector<Expr> params7 = {0.5, 1.145149, 1.};
+    std::vector<symbol::Expr> params6 = {0.5, 0.145149, 0.};
+    std::vector<symbol::Expr> params7 = {0.5, 1.145149, 1.};
     Circuit circ2(circ);
     Transforms::synthesise_OQC().apply(circ);
     REQUIRE(test_unitary_comparison(circ, circ2));
@@ -1313,11 +1315,11 @@ SCENARIO("Test synthesise_HQS") {
     SliceVec slices = circ.get_slices();
     REQUIRE(circ.get_OpType_from_Vertex(*slices[0].begin()) == OpType::Rz);
     REQUIRE(circ.get_OpType_from_Vertex(*slices[1].begin()) == OpType::PhasedX);
-    Expr first =
+    symbol::Expr first =
         (circ.get_Op_ptr_from_Vertex(*slices[0].begin()))->get_params()[0];
-    Expr second =
+    symbol::Expr second =
         (circ.get_Op_ptr_from_Vertex(*slices[1].begin()))->get_params()[0];
-    Expr third =
+    symbol::Expr third =
         (circ.get_Op_ptr_from_Vertex(*slices[1].begin()))->get_params()[1];
     REQUIRE(test_equiv_val(first, 0.6666));
     // Two equivalent possibilities for the PhasedX:
@@ -1403,17 +1405,17 @@ SCENARIO("Test synthesise_HQS") {
 
 SCENARIO("Test synthesise_UMD") {
   GIVEN("3 expressions which =0") {
-    Expr a = 0.;
-    Expr b = 0.;
-    Expr c = 0.;
+    symbol::Expr a = 0.;
+    symbol::Expr b = 0.;
+    symbol::Expr c = 0.;
     Circuit circ = CircPool::tk1_to_PhasedXRz(a, b, c);
     Transforms::remove_redundancies().apply(circ);
     REQUIRE(circ.n_gates() == 0);
   }
   GIVEN("An Rz in disguise") {
-    Expr a = 0.3;
-    Expr b = 0.;
-    Expr c = 1.3;
+    symbol::Expr a = 0.3;
+    symbol::Expr b = 0.;
+    symbol::Expr c = 1.3;
     Circuit circ = CircPool::tk1_to_PhasedXRz(a, b, c);
     REQUIRE(circ.n_gates() == 1);
   }
@@ -1426,8 +1428,8 @@ SCENARIO("Test synthesise_UMD") {
     REQUIRE(tket_sim::compare_statevectors_or_unitaries(sv1, sv2));
     REQUIRE(circ.n_gates() == 1);
     const Op_ptr op = circ.get_Op_ptr_from_Vertex(circ.get_slices()[0][0]);
-    Expr p1 = (op)->get_params()[0];
-    Expr p2 = (op)->get_params()[1];
+    symbol::Expr p1 = (op)->get_params()[0];
+    symbol::Expr p2 = (op)->get_params()[1];
     REQUIRE(test_equiv_val(p1, 1.0));
     REQUIRE(test_equiv_val(p2, 0.5));
   }
@@ -1606,7 +1608,7 @@ SCENARIO("Check the identification of ZZPhase gates works correctly") {
 }
 
 SCENARIO("Test TK1 gate decomp for some gates") {
-  std::vector<Expr> pars = {
+  std::vector<symbol::Expr> pars = {
       0.3, 0.7, 0.8};  // no ops required >3 params currently
   std::set<OpType> cant_do = {
       OpType::Input,        OpType::Output,       OpType::ClInput,
@@ -1622,7 +1624,8 @@ SCENARIO("Test TK1 gate decomp for some gates") {
     if (cant_do.find(map_pair.first) != cant_do.end()) continue;
     unsigned n_qbs = oti.signature->size();
     Circuit circ(n_qbs);
-    std::vector<Expr> params(pars.begin(), pars.begin() + oti.n_params());
+    std::vector<symbol::Expr> params(
+        pars.begin(), pars.begin() + oti.n_params());
     std::vector<unsigned> qbs(n_qbs);
     std::iota(qbs.begin(), qbs.end(), 0);
     circ.add_op<unsigned>(map_pair.first, params, qbs);

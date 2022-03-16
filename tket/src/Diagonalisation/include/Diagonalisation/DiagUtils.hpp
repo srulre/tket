@@ -29,7 +29,7 @@ struct cmp_tensors {
  * QubitOperator, defined to be useful for diagonalisation and
  * partitioning.
  */
-typedef std::map<QubitPauliTensor, Expr, cmp_tensors> QubitOperator;
+typedef std::map<QubitPauliTensor, symbol::Expr, cmp_tensors> QubitOperator;
 
 void insert_into_gadget_map(
     QubitOperator &gadget_map, const PauliGadgetProperties &pgp);

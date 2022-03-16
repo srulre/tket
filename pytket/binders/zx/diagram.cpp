@@ -276,7 +276,7 @@ void ZXDiagramPybind::init_zxdiagram(py::module& m) {
           ":py:class:`QuantumType` s of the ports they attach to.")
       .def(
           "symbol_substitution",
-          (void(ZXDiagram::*)(const symbol_map_t&)) &
+          (void(ZXDiagram::*)(const symbol::symbol_map_t&)) &
               ZXDiagram::symbol_substitution,
           "In-place substitution for symbolic expressions; iterated through "
           "each parameterised vertex and performs the substitution. This will "
@@ -286,7 +286,8 @@ void ZXDiagramPybind::init_zxdiagram(py::module& m) {
       .def(
           "symbol_substitution",
           (void(ZXDiagram::*)(
-              const std::map<Sym, double, SymEngine::RCPBasicKeyLess>&)) &
+              const std::map<
+                  symbol::Sym, double, SymEngine::RCPBasicKeyLess>&)) &
               ZXDiagram::symbol_substitution,
           "In-place substitution for symbolic expressions; iterated through "
           "each parameterised vertex and performs the substitution. This will "
@@ -325,7 +326,7 @@ void ZXDiagramPybind::init_zxdiagram(py::module& m) {
           py::arg("type"), py::arg("qtype") = QuantumType::Quantum)
       .def(
           "add_vertex",
-          [](ZXDiagram& diag, ZXType type, const Expr& param,
+          [](ZXDiagram& diag, ZXType type, const symbol::Expr& param,
              QuantumType qtype) {
             return ZXVertWrapper(diag.add_vertex(type, param, qtype));
           },
@@ -522,7 +523,7 @@ PYBIND11_MODULE(zx, m) {
           py::arg("qtype") = QuantumType::Quantum)
       .def_static(
           "create",
-          [](ZXType type, const Expr& param, QuantumType qtype) {
+          [](ZXType type, const symbol::Expr& param, QuantumType qtype) {
             return ZXGen::create_gen(type, param, qtype);
           },
           "Create a boundary type generator.", py::arg("type"),

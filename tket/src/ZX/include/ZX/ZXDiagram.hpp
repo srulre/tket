@@ -43,7 +43,7 @@ class ZXDiagram {
   ZXVertVec boundary;
 
   // Global scalar for tracking during rewrites
-  Expr scalar;
+  symbol::Expr scalar;
 
  public:
   /**
@@ -70,8 +70,8 @@ class ZXDiagram {
       std::optional<QuantumType> qtype = std::nullopt) const;
 
   // Getting the global scalar and modifying by multiplication
-  const Expr& get_scalar() const;
-  void multiply_scalar(const Expr& sc);
+  const symbol::Expr& get_scalar() const;
+  void multiply_scalar(const symbol::Expr& sc);
 
   // Counting all vertices / wires in the diagram
   unsigned n_vertices() const;
@@ -156,13 +156,14 @@ class ZXDiagram {
   /**
    * Symbolic manipulation
    */
-  void symbol_substitution(const symbol_map_t& symbol_map);
+  void symbol_substitution(const symbol::symbol_map_t& symbol_map);
   void symbol_substitution(
-      const std::map<Sym, double, SymEngine::RCPBasicKeyLess>& symbol_map);
+      const std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess>&
+          symbol_map);
   void symbol_substitution(const SymEngine::map_basic_basic& sub_map);
 
   // Set of all free symbols occurring in operation parameters
-  SymSet free_symbols() const;
+  symbol::SymSet free_symbols() const;
 
   // Whether the diagram contains any symbolic parameters
   bool is_symbolic() const;
@@ -189,7 +190,8 @@ class ZXDiagram {
   ZXVert add_vertex(ZXGen_ptr op);
   ZXVert add_vertex(ZXType type, QuantumType qtype = QuantumType::Quantum);
   ZXVert add_vertex(
-      ZXType type, const Expr& param, QuantumType qtype = QuantumType::Quantum);
+      ZXType type, const symbol::Expr& param,
+      QuantumType qtype = QuantumType::Quantum);
 
   /**
    * Adds a wire between `va` and `vb` by a `WireProperties` object.

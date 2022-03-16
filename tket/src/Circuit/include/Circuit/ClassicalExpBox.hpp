@@ -70,7 +70,7 @@ class ClassicalExpBox : public Box {
     return Op_ptr(this);
   };
 
-  SymSet free_symbols() const override { return SymSet(); }
+  symbol::SymSet free_symbols() const override { return symbol::SymSet(); }
 
   /**
    * Equality check between two CircBox instances

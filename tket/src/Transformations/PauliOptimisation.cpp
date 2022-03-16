@@ -27,7 +27,7 @@ namespace Transforms {
 
 Transform pairwise_pauli_gadgets(CXConfigType cx_config) {
   return Transform([=](Circuit &circ) {
-    Expr t = circ.get_phase();
+    symbol::Expr t = circ.get_phase();
     BGL_FORALL_VERTICES(v, circ.dag, DAG) {
       Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
       OpType optype = op->get_type();
@@ -56,7 +56,7 @@ Transform pairwise_pauli_gadgets(CXConfigType cx_config) {
     // We effectively commute non-Clifford rotations to the front of the circuit
     // This gives a sequence of just Pauli gadgets (gadget_circ), followed by
     // all of the Clifford operations (clifford_circ)
-    std::vector<std::pair<QubitPauliTensor, Expr>> pauli_gadgets;
+    std::vector<std::pair<QubitPauliTensor, symbol::Expr>> pauli_gadgets;
     // rx_pauli[i] specifies which Pauli gadget would be built by applying an Rx
     // rotation on qubit i and then pushing it through the Cliffords to the
     // front of the circuit. Likewise for rz_pauli with Rz rotations. Clifford
@@ -123,13 +123,13 @@ Transform pairwise_pauli_gadgets(CXConfigType cx_config) {
         // Introduce a Pauli gadget
         case OpType::Rz: {
           Qubit q(args[0]);
-          Expr angle = (op_ptr)->get_params()[0];
+          symbol::Expr angle = (op_ptr)->get_params()[0];
           pauli_gadgets.push_back({rz_pauli[q], angle});
           break;
         }
         case OpType::Rx: {
           Qubit q(args[0]);
-          Expr angle = (op_ptr)->get_params()[0];
+          symbol::Expr angle = (op_ptr)->get_params()[0];
           pauli_gadgets.push_back({rx_pauli[q], angle});
           break;
         }
@@ -183,7 +183,7 @@ Transform pairwise_pauli_gadgets(CXConfigType cx_config) {
 Transform synthesise_pauli_graph(
     PauliSynthStrat strat, CXConfigType cx_config) {
   return Transform([=](Circuit &circ) {
-    Expr t = circ.get_phase();
+    symbol::Expr t = circ.get_phase();
     PauliGraph pg = circuit_to_pauli_graph(circ);
     switch (strat) {
       case PauliSynthStrat::Individual: {

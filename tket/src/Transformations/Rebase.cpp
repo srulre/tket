@@ -29,12 +29,14 @@ namespace Transforms {
 static bool standard_rebase(
     Circuit& circ, const OpTypeSet& allowed_gates,
     const Circuit& cx_replacement,
-    const std::function<Circuit(const Expr&, const Expr&, const Expr&)>&
+    const std::function<
+        Circuit(const symbol::Expr&, const symbol::Expr&, const symbol::Expr&)>&
         tk1_replacement);
 
 Transform rebase_factory(
     const OpTypeSet& allowed_gates, const Circuit& cx_replacement,
-    const std::function<Circuit(const Expr&, const Expr&, const Expr&)>&
+    const std::function<
+        Circuit(const symbol::Expr&, const symbol::Expr&, const symbol::Expr&)>&
         tk1_replacement) {
   return Transform([=](Circuit& circ) {
     return standard_rebase(
@@ -45,7 +47,8 @@ Transform rebase_factory(
 static bool standard_rebase(
     Circuit& circ, const OpTypeSet& allowed_gates,
     const Circuit& cx_replacement,
-    const std::function<Circuit(const Expr&, const Expr&, const Expr&)>&
+    const std::function<
+        Circuit(const symbol::Expr&, const symbol::Expr&, const symbol::Expr&)>&
         tk1_replacement) {
   bool success = false;
   VertexList bin;
@@ -89,7 +92,7 @@ static bool standard_rebase(
         allowed_gates.find(type) != allowed_gates.end())
       continue;
     // need to convert
-    std::vector<Expr> tk1_angles = as_gate_ptr(op)->get_tk1_angles();
+    std::vector<symbol::Expr> tk1_angles = as_gate_ptr(op)->get_tk1_angles();
     Circuit replacement =
         tk1_replacement(tk1_angles[0], tk1_angles[1], tk1_angles[2]);
     remove_redundancies().apply(replacement);
@@ -108,8 +111,10 @@ static bool standard_rebase(
 }
 
 Transform rebase_tket() {
-  std::function<Circuit(const Expr&, const Expr&, const Expr&)> tk1_to_tk1 =
-      [](const Expr& alpha, const Expr& beta, const Expr& gamma) {
+  std::function<Circuit(
+      const symbol::Expr&, const symbol::Expr&, const symbol::Expr&)>
+      tk1_to_tk1 = [](const symbol::Expr& alpha, const symbol::Expr& beta,
+                      const symbol::Expr& gamma) {
         Circuit c(1);
         c.add_op<unsigned>(OpType::TK1, {alpha, beta, gamma}, {0});
         return c;

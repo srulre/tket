@@ -28,8 +28,8 @@ namespace tket {
  * specifically, circuits where the output qubits have the same state as the
  * inputs, modulo (local) phases. The vectors are always assumed to be the same
  * size as the qubit count. */
-typedef std::map<std::vector<bool>, Expr> PhasePolynomial;
-typedef std::pair<std::vector<bool>, Expr> phase_term_t;
+typedef std::map<std::vector<bool>, symbol::Expr> PhasePolynomial;
+typedef std::pair<std::vector<bool>, symbol::Expr> phase_term_t;
 
 /* arXiv:1712.01859 : heuristic for synthesis of phase polynomial into
 a CNOT-dihedral circuit (ie CNOT + Rz). Architecture-blind. */
@@ -62,7 +62,7 @@ class PhasePolyBox : public Box {
   Op_ptr symbol_substitution(
       const SymEngine::map_basic_basic &sub_map) const override;
 
-  SymSet free_symbols() const override;
+  symbol::SymSet free_symbols() const override;
 
   bool is_equal(const Op &op_other) const override {
     const PhasePolyBox &other = dynamic_cast<const PhasePolyBox &>(op_other);

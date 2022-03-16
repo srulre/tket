@@ -123,7 +123,8 @@ ZXGen_ptr ZXGen::create_gen(ZXType type, QuantumType qtype) {
   return op;
 }
 
-ZXGen_ptr ZXGen::create_gen(ZXType type, const Expr& param, QuantumType qtype) {
+ZXGen_ptr ZXGen::create_gen(
+    ZXType type, const symbol::Expr& param, QuantumType qtype) {
   ZXGen_ptr op;
   switch (type) {
     case ZXType::ZSpider:
@@ -178,7 +179,7 @@ bool BoundaryGen::valid_edge(
   return !port && (qtype == this->qtype_);
 }
 
-SymSet BoundaryGen::free_symbols() const { return {}; }
+symbol::SymSet BoundaryGen::free_symbols() const { return {}; }
 
 ZXGen_ptr BoundaryGen::symbol_substitution(
     const SymEngine::map_basic_basic&) const {
@@ -242,16 +243,18 @@ bool BasicGen::operator==(const ZXGen& other) const {
 /**
  * PhasedGen implementation
  */
-PhasedGen::PhasedGen(ZXType type, const Expr& param, QuantumType qtype)
+PhasedGen::PhasedGen(ZXType type, const symbol::Expr& param, QuantumType qtype)
     : BasicGen(type, qtype), param_(param) {
   if (!is_phase_type(type)) {
     throw ZXError("Unsupported ZXType for PhasedGen");
   }
 }
 
-Expr PhasedGen::get_param() const { return param_; }
+symbol::Expr PhasedGen::get_param() const { return param_; }
 
-SymSet PhasedGen::free_symbols() const { return expr_free_symbols(param_); }
+symbol::SymSet PhasedGen::free_symbols() const {
+  return symbol::expr_free_symbols(param_);
+}
 
 ZXGen_ptr PhasedGen::symbol_substitution(
     const SymEngine::map_basic_basic& sub_map) const {
@@ -309,7 +312,7 @@ CliffordGen::CliffordGen(ZXType type, bool param, QuantumType qtype)
 
 bool CliffordGen::get_param() const { return param_; }
 
-SymSet CliffordGen::free_symbols() const { return {}; }
+symbol::SymSet CliffordGen::free_symbols() const { return {}; }
 
 ZXGen_ptr CliffordGen::symbol_substitution(
     const SymEngine::map_basic_basic&) const {
@@ -374,7 +377,7 @@ bool DirectedGen::valid_edge(
   return port && (*port < this->n_ports()) && (qtype == this->qtype_);
 }
 
-SymSet DirectedGen::free_symbols() const { return {}; }
+symbol::SymSet DirectedGen::free_symbols() const { return {}; }
 
 ZXGen_ptr DirectedGen::symbol_substitution(
     const SymEngine::map_basic_basic&) const {
@@ -421,7 +424,7 @@ bool ZXBox::valid_edge(std::optional<unsigned> port, QuantumType qtype) const {
   return (qtype == diag_->get_qtype(boundary.at(*port)));
 }
 
-SymSet ZXBox::free_symbols() const { return diag_->free_symbols(); }
+symbol::SymSet ZXBox::free_symbols() const { return diag_->free_symbols(); }
 
 ZXGen_ptr ZXBox::symbol_substitution(
     const SymEngine::map_basic_basic& sub_map) const {

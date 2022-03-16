@@ -744,7 +744,7 @@ class Circuit {
   Vertex add_op(
       OpType type, const std::vector<ID> &args,
       std::optional<std::string> opgroup = std::nullopt) {
-    return add_op(type, std::vector<Expr>{}, args, opgroup);
+    return add_op(type, std::vector<symbol::Expr>{}, args, opgroup);
   }
 
   /**
@@ -759,9 +759,9 @@ class Circuit {
    */
   template <class ID>
   Vertex add_op(
-      OpType type, const Expr &param, const std::vector<ID> &args,
+      OpType type, const symbol::Expr &param, const std::vector<ID> &args,
       std::optional<std::string> opgroup = std::nullopt) {
-    return add_op(type, std::vector<Expr>{param}, args, opgroup);
+    return add_op(type, std::vector<symbol::Expr>{param}, args, opgroup);
   }
 
   /**
@@ -776,7 +776,8 @@ class Circuit {
    */
   template <class ID>
   Vertex add_op(
-      OpType type, const std::vector<Expr> &params, const std::vector<ID> &args,
+      OpType type, const std::vector<symbol::Expr> &params,
+      const std::vector<ID> &args,
       std::optional<std::string> opgroup = std::nullopt) {
     if (is_metaop_type(type)) {
       throw CircuitInvalidity(
@@ -840,8 +841,8 @@ class Circuit {
    */
   template <class ID>
   Vertex add_conditional_gate(
-      OpType type, const std::vector<Expr> &params, const std::vector<ID> &args,
-      const std::vector<ID> &bits, unsigned value,
+      OpType type, const std::vector<symbol::Expr> &params,
+      const std::vector<ID> &args, const std::vector<ID> &bits, unsigned value,
       std::optional<std::string> opgroup = std::nullopt) {
     if (is_metaop_type(type)) {
       throw CircuitInvalidity("Cannot add a conditional metaop.");
@@ -1420,13 +1421,14 @@ class Circuit {
   // Other Methods//
   /////////////////
 
-  void symbol_substitution(const symbol_map_t &symbol_map);
+  void symbol_substitution(const symbol::symbol_map_t &symbol_map);
   void symbol_substitution(
-      const std::map<Sym, double, SymEngine::RCPBasicKeyLess> &symbol_map);
+      const std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess>
+          &symbol_map);
   void symbol_substitution(const SymEngine::map_basic_basic sub_map);
 
   /** Set of all free symbols occurring in operation parameters. */
-  const SymSet free_symbols() const;
+  const symbol::SymSet free_symbols() const;
 
   /** Whether the circuit contains any symbolic parameters */
   bool is_symbolic() const;
@@ -1488,14 +1490,14 @@ class Circuit {
    *
    * @return global phase
    */
-  Expr get_phase() const;
+  symbol::Expr get_phase() const;
 
   /**
    * Adds a global phase to the circuit
    *
    * @param a phase to add, as a multiple of pi
    */
-  void add_phase(Expr a);
+  void add_phase(symbol::Expr a);
 
   /**
    * Get the name of the circuit.
@@ -1531,8 +1533,8 @@ class Circuit {
 
  private:
   std::optional<std::string>
-      name;   /** optional string name descriptor for human identification*/
-  Expr phase; /**< Global phase applied to circuit */
+      name; /** optional string name descriptor for human identification*/
+  symbol::Expr phase; /**< Global phase applied to circuit */
 
   /** Signature associated with each named operation group */
   std::map<std::string, op_signature_t> opgroupsigs;

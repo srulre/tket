@@ -88,9 +88,11 @@ SCENARIO("Test Op serialization") {
   }
 
   GIVEN("Expressions") {
-    std::vector<Expr> e_tests = {
-        Expr(0.3), Expr("a"), Expr((2 * 3. / 4 - 1)),
-        Expr(-0.3 + (3.4 * Expr(SymEngine::sin(Expr("d") - 2.3))))};
+    std::vector<symbol::Expr> e_tests = {
+        symbol::Expr(0.3), symbol::Expr("a"), symbol::Expr((2 * 3. / 4 - 1)),
+        symbol::Expr(
+            -0.3 +
+            (3.4 * symbol::Expr(SymEngine::sin(symbol::Expr("d") - 2.3))))};
     check_cases(e_tests);
   }
 }
@@ -267,9 +269,9 @@ SCENARIO("Test Circuit serialization") {
 
   GIVEN("CustomGate") {
     Circuit setup(2);
-    Sym a = SymTable::fresh_symbol("a");
-    Sym c = SymTable::fresh_symbol("c");
-    Expr b(SymTable::fresh_symbol("b"));
+    symbol::Sym a = SymTable::fresh_symbol("a");
+    symbol::Sym c = SymTable::fresh_symbol("c");
+    symbol::Expr b(SymTable::fresh_symbol("b"));
     setup.add_op<unsigned>(OpType::Rx, {c}, {0});
     setup.add_op<unsigned>(OpType::CX, {0, 1});
     setup.add_op<unsigned>(OpType::Ry, {a}, {0});

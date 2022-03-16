@@ -117,7 +117,7 @@ std::pair<Circuit, Complex> decompose_2cx_DV(const Eigen::Matrix4cd& U);
  * @return phase gadget
  */
 Circuit phase_gadget(
-    unsigned n_qubits, const Expr& t,
+    unsigned n_qubits, const symbol::Expr& t,
     CXConfigType cx_config = CXConfigType::Snake);
 
 /**
@@ -132,7 +132,7 @@ Circuit phase_gadget(
  * @param cx_config CX configuration
  */
 Circuit pauli_gadget(
-    const std::vector<Pauli>& paulis, const Expr& t,
+    const std::vector<Pauli>& paulis, const symbol::Expr& t,
     CXConfigType cx_config = CXConfigType::Snake);
 
 /**

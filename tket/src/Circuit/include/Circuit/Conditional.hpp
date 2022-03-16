@@ -48,7 +48,7 @@ class Conditional : public Op {
   Op_ptr symbol_substitution(
       const SymEngine::map_basic_basic &sub_map) const override;
 
-  SymSet free_symbols() const override;
+  symbol::SymSet free_symbols() const override;
 
   /**
    * Equality check between two Conditional instances

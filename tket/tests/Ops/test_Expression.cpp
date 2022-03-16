@@ -22,77 +22,78 @@
 namespace tket {
 namespace test_Expression {
 
-SCENARIO("Basic Expr evaluation", "[ops]") {
+SCENARIO("Basic symbol::Expr evaluation", "[ops]") {
   GIVEN("A constant") {
-    Expr e(2.5);
+    symbol::Expr e(2.5);
     REQUIRE(test_equiv_val(e, 0.5));
   }
   GIVEN("A symbol") {
-    Sym s = SymEngine::symbol("a");
-    Expr e = Expr(s);
-    REQUIRE(!eval_expr_mod(e));
+    symbol::Sym s = SymEngine::symbol("a");
+    symbol::Expr e = symbol::Expr(s);
+    REQUIRE(!symbol::eval_expr_mod(e));
     SymEngine::map_basic_basic smap;
-    smap[s] = Expr(3.4);
-    Expr ee = e.subs(smap);
+    smap[s] = symbol::Expr(3.4);
+    symbol::Expr ee = e.subs(smap);
     REQUIRE(test_equiv_val(ee, 1.4));
   }
   GIVEN("A non-empty sum") {
-    Sym s = SymEngine::symbol("b");
-    Expr e = 0.2 + Expr(s) + 0.5 + Expr(s);
-    REQUIRE(!eval_expr_mod(e));
+    symbol::Sym s = SymEngine::symbol("b");
+    symbol::Expr e = 0.2 + symbol::Expr(s) + 0.5 + symbol::Expr(s);
+    REQUIRE(!symbol::eval_expr_mod(e));
     SymEngine::map_basic_basic smap;
-    smap[s] = Expr(0.3);
-    Expr ee = e.subs(smap);
+    smap[s] = symbol::Expr(0.3);
+    symbol::Expr ee = e.subs(smap);
     REQUIRE(test_equiv_val(ee, 1.3));
   }
   GIVEN("A non-empty product") {
-    Sym s = SymEngine::symbol("b");
-    Expr e = 0.2 * Expr(s) * 0.5 * Expr(s);
-    REQUIRE(!eval_expr_mod(e));
+    symbol::Sym s = SymEngine::symbol("b");
+    symbol::Expr e = 0.2 * symbol::Expr(s) * 0.5 * symbol::Expr(s);
+    REQUIRE(!symbol::eval_expr_mod(e));
     SymEngine::map_basic_basic smap;
-    smap[s] = Expr(3.);
-    Expr ee = e.subs(smap);
+    smap[s] = symbol::Expr(3.);
+    symbol::Expr ee = e.subs(smap);
     REQUIRE(test_equiv_val(ee, 0.9));
   }
   GIVEN("A more complicated expression") {
-    Sym s = SymEngine::symbol("d");
-    Expr e = -0.3 + (3.4 * Expr(SymEngine::sin(Expr(s) - 2.3)));
+    symbol::Sym s = SymEngine::symbol("d");
+    symbol::Expr e =
+        -0.3 + (3.4 * symbol::Expr(SymEngine::sin(symbol::Expr(s) - 2.3)));
     SymEngine::map_basic_basic smap;
-    smap[s] = Expr(2.3);
-    Expr ee = e.subs(smap);
+    smap[s] = symbol::Expr(2.3);
+    symbol::Expr ee = e.subs(smap);
     REQUIRE(test_equiv_val(ee, 1.7));
   }
 }
 
 SCENARIO("Expression uniqueness", "[ops]") {
   GIVEN("Two equivalent constants") {
-    Expr a(0.5);
-    Expr b(2 * 3. / 4 - 1);
+    symbol::Expr a(0.5);
+    symbol::Expr b(2 * 3. / 4 - 1);
     b = SymEngine::evalf(b, 53);
     REQUIRE(a == b);
   }
   GIVEN("Two different constants") {
-    Expr a(2.);
-    Expr b0(2);
-    Expr b1(3.);
+    symbol::Expr a(2.);
+    symbol::Expr b0(2);
+    symbol::Expr b1(3.);
     REQUIRE(a != b0);
     REQUIRE(a != b1);
   }
   GIVEN("Two identical symbols") {
-    Expr a("alpha");
-    Expr b("alpha");
+    symbol::Expr a("alpha");
+    symbol::Expr b("alpha");
     REQUIRE(a == b);
   }
   GIVEN("Two different symbols") {
-    Expr a("alpha");
-    Expr b("beta");
+    symbol::Expr a("alpha");
+    symbol::Expr b("beta");
     REQUIRE(a != b);
   }
   GIVEN("Parsed atan2") {
-    Expr a("alpha");
-    Expr b("beta");
-    Expr at(SymEngine::atan2(a, b));
-    Expr at2 = Expr("atan2(alpha, beta)");
+    symbol::Expr a("alpha");
+    symbol::Expr b("beta");
+    symbol::Expr at(SymEngine::atan2(a, b));
+    symbol::Expr at2 = symbol::Expr("atan2(alpha, beta)");
     REQUIRE(at == at2);
   }
 }

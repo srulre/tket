@@ -29,7 +29,8 @@ namespace tket {
  * @param n_qubits number of qubits (only necessary for gates and metaops
  *                 with variable quantum arity)
  */
-Op_ptr get_op_ptr(OpType chosen_type, const Expr &param, unsigned n_qubits = 0);
+Op_ptr get_op_ptr(
+    OpType chosen_type, const symbol::Expr &param, unsigned n_qubits = 0);
 
 /**
  * Get an operation from a type, vector of parameters and qubit count
@@ -40,7 +41,7 @@ Op_ptr get_op_ptr(OpType chosen_type, const Expr &param, unsigned n_qubits = 0);
  *                 with variable quantum arity)
  */
 Op_ptr get_op_ptr(
-    OpType chosen_type, const std::vector<Expr> &params = {},
+    OpType chosen_type, const std::vector<symbol::Expr> &params = {},
     unsigned n_qubits = 0);
 
 }  // namespace tket

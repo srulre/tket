@@ -49,7 +49,9 @@ Op_ptr UnitaryTableauBox::symbol_substitution(
   return Op_ptr();
 }
 
-SymSet UnitaryTableauBox::free_symbols() const { return SymSet(); }
+symbol::SymSet UnitaryTableauBox::free_symbols() const {
+  return symbol::SymSet();
+}
 
 bool UnitaryTableauBox::is_equal(const Op& op_other) const {
   const UnitaryTableauBox& other =

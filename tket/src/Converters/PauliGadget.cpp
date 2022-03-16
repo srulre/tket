@@ -19,7 +19,7 @@
 namespace tket {
 
 void append_single_pauli_gadget(
-    Circuit &circ, const QubitPauliTensor &pauli, Expr angle,
+    Circuit &circ, const QubitPauliTensor &pauli, symbol::Expr angle,
     CXConfigType cx_config) {
   if (pauli.coeff == -1.) {
     angle *= -1;
@@ -132,8 +132,8 @@ static void reduce_shared_qs_by_CX_multiqgate(
 }
 
 void append_pauli_gadget_pair(
-    Circuit &circ, QubitPauliTensor pauli0, Expr angle0,
-    QubitPauliTensor pauli1, Expr angle1, CXConfigType cx_config) {
+    Circuit &circ, QubitPauliTensor pauli0, symbol::Expr angle0,
+    QubitPauliTensor pauli1, symbol::Expr angle1, CXConfigType cx_config) {
   /*
    * Cowtan, Dilkes, Duncan, Simmons, Sivarajah: Phase Gadget Synthesis for
    * Shallow Circuits, Lemma 4.9

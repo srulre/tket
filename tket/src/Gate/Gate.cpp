@@ -44,7 +44,7 @@ Op_ptr Gate::dagger() const {
       return get_op_ptr(optype);
     }
     case OpType::CnX: {
-      return get_op_ptr(optype, std::vector<Expr>(), n_qubits_);
+      return get_op_ptr(optype, std::vector<symbol::Expr>(), n_qubits_);
     }
     case OpType::S: {
       return get_op_ptr(OpType::Sdg);
@@ -189,7 +189,7 @@ Op_ptr Gate::transpose() const {
       return get_op_ptr(optype, -params_[0], n_qubits_);
     }
     case OpType::CnX: {
-      return get_op_ptr(optype, std::vector<Expr>(), n_qubits_);
+      return get_op_ptr(optype, std::vector<symbol::Expr>(), n_qubits_);
     }
     case OpType::U2: {
       // U2(a,b).transpose() == U2(b+1,a+1)
@@ -223,8 +223,8 @@ Op_ptr Gate::transpose() const {
 
 Op_ptr Gate::symbol_substitution(
     const SymEngine::map_basic_basic& sub_map) const {
-  std::vector<Expr> new_params;
-  for (const Expr& p : this->params_) {
+  std::vector<symbol::Expr> new_params;
+  for (const symbol::Expr& p : this->params_) {
     new_params.push_back(p.subs(sub_map));
   }
   return get_op_ptr(this->type_, new_params, this->n_qubits_);
@@ -232,7 +232,7 @@ Op_ptr Gate::symbol_substitution(
 
 std::optional<double> Gate::is_identity() const {
   static const std::optional<double> notid;
-  const std::vector<Expr>& params = get_params();
+  const std::vector<symbol::Expr>& params = get_params();
   switch (get_type()) {
     case OpType::Rx:
     case OpType::Ry:
@@ -244,24 +244,24 @@ std::optional<double> Gate::is_identity() const {
     case OpType::ZZPhase:
     case OpType::XXPhase3:
     case OpType::ESWAP: {
-      Expr e = params[0];
-      if (equiv_0(e, 4)) {
+      symbol::Expr e = params[0];
+      if (symbol::equiv_0(e, 4)) {
         return 0.;
-      } else if (equiv_0(e + 2, 4)) {
+      } else if (symbol::equiv_0(e + 2, 4)) {
         return 1.;
       } else
         return notid;
     }
     case OpType::U1:
     case OpType::CU1: {
-      return equiv_0(params[0]) ? 0. : notid;
+      return symbol::equiv_0(params[0]) ? 0. : notid;
     }
     case OpType::U3: {
-      Expr theta = params[0];
-      if (equiv_0(params[1] + params[2])) {
-        if (equiv_0(theta, 4)) {
+      symbol::Expr theta = params[0];
+      if (symbol::equiv_0(params[1] + params[2])) {
+        if (symbol::equiv_0(theta, 4)) {
           return 0.;
-        } else if (equiv_0(theta + 2, 4)) {
+        } else if (symbol::equiv_0(theta + 2, 4)) {
           return 1.;
         } else
           return notid;
@@ -269,15 +269,16 @@ std::optional<double> Gate::is_identity() const {
         return notid;
     }
     case OpType::CU3: {
-      if (equiv_0(params[0], 4) && equiv_0(params[1] + params[2])) {
+      if (symbol::equiv_0(params[0], 4) &&
+          symbol::equiv_0(params[1] + params[2])) {
         return 0.;
       } else
         return notid;
     }
     case OpType::TK1: {
-      Expr s = params[0] + params[2], t = params[1];
-      if (equiv_0(s) && equiv_0(t)) {
-        return (equiv_0(s, 4) ^ equiv_0(t, 4)) ? 1. : 0.;
+      symbol::Expr s = params[0] + params[2], t = params[1];
+      if (symbol::equiv_0(s) && symbol::equiv_0(t)) {
+        return (symbol::equiv_0(s, 4) ^ symbol::equiv_0(t, 4)) ? 1. : 0.;
       } else
         return notid;
     }
@@ -287,13 +288,16 @@ std::optional<double> Gate::is_identity() const {
     case OpType::PhaseGadget:
     case OpType::ISWAP:
     case OpType::CnRy: {
-      return equiv_0(params[0], 4) ? 0. : notid;
+      return symbol::equiv_0(params[0], 4) ? 0. : notid;
     }
     case OpType::FSim: {
-      return (equiv_0(params[0]) && equiv_0(params[1])) ? 0. : notid;
+      return (symbol::equiv_0(params[0]) && symbol::equiv_0(params[1])) ? 0.
+                                                                        : notid;
     }
     case OpType::PhasedISWAP: {
-      return (equiv_0(params[0], 1) && equiv_0(params[1], 4)) ? 0. : notid;
+      return (symbol::equiv_0(params[0], 1) && symbol::equiv_0(params[1], 4))
+                 ? 0.
+                 : notid;
     }
     default:
       return notid;
@@ -311,7 +315,7 @@ std::string Gate::get_name(bool latex) const {
     }
     for (unsigned i = 0; i < params_.size(); ++i) {
       std::optional<double> reduced =
-          eval_expr_mod(params_[i], desc.param_mod(i));
+          symbol::eval_expr_mod(params_[i], desc.param_mod(i));
       if (reduced) {
         name << reduced.value();
       } else {
@@ -350,23 +354,24 @@ bool Gate::is_equal(const Op& op_other) const {
 
   OpDesc desc = get_desc();
   if (n_qubits() != other.n_qubits()) return false;
-  std::vector<Expr> params1 = this->get_params();
-  std::vector<Expr> params2 = other.get_params();
+  std::vector<symbol::Expr> params1 = this->get_params();
+  std::vector<symbol::Expr> params2 = other.get_params();
   unsigned param_count = params1.size();
   if (params2.size() != param_count) return false;
   for (unsigned i = 0; i < param_count; i++) {
-    if (!equiv_expr(params1[i], params2[i], desc.param_mod(i))) return false;
+    if (!symbol::equiv_expr(params1[i], params2[i], desc.param_mod(i)))
+      return false;
   }
   return true;
 }
 
-std::vector<Expr> Gate::get_params_reduced() const {
+std::vector<symbol::Expr> Gate::get_params_reduced() const {
   OpDesc desc = get_desc();
   unsigned n_params = desc.n_params();
-  std::vector<Expr> params(n_params);
+  std::vector<symbol::Expr> params(n_params);
   for (unsigned i = 0; i < n_params; i++) {
-    Expr param = params_[i];
-    std::optional<double> e = eval_expr_mod(param, desc.param_mod(i));
+    symbol::Expr param = params_[i];
+    std::optional<double> e = symbol::eval_expr_mod(param, desc.param_mod(i));
     if (e) {
       params[i] = e.value();
     } else {
@@ -376,12 +381,12 @@ std::vector<Expr> Gate::get_params_reduced() const {
   return params;
 }
 
-std::vector<Expr> Gate::get_tk1_angles() const {
-  const Expr half =
+std::vector<symbol::Expr> Gate::get_tk1_angles() const {
+  const symbol::Expr half =
       SymEngine::div(SymEngine::integer(1), SymEngine::integer(2));
-  const Expr quarter =
+  const symbol::Expr quarter =
       SymEngine::div(SymEngine::integer(1), SymEngine::integer(4));
-  const Expr eighth =
+  const symbol::Expr eighth =
       SymEngine::div(SymEngine::integer(1), SymEngine::integer(8));
   switch (get_type()) {
     case OpType::noop: {
@@ -467,9 +472,11 @@ std::vector<Expr> Gate::get_tk1_angles() const {
   }
 }
 
-std::vector<Expr> Gate::get_params() const { return params_; }
+std::vector<symbol::Expr> Gate::get_params() const { return params_; }
 
-SymSet Gate::free_symbols() const { return expr_free_symbols(get_params()); }
+symbol::SymSet Gate::free_symbols() const {
+  return symbol::expr_free_symbols(get_params());
+}
 
 std::optional<Pauli> Gate::commuting_basis(port_t port) const {
   unsigned n_q = n_qubits();
@@ -595,7 +602,7 @@ nlohmann::json Gate::serialize() const {
   if (!optypeinfo().at(optype).signature) {
     j["n_qb"] = n_qubits();
   }
-  std::vector<Expr> params = get_params();
+  std::vector<symbol::Expr> params = get_params();
   if (!params.empty()) {
     j["params"] = params;
   }
@@ -604,9 +611,9 @@ nlohmann::json Gate::serialize() const {
 
 Op_ptr Gate::deserialize(const nlohmann::json& j) {
   OpType optype = j.at("type").get<OpType>();
-  std::vector<Expr> params;
+  std::vector<symbol::Expr> params;
   if (j.contains("params")) {
-    params = j.at("params").get<std::vector<Expr>>();
+    params = j.at("params").get<std::vector<symbol::Expr>>();
   }
   // if type has fixed number of qubits use it, otherwise it should have been
   // stored
@@ -639,7 +646,8 @@ Eigen::MatrixXcd Gate::get_unitary() const {
   }
 }
 
-Gate::Gate(OpType type, const std::vector<Expr>& params, unsigned n_qubits)
+Gate::Gate(
+    OpType type, const std::vector<symbol::Expr>& params, unsigned n_qubits)
     : Op(type), params_(params), n_qubits_(n_qubits) {
   if (!is_gate_type(type)) {
     throw NotValid();

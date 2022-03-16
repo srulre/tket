@@ -39,7 +39,8 @@ SCENARIO("Test decomposition into Clifford gates", "[transform]") {
       for (int beta = 0; beta < 4; beta++) {
         for (int gamma = 0; gamma < 4; gamma++) {
           Circuit circ(1);
-          std::vector<Expr> params({alpha * 0.5, beta * 0.5, gamma * 0.5});
+          std::vector<symbol::Expr> params(
+              {alpha * 0.5, beta * 0.5, gamma * 0.5});
           circ.add_op<unsigned>(OpType::TK1, params, {0});
           Eigen::Matrix2cd m_before = get_matrix_from_circ(circ);
           REQUIRE(Transforms::decompose_cliffords_std().apply(circ));
@@ -62,7 +63,7 @@ SCENARIO("Test decomposition into Clifford gates", "[transform]") {
 
   GIVEN("STD FORM: Negative parameters") {
     Circuit circ(1);
-    std::vector<Expr> params = {0.5, -0.5, 0.5};
+    std::vector<symbol::Expr> params = {0.5, -0.5, 0.5};
     circ.add_op<unsigned>(OpType::U3, params, {0});
     bool success = Transforms::decompose_cliffords_std().apply(circ);
     REQUIRE(success);
@@ -92,7 +93,7 @@ SCENARIO("Check that singleq_clifford_sweep reduces to standard forms") {
   }
   GIVEN("Some U3s with only pi/2 angles") {
     Circuit circ(2);
-    std::vector<Expr> p = {0.5, 1., 0.};
+    std::vector<symbol::Expr> p = {0.5, 1., 0.};
     circ.add_op<unsigned>(OpType::U3, p, {0});
     circ.add_op<unsigned>(OpType::CX, {0, 1});
     p = {0.5, 0., 0.5};

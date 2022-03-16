@@ -29,10 +29,10 @@ namespace test_Symbolic {
 static void check_equiv(const Circuit &circ, const Circuit &circ1) {
   static const std::vector<double> as = {0.,  0.4, 0.8, 1.2, 1.6, 2.0,
                                          2.4, 2.8, 3.2, 3.6, 4.0};
-  Sym asym = SymEngine::symbol("a");
+  symbol::Sym asym = SymEngine::symbol("a");
   for (double a : as) {
     INFO("circ:\n" << circ << "circ1:\n" << circ1 << "a = " << a);
-    symbol_map_t smap = {{asym, a}};
+    symbol::symbol_map_t smap = {{asym, a}};
     Circuit c = circ;
     c.symbol_substitution(smap);
     Eigen::MatrixXcd u = tket_sim::get_unitary(c);
@@ -44,8 +44,8 @@ static void check_equiv(const Circuit &circ, const Circuit &circ1) {
 }
 
 SCENARIO("Symbolic squashing, correctness") {
-  Sym asym = SymEngine::symbol("a");
-  Expr alpha(asym);
+  symbol::Sym asym = SymEngine::symbol("a");
+  symbol::Expr alpha(asym);
 
   GIVEN("squash_1qb_to_pqp") {
     Circuit circ(1);

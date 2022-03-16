@@ -160,8 +160,8 @@ static bool remove_redundancy(
         // combine two rotation gates together, then if the combined
         // operation is the identity up to phase, remove from circuit
         if (b_desc.type() == desc.type()) {
-          Expr expr1 = op->get_params()[0];
-          Expr expr2 = b_op->get_params()[0];
+          symbol::Expr expr1 = op->get_params()[0];
+          symbol::Expr expr2 = b_op->get_params()[0];
           VertexVec last_verts = circ.get_predecessors(vert);
           for (const Vertex &l : last_verts) {
             new_affected_verts.insert({im.at(l), l});
@@ -169,7 +169,7 @@ static bool remove_redundancy(
           circ.remove_vertex(
               b, Circuit::GraphRewiring::Yes, Circuit::VertexDeletion::No);
           bin.push_back(b);
-          std::vector<Expr> params_new = {expr1 + expr2};
+          std::vector<symbol::Expr> params_new = {expr1 + expr2};
           Op_ptr op_new = get_op_ptr(desc.type(), params_new, ins.size());
           std::optional<double> a = op_new->is_identity();
           if (a) {
@@ -278,9 +278,9 @@ static bool replace_non_global_phasedx(Circuit &circ) {
     if (optype == OpType::PhasedX || optype == OpType::NPhasedX) {
       if (op->n_qubits() < range_qbs.size()) {
         // global substitution for v
-        const std::vector<Expr> params = op->get_params();
+        const std::vector<symbol::Expr> params = op->get_params();
         TKET_ASSERT(params.size() == 2);
-        Expr a = params[0], b = params[1];
+        symbol::Expr a = params[0], b = params[1];
         Circuit sub(range_qbs.size());
         sub.add_op<unsigned>(OpType::NPhasedX, {-0.5, b + 0.5}, range_qbs);
         for (unsigned i = 0; i < range_qbs.size(); ++i) {

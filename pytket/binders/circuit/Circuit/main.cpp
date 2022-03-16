@@ -390,7 +390,7 @@ void init_circuit(py::module &m) {
           py::arg("circuit"))
       .def(
           "add_phase",
-          [](Circuit &circ, Expr a) {
+          [](Circuit &circ, symbol::Expr a) {
             circ.add_phase(a);
             return &circ;
           },
@@ -548,7 +548,7 @@ void init_circuit(py::module &m) {
           ":return: an identical copy of the circuit")
       .def(
           "symbol_substitution",
-          (void(Circuit::*)(const symbol_map_t &)) &
+          (void(Circuit::*)(const symbol::symbol_map_t &)) &
               Circuit::symbol_substitution,
           "In-place substitution for symbolic expressions; iterates "
           "through each parameterised gate and performs the "
@@ -559,7 +559,8 @@ void init_circuit(py::module &m) {
       .def(
           "symbol_substitution",
           (void(Circuit::*)(
-              const std::map<Sym, double, SymEngine::RCPBasicKeyLess> &)) &
+              const std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess>
+                  &)) &
               Circuit::symbol_substitution,
           "In-place substitution for symbolic expressions; iterates "
           "through each parameterised gate and performs the "

@@ -46,15 +46,19 @@ PYBIND11_MODULE(circuit, m) {
       m, "Op", "Encapsulates operation information")
       .def_static(
           "create",
-          [](OpType optype) { return get_op_ptr(optype, std::vector<Expr>()); },
+          [](OpType optype) {
+            return get_op_ptr(optype, std::vector<symbol::Expr>());
+          },
           "Create an :py:class:`Op` with given type")
       .def_static(
           "create",
-          [](OpType optype, Expr param) { return get_op_ptr(optype, param); },
+          [](OpType optype, symbol::Expr param) {
+            return get_op_ptr(optype, param);
+          },
           "Create an :py:class:`Op` with given type and parameter")
       .def_static(
           "create",
-          [](OpType optype, const std::vector<Expr> &params) {
+          [](OpType optype, const std::vector<symbol::Expr> &params) {
             return get_op_ptr(optype, params);
           },
           "Create an :py:class:`Op` with given type and parameters")

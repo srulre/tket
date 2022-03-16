@@ -381,9 +381,9 @@ SCENARIO("Pauli gadgets", "[boxes]") {
     REQUIRE((u - Eigen::Matrix4cd::Identity()).cwiseAbs().sum() < ERR_EPS);
   }
   GIVEN("complex coefficient") {
-    Expr ei{SymEngine::I};
+    symbol::Expr ei{SymEngine::I};
     PauliExpBox pebox({Pauli::Z}, ei);
-    Expr p = pebox.get_phase();
+    symbol::Expr p = pebox.get_phase();
     REQUIRE(p == ei);
   }
 }
@@ -629,14 +629,14 @@ SCENARIO("QControlBox", "[boxes]") {
     REQUIRE(U.isApprox(V));
   }
   GIVEN("controlled symbolic operation") {
-    Sym s = SymEngine::symbol("a");
-    Expr a = Expr(s);
+    symbol::Sym s = SymEngine::symbol("a");
+    symbol::Expr a = symbol::Expr(s);
     Op_ptr op = get_op_ptr(OpType::Rx, a);
     QControlBox qcbox(op);
     Circuit c(*qcbox.to_circuit());
     double v = 0.125;
     double x = std::cos(0.5 * PI * v), y = std::sin(0.5 * PI * v);
-    symbol_map_t map = {{s, v}};
+    symbol::symbol_map_t map = {{s, v}};
     c.symbol_substitution(map);
     const Eigen::MatrixXcd U = tket_sim::get_unitary(c);
     Eigen::Matrix4cd V = Eigen::Matrix4cd::Identity();

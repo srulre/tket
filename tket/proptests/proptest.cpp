@@ -73,8 +73,8 @@ static std::vector<unsigned> random_subset(
   return rvec;
 }
 
-static std::vector<Expr> random_params(unsigned k) {
-  std::vector<Expr> rvec(k);
+static std::vector<symbol::Expr> random_params(unsigned k) {
+  std::vector<symbol::Expr> rvec(k);
   for (unsigned i = 0; i < k; i++) {
     double x = *rc::gen::arbitrary<double>();
     // Constrain to [0,2} to avoid rounding errors arising from enormous
@@ -111,7 +111,7 @@ static Circuit random_circuit() {
     if (g_nq > n_qb) continue;
     unsigned g_np = opinfo.n_params();
     std::vector<unsigned> qb = random_subset(qbs, g_nq);
-    std::vector<Expr> params = random_params(g_np);
+    std::vector<symbol::Expr> params = random_params(g_np);
     c.add_op<unsigned>(g, params, qb);
     i++;
   }

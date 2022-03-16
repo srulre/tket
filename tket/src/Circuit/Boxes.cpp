@@ -82,7 +82,9 @@ Op_ptr CircBox::symbol_substitution(
   return std::make_shared<CircBox>(new_circ);
 }
 
-SymSet CircBox::free_symbols() const { return to_circuit()->free_symbols(); }
+symbol::SymSet CircBox::free_symbols() const {
+  return to_circuit()->free_symbols();
+}
 
 Op_ptr CircBox::dagger() const {
   return std::make_shared<CircBox>(circ_->dagger());
@@ -190,7 +192,8 @@ void ExpBox::generate_circuit() const {
   circ_ = std::make_shared<Circuit>(two_qubit_canonical((i_ * t_ * A_).exp()));
 }
 
-PauliExpBox::PauliExpBox(const std::vector<Pauli> &paulis, const Expr &t)
+PauliExpBox::PauliExpBox(
+    const std::vector<Pauli> &paulis, const symbol::Expr &t)
     : Box(OpType::PauliExpBox,
           op_signature_t(paulis.size(), EdgeType::Quantum)),
       paulis_(paulis),
@@ -201,7 +204,9 @@ PauliExpBox::PauliExpBox(const PauliExpBox &other)
 
 PauliExpBox::PauliExpBox() : PauliExpBox({}, 0.) {}
 
-SymSet PauliExpBox::free_symbols() const { return expr_free_symbols(t_); }
+symbol::SymSet PauliExpBox::free_symbols() const {
+  return symbol::expr_free_symbols(t_);
+}
 
 Op_ptr PauliExpBox::dagger() const {
   return std::make_shared<PauliExpBox>(paulis_, -t_);
@@ -230,17 +235,20 @@ void PauliExpBox::generate_circuit() const {
 }
 
 composite_def_ptr_t CompositeGateDef::define_gate(
-    const std::string &name, const Circuit &def, const std::vector<Sym> &args) {
+    const std::string &name, const Circuit &def,
+    const std::vector<symbol::Sym> &args) {
   return std::make_shared<CompositeGateDef>(name, def, args);
 }
 
 CompositeGateDef::CompositeGateDef(
-    const std::string &name, const Circuit &def, const std::vector<Sym> &args)
+    const std::string &name, const Circuit &def,
+    const std::vector<symbol::Sym> &args)
     : name_(name), def_(std::make_shared<Circuit>(def)), args_(args) {}
 
-Circuit CompositeGateDef::instance(const std::vector<Expr> &params) const {
+Circuit CompositeGateDef::instance(
+    const std::vector<symbol::Expr> &params) const {
   Circuit circ = *def_;
-  symbol_map_t symbol_map;
+  symbol::symbol_map_t symbol_map;
   for (unsigned i = 0; i < params.size(); i++) {
     symbol_map.insert({args_.at(i), params.at(i)});
   }
@@ -257,14 +265,16 @@ op_signature_t CompositeGateDef::signature() const {
 
 bool CompositeGateDef::operator==(const CompositeGateDef &other) const {
   if (this->get_name() != other.get_name()) return false;
-  std::vector<Expr> this_args = {this->args_.begin(), this->args_.end()};
-  std::vector<Expr> other_args = {other.args_.begin(), other.args_.end()};
+  std::vector<symbol::Expr> this_args = {
+      this->args_.begin(), this->args_.end()};
+  std::vector<symbol::Expr> other_args = {
+      other.args_.begin(), other.args_.end()};
   if (this_args != other_args) return false;
   return this->get_def()->circuit_equality(*other.get_def(), {}, false);
 }
 
 CustomGate::CustomGate(
-    const composite_def_ptr_t &gate, const std::vector<Expr> &params)
+    const composite_def_ptr_t &gate, const std::vector<symbol::Expr> &params)
     : Box(OpType::CustomGate, gate->signature()), gate_(gate), params_(params) {
   if (params_.size() != gate_->n_args()) throw InvalidParameterCount();
 }
@@ -274,8 +284,8 @@ CustomGate::CustomGate(const CustomGate &other)
 
 Op_ptr CustomGate::symbol_substitution(
     const SymEngine::map_basic_basic &sub_map) const {
-  std::vector<Expr> new_params;
-  for (const Expr &p : this->params_) {
+  std::vector<symbol::Expr> new_params;
+  for (const symbol::Expr &p : this->params_) {
     new_params.push_back(p.subs(sub_map));
   }
   return std::make_shared<CustomGate>(this->gate_, new_params);
@@ -285,7 +295,9 @@ void CustomGate::generate_circuit() const {
   circ_ = std::make_shared<Circuit>(gate_->instance(params_));
 }
 
-SymSet CustomGate::free_symbols() const { return to_circuit()->free_symbols(); }
+symbol::SymSet CustomGate::free_symbols() const {
+  return to_circuit()->free_symbols();
+}
 
 std::string CustomGate::get_name(bool) const {
   std::stringstream s;
@@ -293,7 +305,7 @@ std::string CustomGate::get_name(bool) const {
   if (!params_.empty()) {
     s << "(";
     std::string sep = "";
-    for (const Expr &e : params_) {
+    for (const symbol::Expr &e : params_) {
       s << sep << e;
       sep = ",";
     }
@@ -325,7 +337,7 @@ Op_ptr QControlBox::symbol_substitution(
       op_->symbol_substitution(sub_map), n_controls_);
 }
 
-SymSet QControlBox::free_symbols() const { return op_->free_symbols(); }
+symbol::SymSet QControlBox::free_symbols() const { return op_->free_symbols(); }
 
 std::string QControlBox::get_command_str(const unit_vector_t &args) const {
   std::stringstream out;
@@ -536,7 +548,8 @@ nlohmann::json PauliExpBox::to_json(const Op_ptr &op) {
 
 Op_ptr PauliExpBox::from_json(const nlohmann::json &j) {
   PauliExpBox box = PauliExpBox(
-      j.at("paulis").get<std::vector<Pauli>>(), j.at("phase").get<Expr>());
+      j.at("paulis").get<std::vector<Pauli>>(),
+      j.at("phase").get<symbol::Expr>());
   return set_box_id(
       box,
       boost::lexical_cast<boost::uuids::uuid>(j.at("id").get<std::string>()));
@@ -551,7 +564,7 @@ void to_json(nlohmann::json &j, const composite_def_ptr_t &cdef) {
 void from_json(const nlohmann::json &j, composite_def_ptr_t &cdef) {
   cdef = CompositeGateDef::define_gate(
       j.at("name").get<std::string>(), j.at("definition").get<Circuit>(),
-      j.at("args").get<std::vector<Sym>>());
+      j.at("args").get<std::vector<symbol::Sym>>());
 }
 
 nlohmann::json CustomGate::to_json(const Op_ptr &op) {
@@ -565,7 +578,7 @@ nlohmann::json CustomGate::to_json(const Op_ptr &op) {
 Op_ptr CustomGate::from_json(const nlohmann::json &j) {
   CustomGate box = CustomGate(
       j.at("gate").get<composite_def_ptr_t>(),
-      j.at("params").get<std::vector<Expr>>());
+      j.at("params").get<std::vector<symbol::Expr>>());
   return set_box_id(
       box,
       boost::lexical_cast<boost::uuids::uuid>(j.at("id").get<std::string>()));

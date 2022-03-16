@@ -324,13 +324,13 @@ SCENARIO("Test mutual diagonalisation of fully commuting sets") {
   GIVEN("2 qb 3 Pauli gadget circuit with symbols") {
     const auto& prepend = CircuitsForTesting::get().prepend_2qb_circuit;
     Circuit circ(2);
-    Sym a = SymTable::fresh_symbol("a");
-    Expr ea(a);
-    Sym b = SymTable::fresh_symbol("b");
-    Expr eb(b);
-    Sym c = SymTable::fresh_symbol("c");
-    Expr ec(c);
-    std::map<Sym, double, SymEngine::RCPBasicKeyLess> symbol_map = {
+    symbol::Sym a = SymTable::fresh_symbol("a");
+    symbol::Expr ea(a);
+    symbol::Sym b = SymTable::fresh_symbol("b");
+    symbol::Expr eb(b);
+    symbol::Sym c = SymTable::fresh_symbol("c");
+    symbol::Expr ec(c);
+    std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess> symbol_map = {
         {a, 0.3112}, {b, 1.178}, {c, -0.911}};
 
     PauliExpBox peb({Pauli::Z, Pauli::Z}, ea);
@@ -351,13 +351,13 @@ SCENARIO("Test mutual diagonalisation of fully commuting sets") {
   GIVEN("2 qb 3 Pauli gadget circuit with symbols and Pauli::I present") {
     const auto& prepend = CircuitsForTesting::get().prepend_2qb_circuit;
     Circuit circ(2);
-    Sym a = SymTable::fresh_symbol("a");
-    Expr ea(a);
-    Sym b = SymTable::fresh_symbol("b");
-    Expr eb(b);
-    Sym c = SymTable::fresh_symbol("c");
-    Expr ec(c);
-    std::map<Sym, double, SymEngine::RCPBasicKeyLess> symbol_map = {
+    symbol::Sym a = SymTable::fresh_symbol("a");
+    symbol::Expr ea(a);
+    symbol::Sym b = SymTable::fresh_symbol("b");
+    symbol::Expr eb(b);
+    symbol::Sym c = SymTable::fresh_symbol("c");
+    symbol::Expr ec(c);
+    std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess> symbol_map = {
         {a, 0.3112}, {b, 1.178}, {c, -0.911}};
 
     PauliExpBox peb({Pauli::Z, Pauli::Z}, ea);
@@ -523,23 +523,23 @@ SCENARIO("Test mutual diagonalisation of fully commuting sets") {
     add_ops_to_prepend_2(prepend);
 
     Circuit circ(4);
-    Sym a = SymTable::fresh_symbol("a");
-    Expr ea(a);
-    Sym b = SymTable::fresh_symbol("b");
-    Expr eb(b);
-    Sym c = SymTable::fresh_symbol("c");
-    Expr ec(c);
-    Sym d = SymTable::fresh_symbol("d");
-    Expr ed(d);
-    Sym e = SymTable::fresh_symbol("e");
-    Expr ee(e);
-    Sym f = SymTable::fresh_symbol("f");
-    Expr ef(f);
-    Sym g = SymTable::fresh_symbol("g");
-    Expr eg(g);
-    Sym h = SymTable::fresh_symbol("h");
-    Expr eh(h);
-    std::map<Sym, double, SymEngine::RCPBasicKeyLess> symbol_map = {
+    symbol::Sym a = SymTable::fresh_symbol("a");
+    symbol::Expr ea(a);
+    symbol::Sym b = SymTable::fresh_symbol("b");
+    symbol::Expr eb(b);
+    symbol::Sym c = SymTable::fresh_symbol("c");
+    symbol::Expr ec(c);
+    symbol::Sym d = SymTable::fresh_symbol("d");
+    symbol::Expr ed(d);
+    symbol::Sym e = SymTable::fresh_symbol("e");
+    symbol::Expr ee(e);
+    symbol::Sym f = SymTable::fresh_symbol("f");
+    symbol::Expr ef(f);
+    symbol::Sym g = SymTable::fresh_symbol("g");
+    symbol::Expr eg(g);
+    symbol::Sym h = SymTable::fresh_symbol("h");
+    symbol::Expr eh(h);
+    std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess> symbol_map = {
         {a, 0.3112}, {b, 1.178}, {c, -0.911}, {d, 0.7122},
         {e, 1.102},  {f, 0.151}, {g, 1.223},  {h, 1.666}};
 
@@ -578,15 +578,15 @@ SCENARIO("Test mutual diagonalisation of fully commuting sets") {
     add_ops_to_prepend_2(prepend);
 
     Circuit circ(4);
-    Sym a = SymTable::fresh_symbol("a");
-    Expr ea(a);
-    Sym b = SymTable::fresh_symbol("b");
-    Expr eb(b);
-    Sym c = SymTable::fresh_symbol("c");
-    Expr ec(c);
-    Sym d = SymTable::fresh_symbol("d");
-    Expr ed(d);
-    std::map<Sym, double, SymEngine::RCPBasicKeyLess> symbol_map = {
+    symbol::Sym a = SymTable::fresh_symbol("a");
+    symbol::Expr ea(a);
+    symbol::Sym b = SymTable::fresh_symbol("b");
+    symbol::Expr eb(b);
+    symbol::Sym c = SymTable::fresh_symbol("c");
+    symbol::Expr ec(c);
+    symbol::Sym d = SymTable::fresh_symbol("d");
+    symbol::Expr ed(d);
+    std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess> symbol_map = {
         {a, 0.3112}, {b, 1.178}, {c, -0.911}, {d, 0.7122}};
 
     PauliExpBox peb0({Pauli::Y, Pauli::Z, Pauli::X, Pauli::I}, ea);
@@ -619,21 +619,21 @@ SCENARIO("Test mutual diagonalisation of fully commuting sets") {
     prepend.add_op<unsigned>(OpType::Rz, 1.303, {4});
 
     Circuit circ(5);
-    Sym a = SymTable::fresh_symbol("a");
-    Expr ea(a);
-    Sym b = SymTable::fresh_symbol("b");
-    Expr eb(b);
-    Sym c = SymTable::fresh_symbol("c");
-    Expr ec(c);
-    Sym d = SymTable::fresh_symbol("d");
-    Expr ed(d);
-    Sym e = SymTable::fresh_symbol("e");
-    Expr ee(e);
-    Sym f = SymTable::fresh_symbol("f");
-    Expr ef(f);
-    Sym g = SymTable::fresh_symbol("g");
-    Expr eg(g);
-    std::map<Sym, double, SymEngine::RCPBasicKeyLess> symbol_map = {
+    symbol::Sym a = SymTable::fresh_symbol("a");
+    symbol::Expr ea(a);
+    symbol::Sym b = SymTable::fresh_symbol("b");
+    symbol::Expr eb(b);
+    symbol::Sym c = SymTable::fresh_symbol("c");
+    symbol::Expr ec(c);
+    symbol::Sym d = SymTable::fresh_symbol("d");
+    symbol::Expr ed(d);
+    symbol::Sym e = SymTable::fresh_symbol("e");
+    symbol::Expr ee(e);
+    symbol::Sym f = SymTable::fresh_symbol("f");
+    symbol::Expr ef(f);
+    symbol::Sym g = SymTable::fresh_symbol("g");
+    symbol::Expr eg(g);
+    std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess> symbol_map = {
         {a, 0.3112}, {b, 1.178}, {c, -0.911}, {d, 0.7122},
         {e, 1.102},  {f, 0.151}, {g, 1.223}};
 
@@ -792,7 +792,7 @@ SCENARIO("Test greedy diagonalisation explicitly") {
   };
 
   auto apply_strategy =
-      [](std::list<std::pair<QubitPauliTensor, Expr>>& gadgets,
+      [](std::list<std::pair<QubitPauliTensor, symbol::Expr>>& gadgets,
          std::set<Qubit>& qubits, Circuit& cliff_circ,
          const CXConfigType config) {
         while (!qubits.empty()) {
@@ -809,7 +809,7 @@ SCENARIO("Test greedy diagonalisation explicitly") {
     std::set<Qubit> qbs;
     for (unsigned i = 0; i < n_qbs; ++i) qbs.insert(Qubit(i));
 
-    std::list<std::pair<QubitPauliTensor, Expr>> gadgets;
+    std::list<std::pair<QubitPauliTensor, symbol::Expr>> gadgets;
     Conjugations conjugations;
     Circuit cliff_circ(n_qbs);
 
@@ -825,7 +825,7 @@ SCENARIO("Test greedy diagonalisation explicitly") {
         {Pauli::Z, Pauli::Y, Pauli::X, Pauli::Y, Pauli::Y, Pauli::X}));
     tensors.push_back(QubitPauliTensor(
         {Pauli::X, Pauli::Z, Pauli::Z, Pauli::Y, Pauli::Y, Pauli::Y}));
-    std::vector<Expr> exprs{1.13, 0.226, 0.013, 0.952, 1.88};
+    std::vector<symbol::Expr> exprs{1.13, 0.226, 0.013, 0.952, 1.88};
 
     for (unsigned i = 0; i < 5; ++i) {
       gadgets.push_back({tensors[i], exprs[i]});
@@ -916,7 +916,7 @@ SCENARIO("Diagonalise a pair of gadgets") {
       {Pauli::Z, Pauli::Z, Pauli::X, Pauli::I, Pauli::I, Pauli::X}));
   tensors.push_back(QubitPauliTensor(
       {Pauli::Z, Pauli::Z, Pauli::X, Pauli::Z, Pauli::Z, Pauli::I}));
-  std::vector<Expr> exprs{1.13, 0.226};
+  std::vector<symbol::Expr> exprs{1.13, 0.226};
 
   Circuit correct;
   for (unsigned i = 0; i < 2; ++i) {

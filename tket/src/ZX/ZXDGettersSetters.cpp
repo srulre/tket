@@ -39,9 +39,9 @@ ZXVertVec ZXDiagram::get_boundary(
   return sub_boundary;
 }
 
-const Expr& ZXDiagram::get_scalar() const { return scalar; }
+const symbol::Expr& ZXDiagram::get_scalar() const { return scalar; }
 
-void ZXDiagram::multiply_scalar(const Expr& sc) { scalar *= sc; }
+void ZXDiagram::multiply_scalar(const symbol::Expr& sc) { scalar *= sc; }
 
 unsigned ZXDiagram::n_vertices() const { return boost::num_vertices(*graph); }
 
@@ -215,7 +215,7 @@ bool ZXDiagram::is_pauli_spider(const ZXVert& v) const {
   ZXGen_ptr op = get_vertex_ZXGen_ptr(v);
   if (!is_spider_type(op->get_type())) return false;
   const PhasedGen& bg = static_cast<const PhasedGen&>(*op);
-  std::optional<unsigned> pi2_mult = equiv_Clifford(bg.get_param());
+  std::optional<unsigned> pi2_mult = symbol::equiv_Clifford(bg.get_param());
   return (pi2_mult && ((*pi2_mult % 2) == 0));
 }
 
@@ -223,7 +223,7 @@ bool ZXDiagram::is_proper_clifford_spider(const ZXVert& v) const {
   ZXGen_ptr op = get_vertex_ZXGen_ptr(v);
   if (!is_spider_type(op->get_type())) return false;
   const PhasedGen& bg = static_cast<const PhasedGen&>(*op);
-  std::optional<unsigned> pi2_mult = equiv_Clifford(bg.get_param());
+  std::optional<unsigned> pi2_mult = symbol::equiv_Clifford(bg.get_param());
   return (pi2_mult && ((*pi2_mult % 2) == 1));
 }
 
@@ -251,17 +251,17 @@ static std::string graphviz_vertex_props(ZXGen_ptr op) {
     case ZXType::ZSpider:
     case ZXType::XSpider: {
       const PhasedGen& bg = static_cast<const PhasedGen&>(*op);
-      Expr p = bg.get_param();
+      symbol::Expr p = bg.get_param();
       std::string colour = (type == ZXType::ZSpider) ? "green" : "red";
       ss << "fillcolor=\"" << colour << "\" shape=circle label=\"";
-      if (!equiv_0(p)) ss << p;
+      if (!symbol::equiv_0(p)) ss << p;
       ss << "\"";
       break;
     }
     case ZXType::Hbox: {
       const PhasedGen& bg = static_cast<const PhasedGen&>(*op);
-      Expr p = bg.get_param();
-      std::optional<Complex> ev = eval_expr_c(p);
+      symbol::Expr p = bg.get_param();
+      std::optional<Complex> ev = symbol::eval_expr_c(p);
       ss << "fillcolor=\"gold\" shape=square label=\"";
       if (!ev || (std::abs(*ev + 1.) >= EPS)) ss << p;
       ss << "\"";

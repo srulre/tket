@@ -44,7 +44,7 @@ void from_json(const nlohmann::json& j, Circuit& circ) {
   if (j.contains("name")) {
     circ.set_name(j["name"].get<std::string>());
   }
-  circ.add_phase(j.at("phase").get<Expr>());
+  circ.add_phase(j.at("phase").get<symbol::Expr>());
   const auto& qubits = j.at("qubits").get<qubit_vector_t>();
   for (const auto& qb : qubits) {
     circ.add_qubit(qb);

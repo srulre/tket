@@ -26,7 +26,8 @@ namespace tket {
 namespace Transforms {
 
 static bool fixup_angles(
-    Expr &angle_p1, Expr &angle_q, Expr &angle_p2, bool reversed = false);
+    symbol::Expr &angle_p1, symbol::Expr &angle_q, symbol::Expr &angle_p2,
+    bool reversed = false);
 static bool redundancy_removal(Circuit &circ);
 
 /**
@@ -136,10 +137,10 @@ class PQPSquasher : public AbstractSquasher {
     }
 
     // Extract any P rotations from the beginning and end of the list
-    Expr p1 = 0, p2 = 0;
+    symbol::Expr p1 = 0, p2 = 0;
     std::list<Rotation>::iterator i1 = rots.begin();
     if (i1 != rots.end()) {
-      std::optional<Expr> a = i1->angle(p);
+      std::optional<symbol::Expr> a = i1->angle(p);
       if (a) {
         p1 = a.value();
         rots.pop_front();
@@ -147,7 +148,7 @@ class PQPSquasher : public AbstractSquasher {
     }
     std::list<Rotation>::reverse_iterator i2 = rots.rbegin();
     if (i2 != rots.rend()) {
-      std::optional<Expr> a = i2->angle(p);
+      std::optional<symbol::Expr> a = i2->angle(p);
       if (a) {
         p2 = a.value();
         rots.pop_back();
@@ -159,30 +160,32 @@ class PQPSquasher : public AbstractSquasher {
     for (auto rot : rots) {
       R.apply(rot);
     }
-    std::tuple<Expr, Expr, Expr> angles = R.to_pqp(p, q);
+    std::tuple<symbol::Expr, symbol::Expr, symbol::Expr> angles =
+        R.to_pqp(p, q);
 
-    Expr angle_p1 = std::get<0>(angles) + p1;
-    Expr angle_q = std::get<1>(angles);
-    Expr angle_p2 = std::get<2>(angles) + p2;
+    symbol::Expr angle_p1 = std::get<0>(angles) + p1;
+    symbol::Expr angle_q = std::get<1>(angles);
+    symbol::Expr angle_p2 = std::get<2>(angles) + p2;
     fixup_angles(angle_p1, angle_q, angle_p2, reversed_);
 
     Circuit replacement(1);
     Gate_ptr left_over_gate = nullptr;
-    if (!equiv_0(angle_p1, 4)) {
-      if (equiv_0(angle_q, 4) && equiv_0(angle_p2, 4) && commute_through) {
+    if (!symbol::equiv_0(angle_p1, 4)) {
+      if (symbol::equiv_0(angle_q, 4) && symbol::equiv_0(angle_p2, 4) &&
+          commute_through) {
         left_over_gate =
-            std::make_shared<Gate>(p, std::vector<Expr>{angle_p1}, 1);
+            std::make_shared<Gate>(p, std::vector<symbol::Expr>{angle_p1}, 1);
       } else {
         replacement.add_op<unsigned>(p, angle_p1, {0});
       }
     }
-    if (!equiv_0(angle_q, 4)) {
+    if (!symbol::equiv_0(angle_q, 4)) {
       replacement.add_op<unsigned>(q, angle_q, {0});
     }
-    if (!equiv_0(angle_p2, 4)) {
+    if (!symbol::equiv_0(angle_p2, 4)) {
       if (commute_through) {
         left_over_gate =
-            std::make_shared<Gate>(p, std::vector<Expr>{angle_p2}, 1);
+            std::make_shared<Gate>(p, std::vector<symbol::Expr>{angle_p2}, 1);
       } else {
         replacement.add_op<unsigned>(p, angle_p2, {0});
       }
@@ -197,7 +200,7 @@ class PQPSquasher : public AbstractSquasher {
   static Rotation merge_rotations(
       OpType r, const std::vector<Gate_ptr> &chain,
       std::vector<Gate_ptr>::const_iterator &iter) {
-    Expr total_angle(0);
+    symbol::Expr total_angle(0);
     while (iter != chain.end()) {
       const Gate_ptr rot_op = *iter;
       if (rot_op->get_type() != r) {
@@ -241,7 +244,8 @@ Transform squash_1qb_to_tk1() {
 }
 
 static bool fixup_angles(
-    Expr &angle_p1, Expr &angle_q, Expr &angle_p2, bool reversed) {
+    symbol::Expr &angle_p1, symbol::Expr &angle_q, symbol::Expr &angle_p2,
+    bool reversed) {
   bool success = false;
   if (reversed) {
     std::swap(angle_p1, angle_p2);
@@ -249,34 +253,36 @@ static bool fixup_angles(
     angle_q *= -1;
     angle_p2 *= -1;
   }
-  if (equiv_val(angle_q, 1., 2) && !equiv_0(angle_p2, 4)) {
+  if (symbol::equiv_val(angle_q, 1., 2) && !symbol::equiv_0(angle_p2, 4)) {
     // Prefer --P(p1-p2)--Q(...)--P(0)--
     // Only occurs if angle_q is pi or 3pi and angle_p2 is non-zero
     angle_p1 -= angle_p2;
     angle_p2 = 0;
     success = true;
-  } else if (equiv_val(angle_p2, 1., 4)) {
+  } else if (symbol::equiv_val(angle_p2, 1., 4)) {
     // Then prefer --P(p1+p2)--Q(-q)--P(0)--
     // Only occurs if angle_p2 is pi
     angle_p1 += 1;
     angle_q *= -1;
     angle_p2 = 0;
     success = true;
-  } else if (equiv_val(angle_p2, 3., 4)) {
+  } else if (symbol::equiv_val(angle_p2, 3., 4)) {
     // Then prefer --P(p1+p2)--Q(-q)--P(0)--
     // Only occurs if angle_p2 is 3pi
     angle_p1 += 3;
     angle_q *= -1;
     angle_p2 = 0;
     success = true;
-  } else if (equiv_val(angle_p1, 1., 4) && !equiv_0(angle_p2, 4)) {
+  } else if (
+      symbol::equiv_val(angle_p1, 1., 4) && !symbol::equiv_0(angle_p2, 4)) {
     // Then prefer --P(0)--Q(-q)--P(p1+p2)--
     // Only occurs if angle_p1 is pi and angle_p2 is non-zero
     angle_q *= -1;
     angle_p2 += 1;
     angle_p1 = 0;
     success = true;
-  } else if (equiv_val(angle_p1, 3., 4) && !equiv_0(angle_p2, 4)) {
+  } else if (
+      symbol::equiv_val(angle_p1, 3., 4) && !symbol::equiv_0(angle_p2, 4)) {
     // Then prefer --P(0)--Q(-q)--P(p1+p2)--
     // Only occurs if angle_p1 is 3pi and angle_p2 is non-zero
     angle_q *= -1;
@@ -381,8 +387,8 @@ static bool remove_redundancy(
         // combine two rotation gates together, then if the combined
         // operation is the identity up to phase, remove from circuit
         if (b_desc.type() == desc.type()) {
-          Expr expr1 = op->get_params()[0];
-          Expr expr2 = b_op->get_params()[0];
+          symbol::Expr expr1 = op->get_params()[0];
+          symbol::Expr expr2 = b_op->get_params()[0];
           VertexVec last_verts = circ.get_predecessors(vert);
           for (const Vertex &l : last_verts) {
             new_affected_verts.insert({im.at(l), l});
@@ -390,7 +396,7 @@ static bool remove_redundancy(
           circ.remove_vertex(
               b, Circuit::GraphRewiring::Yes, Circuit::VertexDeletion::No);
           bin.push_back(b);
-          std::vector<Expr> params_new = {expr1 + expr2};
+          std::vector<symbol::Expr> params_new = {expr1 + expr2};
           Op_ptr op_new = get_op_ptr(desc.type(), params_new, ins.size());
           std::optional<double> a = op_new->is_identity();
           if (a) {

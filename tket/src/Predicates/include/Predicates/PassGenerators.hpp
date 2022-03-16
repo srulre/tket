@@ -26,13 +26,15 @@ namespace tket {
 /* a wrapper method for the rebase_factory in Transforms */
 PassPtr gen_rebase_pass(
     const OpTypeSet& allowed_gates, const Circuit& cx_replacement,
-    const std::function<Circuit(const Expr&, const Expr&, const Expr&)>&
+    const std::function<
+        Circuit(const symbol::Expr&, const symbol::Expr&, const symbol::Expr&)>&
         tk1_replacement);
 
 /* a wrapper method for the squash_factory in Transforms */
 PassPtr gen_squash_pass(
     const OpTypeSet& singleqs,
-    const std::function<Circuit(const Expr&, const Expr&, const Expr&)>&
+    const std::function<
+        Circuit(const symbol::Expr&, const symbol::Expr&, const symbol::Expr&)>&
         tk1_replacement);
 PassPtr gen_euler_pass(const OpType& q, const OpType& p, bool strict = false);
 PassPtr gen_clifford_simp_pass(bool allow_swaps = true);

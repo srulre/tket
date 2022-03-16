@@ -124,7 +124,7 @@ Circuit CX_ZX_circ_from_op(const Op_ptr op) {
       return replacement;
     }
     case OpType::Ry: {
-      Expr angle = op->get_params()[0];
+      symbol::Expr angle = op->get_params()[0];
       Circuit replacement(1);
       replacement.add_op<unsigned>(OpType::Rz, -0.5, {0});
       replacement.add_op<unsigned>(OpType::Rx, angle, {0});
@@ -141,9 +141,9 @@ Circuit CX_ZX_circ_from_op(const Op_ptr op) {
     }
     case OpType::U3: {
       Circuit replacement(1);
-      Expr angle_z1 = op->get_params()[2];
-      Expr angle_y = op->get_params()[0];
-      Expr angle_z2 = op->get_params()[1];
+      symbol::Expr angle_z1 = op->get_params()[2];
+      symbol::Expr angle_y = op->get_params()[0];
+      symbol::Expr angle_z2 = op->get_params()[1];
       replacement.add_op<unsigned>(OpType::Rz, angle_z1 - 0.5, {0});
       replacement.add_op<unsigned>(OpType::Rx, angle_y, {0});
       replacement.add_op<unsigned>(OpType::Rz, angle_z2 + 0.5, {0});
@@ -152,8 +152,8 @@ Circuit CX_ZX_circ_from_op(const Op_ptr op) {
     }
     case OpType::U2: {
       Circuit replacement(1);
-      Expr angle_z1 = op->get_params()[1];
-      Expr angle_z2 = op->get_params()[0];
+      symbol::Expr angle_z1 = op->get_params()[1];
+      symbol::Expr angle_z2 = op->get_params()[0];
       replacement.add_op<unsigned>(OpType::Rz, angle_z1 - 0.5, {0});
       replacement.add_op<unsigned>(OpType::Rx, 0.5, {0});
       replacement.add_op<unsigned>(OpType::Rz, angle_z2 + 0.5, {0});
@@ -162,15 +162,15 @@ Circuit CX_ZX_circ_from_op(const Op_ptr op) {
     }
     case OpType::U1: {
       Circuit replacement(1);
-      Expr angle = op->get_params()[0];
+      symbol::Expr angle = op->get_params()[0];
       replacement.add_op<unsigned>(OpType::Rz, angle, {0});
       replacement.add_phase(angle / 2);
       return replacement;
     }
     case OpType::PhasedX: {
       Circuit replacement(1);
-      Expr theta = op->get_params()[0];
-      Expr phi = op->get_params()[1];
+      symbol::Expr theta = op->get_params()[0];
+      symbol::Expr phi = op->get_params()[1];
       replacement.add_op<unsigned>(OpType::Rz, -phi, {0});
       replacement.add_op<unsigned>(OpType::Rx, theta, {0});
       replacement.add_op<unsigned>(OpType::Rz, phi, {0});
@@ -217,7 +217,7 @@ Circuit CX_ZX_circ_from_op(const Op_ptr op) {
     }
     case OpType::TK1: {
       Circuit replacement(1);
-      std::vector<Expr> params = op->get_params();
+      std::vector<symbol::Expr> params = op->get_params();
       replacement.add_op<unsigned>(OpType::Rz, params[2], {0});
       replacement.add_op<unsigned>(OpType::Rx, params[1], {0});
       replacement.add_op<unsigned>(OpType::Rz, params[0], {0});

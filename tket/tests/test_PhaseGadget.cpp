@@ -197,8 +197,8 @@ SCENARIO("Identifying and synthesising Pauli gadgets") {
   GIVEN("Pauli-gadget simplification of a symbolic circuit") {
     // --X--Rz(a)--X--  ==>  --U1(-a)--
     Circuit circ(1);
-    Sym a = SymEngine::symbol("alpha");
-    Expr alpha(a);
+    symbol::Sym a = SymEngine::symbol("alpha");
+    symbol::Expr alpha(a);
     circ.add_op<unsigned>(OpType::X, {0});
     circ.add_op<unsigned>(OpType::Rz, alpha, {0});
     circ.add_op<unsigned>(OpType::X, {0});
@@ -206,7 +206,7 @@ SCENARIO("Identifying and synthesising Pauli gadgets") {
     REQUIRE(circ.n_gates() == 1);
     Vertex v = *circ.get_gates_of_type(OpType::TK1).begin();
     Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
-    std::vector<Expr> angles = op->get_params();
+    std::vector<symbol::Expr> angles = op->get_params();
     REQUIRE(test_equiv_0(angles[0]));
     REQUIRE(test_equiv_0(angles[1]));
     REQUIRE(test_equiv_0(alpha + angles[2]));
@@ -214,8 +214,8 @@ SCENARIO("Identifying and synthesising Pauli gadgets") {
   GIVEN("Another symbolic circuit") {
     // --Rz(a)--Z--Ry(0.5)--Z--  ==>  --U3(-0.5, 0, a)--
     Circuit circ(1);
-    Sym a = SymEngine::symbol("alpha");
-    Expr alpha(a);
+    symbol::Sym a = SymEngine::symbol("alpha");
+    symbol::Expr alpha(a);
     circ.add_op<unsigned>(OpType::Rz, alpha, {0});
     circ.add_op<unsigned>(OpType::Z, {0});
     circ.add_op<unsigned>(OpType::Ry, 0.5, {0});
@@ -224,7 +224,7 @@ SCENARIO("Identifying and synthesising Pauli gadgets") {
     REQUIRE(circ.n_gates() == 1);
     Vertex v = *circ.get_gates_of_type(OpType::TK1).begin();
     Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
-    std::vector<Expr> angles = op->get_params();
+    std::vector<symbol::Expr> angles = op->get_params();
     REQUIRE(test_equiv_0(angles[0] - 0.5));
     REQUIRE(test_equiv_0(angles[1] + 0.5));
     REQUIRE(test_equiv_0(angles[2] + 0.5 - alpha));

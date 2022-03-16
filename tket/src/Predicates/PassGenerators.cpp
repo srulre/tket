@@ -42,7 +42,8 @@ namespace tket {
 
 PassPtr gen_rebase_pass(
     const OpTypeSet& allowed_gates, const Circuit& cx_replacement,
-    const std::function<Circuit(const Expr&, const Expr&, const Expr&)>&
+    const std::function<
+        Circuit(const symbol::Expr&, const symbol::Expr&, const symbol::Expr&)>&
         tk1_replacement) {
   Transform t = Transforms::rebase_factory(
       allowed_gates, cx_replacement, tk1_replacement);
@@ -71,7 +72,8 @@ PassPtr gen_rebase_pass(
 
 PassPtr gen_squash_pass(
     const OpTypeSet& singleqs,
-    const std::function<Circuit(const Expr&, const Expr&, const Expr&)>&
+    const std::function<
+        Circuit(const symbol::Expr&, const symbol::Expr&, const symbol::Expr&)>&
         tk1_replacement) {
   Transform t = Transforms::squash_factory(singleqs, tk1_replacement);
   PostConditions postcon = {{}, {}, Guarantee::Preserve};

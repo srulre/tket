@@ -300,7 +300,7 @@ SCENARIO("Check single gates") {
   }
   GIVEN("PhaseGadget") {
     const double t = -1.23456789;
-    const Expr t_expr = t;
+    const symbol::Expr t_expr = t;
     for (unsigned n_qubits = 1; n_qubits <= 4; ++n_qubits) {
       const auto dense_unitary1 =
           GateUnitaryMatrix::get_unitary(OpType::PhaseGadget, n_qubits, {t});
@@ -314,7 +314,7 @@ SCENARIO("Check single gates") {
 
 SCENARIO("Match single gate unitaries against circuit simulator") {
   const auto& data = internal::GatesData::get().input_data;
-  std::vector<Expr> parameters;
+  std::vector<symbol::Expr> parameters;
   std::vector<double> parameter_doubles;
   std::vector<unsigned> qubits;
   Eigen::MatrixXcd gate_unitary;

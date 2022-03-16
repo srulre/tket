@@ -78,10 +78,12 @@ class Op : public std::enable_shared_from_this<Op> {
       const SymEngine::map_basic_basic &sub_map) const = 0;
 
   /** Sequence of phase parameters, if applicable */
-  virtual std::vector<Expr> get_params() const { throw NotValid(); }
+  virtual std::vector<symbol::Expr> get_params() const { throw NotValid(); }
 
   /** Sequence of phase parameters reduced to canonical range, if applicable */
-  virtual std::vector<Expr> get_params_reduced() const { throw NotValid(); }
+  virtual std::vector<symbol::Expr> get_params_reduced() const {
+    throw NotValid();
+  }
 
   /* Number of qubits */
   virtual unsigned n_qubits() const { throw NotValid(); }
@@ -99,7 +101,7 @@ class Op : public std::enable_shared_from_this<Op> {
   OpType get_type() const { return type_; }
 
   /** Set of all free symbols occurring in operation parameters. */
-  virtual SymSet free_symbols() const = 0;
+  virtual symbol::SymSet free_symbols() const = 0;
 
   /**
    * Which Pauli, if any, commutes with the operation at a given port

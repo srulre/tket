@@ -47,16 +47,17 @@ bool test_unitary_comparison(
 bool verify_n_qubits_for_ops(const Circuit& circ);
 
 static inline bool test_equiv_expr(
-    const Expr& e0, const Expr& e1, unsigned n = 2) {
-  return equiv_expr(e0, e1, n, ERR_EPS);
+    const symbol::Expr& e0, const symbol::Expr& e1, unsigned n = 2) {
+  return symbol::equiv_expr(e0, e1, n, ERR_EPS);
 }
 
-static inline bool test_equiv_val(const Expr& e, double x, unsigned n = 2) {
-  return equiv_val(e, x, n, ERR_EPS);
+static inline bool test_equiv_val(
+    const symbol::Expr& e, double x, unsigned n = 2) {
+  return symbol::equiv_val(e, x, n, ERR_EPS);
 }
 
-static inline bool test_equiv_0(const Expr& e, unsigned n = 2) {
-  return equiv_0(SymEngine::expand(e), n, ERR_EPS);
+static inline bool test_equiv_0(const symbol::Expr& e, unsigned n = 2) {
+  return symbol::equiv_0(SymEngine::expand(e), n, ERR_EPS);
 }
 
 typedef std::vector<unsigned> uvec;

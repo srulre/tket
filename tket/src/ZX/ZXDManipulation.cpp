@@ -31,7 +31,7 @@ ZXVert ZXDiagram::add_vertex(ZXType type, QuantumType qtype) {
 }
 
 ZXVert ZXDiagram::add_vertex(
-    ZXType type, const Expr& param, QuantumType qtype) {
+    ZXType type, const symbol::Expr& param, QuantumType qtype) {
   ZXGen_ptr op = ZXGen::create_gen(type, param, qtype);
   return add_vertex(op);
 }
@@ -84,22 +84,23 @@ bool ZXDiagram::remove_wire(
   return false;
 }
 
-void ZXDiagram::symbol_substitution(const symbol_map_t& symbol_map) {
+void ZXDiagram::symbol_substitution(const symbol::symbol_map_t& symbol_map) {
   SymEngine::map_basic_basic sub_map;
-  for (const std::pair<const Sym, Expr>& p : symbol_map) {
-    ExprPtr s = p.first;
-    ExprPtr e = p.second;
+  for (const std::pair<const symbol::Sym, symbol::Expr>& p : symbol_map) {
+    symbol::ExprPtr s = p.first;
+    symbol::ExprPtr e = p.second;
     sub_map[s] = e;
   }
   symbol_substitution(sub_map);
 }
 
 void ZXDiagram::symbol_substitution(
-    const std::map<Sym, double, SymEngine::RCPBasicKeyLess>& symbol_map) {
+    const std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess>&
+        symbol_map) {
   SymEngine::map_basic_basic sub_map;
-  for (std::pair<Sym, Expr> p : symbol_map) {
-    ExprPtr s = p.first;
-    ExprPtr e = Expr(p.second);
+  for (std::pair<symbol::Sym, symbol::Expr> p : symbol_map) {
+    symbol::ExprPtr s = p.first;
+    symbol::ExprPtr e = symbol::Expr(p.second);
     sub_map[s] = e;
   }
   symbol_substitution(sub_map);
@@ -113,10 +114,10 @@ void ZXDiagram::symbol_substitution(const SymEngine::map_basic_basic& sub_map) {
   }
 }
 
-SymSet ZXDiagram::free_symbols() const {
-  SymSet symbols = expr_free_symbols(get_scalar());
+symbol::SymSet ZXDiagram::free_symbols() const {
+  symbol::SymSet symbols = symbol::expr_free_symbols(get_scalar());
   BGL_FORALL_VERTICES(v, *graph, ZXGraph) {
-    const SymSet s = get_vertex_ZXGen_ptr(v)->free_symbols();
+    const symbol::SymSet s = get_vertex_ZXGen_ptr(v)->free_symbols();
     symbols.insert(s.begin(), s.end());
   }
   return symbols;

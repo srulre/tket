@@ -20,14 +20,16 @@
 
 namespace tket {
 
-Op_ptr get_op_ptr(OpType chosen_type, const Expr& param, unsigned n_qubits) {
-  return get_op_ptr(chosen_type, std::vector<Expr>{param}, n_qubits);
+Op_ptr get_op_ptr(
+    OpType chosen_type, const symbol::Expr& param, unsigned n_qubits) {
+  return get_op_ptr(chosen_type, std::vector<symbol::Expr>{param}, n_qubits);
 }
 
 Op_ptr get_op_ptr(
-    OpType chosen_type, const std::vector<Expr>& params, unsigned n_qubits) {
+    OpType chosen_type, const std::vector<symbol::Expr>& params,
+    unsigned n_qubits) {
   if (is_gate_type(chosen_type)) {
-    SymTable::register_symbols(expr_free_symbols(params));
+    SymTable::register_symbols(symbol::expr_free_symbols(params));
     return std::make_shared<const Gate>(chosen_type, params, n_qubits);
   } else {
     return std::make_shared<const MetaOp>(chosen_type);

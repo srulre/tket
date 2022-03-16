@@ -208,7 +208,7 @@ void PauliExpBoxUnitaryCalculator::fill_triplets(double phase) {
 }  // namespace
 
 std::vector<TripletCd> get_triplets(const PauliExpBox& box) {
-  const auto phase_optional = eval_expr(box.get_phase());
+  const auto phase_optional = symbol::eval_expr(box.get_phase());
   if (!phase_optional) {
     throw NotImplemented(
         "PauliExpBoxUnitaryCalculator called "

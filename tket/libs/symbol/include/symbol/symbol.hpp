@@ -25,7 +25,7 @@
 #endif
 
 #include <symengine/expression.h>
-#include <symengine/visitor.h> // for free_symbols
+#include <symengine/visitor.h>  // for free_symbols
 
 #if !defined(_MSC_VER)
 #pragma GCC diagnostic pop
@@ -37,6 +37,7 @@
 #include <vector>
 
 namespace tket {
+namespace symbol {
 
 /** Representation of a phase as a multiple of \f$ \pi \f$ */
 typedef SymEngine::Expression Expr;
@@ -47,30 +48,31 @@ typedef SymEngine::RCP<const SymEngine::Basic> ExprPtr;
 /** Shared pointer to a free symbol */
 typedef SymEngine::RCP<const SymEngine::Symbol> Sym;
 
+}  // namespace symbol
 }  // namespace tket
 
 namespace nlohmann {
 
 template <>
-struct adl_serializer<tket::Expr> {
-  static void to_json(json& j, const tket::Expr& exp) {
-    tket::ExprPtr e_ = exp;
+struct adl_serializer<tket::symbol::Expr> {
+  static void to_json(json& j, const tket::symbol::Expr& exp) {
+    tket::symbol::ExprPtr e_ = exp;
     j = e_->__str__();
   }
 
-  static void from_json(const json& j, tket::Expr& exp) {
+  static void from_json(const json& j, tket::symbol::Expr& exp) {
     exp = j.get<std::string>();
   }
 };
 
 template <>
-struct adl_serializer<tket::Sym> {
-  static void to_json(json& j, const tket::Sym& exp) {
-    tket::ExprPtr e_ = exp;
+struct adl_serializer<tket::symbol::Sym> {
+  static void to_json(json& j, const tket::symbol::Sym& exp) {
+    tket::symbol::ExprPtr e_ = exp;
     j = e_->__str__();
   }
 
-  static void from_json(const json& j, tket::Sym& exp) {
+  static void from_json(const json& j, tket::symbol::Sym& exp) {
     exp = SymEngine::symbol(j.get<std::string>());
   }
 };
@@ -78,6 +80,7 @@ struct adl_serializer<tket::Sym> {
 }  // namespace nlohmann
 
 namespace tket {
+namespace symbol {
 
 /** Default tolerance for floating-point comparisons */
 constexpr double SYMEPS = 1e-11;
@@ -216,4 +219,5 @@ bool equiv_0(const Expr& e, unsigned n = 2, double tol = SYMEPS);
 std::optional<unsigned> equiv_Clifford(
     const Expr& e, unsigned n = 2, double tol = SYMEPS);
 
+}  // namespace symbol
 }  // namespace tket
