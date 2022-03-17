@@ -383,11 +383,11 @@ std::vector<symbol::Expr> Gate::get_params_reduced() const {
 
 std::vector<symbol::Expr> Gate::get_tk1_angles() const {
   const symbol::Expr half =
-      SymEngine::div(SymEngine::integer(1), SymEngine::integer(2));
+      symbol::div(symbol::Expr(1), symbol::Expr(2));
   const symbol::Expr quarter =
-      SymEngine::div(SymEngine::integer(1), SymEngine::integer(4));
+      symbol::div(symbol::Expr(1), symbol::Expr(4));
   const symbol::Expr eighth =
-      SymEngine::div(SymEngine::integer(1), SymEngine::integer(8));
+      symbol::div(symbol::Expr(1), symbol::Expr(8));
   switch (get_type()) {
     case OpType::noop: {
       return {0, 0, 0, 0};

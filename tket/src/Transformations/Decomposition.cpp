@@ -71,7 +71,7 @@ static bool convert_to_zxz(Circuit &circ) {
 
 static bool convert_to_zyz(Circuit &circ) {
   static const symbol::Expr half =
-      SymEngine::div(symbol::Expr(1), symbol::Expr(2));
+      symbol::div(symbol::Expr(1), symbol::Expr(2));
   bool success = decompose_single_qubits_TK1().apply(circ);
   VertexList bin;
   BGL_FORALL_VERTICES(v, circ.dag, DAG) {
@@ -106,7 +106,7 @@ static bool convert_to_zyz(Circuit &circ) {
 
 static bool convert_to_xyx(Circuit &circ) {
   static const symbol::Expr half =
-      SymEngine::div(symbol::Expr(1), symbol::Expr(2));
+      symbol::div(symbol::Expr(1), symbol::Expr(2));
   bool success = decompose_single_qubits_TK1().apply(circ);
   VertexList bin;
   BGL_FORALL_VERTICES(v, circ.dag, DAG) {
@@ -167,7 +167,7 @@ Transform decompose_ZYZ_to_TK1() {
     bool success = false;
     static const symbol::Expr zero(0);
     static const symbol::Expr half =
-        SymEngine::div(symbol::Expr(1), symbol::Expr(2));
+        symbol::div(symbol::Expr(1), symbol::Expr(2));
     VertexList bin;
     VertexVec inputs = circ.q_inputs();
     for (VertexVec::iterator i = inputs.begin(); i != inputs.end(); ++i) {

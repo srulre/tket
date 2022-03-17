@@ -22,6 +22,7 @@
 namespace tket {
 
 static symbol::Expr atan2_bypi(const symbol::Expr &a, const symbol::Expr &b) {
+  static const symbol::Expr pi(SymEngine::pi);
   std::optional<double> va = symbol::eval_expr(a);
   std::optional<double> vb = symbol::eval_expr(b);
   if (va && vb) {
@@ -30,11 +31,12 @@ static symbol::Expr atan2_bypi(const symbol::Expr &a, const symbol::Expr &b) {
     if (std::abs(vva) < EPS && std::abs(vvb) < EPS) return symbol::Expr(0.);
     return atan2(vva, vvb) / PI;
   } else {
-    return SymEngine::div(SymEngine::atan2(a, b), SymEngine::pi);
+    return symbol::div(SymEngine::atan2(a, b), pi);
   }
 }
 
 static symbol::Expr acos_bypi(const symbol::Expr &a) {
+  static const symbol::Expr pi(SymEngine::pi);
   std::optional<double> va = symbol::eval_expr(a);
   if (va) {
     double vva = va.value();
@@ -43,7 +45,7 @@ static symbol::Expr acos_bypi(const symbol::Expr &a) {
     if (vva <= -1.) return 1.;
     return acos(vva) / PI;
   } else {
-    return SymEngine::div(SymEngine::acos(a), SymEngine::pi);
+    return symbol::div(SymEngine::acos(a), pi);
   }
 }
 
@@ -53,13 +55,14 @@ static symbol::Expr acos_bypi(const symbol::Expr &a) {
 static symbol::Expr expr_div(const symbol::Expr &num, const symbol::Expr &den) {
   if (symbol::approx_0(SymEngine::expand(num - den))) return 1;
   if (symbol::approx_0(SymEngine::expand(num + den))) return -1;
-  return SymEngine::div(num, den);
+  return symbol::div(num, den);
 }
 
 static std::tuple<symbol::Expr, symbol::Expr, symbol::Expr>
 xyx_angles_from_coeffs(
     const symbol::Expr &s, const symbol::Expr &i, const symbol::Expr &j,
     const symbol::Expr &k) {
+  static const symbol::Expr pi(SymEngine::pi);
   // Handle exceptional cases first.
   bool s_zero = symbol::approx_0(s);
   bool s_one = symbol::approx_0(s - 1);
@@ -125,7 +128,7 @@ xyx_angles_from_coeffs(
     if (SymEngine::free_symbols(u).empty()) {
       symbol::Expr a = SymEngine::atan(u);
       symbol::Expr q = 2 * atan2_bypi(j, s);
-      symbol::Expr two_a_by_pi = SymEngine::div(2 * a, SymEngine::pi);
+      symbol::Expr two_a_by_pi = symbol::div(2 * a, pi);
       return std::tuple<symbol::Expr, symbol::Expr, symbol::Expr>(
           two_a_by_pi, q, 0);
     }
@@ -134,7 +137,7 @@ xyx_angles_from_coeffs(
     if (SymEngine::free_symbols(u).empty()) {
       symbol::Expr a = SymEngine::atan(u);
       symbol::Expr q = 2 * atan2_bypi(j, s);
-      symbol::Expr two_a_by_pi = SymEngine::div(2 * a, SymEngine::pi);
+      symbol::Expr two_a_by_pi = symbol::div(2 * a, pi);
       return std::tuple<symbol::Expr, symbol::Expr, symbol::Expr>(
           0, q, two_a_by_pi);
     }

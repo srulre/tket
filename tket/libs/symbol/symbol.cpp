@@ -150,5 +150,9 @@ std::optional<unsigned> equiv_Clifford(const Expr& e, unsigned n, double tol) {
     return std::nullopt;
 }
 
+Expr div(const Expr& a, const Expr& b) {
+  return SymEngine::div(a, b);
+}
+
 }  // namespace symbol
 }  // namespace tket

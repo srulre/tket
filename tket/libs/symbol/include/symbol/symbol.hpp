@@ -222,5 +222,10 @@ bool equiv_0(const Expr& e, unsigned n = 2, double tol = SYMEPS);
 std::optional<unsigned> equiv_Clifford(
     const Expr& e, unsigned n = 2, double tol = SYMEPS);
 
+/**
+ * Division, a/b
+ */
+Expr div(const Expr& a, const Expr& b);
+
 }  // namespace symbol
 }  // namespace tket
