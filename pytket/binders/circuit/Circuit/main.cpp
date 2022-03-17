@@ -558,9 +558,7 @@ void init_circuit(py::module &m) {
           py::arg("symbol_map"))
       .def(
           "symbol_substitution",
-          (void(Circuit::*)(
-              const std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess>
-                  &)) &
+          (void(Circuit::*)(const symbol::symbol_vals_t &)) &
               Circuit::symbol_substitution,
           "In-place substitution for symbolic expressions; iterates "
           "through each parameterised gate and performs the "

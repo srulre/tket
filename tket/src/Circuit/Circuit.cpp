@@ -151,9 +151,7 @@ void Circuit::symbol_substitution(const symbol::symbol_map_t &symbol_map) {
   symbol_substitution(sub_map);
 }
 
-void Circuit::symbol_substitution(
-    const std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess>
-        &symbol_map) {
+void Circuit::symbol_substitution(const symbol::symbol_vals_t &symbol_map) {
   symbol::symbol_map_t s_map;
   for (std::pair<symbol::Sym, symbol::Expr> p : symbol_map) {
     s_map[p.first] = symbol::Expr(p.second);

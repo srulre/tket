@@ -330,8 +330,7 @@ SCENARIO("Test mutual diagonalisation of fully commuting sets") {
     symbol::Expr eb(b);
     symbol::Sym c = SymTable::fresh_symbol("c");
     symbol::Expr ec(c);
-    std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess> symbol_map = {
-        {a, 0.3112}, {b, 1.178}, {c, -0.911}};
+    symbol::symbol_vals_t symbol_map = {{a, 0.3112}, {b, 1.178}, {c, -0.911}};
 
     PauliExpBox peb({Pauli::Z, Pauli::Z}, ea);
     circ.add_box(peb, {0, 1});
@@ -357,8 +356,7 @@ SCENARIO("Test mutual diagonalisation of fully commuting sets") {
     symbol::Expr eb(b);
     symbol::Sym c = SymTable::fresh_symbol("c");
     symbol::Expr ec(c);
-    std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess> symbol_map = {
-        {a, 0.3112}, {b, 1.178}, {c, -0.911}};
+    symbol::symbol_vals_t symbol_map = {{a, 0.3112}, {b, 1.178}, {c, -0.911}};
 
     PauliExpBox peb({Pauli::Z, Pauli::Z}, ea);
     circ.add_box(peb, {0, 1});
@@ -539,9 +537,9 @@ SCENARIO("Test mutual diagonalisation of fully commuting sets") {
     symbol::Expr eg(g);
     symbol::Sym h = SymTable::fresh_symbol("h");
     symbol::Expr eh(h);
-    std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess> symbol_map = {
-        {a, 0.3112}, {b, 1.178}, {c, -0.911}, {d, 0.7122},
-        {e, 1.102},  {f, 0.151}, {g, 1.223},  {h, 1.666}};
+    symbol::symbol_vals_t symbol_map = {{a, 0.3112}, {b, 1.178}, {c, -0.911},
+                                        {d, 0.7122}, {e, 1.102}, {f, 0.151},
+                                        {g, 1.223},  {h, 1.666}};
 
     PauliExpBox peb0({Pauli::X, Pauli::X, Pauli::X, Pauli::Y}, ea);
     circ.add_box(peb0, {0, 1, 2, 3});
@@ -586,7 +584,7 @@ SCENARIO("Test mutual diagonalisation of fully commuting sets") {
     symbol::Expr ec(c);
     symbol::Sym d = SymTable::fresh_symbol("d");
     symbol::Expr ed(d);
-    std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess> symbol_map = {
+    symbol::symbol_vals_t symbol_map = {
         {a, 0.3112}, {b, 1.178}, {c, -0.911}, {d, 0.7122}};
 
     PauliExpBox peb0({Pauli::Y, Pauli::Z, Pauli::X, Pauli::I}, ea);
@@ -633,9 +631,9 @@ SCENARIO("Test mutual diagonalisation of fully commuting sets") {
     symbol::Expr ef(f);
     symbol::Sym g = SymTable::fresh_symbol("g");
     symbol::Expr eg(g);
-    std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess> symbol_map = {
-        {a, 0.3112}, {b, 1.178}, {c, -0.911}, {d, 0.7122},
-        {e, 1.102},  {f, 0.151}, {g, 1.223}};
+    symbol::symbol_vals_t symbol_map = {{a, 0.3112}, {b, 1.178}, {c, -0.911},
+                                        {d, 0.7122}, {e, 1.102}, {f, 0.151},
+                                        {g, 1.223}};
 
     PauliExpBox peb0({Pauli::I, Pauli::X, Pauli::Z, Pauli::I, Pauli::Z}, ea);
     circ.add_box(peb0, {0, 1, 2, 3, 4});
