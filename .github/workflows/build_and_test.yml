@@ -57,6 +57,7 @@ jobs:
         conan_cmd=/home/runner/.local/bin/conan
         ${conan_cmd} profile new tket --detect
         ${conan_cmd} profile update settings.compiler.libcxx=libstdc++11 tket
+        ${conan_cmd} profile update options.tket-symbol:shared=True tket
         ${conan_cmd} profile update options.tket:shared=True tket
         echo "CONAN_CMD=${conan_cmd}" >> $GITHUB_ENV
     - name: set option to run full test suite
@@ -66,6 +67,8 @@ jobs:
       run: ${CONAN_CMD} remote add tket-conan https://tket.jfrog.io/artifactory/api/conan/tket-conan
     - name: Install ninja and ccache
       run: sudo apt-get install ninja-build ccache
+    - name: Build tket-symbol
+      run: ${CONAN_CMD} create --profile=tket recipes/tket-symbol
     - name: Build tket
       run: ${CONAN_CMD} create --profile=tket recipes/tket
     - name: Install runtime test requirements
@@ -181,6 +184,7 @@ jobs:
       run: |
         pip install conan
         conan profile new tket --detect --force
+        conan profile update options.tket-symbol:shared=True tket
         conan profile update options.tket:shared=True tket
         export CC=`which conan`
         echo "CONAN_CMD=${CC}" >> $GITHUB_ENV
@@ -191,6 +195,8 @@ jobs:
       run: conan remote add tket-conan https://tket.jfrog.io/artifactory/api/conan/tket-conan --force
     - name: Install boost
       run: conan install --profile=tket boost/1.78.0@ --build=missing
+    - name: Build tket-symbol
+      run: conan create --profile=tket recipes/tket-symbol
     - name: Build tket
       run: conan create --profile=tket recipes/tket --build=spdlog --build=tket
     - name: Build and run tket tests
@@ -275,6 +281,7 @@ jobs:
       id: conan
       run: |
         conan profile new tket --detect --force
+        conan profile update options.tket-symbol:shared=True tket
         conan profile update options.tket:shared=True tket
         export CC=`which conan`
         echo "CONAN_CMD=${CC}" >> $GITHUB_ENV
@@ -285,6 +292,8 @@ jobs:
       run: conan remote add tket-conan https://tket.jfrog.io/artifactory/api/conan/tket-conan --force
     - name: Install boost
       run: conan install --profile=tket boost/1.78.0@ --build=missing
+    - name: Build tket-symbol
+      run: conan create --profile=tket recipes/tket-symbol
     - name: Build tket
       run: conan create --profile=tket recipes/tket --build=spdlog --build=tket
     - name: Build and run tket tests
@@ -376,6 +385,7 @@ jobs:
       run: |
         pip install conan
         conan profile new tket --detect
+        conan profile update options.tket-symbol:shared=True tket
         conan profile update options.tket:shared=True tket
         $conan_cmd = (gcm conan).Path
         echo "CONAN_CMD=${conan_cmd}" >> $GITHUB_ENV
@@ -390,6 +400,8 @@ jobs:
       with:
         path: C:\Users\runneradmin\.conan\data\tket
         key: ${{ runner.os }}-tket-tket-${{ steps.hash_tket_source.outputs.tket_hash }}-15
+    - name: Build tket-symbol
+      run: conan create --profile=tket recipes/tket-symbol
     - name: Build tket
       if: steps.cache-tket.outputs.cache-hit != 'true'
       run: conan create --profile=tket recipes/tket
