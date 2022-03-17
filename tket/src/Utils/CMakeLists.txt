@@ -45,4 +45,4 @@ target_include_directories(tket-${COMP}
 
 target_link_libraries(tket-${COMP} PUBLIC
     ${CONAN_LIBS_FMT} ${CONAN_LIBS_SPDLOG})
-target_link_libraries(tket-${COMP} PRIVATE ${CONAN_LIBS_SYMENGINE})
+target_link_libraries(tket-${COMP} PRIVATE ${CONAN_LIBS_TKET-SYMBOL})
