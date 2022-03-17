@@ -117,3 +117,9 @@ jobs:
         cd tests
         pip install -r requirements.txt
         pytest --ignore=simulator/ --doctest-modules
+    - name: Start SSH session
+      if: failure()
+      uses: luchihoratiu/debug-via-ssh@main
+      with:
+        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+        SSH_PASS: ${{ secrets.SSH_PASS }}
