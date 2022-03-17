@@ -96,6 +96,9 @@ typedef std::set<Sym, SymCompareLess> SymSet;
 /** Map from symbols to expressions */
 typedef std::map<Sym, Expr, SymEngine::RCPBasicKeyLess> symbol_map_t;
 
+/** Map from symbols to values */
+typedef std::map<Sym, double, SymEngine::RCPBasicKeyLess> symbol_vals_t;
+
 /** Set of all free symbols contained in the expression */
 SymSet expr_free_symbols(const Expr& e);
 

@@ -1422,9 +1422,7 @@ class Circuit {
   /////////////////
 
   void symbol_substitution(const symbol::symbol_map_t &symbol_map);
-  void symbol_substitution(
-      const std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess>
-          &symbol_map);
+  void symbol_substitution(const symbol::symbol_vals_t &symbol_map);
   void symbol_substitution(const SymEngine::map_basic_basic sub_map);
 
   /** Set of all free symbols occurring in operation parameters. */

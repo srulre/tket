@@ -94,9 +94,7 @@ void ZXDiagram::symbol_substitution(const symbol::symbol_map_t& symbol_map) {
   symbol_substitution(sub_map);
 }
 
-void ZXDiagram::symbol_substitution(
-    const std::map<symbol::Sym, double, SymEngine::RCPBasicKeyLess>&
-        symbol_map) {
+void ZXDiagram::symbol_substitution(const symbol::symbol_vals_t& symbol_map) {
   SymEngine::map_basic_basic sub_map;
   for (std::pair<symbol::Sym, symbol::Expr> p : symbol_map) {
     symbol::ExprPtr s = p.first;
