@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - develop
+      - test-feature-symlib
   schedule:
     # 03:00 every Saturday morning
     - cron: '0 3 * * 6'
@@ -403,7 +404,6 @@ jobs:
     - name: Build tket-symbol
       run: conan create --profile=tket recipes/tket-symbol
     - name: Build tket
-      if: steps.cache-tket.outputs.cache-hit != 'true'
       run: conan create --profile=tket recipes/tket
     - name: Build and run tket tests
       run: conan create --profile=tket recipes/tket-tests
