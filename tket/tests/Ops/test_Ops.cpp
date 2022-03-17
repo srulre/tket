@@ -181,7 +181,7 @@ SCENARIO("Check op retrieval overloads are working correctly.", "[ops]") {
     CHECK(nphasedx->get_params().size() == 2);
     CHECK(
         nphasedx->transpose()->get_params() ==
-        std::vector<SymEngine::Expression>{0.5, 0.5});
+        std::vector<symbol::Expr>{0.5, 0.5});
   }
 
   GIVEN("Check the transpose at the Box level") {
