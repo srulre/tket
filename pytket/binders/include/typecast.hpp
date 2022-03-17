@@ -30,9 +30,9 @@ namespace pybind11 {
 namespace detail {
 
 template <>
-struct type_caster<SymEngine::Expression> {
+struct type_caster<tket::symbol::Expr> {
  public:
-  PYBIND11_TYPE_CASTER(SymEngine::Expression, _("Expression"));
+  PYBIND11_TYPE_CASTER(tket::symbol::Expr, _("Expression"));
   static void assert_tuple_length(tuple t, unsigned len) {
     if (t.size() != len)
       throw std::logic_error("Sympy expression is not well-formed");
@@ -153,7 +153,7 @@ struct type_caster<SymEngine::Expression> {
     } else {
       double v = PyFloat_AsDouble(src.ptr());
       if (!PyErr_Occurred()) {
-        value = SymEngine::Expression(v);
+        value = tket::symbol::Expr(v);
         return true;
       }
       PyErr_Clear();
@@ -295,7 +295,7 @@ struct type_caster<SymEngine::Expression> {
     }
   }
   static handle cast(
-      SymEngine::Expression src, return_value_policy /* policy */,
+      tket::symbol::Expr src, return_value_policy /* policy */,
       handle /* parent */) {
     std::optional<double> eval = tket::symbol::eval_expr(src);
     if (!eval)
