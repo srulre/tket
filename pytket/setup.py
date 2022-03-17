@@ -35,18 +35,6 @@ class CMakeExtension(Extension):
         self.sourcedir = os.path.abspath(sourcedir)
 
 
-def libfile(name):
-    sysname = platform.system()
-    if sysname == "Linux":
-        return "lib" + name + ".so"
-    elif sysname == "Darwin":
-        return "lib" + name + ".dylib"
-    elif sysname == "Windows":
-        return name + ".dll"
-    else:
-        return None
-
-
 class CMakeBuild(build_ext):
     def run(self):
         try:
@@ -81,7 +69,7 @@ class CMakeBuild(build_ext):
                 _future = list(pool.map(self.build_extension, self.extensions))
 
         if platform.system() in ["Darwin", "Windows"]:
-            # Hack to put the tket library alongside the extension libraries
+            # Hack to put the needed libraries alongside the extension libraries
             conan_tket_profile = os.getenv("CONAN_TKET_PROFILE", default="tket")
             conaninfo = dict(
                 [
@@ -104,36 +92,14 @@ class CMakeBuild(build_ext):
                     )
                 ]
             )
-            reqs = conaninfo["conanfile.txt"]["requires"]
-            tket_reqs = [req for req in reqs if req.startswith("tket/")]
-            assert len(tket_reqs) == 1
-            tket_req = tket_reqs[0]
-            directory = conaninfo[tket_req]["package_folder"]
-            tket_libs = [
-                "tket-Utils",
-                "tket-ZX",
-                "tket-OpType",
-                "tket-Clifford",
-                "tket-Ops",
-                "tket-Graphs",
-                "tket-Gate",
-                "tket-PauliGraph",
-                "tket-Circuit",
-                "tket-Architecture",
-                "tket-Simulation",
-                "tket-Diagonalisation",
-                "tket-Characterisation",
-                "tket-Converters",
-                "tket-TokenSwapping",
-                "tket-Placement",
-                "tket-Mapping",
-                "tket-MeasurementSetup",
-                "tket-Transformations",
-                "tket-ArchAwareSynth",
-                "tket-Predicates",
-            ]
-            for tket_lib in tket_libs:
-                shutil.copy(os.path.join(directory, "lib", libfile(tket_lib)), extdir)
+            for comp, info in conaninfo.items():
+                if comp.startswith("tket"):
+                    lib_dir = os.path.join(info["package_folder"], "lib")
+                    lib_files = os.listdir(lib_dir)
+                    for lib_file in lib_files:
+                        lib_path = os.path.join(lib_dir, lib_file)
+                        if os.path.isfile(lib_path):
+                            shutil.copy(lib_path, extdir, follow_symlinks=False)
 
     def cmake_config(self, extdir, extsource):
 
