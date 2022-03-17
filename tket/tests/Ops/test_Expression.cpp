@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <symengine/eval.h>
-
 #include <catch2/catch.hpp>
 #include <symbol/symbol.hpp>
 
@@ -69,7 +67,6 @@ SCENARIO("Expression uniqueness", "[ops]") {
   GIVEN("Two equivalent constants") {
     symbol::Expr a(0.5);
     symbol::Expr b(2 * 3. / 4 - 1);
-    b = SymEngine::evalf(b, 53);
     REQUIRE(a == b);
   }
   GIVEN("Two different constants") {

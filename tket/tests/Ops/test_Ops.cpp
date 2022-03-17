@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <symengine/eval.h>
-
 #include <catch2/catch.hpp>
 #include <optional>
 #include <unsupported/Eigen/MatrixFunctions>
