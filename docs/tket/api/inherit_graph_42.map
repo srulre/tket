@@ -1,7 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title="STL class." alt="" coords="5,1543,120,1569"/>
-<area shape="rect" id="node2" title="STL class." alt="" coords="178,1045,297,1072"/>
-<area shape="rect" id="node42" title="STL class." alt="" coords="168,1568,307,1595"/>
+<area shape="rect" id="node1" title="STL class." alt="" coords="5,1568,120,1595"/>
+<area shape="rect" id="node2" title="STL class." alt="" coords="178,1071,297,1097"/>
+<area shape="rect" id="node43" title="STL class." alt="" coords="168,1593,307,1620"/>
 <area shape="rect" id="node3" href="$classtket_1_1aas_1_1InvalidCostCalculation.html" title=" " alt="" coords="378,5,610,32"/>
 <area shape="rect" id="node4" href="$classtket_1_1aas_1_1InvalidRowOperation.html" title=" " alt="" coords="383,56,605,83"/>
 <area shape="rect" id="node5" href="$classtket_1_1aas_1_1NoHamiltonPath.html" title=" " alt="" coords="398,107,590,133"/>
@@ -32,14 +32,15 @@
 <area shape="rect" id="node30" href="$classtket_1_1PatternError.html" title=" " alt="" coords="428,1451,560,1477"/>
 <area shape="rect" id="node31" href="$classtket_1_1PlacementError.html" title=" " alt="" coords="417,1501,571,1528"/>
 <area shape="rect" id="node32" href="$classtket_1_1QubitGraphInvalidity.html" title=" " alt="" coords="399,1552,589,1579"/>
-<area shape="rect" id="node33" href="$classtket_1_1Transforms_1_1ControlDecompError.html" title=" " alt="" coords="403,1603,585,1645"/>
-<area shape="rect" id="node34" href="$classtket_1_1UnknownCXConfigType.html" title=" " alt="" coords="392,1669,596,1696"/>
-<area shape="rect" id="node35" href="$classtket_1_1UnknownOpType.html" title="OpType not supported." alt="" coords="412,1720,576,1747"/>
-<area shape="rect" id="node36" href="$classtket_1_1UnknownPauli.html" title="Pauli not supported." alt="" coords="421,1771,567,1797"/>
-<area shape="rect" id="node37" href="$classtket_1_1UnknownPauliPartitionStrat.html" title=" " alt="" coords="393,1822,595,1863"/>
-<area shape="rect" id="node38" href="$classtket_1_1UnsatisfiedPredicate.html" title=" " alt="" coords="399,1888,589,1915"/>
-<area shape="rect" id="node39" href="$classtket_1_1Unsupported.html" title=" " alt="" coords="425,1939,563,1965"/>
-<area shape="rect" id="node41" href="$classtket_1_1zx_1_1ZXError.html" title="Error messages." alt="" coords="431,1989,557,2016"/>
-<area shape="rect" id="node40" href="$classtket_1_1SimpleOnly.html" title=" " alt="" coords="681,1939,812,1965"/>
-<area shape="rect" id="node43" href="$structtket_1_1GateUnitaryMatrixError.html" title="We do not wish to couple tightly to exception classes elsewhere." alt="" coords="391,2040,597,2067"/>
+<area shape="rect" id="node33" href="$classtket_1_1SubstitutionFailure.html" title=" " alt="" coords="406,1603,582,1629"/>
+<area shape="rect" id="node34" href="$classtket_1_1Transforms_1_1ControlDecompError.html" title=" " alt="" coords="403,1654,585,1695"/>
+<area shape="rect" id="node35" href="$classtket_1_1UnknownCXConfigType.html" title=" " alt="" coords="392,1720,596,1747"/>
+<area shape="rect" id="node36" href="$classtket_1_1UnknownOpType.html" title="OpType not supported." alt="" coords="412,1771,576,1797"/>
+<area shape="rect" id="node37" href="$classtket_1_1UnknownPauli.html" title="Pauli not supported." alt="" coords="421,1821,567,1848"/>
+<area shape="rect" id="node38" href="$classtket_1_1UnknownPauliPartitionStrat.html" title=" " alt="" coords="393,1873,595,1914"/>
+<area shape="rect" id="node39" href="$classtket_1_1UnsatisfiedPredicate.html" title=" " alt="" coords="399,1939,589,1965"/>
+<area shape="rect" id="node40" href="$classtket_1_1Unsupported.html" title=" " alt="" coords="425,1989,563,2016"/>
+<area shape="rect" id="node42" href="$classtket_1_1zx_1_1ZXError.html" title="Error messages." alt="" coords="431,2040,557,2067"/>
+<area shape="rect" id="node41" href="$classtket_1_1SimpleOnly.html" title=" " alt="" coords="681,1989,812,2016"/>
+<area shape="rect" id="node44" href="$structtket_1_1GateUnitaryMatrixError.html" title="We do not wish to couple tightly to exception classes elsewhere." alt="" coords="391,2091,597,2117"/>
 </map>
