@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2022-03-15 16:41:07</td>
+      <td>2022-04-02 04:24:08</td>
     </tr>
   </table>
 </div>
@@ -254,7 +254,7 @@
       <td class="lineno"><a id="l24" href="#l24">24</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3788</td>
+      <td class="linecount coveredLine">10386</td>
       <td class="src coveredLine"><span class="n">CyclicShiftCostEstimate</span><span class="o">::</span><span class="n">CyclicShiftCostEstimate</span><span class="p">(</span></td>
     </tr>
 
@@ -262,7 +262,7 @@
       <td class="lineno"><a id="l25" href="#l25">25</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3788</td>
+      <td class="linecount coveredLine">10386</td>
       <td class="src coveredLine">    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;&amp;</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">DistancesInterface</span><span class="o">&amp;</span> <span class="n">distances</span><span class="p">)</span> <span class="p">{</span></td>
     </tr>
 
@@ -302,7 +302,7 @@
       <td class="lineno"><a id="l30" href="#l30">30</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3788</td>
+      <td class="linecount coveredLine">10386</td>
       <td class="src coveredLine">  <span class="kt">size_t</span> <span class="n">largest_distance</span> <span class="o">=</span> <span class="n">distances</span><span class="p">(</span><span class="n">vertices</span><span class="p">.</span><span class="n">back</span><span class="p">(),</span> <span class="n">vertices</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span></td>
     </tr>
 
@@ -310,7 +310,7 @@
       <td class="lineno"><a id="l31" href="#l31">31</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3788</td>
+      <td class="linecount coveredLine">10386</td>
       <td class="src coveredLine">  <span class="kt">size_t</span> <span class="n">total_distance</span> <span class="o">=</span> <span class="n">largest_distance</span><span class="p">;</span></td>
     </tr>
 
@@ -328,12 +328,12 @@
         <details class="linebranchDetails">
         <summary class="linebranchSummary">2/2</summary>
         <div class="linebranchContents">
-          <div class="takenBranch">&check; Branch 1 taken 2313 times.</div>
-          <div class="takenBranch">&check; Branch 2 taken 1475 times.</div>
+          <div class="takenBranch">&check; Branch 1 taken 6170 times.</div>
+          <div class="takenBranch">&check; Branch 2 taken 4216 times.</div>
         </div>
         </details>
       </td>
-      <td class="linecount coveredLine">3788</td>
+      <td class="linecount coveredLine">10386</td>
       <td class="src coveredLine">  <span class="k">if</span> <span class="p">(</span><span class="n">vertices</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span></td>
     </tr>
 
@@ -341,7 +341,7 @@
       <td class="lineno"><a id="l34" href="#l34">34</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">2313</td>
+      <td class="linecount coveredLine">6170</td>
       <td class="src coveredLine">    <span class="n">start_v_index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span></td>
     </tr>
 
@@ -365,7 +365,7 @@
       <td class="lineno"><a id="l37" href="#l37">37</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1475</td>
+      <td class="linecount coveredLine">4216</td>
       <td class="src coveredLine">    <span class="kt">size_t</span> <span class="n">v_index_with_largest_distance</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span></td>
     </tr>
 
@@ -375,12 +375,12 @@
         <details class="linebranchDetails">
         <summary class="linebranchSummary">2/2</summary>
         <div class="linebranchContents">
-          <div class="takenBranch">&check; Branch 1 taken 5832 times.</div>
-          <div class="takenBranch">&check; Branch 2 taken 1475 times.</div>
+          <div class="takenBranch">&check; Branch 1 taken 15419 times.</div>
+          <div class="takenBranch">&check; Branch 2 taken 4216 times.</div>
         </div>
         </details>
       </td>
-      <td class="linecount coveredLine">7307</td>
+      <td class="linecount coveredLine">19635</td>
       <td class="src coveredLine">    <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">ii</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">vertices</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">ii</span><span class="p">)</span> <span class="p">{</span></td>
     </tr>
 
@@ -388,7 +388,7 @@
       <td class="lineno"><a id="l39" href="#l39">39</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">5832</td>
+      <td class="linecount coveredLine">15419</td>
       <td class="src coveredLine">      <span class="k">const</span> <span class="k">auto</span> <span class="n">distance_i</span> <span class="o">=</span> <span class="n">distances</span><span class="p">(</span><span class="n">vertices</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span> <span class="n">vertices</span><span class="p">[</span><span class="n">ii</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]);</span></td>
     </tr>
 
@@ -404,7 +404,7 @@
       <td class="lineno"><a id="l41" href="#l41">41</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">5832</td>
+      <td class="linecount coveredLine">15419</td>
       <td class="src coveredLine">      <span class="n">total_distance</span> <span class="o">+=</span> <span class="n">distance_i</span><span class="p">;</span></td>
     </tr>
 
@@ -414,12 +414,12 @@
         <details class="linebranchDetails">
         <summary class="linebranchSummary">2/2</summary>
         <div class="linebranchContents">
-          <div class="takenBranch">&check; Branch 0 taken 1342 times.</div>
-          <div class="takenBranch">&check; Branch 1 taken 4490 times.</div>
+          <div class="takenBranch">&check; Branch 0 taken 4221 times.</div>
+          <div class="takenBranch">&check; Branch 1 taken 11198 times.</div>
         </div>
         </details>
       </td>
-      <td class="linecount coveredLine">5832</td>
+      <td class="linecount coveredLine">15419</td>
       <td class="src coveredLine">      <span class="k">if</span> <span class="p">(</span><span class="n">distance_i</span> <span class="o">&lt;</span> <span class="n">largest_distance</span><span class="p">)</span> <span class="p">{</span></td>
     </tr>
 
@@ -427,7 +427,7 @@
       <td class="lineno"><a id="l43" href="#l43">43</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1342</td>
+      <td class="linecount coveredLine">4221</td>
       <td class="src coveredLine">        <span class="n">largest_distance</span> <span class="o">=</span> <span class="n">distance_i</span><span class="p">;</span></td>
     </tr>
 
@@ -435,7 +435,7 @@
       <td class="lineno"><a id="l44" href="#l44">44</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1342</td>
+      <td class="linecount coveredLine">4221</td>
       <td class="src coveredLine">        <span class="n">v_index_with_largest_distance</span> <span class="o">=</span> <span class="n">ii</span><span class="p">;</span></td>
     </tr>
 
@@ -467,7 +467,7 @@
       <td class="lineno"><a id="l48" href="#l48">48</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1475</td>
+      <td class="linecount coveredLine">4216</td>
       <td class="src coveredLine">    <span class="n">total_distance</span> <span class="o">-=</span> <span class="n">largest_distance</span><span class="p">;</span></td>
     </tr>
 
@@ -483,7 +483,7 @@
       <td class="lineno"><a id="l50" href="#l50">50</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1475</td>
+      <td class="linecount coveredLine">4216</td>
       <td class="src coveredLine">    <span class="n">start_v_index</span> <span class="o">=</span> <span class="p">(</span><span class="n">v_index_with_largest_distance</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">vertices</span><span class="p">.</span><span class="n">size</span><span class="p">();</span></td>
     </tr>
 
@@ -563,7 +563,7 @@
       <td class="lineno"><a id="l60" href="#l60">60</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3788</td>
+      <td class="linecount coveredLine">10386</td>
       <td class="src coveredLine">  <span class="n">estimated_concrete_swaps</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">total_distance</span><span class="p">;</span></td>
     </tr>
 
@@ -579,7 +579,7 @@
       <td class="lineno"><a id="l62" href="#l62">62</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3788</td>
+      <td class="linecount coveredLine">10386</td>
       <td class="src coveredLine">  <span class="n">estimated_concrete_swaps</span> <span class="o">-=</span> <span class="n">vertices</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span></td>
     </tr>
 
@@ -587,7 +587,7 @@
       <td class="lineno"><a id="l63" href="#l63">63</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3788</td>
+      <td class="linecount coveredLine">10386</td>
       <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
 
