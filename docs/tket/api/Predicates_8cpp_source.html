@@ -741,128 +741,129 @@ $(function() {
 <div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;          std::dynamic_pointer_cast&lt;GateSetPredicate&gt;(pred_ptr)) {</div>
 <div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;GateSetPredicate&quot;</span>;</div>
 <div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;    j[<span class="stringliteral">&quot;allowed_types&quot;</span>] = cast_pred-&gt;get_allowed_types();</div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;      std::shared_ptr&lt;NoClassicalControlPredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;          std::dynamic_pointer_cast&lt;NoClassicalControlPredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;NoClassicalControlPredicate&quot;</span>;</div>
-<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;      std::shared_ptr&lt;NoFastFeedforwardPredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;          std::dynamic_pointer_cast&lt;NoFastFeedforwardPredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;NoFastFeedforwardPredicate&quot;</span>;</div>
-<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;      std::shared_ptr&lt;NoClassicalBitsPredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;          std::dynamic_pointer_cast&lt;NoClassicalBitsPredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;NoClassicalBitsPredicate&quot;</span>;</div>
-<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;      std::shared_ptr&lt;NoWireSwapsPredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;          std::dynamic_pointer_cast&lt;NoWireSwapsPredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;NoWireSwapsPredicate&quot;</span>;</div>
-<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;      std::shared_ptr&lt;MaxTwoQubitGatesPredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;          std::dynamic_pointer_cast&lt;MaxTwoQubitGatesPredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;MaxTwoQubitGatesPredicate&quot;</span>;</div>
-<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;      std::shared_ptr&lt;PlacementPredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;          std::dynamic_pointer_cast&lt;PlacementPredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;PlacementPredicate&quot;</span>;</div>
-<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;    j[<span class="stringliteral">&quot;node_set&quot;</span>] = cast_pred-&gt;get_nodes();</div>
-<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;      std::shared_ptr&lt;ConnectivityPredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;          std::dynamic_pointer_cast&lt;ConnectivityPredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;ConnectivityPredicate&quot;</span>;</div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;    j[<span class="stringliteral">&quot;architecture&quot;</span>] = cast_pred-&gt;get_arch();</div>
-<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;      std::shared_ptr&lt;DirectednessPredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;          std::dynamic_pointer_cast&lt;DirectednessPredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;DirectednessPredicate&quot;</span>;</div>
-<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;    j[<span class="stringliteral">&quot;architecture&quot;</span>] = cast_pred-&gt;get_arch();</div>
-<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;      std::shared_ptr&lt;CliffordCircuitPredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;          std::dynamic_pointer_cast&lt;CliffordCircuitPredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;CliffordCircuitPredicate&quot;</span>;</div>
-<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;      std::shared_ptr&lt;UserDefinedPredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;          std::dynamic_pointer_cast&lt;UserDefinedPredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;UserDefinedPredicate&quot;</span>;</div>
-<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;    j[<span class="stringliteral">&quot;custom&quot;</span>] = <span class="stringliteral">&quot;SERIALIZATION OF FUNCTIONS IS NOT YET SUPPORTED&quot;</span>;</div>
-<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;      std::shared_ptr&lt;DefaultRegisterPredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;          std::dynamic_pointer_cast&lt;DefaultRegisterPredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;DefaultRegisterPredicate&quot;</span>;</div>
-<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;      std::shared_ptr&lt;MaxNQubitsPredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;          std::dynamic_pointer_cast&lt;MaxNQubitsPredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;MaxNQubitsPredicate&quot;</span>;</div>
-<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;    j[<span class="stringliteral">&quot;n_qubits&quot;</span>] = cast_pred-&gt;get_n_qubits();</div>
-<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;      std::shared_ptr&lt;NoBarriersPredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;          std::dynamic_pointer_cast&lt;NoBarriersPredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;NoBarriersPredicate&quot;</span>;</div>
-<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;      std::shared_ptr&lt;NoMidMeasurePredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;          std::dynamic_pointer_cast&lt;NoMidMeasurePredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;NoMidMeasurePredicate&quot;</span>;</div>
-<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;      std::shared_ptr&lt;NoSymbolsPredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;          std::dynamic_pointer_cast&lt;NoSymbolsPredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;NoSymbolsPredicate&quot;</span>;</div>
-<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
-<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;      std::shared_ptr&lt;GlobalPhasedXPredicate&gt; cast_pred =</div>
-<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;          std::dynamic_pointer_cast&lt;GlobalPhasedXPredicate&gt;(pred_ptr)) {</div>
-<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;GlobalPhasedXPredicate&quot;</span>;</div>
-<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;    <span class="keywordflow">throw</span> <a class="code" href="classtket_1_1JsonError.html">JsonError</a>(<span class="stringliteral">&quot;Cannot serialize PredicatePtr of unknown type.&quot;</span>);</div>
-<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;  }</div>
-<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;}</div>
-<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160; </div>
-<div class="line"><a name="l00742"></a><span class="lineno"><a class="line" href="namespacetket.html#a25325849fbb3b1fdf28c402257dd63e9">  742</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacetket.html#ab465389a1775c7abac371775b9c3a938">from_json</a>(<span class="keyword">const</span> nlohmann::json&amp; j, <a class="code" href="namespacetket.html#ad6db3955c4f1dbc5fb33f72bc2822e35">PredicatePtr</a>&amp; pred_ptr) {</div>
-<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;  std::string classname = j.at(<span class="stringliteral">&quot;type&quot;</span>).get&lt;std::string&gt;();</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;  <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;GateSetPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;    <a class="code" href="namespacetket.html#a165b1d270a350af87f1c7a63d68f9276">OpTypeSet</a> allowed_types = j.at(<span class="stringliteral">&quot;allowed_types&quot;</span>).get&lt;<a class="code" href="namespacetket.html#a165b1d270a350af87f1c7a63d68f9276">OpTypeSet</a>&gt;();</div>
-<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;    pred_ptr = std::make_shared&lt;GateSetPredicate&gt;(allowed_types);</div>
-<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;NoClassicalControlPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;    pred_ptr = std::make_shared&lt;NoClassicalControlPredicate&gt;();</div>
-<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;NoFastFeedforwardPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;    pred_ptr = std::make_shared&lt;NoFastFeedforwardPredicate&gt;();</div>
-<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;NoClassicalBitsPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;    pred_ptr = std::make_shared&lt;NoClassicalBitsPredicate&gt;();</div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;NoWireSwapsPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;    pred_ptr = std::make_shared&lt;NoWireSwapsPredicate&gt;();</div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;MaxTwoQubitGatesPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;    pred_ptr = std::make_shared&lt;MaxTwoQubitGatesPredicate&gt;();</div>
-<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;PlacementPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;    <a class="code" href="namespacetket.html#ae0783a3ad2fcb131346b928d76ad0699">node_set_t</a> node_set = j.at(<span class="stringliteral">&quot;node_set&quot;</span>).get&lt;<a class="code" href="namespacetket.html#ae0783a3ad2fcb131346b928d76ad0699">node_set_t</a>&gt;();</div>
-<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;    pred_ptr = std::make_shared&lt;PlacementPredicate&gt;(node_set);</div>
-<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;ConnectivityPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;    <a class="code" href="classtket_1_1Architecture.html">Architecture</a> arch = j.at(<span class="stringliteral">&quot;architecture&quot;</span>).get&lt;<a class="code" href="classtket_1_1Architecture.html">Architecture</a>&gt;();</div>
-<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;    pred_ptr = std::make_shared&lt;ConnectivityPredicate&gt;(arch);</div>
-<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;DirectednessPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;    <a class="code" href="classtket_1_1Architecture.html">Architecture</a> arch = j.at(<span class="stringliteral">&quot;architecture&quot;</span>).get&lt;<a class="code" href="classtket_1_1Architecture.html">Architecture</a>&gt;();</div>
-<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;    pred_ptr = std::make_shared&lt;DirectednessPredicate&gt;(arch);</div>
-<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;CliffordCircuitPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;    pred_ptr = std::make_shared&lt;CliffordCircuitPredicate&gt;();</div>
-<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;UserDefinedPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;    <span class="keywordflow">throw</span> <a class="code" href="classtket_1_1NotImplemented.html">NotImplemented</a>(</div>
-<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;        <span class="stringliteral">&quot;Deserialization of UserDefinedPredicates not yet implemented.&quot;</span>);</div>
-<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;DefaultRegisterPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;    pred_ptr = std::make_shared&lt;DefaultRegisterPredicate&gt;();</div>
-<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;MaxNQubitsPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;    <span class="keywordtype">unsigned</span> n_qubits = j.at(<span class="stringliteral">&quot;n_qubits&quot;</span>).get&lt;<span class="keywordtype">unsigned</span>&gt;();</div>
-<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;    pred_ptr = std::make_shared&lt;MaxNQubitsPredicate&gt;(n_qubits);</div>
-<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;NoBarriersPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;    pred_ptr = std::make_shared&lt;NoBarriersPredicate&gt;();</div>
-<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;NoMidMeasurePredicate&quot;</span>) {</div>
-<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;    pred_ptr = std::make_shared&lt;NoMidMeasurePredicate&gt;();</div>
-<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;NoSymbolsPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;    pred_ptr = std::make_shared&lt;NoSymbolsPredicate&gt;();</div>
-<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;GlobalPhasedXPredicate&quot;</span>) {</div>
-<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;    pred_ptr = std::make_shared&lt;GlobalPhasedXPredicate&gt;();</div>
-<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;    <span class="keywordflow">throw</span> <a class="code" href="classtket_1_1JsonError.html">JsonError</a>(<span class="stringliteral">&quot;Cannot load PredicatePtr of unknown type.&quot;</span>);</div>
-<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;  }</div>
-<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;}</div>
-<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160; </div>
-<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;}  <span class="comment">// namespace tket</span></div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;    std::sort(j[<span class="stringliteral">&quot;allowed_types&quot;</span>].begin(), j[<span class="stringliteral">&quot;allowed_types&quot;</span>].end());</div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;      std::shared_ptr&lt;NoClassicalControlPredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;          std::dynamic_pointer_cast&lt;NoClassicalControlPredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;NoClassicalControlPredicate&quot;</span>;</div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;      std::shared_ptr&lt;NoFastFeedforwardPredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;          std::dynamic_pointer_cast&lt;NoFastFeedforwardPredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;NoFastFeedforwardPredicate&quot;</span>;</div>
+<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;      std::shared_ptr&lt;NoClassicalBitsPredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;          std::dynamic_pointer_cast&lt;NoClassicalBitsPredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;NoClassicalBitsPredicate&quot;</span>;</div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;      std::shared_ptr&lt;NoWireSwapsPredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;          std::dynamic_pointer_cast&lt;NoWireSwapsPredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;NoWireSwapsPredicate&quot;</span>;</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;      std::shared_ptr&lt;MaxTwoQubitGatesPredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;          std::dynamic_pointer_cast&lt;MaxTwoQubitGatesPredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;MaxTwoQubitGatesPredicate&quot;</span>;</div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;      std::shared_ptr&lt;PlacementPredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;          std::dynamic_pointer_cast&lt;PlacementPredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;PlacementPredicate&quot;</span>;</div>
+<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;    j[<span class="stringliteral">&quot;node_set&quot;</span>] = cast_pred-&gt;get_nodes();</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;      std::shared_ptr&lt;ConnectivityPredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;          std::dynamic_pointer_cast&lt;ConnectivityPredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;ConnectivityPredicate&quot;</span>;</div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;    j[<span class="stringliteral">&quot;architecture&quot;</span>] = cast_pred-&gt;get_arch();</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;      std::shared_ptr&lt;DirectednessPredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;          std::dynamic_pointer_cast&lt;DirectednessPredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;DirectednessPredicate&quot;</span>;</div>
+<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;    j[<span class="stringliteral">&quot;architecture&quot;</span>] = cast_pred-&gt;get_arch();</div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;      std::shared_ptr&lt;CliffordCircuitPredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;          std::dynamic_pointer_cast&lt;CliffordCircuitPredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;CliffordCircuitPredicate&quot;</span>;</div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;      std::shared_ptr&lt;UserDefinedPredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;          std::dynamic_pointer_cast&lt;UserDefinedPredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;UserDefinedPredicate&quot;</span>;</div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;    j[<span class="stringliteral">&quot;custom&quot;</span>] = <span class="stringliteral">&quot;SERIALIZATION OF FUNCTIONS IS NOT YET SUPPORTED&quot;</span>;</div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;      std::shared_ptr&lt;DefaultRegisterPredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;          std::dynamic_pointer_cast&lt;DefaultRegisterPredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;DefaultRegisterPredicate&quot;</span>;</div>
+<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;      std::shared_ptr&lt;MaxNQubitsPredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;          std::dynamic_pointer_cast&lt;MaxNQubitsPredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;MaxNQubitsPredicate&quot;</span>;</div>
+<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;    j[<span class="stringliteral">&quot;n_qubits&quot;</span>] = cast_pred-&gt;get_n_qubits();</div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;      std::shared_ptr&lt;NoBarriersPredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;          std::dynamic_pointer_cast&lt;NoBarriersPredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;NoBarriersPredicate&quot;</span>;</div>
+<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;      std::shared_ptr&lt;NoMidMeasurePredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;          std::dynamic_pointer_cast&lt;NoMidMeasurePredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;NoMidMeasurePredicate&quot;</span>;</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;      std::shared_ptr&lt;NoSymbolsPredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;          std::dynamic_pointer_cast&lt;NoSymbolsPredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;NoSymbolsPredicate&quot;</span>;</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;      std::shared_ptr&lt;GlobalPhasedXPredicate&gt; cast_pred =</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;          std::dynamic_pointer_cast&lt;GlobalPhasedXPredicate&gt;(pred_ptr)) {</div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;    j[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;GlobalPhasedXPredicate&quot;</span>;</div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;    <span class="keywordflow">throw</span> <a class="code" href="classtket_1_1JsonError.html">JsonError</a>(<span class="stringliteral">&quot;Cannot serialize PredicatePtr of unknown type.&quot;</span>);</div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;  }</div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;}</div>
+<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160; </div>
+<div class="line"><a name="l00743"></a><span class="lineno"><a class="line" href="namespacetket.html#a25325849fbb3b1fdf28c402257dd63e9">  743</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacetket.html#ab465389a1775c7abac371775b9c3a938">from_json</a>(<span class="keyword">const</span> nlohmann::json&amp; j, <a class="code" href="namespacetket.html#ad6db3955c4f1dbc5fb33f72bc2822e35">PredicatePtr</a>&amp; pred_ptr) {</div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;  std::string classname = j.at(<span class="stringliteral">&quot;type&quot;</span>).get&lt;std::string&gt;();</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;  <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;GateSetPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;    <a class="code" href="namespacetket.html#a165b1d270a350af87f1c7a63d68f9276">OpTypeSet</a> allowed_types = j.at(<span class="stringliteral">&quot;allowed_types&quot;</span>).get&lt;<a class="code" href="namespacetket.html#a165b1d270a350af87f1c7a63d68f9276">OpTypeSet</a>&gt;();</div>
+<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;    pred_ptr = std::make_shared&lt;GateSetPredicate&gt;(allowed_types);</div>
+<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;NoClassicalControlPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;    pred_ptr = std::make_shared&lt;NoClassicalControlPredicate&gt;();</div>
+<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;NoFastFeedforwardPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;    pred_ptr = std::make_shared&lt;NoFastFeedforwardPredicate&gt;();</div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;NoClassicalBitsPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;    pred_ptr = std::make_shared&lt;NoClassicalBitsPredicate&gt;();</div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;NoWireSwapsPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;    pred_ptr = std::make_shared&lt;NoWireSwapsPredicate&gt;();</div>
+<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;MaxTwoQubitGatesPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;    pred_ptr = std::make_shared&lt;MaxTwoQubitGatesPredicate&gt;();</div>
+<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;PlacementPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;    <a class="code" href="namespacetket.html#ae0783a3ad2fcb131346b928d76ad0699">node_set_t</a> node_set = j.at(<span class="stringliteral">&quot;node_set&quot;</span>).get&lt;<a class="code" href="namespacetket.html#ae0783a3ad2fcb131346b928d76ad0699">node_set_t</a>&gt;();</div>
+<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;    pred_ptr = std::make_shared&lt;PlacementPredicate&gt;(node_set);</div>
+<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;ConnectivityPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;    <a class="code" href="classtket_1_1Architecture.html">Architecture</a> arch = j.at(<span class="stringliteral">&quot;architecture&quot;</span>).get&lt;<a class="code" href="classtket_1_1Architecture.html">Architecture</a>&gt;();</div>
+<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;    pred_ptr = std::make_shared&lt;ConnectivityPredicate&gt;(arch);</div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;DirectednessPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;    <a class="code" href="classtket_1_1Architecture.html">Architecture</a> arch = j.at(<span class="stringliteral">&quot;architecture&quot;</span>).get&lt;<a class="code" href="classtket_1_1Architecture.html">Architecture</a>&gt;();</div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;    pred_ptr = std::make_shared&lt;DirectednessPredicate&gt;(arch);</div>
+<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;CliffordCircuitPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;    pred_ptr = std::make_shared&lt;CliffordCircuitPredicate&gt;();</div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;UserDefinedPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;    <span class="keywordflow">throw</span> <a class="code" href="classtket_1_1NotImplemented.html">NotImplemented</a>(</div>
+<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;        <span class="stringliteral">&quot;Deserialization of UserDefinedPredicates not yet implemented.&quot;</span>);</div>
+<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;DefaultRegisterPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;    pred_ptr = std::make_shared&lt;DefaultRegisterPredicate&gt;();</div>
+<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;MaxNQubitsPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;    <span class="keywordtype">unsigned</span> n_qubits = j.at(<span class="stringliteral">&quot;n_qubits&quot;</span>).get&lt;<span class="keywordtype">unsigned</span>&gt;();</div>
+<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;    pred_ptr = std::make_shared&lt;MaxNQubitsPredicate&gt;(n_qubits);</div>
+<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;NoBarriersPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;    pred_ptr = std::make_shared&lt;NoBarriersPredicate&gt;();</div>
+<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;NoMidMeasurePredicate&quot;</span>) {</div>
+<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;    pred_ptr = std::make_shared&lt;NoMidMeasurePredicate&gt;();</div>
+<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;NoSymbolsPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;    pred_ptr = std::make_shared&lt;NoSymbolsPredicate&gt;();</div>
+<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (classname == <span class="stringliteral">&quot;GlobalPhasedXPredicate&quot;</span>) {</div>
+<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;    pred_ptr = std::make_shared&lt;GlobalPhasedXPredicate&gt;();</div>
+<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;    <span class="keywordflow">throw</span> <a class="code" href="classtket_1_1JsonError.html">JsonError</a>(<span class="stringliteral">&quot;Cannot load PredicatePtr of unknown type.&quot;</span>);</div>
+<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;  }</div>
+<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;}</div>
+<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160; </div>
+<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;}  <span class="comment">// namespace tket</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclasstket_1_1GateSetPredicate_html_a8563c6bbc80d9c845884e8638a9d5e62"><div class="ttname"><a href="classtket_1_1GateSetPredicate.html#a8563c6bbc80d9c845884e8638a9d5e62">tket::GateSetPredicate::meet</a></div><div class="ttdeci">PredicatePtr meet(const Predicate &amp;other) const override</div><div class="ttdef"><b>Definition:</b> <a href="Predicates_8cpp_source.html#l00110">Predicates.cpp:110</a></div></div>
 <div class="ttc" id="aclasstket_1_1PlacementPredicate_html_a8f1eba5857f41c6635fb33b1b6d10f81"><div class="ttname"><a href="classtket_1_1PlacementPredicate.html#a8f1eba5857f41c6635fb33b1b6d10f81">tket::PlacementPredicate::verify</a></div><div class="ttdeci">bool verify(const Circuit &amp;circ) const override</div><div class="ttdef"><b>Definition:</b> <a href="Predicates_8cpp_source.html#l00287">Predicates.cpp:287</a></div></div>
