@@ -1260,6 +1260,14 @@ Functions</h2></td></tr>
 <tr class="memitem:a9e79753b023b7d8cb018af7762324388"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1MeasurementSetup.html">MeasurementSetup</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket.html#a9e79753b023b7d8cb018af7762324388">measurement_reduction</a> (const std::list&lt; <a class="el" href="classtket_1_1QubitPauliString.html">QubitPauliString</a> &gt; &amp;strings, <a class="el" href="namespacetket.html#a2d578ba7a7267e8172ac6a302fab7f67">PauliPartitionStrat</a> strat, <a class="el" href="namespacetket.html#a4e74bb747130174e23260df03944dd0c">GraphColourMethod</a> method=<a class="el" href="namespacetket.html#a4e74bb747130174e23260df03944dd0ca46a9ebdb80117bfa1f0cdea65438290a">GraphColourMethod::Lazy</a>, <a class="el" href="namespacetket.html#a372ac8e74a26d74ac66c0a2233f532c7">CXConfigType</a> cx_config=<a class="el" href="namespacetket.html#a372ac8e74a26d74ac66c0a2233f532c7adfa90f1b4eb3affbd3b46af34ed2477c">CXConfigType::Snake</a>)</td></tr>
 <tr class="memdesc:a9e79753b023b7d8cb018af7762324388"><td class="mdescLeft">&#160;</td><td class="mdescRight">A tool for reducing the number of measurements required for variational quantum algorithms by partitioning Pauli strings into mutually commuting sets.  <a href="namespacetket.html#a9e79753b023b7d8cb018af7762324388">More...</a><br /></td></tr>
 <tr class="separator:a9e79753b023b7d8cb018af7762324388"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89f114a1adda4cd0d4e8bbd35556412c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket.html#a89f114a1adda4cd0d4e8bbd35556412c">to_json</a> (nlohmann::json &amp;j, const <a class="el" href="structtket_1_1MeasurementSetup_1_1MeasurementBitMap.html">MeasurementSetup::MeasurementBitMap</a> &amp;result)</td></tr>
+<tr class="separator:a89f114a1adda4cd0d4e8bbd35556412c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b3606a7dffd698e3b65ea61eab49f29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket.html#a5b3606a7dffd698e3b65ea61eab49f29">from_json</a> (const nlohmann::json &amp;j, <a class="el" href="structtket_1_1MeasurementSetup_1_1MeasurementBitMap.html">MeasurementSetup::MeasurementBitMap</a> &amp;result)</td></tr>
+<tr class="separator:a5b3606a7dffd698e3b65ea61eab49f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a440f224006d397b83ed0946575a1d737"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket.html#a440f224006d397b83ed0946575a1d737">to_json</a> (nlohmann::json &amp;j, const <a class="el" href="classtket_1_1MeasurementSetup.html">MeasurementSetup</a> &amp;setup)</td></tr>
+<tr class="separator:a440f224006d397b83ed0946575a1d737"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb7b8ddda56ada4703b3898e62e1028d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket.html#adb7b8ddda56ada4703b3898e62e1028d">from_json</a> (const nlohmann::json &amp;j, <a class="el" href="classtket_1_1MeasurementSetup.html">MeasurementSetup</a> &amp;setup)</td></tr>
+<tr class="separator:adb7b8ddda56ada4703b3898e62e1028d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadfe3b9179ee24e74129d10223a7f939"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classtket_1_1ClassicalTransformOp.html">ClassicalTransformOp</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket.html#aadfe3b9179ee24e74129d10223a7f939">ClassicalX</a> ()</td></tr>
 <tr class="memdesc:aadfe3b9179ee24e74129d10223a7f939"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classical NOT transform.  <a href="namespacetket.html#aadfe3b9179ee24e74129d10223a7f939">More...</a><br /></td></tr>
 <tr class="separator:aadfe3b9179ee24e74129d10223a7f939"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -6655,7 +6663,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a91d0b4b066c67030bd53dee413fce050"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91d0b4b066c67030bd53dee413fce050">&#9670;&nbsp;</a></span>from_json() <span class="overload">[1/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a91d0b4b066c67030bd53dee413fce050">&#9670;&nbsp;</a></span>from_json() <span class="overload">[1/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6685,7 +6693,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a8480f9e4486eeb5f6b4df09347b29cd7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8480f9e4486eeb5f6b4df09347b29cd7">&#9670;&nbsp;</a></span>from_json() <span class="overload">[2/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8480f9e4486eeb5f6b4df09347b29cd7">&#9670;&nbsp;</a></span>from_json() <span class="overload">[2/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6715,7 +6723,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="ab465389a1775c7abac371775b9c3a938"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab465389a1775c7abac371775b9c3a938">&#9670;&nbsp;</a></span>from_json() <span class="overload">[3/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab465389a1775c7abac371775b9c3a938">&#9670;&nbsp;</a></span>from_json() <span class="overload">[3/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6745,7 +6753,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="aa288b45e0dc758918b68eec30c5a757d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa288b45e0dc758918b68eec30c5a757d">&#9670;&nbsp;</a></span>from_json() <span class="overload">[4/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa288b45e0dc758918b68eec30c5a757d">&#9670;&nbsp;</a></span>from_json() <span class="overload">[4/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6775,7 +6783,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a366cedf47a3be4f0b69f9d91c9be3b80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a366cedf47a3be4f0b69f9d91c9be3b80">&#9670;&nbsp;</a></span>from_json() <span class="overload">[5/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a366cedf47a3be4f0b69f9d91c9be3b80">&#9670;&nbsp;</a></span>from_json() <span class="overload">[5/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6805,7 +6813,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a7ec709945767bd70fb640a0838d63b0f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ec709945767bd70fb640a0838d63b0f">&#9670;&nbsp;</a></span>from_json() <span class="overload">[6/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ec709945767bd70fb640a0838d63b0f">&#9670;&nbsp;</a></span>from_json() <span class="overload">[6/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6835,7 +6843,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a8ca885e368fdafd84fe074a22facbd83"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ca885e368fdafd84fe074a22facbd83">&#9670;&nbsp;</a></span>from_json() <span class="overload">[7/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ca885e368fdafd84fe074a22facbd83">&#9670;&nbsp;</a></span>from_json() <span class="overload">[7/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6865,7 +6873,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a564b6d2d0f09d0437ef1e4dd1af3159e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a564b6d2d0f09d0437ef1e4dd1af3159e">&#9670;&nbsp;</a></span>from_json() <span class="overload">[8/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a564b6d2d0f09d0437ef1e4dd1af3159e">&#9670;&nbsp;</a></span>from_json() <span class="overload">[8/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6895,7 +6903,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="ab5c1262e82e286a32972346c15cd7ea5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5c1262e82e286a32972346c15cd7ea5">&#9670;&nbsp;</a></span>from_json() <span class="overload">[9/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5c1262e82e286a32972346c15cd7ea5">&#9670;&nbsp;</a></span>from_json() <span class="overload">[9/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6924,8 +6932,68 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
+<a id="adb7b8ddda56ada4703b3898e62e1028d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb7b8ddda56ada4703b3898e62e1028d">&#9670;&nbsp;</a></span>from_json() <span class="overload">[10/25]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tket::from_json </td>
+          <td>(</td>
+          <td class="paramtype">const nlohmann::json &amp;&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classtket_1_1MeasurementSetup.html">MeasurementSetup</a> &amp;&#160;</td>
+          <td class="paramname"><em>setup</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="MeasurementSetup_8cpp_source.html#l00142">142</a> of file <a class="el" href="MeasurementSetup_8cpp_source.html">MeasurementSetup.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a5b3606a7dffd698e3b65ea61eab49f29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b3606a7dffd698e3b65ea61eab49f29">&#9670;&nbsp;</a></span>from_json() <span class="overload">[11/25]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tket::from_json </td>
+          <td>(</td>
+          <td class="paramtype">const nlohmann::json &amp;&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structtket_1_1MeasurementSetup_1_1MeasurementBitMap.html">MeasurementSetup::MeasurementBitMap</a> &amp;&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="MeasurementSetup_8cpp_source.html#l00117">117</a> of file <a class="el" href="MeasurementSetup_8cpp_source.html">MeasurementSetup.cpp</a>.</p>
+
+</div>
+</div>
 <a id="aa39733fdaf85545358ea465b019deab0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa39733fdaf85545358ea465b019deab0">&#9670;&nbsp;</a></span>from_json() <span class="overload">[10/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa39733fdaf85545358ea465b019deab0">&#9670;&nbsp;</a></span>from_json() <span class="overload">[12/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6955,7 +7023,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="ab5cfd76224bd2a945c23f62bb1ed1fc7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5cfd76224bd2a945c23f62bb1ed1fc7">&#9670;&nbsp;</a></span>from_json() <span class="overload">[11/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5cfd76224bd2a945c23f62bb1ed1fc7">&#9670;&nbsp;</a></span>from_json() <span class="overload">[13/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6985,7 +7053,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a33a17099630ebcf742229a7d831bcec0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a33a17099630ebcf742229a7d831bcec0">&#9670;&nbsp;</a></span>from_json() <span class="overload">[12/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a33a17099630ebcf742229a7d831bcec0">&#9670;&nbsp;</a></span>from_json() <span class="overload">[14/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -7015,7 +7083,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="adeb3ed1c99658d1ea42126bcb712bb9a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adeb3ed1c99658d1ea42126bcb712bb9a">&#9670;&nbsp;</a></span>from_json() <span class="overload">[13/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#adeb3ed1c99658d1ea42126bcb712bb9a">&#9670;&nbsp;</a></span>from_json() <span class="overload">[15/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -7045,7 +7113,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a581d9c405547974363fb647e7f494db6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a581d9c405547974363fb647e7f494db6">&#9670;&nbsp;</a></span>from_json() <span class="overload">[14/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a581d9c405547974363fb647e7f494db6">&#9670;&nbsp;</a></span>from_json() <span class="overload">[16/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -7075,7 +7143,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="af443bf5a4acc69ef066af0c293b621a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af443bf5a4acc69ef066af0c293b621a7">&#9670;&nbsp;</a></span>from_json() <span class="overload">[15/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af443bf5a4acc69ef066af0c293b621a7">&#9670;&nbsp;</a></span>from_json() <span class="overload">[17/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -7105,7 +7173,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="aa79e55ea529a7216ac8766240db0c76c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa79e55ea529a7216ac8766240db0c76c">&#9670;&nbsp;</a></span>from_json() <span class="overload">[16/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa79e55ea529a7216ac8766240db0c76c">&#9670;&nbsp;</a></span>from_json() <span class="overload">[18/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -7135,7 +7203,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a25325849fbb3b1fdf28c402257dd63e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a25325849fbb3b1fdf28c402257dd63e9">&#9670;&nbsp;</a></span>from_json() <span class="overload">[17/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a25325849fbb3b1fdf28c402257dd63e9">&#9670;&nbsp;</a></span>from_json() <span class="overload">[19/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -7165,7 +7233,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a53429249cb60afd24b0e046ae65b467b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53429249cb60afd24b0e046ae65b467b">&#9670;&nbsp;</a></span>from_json() <span class="overload">[18/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a53429249cb60afd24b0e046ae65b467b">&#9670;&nbsp;</a></span>from_json() <span class="overload">[20/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -7195,7 +7263,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a68933b29c20e6356e20a1852a018bf6c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68933b29c20e6356e20a1852a018bf6c">&#9670;&nbsp;</a></span>from_json() <span class="overload">[19/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a68933b29c20e6356e20a1852a018bf6c">&#9670;&nbsp;</a></span>from_json() <span class="overload">[21/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -7225,7 +7293,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a68687314e2c481e984ee323aab4a7495"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68687314e2c481e984ee323aab4a7495">&#9670;&nbsp;</a></span>from_json() <span class="overload">[20/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a68687314e2c481e984ee323aab4a7495">&#9670;&nbsp;</a></span>from_json() <span class="overload">[22/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -7255,7 +7323,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="ae97a0010d3076d0b508937e756ef364f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae97a0010d3076d0b508937e756ef364f">&#9670;&nbsp;</a></span>from_json() <span class="overload">[21/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae97a0010d3076d0b508937e756ef364f">&#9670;&nbsp;</a></span>from_json() <span class="overload">[23/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -7285,7 +7353,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a2cf840b2fd4a49f60d559bdf328ad73c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2cf840b2fd4a49f60d559bdf328ad73c">&#9670;&nbsp;</a></span>from_json() <span class="overload">[22/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cf840b2fd4a49f60d559bdf328ad73c">&#9670;&nbsp;</a></span>from_json() <span class="overload">[24/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -7315,7 +7383,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a06b460c582581f8c159d245411828117"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06b460c582581f8c159d245411828117">&#9670;&nbsp;</a></span>from_json() <span class="overload">[23/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a06b460c582581f8c159d245411828117">&#9670;&nbsp;</a></span>from_json() <span class="overload">[25/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -11966,7 +12034,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="a1a18993f52b6212e59c69c072e94ebc0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a18993f52b6212e59c69c072e94ebc0">&#9670;&nbsp;</a></span>to_json() <span class="overload">[1/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a18993f52b6212e59c69c072e94ebc0">&#9670;&nbsp;</a></span>to_json() <span class="overload">[1/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -11996,7 +12064,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="ad4ffe8a33fb155115f7cc9b02740797d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4ffe8a33fb155115f7cc9b02740797d">&#9670;&nbsp;</a></span>to_json() <span class="overload">[2/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4ffe8a33fb155115f7cc9b02740797d">&#9670;&nbsp;</a></span>to_json() <span class="overload">[2/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12026,7 +12094,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="ac805d7e6f93710cccba66bac03f62402"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac805d7e6f93710cccba66bac03f62402">&#9670;&nbsp;</a></span>to_json() <span class="overload">[3/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac805d7e6f93710cccba66bac03f62402">&#9670;&nbsp;</a></span>to_json() <span class="overload">[3/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12056,7 +12124,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="aa8ac411c8fdf32607b7fb7801531d367"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8ac411c8fdf32607b7fb7801531d367">&#9670;&nbsp;</a></span>to_json() <span class="overload">[4/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8ac411c8fdf32607b7fb7801531d367">&#9670;&nbsp;</a></span>to_json() <span class="overload">[4/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12086,7 +12154,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="a5282c55bc6f6450eca5dc48555e8a6ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5282c55bc6f6450eca5dc48555e8a6ab">&#9670;&nbsp;</a></span>to_json() <span class="overload">[5/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5282c55bc6f6450eca5dc48555e8a6ab">&#9670;&nbsp;</a></span>to_json() <span class="overload">[5/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12116,7 +12184,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="a8f3c55b5848ce021bac9642afa763d6c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f3c55b5848ce021bac9642afa763d6c">&#9670;&nbsp;</a></span>to_json() <span class="overload">[6/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f3c55b5848ce021bac9642afa763d6c">&#9670;&nbsp;</a></span>to_json() <span class="overload">[6/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12146,7 +12214,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="a67ec50cfd6cd6d5d491775c810004980"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a67ec50cfd6cd6d5d491775c810004980">&#9670;&nbsp;</a></span>to_json() <span class="overload">[7/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a67ec50cfd6cd6d5d491775c810004980">&#9670;&nbsp;</a></span>to_json() <span class="overload">[7/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12176,7 +12244,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="a6fab6f7f7d336b2382cef1df753cae52"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6fab6f7f7d336b2382cef1df753cae52">&#9670;&nbsp;</a></span>to_json() <span class="overload">[8/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fab6f7f7d336b2382cef1df753cae52">&#9670;&nbsp;</a></span>to_json() <span class="overload">[8/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12205,8 +12273,68 @@ template&lt;typename BoxT &gt; </div>
 
 </div>
 </div>
+<a id="a440f224006d397b83ed0946575a1d737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a440f224006d397b83ed0946575a1d737">&#9670;&nbsp;</a></span>to_json() <span class="overload">[9/25]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tket::to_json </td>
+          <td>(</td>
+          <td class="paramtype">nlohmann::json &amp;&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classtket_1_1MeasurementSetup.html">MeasurementSetup</a> &amp;&#160;</td>
+          <td class="paramname"><em>setup</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="MeasurementSetup_8cpp_source.html#l00124">124</a> of file <a class="el" href="MeasurementSetup_8cpp_source.html">MeasurementSetup.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a89f114a1adda4cd0d4e8bbd35556412c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89f114a1adda4cd0d4e8bbd35556412c">&#9670;&nbsp;</a></span>to_json() <span class="overload">[10/25]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tket::to_json </td>
+          <td>(</td>
+          <td class="paramtype">nlohmann::json &amp;&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structtket_1_1MeasurementSetup_1_1MeasurementBitMap.html">MeasurementSetup::MeasurementBitMap</a> &amp;&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="MeasurementSetup_8cpp_source.html#l00110">110</a> of file <a class="el" href="MeasurementSetup_8cpp_source.html">MeasurementSetup.cpp</a>.</p>
+
+</div>
+</div>
 <a id="ae0a3a70e84db9e4a2f8d15febf11d135"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0a3a70e84db9e4a2f8d15febf11d135">&#9670;&nbsp;</a></span>to_json() <span class="overload">[9/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0a3a70e84db9e4a2f8d15febf11d135">&#9670;&nbsp;</a></span>to_json() <span class="overload">[11/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12236,7 +12364,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="a7abfb8c99b6073b5bc9b759ed22983fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7abfb8c99b6073b5bc9b759ed22983fc">&#9670;&nbsp;</a></span>to_json() <span class="overload">[10/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7abfb8c99b6073b5bc9b759ed22983fc">&#9670;&nbsp;</a></span>to_json() <span class="overload">[12/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12266,7 +12394,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="a3e93ea21b541ed8dee95f8dbace142ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e93ea21b541ed8dee95f8dbace142ca">&#9670;&nbsp;</a></span>to_json() <span class="overload">[11/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e93ea21b541ed8dee95f8dbace142ca">&#9670;&nbsp;</a></span>to_json() <span class="overload">[13/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12296,7 +12424,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="ae44e46df7513c3ed26bb1b5469931b2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae44e46df7513c3ed26bb1b5469931b2f">&#9670;&nbsp;</a></span>to_json() <span class="overload">[12/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae44e46df7513c3ed26bb1b5469931b2f">&#9670;&nbsp;</a></span>to_json() <span class="overload">[14/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12326,7 +12454,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="a930f453f5886d252c3fb7a45ea0bc4fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a930f453f5886d252c3fb7a45ea0bc4fa">&#9670;&nbsp;</a></span>to_json() <span class="overload">[13/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a930f453f5886d252c3fb7a45ea0bc4fa">&#9670;&nbsp;</a></span>to_json() <span class="overload">[15/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12356,7 +12484,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="a3f34bdc7c9cc83bf203b8a69ef431403"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f34bdc7c9cc83bf203b8a69ef431403">&#9670;&nbsp;</a></span>to_json() <span class="overload">[14/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f34bdc7c9cc83bf203b8a69ef431403">&#9670;&nbsp;</a></span>to_json() <span class="overload">[16/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12386,7 +12514,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="acd3f8ef05d4dcb5bccf103055b28280d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd3f8ef05d4dcb5bccf103055b28280d">&#9670;&nbsp;</a></span>to_json() <span class="overload">[15/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acd3f8ef05d4dcb5bccf103055b28280d">&#9670;&nbsp;</a></span>to_json() <span class="overload">[17/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12416,7 +12544,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="a903d0e05c58620dc0d082c414c078911"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a903d0e05c58620dc0d082c414c078911">&#9670;&nbsp;</a></span>to_json() <span class="overload">[16/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a903d0e05c58620dc0d082c414c078911">&#9670;&nbsp;</a></span>to_json() <span class="overload">[18/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12446,7 +12574,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="aad92ba0223225b2432b3754047387b5e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad92ba0223225b2432b3754047387b5e">&#9670;&nbsp;</a></span>to_json() <span class="overload">[17/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aad92ba0223225b2432b3754047387b5e">&#9670;&nbsp;</a></span>to_json() <span class="overload">[19/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12476,7 +12604,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="ac759ed39e053a1136881124ac753b6bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac759ed39e053a1136881124ac753b6bf">&#9670;&nbsp;</a></span>to_json() <span class="overload">[18/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac759ed39e053a1136881124ac753b6bf">&#9670;&nbsp;</a></span>to_json() <span class="overload">[20/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12506,7 +12634,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="a3eb5506cf530f09a7158760012b494f3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3eb5506cf530f09a7158760012b494f3">&#9670;&nbsp;</a></span>to_json() <span class="overload">[19/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3eb5506cf530f09a7158760012b494f3">&#9670;&nbsp;</a></span>to_json() <span class="overload">[21/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12536,7 +12664,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="a4dd94aad84eb507a42a4813914cc88f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4dd94aad84eb507a42a4813914cc88f9">&#9670;&nbsp;</a></span>to_json() <span class="overload">[20/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dd94aad84eb507a42a4813914cc88f9">&#9670;&nbsp;</a></span>to_json() <span class="overload">[22/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12566,7 +12694,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="a8a14a478bed045c6dd02963883dc597e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a14a478bed045c6dd02963883dc597e">&#9670;&nbsp;</a></span>to_json() <span class="overload">[21/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a14a478bed045c6dd02963883dc597e">&#9670;&nbsp;</a></span>to_json() <span class="overload">[23/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12596,7 +12724,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="a52597b988342641e65c81c1e39cc626a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52597b988342641e65c81c1e39cc626a">&#9670;&nbsp;</a></span>to_json() <span class="overload">[22/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a52597b988342641e65c81c1e39cc626a">&#9670;&nbsp;</a></span>to_json() <span class="overload">[24/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -12626,7 +12754,7 @@ template&lt;typename BoxT &gt; </div>
 </div>
 </div>
 <a id="a3f7d62bf33d0168c3728124e63282db6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f7d62bf33d0168c3728124e63282db6">&#9670;&nbsp;</a></span>to_json() <span class="overload">[23/23]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f7d62bf33d0168c3728124e63282db6">&#9670;&nbsp;</a></span>to_json() <span class="overload">[25/25]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
