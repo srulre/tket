@@ -1517,9 +1517,9 @@ Functions</h2></td></tr>
 <tr class="separator:af5e18ce76c2caf1e48feca2c1525f0db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b6653dc02103205ef74ff4df63d85db"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespacetket.html#a16f42886ddb3e4e93daaacdd772886b1">PassPtr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket.html#a6b6653dc02103205ef74ff4df63d85db">DecomposeBoxes</a> ()</td></tr>
 <tr class="separator:a6b6653dc02103205ef74ff4df63d85db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a881dc403670ae085bbe25375375f3350"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespacetket.html#a16f42886ddb3e4e93daaacdd772886b1">PassPtr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket.html#a881dc403670ae085bbe25375375f3350">ComposePhasePolyBoxes</a> ()</td></tr>
-<tr class="memdesc:a881dc403670ae085bbe25375375f3350"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts a circuit containing all possible gates to a circuit containing only phase poly boxes + H gates (and measure + reset + collapse + barrier)  <a href="namespacetket.html#a881dc403670ae085bbe25375375f3350">More...</a><br /></td></tr>
-<tr class="separator:a881dc403670ae085bbe25375375f3350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dbe1fc4216104097492df584f552f12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacetket.html#a16f42886ddb3e4e93daaacdd772886b1">PassPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket.html#a4dbe1fc4216104097492df584f552f12">ComposePhasePolyBoxes</a> (unsigned min_size=0)</td></tr>
+<tr class="memdesc:a4dbe1fc4216104097492df584f552f12"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts a circuit containing all possible gates to a circuit containing only phase poly boxes + H gates (and measure + reset + collapse + barrier)  <a href="namespacetket.html#a4dbe1fc4216104097492df584f552f12">More...</a><br /></td></tr>
+<tr class="separator:a4dbe1fc4216104097492df584f552f12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a278646f17409e315c09ea2f3ec19af1f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespacetket.html#a16f42886ddb3e4e93daaacdd772886b1">PassPtr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket.html#a278646f17409e315c09ea2f3ec19af1f">SquashTK1</a> ()</td></tr>
 <tr class="memdesc:a278646f17409e315c09ea2f3ec19af1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Squash sequences of single-qubit gates to TK1 gates.  <a href="namespacetket.html#a278646f17409e315c09ea2f3ec19af1f">More...</a><br /></td></tr>
 <tr class="separator:a278646f17409e315c09ea2f3ec19af1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -5503,22 +5503,30 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a881dc403670ae085bbe25375375f3350"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a881dc403670ae085bbe25375375f3350">&#9670;&nbsp;</a></span>ComposePhasePolyBoxes()</h2>
+<a id="a4dbe1fc4216104097492df584f552f12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dbe1fc4216104097492df584f552f12">&#9670;&nbsp;</a></span>ComposePhasePolyBoxes()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="namespacetket.html#a16f42886ddb3e4e93daaacdd772886b1">PassPtr</a> &amp; tket::ComposePhasePolyBoxes </td>
+          <td class="memname"><a class="el" href="namespacetket.html#a16f42886ddb3e4e93daaacdd772886b1">PassPtr</a> tket::ComposePhasePolyBoxes </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>min_size</em> = <code>0</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>converts a circuit containing all possible gates to a circuit containing only phase poly boxes + H gates (and measure + reset + collapse + barrier) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">min_size</td><td>value for the minimal number of CX in each box, groups with less than min_size CX gates are not converted to a <a class="el" href="classtket_1_1PhasePolyBox.html" title="A PhasePolyBox is capable of representing arbitrary Circuits made up of CNOT and RZ,...">PhasePolyBox</a>, default value is 0 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>PassPtr to perform the conversion </dd></dl>
 <p>converts a circuit containing all possible gates to a circuit containing only phase poly boxes + H gates (and measure + reset + collapse</p><ul>
 <li>barrier) this pass will replace all wire swaps in the given circuit and they will be included in the last or an additional phase poly boxes</li>
 </ul>
@@ -6036,7 +6044,7 @@ template&lt;typename T &gt; </div>
 <p>Preserves Max2QubitGatesPredicate since any box with &gt;2 qubits is already invalid. Preserves <a class="el" href="classtket_1_1ConnectivityPredicate.html">ConnectivityPredicate</a> (and <a class="el" href="classtket_1_1DirectednessPredicate.html">DirectednessPredicate</a>) since the verification looks inside CircBoxes and any other boxes with &gt;2 qubits are already invalid. Most others are preserved since the predicates look within CircBoxes.</p>
 <p>Invalidates <a class="el" href="classtket_1_1GateSetPredicate.html">GateSetPredicate</a> because it doesn't look inside boxes or account for the gate set of their decomposition.</p>
 
-<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00258">258</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00260">260</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
 
 </div>
 </div>
@@ -6055,7 +6063,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00300">300</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00302">302</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
 
 </div>
 </div>
@@ -6114,7 +6122,7 @@ template&lt;typename T &gt; </div>
 
 <p>Commutes measurements to the end of the circuit. </p>
 
-<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00365">365</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00367">367</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
 
 </div>
 </div>
@@ -6618,7 +6626,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00315">315</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00317">317</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
 
 </div>
 </div>
@@ -9968,7 +9976,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhasePoly_8cpp_source.html#l00268">268</a> of file <a class="el" href="PhasePoly_8cpp_source.html">PhasePoly.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PhasePoly_8cpp_source.html#l00303">303</a> of file <a class="el" href="PhasePoly_8cpp_source.html">PhasePoly.cpp</a>.</p>
 
 </div>
 </div>
@@ -11434,7 +11442,7 @@ template&lt;class MapType &gt; </div>
 
 <p>Remove all&amp; <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a48656da7a6e48c6887d94f4c69c731b6">OpType::Barrier</a> from the circuit. </p>
 
-<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00339">339</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00341">341</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
 
 </div>
 </div>
@@ -11455,7 +11463,7 @@ template&lt;class MapType &gt; </div>
 
 <p>Remove all operations that have no <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a29c2c02a361c9d7028472e5d92cd4a54">OpType::Output</a> or <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a6c4e5627d56328e52b12a2aeb0164d0d">OpType::ClOutput</a> in their causal future. </p>
 
-<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00381">381</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00383">383</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
 
 </div>
 </div>
@@ -11709,7 +11717,7 @@ template&lt;typename BoxT &gt; </div>
 
 <p>Replace all measured classical maps that are followed by Measure operations whose quantum output is discarded with classical operations following the Measure. </p>
 
-<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00393">393</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00395">395</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
 
 </div>
 </div>
@@ -11753,7 +11761,7 @@ template&lt;typename BoxT &gt; </div>
 
 <p>Squash sequences of single-qubit gates to TK1 gates. </p>
 
-<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00285">285</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PassLibrary_8cpp_source.html#l00287">287</a> of file <a class="el" href="PassLibrary_8cpp_source.html">PassLibrary.cpp</a>.</p>
 
 </div>
 </div>

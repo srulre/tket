@@ -211,9 +211,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a373cfcdea1005b57fd2a5c6f4adbe15e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#a373cfcdea1005b57fd2a5c6f4adbe15e">decomp_boxes</a> ()</td></tr>
 <tr class="memdesc:a373cfcdea1005b57fd2a5c6f4adbe15e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces all boxes by their decomposition using <a class="el" href="classtket_1_1Box.html#aa8189b7ff8c3c0b8fd90cbc71cf19c3f" title="Circuit represented by box.">Box::to_circuit</a> Expects: any gateset returns potentially all gates.  <a href="namespacetket_1_1Transforms.html#a373cfcdea1005b57fd2a5c6f4adbe15e">More...</a><br /></td></tr>
 <tr class="separator:a373cfcdea1005b57fd2a5c6f4adbe15e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a785fe1a41cd91c03521e78093520ff80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#a785fe1a41cd91c03521e78093520ff80">compose_phase_poly_boxes</a> ()</td></tr>
-<tr class="memdesc:a785fe1a41cd91c03521e78093520ff80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces all CX+Rz sub circuits by <a class="el" href="classtket_1_1PhasePolyBox.html" title="A PhasePolyBox is capable of representing arbitrary Circuits made up of CNOT and RZ,...">PhasePolyBox</a> Expects: only CX + Rz + H (and measure + reset + collapse + barrier) returns: H + <a class="el" href="classtket_1_1PhasePolyBox.html" title="A PhasePolyBox is capable of representing arbitrary Circuits made up of CNOT and RZ,...">PhasePolyBox</a>.  <a href="namespacetket_1_1Transforms.html#a785fe1a41cd91c03521e78093520ff80">More...</a><br /></td></tr>
-<tr class="separator:a785fe1a41cd91c03521e78093520ff80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0822ee75b1d687db1fbf6546dcd705c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#a0822ee75b1d687db1fbf6546dcd705c8">compose_phase_poly_boxes</a> (unsigned min_size=0)</td></tr>
+<tr class="memdesc:a0822ee75b1d687db1fbf6546dcd705c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces all CX+Rz sub circuits by <a class="el" href="classtket_1_1PhasePolyBox.html" title="A PhasePolyBox is capable of representing arbitrary Circuits made up of CNOT and RZ,...">PhasePolyBox</a> Expects: only CX + Rz + H (and measure + reset + collapse + barrier)  <a href="namespacetket_1_1Transforms.html#a0822ee75b1d687db1fbf6546dcd705c8">More...</a><br /></td></tr>
+<tr class="separator:a0822ee75b1d687db1fbf6546dcd705c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa529d9f5779cbfdaa4b5a846e504de43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#aa529d9f5779cbfdaa4b5a846e504de43">decompose_SWAP</a> (const <a class="el" href="classtket_1_1Circuit.html">Circuit</a> &amp;replacement_circuit)</td></tr>
 <tr class="separator:aa529d9f5779cbfdaa4b5a846e504de43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacebf9ac8d1a3f978cab3ca3611de2e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#aacebf9ac8d1a3f978cab3ca3611de2e1">decompose_SWAP_to_CX</a> (const <a class="el" href="classtket_1_1Architecture.html">Architecture</a> &amp;arc)</td></tr>
@@ -636,8 +636,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a785fe1a41cd91c03521e78093520ff80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a785fe1a41cd91c03521e78093520ff80">&#9670;&nbsp;</a></span>compose_phase_poly_boxes()</h2>
+<a id="a0822ee75b1d687db1fbf6546dcd705c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0822ee75b1d687db1fbf6546dcd705c8">&#9670;&nbsp;</a></span>compose_phase_poly_boxes()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -645,13 +645,21 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classtket_1_1Transform.html">Transform</a> tket::Transforms::compose_phase_poly_boxes </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>min_size</em> = <code>0</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Replaces all CX+Rz sub circuits by <a class="el" href="classtket_1_1PhasePolyBox.html" title="A PhasePolyBox is capable of representing arbitrary Circuits made up of CNOT and RZ,...">PhasePolyBox</a> Expects: only CX + Rz + H (and measure + reset + collapse + barrier) returns: H + <a class="el" href="classtket_1_1PhasePolyBox.html" title="A PhasePolyBox is capable of representing arbitrary Circuits made up of CNOT and RZ,...">PhasePolyBox</a>. </p>
+<p>Replaces all CX+Rz sub circuits by <a class="el" href="classtket_1_1PhasePolyBox.html" title="A PhasePolyBox is capable of representing arbitrary Circuits made up of CNOT and RZ,...">PhasePolyBox</a> Expects: only CX + Rz + H (and measure + reset + collapse + barrier) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">min_size</td><td>value for the minimal number of CX in each box, groups with less than min_size CX gates are not converted to a <a class="el" href="classtket_1_1PhasePolyBox.html" title="A PhasePolyBox is capable of representing arbitrary Circuits made up of CNOT and RZ,...">PhasePolyBox</a>, dafault value is 0 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Transformation to perform the conversion </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00748">748</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
