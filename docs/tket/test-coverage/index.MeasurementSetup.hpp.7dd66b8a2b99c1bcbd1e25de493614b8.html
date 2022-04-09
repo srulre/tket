@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2022-04-02 04:24:08</td>
+      <td>2022-04-09 04:32:08</td>
     </tr>
   </table>
 </div>
@@ -40,9 +40,9 @@
     </tr>
     <tr>
       <th scope="row">Lines:</th>
-      <td>2</td>
-      <td>4</td>
-      <td class="coverage-low">50.0%</td>
+      <td>6</td>
+      <td>10</td>
+      <td class="coverage-low">60.0%</td>
     </tr>
     <tr>
       <th scope="row">Branches:</th>
@@ -207,7 +207,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cp">#include</span> <span class="cpf">&quot;Utils/PauliStrings.hpp&quot;</span><span class="cp"></span></td>
+      <td class="src "><span class="cp">#include</span> <span class="cpf">&quot;Utils/Json.hpp&quot;</span><span class="cp"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -215,7 +215,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="cp">#include</span> <span class="cpf">&quot;Utils/PauliStrings.hpp&quot;</span><span class="cp"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -223,7 +223,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="k">namespace</span> <span class="n">tket</span> <span class="p">{</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -231,7 +231,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="k">namespace</span> <span class="n">tket</span> <span class="p">{</span></td>
     </tr>
 
     <tr class="source-line">
@@ -239,7 +239,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">/**</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -247,7 +247,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * MeasurementSetup</span></td>
+      <td class="src "><span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -255,7 +255,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * Captures an expectation value experiment.</span></td>
+      <td class="src "><span class="cm"> * MeasurementSetup</span></td>
     </tr>
 
     <tr class="source-line">
@@ -263,7 +263,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * Given a collection of Pauli terms, the setup contains a collection</span></td>
+      <td class="src "><span class="cm"> * Captures an expectation value experiment.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -271,7 +271,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * of measurement circuits from which each Pauli measurement can be extracted.</span></td>
+      <td class="src "><span class="cm"> * Given a collection of Pauli terms, the setup contains a collection</span></td>
     </tr>
 
     <tr class="source-line">
@@ -279,7 +279,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> *</span></td>
+      <td class="src "><span class="cm"> * of measurement circuits from which each Pauli measurement can be extracted.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -287,7 +287,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * The result_map maps Pauli terms to circuits from which the expectation value</span></td>
+      <td class="src "><span class="cm"> *</span></td>
     </tr>
 
     <tr class="source-line">
@@ -295,7 +295,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * can be obtained, along with the classical post-processing required on each</span></td>
+      <td class="src "><span class="cm"> * The result_map maps Pauli terms to circuits from which the expectation value</span></td>
     </tr>
 
     <tr class="source-line">
@@ -303,7 +303,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * shot (which bits/columns of the shot table to XOR together, and whether to</span></td>
+      <td class="src "><span class="cm"> * can be obtained, along with the classical post-processing required on each</span></td>
     </tr>
 
     <tr class="source-line">
@@ -311,7 +311,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * invert the final value).</span></td>
+      <td class="src "><span class="cm"> * shot (which bits/columns of the shot table to XOR together, and whether to</span></td>
     </tr>
 
     <tr class="source-line">
@@ -319,7 +319,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> *</span></td>
+      <td class="src "><span class="cm"> * invert the final value).</span></td>
     </tr>
 
     <tr class="source-line">
@@ -327,7 +327,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * There may be multiple measurement circuits that measure the same Pauli term,</span></td>
+      <td class="src "><span class="cm"> *</span></td>
     </tr>
 
     <tr class="source-line">
@@ -335,7 +335,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * so we have a vector of MeasurementBitMaps for each term to exploit this and</span></td>
+      <td class="src "><span class="cm"> * There may be multiple measurement circuits that measure the same Pauli term,</span></td>
     </tr>
 
     <tr class="source-line">
@@ -343,7 +343,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> * effectively get extra shots for free.</span></td>
+      <td class="src "><span class="cm"> * so we have a vector of MeasurementBitMaps for each term to exploit this and</span></td>
     </tr>
 
     <tr class="source-line">
@@ -351,7 +351,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> */</span></td>
+      <td class="src "><span class="cm"> * effectively get extra shots for free.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -359,7 +359,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="k">class</span> <span class="nc">MeasurementSetup</span> <span class="p">{</span></td>
+      <td class="src "><span class="cm"> */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -367,7 +367,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "> <span class="k">public</span><span class="o">:</span></td>
+      <td class="src "><span class="k">class</span> <span class="nc">MeasurementSetup</span> <span class="p">{</span></td>
     </tr>
 
     <tr class="source-line">
@@ -375,11 +375,27 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="k">struct</span> <span class="n">MeasurementBitMap</span> <span class="p">{</span></td>
+      <td class="src "> <span class="k">public</span><span class="o">:</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l40" href="#l40">40</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount "></td>
+      <td class="src ">  <span class="k">struct</span> <span class="n">MeasurementBitMap</span> <span class="p">{</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l41" href="#l41">41</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount uncoveredLine">&cross;</td>
+      <td class="src uncoveredLine">    <span class="n">MeasurementBitMap</span><span class="p">()</span> <span class="o">:</span> <span class="n">circ_index</span><span class="p">{</span><span class="mi">0</span><span class="p">},</span> <span class="n">invert</span><span class="p">{</span><span class="nb">false</span><span class="p">}</span> <span class="p">{}</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l42" href="#l42">42</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount uncoveredLine">&cross;</td>
@@ -387,7 +403,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l41" href="#l41">41</a></td>
+      <td class="lineno"><a id="l43" href="#l43">43</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -395,7 +411,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l42" href="#l42">42</a></td>
+      <td class="lineno"><a id="l44" href="#l44">44</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -403,7 +419,7 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l43" href="#l43">43</a></td>
+      <td class="lineno"><a id="l45" href="#l45">45</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount uncoveredLine">&cross;</td>
@@ -411,27 +427,11 @@
     </tr>
 
     <tr class="source-line">
-      <td class="lineno"><a id="l44" href="#l44">44</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l45" href="#l45">45</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">    <span class="kt">unsigned</span> <span class="n">circ_index</span><span class="p">;</span></td>
-    </tr>
-
-    <tr class="source-line">
       <td class="lineno"><a id="l46" href="#l46">46</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">bits</span><span class="p">;</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -439,7 +439,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">    <span class="kt">bool</span> <span class="n">invert</span><span class="p">;</span></td>
+      <td class="src ">    <span class="kt">unsigned</span> <span class="n">circ_index</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -447,7 +447,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src ">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">bits</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -455,7 +455,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">    <span class="k">const</span> <span class="kt">unsigned</span> <span class="o">&amp;</span><span class="n">get_circ_index</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">circ_index</span><span class="p">;</span> <span class="p">}</span></td>
+      <td class="src ">    <span class="kt">bool</span> <span class="n">invert</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -463,31 +463,31 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">get_bits</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">bits</span><span class="p">;</span> <span class="p">}</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l51" href="#l51">51</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src ">    <span class="k">const</span> <span class="kt">bool</span> <span class="o">&amp;</span><span class="n">get_invert</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">invert</span><span class="p">;</span> <span class="p">}</span></td>
+      <td class="linecount coveredLine">18</td>
+      <td class="src coveredLine">    <span class="k">const</span> <span class="kt">unsigned</span> <span class="o">&amp;</span><span class="n">get_circ_index</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">circ_index</span><span class="p">;</span> <span class="p">}</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l52" href="#l52">52</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="linecount coveredLine">18</td>
+      <td class="src coveredLine">    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">get_bits</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">bits</span><span class="p">;</span> <span class="p">}</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l53" href="#l53">53</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src ">    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">to_str</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></td>
+      <td class="linecount coveredLine">18</td>
+      <td class="src coveredLine">    <span class="k">const</span> <span class="kt">bool</span> <span class="o">&amp;</span><span class="n">get_invert</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">invert</span><span class="p">;</span> <span class="p">}</span></td>
     </tr>
 
     <tr class="source-line">
@@ -495,7 +495,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="p">};</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -503,35 +503,11 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="k">struct</span> <span class="n">QPSHasher</span> <span class="p">{</span></td>
+      <td class="src ">    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">to_str</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l56" href="#l56">56</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount coveredLine">163</td>
-      <td class="src coveredLine">    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="k">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">QubitPauliString</span> <span class="o">&amp;</span><span class="n">qps</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l57" href="#l57">57</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount coveredLine">163</td>
-      <td class="src coveredLine">      <span class="k">return</span> <span class="n">hash_value</span><span class="p">(</span><span class="n">qps</span><span class="p">);</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l58" href="#l58">58</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">    <span class="p">}</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l59" href="#l59">59</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
@@ -539,11 +515,35 @@
     </tr>
 
     <tr class="source-line">
+      <td class="lineno"><a id="l57" href="#l57">57</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount "></td>
+      <td class="src ">  <span class="k">struct</span> <span class="n">QPSHasher</span> <span class="p">{</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l58" href="#l58">58</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount coveredLine">177</td>
+      <td class="src coveredLine">    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="k">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">QubitPauliString</span> <span class="o">&amp;</span><span class="n">qps</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l59" href="#l59">59</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount coveredLine">177</td>
+      <td class="src coveredLine">      <span class="k">return</span> <span class="n">hash_value</span><span class="p">(</span><span class="n">qps</span><span class="p">);</span></td>
+    </tr>
+
+    <tr class="source-line">
       <td class="lineno"><a id="l60" href="#l60">60</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span></td>
+      <td class="src ">    <span class="p">}</span></td>
     </tr>
 
     <tr class="source-line">
@@ -551,7 +551,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="n">QubitPauliString</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">MeasurementBitMap</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">QPSHasher</span><span class="o">&gt;</span></td>
+      <td class="src ">  <span class="p">};</span></td>
     </tr>
 
     <tr class="source-line">
@@ -559,7 +559,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="n">measure_result_map_t</span><span class="p">;</span></td>
+      <td class="src ">  <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -567,7 +567,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src ">      <span class="n">QubitPauliString</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">MeasurementBitMap</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">QPSHasher</span><span class="o">&gt;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -575,7 +575,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Circuit</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">get_circs</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">measurement_circs</span><span class="p">;</span> <span class="p">}</span></td>
+      <td class="src ">      <span class="n">measure_result_map_t</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -583,23 +583,23 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="k">const</span> <span class="n">measure_result_map_t</span> <span class="o">&amp;</span><span class="n">get_result_map</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">result_map</span><span class="p">;</span> <span class="p">}</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l66" href="#l66">66</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="linecount uncoveredLine">&cross;</td>
+      <td class="src uncoveredLine">  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Circuit</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">get_circs</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">measurement_circs</span><span class="p">;</span> <span class="p">}</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l67" href="#l67">67</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="kt">void</span> <span class="n">add_measurement_circuit</span><span class="p">(</span><span class="k">const</span> <span class="n">Circuit</span> <span class="o">&amp;</span><span class="n">circ</span><span class="p">);</span></td>
+      <td class="linecount coveredLine">4</td>
+      <td class="src coveredLine">  <span class="k">const</span> <span class="n">measure_result_map_t</span> <span class="o">&amp;</span><span class="n">get_result_map</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">result_map</span><span class="p">;</span> <span class="p">}</span></td>
     </tr>
 
     <tr class="source-line">
@@ -607,7 +607,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">void</span> <span class="nf">add_result_for_term</span><span class="p">(</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -615,7 +615,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">QubitPauliString</span> <span class="o">&amp;</span><span class="n">term</span><span class="p">,</span> <span class="k">const</span> <span class="n">MeasurementBitMap</span> <span class="o">&amp;</span><span class="n">result</span><span class="p">);</span></td>
+      <td class="src ">  <span class="kt">void</span> <span class="n">add_measurement_circuit</span><span class="p">(</span><span class="k">const</span> <span class="n">Circuit</span> <span class="o">&amp;</span><span class="n">circ</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -623,7 +623,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src ">  <span class="kt">void</span> <span class="nf">add_result_for_term</span><span class="p">(</span></td>
     </tr>
 
     <tr class="source-line">
@@ -631,7 +631,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Rejects the coefficient in the QubitPauliTensor. Used for</span></td>
+      <td class="src ">      <span class="k">const</span> <span class="n">QubitPauliString</span> <span class="o">&amp;</span><span class="n">term</span><span class="p">,</span> <span class="k">const</span> <span class="n">MeasurementBitMap</span> <span class="o">&amp;</span><span class="n">result</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -639,7 +639,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * convenience at the C++ level, and should not be exposed.</span></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -647,7 +647,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   * Rejects the coefficient in the QubitPauliTensor. Used for</span></td>
     </tr>
 
     <tr class="source-line">
@@ -655,7 +655,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">void</span> <span class="nf">add_result_for_term</span><span class="p">(</span></td>
+      <td class="src "><span class="cm">   * convenience at the C++ level, and should not be exposed.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -663,7 +663,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">QubitPauliTensor</span> <span class="o">&amp;</span><span class="n">term</span><span class="p">,</span> <span class="k">const</span> <span class="n">MeasurementBitMap</span> <span class="o">&amp;</span><span class="n">result</span><span class="p">);</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -671,7 +671,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src ">  <span class="kt">void</span> <span class="nf">add_result_for_term</span><span class="p">(</span></td>
     </tr>
 
     <tr class="source-line">
@@ -679,7 +679,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Checks that the tensors to be measured correspond to the</span></td>
+      <td class="src ">      <span class="k">const</span> <span class="n">QubitPauliTensor</span> <span class="o">&amp;</span><span class="n">term</span><span class="p">,</span> <span class="k">const</span> <span class="n">MeasurementBitMap</span> <span class="o">&amp;</span><span class="n">result</span><span class="p">);</span></td>
     </tr>
 
     <tr class="source-line">
@@ -687,7 +687,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * correct tensors generated by the measurement circs. Includes</span></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -695,7 +695,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * parity checks.</span></td>
+      <td class="src "><span class="cm">   * Checks that the tensors to be measured correspond to the</span></td>
     </tr>
 
     <tr class="source-line">
@@ -703,7 +703,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   * correct tensors generated by the measurement circs. Includes</span></td>
     </tr>
 
     <tr class="source-line">
@@ -711,7 +711,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">bool</span> <span class="nf">verify</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></td>
+      <td class="src "><span class="cm">   * parity checks.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -719,7 +719,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -727,7 +727,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">to_str</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></td>
+      <td class="src ">  <span class="kt">bool</span> <span class="nf">verify</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -743,7 +743,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "> <span class="k">private</span><span class="o">:</span></td>
+      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">to_str</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -751,7 +751,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "></td>
     </tr>
 
     <tr class="source-line">
@@ -759,7 +759,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Clifford circuits to generate the correct Pauli measurements,</span></td>
+      <td class="src "> <span class="k">private</span><span class="o">:</span></td>
     </tr>
 
     <tr class="source-line">
@@ -767,7 +767,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * with Measure gates on the required qubits.</span></td>
+      <td class="src ">  <span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
@@ -775,7 +775,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   * Clifford circuits to generate the correct Pauli measurements,</span></td>
     </tr>
 
     <tr class="source-line">
@@ -783,7 +783,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Circuit</span><span class="o">&gt;</span> <span class="n">measurement_circs</span><span class="p">;</span></td>
+      <td class="src "><span class="cm">   * with Measure gates on the required qubits.</span></td>
     </tr>
 
     <tr class="source-line">
@@ -791,7 +791,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">measure_result_map_t</span> <span class="n">result_map</span><span class="p">;</span></td>
+      <td class="src "><span class="cm">   */</span></td>
     </tr>
 
     <tr class="source-line">
@@ -799,7 +799,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">};</span></td>
+      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Circuit</span><span class="o">&gt;</span> <span class="n">measurement_circs</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -807,7 +807,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src ">  <span class="n">measure_result_map_t</span> <span class="n">result_map</span><span class="p">;</span></td>
     </tr>
 
     <tr class="source-line">
@@ -815,11 +815,51 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">}</span>  <span class="c1">// namespace tket</span></td>
+      <td class="src "><span class="p">};</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l95" href="#l95">95</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l96" href="#l96">96</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="n">JSON_DECL</span><span class="p">(</span><span class="n">MeasurementSetup</span><span class="o">::</span><span class="n">MeasurementBitMap</span><span class="p">)</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l97" href="#l97">97</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="n">JSON_DECL</span><span class="p">(</span><span class="n">MeasurementSetup</span><span class="p">)</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l98" href="#l98">98</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l99" href="#l99">99</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="p">}</span>  <span class="c1">// namespace tket</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l100" href="#l100">100</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
