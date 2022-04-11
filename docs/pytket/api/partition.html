@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytket.partition &mdash; pytket 1.0.1 documentation</title>
+  <title>pytket.partition &mdash; pytket 1.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -30,7 +30,7 @@
             <a href="index.html" class="icon icon-home"> pytket
           </a>
               <div class="version">
-                1.0
+                1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -141,6 +141,23 @@
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.partition.MeasurementBitMap.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">json</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.partition.MeasurementBitMap" title="pytket.partition.MeasurementBitMap"><span class="pre">pytket.partition.MeasurementBitMap</span></a></span></span><a class="headerlink" href="#pytket.partition.MeasurementBitMap.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Construct MeasurementBitMap instance from dict representation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.partition.MeasurementBitMap.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.partition.MeasurementBitMap" title="pytket.partition.MeasurementBitMap"><span class="pre">pytket.partition.MeasurementBitMap</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">json</span></span></span><a class="headerlink" href="#pytket.partition.MeasurementBitMap.to_dict" title="Permalink to this definition"></a></dt>
+<dd><p>JSON-serializable dict representation of the MeasurementBitMap.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict representation of the MeasurementBitMap</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="pytket.partition.MeasurementBitMap.bits">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bits</span></span><a class="headerlink" href="#pytket.partition.MeasurementBitMap.bits" title="Permalink to this definition"></a></dt>
@@ -181,6 +198,23 @@
 <dt class="sig sig-object py" id="pytket.partition.MeasurementSetup.add_result_for_term">
 <span class="sig-name descname"><span class="pre">add_result_for_term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.partition.MeasurementSetup" title="pytket.partition.MeasurementSetup"><span class="pre">pytket.partition.MeasurementSetup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">term</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pauli.html#pytket.pauli.QubitPauliString" title="pytket.pauli.QubitPauliString"><span class="pre">pytket.pauli.QubitPauliString</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.partition.MeasurementBitMap" title="pytket.partition.MeasurementBitMap"><span class="pre">pytket.partition.MeasurementBitMap</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.partition.MeasurementSetup.add_result_for_term" title="Permalink to this definition"></a></dt>
 <dd><p>Add a new Pauli string with a corresponding BitMap</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.partition.MeasurementSetup.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">json</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.partition.MeasurementSetup" title="pytket.partition.MeasurementSetup"><span class="pre">pytket.partition.MeasurementSetup</span></a></span></span><a class="headerlink" href="#pytket.partition.MeasurementSetup.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Construct MeasurementSetup instance from dict representation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.partition.MeasurementSetup.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.partition.MeasurementSetup" title="pytket.partition.MeasurementSetup"><span class="pre">pytket.partition.MeasurementSetup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">json</span></span></span><a class="headerlink" href="#pytket.partition.MeasurementSetup.to_dict" title="Permalink to this definition"></a></dt>
+<dd><p>JSON-serializable dict representation of the MeasurementSetup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict representation of the MeasurementSetup</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">

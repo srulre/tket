@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytket.predicates &mdash; pytket 1.0.1 documentation</title>
+  <title>pytket.predicates &mdash; pytket 1.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -30,7 +30,7 @@
             <a href="index.html" class="icon icon-home"> pytket
           </a>
               <div class="version">
-                1.0
+                1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -233,6 +233,18 @@
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="pytket.predicates.NoBarriersPredicate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.predicates.</span></span><span class="sig-name descname"><span class="pre">NoBarriersPredicate</span></span><a class="headerlink" href="#pytket.predicates.NoBarriersPredicate" title="Permalink to this definition"></a></dt>
+<dd><p>Predicate asserting that a circuit contains no Barrier operations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.predicates.NoBarriersPredicate.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.predicates.NoBarriersPredicate" title="pytket.predicates.NoBarriersPredicate"><span class="pre">pytket.predicates.NoBarriersPredicate</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.predicates.NoBarriersPredicate.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="pytket.predicates.NoClassicalBitsPredicate">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytket.predicates.</span></span><span class="sig-name descname"><span class="pre">NoClassicalBitsPredicate</span></span><a class="headerlink" href="#pytket.predicates.NoClassicalBitsPredicate" title="Permalink to this definition"></a></dt>
 <dd><p>Predicate asserting that a circuit has no classical wires.</p>
@@ -334,11 +346,28 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pytket.predicates.Predicate.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">json</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.predicates.Predicate" title="pytket.predicates.Predicate"><span class="pre">pytket.predicates.Predicate</span></a></span></span><a class="headerlink" href="#pytket.predicates.Predicate.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Construct Predicate instance from JSON serializable dict representation of the Predicate.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pytket.predicates.Predicate.implies">
 <span class="sig-name descname"><span class="pre">implies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.predicates.Predicate" title="pytket.predicates.Predicate"><span class="pre">pytket.predicates.Predicate</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.predicates.Predicate" title="pytket.predicates.Predicate"><span class="pre">pytket.predicates.Predicate</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#pytket.predicates.Predicate.implies" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>True if predicate implies another one, else False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.predicates.Predicate.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.predicates.Predicate" title="pytket.predicates.Predicate"><span class="pre">pytket.predicates.Predicate</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">json</span></span></span><a class="headerlink" href="#pytket.predicates.Predicate.to_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Return a JSON serializable dict representation of the Predicate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict representation of the Predicate.</p>
 </dd>
 </dl>
 </dd></dl>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytket.pauli &mdash; pytket 1.0.1 documentation</title>
+  <title>pytket.pauli &mdash; pytket 1.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -30,7 +30,7 @@
             <a href="index.html" class="icon icon-home"> pytket
           </a>
               <div class="version">
-                1.0
+                1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -299,7 +299,7 @@
 </dd>
 </dl>
 <ol class="arabic simple" start="3">
-<li><p>to_sparse_matrix(self: pytket.pauli.QubitPauliString, n_qubits: List[pytket.circuit.Qubit]) -&gt; scipy.sparse.csc_matrix[numpy.complex128]</p></li>
+<li><p>to_sparse_matrix(self: pytket.pauli.QubitPauliString, qubits: List[pytket.circuit.Qubit]) -&gt; scipy.sparse.csc_matrix[numpy.complex128]</p></li>
 </ol>
 <p>Represents the sparse string as a dense string and generates the matrix for the tensor. Orders qubits according to <cite>qubits</cite> (padding with identities if they are not in the sparse string), so <code class="docutils literal notranslate"><span class="pre">qubits[0]</span></code> is the most significant bit for indexing into the matrix.</p>
 <dl class="field-list simple">

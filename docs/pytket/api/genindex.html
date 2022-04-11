@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; pytket 1.0.1 documentation</title>
+  <title>Index &mdash; pytket 1.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -27,7 +27,7 @@
             <a href="index.html" class="icon icon-home"> pytket
           </a>
               <div class="version">
-                1.0
+                1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -251,6 +251,8 @@
         <li><a href="predicates.html#pytket.predicates.MaxNQubitsPredicate.__init__">(pytket.predicates.MaxNQubitsPredicate method)</a>
 </li>
         <li><a href="predicates.html#pytket.predicates.MaxTwoQubitGatesPredicate.__init__">(pytket.predicates.MaxTwoQubitGatesPredicate method)</a>
+</li>
+        <li><a href="predicates.html#pytket.predicates.NoBarriersPredicate.__init__">(pytket.predicates.NoBarriersPredicate method)</a>
 </li>
         <li><a href="predicates.html#pytket.predicates.NoClassicalBitsPredicate.__init__">(pytket.predicates.NoClassicalBitsPredicate method)</a>
 </li>
@@ -609,10 +611,10 @@
       </ul></li>
       <li><a href="utils.html#pytket.utils.compare_statevectors">compare_statevectors() (in module pytket.utils)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="utils.html#pytket.utils.compare_unitaries">compare_unitaries() (in module pytket.utils)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="passes.html#pytket.passes.script.compilation_pass_from_script">compilation_pass_from_script() (in module pytket.passes.script)</a>
 </li>
       <li><a href="passes.html#pytket.passes.script.compilation_pass_grammar">compilation_pass_grammar() (in module pytket.passes.script)</a>
@@ -620,6 +622,8 @@
       <li><a href="predicates.html#pytket.predicates.CompilationUnit">CompilationUnit (class in pytket.predicates)</a>
 </li>
       <li><a href="backends.html#pytket.backends.status.CircuitStatus.completed_time">completed_time (pytket.backends.status.CircuitStatus attribute)</a>
+</li>
+      <li><a href="passes.html#pytket.passes.ComposePhasePolyBoxes">ComposePhasePolyBoxes() (in module pytket.passes)</a>
 </li>
       <li><a href="pauli.html#pytket.pauli.QubitPauliString.compress">compress() (pytket.pauli.QubitPauliString method)</a>
 
@@ -680,6 +684,8 @@
       <li><a href="circuit.html#pytket.circuit.CustomGate">CustomGate (class in pytket.circuit)</a>
 </li>
       <li><a href="circuit.html#pytket.circuit.CustomGateDef">CustomGateDef (class in pytket.circuit)</a>
+</li>
+      <li><a href="passes.html#pytket.passes.CustomRoutingPass">CustomRoutingPass() (in module pytket.passes)</a>
 </li>
       <li><a href="circuit_class.html#pytket.circuit.Circuit.CV">CV() (pytket.circuit.Circuit method)</a>
 </li>
@@ -850,9 +856,15 @@
 </li>
         <li><a href="circuit_class.html#pytket.circuit.Circuit.from_dict">(pytket.circuit.Circuit static method)</a>
 </li>
+        <li><a href="partition.html#pytket.partition.MeasurementBitMap.from_dict">(pytket.partition.MeasurementBitMap static method)</a>
+</li>
+        <li><a href="partition.html#pytket.partition.MeasurementSetup.from_dict">(pytket.partition.MeasurementSetup static method)</a>
+</li>
         <li><a href="passes.html#pytket.passes.BasePass.from_dict">(pytket.passes.BasePass static method)</a>
 </li>
         <li><a href="placement.html#pytket.placement.Placement.from_dict">(pytket.placement.Placement static method)</a>
+</li>
+        <li><a href="predicates.html#pytket.predicates.Predicate.from_dict">(pytket.predicates.Predicate static method)</a>
 </li>
         <li><a href="backends.html#pytket.backends.backendinfo.BackendInfo.from_dict">(pytket.backends.backendinfo.BackendInfo class method)</a>
 </li>
@@ -936,6 +948,8 @@
 </li>
         <li><a href="circuit.html#pytket.circuit.PauliExpBox.get_circuit">(pytket.circuit.PauliExpBox method)</a>
 </li>
+        <li><a href="circuit.html#pytket.circuit.PhasePolyBox.get_circuit">(pytket.circuit.PhasePolyBox method)</a>
+</li>
         <li><a href="circuit.html#pytket.circuit.ProjectorAssertionBox.get_circuit">(pytket.circuit.ProjectorAssertionBox method)</a>
 </li>
         <li><a href="circuit.html#pytket.circuit.QControlBox.get_circuit">(pytket.circuit.QControlBox method)</a>
@@ -997,14 +1011,14 @@
 </li>
       <li><a href="circuit.html#pytket.circuit.ClassicalExpBox.get_n_o">get_n_o() (pytket.circuit.ClassicalExpBox method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="circuit.html#pytket.circuit.Op.get_name">get_name() (pytket.circuit.Op method)</a>
 
       <ul>
         <li><a href="zx.html#pytket.zx.ZXDiagram.get_name">(pytket.zx.ZXDiagram method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="circuit.html#pytket.circuit.QControlBox.get_op">get_op() (pytket.circuit.QControlBox method)</a>
 </li>
       <li><a href="utils.html#pytket.utils.get_operator_expectation_value">get_operator_expectation_value() (in module pytket.utils)</a>
@@ -1355,6 +1369,8 @@
       <li><a href="zx.html#pytket.zx.ZXDiagram.neighbours">neighbours() (pytket.zx.ZXDiagram method)</a>
 </li>
       <li><a href="classical.html#pytket.circuit.logic_exp.Neq">Neq (class in pytket.circuit.logic_exp)</a>
+</li>
+      <li><a href="predicates.html#pytket.predicates.NoBarriersPredicate">NoBarriersPredicate (class in pytket.predicates)</a>
 </li>
       <li><a href="predicates.html#pytket.predicates.NoClassicalBitsPredicate">NoClassicalBitsPredicate (class in pytket.predicates)</a>
 </li>
@@ -2072,9 +2088,15 @@
 </li>
         <li><a href="circuit_class.html#pytket.circuit.Circuit.to_dict">(pytket.circuit.Circuit method)</a>
 </li>
+        <li><a href="partition.html#pytket.partition.MeasurementBitMap.to_dict">(pytket.partition.MeasurementBitMap method)</a>
+</li>
+        <li><a href="partition.html#pytket.partition.MeasurementSetup.to_dict">(pytket.partition.MeasurementSetup method)</a>
+</li>
         <li><a href="passes.html#pytket.passes.BasePass.to_dict">(pytket.passes.BasePass method)</a>
 </li>
         <li><a href="placement.html#pytket.placement.Placement.to_dict">(pytket.placement.Placement method)</a>
+</li>
+        <li><a href="predicates.html#pytket.predicates.Predicate.to_dict">(pytket.predicates.Predicate method)</a>
 </li>
         <li><a href="backends.html#pytket.backends.backendinfo.BackendInfo.to_dict">(pytket.backends.backendinfo.BackendInfo method)</a>
 </li>

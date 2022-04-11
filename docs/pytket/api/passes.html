@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytket.passes &mdash; pytket 1.0.1 documentation</title>
+  <title>pytket.passes &mdash; pytket 1.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -31,7 +31,7 @@
             <a href="index.html" class="icon icon-home"> pytket
           </a>
               <div class="version">
-                1.0
+                1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -384,6 +384,23 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="pytket.passes.ComposePhasePolyBoxes">
+<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">ComposePhasePolyBoxes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.ComposePhasePolyBoxes" title="Permalink to this definition"></a></dt>
+<dd><p>Pass to convert a given <code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code> to the CX, Rz, H gateset and compose phase polynomial boxes from the groups of the CX+Rz gates.</p>
+<ul class="simple">
+<li><p>(unsigned) min_size=0: minimal number of CX gates in each phase polynominal box: groups with a smaller number of CX gates are not affected by this transformation</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> – parameters for composition (described above)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a pass to perform the composition</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="pytket.passes.ContextSimp">
 <span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">ContextSimp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allow_classical</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xcirc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.ContextSimp" title="Permalink to this definition"></a></dt>
 <dd><p>Applies simplifications enabled by knowledge of qubit state and discarded qubits.</p>
@@ -398,6 +415,13 @@
 <dd class="field-even"><p>a pass to perform the simplification</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytket.passes.CustomRoutingPass">
+<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">CustomRoutingPass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="mapping.html#pytket.mapping.RoutingMethod" title="pytket.mapping.RoutingMethod"><span class="pre">pytket.mapping.RoutingMethod</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.CustomRoutingPass" title="Permalink to this definition"></a></dt>
+<dd><p>Construct a pass to route to the connectivity graph of an <code class="xref py py-class docutils literal notranslate"><span class="pre">Architecture</span></code>. Edge direction is ignored.
+:return: a pass that routes to the given device architecture</p>
 </dd></dl>
 
 <dl class="py function">
@@ -665,7 +689,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>gateset</strong> – The allowed multi-qubit operations in the rebased circuit.</p></li>
+<li><p><strong>gateset</strong> – The allowed operations in the rebased circuit.</p></li>
 <li><p><strong>cx_replacement</strong> – The equivalent circuit to replace a CX gate using two qubit gates from the desired basis (can use any single qubit OpTypes).</p></li>
 <li><p><strong>tk1_replacement</strong> – A function which, given the parameters of an Rz(a)Rx(b)Rz(c) triple, returns an equivalent circuit in the desired basis.</p></li>
 </ul>
@@ -714,7 +738,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="pytket.passes.RoutingPass">
 <span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">RoutingPass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="architecture.html#pytket.architecture.Architecture" title="pytket.architecture.Architecture"><span class="pre">pytket.architecture.Architecture</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.RoutingPass" title="Permalink to this definition"></a></dt>
-<dd><p>Construct a pass to route to the connectivity graph of an <code class="xref py py-class docutils literal notranslate"><span class="pre">Architecture</span></code>. Edge direction is ignored.
+<dd><p>Construct a pass to route to the connectivity graph of an <code class="xref py py-class docutils literal notranslate"><span class="pre">Architecture</span></code>. Edge direction is ignored. Uses <code class="xref py py-class docutils literal notranslate"><span class="pre">LexiLabellingMethod</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">LexiRouteRoutingMethod</span></code>.
 :return: a pass that routes to the given device architecture</p>
 </dd></dl>
 

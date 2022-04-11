@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytket.circuit &mdash; pytket 1.0.1 documentation</title>
+  <title>pytket.circuit &mdash; pytket 1.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -31,7 +31,7 @@
             <a href="index.html" class="icon icon-home"> pytket
           </a>
               <div class="version">
-                1.0
+                1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -1056,8 +1056,26 @@ Every backend and matrix-based box has a BasisOrder option which can toggle betw
 <dd><p>Box encapsulating any Circuit made up of CNOT and RZ as a phase polynomial + linear transformation</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.circuit.PhasePolyBox.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.PhasePolyBox" title="pytket.circuit.PhasePolyBox"><span class="pre">pytket.circuit.PhasePolyBox</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubit_indices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pytket.circuit.Qubit" title="pytket.circuit.Qubit"><span class="pre">pytket.circuit.Qubit</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase_polynomial</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Expression</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linear_transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><span class="p"><span class="pre">[</span></span><span class="pre">m</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">n</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pytket.circuit.PhasePolyBox.__init__" title="Permalink to this definition"></a></dt>
-<dd><p>Construct from the number of qubits, the mapping from Qubit to index, the phase polynomial (map from bitstring to phase) and the linear transformation (boolean matrix)</p>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytket.circuit.PhasePolyBox.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>__init__(self: pytket.circuit.PhasePolyBox, n_qubits: int, qubit_indices: Dict[pytket.circuit.Qubit, int], phase_polynomial: Dict[List[bool], Expression], linear_transformation: numpy.ndarray[bool[m, n]]) -&gt; None</p></li>
+</ol>
+<p>Construct from the number of qubits, the mapping from Qubit to index, the phase polynomial (map from bitstring to phase) and the linear transformation (boolean matrix)</p>
+<ol class="arabic simple" start="2">
+<li><p>__init__(self: pytket.circuit.PhasePolyBox, circuit: tket::Circuit) -&gt; None</p></li>
+</ol>
+<p>Construct a PhasePolyBox from a given circuit containing only Rz and CX gates.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytket.circuit.PhasePolyBox.get_circuit">
+<span class="sig-name descname"><span class="pre">get_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pytket.circuit.PhasePolyBox" title="pytket.circuit.PhasePolyBox"><span class="pre">pytket.circuit.PhasePolyBox</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tket::Circuit</span></span></span><a class="headerlink" href="#pytket.circuit.PhasePolyBox.get_circuit" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the <a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a> described by the box.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
