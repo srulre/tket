@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['y_4874',['Y',['../namespacetket.html#a342a289d54f4f5f5a405373c07aca66aabd3db4c05f39c8e0ca8fb7854f43c21e',1,'tket::Y()'],['../namespacetket.html#a342a289d54f4f5f5a405373c07aca66aa57cec4137b614c87cb4e24a3d003a3e0',1,'tket::Y()']]],
-  ['yes_4875',['Yes',['../classtket_1_1Circuit.html#a9ebf9fffcbb5cf57899e25d9358a41cba93cba07454f06a4a960172bbd6e2a435',1,'tket::Circuit::Yes()'],['../classtket_1_1Circuit.html#ad46024dc8be3d44e15fbcdb474552cc6a93cba07454f06a4a960172bbd6e2a435',1,'tket::Circuit::Yes()'],['../classtket_1_1Circuit.html#afa505b94722dbd9406a8ec5c2eb1a326a93cba07454f06a4a960172bbd6e2a435',1,'tket::Circuit::Yes()'],['../namespacetket_1_1Transforms.html#ac99440e10912adc1db7cde10c39b4690a93cba07454f06a4a960172bbd6e2a435',1,'tket::Transforms::Yes()'],['../namespacetket_1_1Transforms.html#a7f618e54969ee0fdc1a3fa4a82b3d604a93cba07454f06a4a960172bbd6e2a435',1,'tket::Transforms::Yes()']]],
-  ['yyphase_4876',['YYPhase',['../namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a6d5eeefd873119001f3a4289b5985230',1,'tket']]],
-  ['yz_4877',['YZ',['../namespacetket_1_1zx.html#ab1dacff6605c3bc8caa5f7fa6e3f5646affa4ba973372c3650fd0881abeca6512',1,'tket::zx']]]
+  ['x_4894',['X',['../namespacetket.html#a342a289d54f4f5f5a405373c07aca66aa86558f4a89f17fc46dd071c4616af9b5',1,'tket::X()'],['../namespacetket.html#a342a289d54f4f5f5a405373c07aca66aa02129bb861061d1a052c592e2dc6b383',1,'tket::X()']]],
+  ['xspider_4895',['XSpider',['../namespacetket_1_1zx.html#ab1dacff6605c3bc8caa5f7fa6e3f5646a387f9969109b5a46dd09b441638d66ea',1,'tket::zx']]],
+  ['xxphase_4896',['XXPhase',['../namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a464c865608c43e719808fdfada936330',1,'tket']]],
+  ['xxphase3_4897',['XXPhase3',['../namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aa74b5165b09b6b760a36c69c5465b527',1,'tket']]],
+  ['xy_4898',['XY',['../namespacetket_1_1zx.html#ab1dacff6605c3bc8caa5f7fa6e3f5646a74c53bcd3dcb2bb79993b2fec37d362a',1,'tket::zx']]],
+  ['xz_4899',['XZ',['../namespacetket_1_1zx.html#ab1dacff6605c3bc8caa5f7fa6e3f5646a27db3b98d01e664c17a6620b222c6469',1,'tket::zx']]]
 ];

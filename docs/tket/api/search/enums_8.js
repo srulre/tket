@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reversetype_4713',['ReverseType',['../namespacetket.html#a0f814e0f8e98465926bde71420d68cf6',1,'tket']]]
+  ['quantumtype_4732',['QuantumType',['../namespacetket_1_1zx.html#ae5c1261d41bb456a2457d06f3c52b9ff',1,'tket::zx']]]
 ];

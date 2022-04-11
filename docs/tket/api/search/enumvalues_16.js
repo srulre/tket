@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['z_4878',['Z',['../namespacetket.html#a342a289d54f4f5f5a405373c07aca66aa7c8e2f1f98ede6f3306ba12e09e1f854',1,'tket::Z()'],['../namespacetket.html#a342a289d54f4f5f5a405373c07aca66aa21c2e59531c8710156d34a3c30ac81d5',1,'tket::Z()']]],
-  ['zerointree_4879',['ZeroInTree',['../namespacetket_1_1aas.html#a5d7e42ff2fcc3a26d82ea3d4dd415374a65436f186d3c96249cc3283423cc42a5',1,'tket::aas']]],
-  ['zspider_4880',['ZSpider',['../namespacetket_1_1zx.html#ab1dacff6605c3bc8caa5f7fa6e3f5646af91c1012cc32302ba7900a3c72c0ad77',1,'tket::zx']]],
-  ['zxbox_4881',['ZXBox',['../namespacetket_1_1zx.html#ab1dacff6605c3bc8caa5f7fa6e3f5646ab02334dc49c91713dd37a8dab1795037',1,'tket::zx']]],
-  ['zzmax_4882',['ZZMax',['../namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aab307d474acdc6d93c072fab66ac07d6',1,'tket']]],
-  ['zzphase_4883',['ZZPhase',['../namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a3093b0af32d5a67378a948d9e90ac005',1,'tket']]]
+  ['y_4900',['Y',['../namespacetket.html#a342a289d54f4f5f5a405373c07aca66aabd3db4c05f39c8e0ca8fb7854f43c21e',1,'tket::Y()'],['../namespacetket.html#a342a289d54f4f5f5a405373c07aca66aa57cec4137b614c87cb4e24a3d003a3e0',1,'tket::Y()']]],
+  ['yes_4901',['Yes',['../classtket_1_1Circuit.html#a9ebf9fffcbb5cf57899e25d9358a41cba93cba07454f06a4a960172bbd6e2a435',1,'tket::Circuit::Yes()'],['../classtket_1_1Circuit.html#ad46024dc8be3d44e15fbcdb474552cc6a93cba07454f06a4a960172bbd6e2a435',1,'tket::Circuit::Yes()'],['../classtket_1_1Circuit.html#afa505b94722dbd9406a8ec5c2eb1a326a93cba07454f06a4a960172bbd6e2a435',1,'tket::Circuit::Yes()'],['../namespacetket_1_1Transforms.html#ac99440e10912adc1db7cde10c39b4690a93cba07454f06a4a960172bbd6e2a435',1,'tket::Transforms::Yes()'],['../namespacetket_1_1Transforms.html#a7f618e54969ee0fdc1a3fa4a82b3d604a93cba07454f06a4a960172bbd6e2a435',1,'tket::Transforms::Yes()']]],
+  ['yyphase_4902',['YYPhase',['../namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a6d5eeefd873119001f3a4289b5985230',1,'tket']]],
+  ['yz_4903',['YZ',['../namespacetket_1_1zx.html#ab1dacff6605c3bc8caa5f7fa6e3f5646affa4ba973372c3650fd0881abeca6512',1,'tket::zx']]]
 ];

@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['quantumtype_4712',['QuantumType',['../namespacetket_1_1zx.html#ae5c1261d41bb456a2457d06f3c52b9ff',1,'tket::zx']]]
+  ['pauli_4729',['Pauli',['../namespacetket.html#a342a289d54f4f5f5a405373c07aca66a',1,'tket']]],
+  ['paulipartitionstrat_4730',['PauliPartitionStrat',['../namespacetket.html#a2d578ba7a7267e8172ac6a302fab7f67',1,'tket']]],
+  ['paulisynthstrat_4731',['PauliSynthStrat',['../namespacetket_1_1Transforms.html#af9aeecd429f293a2082ec31a14284028',1,'tket::Transforms']]]
 ];

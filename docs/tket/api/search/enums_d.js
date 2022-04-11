@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['zxtype_4721',['ZXType',['../namespacetket_1_1zx.html#ab1dacff6605c3bc8caa5f7fa6e3f5646',1,'tket::zx']]],
-  ['zxwiretype_4722',['ZXWireType',['../namespacetket_1_1zx.html#a1dfd6ba927de6d65e68751fef88b62e1',1,'tket::zx']]]
+  ['wireend_4739',['WireEnd',['../namespacetket_1_1zx.html#a4a9af3f5180d9fb71107b0e917d71a4d',1,'tket::zx']]],
+  ['wiresearchoption_4740',['WireSearchOption',['../classtket_1_1zx_1_1ZXDiagram.html#a360408dd885df0960c5653b230bcc184',1,'tket::zx::ZXDiagram']]]
 ];
