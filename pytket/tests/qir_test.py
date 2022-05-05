@@ -27,6 +27,25 @@ if platform.machine() == "x86_64":
         QUANTINUUM_GATES,
     )
 
+    class TestQIRtoPytketGateTranslation:
+        """A class to test all L3 supported gates from QIR to pytket gate model."""
+
+        def test_h_only(self, h_only_bc_file_path: Path) -> None:
+            circuit = circuit_from_qir(h_only_bc_file_path)
+            expected_circuit = Circuit(1).H(0)
+            assert circuit == expected_circuit
+
+        def test_cx_only(self, cx_only_bc_file_path) -> None:
+            circuit = circuit_from_qir(cx_only_bc_file_path)
+            expected_circuit = Circuit(2).CX(0, 1)
+            assert circuit == expected_circuit
+
+        def test_t_only(self, t_only_bc_file_path) -> None:
+            circuit = circuit_from_qir(t_only_bc_file_path)
+            expected_circuit = Circuit(1).T(0)
+            assert circuit == expected_circuit
+        
+
     def test_raise_quantinuum_gateset_keyerror() -> None:
         c = Circuit(2)
         c.CY(0, 1)

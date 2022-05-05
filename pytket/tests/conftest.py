@@ -26,8 +26,24 @@ from pytket.circuit import (  # type: ignore
     OpType,
 )
 
+
+qir_files_dir = Path("./qir_test_files")
+
+
 if platform.machine() == "x86_64":
     from pytket.qir.qir import circuit_to_qir, ExtendedModule, QUANTINUUM_GATES
+
+    @fixture
+    def h_only_bc_file_path() ->  Path:
+        return qir_files_dir / "h_only.bc"
+
+    @fixture
+    def cx_only_bc_file_path() -> Path:
+        return qir_files_dir / "cx_only.bc"
+
+    @fixture
+    def t_only_bc_file_path() -> Path:
+        return qir_files_dir / "t_only.bc"
 
     @fixture
     def bitwise_file() -> str:
@@ -171,9 +187,7 @@ def optype() -> OpType:
 
 @fixture
 def qir_bc_file_path() -> Path:
-    files_dir = Path("./qir_test_files")
-    # return files_dir / "teleportchain.baseprofile.bc"
-    return files_dir / "SimpleGroverBaseProfile.bc"
+    return qir_files_dir / "SimpleGroverBaseProfile.bc"
 
 
 @fixture
