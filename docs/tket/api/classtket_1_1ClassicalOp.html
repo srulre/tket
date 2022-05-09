@@ -78,7 +78,7 @@ $(function() {
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtket_1_1ClassicalOp-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">tket::ClassicalOp Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">tket::ClassicalOp Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -91,18 +91,20 @@ Inheritance diagram for tket::ClassicalOp:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtket_1_1ClassicalOp__inherit__graph.png" border="0" usemap="#tket_1_1ClassicalOp_inherit__map" alt="Inheritance graph"/></div>
 <map name="tket_1_1ClassicalOp_inherit__map" id="tket_1_1ClassicalOp_inherit__map">
-<area shape="rect" title="A purely classical operation." alt="" coords="320,132,451,159"/>
-<area shape="rect" href="classtket_1_1ClassicalTransformOp.html" title="A general classical operation where all inputs are also outputs." alt="" coords="499,5,695,32"/>
-<area shape="rect" href="classtket_1_1CopyBitsOp.html" title="An operation to copy some bit values." alt="" coords="531,56,662,83"/>
-<area shape="rect" href="classtket_1_1ModifyingOp.html" title="A classical operation with one output bit which is also an input bit." alt="" coords="528,107,665,133"/>
-<area shape="rect" href="classtket_1_1MultiBitOp.html" title="A classical operation applied simultaneously to multiple bits." alt="" coords="535,157,659,184"/>
-<area shape="rect" href="classtket_1_1PredicateOp.html" title="A classical operation with single output bit." alt="" coords="529,208,664,235"/>
-<area shape="rect" href="classtket_1_1SetBitsOp.html" title="An operation to set some bits to specified values." alt="" coords="537,259,656,285"/>
-<area shape="rect" href="classtket_1_1Op.html" title="Abstract class representing an operation type." alt="" coords="199,132,272,159"/>
-<area shape="rect" title=" " alt="" coords="5,125,151,166"/>
-<area shape="rect" href="classtket_1_1ExplicitModifierOp.html" title="A modifying operation defined explicitly by a truth table." alt="" coords="747,107,921,133"/>
-<area shape="rect" href="classtket_1_1ExplicitPredicateOp.html" title="A predicate defined explicitly by a truth table." alt="" coords="743,183,925,209"/>
-<area shape="rect" href="classtket_1_1RangePredicateOp.html" title="A predicate defined by a range of values in binary encoding." alt="" coords="747,233,921,260"/>
+<area shape="rect" title="A purely classical operation." alt="" coords="320,157,451,184"/>
+<area shape="rect" href="classtket_1_1ClassicalEvalOp.html" title=" " alt="" coords="499,132,657,159"/>
+<area shape="rect" href="classtket_1_1WASMOp.html" title="Op containing a classical wasm function call." alt="" coords="521,183,635,209"/>
+<area shape="rect" href="classtket_1_1Op.html" title="Abstract class representing an operation type." alt="" coords="199,157,272,184"/>
+<area shape="rect" title=" " alt="" coords="5,150,151,191"/>
+<area shape="rect" href="classtket_1_1ClassicalTransformOp.html" title="A general classical operation where all inputs are also outputs." alt="" coords="705,5,901,32"/>
+<area shape="rect" href="classtket_1_1CopyBitsOp.html" title="An operation to copy some bit values." alt="" coords="738,56,869,83"/>
+<area shape="rect" href="classtket_1_1ModifyingOp.html" title="A classical operation with one output bit which is also an input bit." alt="" coords="735,107,872,133"/>
+<area shape="rect" href="classtket_1_1MultiBitOp.html" title="A classical operation applied simultaneously to multiple bits." alt="" coords="741,157,865,184"/>
+<area shape="rect" href="classtket_1_1PredicateOp.html" title="A classical operation with single output bit." alt="" coords="736,208,871,235"/>
+<area shape="rect" href="classtket_1_1SetBitsOp.html" title="An operation to set some bits to specified values." alt="" coords="744,259,863,285"/>
+<area shape="rect" href="classtket_1_1ExplicitModifierOp.html" title="A modifying operation defined explicitly by a truth table." alt="" coords="953,107,1128,133"/>
+<area shape="rect" href="classtket_1_1ExplicitPredicateOp.html" title="A predicate defined explicitly by a truth table." alt="" coords="949,183,1132,209"/>
+<area shape="rect" href="classtket_1_1RangePredicateOp.html" title="A predicate defined by a range of values in binary encoding." alt="" coords="953,233,1128,260"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -150,11 +152,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a92d54793ab6249d63022d67d8f25f89b"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1ClassicalOp.html#a92d54793ab6249d63022d67d8f25f89b">get_n_o</a> () const</td></tr>
 <tr class="memdesc:a92d54793ab6249d63022d67d8f25f89b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of output-only bits.  <a href="classtket_1_1ClassicalOp.html#a92d54793ab6249d63022d67d8f25f89b">More...</a><br /></td></tr>
 <tr class="separator:a92d54793ab6249d63022d67d8f25f89b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62c04a4f560e77c724f984fcde48102a"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1ClassicalOp.html#a62c04a4f560e77c724f984fcde48102a">eval</a> (const std::vector&lt; bool &gt; &amp;x) const =0</td></tr>
-<tr class="memdesc:a62c04a4f560e77c724f984fcde48102a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluation.  <a href="classtket_1_1ClassicalOp.html#a62c04a4f560e77c724f984fcde48102a">More...</a><br /></td></tr>
-<tr class="separator:a62c04a4f560e77c724f984fcde48102a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80a698b6ed393fe9a8c783ee38aedcc4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1ClassicalOp.html#a80a698b6ed393fe9a8c783ee38aedcc4">is_equal</a> (const <a class="el" href="classtket_1_1Op.html">Op</a> &amp;other) const override</td></tr>
-<tr class="memdesc:a80a698b6ed393fe9a8c783ee38aedcc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality check between two <a class="el" href="classtket_1_1ClassicalOp.html" title="A purely classical operation.">ClassicalOp</a> instances.  <a href="classtket_1_1ClassicalOp.html#a80a698b6ed393fe9a8c783ee38aedcc4">More...</a><br /></td></tr>
+<tr class="memdesc:a80a698b6ed393fe9a8c783ee38aedcc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality check between two <a class="el" href="classtket_1_1ClassicalEvalOp.html">ClassicalEvalOp</a> instances.  <a href="classtket_1_1ClassicalOp.html#a80a698b6ed393fe9a8c783ee38aedcc4">More...</a><br /></td></tr>
 <tr class="separator:a80a698b6ed393fe9a8c783ee38aedcc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classtket_1_1Op"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtket_1_1Op')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtket_1_1Op.html">tket::Op</a></td></tr>
 <tr class="memitem:a0184322dc89669726f8ddae2f5b8c005 inherit pub_methods_classtket_1_1Op"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacetket.html#a75405147f5ffd3ff1ff1118fba63bcd0">Op_ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Op.html#a0184322dc89669726f8ddae2f5b8c005">dagger</a> () const</td></tr>
@@ -184,6 +183,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aff05ec43a07be6a5fda3fd68113cb0a5 inherit pub_methods_classtket_1_1Op"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Op.html#aff05ec43a07be6a5fda3fd68113cb0a5">commutes_with_basis</a> (const std::optional&lt; <a class="el" href="namespacetket.html#a342a289d54f4f5f5a405373c07aca66a">Pauli</a> &gt; &amp;colour, <a class="el" href="namespacetket.html#a85e7f8d119b3b35dd331a339729f4cfb">port_t</a> port) const</td></tr>
 <tr class="memdesc:aff05ec43a07be6a5fda3fd68113cb0a5 inherit pub_methods_classtket_1_1Op"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the operation commutes with the given Pauli at the given port.  <a href="classtket_1_1Op.html#aff05ec43a07be6a5fda3fd68113cb0a5">More...</a><br /></td></tr>
 <tr class="separator:aff05ec43a07be6a5fda3fd68113cb0a5 inherit pub_methods_classtket_1_1Op"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a761892392e543ad92a252d7dfb4bc057 inherit pub_methods_classtket_1_1Op"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Op.html#a761892392e543ad92a252d7dfb4bc057">is_extern</a> () const</td></tr>
+<tr class="memdesc:a761892392e543ad92a252d7dfb4bc057 inherit pub_methods_classtket_1_1Op"><td class="mdescLeft">&#160;</td><td class="mdescRight">return if the op is external  <a href="classtket_1_1Op.html#a761892392e543ad92a252d7dfb4bc057">More...</a><br /></td></tr>
+<tr class="separator:a761892392e543ad92a252d7dfb4bc057 inherit pub_methods_classtket_1_1Op"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec40f952e682dad32f992efa6eb0cdc9 inherit pub_methods_classtket_1_1Op"><td class="memItemLeft" align="right" valign="top">virtual std::optional&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Op.html#aec40f952e682dad32f992efa6eb0cdc9">is_identity</a> () const</td></tr>
 <tr class="memdesc:aec40f952e682dad32f992efa6eb0cdc9 inherit pub_methods_classtket_1_1Op"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether operation is identity up to a phase and return phase if so.  <a href="classtket_1_1Op.html#aec40f952e682dad32f992efa6eb0cdc9">More...</a><br /></td></tr>
 <tr class="separator:aec40f952e682dad32f992efa6eb0cdc9 inherit pub_methods_classtket_1_1Op"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -276,6 +278,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Construct a <a class="el" href="classtket_1_1ClassicalOp.html" title="A purely classical operation.">ClassicalOp</a> of specified shape. </p>
+<p>this is a classical operation, only acting on the classical parts of the circuit</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">type</td><td>operation type </td></tr>
@@ -287,7 +290,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00129">129</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00150">150</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
 
 </div>
 </div>
@@ -316,44 +319,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00148">148</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a62c04a4f560e77c724f984fcde48102a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62c04a4f560e77c724f984fcde48102a">&#9670;&nbsp;</a></span>eval()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual std::vector&lt;bool&gt; tket::ClassicalOp::eval </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; bool &gt; &amp;&#160;</td>
-          <td class="paramname"><em>x</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Evaluation. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">x</td><td>vector of input bits</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>vector of outbut bits </dd></dl>
-
-<p>Implemented in <a class="el" href="classtket_1_1MultiBitOp.html#a9970742807ae6b5d86bb5794cb1a3654">tket::MultiBitOp</a>, <a class="el" href="classtket_1_1ExplicitModifierOp.html#aa1d177ec4d6a86dcc86610ff10213cc7">tket::ExplicitModifierOp</a>, <a class="el" href="classtket_1_1ExplicitPredicateOp.html#a5d1753dbccd6bfde9cdbdcfbc990112b">tket::ExplicitPredicateOp</a>, <a class="el" href="classtket_1_1RangePredicateOp.html#a3771c36e27ac850710545bc2eb64a817">tket::RangePredicateOp</a>, <a class="el" href="classtket_1_1CopyBitsOp.html#a56832446f9d603bb390c7da69053cba8">tket::CopyBitsOp</a>, <a class="el" href="classtket_1_1SetBitsOp.html#af4f083c9e3fd6f0888371c39b5fe0f71">tket::SetBitsOp</a>, and <a class="el" href="classtket_1_1ClassicalTransformOp.html#a189875b164450660dee7ebf49cc1fd83">tket::ClassicalTransformOp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00174">174</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
 
 </div>
 </div>
@@ -384,7 +350,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classtket_1_1Op.html#aaf39768595adfe922e0278dfed20ecf6">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00050">50</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00053">53</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
 
 </div>
 </div>
@@ -413,7 +379,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Number of input-only bits. </p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00062">62</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00065">65</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
 
 </div>
 </div>
@@ -442,7 +408,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Number of input-output bits. </p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00065">65</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00068">68</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
 
 </div>
 </div>
@@ -471,7 +437,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Number of output-only bits. </p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00068">68</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00071">71</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
 
 </div>
 </div>
@@ -505,7 +471,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classtket_1_1MultiBitOp.html#a6db69cf9f0277614ead0f22bc23faf17">tket::MultiBitOp</a>, <a class="el" href="classtket_1_1RangePredicateOp.html#af23094bc3fbb5af5b6a263fb7a69d810">tket::RangePredicateOp</a>, and <a class="el" href="classtket_1_1SetBitsOp.html#a7a2aaa438b36ed5a6bf989d0b17cae32">tket::SetBitsOp</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00152">152</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00189">189</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
 
 </div>
 </div>
@@ -536,7 +502,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classtket_1_1Op.html#af064c3b97d9c69ab70d622a425bf353b">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00053">53</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00056">56</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
 
 </div>
 </div>
@@ -564,13 +530,13 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Equality check between two <a class="el" href="classtket_1_1ClassicalOp.html" title="A purely classical operation.">ClassicalOp</a> instances. </p>
+<p>Equality check between two <a class="el" href="classtket_1_1ClassicalEvalOp.html">ClassicalEvalOp</a> instances. </p>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#a1267ba5bf1c744782e6ff73cb7032da6">tket::Op</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classtket_1_1MultiBitOp.html#af92f2915773152a5c0f36b33b6b3b750">tket::MultiBitOp</a>, and <a class="el" href="classtket_1_1RangePredicateOp.html#a906b05850f4d1206aecf4000dd5a453c">tket::RangePredicateOp</a>.</p>
+<p>Reimplemented in <a class="el" href="classtket_1_1MultiBitOp.html#af92f2915773152a5c0f36b33b6b3b750">tket::MultiBitOp</a>, <a class="el" href="classtket_1_1RangePredicateOp.html#a906b05850f4d1206aecf4000dd5a453c">tket::RangePredicateOp</a>, <a class="el" href="classtket_1_1WASMOp.html#a00fb0144f7c1837039687f85fc68a37f">tket::WASMOp</a>, and <a class="el" href="classtket_1_1ClassicalEvalOp.html#aa4fbacd93f4d7b0afe09550ff701c1bd">tket::ClassicalEvalOp</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00154">154</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00191">191</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
 
 </div>
 </div>
@@ -599,7 +565,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#a6496958fad861149e35162d6536b6b44">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00051">51</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00054">54</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
 
 </div>
 </div>
@@ -628,7 +594,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#a77ea214cee91f2366aa4ee3f2aabcd4f">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00141">141</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
+<p>Reimplemented in <a class="el" href="classtket_1_1WASMOp.html#ad3bc16260edf918abede540afbaef6fb">tket::WASMOp</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00167">167</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
 
 </div>
 </div>
@@ -667,7 +635,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classtket_1_1Op.html#a1e06f818450f001dd255c902dd06c172">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00046">46</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00049">49</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
 
 </div>
 </div>
@@ -692,7 +660,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00085">85</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00079">79</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
 
 </div>
 </div>
@@ -716,7 +684,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00086">86</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00080">80</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
 
 </div>
 </div>
@@ -740,7 +708,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00087">87</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00081">81</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
 
 </div>
 </div>
@@ -764,7 +732,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00088">88</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00082">82</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
 
 </div>
 </div>
@@ -788,7 +756,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00089">89</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00083">83</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
 
 </div>
 </div>

@@ -89,8 +89,9 @@ Inheritance diagram for tket::ModifyingOp:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtket_1_1ModifyingOp__inherit__graph.png" border="0" usemap="#tket_1_1ModifyingOp_inherit__map" alt="Inheritance graph"/></div>
 <map name="tket_1_1ModifyingOp_inherit__map" id="tket_1_1ModifyingOp_inherit__map">
-<area shape="rect" title="A classical operation with one output bit which is also an input bit." alt="" coords="24,244,161,271"/>
-<area shape="rect" href="classtket_1_1ExplicitModifierOp.html" title="A modifying operation defined explicitly by a truth table." alt="" coords="5,319,180,345"/>
+<area shape="rect" title="A classical operation with one output bit which is also an input bit." alt="" coords="24,319,161,345"/>
+<area shape="rect" href="classtket_1_1ExplicitModifierOp.html" title="A modifying operation defined explicitly by a truth table." alt="" coords="5,393,180,420"/>
+<area shape="rect" href="classtket_1_1ClassicalEvalOp.html" title=" " alt="" coords="13,244,172,271"/>
 <area shape="rect" href="classtket_1_1ClassicalOp.html" title="A purely classical operation." alt="" coords="27,169,158,196"/>
 <area shape="rect" href="classtket_1_1Op.html" title="Abstract class representing an operation type." alt="" coords="56,95,129,121"/>
 <area shape="rect" title=" " alt="" coords="20,5,165,47"/>
@@ -101,7 +102,8 @@ Collaboration diagram for tket::ModifyingOp:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtket_1_1ModifyingOp__coll__graph.png" border="0" usemap="#tket_1_1ModifyingOp_coll__map" alt="Collaboration graph"/></div>
 <map name="tket_1_1ModifyingOp_coll__map" id="tket_1_1ModifyingOp_coll__map">
-<area shape="rect" title="A classical operation with one output bit which is also an input bit." alt="" coords="236,275,373,301"/>
+<area shape="rect" title="A classical operation with one output bit which is also an input bit." alt="" coords="236,351,373,377"/>
+<area shape="rect" href="classtket_1_1ClassicalEvalOp.html" title=" " alt="" coords="225,275,384,301"/>
 <area shape="rect" href="classtket_1_1ClassicalOp.html" title="A purely classical operation." alt="" coords="239,199,370,225"/>
 <area shape="rect" href="classtket_1_1Op.html" title="Abstract class representing an operation type." alt="" coords="116,109,189,136"/>
 <area shape="rect" title=" " alt="" coords="5,5,151,47"/>
@@ -117,6 +119,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0ef9258e62be91024aaf9f424da86e9a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1ModifyingOp.html#a0ef9258e62be91024aaf9f424da86e9a">ModifyingOp</a> (<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3">OpType</a> type, unsigned n, const std::string &amp;name)</td></tr>
 <tr class="memdesc:a0ef9258e62be91024aaf9f424da86e9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="classtket_1_1ModifyingOp.html" title="A classical operation with one output bit which is also an input bit.">ModifyingOp</a> of specified arity.  <a href="classtket_1_1ModifyingOp.html#a0ef9258e62be91024aaf9f424da86e9a">More...</a><br /></td></tr>
 <tr class="separator:a0ef9258e62be91024aaf9f424da86e9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classtket_1_1ClassicalEvalOp"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtket_1_1ClassicalEvalOp')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtket_1_1ClassicalEvalOp.html">tket::ClassicalEvalOp</a></td></tr>
+<tr class="memitem:a89995bafa4a745b0f37af938dd3b6ac9 inherit pub_methods_classtket_1_1ClassicalEvalOp"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1ClassicalEvalOp.html#a89995bafa4a745b0f37af938dd3b6ac9">ClassicalEvalOp</a> (<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3">OpType</a> type, unsigned n_i, unsigned n_io, unsigned n_o, const std::string &amp;name=&quot;&quot;)</td></tr>
+<tr class="memdesc:a89995bafa4a745b0f37af938dd3b6ac9 inherit pub_methods_classtket_1_1ClassicalEvalOp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="classtket_1_1ClassicalEvalOp.html">ClassicalEvalOp</a> of specified shape.  <a href="classtket_1_1ClassicalEvalOp.html#a89995bafa4a745b0f37af938dd3b6ac9">More...</a><br /></td></tr>
+<tr class="separator:a89995bafa4a745b0f37af938dd3b6ac9 inherit pub_methods_classtket_1_1ClassicalEvalOp"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7639527567d73d8ed870f69779ece528 inherit pub_methods_classtket_1_1ClassicalEvalOp"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1ClassicalEvalOp.html#a7639527567d73d8ed870f69779ece528">eval</a> (const std::vector&lt; bool &gt; &amp;x) const =0</td></tr>
+<tr class="memdesc:a7639527567d73d8ed870f69779ece528 inherit pub_methods_classtket_1_1ClassicalEvalOp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluation.  <a href="classtket_1_1ClassicalEvalOp.html#a7639527567d73d8ed870f69779ece528">More...</a><br /></td></tr>
+<tr class="separator:a7639527567d73d8ed870f69779ece528 inherit pub_methods_classtket_1_1ClassicalEvalOp"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4fbacd93f4d7b0afe09550ff701c1bd inherit pub_methods_classtket_1_1ClassicalEvalOp"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1ClassicalEvalOp.html#aa4fbacd93f4d7b0afe09550ff701c1bd">is_equal</a> (const <a class="el" href="classtket_1_1Op.html">Op</a> &amp;other) const override</td></tr>
+<tr class="memdesc:aa4fbacd93f4d7b0afe09550ff701c1bd inherit pub_methods_classtket_1_1ClassicalEvalOp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality check between two <a class="el" href="classtket_1_1ClassicalEvalOp.html">ClassicalEvalOp</a> instances.  <a href="classtket_1_1ClassicalEvalOp.html#aa4fbacd93f4d7b0afe09550ff701c1bd">More...</a><br /></td></tr>
+<tr class="separator:aa4fbacd93f4d7b0afe09550ff701c1bd inherit pub_methods_classtket_1_1ClassicalEvalOp"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classtket_1_1ClassicalOp"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtket_1_1ClassicalOp')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtket_1_1ClassicalOp.html">tket::ClassicalOp</a></td></tr>
 <tr class="memitem:a890482f3c3b28d990d637c95af73d94e inherit pub_methods_classtket_1_1ClassicalOp"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1ClassicalOp.html#a890482f3c3b28d990d637c95af73d94e">ClassicalOp</a> (<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3">OpType</a> type, unsigned n_i, unsigned n_io, unsigned n_o, const std::string &amp;name=&quot;&quot;)</td></tr>
 <tr class="memdesc:a890482f3c3b28d990d637c95af73d94e inherit pub_methods_classtket_1_1ClassicalOp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="classtket_1_1ClassicalOp.html" title="A purely classical operation.">ClassicalOp</a> of specified shape.  <a href="classtket_1_1ClassicalOp.html#a890482f3c3b28d990d637c95af73d94e">More...</a><br /></td></tr>
@@ -146,12 +158,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a92d54793ab6249d63022d67d8f25f89b inherit pub_methods_classtket_1_1ClassicalOp"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1ClassicalOp.html#a92d54793ab6249d63022d67d8f25f89b">get_n_o</a> () const</td></tr>
 <tr class="memdesc:a92d54793ab6249d63022d67d8f25f89b inherit pub_methods_classtket_1_1ClassicalOp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of output-only bits.  <a href="classtket_1_1ClassicalOp.html#a92d54793ab6249d63022d67d8f25f89b">More...</a><br /></td></tr>
 <tr class="separator:a92d54793ab6249d63022d67d8f25f89b inherit pub_methods_classtket_1_1ClassicalOp"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62c04a4f560e77c724f984fcde48102a inherit pub_methods_classtket_1_1ClassicalOp"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1ClassicalOp.html#a62c04a4f560e77c724f984fcde48102a">eval</a> (const std::vector&lt; bool &gt; &amp;x) const =0</td></tr>
-<tr class="memdesc:a62c04a4f560e77c724f984fcde48102a inherit pub_methods_classtket_1_1ClassicalOp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluation.  <a href="classtket_1_1ClassicalOp.html#a62c04a4f560e77c724f984fcde48102a">More...</a><br /></td></tr>
-<tr class="separator:a62c04a4f560e77c724f984fcde48102a inherit pub_methods_classtket_1_1ClassicalOp"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80a698b6ed393fe9a8c783ee38aedcc4 inherit pub_methods_classtket_1_1ClassicalOp"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1ClassicalOp.html#a80a698b6ed393fe9a8c783ee38aedcc4">is_equal</a> (const <a class="el" href="classtket_1_1Op.html">Op</a> &amp;other) const override</td></tr>
-<tr class="memdesc:a80a698b6ed393fe9a8c783ee38aedcc4 inherit pub_methods_classtket_1_1ClassicalOp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality check between two <a class="el" href="classtket_1_1ClassicalOp.html" title="A purely classical operation.">ClassicalOp</a> instances.  <a href="classtket_1_1ClassicalOp.html#a80a698b6ed393fe9a8c783ee38aedcc4">More...</a><br /></td></tr>
-<tr class="separator:a80a698b6ed393fe9a8c783ee38aedcc4 inherit pub_methods_classtket_1_1ClassicalOp"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classtket_1_1Op"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtket_1_1Op')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtket_1_1Op.html">tket::Op</a></td></tr>
 <tr class="memitem:a0184322dc89669726f8ddae2f5b8c005 inherit pub_methods_classtket_1_1Op"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacetket.html#a75405147f5ffd3ff1ff1118fba63bcd0">Op_ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Op.html#a0184322dc89669726f8ddae2f5b8c005">dagger</a> () const</td></tr>
 <tr class="memdesc:a0184322dc89669726f8ddae2f5b8c005 inherit pub_methods_classtket_1_1Op"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inverse (of a unitary operation)  <a href="classtket_1_1Op.html#a0184322dc89669726f8ddae2f5b8c005">More...</a><br /></td></tr>
@@ -180,6 +186,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aff05ec43a07be6a5fda3fd68113cb0a5 inherit pub_methods_classtket_1_1Op"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Op.html#aff05ec43a07be6a5fda3fd68113cb0a5">commutes_with_basis</a> (const std::optional&lt; <a class="el" href="namespacetket.html#a342a289d54f4f5f5a405373c07aca66a">Pauli</a> &gt; &amp;colour, <a class="el" href="namespacetket.html#a85e7f8d119b3b35dd331a339729f4cfb">port_t</a> port) const</td></tr>
 <tr class="memdesc:aff05ec43a07be6a5fda3fd68113cb0a5 inherit pub_methods_classtket_1_1Op"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the operation commutes with the given Pauli at the given port.  <a href="classtket_1_1Op.html#aff05ec43a07be6a5fda3fd68113cb0a5">More...</a><br /></td></tr>
 <tr class="separator:aff05ec43a07be6a5fda3fd68113cb0a5 inherit pub_methods_classtket_1_1Op"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a761892392e543ad92a252d7dfb4bc057 inherit pub_methods_classtket_1_1Op"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Op.html#a761892392e543ad92a252d7dfb4bc057">is_extern</a> () const</td></tr>
+<tr class="memdesc:a761892392e543ad92a252d7dfb4bc057 inherit pub_methods_classtket_1_1Op"><td class="mdescLeft">&#160;</td><td class="mdescRight">return if the op is external  <a href="classtket_1_1Op.html#a761892392e543ad92a252d7dfb4bc057">More...</a><br /></td></tr>
+<tr class="separator:a761892392e543ad92a252d7dfb4bc057 inherit pub_methods_classtket_1_1Op"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec40f952e682dad32f992efa6eb0cdc9 inherit pub_methods_classtket_1_1Op"><td class="memItemLeft" align="right" valign="top">virtual std::optional&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Op.html#aec40f952e682dad32f992efa6eb0cdc9">is_identity</a> () const</td></tr>
 <tr class="memdesc:aec40f952e682dad32f992efa6eb0cdc9 inherit pub_methods_classtket_1_1Op"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether operation is identity up to a phase and return phase if so.  <a href="classtket_1_1Op.html#aec40f952e682dad32f992efa6eb0cdc9">More...</a><br /></td></tr>
 <tr class="separator:aec40f952e682dad32f992efa6eb0cdc9 inherit pub_methods_classtket_1_1Op"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -221,7 +230,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A classical operation with one output bit which is also an input bit. </p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00247">247</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00380">380</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0ef9258e62be91024aaf9f424da86e9a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0ef9258e62be91024aaf9f424da86e9a">&#9670;&nbsp;</a></span>ModifyingOp()</h2>
@@ -273,7 +282,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00256">256</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8hpp_source.html#l00389">389</a> of file <a class="el" href="ClassicalOps_8hpp_source.html">ClassicalOps.hpp</a>.</p>
 
 </div>
 </div>

@@ -167,6 +167,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1CircuitInvalidity.html">CircuitInvalidity</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1ClassicalEvalOp.html">ClassicalEvalOp</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1ClassicalExpBox.html">ClassicalExpBox</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holding box for abstract expressions on Bits Templated by type which holds expression.  <a href="classtket_1_1ClassicalExpBox.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -581,6 +583,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1vf2__match__add__callback.html">vf2_match_add_callback</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1WASMOp.html">WASMOp</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classtket_1_1Op.html" title="Abstract class representing an operation type.">Op</a> containing a classical wasm function call.  <a href="classtket_1_1WASMOp.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -893,102 +898,103 @@ Enumerations</h2></td></tr>
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a11a755d598c0c417f9a36758c3da7481">OpType::Stop</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a5d588264bfb80d9b94a293d436849215">OpType::ClassicalTransform</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a5c843771bd2e2c4fd09e6082b6873c08">OpType::SetBits</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac7dbeb10b3299406a04231654cf6defd">OpType::WASM</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a5c843771bd2e2c4fd09e6082b6873c08">OpType::SetBits</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac0975fd4a69996fa54a4a3e49aae0613">OpType::CopyBits</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a4dab62adc87d203efeb78923a1a5be0c">OpType::RangePredicate</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aaa4c169104256e1f2a4fde444ca552a1">OpType::ExplicitPredicate</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a3b1525d905b26764cc9fa020e5827dcc">OpType::ExplicitModifier</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aaa4c169104256e1f2a4fde444ca552a1">OpType::ExplicitPredicate</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a3b1525d905b26764cc9fa020e5827dcc">OpType::ExplicitModifier</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a1a267ae20c0b76a944af1589009da8df">OpType::MultiBit</a>, 
 <a class="el" href="namespacetket.html#a342a289d54f4f5f5a405373c07aca66aa21c2e59531c8710156d34a3c30ac81d5">Z</a>, 
-<a class="el" href="namespacetket.html#a342a289d54f4f5f5a405373c07aca66aa02129bb861061d1a052c592e2dc6b383">X</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a342a289d54f4f5f5a405373c07aca66aa57cec4137b614c87cb4e24a3d003a3e0">Y</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a342a289d54f4f5f5a405373c07aca66aa02129bb861061d1a052c592e2dc6b383">X</a>, 
+<a class="el" href="namespacetket.html#a342a289d54f4f5f5a405373c07aca66aa57cec4137b614c87cb4e24a3d003a3e0">Y</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a5dbc98dcc983a70728bd082d1a47546e">OpType::S</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a045a4026bb27931de3a4ad5e8c368659">OpType::Sdg</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ab9ece18c950afbfa6b0fdbfa4ff731d3">OpType::T</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a9827db27d53fd083b867fdf13593809f">OpType::Tdg</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ab9ece18c950afbfa6b0fdbfa4ff731d3">OpType::T</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a9827db27d53fd083b867fdf13593809f">OpType::Tdg</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a5206560a306a2e085a437fd258eb57ce">OpType::V</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a81465dfe73bb1986ad9e50af49e1f983">OpType::Vdg</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac5c6b36796a5cfb3b845cd7881e3fee4">OpType::SX</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac332d91d28127102474faa4c74e67044">OpType::SXdg</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac5c6b36796a5cfb3b845cd7881e3fee4">OpType::SX</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac332d91d28127102474faa4c74e67044">OpType::SXdg</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac1d9f50f86825a1a2302ec2449c17196">OpType::H</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac8600a0cc45fe853cb446a96bb8eae35">OpType::Rx</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3af3f71e9d5ed499d8d691e49ac0d81171">OpType::Ry</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aca877e9e6cc89dfdd87b1797169c9a9e">OpType::Rz</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3af3f71e9d5ed499d8d691e49ac0d81171">OpType::Ry</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aca877e9e6cc89dfdd87b1797169c9a9e">OpType::Rz</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac960375866797bcd97f4f6c22c94b2aa">OpType::U3</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a4684821448f0ae2437312daece9d1cd9">OpType::U2</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3af89412c11bdc0ab44f99f92d5e9a3c5e">OpType::U1</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a461e9cbc1ae4c0b4e456c027bfb805ec">OpType::TK1</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3af89412c11bdc0ab44f99f92d5e9a3c5e">OpType::U1</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a461e9cbc1ae4c0b4e456c027bfb805ec">OpType::TK1</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a605943552629c6e31b20ee3733694927">OpType::TK2</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a833e36d1a5a93dedb10c85f50ced9ce7">OpType::CX</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a9025a1ae8c64158622b7428028f0d2bd">OpType::CY</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a928568b84963ceb76aaaa2cae9afdbfa">OpType::CZ</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a9025a1ae8c64158622b7428028f0d2bd">OpType::CY</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a928568b84963ceb76aaaa2cae9afdbfa">OpType::CZ</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a1ee0bf89c5d1032317d13a2e022793c8">OpType::CH</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aa5c8c3544bc49ebacde4ffe04bf34de0">OpType::CV</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a0d992e25a3f319f4011ff52a6143a7d3">OpType::CVdg</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3acae83baca0a98e3debad1fd2a636df88">OpType::CSX</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a0d992e25a3f319f4011ff52a6143a7d3">OpType::CVdg</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3acae83baca0a98e3debad1fd2a636df88">OpType::CSX</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a360491a482e329423dbf01217091c0dd">OpType::CSXdg</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a16600c82174c58690dc718335a81683e">OpType::CRz</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a5d4369573a67272ed096dfe722d2bde7">OpType::CRx</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3acae6add01e6fcc54ab4c500f534a5b80">OpType::CRy</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a5d4369573a67272ed096dfe722d2bde7">OpType::CRx</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3acae6add01e6fcc54ab4c500f534a5b80">OpType::CRy</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a2ae463c89afc1951b7fb2919ab8fa25a">OpType::CU1</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ae353d6c359c7d57857fe65be7d6465e8">OpType::CU3</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aa4be2ca477e4ec3bd42910620e67ae85">OpType::PhaseGadget</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a5f36659cd231606e67248c8a6476b0b6">OpType::CCX</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aa4be2ca477e4ec3bd42910620e67ae85">OpType::PhaseGadget</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a5f36659cd231606e67248c8a6476b0b6">OpType::CCX</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a46fc23bc4e4d57e5469a39658a6dd3e8">OpType::SWAP</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a5da1165c4fc7303c06fad0030e475a28">OpType::CSWAP</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aa75a1789547188e39e2e344c286d2b62">OpType::BRIDGE</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a5483bf26dec486ec0175e2a3ca816a0a">OpType::noop</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aa75a1789547188e39e2e344c286d2b62">OpType::BRIDGE</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a5483bf26dec486ec0175e2a3ca816a0a">OpType::noop</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a0cbbe0321e0c40dfa77a159ef6bfad6b">OpType::Measure</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a2b31634e3cfef1bfdd7d0d2cdfdc3f9d">OpType::Collapse</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a526d688f37a86d3c3f27d0c5016eb71d">OpType::Reset</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac5e87e33f6f3cf99c1d9d0891d375df1">OpType::ECR</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a526d688f37a86d3c3f27d0c5016eb71d">OpType::Reset</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac5e87e33f6f3cf99c1d9d0891d375df1">OpType::ECR</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aa4bc541b95fc1ece06e92143710c337a">OpType::ISWAP</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a667abdbcc77f7dead35f32f2efeebd3b">OpType::PhasedX</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a29d19ccd6cb57e5bd1006d9130efbcfc">OpType::NPhasedX</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aab307d474acdc6d93c072fab66ac07d6">OpType::ZZMax</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a29d19ccd6cb57e5bd1006d9130efbcfc">OpType::NPhasedX</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aab307d474acdc6d93c072fab66ac07d6">OpType::ZZMax</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a464c865608c43e719808fdfada936330">OpType::XXPhase</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a6d5eeefd873119001f3a4289b5985230">OpType::YYPhase</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a3093b0af32d5a67378a948d9e90ac005">OpType::ZZPhase</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aa74b5165b09b6b760a36c69c5465b527">OpType::XXPhase3</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a3093b0af32d5a67378a948d9e90ac005">OpType::ZZPhase</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aa74b5165b09b6b760a36c69c5465b527">OpType::XXPhase3</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ad75e939460d13226bf4ce9eb21dcd1d2">OpType::ESWAP</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aeda876352a64ead092be83fa73367cd8">OpType::FSim</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a34dffbaaba6a753e65c4fdfe2b5e08c3">OpType::Sycamore</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a8ae9a60f268fb2c9d6111af9392df6bf">OpType::ISWAPMax</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a34dffbaaba6a753e65c4fdfe2b5e08c3">OpType::Sycamore</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a8ae9a60f268fb2c9d6111af9392df6bf">OpType::ISWAPMax</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ae9803ce0546b458ef0384bdb380d6fec">OpType::PhasedISWAP</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3abcad60565e4aa606e492a188e1587f0b">OpType::CnRy</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3adc867e204704e592db6fb6738ceab9ee">OpType::CnX</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a2e7c6b58cca98f2fe44f8548645ba6ad">OpType::CircBox</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3adc867e204704e592db6fb6738ceab9ee">OpType::CnX</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a2e7c6b58cca98f2fe44f8548645ba6ad">OpType::CircBox</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a3540179d9ced51d6d9a7a748cf410189">OpType::Unitary1qBox</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac59cd8b7da8177b5fa306c9a1abbc0d6">OpType::Unitary2qBox</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3afee26642d6cfd5068f8d24bcf4cd3410">OpType::Unitary3qBox</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a8033def635b0488ce1437a093df3bbd8">OpType::ExpBox</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3afee26642d6cfd5068f8d24bcf4cd3410">OpType::Unitary3qBox</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a8033def635b0488ce1437a093df3bbd8">OpType::ExpBox</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aaa7c55748f3e91d01205fe879c9fcbda">OpType::PauliExpBox</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3ac69faa9b11814ac9630106a403214413">OpType::CliffBox</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a4b783b48edba0b5e9bdfe69464914c8f">OpType::CustomGate</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a242d5bcfd960527a3f152c6dfe220c67">OpType::PhasePolyBox</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a4b783b48edba0b5e9bdfe69464914c8f">OpType::CustomGate</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a242d5bcfd960527a3f152c6dfe220c67">OpType::PhasePolyBox</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a0bdf2d4fd224397ee888ae5ed535ed6c">OpType::QControlBox</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a81e83c562bbc4b3d830391b008dece4e">OpType::ClassicalExpBox</a>, 
-<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a9d3afea73e90192d96dda8d38c87a4fe">OpType::Conditional</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a927eb314e7755edbf2f295363eb70989">OpType::ProjectorAssertionBox</a>, 
+&#160;&#160;<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a9d3afea73e90192d96dda8d38c87a4fe">OpType::Conditional</a>, 
+<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a927eb314e7755edbf2f295363eb70989">OpType::ProjectorAssertionBox</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a5873bfa21082d8011557e19ef525e2dd">OpType::StabiliserAssertionBox</a>, 
 <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a875cbe7ba0f4486177a06d7f5847ff24">OpType::UnitaryTableauBox</a>
 <br />
@@ -4032,6 +4038,8 @@ template&lt;typename A , typename B &gt; </div>
 </td></tr>
 <tr><td class="fieldname"><a id="a13e81344da4794f2648eb9a7b286fcf3a5d588264bfb80d9b94a293d436849215"></a>ClassicalTransform&#160;</td><td class="fielddoc"><p>A general classical operation where all inputs are also outputs. </p>
 </td></tr>
+<tr><td class="fieldname"><a id="a13e81344da4794f2648eb9a7b286fcf3ac7dbeb10b3299406a04231654cf6defd"></a>WASM&#160;</td><td class="fielddoc"><p><a class="el" href="classtket_1_1Op.html" title="Abstract class representing an operation type.">Op</a> containing a classical wasm function call. </p>
+</td></tr>
 <tr><td class="fieldname"><a id="a13e81344da4794f2648eb9a7b286fcf3a5c843771bd2e2c4fd09e6082b6873c08"></a>SetBits&#160;</td><td class="fielddoc"><p>An operation to set some bits to specified values. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a13e81344da4794f2648eb9a7b286fcf3ac0975fd4a69996fa54a4a3e49aae0613"></a>CopyBits&#160;</td><td class="fielddoc"><p>An operation to copy some bit values. </p>
@@ -4659,7 +4667,7 @@ template&lt;typename A , typename B &gt; </div>
 
 <p>Binary AND operator. </p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00343">343</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00432">432</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
 
 </div>
 </div>
@@ -4680,7 +4688,7 @@ template&lt;typename A , typename B &gt; </div>
 
 <p>In-place AND with another input. </p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00364">364</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00453">453</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
 
 </div>
 </div>
@@ -5479,7 +5487,7 @@ template&lt;typename T &gt; </div>
 
 <p>Classical CNOT transform. </p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00329">329</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00418">418</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
 
 </div>
 </div>
@@ -5500,7 +5508,7 @@ template&lt;typename T &gt; </div>
 
 <p>Classical NOT transform. </p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00322">322</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00411">411</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
 
 </div>
 </div>
@@ -10411,7 +10419,7 @@ template&lt;typename T &gt; </div>
 
 <p>Unary NOT operator. </p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00336">336</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00425">425</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
 
 </div>
 </div>
@@ -11008,7 +11016,7 @@ template&lt;typename T &gt; </div>
 
 <p>Binary OR operator. </p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00350">350</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00439">439</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
 
 </div>
 </div>
@@ -11029,7 +11037,7 @@ template&lt;typename T &gt; </div>
 
 <p>In-place OR with another input. </p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00371">371</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00460">460</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
 
 </div>
 </div>
@@ -13177,7 +13185,7 @@ template&lt;typename UnitA , typename UnitB &gt; </div>
 
 <p>Binary XOR operator. </p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00357">357</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00446">446</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
 
 </div>
 </div>
@@ -13198,7 +13206,7 @@ template&lt;typename UnitA , typename UnitB &gt; </div>
 
 <p>In-place XOR with another input. </p>
 
-<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00378">378</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassicalOps_8cpp_source.html#l00467">467</a> of file <a class="el" href="ClassicalOps_8cpp_source.html">ClassicalOps.cpp</a>.</p>
 
 </div>
 </div>

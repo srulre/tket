@@ -752,8 +752,8 @@ $(function() {
 <div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="namespacetket.html#a1dde40d41ce2d0f7d423345cc92198ef">is_classical_type</a>(optype)) {</div>
 <div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;      <span class="keywordflow">throw</span> <a class="code" href="classtket_1_1CircuitInvalidity.html">CircuitInvalidity</a>(<span class="stringliteral">&quot;Non-classical operation&quot;</span>);</div>
 <div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;    }</div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;    std::shared_ptr&lt;const ClassicalOp&gt; cop =</div>
-<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;        std::dynamic_pointer_cast&lt;const ClassicalOp&gt;(op);</div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;    std::shared_ptr&lt;const ClassicalEvalOp&gt; cop =</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;        std::dynamic_pointer_cast&lt;const ClassicalEvalOp&gt;(op);</div>
 <div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;    <a class="code" href="namespacetket.html#ab5d7d59fd0591d97f8e298235db6ee27">unit_vector_t</a> args = it-&gt;get_args();</div>
 <div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;    <span class="keywordtype">unsigned</span> n_args = args.size();</div>
 <div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;    <span class="keywordflow">switch</span> (optype) {</div>
