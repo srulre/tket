@@ -1,10 +1,10 @@
-# tket
+![TKET](logo.svg)
 
 ## Introduction
 
-This repository contains the full source code for tket, a quantum SDK.
+This repository contains the full source code for TKET, a quantum SDK.
 
-If you just want to use tket via Python, the easiest way is to install it with
+If you just want to use TKET via Python, the easiest way is to install it with
 `pip`:
 
 ```shell
@@ -19,37 +19,37 @@ Note that the various pytket extensions (which allow pytket to interface with
 other software packages and with quantum devices) live in the separate
 [pytket-extensions](https://github.com/CQCL/pytket-extensions) repository.
 
-If you would like to build tket yourself and help to improve it, read on!
+If you would like to build TKET yourself and help to improve it, read on!
 
 The codebase is split into two main projects:
- - [tket](tket): the core functionality of tket, optimised for execution speed
+ - [tket](tket) directory: the core functionality of TKET, optimised for execution speed
    and implemented in C++.
- - [pytket](pytket): the Python interface of tket. This consists of
-   binder modules to tket (written in C++ and making use of `pybind11` to link to the tket
-   shared library) and pure Python code that defines abstract interfaces 
+ - [pytket](pytket) directory: the Python interface of TKET. This consists of
+   binder modules to TKET (written in C++ and making use of `pybind11` to link to the TKET
+   shared libraries) and pure Python code that defines abstract interfaces
    used by the extension modules such as the `Backend` and `BackendResult` classes,
    as well as various other utilities.
 
-## How to build tket and pytket
+## How to build TKET and pytket
 
 ### Prerequisites
 
 #### Build tools
 
-The following compiler toolchains are used to build tket on the CI and are
+The following compiler toolchains are used to build TKET on the CI and are
 therefore known to work:
 
 * Linux: gcc-10
 * MacOS: apple-clang 13
 * Windows: MSVC 19
 
-It is recommended that you use these versions to build locally, as code may
+It is recommended that you use these versions (or higher) to build locally, as code may
 depend on the features they support. The compiler version can be controlled by
 setting `CC` and `CXX` in your environment (e.g. `CC=gcc-10` and `CXX=g++-10`),
 or on Debian-based Linux systems using `update-alternatives`.
 
 You should also have Python (3.8, 3.9 or 3.10) and `pip` installed. We use
-`cmake` and the package manager `conan` to build tket. Both can be installed
+`cmake` and the package manager `conan` to build TKET. Both can be installed
 with `pip`:
 
 ```shell
@@ -101,15 +101,9 @@ profile:
 conan profile update options.tket:shared=True tket
 ```
 
-If you wish you can set your profile to Debug mode:
-
-```shell
-conan profile update settings.build_type=Debug tket
-```
-
 #### Test dependencies
 
-A few of the tket tests require a working LaTeX installation, including
+A few of the TKET tests require a working LaTeX installation, including
 `latexmk` and the `quantikz` package. By default these are only run on Linux.
 Passing `~[latex]` to the test executable will disable them. To install the
 Latex dependencies on (Debian flavours of) Linux you can do:
@@ -141,17 +135,17 @@ where the first line serves to remove any version already installed.
 
 ### Building symengine
 
-The `symengine` dependency is built from a local conan recipe. Run:
+The `symengine` dependency is built from a local conan recipe. You may run:
 
 ```shell
 conan create --profile=tket recipes/symengine
 ```
 
-to build it. If you are using a conan configuration supported by the CI
+to build it. However, if you are using a conan configuration supported by the CI
 (see above under "Build tools"), this is unnecessary as a pre-built package
-will be downloaded from the `tket-conan` repository when you build `tket`.
+will be downloaded from the `tket-conan` repository when you build TKET.
 
-### Building tket
+### Building TKET
 
 #### Method 1
 
@@ -161,17 +155,17 @@ At this point you can run:
 conan create --profile=tket recipes/tket
 ```
 
-to build the tket library.
+to build the TKET libraries.
 
-To build and run the tket tests:
+To build and run the TKET tests:
 
 ```shell
 conan create --profile=tket recipes/tket-tests
 ```
 
-The tests with a running time >=1 second (on a regular modern laptop) are marked as hidden,
+The tests with a running time over 1 second (on a regular modern laptop) are marked as hidden,
 tagged with `"[long]"`, and are not run by default. To run the full suite of tests,
-add `-o tket-tests:full=True` to the above `conan create` command (or to the tket profile).
+add `-o tket-tests:full=True` to the above `conan create` command (or to the `tket` profile).
 The option `-o tket-tests:long=True` can also be used to run only the long tests.
 
 If you want to build the tests without running them, pass `--test-folder None` to the
@@ -252,13 +246,13 @@ First create a `build` folder in the project root. Then proceed as follows.
 
 ## Test coverage
 
-The code coverage of the `tket` tests is reported
+The code coverage of the TKET tests is reported
 [here](https://cqcl.github.io/tket/tket/test-coverage/index.html). This report
 is generated weekly from the `develop` branch.
 
 ## API documentation
 
-The `tket` (C++) API documentation (generated with `doxygen`, and still rather
+The TKET (C++) API documentation (generated with `doxygen`, and still rather
 patchy) is available
 [here](https://cqcl.github.io/tket/tket/api/index.html).
 
