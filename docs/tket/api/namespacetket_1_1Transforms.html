@@ -175,6 +175,9 @@ Functions</h2></td></tr>
 <tr class="separator:a6e2baa7e0e771b7c012c0bda1c921965"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2baef97e10facf80e00d737ed1d7fcb5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Circuit.html">Circuit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#a2baef97e10facf80e00d737ed1d7fcb5">cnx_gray_decomp</a> (unsigned n)</td></tr>
 <tr class="separator:a2baef97e10facf80e00d737ed1d7fcb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70cf68af47c453c01462a54673baa33b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#a70cf68af47c453c01462a54673baa33b">decompose_multi_qubits_TK2</a> ()</td></tr>
+<tr class="memdesc:a70cf68af47c453c01462a54673baa33b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decomposes all multi-qubit unitary gates into TK2 and single-qubit gates.  <a href="namespacetket_1_1Transforms.html#a70cf68af47c453c01462a54673baa33b">More...</a><br /></td></tr>
+<tr class="separator:a70cf68af47c453c01462a54673baa33b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43adf4cb25bec02a6eb9188afa0b93b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#a43adf4cb25bec02a6eb9188afa0b93b2">decompose_multi_qubits_CX</a> ()</td></tr>
 <tr class="memdesc:a43adf4cb25bec02a6eb9188afa0b93b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decomposes all multi-qubit unitary gates into CX and single-qubit gates.  <a href="namespacetket_1_1Transforms.html#a43adf4cb25bec02a6eb9188afa0b93b2">More...</a><br /></td></tr>
 <tr class="separator:a43adf4cb25bec02a6eb9188afa0b93b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -246,6 +249,9 @@ Functions</h2></td></tr>
 <tr class="separator:a52148ae6b71d9f22bf042ce36c1870ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d801201cebd0dd5f0f99b0784f07900"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#a2d801201cebd0dd5f0f99b0784f07900">clifford_simp</a> (bool allow_swaps=true)</td></tr>
 <tr class="separator:a2d801201cebd0dd5f0f99b0784f07900"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95c6a28672afa26e7ea836a37007f544"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#a95c6a28672afa26e7ea836a37007f544">synthesise_tk</a> ()</td></tr>
+<tr class="memdesc:a95c6a28672afa26e7ea836a37007f544"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synthesise a circuit consisting of TK2 and TK1 gates only.  <a href="namespacetket_1_1Transforms.html#a95c6a28672afa26e7ea836a37007f544">More...</a><br /></td></tr>
+<tr class="separator:a95c6a28672afa26e7ea836a37007f544"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a108b4acec5e396c24213d413646d06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#a7a108b4acec5e396c24213d413646d06">synthesise_tket</a> ()</td></tr>
 <tr class="memdesc:a7a108b4acec5e396c24213d413646d06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synthesise a circuit consisting of CX and TK1 gates only.  <a href="namespacetket_1_1Transforms.html#a7a108b4acec5e396c24213d413646d06">More...</a><br /></td></tr>
 <tr class="separator:a7a108b4acec5e396c24213d413646d06"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -661,7 +667,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Transformation to perform the conversion </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00748">748</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00778">778</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -720,7 +726,7 @@ Variables</h2></td></tr>
 
 <p>Replaces all boxes by their decomposition using <a class="el" href="classtket_1_1Box.html#aa8189b7ff8c3c0b8fd90cbc71cf19c3f" title="Circuit represented by box.">Box::to_circuit</a> Expects: any gateset returns potentially all gates. </p>
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00744">744</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00774">774</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -777,7 +783,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00855">855</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00885">885</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -796,7 +802,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00561">561</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00591">591</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -816,7 +822,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00934">934</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00964">964</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -835,7 +841,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00254">254</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00284">284</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -854,7 +860,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00271">271</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00301">301</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -873,7 +879,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00334">334</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00364">364</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -896,7 +902,30 @@ Variables</h2></td></tr>
 <p>Ignores boxes.</p>
 <p>Expects: any gates Produces: CX and any single-qubit gates </p>
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00134">134</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00164">164</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a70cf68af47c453c01462a54673baa33b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70cf68af47c453c01462a54673baa33b">&#9670;&nbsp;</a></span>decompose_multi_qubits_TK2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classtket_1_1Transform.html">Transform</a> tket::Transforms::decompose_multi_qubits_TK2 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decomposes all multi-qubit unitary gates into TK2 and single-qubit gates. </p>
+<p>Ignores boxes.</p>
+<p>Expects: any gates Produces: TK2 and any single-qubit gates </p>
+
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00160">160</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -915,7 +944,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00672">672</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00702">702</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -937,7 +966,7 @@ Variables</h2></td></tr>
 <p>Decomposes all single-qubit unitary gates into TK1 gates. </p>
 <p>Ignores boxes. </p>
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00159">159</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00189">189</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -957,7 +986,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00768">768</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00798">798</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -977,7 +1006,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00788">788</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00818">818</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -996,7 +1025,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00233">233</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00263">263</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1015,7 +1044,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00231">231</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00261">261</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1034,7 +1063,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00227">227</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00257">257</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1053,7 +1082,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00605">605</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00635">635</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1072,7 +1101,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00291">291</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00321">321</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1091,7 +1120,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00229">229</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00259">259</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1112,7 +1141,7 @@ Variables</h2></td></tr>
 
 <p>Starting with Rz, Ry and multi-qubit gates, replace all singles with TK1. </p>
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00163">163</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00193">193</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1131,7 +1160,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00388">388</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00418">418</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1361,7 +1390,7 @@ Variables</h2></td></tr>
 <p>Depth-saving resynthesis of phase gadgets with alignment. </p>
 <p>Produces CX and TK1 gates. </p>
 
-<p class="definition">Definition at line <a class="el" href="OptimisationPass_8cpp_source.html#l00096">96</a> of file <a class="el" href="OptimisationPass_8cpp_source.html">OptimisationPass.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="OptimisationPass_8cpp_source.html#l00107">107</a> of file <a class="el" href="OptimisationPass_8cpp_source.html">OptimisationPass.cpp</a>.</p>
 
 </div>
 </div>
@@ -2010,7 +2039,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="OptimisationPass_8cpp_source.html#l00114">114</a> of file <a class="el" href="OptimisationPass_8cpp_source.html">OptimisationPass.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="OptimisationPass_8cpp_source.html#l00125">125</a> of file <a class="el" href="OptimisationPass_8cpp_source.html">OptimisationPass.cpp</a>.</p>
 
 </div>
 </div>
@@ -2029,7 +2058,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="OptimisationPass_8cpp_source.html#l00102">102</a> of file <a class="el" href="OptimisationPass_8cpp_source.html">OptimisationPass.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="OptimisationPass_8cpp_source.html#l00113">113</a> of file <a class="el" href="OptimisationPass_8cpp_source.html">OptimisationPass.cpp</a>.</p>
 
 </div>
 </div>
@@ -2063,6 +2092,27 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a95c6a28672afa26e7ea836a37007f544"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95c6a28672afa26e7ea836a37007f544">&#9670;&nbsp;</a></span>synthesise_tk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classtket_1_1Transform.html">Transform</a> tket::Transforms::synthesise_tk </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Synthesise a circuit consisting of TK2 and TK1 gates only. </p>
+
+<p class="definition">Definition at line <a class="el" href="OptimisationPass_8cpp_source.html#l00062">62</a> of file <a class="el" href="OptimisationPass_8cpp_source.html">OptimisationPass.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a7a108b4acec5e396c24213d413646d06"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7a108b4acec5e396c24213d413646d06">&#9670;&nbsp;</a></span>synthesise_tket()</h2>
 
@@ -2080,7 +2130,7 @@ Variables</h2></td></tr>
 
 <p>Synthesise a circuit consisting of CX and TK1 gates only. </p>
 
-<p class="definition">Definition at line <a class="el" href="OptimisationPass_8cpp_source.html#l00062">62</a> of file <a class="el" href="OptimisationPass_8cpp_source.html">OptimisationPass.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="OptimisationPass_8cpp_source.html#l00073">73</a> of file <a class="el" href="OptimisationPass_8cpp_source.html">OptimisationPass.cpp</a>.</p>
 
 </div>
 </div>
@@ -2099,7 +2149,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="OptimisationPass_8cpp_source.html#l00129">129</a> of file <a class="el" href="OptimisationPass_8cpp_source.html">OptimisationPass.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="OptimisationPass_8cpp_source.html#l00140">140</a> of file <a class="el" href="OptimisationPass_8cpp_source.html">OptimisationPass.cpp</a>.</p>
 
 </div>
 </div>
