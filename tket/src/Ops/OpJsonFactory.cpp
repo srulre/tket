@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,12 +21,13 @@
 namespace tket {
 std::map<OpType, OpJsonFactory::JsonConstruct>& OpJsonFactory::c_methods_() {
   static std::unique_ptr<std::map<OpType, OpJsonFactory::JsonConstruct>>
-      methods(new std::map<OpType, OpJsonFactory::JsonConstruct>());
+      methods =
+          std::make_unique<std::map<OpType, OpJsonFactory::JsonConstruct>>();
   return *methods;
 }
 std::map<OpType, OpJsonFactory::JsonProduce>& OpJsonFactory::p_methods_() {
-  static std::unique_ptr<std::map<OpType, OpJsonFactory::JsonProduce>> methods(
-      new std::map<OpType, OpJsonFactory::JsonProduce>());
+  static std::unique_ptr<std::map<OpType, OpJsonFactory::JsonProduce>> methods =
+      std::make_unique<std::map<OpType, OpJsonFactory::JsonProduce>>();
   return *methods;
 }
 

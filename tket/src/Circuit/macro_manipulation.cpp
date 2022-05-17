@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -381,6 +381,18 @@ void Circuit::replace_SWAPs() {
   remove_vertices(bin, GraphRewiring::No, VertexDeletion::Yes);
 }
 
+void Circuit::replace_implicit_wire_swap(
+    const Qubit first, const Qubit second) {
+  add_op<UnitID>(OpType::CX, {first, second});
+  add_op<UnitID>(OpType::CX, {second, first});
+  Vertex cxvertex = add_op<UnitID>(OpType::CX, {first, second});
+  EdgeVec outs = get_all_out_edges(cxvertex);
+  Edge out1 = outs[0];
+  dag[out1].ports.first = 1;
+  Edge out2 = outs[1];
+  dag[out2].ports.first = 0;
+}
+
 // helper functions for the dagger and transpose
 void Circuit::_handle_boundaries(Circuit& circ, vertex_map_t& vmap) const {
   // Handle boundaries
@@ -617,27 +629,34 @@ Circuit Circuit::conditional_circuit(
   return cond_circ;
 }
 
+bool Circuit::substitute_box_vertex(
+    Vertex& vert, VertexDeletion vertex_deletion) {
+  Op_ptr op = get_Op_ptr_from_Vertex(vert);
+  bool conditional = op->get_type() == OpType::Conditional;
+  if (conditional) {
+    const Conditional& cond = static_cast<const Conditional&>(*op);
+    op = cond.get_op();
+  }
+  if (!op->get_desc().is_box()) return false;
+  const Box& b = static_cast<const Box&>(*op);
+  Circuit replacement = *b.to_circuit();
+  if (conditional) {
+    substitute_conditional(
+        replacement, vert, vertex_deletion, OpGroupTransfer::Merge);
+  } else {
+    substitute(replacement, vert, vertex_deletion, OpGroupTransfer::Merge);
+  }
+  return true;
+}
+
 bool Circuit::decompose_boxes() {
   bool success = false;
   VertexList bin;
   BGL_FORALL_VERTICES(v, dag, DAG) {
-    Op_ptr op = get_Op_ptr_from_Vertex(v);
-    bool conditional = op->get_type() == OpType::Conditional;
-    if (conditional) {
-      const Conditional& cond = static_cast<const Conditional&>(*op);
-      op = cond.get_op();
+    if (substitute_box_vertex(v, VertexDeletion::No)) {
+      bin.push_back(v);
+      success = true;
     }
-    if (!op->get_desc().is_box()) continue;
-    const Box& b = static_cast<const Box&>(*op);
-    Circuit replacement = *b.to_circuit();
-    if (conditional) {
-      substitute_conditional(
-          replacement, v, VertexDeletion::No, OpGroupTransfer::Merge);
-    } else {
-      substitute(replacement, v, VertexDeletion::No, OpGroupTransfer::Merge);
-    }
-    bin.push_back(v);
-    success = true;
   }
   remove_vertices(bin, GraphRewiring::No, VertexDeletion::Yes);
   return success;
@@ -657,8 +676,8 @@ std::map<Bit, bool> Circuit::classical_eval(
     if (!is_classical_type(optype)) {
       throw CircuitInvalidity("Non-classical operation");
     }
-    std::shared_ptr<const ClassicalOp> cop =
-        std::dynamic_pointer_cast<const ClassicalOp>(op);
+    std::shared_ptr<const ClassicalEvalOp> cop =
+        std::dynamic_pointer_cast<const ClassicalEvalOp>(op);
     unit_vector_t args = it->get_args();
     unsigned n_args = args.size();
     switch (optype) {

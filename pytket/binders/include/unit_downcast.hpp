@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,8 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef _TKET__unit_downcast_H_
-#define _TKET__unit_downcast_H_
+#pragma once
 #include <pybind11/pybind11.h>
 
 #include "Utils/UnitID.hpp"
@@ -39,5 +38,3 @@ struct polymorphic_type_hook<tket::UnitID> {
   }
 };
 }  // namespace pybind11
-
-#endif  //_TKET__unit_downcast_H_

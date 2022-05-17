@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -49,12 +49,6 @@ void Circuit::remove_blank_wires() {
   }
   for (const UnitID& u : unused_units) {
     boundary.get<TagID>().erase(u);
-  }
-  if (unit_bimaps_.initial && unit_bimaps_.final) {
-    for (const UnitID& u : unused_units) {
-      unit_bimaps_.initial->right.erase(u);
-      unit_bimaps_.final->right.erase(u);
-    }
   }
   remove_vertices(bin, GraphRewiring::No, VertexDeletion::Yes);
 }
@@ -304,14 +298,6 @@ void Circuit::remove_vertices(
 }
 
 void Circuit::remove_vertices(
-    const VertexVec& surplus, GraphRewiring graph_rewiring,
-    VertexDeletion vertex_deletion) {
-  for (const Vertex& to_remove : surplus) {
-    remove_vertex(to_remove, graph_rewiring, vertex_deletion);
-  }
-}
-
-void Circuit::remove_vertices(
     const VertexList& surplus, GraphRewiring graph_rewiring,
     VertexDeletion vertex_deletion) {
   for (const Vertex& to_remove : surplus) {
@@ -323,7 +309,7 @@ void Circuit::remove_edge(const Edge& edge) {
   boost::remove_edge(edge, this->dag);
 }
 
-void Circuit::flatten_registers() {
+unit_map_t Circuit::flatten_registers() {
   unsigned q_index = 0;
   unsigned c_index = 0;
   boundary_t new_map;
@@ -341,8 +327,7 @@ void Circuit::flatten_registers() {
     new_map.insert(new_el);
   }
   boundary = new_map;
-  update_initial_map(qmap);
-  update_final_map(qmap);
+  return qmap;
 }
 
 // this automatically updates the circuit boundaries

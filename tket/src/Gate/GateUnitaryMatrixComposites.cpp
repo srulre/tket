@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,6 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+#include <utility>
 
 #include "GateUnitaryMatrixImplementations.hpp"
 #include "GateUnitaryMatrixUtils.hpp"
@@ -44,7 +46,7 @@ Eigen::Matrix2cd GateUnitaryMatrixImplementations::U3(
          Rz(lambda);
 }
 
-Eigen::Matrix2cd GateUnitaryMatrixImplementations::tk1(
+Eigen::Matrix2cd GateUnitaryMatrixImplementations::TK1(
     double alpha, double beta, double gamma) {
   return Rz(alpha) * Rx(beta) * Rz(gamma);
 }
@@ -61,6 +63,11 @@ Eigen::Matrix4cd GateUnitaryMatrixImplementations::CRz(double alpha) {
   return GateUnitaryMatrixUtils::get_controlled_gate_unitary(Rz(alpha));
 }
 
+Eigen::Matrix4cd GateUnitaryMatrixImplementations::TK2(
+    double alpha, double beta, double gamma) {
+  return XXPhase(alpha) * YYPhase(beta) * ZZPhase(gamma);
+}
+
 Eigen::Matrix4cd GateUnitaryMatrixImplementations::PhasedISWAP(
     double p, double t) {
   auto matr = ISWAP(t);
@@ -74,6 +81,17 @@ Eigen::Matrix2cd GateUnitaryMatrixImplementations::PhasedX(
     double alpha, double beta) {
   const auto rz_beta_matr = Rz(beta);
   return rz_beta_matr * Rx(alpha) * rz_beta_matr.conjugate();
+}
+
+Eigen::MatrixXcd GateUnitaryMatrixImplementations::NPhasedX(
+    unsigned number_of_qubits, double alpha, double beta) {
+  const auto phasedx_matr = PhasedX(alpha, beta);
+  Eigen::MatrixXcd U = Eigen::MatrixXcd::Identity(1, 1);
+  for (unsigned i = 0; i < number_of_qubits; i++) {
+    Eigen::MatrixXcd V = Eigen::kroneckerProduct(phasedx_matr, U);
+    U = std::move(V);
+  }
+  return U;
 }
 
 Eigen::MatrixXcd GateUnitaryMatrixImplementations::CnRy(

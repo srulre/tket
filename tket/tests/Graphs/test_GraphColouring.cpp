@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,18 +19,16 @@
 #include "GraphTestingRoutines.hpp"
 #include "Graphs/AdjacencyData.hpp"
 #include "Graphs/GraphColouring.hpp"
-#include "RNG.hpp"
 #include "RandomGraphGeneration.hpp"
 #include "RandomPlanarGraphs.hpp"
+#include "Utils/RNG.hpp"
 
 using std::map;
-using std::size_t;
 using std::vector;
 
 namespace tket {
 namespace graphs {
 namespace tests {
-namespace test_GraphColouring {
 
 SCENARIO("Test many colourings: random trees") {
   RNG rng;
@@ -363,7 +361,6 @@ SCENARIO("Test Mycielski graphs") {
   test_Mycielski_graph_sequence(graph, 2, 9);
 }
 
-}  // namespace test_GraphColouring
 }  // namespace tests
 }  // namespace graphs
 }  // namespace tket

@@ -1,4 +1,4 @@
-# Copyright 2019-2021 Cambridge Quantum Computing
+# Copyright 2019-2022 Cambridge Quantum Computing
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -449,13 +449,14 @@ class SpamCorrecter:
                     # produced state
                     measured_state_index = binary_to_int(measured_state)
                     # update characterisation matrix
-                    self.subsets_matrix_map[qb_sub][
-                        measured_state_index, prepared_state_index
-                    ] += count
+                    M = self.subsets_matrix_map[qb_sub]
+                    assert type(M) is np.ndarray
+                    M[measured_state_index, prepared_state_index] += count
 
         # normalise everything
         self.characterisation_matrices = [
-            mat / np.sum(mat, axis=0) for mat in self.subsets_matrix_map.values()
+            mat / np.sum(cast(np.ndarray, mat), axis=0)
+            for mat in self.subsets_matrix_map.values()
         ]
 
     def get_parallel_measure(self, circuit: Circuit) -> ParallelMeasures:

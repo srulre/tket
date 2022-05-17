@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright 2019-2021 Cambridge Quantum Computing
+# Copyright 2019-2022 Cambridge Quantum Computing
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,23 +22,29 @@ export PYBIN=/opt/python/cp39-cp39/bin
 ${PYBIN}/pip install conan
 
 export CONAN_CMD=${PYBIN}/conan
+export CONAN_REVISIONS_ENABLED=1
 
 cd /tket
 
 ${CONAN_CMD} profile new tket --detect
-${CONAN_CMD} config set general.revisions_enabled=1
+${CONAN_CMD} profile update options.tket:shared=True tket
+${CONAN_CMD} remote add tket-conan https://tket.jfrog.io/artifactory/api/conan/tket-conan --force
 ${CONAN_CMD} create --profile=tket --test-folder=None recipes/tket
+${CONAN_CMD} create --profile=tket --test-folder=None recipes/pybind11
 
 cd /tket/pytket
 mkdir wheelhouse
 mkdir audited
+
+# Work around https://github.com/pypa/manylinux/issues/1309
+git config --global --add safe.directory "*"
 
 for pyX in $PY_VERS
 do
     cd /tket/pytket
     export PYEX=/opt/python/${pyX}/bin/python
     export PYVER=`${PYEX} -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'`
-    ${PYEX} -m pip install -U pip setuptools_scm
-    ${PYEX} setup.py bdist_wheel -d "tmpwheel_${PYVER}"
+    ${PYEX} -m pip install -U pip build
+    ${PYEX} -m build --outdir "tmpwheel_${PYVER}"
     auditwheel repair "tmpwheel_${PYVER}/pytket-"*".whl" -w "audited/${PYVER}/"
 done

@@ -1,4 +1,4 @@
-# Copyright 2019-2021 Cambridge Quantum Computing
+# Copyright 2019-2022 Cambridge Quantum Computing
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ class TketProptestsConan(ConanFile):
     version = "0.6.3"
     license = "CQC Proprietary"
     author = "Alec Edgington <alec.edgington@cambridgequantum.com>"
-    url = "https://github.com/CQCL-DEV/tket"
+    url = "https://github.com/CQCL/tket"
     description = "Property tests for tket"
     topics = ("quantum", "computation", "compiler")
     settings = "os", "compiler", "build_type", "arch"

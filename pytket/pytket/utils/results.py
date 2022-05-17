@@ -1,4 +1,4 @@
-# Copyright 2019-2021 Cambridge Quantum Computing
+# Copyright 2019-2022 Cambridge Quantum Computing
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 
 StateTuple = Tuple[int, ...]
 CountsDict = Dict[StateTuple, int]
-KwargTypes = Union[int, float, None]
+KwargTypes = Union[int, float, str, None]
 
 
 class BitPermuter:
@@ -151,7 +151,7 @@ def probs_from_state(
     :rtype: Dict[Tuple[int], float]
     """
     width = get_n_qb_from_statevector(state)
-    probs = state.real ** 2 + state.imag ** 2
+    probs = state.real**2 + state.imag**2
     probs /= sum(probs)
     ignore = probs < min_p
     probs[ignore] = 0
@@ -171,7 +171,7 @@ def get_n_qb_from_statevector(state: np.ndarray) -> int:
     :rtype: int
     """
     n_qb = int(np.log2(state.shape[0]))
-    if 2 ** n_qb != state.shape[0]:
+    if 2**n_qb != state.shape[0]:
         raise ValueError("Size is not a power of 2")
     return n_qb
 
@@ -189,7 +189,7 @@ def _assert_compatible_state_permutation(
     :raises ValueError: [description]
     """
     n_qb = len(permutation)
-    if 2 ** n_qb != state.shape[0]:
+    if 2**n_qb != state.shape[0]:
         raise ValueError("Invalid permutation: length does not match number of qubits")
 
 
@@ -229,7 +229,7 @@ def permute_basis_indexing(
     _assert_compatible_state_permutation(matrix, permutation)
     permuter = BitPermuter(permutation)
 
-    return cast(np.ndarray, matrix[permuter.permute_all(), ...])
+    return matrix[permuter.permute_all(), ...]
 
 
 def permute_rows_cols_in_unitary(
@@ -251,7 +251,7 @@ def permute_rows_cols_in_unitary(
     all_perms = permuter.permute_all()
     permat = matrix[:, all_perms]
     permat = permat[all_perms, :]
-    return cast(np.ndarray, permat)
+    return permat
 
 
 def compare_statevectors(first: np.ndarray, second: np.ndarray) -> bool:

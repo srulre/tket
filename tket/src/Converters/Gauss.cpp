@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -64,20 +64,6 @@ bool DiagMatrix::is_id_until_columns(unsigned limit) const {
       if (j > limit) {
         if ((i < j) && (_matrix(i, j) == 1)) return false;
       }
-    }
-  }
-
-  return true;
-}
-
-bool DiagMatrix::is_upper() const {
-  for (unsigned i = 0; i < n_rows(); ++i) {
-    if (_matrix(i, i) == 0) return false;
-  }
-
-  for (unsigned i = 0; i < n_rows(); ++i) {
-    for (unsigned j = 0; j < n_cols(); ++j) {
-      if ((i > j) && (_matrix(i, j) == 1)) return false;
     }
   }
 

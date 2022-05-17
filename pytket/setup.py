@@ -1,4 +1,4 @@
-# Copyright 2019-2021 Cambridge Quantum Computing
+# Copyright 2019-2022 Cambridge Quantum Computing
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import io
 import os
 import platform
 import re
@@ -22,11 +21,12 @@ import json
 import shutil
 from multiprocessing import cpu_count
 from distutils.version import LooseVersion
+from concurrent.futures import ThreadPoolExecutor as Pool
+from shutil import which
 import setuptools  # type: ignore
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext  # type: ignore
-from concurrent.futures import ThreadPoolExecutor as Pool
-from shutil import which
+from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
 
 
 class CMakeExtension(Extension):
@@ -83,40 +83,53 @@ class CMakeBuild(build_ext):
         if platform.system() in ["Darwin", "Windows"]:
             # Hack to put the tket library alongside the extension libraries
             conan_tket_profile = os.getenv("CONAN_TKET_PROFILE", default="tket")
-            conaninfo = dict(
+            jsondump = "conaninfo.json"
+            subprocess.run(
                 [
-                    (comp["reference"], comp)
-                    for comp in json.loads(
-                        subprocess.run(
-                            [
-                                "conan",
-                                "info",
-                                "--profile",
-                                conan_tket_profile,
-                                "--path",
-                                "--json",
-                                "--",
-                                ".",
-                            ],
-                            stdout=subprocess.PIPE,
-                            cwd=extsource,
-                        ).stdout
-                    )
-                ]
+                    "conan",
+                    "info",
+                    "--profile",
+                    conan_tket_profile,
+                    "--path",
+                    "--json",
+                    jsondump,
+                    ".",
+                ],
+                cwd=extsource,
             )
+            with open(jsondump) as f:
+                conaninfo = dict([(comp["reference"], comp) for comp in json.load(f)])
+            os.remove(jsondump)
             reqs = conaninfo["conanfile.txt"]["requires"]
-
-            # tket packages which must be copied over.
-            # (Only one right now, but maybe more in future).
-            # The name of the package might not match the name of the file!
-            copying_data = (("tket/", "tket"),)
-            for entry in copying_data:
-                assert len(entry) == 2
-                tket_reqs = [req for req in reqs if req.startswith(entry[0])]
-                assert len(tket_reqs) == 1
-                versioned_package = tket_reqs[0]
-                directory = conaninfo[versioned_package]["package_folder"]
-                shutil.copy(os.path.join(directory, "lib", libfile(entry[1])), extdir)
+            tket_reqs = [req for req in reqs if req.startswith("tket/")]
+            assert len(tket_reqs) == 1
+            tket_req = tket_reqs[0]
+            directory = conaninfo[tket_req]["package_folder"]
+            tket_libs = [
+                "tket-Utils",
+                "tket-ZX",
+                "tket-OpType",
+                "tket-Clifford",
+                "tket-Ops",
+                "tket-Graphs",
+                "tket-Gate",
+                "tket-PauliGraph",
+                "tket-Circuit",
+                "tket-Architecture",
+                "tket-Simulation",
+                "tket-Diagonalisation",
+                "tket-Characterisation",
+                "tket-Converters",
+                "tket-TokenSwapping",
+                "tket-Placement",
+                "tket-Mapping",
+                "tket-MeasurementSetup",
+                "tket-Transformations",
+                "tket-ArchAwareSynth",
+                "tket-Predicates",
+            ]
+            for tket_lib in tket_libs:
+                shutil.copy(os.path.join(directory, "lib", libfile(tket_lib)), extdir)
 
     def cmake_config(self, extdir, extsource):
 
@@ -154,6 +167,8 @@ class CMakeBuild(build_ext):
             "install",
             "--profile=" + conan_tket_profile,
             "--build=missing",
+            "-o",
+            "tket:shared=True",
             extsource,
         ]
         if platform.system() == "Darwin" and platform.processor() == "arm":
@@ -191,44 +206,58 @@ binders = [
     "predicates",
     "partition",
     "pauli",
-    "program",
-    "routing",
+    "mapping",
     "transform",
     "tailoring",
+    "tableau",
+    "zx",
+    "placement",
+    "architecture",
 ]
+
+setup_dir = os.path.abspath(os.path.dirname(__file__))
+plat_name = os.getenv("WHEEL_PLAT_NAME")
+
+
+class bdist_wheel(_bdist_wheel):
+    def finalize_options(self):
+        _bdist_wheel.finalize_options(self)
+        if plat_name is not None:
+            print(f"Overriding plat_name to {plat_name}")
+            self.plat_name = plat_name
+            self.plat_name_supplied = True
 
 
 setup(
     name="pytket",
     author="Seyon Sivarajah",
     author_email="seyon.sivarajah@cambridgequantum.com",
-    python_requires=">=3.7",
-    url="https://cqcl.github.io/pytket",
-    description="Python module for interfacing with the CQC tket library of quantum software",
+    python_requires=">=3.8",
+    url="https://cqcl.github.io/tket/pytket/api/",
+    description="Python module for interfacing with the CQC tket library of quantum "
+    "software",
+    license="Apache 2",
     packages=setuptools.find_packages(),
     install_requires=[
         "sympy ~=1.6",
-        "numpy ~=1.19",
+        "numpy >=1.21.4, <2.0",
         "lark-parser ~=0.7",
-        "scipy ~=1.2",
+        "scipy >=1.7.2, <2.0",
         "networkx ~= 2.4",
         "graphviz ~= 0.14",
-        "jinja2 ~= 2.11",
-        "types-Jinja2",
+        "jinja2 ~= 3.0",
         "types-pkg_resources",
-        "typing-extensions ~= 3.7",
+        "typing-extensions ~= 4.2",
     ],
     ext_modules=[
         CMakeExtension("pytket._tket.{}".format(binder)) for binder in binders
     ],
-    cmdclass={
-        "build_ext": CMakeBuild,
-    },
+    cmdclass={"build_ext": CMakeBuild, "bdist_wheel": bdist_wheel},
     classifiers=[
         "Environment :: Console",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: POSIX :: Linux",
@@ -240,4 +269,9 @@ setup(
     include_package_data=True,
     package_data={"pytket": ["py.typed"]},
     zip_safe=False,
+    use_scm_version={
+        "root": os.path.dirname(setup_dir),
+        "write_to": os.path.join(setup_dir, "pytket", "_version.py"),
+        "write_to_template": "__version__ = '{version}'",
+    },
 )

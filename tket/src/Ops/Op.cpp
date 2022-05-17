@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ namespace tket {
 
 std::string Op::get_name(bool latex) const {
   if (latex) {
-    return "\\text{" + get_desc().latex() + "}";
+    return get_desc().latex();
   } else {
     return get_desc().name();
   }

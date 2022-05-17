@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,17 +15,22 @@
 #include <algorithm>
 #include <catch2/catch.hpp>
 
+#include "Circuit/CircPool.hpp"
 #include "Circuit/Circuit.hpp"
+#include "Mapping/LexiLabelling.hpp"
+#include "Mapping/LexiRoute.hpp"
 #include "OpType/OpType.hpp"
 #include "OpType/OpTypeFunctions.hpp"
+#include "Placement/Placement.hpp"
 #include "Predicates/CompilationUnit.hpp"
 #include "Predicates/CompilerPass.hpp"
 #include "Predicates/PassGenerators.hpp"
 #include "Predicates/PassLibrary.hpp"
-#include "Routing/Placement.hpp"
 #include "Simulation/CircuitSimulator.hpp"
 #include "Simulation/ComparisonFunctions.hpp"
 #include "Transformations/ContextualReduction.hpp"
+#include "Transformations/PauliOptimisation.hpp"
+#include "Transformations/Rebase.hpp"
 #include "testutil.hpp"
 namespace tket {
 namespace test_CompilerPass {
@@ -48,11 +53,11 @@ SCENARIO("Run some basic Compiler Passes") {
     // safety mode off
     PostConditions pc{ppm2, {}, Guarantee::Preserve};
     PassPtr compass = std::make_shared<StandardPass>(
-        ppm, Transform::id, pc, nlohmann::json{});
+        ppm, Transforms::id, pc, nlohmann::json{});
     WHEN("Run a basic pass") { REQUIRE(!compass->apply(cu)); }
     // switch safety mode on
     PassPtr compass2 = std::make_shared<StandardPass>(
-        ppm, Transform::id, pc, nlohmann::json{});
+        ppm, Transforms::id, pc, nlohmann::json{});
     WHEN("Run something with an unsatisfied predicate") {
       REQUIRE_THROWS_AS(
           compass2->apply(cu, SafetyMode::Audit), UnsatisfiedPredicate);
@@ -60,7 +65,7 @@ SCENARIO("Run some basic Compiler Passes") {
     WHEN("Compose 2 compatible Compiler Passes") {
       PostConditions pc3{ppm2, {}, Guarantee::Preserve};
       PassPtr compass3 = std::make_shared<StandardPass>(
-          ppm2, Transform::id, pc3, nlohmann::json{});
+          ppm2, Transforms::id, pc3, nlohmann::json{});
       PassPtr combination = compass >> compass3;
 
       // safety mode off
@@ -79,7 +84,7 @@ SCENARIO("Run some basic Compiler Passes") {
           {CompilationUnit::make_type_pair(gsp2).first, Guarantee::Clear}};
       PostConditions pc_clear{{}, pcg, Guarantee::Preserve};
       PassPtr compass_clear = std::make_shared<StandardPass>(
-          ppm2, Transform::id, pc_clear, nlohmann::json{});
+          ppm2, Transforms::id, pc_clear, nlohmann::json{});
       Circuit circ2(2);
       circ2.add_op<unsigned>(OpType::CY, {0, 1});
       CompilationUnit cu2(circ2, ppm);
@@ -89,11 +94,64 @@ SCENARIO("Run some basic Compiler Passes") {
   }
 }
 
+SCENARIO("Test that qubits added via add_qubit are tracked.") {
+  GIVEN("Adding qubit via custom Pass.") {
+    Circuit circ(2, 1);
+    Qubit weird_qb("weird_q", 3);
+    Qubit weird_qb2("weird_q", 5);
+    Qubit weird_qb3("weird_qb", 7);
+    Bit weird_cb("weird_c", 3, 1);
+    circ.add_qubit(weird_qb);
+    circ.add_qubit(weird_qb2);
+    circ.add_bit(weird_cb);
+
+    CompilationUnit cu(circ);
+
+    // circuit bimaps property wont be changed, nor will compilation unit
+    circ.add_qubit(weird_qb3);
+    unit_bimap_t cu_initial = cu.get_initial_map_ref();
+
+    auto it = cu_initial.left.find(weird_qb3);
+    REQUIRE(it == cu_initial.left.end());
+
+    // Instead add transform for running it
+    Transform t =
+        Transform([](Circuit& circ, std::shared_ptr<unit_bimaps_t> maps) {
+          Qubit weird_qb4("weird_qb", 9);
+          circ.add_qubit(weird_qb4);
+          if (maps) {
+            maps->initial.left.insert({weird_qb4, weird_qb4});
+            maps->final.left.insert({weird_qb4, weird_qb4});
+          }
+          return true;
+        });
+
+    // convert to pass
+    PredicatePtrMap s_ps;
+    PostConditions postcon;
+    auto pass =
+        std::make_shared<StandardPass>(s_ps, t, postcon, nlohmann::json{});
+
+    // Comparison qubit
+    Qubit weird_qb4("weird_qb", 9);
+    pass->apply(cu);
+    cu_initial = cu.get_initial_map_ref();
+    // check all maps to show weird_qb4 is mapped to self in both initial and
+    // final
+    it = cu_initial.left.find(weird_qb4);
+    REQUIRE(it != cu_initial.left.end());
+    REQUIRE(it->second == weird_qb4);
+    auto cu_final = cu.get_final_map_ref();
+    it = cu_final.left.find(weird_qb4);
+    REQUIRE(it != cu_final.left.end());
+    REQUIRE(it->second == weird_qb4);
+  }
+}
 SCENARIO("Test making (mostly routing) passes using PassGenerators") {
   GIVEN("Correct pass for Predicate") {
     SquareGrid grid(1, 5);
 
-    PassPtr cp_route = gen_default_mapping_pass(grid);
+    PassPtr cp_route = gen_default_mapping_pass(grid, false);
     Circuit circ(5);
     add_2qb_gates(circ, OpType::CX, {{0, 1}, {0, 2}, {0, 3}, {1, 2}, {3, 4}});
 
@@ -114,7 +172,7 @@ SCENARIO("Test making (mostly routing) passes using PassGenerators") {
   GIVEN("Incorrect pass for Predicate logs a warning") {
     SquareGrid grid(2, 3);
 
-    PassPtr cp_route = gen_default_mapping_pass(grid);
+    PassPtr cp_route = gen_default_mapping_pass(grid, false);
     Circuit circ(6);
     add_2qb_gates(circ, OpType::CX, {{0, 1}, {0, 5}, {0, 3}, {1, 2}, {3, 4}});
 
@@ -156,14 +214,14 @@ SCENARIO("Test making (mostly routing) passes using PassGenerators") {
         CompilationUnit::make_type_pair(gsp)};
     CompilationUnit cu(circ, preds);
 
-    PassPtr cp_route = gen_default_mapping_pass(grid);
+    PassPtr cp_route = gen_default_mapping_pass(grid, false);
 
     Circuit cx(2);
     cx.add_op<unsigned>(OpType::CX, {0, 1});
     PassPtr pz_rebase = gen_rebase_pass(
-        {OpType::CX}, cx, {OpType::PhasedX, OpType::Rz},
-        Transform::tk1_to_PhasedXRz);
-    PassPtr all_passes = SynthesiseTket() >> cp_route >> pz_rebase;
+        {OpType::CX, OpType::PhasedX, OpType::Rz}, cx,
+        CircPool::tk1_to_PhasedXRz);
+    PassPtr all_passes = SynthesiseTK() >> cp_route >> pz_rebase;
 
     REQUIRE(all_passes->apply(cu));
     REQUIRE(cu.check_all_predicates());
@@ -172,19 +230,20 @@ SCENARIO("Test making (mostly routing) passes using PassGenerators") {
       REQUIRE(cu.check_all_predicates());
     }
     WHEN("Make incorrect sequence") {
-      PassPtr bad_pass = cp_route >> SynthesiseTket();
+      PassPtr bad_pass = cp_route >> SynthesiseTK();
       bad_pass->apply(cu);
       REQUIRE(!cu.check_all_predicates());
     }
   }
   GIVEN("Synthesise Passes in a row then routing") {
-    Circuit circ(4);
+    Circuit circ(5);
     circ.add_op<unsigned>(OpType::H, {0});
     circ.add_op<unsigned>(OpType::CZ, {0, 1});
     circ.add_op<unsigned>(OpType::CH, {0, 2});
     circ.add_op<unsigned>(OpType::CnX, {0, 1, 2, 3});
     circ.add_op<unsigned>(OpType::CZ, {0, 1});
-    OpTypeSet ots = {OpType::CX, OpType::tk1, OpType::SWAP};
+    circ.add_op<unsigned>(OpType::X, {4});
+    OpTypeSet ots = {OpType::TK2, OpType::TK1, OpType::SWAP};
     PredicatePtr gsp = std::make_shared<GateSetPredicate>(ots);
     SquareGrid grid(2, 3);
 
@@ -197,10 +256,13 @@ SCENARIO("Test making (mostly routing) passes using PassGenerators") {
     CompilationUnit cu(circ, preds);
 
     PlacementPtr pp = std::make_shared<GraphPlacement>(grid);
-    PassPtr cp_route = gen_full_mapping_pass(grid, pp, {50, 0, 0, 0});
+    PassPtr cp_route = gen_full_mapping_pass(
+        grid, pp,
+        {std::make_shared<LexiLabellingMethod>(),
+         std::make_shared<LexiRouteRoutingMethod>()});
 
     PassPtr all_passes = SynthesiseHQS() >> SynthesiseOQC() >>
-                         SynthesiseUMD() >> SynthesiseTket() >> cp_route;
+                         SynthesiseUMD() >> SynthesiseTK() >> cp_route;
     REQUIRE(all_passes->apply(cu));
     REQUIRE(cu.check_all_predicates());
   }
@@ -277,13 +339,44 @@ SCENARIO("Test making (mostly routing) passes using PassGenerators") {
       REQUIRE(cmds[i].get_op_ptr()->get_type() == expected_optypes[i]);
     }
   }
+
+  GIVEN("gen_euler_pass commuting conditionals through CX") {
+    PassPtr squash = gen_euler_pass(OpType::Rz, OpType::Rx);
+    Circuit circ(2, 1);
+    circ.add_op<unsigned>(OpType::CX, {0, 1});
+    circ.add_conditional_gate<unsigned>(OpType::Rz, {0.142}, {0}, {0}, 0);
+    circ.add_conditional_gate<unsigned>(OpType::Rz, {0.143}, {0}, {0}, 0);
+    circ.add_conditional_gate<unsigned>(OpType::Rx, {0.528}, {1}, {0}, 0);
+    CompilationUnit cu(circ);
+    squash->apply(cu);
+    const Circuit& c = cu.get_circ_ref();
+    c.assert_valid();
+    REQUIRE(c.n_gates() == 3);
+    std::vector<OpType> expected_optypes{
+        OpType::Conditional,  // qubit 0 before CX
+        OpType::Conditional,  // qubit 1 before CX
+        OpType::CX};
+    check_command_types(c, expected_optypes);
+
+    auto cmds = c.get_commands();
+    Op_ptr op0 =
+        static_cast<const Conditional&>(*cmds[0].get_op_ptr()).get_op();
+    Op_ptr op1 =
+        static_cast<const Conditional&>(*cmds[1].get_op_ptr()).get_op();
+
+    REQUIRE(op0->get_type() == OpType::Rz);
+    REQUIRE(op0->get_params() == std::vector<Expr>{0.285});
+    REQUIRE(op1->get_type() == OpType::Rx);
+    REQUIRE(op1->get_params() == std::vector<Expr>{0.528});
+  }
+
   GIVEN("Repeat synthesis passes") {
     OpTypeSet ots = {OpType::H};
     PredicatePtr gsp = std::make_shared<GateSetPredicate>(ots);
     PredicatePtrMap ppm{CompilationUnit::make_type_pair(gsp)};
     PostConditions pc{ppm, {}, Guarantee::Preserve};
     PassPtr compass = std::make_shared<StandardPass>(
-        ppm, Transform::id, pc, nlohmann::json{});
+        ppm, Transforms::id, pc, nlohmann::json{});
     PassPtr rep = std::make_shared<RepeatPass>(compass);
     Circuit circ(1);
     circ.add_op<unsigned>(OpType::H, {0});
@@ -294,7 +387,7 @@ SCENARIO("Test making (mostly routing) passes using PassGenerators") {
   GIVEN("Full compilation sequence") {
     SquareGrid grid(1, 5);
     std::vector<PassPtr> passes = {
-        DecomposeBoxes(), RebaseTket(), gen_default_mapping_pass(grid)};
+        DecomposeBoxes(), RebaseTket(), gen_default_mapping_pass(grid, true)};
     REQUIRE_NOTHROW(SequencePass(passes));
   }
 }
@@ -321,7 +414,7 @@ SCENARIO("Construct sequence pass") {
 
 SCENARIO("Construct invalid sequence passes from vector") {
   std::vector<PassPtr> invalid_pass_to_combo{
-      SynthesiseHQS(), SynthesiseOQC(), SynthesiseUMD(), SynthesiseTket()};
+      SynthesiseHQS(), SynthesiseOQC(), SynthesiseUMD(), SynthesiseTK()};
   for (const PassPtr& pass : invalid_pass_to_combo) {
     std::vector<PassPtr> passes = {pass};
     OpTypeSet ots = {OpType::CX};
@@ -329,7 +422,7 @@ SCENARIO("Construct invalid sequence passes from vector") {
     PredicatePtrMap ppm{CompilationUnit::make_type_pair(gsp)};
     PostConditions pc{{}, {}, Guarantee::Preserve};
     PassPtr compass = std::make_shared<StandardPass>(
-        ppm, Transform::id, pc, nlohmann::json{});
+        ppm, Transforms::id, pc, nlohmann::json{});
     passes.push_back(compass);
     REQUIRE_THROWS_AS((void)SequencePass(passes), IncompatibleCompilerPasses);
   }
@@ -340,12 +433,12 @@ SCENARIO("Construct invalid sequence of loops") {
   PredicatePtrMap ppm{CompilationUnit::make_type_pair(pp1)};
   PostConditions pc{{}, {}, Guarantee::Preserve};
   PassPtr pass1 =
-      std::make_shared<StandardPass>(ppm, Transform::id, pc, nlohmann::json{});
+      std::make_shared<StandardPass>(ppm, Transforms::id, pc, nlohmann::json{});
   PassPtr loop1 = std::make_shared<RepeatPass>(pass1);
   PostConditions pc2{{}, {}, Guarantee::Clear};
   PredicatePtrMap empty_ppm{};
   PassPtr pass2 = std::make_shared<StandardPass>(
-      empty_ppm, Transform::id, pc2, nlohmann::json{});
+      empty_ppm, Transforms::id, pc2, nlohmann::json{});
   PassPtr loop2 = std::make_shared<RepeatPass>(pass2);
   std::vector<PassPtr> good_passes{loop1, loop2};
   std::vector<PassPtr> bad_passes{loop2, loop1};
@@ -375,14 +468,14 @@ SCENARIO("Test RepeatWithMetricPass") {
 }
 
 SCENARIO("Track initial and final maps throughout compilation") {
-  GIVEN("SynthesiseTket should not affect them") {
+  GIVEN("SynthesiseTK should not affect them") {
     Circuit circ(5);
     add_2qb_gates(circ, OpType::CY, {{0, 3}, {1, 4}, {1, 0}, {2, 1}});
     circ.add_op<unsigned>(OpType::SWAP, {3, 4});
     circ.add_op<unsigned>(OpType::Z, {4});
     circ.replace_SWAPs();
     CompilationUnit cu(circ);
-    SynthesiseTket()->apply(cu);
+    SynthesiseTK()->apply(cu);
     for (auto pair : cu.get_initial_map_ref().left) {
       REQUIRE(pair.first == pair.second);
     }
@@ -406,14 +499,14 @@ SCENARIO("Track initial and final maps throughout compilation") {
     CompilationUnit cu(circ);
 
     SquareGrid grid(2, 3);
-    PassPtr cp_route = gen_default_mapping_pass(grid);
+    PassPtr cp_route = gen_default_mapping_pass(grid, false);
     cp_route->apply(cu);
     bool ids_updated = true;
     for (auto pair : cu.get_initial_map_ref().left) {
-      ids_updated &= grid.uid_exists(Node(pair.second));
+      ids_updated &= grid.node_exists(Node(pair.second));
     }
     for (auto pair : cu.get_final_map_ref().left) {
-      ids_updated &= grid.uid_exists(Node(pair.second));
+      ids_updated &= grid.node_exists(Node(pair.second));
     }
     REQUIRE(ids_updated);
     Circuit res(cu.get_circ_ref());
@@ -499,6 +592,55 @@ SCENARIO("gen_placement_pass test") {
     for (unsigned nn = 0; nn <= 3; ++nn) {
       REQUIRE(all_res_qbs[nn] == Node(nn));
     }
+  }
+
+  GIVEN("A large circuit and a large architecture.") {
+    unsigned N = 150;
+    Circuit circ(N);
+    for (unsigned i = 0; i < N - 3; ++i) {
+      circ.add_op<unsigned>(OpType::CX, {i, i + 1});
+      circ.add_op<unsigned>(OpType::CX, {i, i + 2});
+      circ.add_op<unsigned>(OpType::CX, {i, i + 3});
+    }
+    // Generate a line architecture
+    std::vector<std::pair<unsigned, unsigned>> edges;
+    for (unsigned i = 0; i < N - 1; i++) {
+      edges.push_back({i, i + 1});
+    }
+    Architecture line_arc(edges);
+    // Get a graph placement
+    PassPtr graph_place =
+        gen_placement_pass(std::make_shared<GraphPlacement>(line_arc));
+    CompilationUnit graph_cu((Circuit(circ)));
+    graph_place->apply(graph_cu);
+    // Get a noise-aware placement
+    PassPtr noise_place =
+        gen_placement_pass(std::make_shared<NoiseAwarePlacement>(line_arc));
+    CompilationUnit noise_cu((Circuit(circ)));
+    noise_place->apply(noise_cu);
+    // Get a line placement
+    PassPtr line_place =
+        gen_placement_pass(std::make_shared<LinePlacement>(line_arc));
+    CompilationUnit line_cu((Circuit(circ)));
+    line_place->apply(line_cu);
+    // Get a fall back placement from a graph placement
+    PlacementConfig config(5, line_arc.n_connections(), 10000, 10, 0);
+    PassPtr graph_fall_back_place =
+        gen_placement_pass(std::make_shared<GraphPlacement>(line_arc, config));
+    CompilationUnit graph_fall_back_cu((Circuit(circ)));
+    graph_fall_back_place->apply(graph_fall_back_cu);
+    // Get a fall back placement from a noise-aware placement
+    PassPtr noise_fall_back_place = gen_placement_pass(
+        std::make_shared<NoiseAwarePlacement>(line_arc, config));
+    CompilationUnit noise_fall_back_cu((Circuit(circ)));
+    noise_fall_back_place->apply(noise_fall_back_cu);
+
+    REQUIRE(graph_cu.get_final_map_ref() != line_cu.get_final_map_ref());
+    REQUIRE(noise_cu.get_final_map_ref() != line_cu.get_final_map_ref());
+    REQUIRE(
+        graph_fall_back_cu.get_final_map_ref() == line_cu.get_final_map_ref());
+    REQUIRE(
+        noise_fall_back_cu.get_final_map_ref() == line_cu.get_final_map_ref());
   }
 }
 
@@ -661,7 +803,7 @@ SCENARIO("rebase and decompose PhasePolyBox test") {
     Circuit result = cu.get_circ_ref();
 
     REQUIRE(test_unitary_comparison(result, circ));
-    REQUIRE(!NoWireSwapsPredicate().verify(result));
+    REQUIRE(NoWireSwapsPredicate().verify(result));
   }
   GIVEN("NoWireSwapsPredicate for ComposePhasePolyBoxes II") {
     Circuit circ(5);
@@ -681,7 +823,147 @@ SCENARIO("rebase and decompose PhasePolyBox test") {
     Circuit result = cu.get_circ_ref();
 
     REQUIRE(test_unitary_comparison(result, circ));
-    REQUIRE(!NoWireSwapsPredicate().verify(result));
+    REQUIRE(NoWireSwapsPredicate().verify(result));
+  }
+  GIVEN("NoWireSwapsPredicate for ComposePhasePolyBoxes III") {
+    Circuit circ(5);
+    add_2qb_gates(circ, OpType::CX, {{0, 3}, {1, 4}});
+    circ.add_op<unsigned>(OpType::SWAP, {3, 4});
+    circ.add_op<unsigned>(OpType::CX, {2, 3});
+    circ.add_op<unsigned>(OpType::Z, {3});
+    circ.add_op<unsigned>(OpType::CX, {2, 3});
+    circ.add_op<unsigned>(OpType::SWAP, {0, 1});
+    circ.add_op<unsigned>(OpType::CX, {1, 4});
+    circ.add_op<unsigned>(OpType::Z, {4});
+    circ.add_op<unsigned>(OpType::CX, {1, 4});
+    circ.add_op<unsigned>(OpType::SWAP, {1, 2});
+    circ.add_op<unsigned>(OpType::SWAP, {2, 3});
+    circ.add_op<unsigned>(OpType::CX, {0, 1});
+    circ.add_op<unsigned>(OpType::CX, {1, 2});
+    circ.add_op<unsigned>(OpType::CX, {2, 3});
+
+    REQUIRE(NoWireSwapsPredicate().verify(circ));
+    circ.replace_SWAPs();
+    REQUIRE(!NoWireSwapsPredicate().verify(circ));
+
+    CompilationUnit cu(circ);
+    REQUIRE(ComposePhasePolyBoxes()->apply(cu));
+    Circuit result = cu.get_circ_ref();
+
+    REQUIRE(test_unitary_comparison(result, circ));
+    REQUIRE(NoWireSwapsPredicate().verify(result));
+  }
+  GIVEN("NoWireSwapsPredicate for ComposePhasePolyBoxes min size") {
+    Circuit circ(5);
+    add_2qb_gates(circ, OpType::CX, {{0, 3}, {1, 4}});
+    circ.add_op<unsigned>(OpType::SWAP, {3, 4});
+    circ.add_op<unsigned>(OpType::CX, {2, 3});
+    circ.add_op<unsigned>(OpType::Z, {3});
+    circ.add_op<unsigned>(OpType::H, {3});
+    circ.add_op<unsigned>(OpType::CX, {2, 3});
+    circ.add_op<unsigned>(OpType::SWAP, {0, 1});
+    circ.add_op<unsigned>(OpType::CX, {1, 4});
+    circ.add_op<unsigned>(OpType::Z, {4});
+    circ.add_op<unsigned>(OpType::CX, {1, 4});
+    circ.add_op<unsigned>(OpType::H, {3});
+    circ.add_op<unsigned>(OpType::SWAP, {1, 2});
+    circ.add_op<unsigned>(OpType::SWAP, {2, 3});
+    circ.add_op<unsigned>(OpType::CX, {0, 1});
+    circ.add_op<unsigned>(OpType::CX, {1, 2});
+    circ.add_op<unsigned>(OpType::H, {3});
+    circ.add_op<unsigned>(OpType::CX, {2, 3});
+
+    REQUIRE(NoWireSwapsPredicate().verify(circ));
+    circ.replace_SWAPs();
+    REQUIRE(!NoWireSwapsPredicate().verify(circ));
+
+    CompilationUnit cu(circ);
+    REQUIRE(ComposePhasePolyBoxes(5)->apply(cu));
+    Circuit result = cu.get_circ_ref();
+
+    REQUIRE(result.count_gates(OpType::H) == 3);
+    REQUIRE(result.count_gates(OpType::CX) == 2);
+    REQUIRE(result.count_gates(OpType::SWAP) == 0);
+    REQUIRE(result.count_gates(OpType::Z) == 0);
+    REQUIRE(result.count_gates(OpType::PhasePolyBox) == 2);
+
+    REQUIRE(test_unitary_comparison(result, circ));
+    REQUIRE(NoWireSwapsPredicate().verify(result));
+  }
+  GIVEN("NoWireSwapsPredicate for ComposePhasePolyBoxes min size ii") {
+    Circuit circ(5);
+    add_2qb_gates(circ, OpType::CX, {{0, 3}, {1, 4}});
+    circ.add_op<unsigned>(OpType::SWAP, {3, 4});
+    circ.add_op<unsigned>(OpType::CX, {2, 3});
+    circ.add_op<unsigned>(OpType::Z, {3});
+    circ.add_op<unsigned>(OpType::H, {3});
+    circ.add_op<unsigned>(OpType::CX, {2, 3});
+    circ.add_op<unsigned>(OpType::SWAP, {0, 1});
+    circ.add_op<unsigned>(OpType::CX, {1, 4});
+    circ.add_op<unsigned>(OpType::Z, {4});
+    circ.add_op<unsigned>(OpType::CX, {1, 4});
+    circ.add_op<unsigned>(OpType::H, {3});
+    circ.add_op<unsigned>(OpType::SWAP, {1, 2});
+    circ.add_op<unsigned>(OpType::SWAP, {2, 3});
+    circ.add_op<unsigned>(OpType::CX, {0, 1});
+    circ.add_op<unsigned>(OpType::CX, {1, 2});
+    circ.add_op<unsigned>(OpType::H, {3});
+    circ.add_op<unsigned>(OpType::CX, {2, 3});
+
+    REQUIRE(NoWireSwapsPredicate().verify(circ));
+    circ.replace_SWAPs();
+    REQUIRE(!NoWireSwapsPredicate().verify(circ));
+
+    CompilationUnit cu(circ);
+    REQUIRE(ComposePhasePolyBoxes(6)->apply(cu));
+    Circuit result = cu.get_circ_ref();
+
+    REQUIRE(result.count_gates(OpType::H) == 3);
+    REQUIRE(result.count_gates(OpType::CX) == 7);
+    REQUIRE(result.count_gates(OpType::SWAP) == 0);
+    REQUIRE(result.count_gates(OpType::Z) == 0);
+    REQUIRE(result.count_gates(OpType::PhasePolyBox) == 1);
+
+    REQUIRE(test_unitary_comparison(result, circ));
+    REQUIRE(NoWireSwapsPredicate().verify(result));
+  }
+  GIVEN("NoWireSwapsPredicate for aas I") {
+    std::vector<Node> nodes = {Node(0), Node(1), Node(2), Node(3), Node(4)};
+    Architecture architecture(
+        {{nodes[0], nodes[1]},
+         {nodes[1], nodes[2]},
+         {nodes[2], nodes[3]},
+         {nodes[3], nodes[4]}});
+
+    Circuit circ(5);
+    add_2qb_gates(circ, OpType::CX, {{0, 3}, {1, 4}});
+    circ.add_op<unsigned>(OpType::SWAP, {3, 4});
+    circ.add_op<unsigned>(OpType::CX, {2, 3});
+    circ.add_op<unsigned>(OpType::Z, {3});
+    circ.add_op<unsigned>(OpType::CX, {2, 3});
+    circ.add_op<unsigned>(OpType::SWAP, {0, 1});
+    circ.add_op<unsigned>(OpType::CX, {1, 4});
+    circ.add_op<unsigned>(OpType::Z, {4});
+    circ.add_op<unsigned>(OpType::CX, {1, 4});
+    circ.add_op<unsigned>(OpType::SWAP, {1, 2});
+    circ.add_op<unsigned>(OpType::SWAP, {2, 3});
+    circ.add_op<unsigned>(OpType::CX, {0, 1});
+    circ.add_op<unsigned>(OpType::CX, {1, 2});
+    circ.add_op<unsigned>(OpType::CX, {2, 3});
+
+    REQUIRE(NoWireSwapsPredicate().verify(circ));
+    circ.replace_SWAPs();
+    REQUIRE(!NoWireSwapsPredicate().verify(circ));
+
+    CompilationUnit cu(circ);
+
+    REQUIRE(gen_full_mapping_pass_phase_poly(
+                architecture, 1, aas::CNotSynthType::Rec)
+                ->apply(cu));
+    Circuit result = cu.get_circ_ref();
+
+    REQUIRE(test_unitary_comparison(result, circ));
+    REQUIRE(NoWireSwapsPredicate().verify(result));
   }
 }
 
@@ -697,13 +979,15 @@ SCENARIO("DecomposeArbitrarilyControlledGates test") {
 SCENARIO("Precomposed passes successfully compose") {
   GIVEN("gen_directed_cx_routing_pass") {
     RingArch arc(6);
-    REQUIRE_NOTHROW(gen_directed_cx_routing_pass(arc));
+    REQUIRE_NOTHROW(gen_directed_cx_routing_pass(
+        arc, {std::make_shared<LexiLabellingMethod>(),
+              std::make_shared<LexiRouteRoutingMethod>()}));
   }
 }
 
 SCENARIO("Test Pauli Graph Synthesis Pass") {
-  PassPtr graph_synth =
-      gen_synthesise_pauli_graph(PauliSynthStrat::Sets, CXConfigType::Star);
+  PassPtr graph_synth = gen_synthesise_pauli_graph(
+      Transforms::PauliSynthStrat::Sets, CXConfigType::Star);
   Circuit circ(3);
   PauliExpBox peb({Pauli::Z, Pauli::X, Pauli::Z}, 0.333);
   circ.add_box(peb, {0, 1, 2});
@@ -718,14 +1002,16 @@ SCENARIO("Test Pauli Graph Synthesis Pass") {
 
 SCENARIO("Compose Pauli Graph synthesis Passes") {
   RingArch arc(10);
-  PassPtr dir_pass = gen_directed_cx_routing_pass(arc);
+  PassPtr dir_pass = gen_directed_cx_routing_pass(
+      arc, {std::make_shared<LexiLabellingMethod>(),
+            std::make_shared<LexiRouteRoutingMethod>()});
   GIVEN("Special UCC Synthesis") {
     PassPtr spec_ucc = gen_special_UCC_synthesis();
     REQUIRE_NOTHROW(spec_ucc >> dir_pass);
   }
   GIVEN("Pauli Graph synthesis") {
-    PassPtr graph_synth =
-        gen_synthesise_pauli_graph(PauliSynthStrat::Sets, CXConfigType::Star);
+    PassPtr graph_synth = gen_synthesise_pauli_graph(
+        Transforms::PauliSynthStrat::Sets, CXConfigType::Star);
     REQUIRE_NOTHROW(graph_synth >> dir_pass);
   }
   GIVEN("Pairwise Synthesis") {
@@ -801,14 +1087,17 @@ SCENARIO("Commute measurements to the end of a circuit") {
 
     Architecture line({{0, 1}, {1, 2}, {2, 3}});
     PlacementPtr pp = std::make_shared<LinePlacement>(line);
-    PassPtr route_pass = gen_full_mapping_pass(line, pp);
+    PassPtr route_pass = gen_full_mapping_pass(
+        line, pp,
+        {std::make_shared<LexiLabellingMethod>(),
+         std::make_shared<LexiRouteRoutingMethod>()});
     CompilationUnit cu(test);
     route_pass->apply(cu);
     REQUIRE(delay_pass->apply(cu));
     Command final_command = cu.get_circ_ref().get_commands()[7];
     OpType type = final_command.get_op_ptr()->get_type();
     REQUIRE(type == OpType::Measure);
-    REQUIRE(final_command.get_args().front() == Node(1));
+    REQUIRE(final_command.get_args().front() == Node(3));
   }
 }
 
@@ -816,7 +1105,25 @@ SCENARIO("RemoveRedundancies and phase") {
   GIVEN("A trivial circuit with nonzero phase") {
     // TKET-679
     Circuit c(1);
-    c.add_op<unsigned>(OpType::tk1, {1., 0., 1.}, {0});
+    c.add_op<unsigned>(OpType::TK1, {1., 0., 1.}, {0});
+    CompilationUnit cu(c);
+    REQUIRE(RemoveRedundancies()->apply(cu));
+    const Circuit& c1 = cu.get_circ_ref();
+    REQUIRE(c1.get_commands().size() == 0);
+    REQUIRE(equiv_val(c1.get_phase(), 1.));
+  }
+  GIVEN("A circuit with a trivial TK2 gate and nonzero phase") {
+    Circuit c(2);
+    c.add_op<unsigned>(OpType::TK2, {0., 2., 4.}, {0, 1});
+    CompilationUnit cu(c);
+    REQUIRE(RemoveRedundancies()->apply(cu));
+    const Circuit& c1 = cu.get_circ_ref();
+    REQUIRE(c1.get_commands().size() == 0);
+    REQUIRE(equiv_val(c1.get_phase(), 1.));
+  }
+  GIVEN("A circuit with a trivial TK2 gate and nonzero phase") {
+    Circuit c(2);
+    c.add_op<unsigned>(OpType::TK2, {0., 2., 4.}, {0, 1});
     CompilationUnit cu(c);
     REQUIRE(RemoveRedundancies()->apply(cu));
     const Circuit& c1 = cu.get_circ_ref();
@@ -845,8 +1152,9 @@ SCENARIO("CX mapping pass") {
     PlacementPtr placer = std::make_shared<NoiseAwarePlacement>(line);
     Circuit cx(2);
     cx.add_op<unsigned>(OpType::CX, {0, 1});
-    PassPtr rebase = gen_rebase_pass(
-        {OpType::CX}, cx, all_single_qubit_types(), Transform::tk1_to_tk1);
+    OpTypeSet gateset = all_single_qubit_types();
+    gateset.insert(OpType::CX);
+    PassPtr rebase = gen_rebase_pass(gateset, cx, CircPool::tk1_to_tk1);
 
     // Circuit mapping basis states to basis states
     Circuit c(3);
@@ -870,8 +1178,13 @@ SCENARIO("CX mapping pass") {
     REQUIRE(is_classical_map(c_placed));
 
     // Route
+    LexiRouteRoutingMethod lrrm(50);
+    RoutingMethodPtr rmw = std::make_shared<LexiRouteRoutingMethod>(lrrm);
     CompilationUnit cu_route(c_placed);
-    gen_routing_pass(line)->apply(cu_route);
+    gen_routing_pass(
+        line, {std::make_shared<LexiLabellingMethod>(),
+               std::make_shared<LexiRouteRoutingMethod>()})
+        ->apply(cu_route);
     const Circuit& c_routed = cu_route.get_circ_ref();
 
     // Rebase again

@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ unsigned SteinerTree::get_max_element() const {
   return maxelement;
 }
 
-std::vector<unsigned> SteinerTree::get_all_nodes() const {
+std::vector<unsigned> SteinerTree::nodes() const {
   std::vector<unsigned> tree_nodes;
   for (unsigned i = 0; i < node_types.size(); ++i) {
     if (node_types[i] != SteinerNodeType::OutOfTree) {
@@ -530,7 +530,7 @@ static std::pair<unsigned, std::vector<unsigned>> steiner_reduce(
     }
   }
   result.first = cnot_tree.get_max_element();
-  result.second = cnot_tree.get_all_nodes();
+  result.second = cnot_tree.nodes();
   return result;
 }
 
@@ -583,7 +583,7 @@ static std::pair<unsigned, std::vector<unsigned>> steiner_reduce_rec(
     circ.add_op<unsigned>(OpType::CX, {s0, s1});
   }
   result.first = cnot_tree.get_max_element();
-  result.second = cnot_tree.get_all_nodes();
+  result.second = cnot_tree.nodes();
   return result;
 }
 
@@ -805,42 +805,6 @@ unsigned CNotSwapSynth::swap_to_root(
 }
 
 bool CNotSwapSynth::valid_result() { return CNOT_matrix.is_id(); }
-
-std::ostream& operator<<(std::ostream& out, const SteinerTree& st) {
-  out << "\nprint the details of a steiner tree: \n";
-  out << "root: " << st.root << "\n";
-  out << "cost: " << st.tree_cost << "\n";
-  out << "SteinerNodeTypes: ";
-  for (SteinerNodeType nt : st.node_types) {
-    out << (int)nt << " ";
-  }
-  out << "\n";
-  out << "neighbours: ";
-
-  for (unsigned n : st.num_neighbours) {
-    out << n << " ";
-  }
-  out << "\n\n";
-  return out;
-}
-
-std::ostream& operator<<(std::ostream& out, const CNotSwapSynth& cnot) {
-  out << "\nprint the details of a CNot synth object: \n";
-
-  out << "circuit:\n";
-  for (auto g : cnot.circ) {
-    out << g << ", ";
-  }
-  out << std::endl;
-
-  out << "path:\n";
-  out << cnot.paths;
-
-  out << "CNot matrix:\n";
-  out << cnot.CNOT_matrix;
-
-  return out;
-}
 
 }  // namespace aas
 }  // namespace tket

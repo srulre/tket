@@ -1,4 +1,4 @@
-# Copyright 2019-2021 Cambridge Quantum Computing
+# Copyright 2019-2022 Cambridge Quantum Computing
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,9 +13,6 @@
 # limitations under the License.
 
 import os
-from shutil import copyfile
-import platform
-
 from conans import ConanFile, CMake, tools
 
 
@@ -29,21 +26,7 @@ class TketTestConan(ConanFile):
         cmake.configure()
         cmake.build()
 
-    def imports(self):
-        self.copy("*", src="@bindirs", dst="bin")
-        self.copy("*", src="@libdirs", dst="lib")
-
     def test(self):
         if not tools.cross_building(self):
-            libname = {
-                "Linux": "libtket.so",
-                "Darwin": "libtket.dylib",
-                "Windows": "tket.dll",
-            }
-            tket_lib = libname[platform.system()]
-            copyfile(
-                os.path.join(self.install_folder, "lib", tket_lib),
-                os.path.join("bin", tket_lib),
-            )
-            os.chdir("bin")
-            self.run(os.path.join(os.curdir, "test"))
+            bin_path = os.path.join("bin", "test")
+            self.run(bin_path, run_environment=True)

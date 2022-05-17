@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,9 +16,45 @@
 
 #include "Circuit/CircPool.hpp"
 #include "Circuit/CircUtils.hpp"
+#include "ControlledGates.hpp"
+#include "Decomposition.hpp"
+#include "Gate/GatePtr.hpp"
 #include "Transform.hpp"
 
 namespace tket {
+
+using namespace Transforms;
+
+Circuit TK2_circ_from_multiq(const Op_ptr op) {
+  OpDesc desc = op->get_desc();
+  if (!desc.is_gate())
+    throw NotImplemented(
+        "Can only build replacement circuits for basic gates; given " +
+        desc.name());
+  unsigned n_qubits = op->n_qubits();
+  switch (desc.type()) {
+    case OpType::CnRy: {
+      // TODO We should be able to do better than this.
+      Circuit c = decomposed_CnRy(op, n_qubits);
+      replace_CX_with_TK2(c);
+      return c;
+    }
+    case OpType::CnX:
+      if (n_qubits >= 6 && n_qubits <= 8) {
+        // TODO We should be able to do better than this.
+        Circuit c = cnx_gray_decomp(n_qubits - 1);
+        replace_CX_with_TK2(c);
+        return c;
+      } else {
+        // TODO We should be able to do better than this.
+        Circuit c = cnx_normal_decomp(n_qubits - 1);
+        replace_CX_with_TK2(c);
+        return c;
+      }
+    default:
+      return with_TK2(as_gate_ptr(op));
+  }
+}
 
 Circuit CX_circ_from_multiq(const Op_ptr op) {
   OpDesc desc = op->get_desc();
@@ -28,105 +64,13 @@ Circuit CX_circ_from_multiq(const Op_ptr op) {
         desc.name());
   unsigned n_qubits = op->n_qubits();
   switch (desc.type()) {
-    case OpType::CZ: {
-      return CircPool::CZ_using_CX();
-    }
-    case OpType::CY: {
-      return CircPool::CY_using_CX();
-    }
-    case OpType::CH: {
-      return CircPool::CH_using_CX();
-    }
-    case OpType::CV: {
-      return CircPool::CV_using_CX();
-    }
-    case OpType::CVdg: {
-      return CircPool::CVdg_using_CX();
-    }
-    case OpType::CSX: {
-      return CircPool::CSX_using_CX();
-    }
-    case OpType::CSXdg: {
-      return CircPool::CSXdg_using_CX();
-    }
-    case OpType::CRz: {
-      return CircPool::CRz_using_CX(op->get_params()[0]);
-    }
-    case OpType::CRx: {
-      return CircPool::CRx_using_CX(op->get_params()[0]);
-    }
-    case OpType::CRy: {
-      return CircPool::CRy_using_CX(op->get_params()[0]);
-    }
-    case OpType::CU1: {
-      return CircPool::CU1_using_CX(op->get_params()[0]);
-    }
-    case OpType::CU3: {
-      std::vector<Expr> params = op->get_params();
-      return CircPool::CU3_using_CX(params[0], params[1], params[2]);
-    }
-    case OpType::SWAP: {
-      return CircPool::SWAP_using_CX_0();
-    }
-    case OpType::CSWAP: {
-      return CircPool::CSWAP_using_CX();
-    }
-    case OpType::PhaseGadget: {
-      return phase_gadget(n_qubits, op->get_params()[0], CXConfigType::Snake);
-    }
-    case OpType::ISWAP: {
-      return CircPool::ISWAP_using_CX(op->get_params()[0]);
-    }
-    case OpType::XXPhase: {
-      return CircPool::XXPhase_using_CX(op->get_params()[0]);
-    }
-    case OpType::ECR: {
-      return CircPool::ECR_using_CX();
-    }
-    case OpType::ZZMax: {
-      return CircPool::ZZMax_using_CX();
-    }
-    case OpType::ZZPhase: {
-      return CircPool::ZZPhase_using_CX(op->get_params()[0]);
-    }
-    case OpType::YYPhase: {
-      return CircPool::YYPhase_using_CX(op->get_params()[0]);
-    }
-    case OpType::XXPhase3: {
-      return CircPool::XXPhase3_using_CX(op->get_params()[0]);
-    }
-    case OpType::BRIDGE: {
-      return CircPool::BRIDGE_using_CX_0();
-    }
-    case OpType::CnRy: {
-      return Transform::decomposed_CnRy(op, n_qubits);
-    }
-    case OpType::CCX: {
-      return CircPool::CCX_normal_decomp();
-    }
-    case OpType::CnX: {
-      return Transform::cnx_normal_decomp(n_qubits - 1);
-    }
-    case OpType::ESWAP: {
-      return CircPool::ESWAP_using_CX(op->get_params()[0]);
-    }
-    case OpType::FSim: {
-      return CircPool::FSim_using_CX(op->get_params()[0], op->get_params()[1]);
-    }
-    case OpType::Sycamore: {
-      return CircPool::FSim_using_CX(0.5, 1. / 6.);
-    }
-    case OpType::ISWAPMax: {
-      return CircPool::ISWAP_using_CX(1.);
-    }
-    case OpType::PhasedISWAP: {
-      return CircPool::PhasedISWAP_using_CX(
-          op->get_params()[0], op->get_params()[1]);
-    }
-    default: {
-      throw NotImplemented(
-          "Cannot find replacement circuit for OpType::" + desc.name());
-    }
+    case OpType::CnRy:
+      return decomposed_CnRy(op, n_qubits);
+    case OpType::CnX:
+      if (n_qubits >= 6 && n_qubits <= 8) return cnx_gray_decomp(n_qubits - 1);
+      return cnx_normal_decomp(n_qubits - 1);
+    default:
+      return with_CX(as_gate_ptr(op));
   }
 }
 
@@ -268,6 +212,7 @@ Circuit CX_ZX_circ_from_op(const Op_ptr op) {
       replacement.add_op<unsigned>(op, {0, 1});
       return replacement;
     }
+    case OpType::TK2:
     case OpType::CY:
     case OpType::CZ:
     case OpType::CH:
@@ -299,10 +244,10 @@ Circuit CX_ZX_circ_from_op(const Op_ptr op) {
     case OpType::ISWAPMax:
     case OpType::BRIDGE: {
       Circuit replacement = CX_circ_from_multiq(op);
-      Transform::decompose_ZX().apply(replacement);
+      decompose_ZX().apply(replacement);
       return replacement;
     }
-    case OpType::tk1: {
+    case OpType::TK1: {
       Circuit replacement(1);
       std::vector<Expr> params = op->get_params();
       replacement.add_op<unsigned>(OpType::Rz, params[2], {0});

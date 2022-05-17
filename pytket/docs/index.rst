@@ -10,8 +10,8 @@ programming tools. We currently support circuits and device architectures from
 `numerous providers <https://github.com/CQCL/pytket-extensions>`_, allowing the
 tket tools to be used in conjunction with projects on their platforms.
 
-``pytket`` is available for Python 3.7, 3.8 and 3.9, on Linux, MacOS and Windows.
-To install, run
+``pytket`` is available for Python 3.8, 3.9 and 3.10, on Linux, MacOS and
+Windows. To install, run
 
 ``pip install pytket``
 
@@ -125,15 +125,9 @@ LICENCE
 
 Licensed under the `Apache 2 License <http://www.apache.org/licenses/LICENSE-2.0>`_.
 
-Telemetry Data Policy
-~~~~~~~~~~~~~~~~~~~~~
-
-Our telemetry data policy can be viewed in the `Telemetry Data Policy`_ page.
-
 .. _Getting Started: getting_started.html
 .. _examples: https://github.com/CQCL/pytket/tree/main/examples
 .. _CQC: https://cambridgequantum.com
-.. _Telemetry Data Policy: telemetry_data_policy.html
 
 .. toctree::
     :caption: Introduction:
@@ -142,7 +136,6 @@ Our telemetry data policy can be viewed in the `Telemetry Data Policy`_ page.
     getting_started.rst
     changelog.rst
     install.rst
-    Telemetry Data Policy <telemetry_data_policy.rst>
     opensource.rst
 
 .. toctree::
@@ -161,13 +154,16 @@ Our telemetry data policy can be viewed in the `Telemetry Data Policy`_ page.
     pauli.rst
     passes.rst
     predicates.rst
-    program.rst
     partition.rst
     qasm.rst
     quipper.rst
-    routing.rst
+    architecture.rst
+    placement.rst
+    mapping.rst
+    tableau.rst
     transform.rst
     tailoring.rst
+    zx.rst
     utils.rst
     logging.rst
     config.rst

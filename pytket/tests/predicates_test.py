@@ -1,4 +1,4 @@
-# Copyright 2019-2021 Cambridge Quantum Computing
+# Copyright 2019-2022 Cambridge Quantum Computing
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,10 +32,12 @@ from pytket.passes import (  # type: ignore
     RoutingPass,
     CXMappingPass,
     PlacementPass,
+    NaivePlacementPass,
     RenameQubitsPass,
     FullMappingPass,
     DefaultMappingPass,
     AASRouting,
+    ComposePhasePolyBoxes,
     DecomposeSwapsToCXs,
     DecomposeSwapsToCircuit,
     PauliSimp,
@@ -45,16 +47,7 @@ from pytket.passes import (  # type: ignore
     DecomposeBoxes,
     PeepholeOptimise2Q,
     FullPeepholeOptimise,
-    RebaseCirq,
-    RebaseHQS,
-    RebaseProjectQ,
-    RebasePyZX,
-    RebaseQuil,
     RebaseTket,
-    RebaseUMD,
-    RebaseUFR,
-    RebaseOQC,
-    SquashHQS,
     FlattenRegisters,
     SquashCustom,
     DelayMeasures,
@@ -66,15 +59,35 @@ from pytket.passes import (  # type: ignore
     SimplifyInitial,
     RemoveBarriers,
     PauliSquash,
+    auto_rebase_pass,
 )
 from pytket.predicates import (  # type: ignore
     GateSetPredicate,
     NoClassicalControlPredicate,
     DirectednessPredicate,
+    NoFastFeedforwardPredicate,
+    NoClassicalBitsPredicate,
+    NoWireSwapsPredicate,
+    MaxTwoQubitGatesPredicate,
+    PlacementPredicate,
+    ConnectivityPredicate,
+    CliffordCircuitPredicate,
+    DefaultRegisterPredicate,
+    MaxNQubitsPredicate,
+    NoBarriersPredicate,
+    NoMidMeasurePredicate,
+    NoSymbolsPredicate,
     CompilationUnit,
     UserDefinedPredicate,
 )
-from pytket.routing import Architecture, Placement, GraphPlacement  # type: ignore
+from pytket.mapping import (  # type: ignore
+    LexiLabellingMethod,
+    LexiRouteRoutingMethod,
+    MultiGateReorderRoutingMethod,
+    BoxDecompositionRoutingMethod,
+)
+from pytket.architecture import Architecture  # type: ignore
+from pytket.placement import Placement, GraphPlacement  # type: ignore
 from pytket.transform import Transform, PauliSynthStrat, CXConfigType  # type: ignore
 from pytket._tket.passes import SynthesiseOQC  # type: ignore
 import numpy as np
@@ -132,7 +145,7 @@ def test_rebase_pass_generation() -> None:
     cx = Circuit(2)
     cx.CX(0, 1)
     pz_rebase = RebaseCustom(
-        {OpType.CX}, cx, {OpType.PhasedX, OpType.Rz}, tk1_to_phasedxrz
+        {OpType.CX, OpType.PhasedX, OpType.Rz}, cx, tk1_to_phasedxrz
     )
     circ = Circuit(2)
     circ.X(0).Y(1)
@@ -145,7 +158,7 @@ def test_rebase_pass_generation() -> None:
     seq = SequencePass(passlist)
     assert seq.apply(cu)
     coms = cu.circuit.get_commands()
-    assert str(coms) == "[tk1(0.5, 1, 0.5) q[0];, tk1(0.5, 1, 3.5) q[1];]"
+    assert str(coms) == "[TK1(0.5, 1, 0.5) q[0];, TK1(0.5, 1, 3.5) q[1];]"
 
 
 def test_custom_combinator_generation() -> None:
@@ -200,19 +213,36 @@ def test_routing_and_placement_pass() -> None:
     pl = Placement(arc)
     routing = RoutingPass(arc)
     placement = PlacementPass(pl)
+    nplacement = NaivePlacementPass(arc)
     cu = CompilationUnit(circ.copy())
     assert placement.apply(cu)
     assert routing.apply(cu)
+    assert nplacement.apply(cu)
     expected_map = {q[0]: n1, q[1]: n0, q[2]: n2, q[3]: n5, q[4]: n3}
     assert cu.initial_map == expected_map
 
+    cu1 = CompilationUnit(circ.copy())
+    assert nplacement.apply(cu1)
+    arcnodes = arc.nodes
+    expected_nmap = {
+        q[0]: arcnodes[0],
+        q[1]: arcnodes[1],
+        q[2]: arcnodes[2],
+        q[3]: arcnodes[3],
+        q[4]: arcnodes[4],
+    }
+    assert cu1.initial_map == expected_nmap
     # check composition works ok
-    seq_pass = SequencePass([SynthesiseTket(), placement, routing, SynthesiseUMD()])
+    seq_pass = SequencePass(
+        [SynthesiseTket(), placement, routing, nplacement, SynthesiseUMD()]
+    )
     cu2 = CompilationUnit(circ.copy())
     assert seq_pass.apply(cu2)
     assert cu2.initial_map == expected_map
 
-    full_pass = FullMappingPass(arc, pl)
+    full_pass = FullMappingPass(
+        arc, pl, config=[LexiLabellingMethod(), LexiRouteRoutingMethod()]
+    )
     cu3 = CompilationUnit(circ.copy())
     assert full_pass.apply(cu3)
     assert cu3.initial_map == expected_map
@@ -221,7 +251,7 @@ def test_routing_and_placement_pass() -> None:
 
 def test_default_mapping_pass() -> None:
     circ = Circuit()
-    q = circ.add_q_register("q", 5)
+    q = circ.add_q_register("q", 6)
     circ.CX(0, 1)
     circ.H(0)
     circ.Z(1)
@@ -231,14 +261,17 @@ def test_default_mapping_pass() -> None:
     circ.X(2)
     circ.CX(1, 4)
     circ.CX(0, 4)
+    circ.H(5)
     n0 = Node("b", 0)
     n1 = Node("b", 1)
     n2 = Node("b", 2)
     n3 = Node("a", 0)
     n4 = Node("f", 0)
-    arc = Architecture([[n0, n1], [n1, n2], [n2, n3], [n3, n4]])
+    n5 = Node("g", 7)
+    arc = Architecture([[n0, n1], [n1, n2], [n2, n3], [n3, n4], [n4, n5]])
     pl = GraphPlacement(arc)
 
+    nplacement = NaivePlacementPass(arc)
     routing = RoutingPass(arc)
     placement = PlacementPass(pl)
     default = DefaultMappingPass(arc)
@@ -247,6 +280,7 @@ def test_default_mapping_pass() -> None:
 
     assert placement.apply(cu_rp)
     assert routing.apply(cu_rp)
+    assert nplacement.apply(cu_rp)
     assert default.apply(cu_def)
     assert cu_rp.circuit == cu_def.circuit
 
@@ -320,7 +354,7 @@ def test_RebaseOQC_and_SynthesiseOQC() -> None:
     u_before_oqc = circ3.get_unitary()
     assert np.allclose(u, u_before_oqc)
 
-    RebaseOQC().apply(circ3)
+    auto_rebase_pass(oqc_gateset).apply(circ3)
     assert oqc_gateset_pred.verify(circ3)
     u_before_rebase_tket = circ3.get_unitary()
     assert np.allclose(u, u_before_rebase_tket)
@@ -395,6 +429,14 @@ def test_directed_cx_pass() -> None:
     circ2 = cu1.circuit
     dir_pred = DirectednessPredicate(arc)
     assert dir_pred.verify(circ2)
+
+
+def test_no_barriers_pred() -> None:
+    pred = NoBarriersPredicate()
+    c = Circuit(1).H(0)
+    assert pred.verify(c)
+    c.add_barrier([0]).H(0)
+    assert not pred.verify(c)
 
 
 def test_decompose_routing_gates_to_cxs() -> None:
@@ -562,14 +604,7 @@ def test_library_pass_config() -> None:
         FullPeepholeOptimise().to_dict()["StandardPass"]["name"]
         == "FullPeepholeOptimise"
     )
-    assert RebaseCirq().to_dict()["StandardPass"]["name"] == "RebaseCirq"
-    assert RebaseHQS().to_dict()["StandardPass"]["name"] == "RebaseHQS"
-    assert RebaseProjectQ().to_dict()["StandardPass"]["name"] == "RebaseProjectQ"
-    assert RebasePyZX().to_dict()["StandardPass"]["name"] == "RebasePyZX"
-    assert RebaseQuil().to_dict()["StandardPass"]["name"] == "RebaseQuil"
     assert RebaseTket().to_dict()["StandardPass"]["name"] == "RebaseTket"
-    assert RebaseUMD().to_dict()["StandardPass"]["name"] == "RebaseUMD"
-    assert RebaseUFR().to_dict()["StandardPass"]["name"] == "RebaseUFR"
     assert (
         RemoveRedundancies().to_dict()["StandardPass"]["name"] == "RemoveRedundancies"
     )
@@ -577,12 +612,6 @@ def test_library_pass_config() -> None:
     assert SynthesiseTket().to_dict()["StandardPass"]["name"] == "SynthesiseTket"
     assert SynthesiseOQC().to_dict()["StandardPass"]["name"] == "SynthesiseOQC"
     assert SynthesiseUMD().to_dict()["StandardPass"]["name"] == "SynthesiseUMD"
-    # Share name with SquashCustom
-    assert SquashHQS().to_dict()["StandardPass"]["name"] == "SquashCustom"
-    assert set(SquashHQS().to_dict()["StandardPass"]["basis_singleqs"]) == {
-        "Rz",
-        "PhasedX",
-    }
     assert FlattenRegisters().to_dict()["StandardPass"]["name"] == "FlattenRegisters"
     assert DelayMeasures().to_dict()["StandardPass"]["name"] == "DelayMeasures"
 
@@ -622,14 +651,15 @@ def test_generated_pass_config() -> None:
     cx = Circuit(2)
     cx.CX(0, 1)
     pz_rebase = RebaseCustom(
-        {OpType.CX}, cx, {OpType.PhasedX, OpType.Rz}, tk1_to_phasedxrz
+        {OpType.CX, OpType.PhasedX, OpType.Rz}, cx, tk1_to_phasedxrz
     )
     assert pz_rebase.to_dict()["StandardPass"]["name"] == "RebaseCustom"
-    assert pz_rebase.to_dict()["StandardPass"]["basis_multiqs"] == ["CX"]
-    assert set(pz_rebase.to_dict()["StandardPass"]["basis_singleqs"]) == {
+    assert set(pz_rebase.to_dict()["StandardPass"]["basis_allowed"]) == {
+        "CX",
         "PhasedX",
         "Rz",
     }
+
     assert cx.to_dict() == pz_rebase.to_dict()["StandardPass"]["basis_cx_replacement"]
     # EulerAngleReduction
     euler_pass = EulerAngleReduction(OpType.Ry, OpType.Rx)
@@ -638,12 +668,8 @@ def test_generated_pass_config() -> None:
     assert euler_pass.to_dict()["StandardPass"]["euler_p"] == "Rx"
     # RoutingPass
     arc = Architecture([[0, 2], [1, 3], [2, 3], [2, 4]])
-    r_pass = RoutingPass(arc, swap_lookahead=10, bridge_interactions=10)
+    r_pass = RoutingPass(arc)
     assert r_pass.to_dict()["StandardPass"]["name"] == "RoutingPass"
-    assert r_pass.to_dict()["StandardPass"]["routing_config"]["depth_limit"] == 10
-    assert (
-        r_pass.to_dict()["StandardPass"]["routing_config"]["interactions_limit"] == 10
-    )
     assert check_arc_dict(arc, r_pass.to_dict()["StandardPass"]["architecture"])
     # PlacementPass
     placer = GraphPlacement(arc)
@@ -651,6 +677,10 @@ def test_generated_pass_config() -> None:
     assert p_pass.to_dict()["StandardPass"]["name"] == "PlacementPass"
     assert p_pass.to_dict()["StandardPass"]["placement"]["type"] == "GraphPlacement"
     assert p_pass.to_dict()["StandardPass"]["placement"]["config"]["depth_limit"] == 5
+    # NaivePlacementPass
+    np_pass = NaivePlacementPass(arc)
+    assert np_pass.to_dict()["StandardPass"]["name"] == "NaivePlacementPass"
+    assert check_arc_dict(arc, np_pass.to_dict()["StandardPass"]["architecture"])
     # RenameQubitsPass
     qm = {Qubit("a", 0): Qubit("b", 1), Qubit("a", 1): Qubit("b", 0)}
     rn_pass = RenameQubitsPass(qm)
@@ -659,21 +689,64 @@ def test_generated_pass_config() -> None:
         [k.to_list(), v.to_list()] for k, v in qm.items()
     ]
     # FullMappingPass
-    fm_pass = FullMappingPass(arc, placer)
+    fm_pass = FullMappingPass(
+        arc,
+        placer,
+        config=[
+            LexiLabellingMethod(),
+            LexiRouteRoutingMethod(),
+            MultiGateReorderRoutingMethod(),
+            BoxDecompositionRoutingMethod(),
+        ],
+    )
     assert fm_pass.to_dict()["pass_class"] == "SequencePass"
     p_pass = fm_pass.get_sequence()[0]
     r_pass = fm_pass.get_sequence()[1]
-    assert p_pass.to_dict()["StandardPass"]["name"] == "PlacementPass"
+    np_pass = fm_pass.get_sequence()[2]
+    assert np_pass.to_dict()["StandardPass"]["name"] == "NaivePlacementPass"
     assert r_pass.to_dict()["StandardPass"]["name"] == "RoutingPass"
+    assert p_pass.to_dict()["StandardPass"]["name"] == "PlacementPass"
     assert check_arc_dict(arc, r_pass.to_dict()["StandardPass"]["architecture"])
     assert p_pass.to_dict()["StandardPass"]["placement"]["type"] == "GraphPlacement"
+    assert r_pass.to_dict()["StandardPass"]["routing_config"] == [
+        {"name": "LexiLabellingMethod"},
+        {
+            "name": "LexiRouteRoutingMethod",
+            "depth": 10,
+        },
+        {
+            "name": "MultiGateReorderRoutingMethod",
+            "depth": 10,
+            "size": 10,
+        },
+        {"name": "BoxDecompositionRoutingMethod"},
+    ]
+    assert r_pass.to_dict()["StandardPass"]["routing_config"][3] == {
+        "name": "BoxDecompositionRoutingMethod"
+    }
     # DefaultMappingPass
     dm_pass = DefaultMappingPass(arc)
     assert dm_pass.to_dict()["pass_class"] == "SequencePass"
+    p_pass = dm_pass.get_sequence()[0].get_sequence()[0]
+    r_pass = dm_pass.get_sequence()[0].get_sequence()[1]
+    np_pass = dm_pass.get_sequence()[0].get_sequence()[2]
+    d_pass = dm_pass.get_sequence()[1]
+    assert d_pass.to_dict()["StandardPass"]["name"] == "DelayMeasures"
+    assert p_pass.to_dict()["StandardPass"]["name"] == "PlacementPass"
+    assert np_pass.to_dict()["StandardPass"]["name"] == "NaivePlacementPass"
+    assert r_pass.to_dict()["StandardPass"]["name"] == "RoutingPass"
+    assert check_arc_dict(arc, r_pass.to_dict()["StandardPass"]["architecture"])
+    assert p_pass.to_dict()["StandardPass"]["placement"]["type"] == "GraphPlacement"
+    # DefaultMappingPass with delay_measures=False
+    dm_pass = DefaultMappingPass(arc, False)
+    assert dm_pass.to_dict()["pass_class"] == "SequencePass"
+    assert len(dm_pass.get_sequence()) == 3
     p_pass = dm_pass.get_sequence()[0]
     r_pass = dm_pass.get_sequence()[1]
+    np_pass = dm_pass.get_sequence()[2]
     assert p_pass.to_dict()["StandardPass"]["name"] == "PlacementPass"
     assert r_pass.to_dict()["StandardPass"]["name"] == "RoutingPass"
+    assert np_pass.to_dict()["StandardPass"]["name"] == "NaivePlacementPass"
     assert check_arc_dict(arc, r_pass.to_dict()["StandardPass"]["architecture"])
     assert p_pass.to_dict()["StandardPass"]["placement"]["type"] == "GraphPlacement"
     # AASRouting
@@ -692,6 +765,14 @@ def test_generated_pass_config() -> None:
     assert rebase_pass.to_dict()["StandardPass"]["name"] == "RebaseUFR"
     comppb_pass = aas_pass_00.get_sequence()[1]
     assert comppb_pass.to_dict()["StandardPass"]["name"] == "ComposePhasePolyBoxes"
+    # ComposePhasePolyBoxes
+    ppb_pass = ComposePhasePolyBoxes(min_size=3)
+    assert ppb_pass.to_dict()["pass_class"] == "SequencePass"
+    ppb_pass_0 = ppb_pass.get_sequence()[0]
+    ppb_pass_1 = ppb_pass.get_sequence()[1]
+    assert ppb_pass_0.to_dict()["StandardPass"]["name"] == "RebaseUFR"
+    assert ppb_pass_1.to_dict()["StandardPass"]["name"] == "ComposePhasePolyBoxes"
+    assert ppb_pass_1.to_dict()["StandardPass"]["min_size"] == 3
     # CXMappingPass
     cxm_pass = CXMappingPass(arc, placer, directed_cx=True, delay_measures=True)
     assert cxm_pass.to_dict()["pass_class"] == "SequencePass"
@@ -951,6 +1032,79 @@ def test_three_qubit_squash() -> None:
     assert c.n_gates_of_type(OpType.CX) <= 18
 
 
+def test_predicate_serialization() -> None:
+    arc = Architecture([(0, 2), (1, 2)])
+
+    pred = GateSetPredicate({OpType.X, OpType.Z})
+    assert pred.to_dict() == {"type": "GateSetPredicate", "allowed_types": ["X", "Z"]}
+    pred.from_dict(pred.to_dict()).to_dict() == pred.to_dict()
+
+    pred = NoClassicalControlPredicate()
+    assert pred.to_dict() == {"type": "NoClassicalControlPredicate"}
+    pred.from_dict(pred.to_dict()).to_dict() == pred.to_dict()
+
+    pred = DirectednessPredicate(arc)
+    assert pred.to_dict() == {
+        "type": "DirectednessPredicate",
+        "architecture": arc.to_dict(),
+    }
+    pred.from_dict(pred.to_dict()).to_dict() == pred.to_dict()
+
+    pred = NoFastFeedforwardPredicate()
+    assert pred.to_dict() == {"type": "NoFastFeedforwardPredicate"}
+    pred.from_dict(pred.to_dict()).to_dict() == pred.to_dict()
+
+    pred = NoClassicalBitsPredicate()
+    assert pred.to_dict() == {"type": "NoClassicalBitsPredicate"}
+    pred.from_dict(pred.to_dict()).to_dict() == pred.to_dict()
+
+    pred = NoWireSwapsPredicate()
+    assert pred.to_dict() == {"type": "NoWireSwapsPredicate"}
+    pred.from_dict(pred.to_dict()).to_dict() == pred.to_dict()
+
+    pred = MaxTwoQubitGatesPredicate()
+    assert pred.to_dict() == {"type": "MaxTwoQubitGatesPredicate"}
+    pred.from_dict(pred.to_dict()).to_dict() == pred.to_dict()
+
+    pred = PlacementPredicate(arc)
+    assert pred.to_dict() == {
+        "type": "PlacementPredicate",
+        "node_set": arc.to_dict()["nodes"],
+    }
+    pred.from_dict(pred.to_dict()).to_dict() == pred.to_dict()
+
+    pred = ConnectivityPredicate(arc)
+    assert pred.to_dict() == {
+        "type": "ConnectivityPredicate",
+        "architecture": arc.to_dict(),
+    }
+    pred.from_dict(pred.to_dict()).to_dict() == pred.to_dict()
+
+    pred = CliffordCircuitPredicate()
+    assert pred.to_dict() == {"type": "CliffordCircuitPredicate"}
+    pred.from_dict(pred.to_dict()).to_dict() == pred.to_dict()
+
+    pred = DefaultRegisterPredicate()
+    assert pred.to_dict() == {"type": "DefaultRegisterPredicate"}
+    pred.from_dict(pred.to_dict()).to_dict() == pred.to_dict()
+
+    pred = MaxNQubitsPredicate(10)
+    assert pred.to_dict() == {"type": "MaxNQubitsPredicate", "n_qubits": 10}
+    pred.from_dict(pred.to_dict()).to_dict() == pred.to_dict()
+
+    pred = NoBarriersPredicate()
+    assert pred.to_dict() == {"type": "NoBarriersPredicate"}
+    pred.from_dict(pred.to_dict()).to_dict() == pred.to_dict()
+
+    pred = NoMidMeasurePredicate()
+    assert pred.to_dict() == {"type": "NoMidMeasurePredicate"}
+    pred.from_dict(pred.to_dict()).to_dict() == pred.to_dict()
+
+    pred = NoSymbolsPredicate()
+    assert pred.to_dict() == {"type": "NoSymbolsPredicate"}
+    pred.from_dict(pred.to_dict()).to_dict() == pred.to_dict()
+
+
 if __name__ == "__main__":
     test_predicate_generation()
     test_compilation_unit_generation()
@@ -969,3 +1123,4 @@ if __name__ == "__main__":
     test_apply_pass_with_callbacks()
     test_remove_barriers()
     test_RebaseOQC_and_SynthesiseOQC()
+    test_predicate_serialization()

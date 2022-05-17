@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,8 @@
 
 #include <memory>
 
+#include "OpType.hpp"
+
 namespace tket {
 
 bool find_in_set(const OpType& val, const OpTypeSet& set) {
@@ -23,60 +25,70 @@ bool find_in_set(const OpType& val, const OpTypeSet& set) {
 }
 
 const OpTypeSet& all_gate_types() {
-  static std::unique_ptr<const OpTypeSet> gates(
-      new OpTypeSet{OpType::Z,           OpType::X,        OpType::Y,
-                    OpType::S,           OpType::Sdg,      OpType::T,
-                    OpType::Tdg,         OpType::V,        OpType::Vdg,
-                    OpType::SX,          OpType::SXdg,     OpType::H,
-                    OpType::Rx,          OpType::Ry,       OpType::Rz,
-                    OpType::U3,          OpType::U2,       OpType::U1,
-                    OpType::tk1,         OpType::CX,       OpType::CY,
-                    OpType::CZ,          OpType::CH,       OpType::CV,
-                    OpType::CVdg,        OpType::CSX,      OpType::CSXdg,
-                    OpType::CRz,         OpType::CRx,      OpType::CRy,
-                    OpType::CU1,         OpType::CU3,      OpType::PhaseGadget,
-                    OpType::CCX,         OpType::SWAP,     OpType::CSWAP,
-                    OpType::noop,        OpType::Measure,  OpType::Reset,
-                    OpType::ECR,         OpType::ISWAP,    OpType::PhasedX,
-                    OpType::ZZMax,       OpType::XXPhase,  OpType::YYPhase,
-                    OpType::ZZPhase,     OpType::CnRy,     OpType::CnX,
-                    OpType::BRIDGE,      OpType::Collapse, OpType::ESWAP,
-                    OpType::FSim,        OpType::Sycamore, OpType::ISWAPMax,
-                    OpType::PhasedISWAP, OpType::XXPhase3});
+  static const OpTypeSet optypes{
+      OpType::Z,           OpType::X,        OpType::Y,
+      OpType::S,           OpType::Sdg,      OpType::T,
+      OpType::Tdg,         OpType::V,        OpType::Vdg,
+      OpType::SX,          OpType::SXdg,     OpType::H,
+      OpType::Rx,          OpType::Ry,       OpType::Rz,
+      OpType::U3,          OpType::U2,       OpType::U1,
+      OpType::TK1,         OpType::CX,       OpType::CY,
+      OpType::CZ,          OpType::CH,       OpType::CV,
+      OpType::CVdg,        OpType::CSX,      OpType::CSXdg,
+      OpType::CRz,         OpType::CRx,      OpType::CRy,
+      OpType::CU1,         OpType::CU3,      OpType::PhaseGadget,
+      OpType::CCX,         OpType::SWAP,     OpType::CSWAP,
+      OpType::noop,        OpType::Measure,  OpType::Reset,
+      OpType::ECR,         OpType::ISWAP,    OpType::PhasedX,
+      OpType::ZZMax,       OpType::XXPhase,  OpType::YYPhase,
+      OpType::ZZPhase,     OpType::CnRy,     OpType::CnX,
+      OpType::BRIDGE,      OpType::Collapse, OpType::ESWAP,
+      OpType::FSim,        OpType::Sycamore, OpType::ISWAPMax,
+      OpType::PhasedISWAP, OpType::XXPhase3, OpType::NPhasedX,
+      OpType::TK2};
+  static std::unique_ptr<const OpTypeSet> gates =
+      std::make_unique<const OpTypeSet>(optypes);
   return *gates;
 }
 
 const OpTypeSet& all_multi_qubit_types() {
-  static std::unique_ptr<const OpTypeSet> multi_qubit_gates(
-      new OpTypeSet{OpType::CX,          OpType::CY,          OpType::CZ,
-                    OpType::CH,          OpType::CV,          OpType::CVdg,
-                    OpType::CSX,         OpType::CSXdg,       OpType::CRz,
-                    OpType::CRx,         OpType::CRy,         OpType::CU1,
-                    OpType::CU3,         OpType::PhaseGadget, OpType::CCX,
-                    OpType::SWAP,        OpType::CSWAP,       OpType::ECR,
-                    OpType::ISWAP,       OpType::ZZMax,       OpType::XXPhase,
-                    OpType::YYPhase,     OpType::ZZPhase,     OpType::CnRy,
-                    OpType::CnX,         OpType::BRIDGE,      OpType::ESWAP,
-                    OpType::FSim,        OpType::Sycamore,    OpType::ISWAPMax,
-                    OpType::PhasedISWAP, OpType::XXPhase3});
-  return *multi_qubit_gates;
+  static const OpTypeSet optypes{
+      OpType::CX,          OpType::CY,          OpType::CZ,
+      OpType::CH,          OpType::CV,          OpType::CVdg,
+      OpType::CSX,         OpType::CSXdg,       OpType::CRz,
+      OpType::CRx,         OpType::CRy,         OpType::CU1,
+      OpType::CU3,         OpType::PhaseGadget, OpType::CCX,
+      OpType::SWAP,        OpType::CSWAP,       OpType::ECR,
+      OpType::ISWAP,       OpType::ZZMax,       OpType::XXPhase,
+      OpType::YYPhase,     OpType::ZZPhase,     OpType::CnRy,
+      OpType::CnX,         OpType::BRIDGE,      OpType::ESWAP,
+      OpType::FSim,        OpType::Sycamore,    OpType::ISWAPMax,
+      OpType::PhasedISWAP, OpType::XXPhase3,    OpType::NPhasedX,
+      OpType::TK2};
+  static std::unique_ptr<const OpTypeSet> gates =
+      std::make_unique<const OpTypeSet>(optypes);
+  return *gates;
 }
 
 const OpTypeSet& all_single_qubit_types() {
-  static std::unique_ptr<const OpTypeSet> single_qubit_gates(new OpTypeSet{
+  static const OpTypeSet optypes{
       OpType::Z,     OpType::X,        OpType::Y,       OpType::S,
       OpType::Sdg,   OpType::T,        OpType::Tdg,     OpType::V,
       OpType::Vdg,   OpType::SX,       OpType::SXdg,    OpType::H,
       OpType::Rx,    OpType::Ry,       OpType::Rz,      OpType::U3,
-      OpType::U2,    OpType::U1,       OpType::tk1,     OpType::Measure,
-      OpType::Reset, OpType::Collapse, OpType::PhasedX, OpType::noop});
-  return *single_qubit_gates;
+      OpType::U2,    OpType::U1,       OpType::TK1,     OpType::Measure,
+      OpType::Reset, OpType::Collapse, OpType::PhasedX, OpType::noop};
+  static std::unique_ptr<const OpTypeSet> gates =
+      std::make_unique<const OpTypeSet>(optypes);
+  return *gates;
 }
 
 const OpTypeSet& all_projective_types() {
-  static std::unique_ptr<const OpTypeSet> projective_gates(
-      new OpTypeSet{OpType::Measure, OpType::Collapse, OpType::Reset});
-  return *projective_gates;
+  static const OpTypeSet optypes{
+      OpType::Measure, OpType::Collapse, OpType::Reset};
+  static std::unique_ptr<const OpTypeSet> gates =
+      std::make_unique<const OpTypeSet>(optypes);
+  return *gates;
 }
 
 bool is_metaop_type(OpType optype) {
@@ -114,13 +126,14 @@ bool is_box_type(OpType optype) {
       OpType::Unitary3qBox,
       OpType::ExpBox,
       OpType::PauliExpBox,
-      OpType::Composite,
+      OpType::CustomGate,
       OpType::CliffBox,
       OpType::PhasePolyBox,
       OpType::QControlBox,
       OpType::ClassicalExpBox,
       OpType::ProjectorAssertionBox,
-      OpType::StabiliserAssertionBox};
+      OpType::StabiliserAssertionBox,
+      OpType::UnitaryTableauBox};
   return find_in_set(optype, boxes);
 }
 
@@ -159,17 +172,18 @@ bool is_oneway_type(OpType optype) {
   static const OpTypeSet no_defined_inverse = {
       OpType::Input,        OpType::Output,   OpType::Measure,
       OpType::ClInput,      OpType::ClOutput, OpType::Barrier,
-      OpType::Reset,        OpType::Collapse, OpType::Composite,
+      OpType::Reset,        OpType::Collapse, OpType::CustomGate,
       OpType::PhasePolyBox, OpType::Create,   OpType::Discard};
   return find_in_set(optype, no_defined_inverse);
 }
 
 bool is_clifford_type(OpType optype) {
   static const OpTypeSet clifford_gates = {
-      OpType::Z,    OpType::X,     OpType::Y,   OpType::S,       OpType::Sdg,
-      OpType::V,    OpType::Vdg,   OpType::SX,  OpType::SXdg,    OpType::H,
-      OpType::CX,   OpType::CY,    OpType::CZ,  OpType::SWAP,    OpType::BRIDGE,
-      OpType::noop, OpType::ZZMax, OpType::ECR, OpType::ISWAPMax};
+      OpType::Z,     OpType::X,    OpType::Y,        OpType::S,
+      OpType::Sdg,   OpType::V,    OpType::Vdg,      OpType::SX,
+      OpType::SXdg,  OpType::H,    OpType::CX,       OpType::CY,
+      OpType::CZ,    OpType::SWAP, OpType::BRIDGE,   OpType::noop,
+      OpType::ZZMax, OpType::ECR,  OpType::ISWAPMax, OpType::UnitaryTableauBox};
   return find_in_set(optype, clifford_gates);
 }
 
@@ -182,7 +196,7 @@ bool is_classical_type(OpType optype) {
       OpType::ClassicalTransform, OpType::SetBits,
       OpType::CopyBits,           OpType::RangePredicate,
       OpType::ExplicitPredicate,  OpType::ExplicitModifier,
-      OpType::MultiBit,
+      OpType::MultiBit,           OpType::WASM,
   };
   return find_in_set(optype, classical_gates);
 }

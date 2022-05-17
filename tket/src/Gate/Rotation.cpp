@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,13 +18,9 @@
 #include "OpType/OpType.hpp"
 #include "Utils/Expression.hpp"
 #include "Utils/Symbols.hpp"
+#include "symengine/constants.h"
 
 namespace tket {
-
-static bool approx_0(const Expr &e) {
-  std::optional<double> v = eval_expr(e);
-  return v && (std::abs(v.value()) < EPS);
-}
 
 static Expr atan2_bypi(const Expr &a, const Expr &b) {
   std::optional<double> va = eval_expr(a);
@@ -35,7 +31,12 @@ static Expr atan2_bypi(const Expr &a, const Expr &b) {
     if (std::abs(vva) < EPS && std::abs(vvb) < EPS) return Expr(0.);
     return atan2(vva, vvb) / PI;
   } else {
-    return SymEngine::div(SymEngine::atan2(a, b), SymEngine::pi);
+    // Convert symbolic zero to 0. This is a workaround for
+    // https://github.com/symengine/symengine/issues/1875 .
+    Expr a1 = a, b1 = b;
+    if (a1 == SymEngine::zero) a1 = 0.;
+    if (b1 == SymEngine::zero) b1 = 0.;
+    return SymEngine::div(SymEngine::atan2(a1, b1), SymEngine::pi);
   }
 }
 
@@ -365,7 +366,7 @@ std::ostream &operator<<(std::ostream &os, const Rotation &q) {
 std::vector<double> tk1_angles_from_unitary(const Eigen::Matrix2cd &U) {
   // clang-format off
     //
-    // Assume U = e^{i pi p} tk1(a,b,c)
+    // Assume U = e^{i pi p} TK1(a,b,c)
     //          = e^{i pi p} Rz(a) Rx(b) Rz(c)
     //                       |    e^{-i pi (a+c)/2} cos(pi b/2)  -i e^{-i pi (a-c)/2} sin(pi b/2)  |
     //          = e^{i pi p} |                                                                     |
@@ -447,6 +448,9 @@ std::vector<double> tk1_angles_from_unitary(const Eigen::Matrix2cd &U) {
   } else {  // general case
     // s0^2 + z0^2 - x0^2 - y0^2 = cos(pi b)
     double t = s0 * s0 + z0 * z0 - x0 * x0 - y0 * y0;
+    // Rounding errors may mean t is outside the domain of acos. Fix this.
+    if (t > +1.) t = +1.;
+    if (t < -1.) t = -1.;
     b = std::acos(t) / PI;
 
     // w.l.o.g. b is in the range (-1,+1).

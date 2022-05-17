@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,11 +13,11 @@
 // limitations under the License.
 
 #include "Boxes.hpp"
+#include "Conditional.hpp"
 #include "Gate/Gate.hpp"
 #include "OpType/OpType.hpp"
 #include "OpType/OpTypeFunctions.hpp"
 #include "Ops/ClassicalOps.hpp"
-#include "Ops/Conditional.hpp"
 #include "Ops/MetaOp.hpp"
 #include "Ops/OpPtr.hpp"
 #include "Utils/Json.hpp"
@@ -32,6 +32,8 @@ void from_json(const nlohmann::json& j, Op_ptr& op) {
     op = Box::deserialize(j);
   } else if (optype == OpType::Conditional) {
     op = Conditional::deserialize(j);
+  } else if (optype == OpType::WASM) {
+    op = WASMOp::deserialize(j);
   } else if (is_classical_type(optype)) {
     op = ClassicalOp::deserialize(j);
   } else if (is_gate_type(optype)) {

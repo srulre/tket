@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ op_signature_t FlowOp::get_signature() const {
 std::string FlowOp::get_name(bool latex) const {
   std::stringstream name;
   if (latex) {
-    name << "\\text{" << get_desc().latex() << "}(";
+    name << get_desc().latex() << "(";
   } else {
     name << get_desc().name();
   }

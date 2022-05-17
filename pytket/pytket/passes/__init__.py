@@ -1,4 +1,4 @@
-# Copyright 2019-2021 Cambridge Quantum Computing
+# Copyright 2019-2022 Cambridge Quantum Computing
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,3 +17,4 @@
 from pytket._tket.passes import *  # type: ignore
 
 from .script import compilation_pass_from_script, compilation_pass_grammar
+from .auto_rebase import auto_rebase_pass, auto_squash_pass

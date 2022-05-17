@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -387,6 +387,7 @@ std::size_t hash_value(const QubitPauliString &qps) {
 }
 
 void to_json(nlohmann::json &j, const QubitPauliString &paulistr) {
+  j = nlohmann::json::array();
   for (const auto &[qb, pauli] : paulistr.map) {
     j.push_back({qb, pauli});
   }

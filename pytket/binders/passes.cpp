@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,9 +15,14 @@
 #include <pybind11/functional.h>
 
 #include "ArchAwareSynth/SteinerForest.hpp"
+#include "Mapping/LexiLabelling.hpp"
+#include "Mapping/LexiRoute.hpp"
+#include "Mapping/RoutingMethod.hpp"
 #include "Predicates/CompilerPass.hpp"
 #include "Predicates/PassGenerators.hpp"
 #include "Predicates/PassLibrary.hpp"
+#include "Transformations/ContextualReduction.hpp"
+#include "Transformations/PauliOptimisation.hpp"
 #include "Transformations/Transform.hpp"
 #include "Utils/Json.hpp"
 #include "binder_json.hpp"
@@ -28,35 +33,29 @@ using json = nlohmann::json;
 
 namespace tket {
 
-void update_routing_config(RoutingConfig &config, py::kwargs kwargs) {
-  if (kwargs.contains("swap_lookahead"))
-    config.depth_limit = py::cast<unsigned>(kwargs["swap_lookahead"]);
-  if (kwargs.contains("bridge_lookahead"))
-    config.distrib_limit = py::cast<unsigned>(kwargs["bridge_lookahead"]);
-  if (kwargs.contains("bridge_interactions"))
-    config.interactions_limit =
-        py::cast<unsigned>(kwargs["bridge_interactions"]);
-  if (kwargs.contains("bridge_exponent"))
-    config.distrib_exponent = py::cast<unsigned>(kwargs["bridge_exponent"]);
-}
 static PassPtr gen_cx_mapping_pass_kwargs(
     const Architecture &arc, const PlacementPtr &placer, py::kwargs kwargs) {
-  RoutingConfig config = {};
-  update_routing_config(config, kwargs);
+  std::vector<RoutingMethodPtr> config = {
+      std::make_shared<LexiLabellingMethod>(),
+      std::make_shared<LexiRouteRoutingMethod>()};
+  if (kwargs.contains("config")) {
+    config = py::cast<std::vector<RoutingMethodPtr>>(kwargs["config"]);
+  }
   bool directed_cx = false;
-  if (kwargs.contains("directed_cx"))
+  if (kwargs.contains("directed_cx")) {
     directed_cx = py::cast<bool>(kwargs["directed_cx"]);
+  }
   bool delay_measures = true;
-  if (kwargs.contains("delay_measures"))
+  if (kwargs.contains("delay_measures")) {
     delay_measures = py::cast<bool>(kwargs["delay_measures"]);
+  }
   return gen_cx_mapping_pass(arc, placer, config, directed_cx, delay_measures);
 }
 
-static PassPtr gen_default_routing_pass(
-    const Architecture &arc, py::kwargs kwargs) {
-  RoutingConfig config = {};
-  update_routing_config(config, kwargs);
-  return gen_routing_pass(arc, config);
+static PassPtr gen_default_routing_pass(const Architecture &arc) {
+  return gen_routing_pass(
+      arc, {std::make_shared<LexiLabellingMethod>(),
+            std::make_shared<LexiRouteRoutingMethod>()});
 }
 
 static PassPtr gen_default_aas_routing_pass(
@@ -78,17 +77,14 @@ static PassPtr gen_default_aas_routing_pass(
   return gen_full_mapping_pass_phase_poly(arc, lookahead, cnotsynthtype);
 }
 
-static PassPtr gen_full_mapping_pass_kwargs(
-    const Architecture &arc, const PlacementPtr &placer, py::kwargs kwargs) {
-  RoutingConfig config = {};
-  update_routing_config(config, kwargs);
-  return gen_full_mapping_pass(arc, placer, config);
-}
+static PassPtr gen_composephasepolybox_pass(py::kwargs kwargs) {
+  unsigned min_size = 0;
 
-static const py::module &decompose_module() {
-  static const py::module decomposer_ =
-      py::module::import("pytket.circuit.decompose_classical");
-  return decomposer_;
+  if (kwargs.contains("min_size")) {
+    min_size = py::cast<unsigned>(kwargs["min_size"]);
+  }
+
+  return RebaseUFR() >> ComposePhasePolyBoxes(min_size);
 }
 
 const PassPtr &DecomposeClassicalExp() {
@@ -96,8 +92,9 @@ const PassPtr &DecomposeClassicalExp() {
   // ClassicalExpBox<py::object>
   static const PassPtr pp([]() {
     Transform t = Transform([](Circuit &circ) {
-      const py::tuple result =
-          decompose_module().attr("_decompose_expressions")(circ);
+      py::module decomposer =
+          py::module::import("pytket.circuit.decompose_classical");
+      const py::tuple result = decomposer.attr("_decompose_expressions")(circ);
       const bool success = result[1].cast<bool>();
       if (success) {
         circ = result[0].cast<Circuit>();
@@ -357,6 +354,11 @@ PYBIND11_MODULE(passes, m) {
       "DecomposeMultiQubitsCX", &DecomposeMultiQubitsCX,
       "Converts all multi-qubit gates into CX and single-qubit gates.");
   m.def(
+      "GlobalisePhasedX", &GlobalisePhasedX,
+      "Replaces every occurence of PhasedX or NPhasedX gates with NPhasedX "
+      "gates acting on all qubits, and correcting rotation gates, so that the "
+      "GlobalPhasedXPredicate is satisfied.");
+  m.def(
       "DecomposeSingleQubitsTK1", &DecomposeSingleQubitsTK1,
       "Converts all single-qubit gates into TK1 gates.");
   m.def(
@@ -371,23 +373,7 @@ PYBIND11_MODULE(passes, m) {
       "gates."
       "\n\n:param allow_swaps: whether to allow implicit wire swaps",
       py::arg("allow_swaps") = true);
-  m.def("RebaseCirq", &RebaseCirq, "Converts all gates to CZ, PhasedX and Rz.");
-  m.def(
-      "RebaseHQS", &RebaseHQS, "Converts all gates to ZZMax, PhasedX and Rz.");
-  m.def(
-      "RebaseProjectQ", &RebaseProjectQ,
-      "Converts all gates to SWAP, CRz, CX, CZ, H, X, Y, Z, S, T, V, Rx, "
-      "Ry and Rz.");
-  m.def(
-      "RebasePyZX", &RebasePyZX,
-      "Converts all gates to SWAP, CX, CZ, H, X, Z, S, T, Rx and Rz.");
-  m.def("RebaseQuil", &RebaseQuil, "Converts all gates to CZ, Rx and Rz.");
-  m.def("RebaseTket", &RebaseTket, "Converts all gates to CX and tk1.");
-  m.def(
-      "RebaseUMD", &RebaseUMD,
-      "Converts all gates to XXPhase, PhasedX and Rz.");
-  m.def("RebaseUFR", &RebaseUFR, "Converts all gates to CX, Rz and H.");
-  m.def("RebaseOQC", &RebaseOQC, "Converts all gates to ECR, Rz and SX.");
+  m.def("RebaseTket", &RebaseTket, "Converts all gates to CX and TK1.");
   m.def(
       "RemoveRedundancies", &RemoveRedundancies,
       "Removes gate-inverse pairs, merges rotations, removes identity "
@@ -400,6 +386,9 @@ PYBIND11_MODULE(passes, m) {
       "Optimises and converts a circuit consisting of CX and single-qubit "
       "gates into one containing only ZZMax, PhasedX and Rz.");
   m.def(
+      "SynthesiseTK", &SynthesiseTK,
+      "Optimises and converts all gates to TK2 and TK1 gates.");
+  m.def(
       "SynthesiseTket", &SynthesiseTket,
       "Optimises and converts all gates to CX and TK1 gates.");
   m.def(
@@ -411,9 +400,6 @@ PYBIND11_MODULE(passes, m) {
   m.def(
       "SquashTK1", &SquashTK1,
       "Squash sequences of single-qubit gates to TK1 gates.");
-  m.def(
-      "SquashHQS", &SquashHQS,
-      "Squash Rz and PhasedX gate sequences into an optimal form.");
   m.def(
       "FlattenRegisters", &FlattenRegisters,
       "Merges all quantum and classical registers into their "
@@ -457,25 +443,23 @@ PYBIND11_MODULE(passes, m) {
   m.def(
       "RebaseCustom", &gen_rebase_pass,
       "Construct a custom rebase pass. This pass:\n(1) decomposes "
-      "multi-qubit gates not in the set of gate types `multiqs` to CX "
-      "gates;\n(2) if CX is not in `multiqs`, replaces CX gates with "
+      "multi-qubit gates not in the set of gate types `gateset` to CX "
+      "gates;\n(2) if CX is not in `gateset`, replaces CX gates with "
       "`cx_replacement`;\n(3) converts any single-qubit gates not in the "
-      "gate type set `singleqs` to the form "
+      "gate type set to the form "
       ":math:`\\mathrm{Rz}(a)\\mathrm{Rx}(b)\\mathrm{Rz}(c)` (in "
       "matrix-multiplication order, i.e. reverse order in the "
       "circuit);\n(4) applies the `tk1_replacement` function to each of "
       "these triples :math:`(a,b,c)` to generate replacement circuits."
-      "\n\n:param multiqs: The allowed multi-qubit operations in the "
-      "rebased circuit."
+      "\n\n:param gateset: The allowed operations in the rebased circuit."
       "\n:param cx_replacement: The equivalent circuit to replace a CX "
-      "gate in the desired basis."
-      "\n:param singleqs: The allowed single-qubit operations in the "
-      "rebased circuit."
+      "gate using two qubit gates from the desired basis (can use any single "
+      "qubit OpTypes)."
       "\n:param tk1_replacement: A function which, given the parameters of "
       "an Rz(a)Rx(b)Rz(c) triple, returns an equivalent circuit in the "
       "desired basis."
       "\n:return: a pass that rebases to the given gate set",
-      py::arg("multiqs"), py::arg("cx_replacement"), py::arg("singleqs"),
+      py::arg("gateset"), py::arg("cx_replacement"),
       py::arg("tk1_replacement"));
 
   m.def(
@@ -495,13 +479,18 @@ PYBIND11_MODULE(passes, m) {
       py::arg("q"), py::arg("p"), py::arg("strict") = false);
 
   m.def(
-      "RoutingPass", &gen_default_routing_pass,
+      "CustomRoutingPass", &gen_routing_pass,
       "Construct a pass to route to the connectivity graph of an "
       ":py:class:`Architecture`. Edge direction is ignored."
-      "\n\n:param arc: The architecture to use for connectivity information."
-      "\n:param \\**kwargs: Parameters for routing: "
-      "(int)swap_lookahead=50, (int)bridge_lookahead=4, "
-      "(int)bridge_interactions=2, (float)bridge_exponent=0."
+      "\n:return: a pass that routes to the given device architecture",
+      py::arg("arc"), py::arg("config"));
+
+  m.def(
+      "RoutingPass", &gen_default_routing_pass,
+      "Construct a pass to route to the connectivity graph of an "
+      ":py:class:`Architecture`. Edge direction is ignored. "
+      "Uses :py:class:`LexiLabellingMethod` and "
+      ":py:class:`LexiRouteRoutingMethod`."
       "\n:return: a pass that routes to the given device architecture",
       py::arg("arc"));
 
@@ -513,23 +502,29 @@ PYBIND11_MODULE(passes, m) {
       py::arg("placer"));
 
   m.def(
+      "NaivePlacementPass", &gen_naive_placement_pass,
+      ":param architecture: The Architecture used for relabelling."
+      "\n:return: a pass to relabel :py:class:`Circuit` Qubits to "
+      ":py:class:`Architecture` Nodes",
+      py::arg("arc"));
+
+  m.def(
       "RenameQubitsPass", &gen_rename_qubits_pass, "Rename some or all qubits.",
       "\n\n:param qubit_map: map from old to new qubit names",
       py::arg("qubit_map"));
 
   m.def(
-      "FullMappingPass", &gen_full_mapping_pass_kwargs,
+      "FullMappingPass", &gen_full_mapping_pass,
       "Construct a pass to relabel :py:class:`Circuit` Qubits to "
       ":py:class:`Architecture` Nodes, and then route to the connectivity "
       "graph "
       "of an :py:class:`Architecture`. Edge direction is ignored."
       "\n\n:param arc: The architecture to use for connectivity information. "
       "\n:param placer: The Placement used for relabelling."
-      "\n:param \\**kwargs: Parameters for routing: "
-      "(int)swap_lookahead=50, (int)bridge_lookahead=4, "
-      "(int)bridge_interactions=2, (float)bridge_exponent=0."
+      "\n:param config: Parameters for routing, a list of RoutingMethod, each "
+      "method is checked and run if applicable in turn."
       "\n:return: a pass to perform the remapping",
-      py::arg("arc"), py::arg("placer"));
+      py::arg("arc"), py::arg("placer"), py::arg("config"));
 
   m.def(
       "DefaultMappingPass", &gen_default_mapping_pass,
@@ -540,8 +535,10 @@ PYBIND11_MODULE(passes, m) {
       "Placement used "
       "is GraphPlacement."
       "\n\n:param arc: The Architecture used for connectivity information."
+      "\n:param delay_measures: Whether to commute measurements to the end "
+      "of the circuit, defaulting to true."
       "\n:return: a pass to perform the remapping",
-      py::arg("arc"));
+      py::arg("arc"), py::arg("delay_measures") = true);
 
   m.def(
       "AASRouting", &gen_default_aas_routing_pass,
@@ -552,17 +549,28 @@ PYBIND11_MODULE(passes, m) {
       ":py:class:`Architecture` is used for the routing. "
       "The direction of the edges is ignored. The placement used "
       "is GraphPlacement. This pass can take a few parameters for the "
-      "routing, described below.\nNB: The circuit needs to have at most as "
+      "routing, described below:"
+      "\n\n- (unsigned) lookahead=1: parameter for the recursive iteration"
+      "\n- (CNotSynthType) cnotsynthtype=CNotSynthType.Rec: CNOT synthesis type"
+      "\n\nNB: The circuit needs to have at most as "
       "many qubits as the architecture has nodes. The resulting circuit will "
       "always have the same number of qubits as the architecture has nodes, "
-      "even if the input circuit had fewer.\n:param arc: The "
-      "architecture used for connectivity information."
-      "\n:param \\**kwargs: Parameters for routing:\n(unsigned) "
-      "lookahead=1: parameter for the recursive iteration\n"
-      "(CNotSynthType) cnotsynthtype=CNotSynthType.Rec: "
-      "type of the CNOT synthesis\n:return: a pass to perform the "
-      "remapping\n",
+      "even if the input circuit had fewer."
+      "\n\n:param arc: target architecture"
+      "\n:param \\**kwargs: parameters for routing (described above)"
+      "\n:return: a pass to perform the remapping",
       py::arg("arc"));
+
+  m.def(
+      "ComposePhasePolyBoxes", &gen_composephasepolybox_pass,
+      "Pass to convert a given :py:class:`Circuit` to the CX, Rz, H gateset "
+      "and compose "
+      "phase polynomial boxes from the groups of the CX+Rz gates."
+      "\n\n- (unsigned) min_size=0: minimal number of CX gates in each phase "
+      "polynominal box: groups with a smaller number of CX gates are not "
+      "affected by this transformation\n"
+      "\n:param \\**kwargs: parameters for composition (described above)"
+      "\n:return: a pass to perform the composition");
 
   m.def(
       "CXMappingPass", &gen_cx_mapping_pass_kwargs,
@@ -575,8 +583,6 @@ PYBIND11_MODULE(passes, m) {
       "\n\n:param arc: The Architecture used for connectivity information."
       "\n:param placer: The placement used for relabelling."
       "\n:param \\**kwargs: Parameters for routing: "
-      "(int)swap_lookahead=50, (int)bridge_lookahead=4, "
-      "(int)bridge_interactions=2, (float)bridge_exponent=0, "
       "(bool)directed_cx=false, (bool)delay_measures=true"
       "\n:return: a pass to perform the remapping",
       py::arg("arc"), py::arg("placer"));
@@ -587,7 +593,7 @@ PYBIND11_MODULE(passes, m) {
       "simplifying Clifford gate sequences, similar to Duncan & Fagan "
       "(https://arxiv.org/abs/1901.10114). "
       "Given a circuit with CXs and any single-qubit gates, produces a "
-      "circuit with tk1, CX gates."
+      "circuit with TK1, CX gates."
       "\n\n:param allow_swaps: dictates whether the rewriting will "
       "disregard CX placement or orientation and introduce wire swaps."
       "\n:return: a pass to perform the rewriting",
@@ -629,7 +635,7 @@ PYBIND11_MODULE(passes, m) {
       "\n:param cx_config: A configuration of CXs to convert Pauli gadgets "
       "into."
       "\n:return: a pass to perform the simplification",
-      py::arg("strat") = PauliSynthStrat::Sets,
+      py::arg("strat") = Transforms::PauliSynthStrat::Sets,
       py::arg("cx_config") = CXConfigType::Snake);
   m.def(
       "GuidedPauliSimp", &gen_special_UCC_synthesis,
@@ -641,7 +647,7 @@ PYBIND11_MODULE(passes, m) {
       "\n:param cx_config: A configuration of CXs to convert Pauli gadgets "
       "into."
       "\n:return: a pass to perform the simplification",
-      py::arg("strat") = PauliSynthStrat::Sets,
+      py::arg("strat") = Transforms::PauliSynthStrat::Sets,
       py::arg("cx_config") = CXConfigType::Snake);
   m.def(
       "PauliSquash", &PauliSquash,
@@ -650,17 +656,17 @@ PYBIND11_MODULE(passes, m) {
       "\n\n:param strat: a synthesis strategy for the Pauli graph"
       "\n:param cx_config: a configuration of CXs to convert Pauli gadgets into"
       "\n:return: a pass to perform the simplification",
-      py::arg("strat") = PauliSynthStrat::Sets,
+      py::arg("strat") = Transforms::PauliSynthStrat::Sets,
       py::arg("cx_config") = CXConfigType::Snake);
   m.def(
       "SimplifyInitial",
       [](bool allow_classical, bool create_all_qubits, bool remove_redundancies,
          std::shared_ptr<const Circuit> xcirc) -> PassPtr {
         PassPtr simpinit = gen_simplify_initial(
-            allow_classical ? Transform::AllowClassical::Yes
-                            : Transform::AllowClassical::No,
-            create_all_qubits ? Transform::CreateAllQubits::Yes
-                              : Transform::CreateAllQubits::No,
+            allow_classical ? Transforms::AllowClassical::Yes
+                            : Transforms::AllowClassical::No,
+            create_all_qubits ? Transforms::CreateAllQubits::Yes
+                              : Transforms::CreateAllQubits::No,
             xcirc);
         if (remove_redundancies) {
           std::vector<PassPtr> seq = {simpinit, RemoveRedundancies()};
@@ -685,8 +691,8 @@ PYBIND11_MODULE(passes, m) {
       "ContextSimp",
       [](bool allow_classical, std::shared_ptr<const Circuit> xcirc) {
         return gen_contextual_pass(
-            allow_classical ? Transform::AllowClassical::Yes
-                            : Transform::AllowClassical::No,
+            allow_classical ? Transforms::AllowClassical::Yes
+                            : Transforms::AllowClassical::No,
             xcirc);
       },
       "Applies simplifications enabled by knowledge of qubit state and "

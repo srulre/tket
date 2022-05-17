@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,12 +27,6 @@ void insert_into_gadget_map(
     gadget_map.erase(iter);
     gadget_map[string_to_insert] = ang_to_insert;
   }
-}
-
-void insert_into_gadget_map(
-    QubitOperator &gadget_map, const std::pair<QubitPauliTensor, Expr> &pgp) {
-  PauliGadgetProperties actual_pgp{pgp.first, pgp.second};
-  insert_into_gadget_map(gadget_map, actual_pgp);
 }
 
 }  // namespace tket

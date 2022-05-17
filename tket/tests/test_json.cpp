@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 #include <catch2/catch.hpp>
 #include <iostream>
 
+#include "Architecture/Architecture.hpp"
 #include "Circuit/CircPool.hpp"
 #include "Circuit/CircUtils.hpp"
 #include "Circuit/Circuit.hpp"
@@ -23,13 +24,20 @@
 #include "CircuitsForTesting.hpp"
 #include "Converters/PhasePoly.hpp"
 #include "Gate/SymTable.hpp"
+#include "Mapping/LexiLabelling.hpp"
+#include "Mapping/LexiRoute.hpp"
+#include "Mapping/RoutingMethod.hpp"
+#include "MeasurementSetup/MeasurementSetup.hpp"
 #include "OpType/OpType.hpp"
 #include "Ops/OpPtr.hpp"
 #include "Predicates/PassGenerators.hpp"
 #include "Predicates/PassLibrary.hpp"
+#include "Transformations/OptimisationPass.hpp"
+#include "Transformations/PauliOptimisation.hpp"
 #include "Transformations/Transform.hpp"
 #include "Utils/Json.hpp"
 #include "testutil.hpp"
+
 namespace tket {
 namespace test_json {
 
@@ -61,7 +69,7 @@ SCENARIO("Test Op serialization") {
     const OpTypeSet boxes = {OpType::CircBox,      OpType::Unitary1qBox,
                              OpType::Unitary2qBox, OpType::Unitary3qBox,
                              OpType::ExpBox,       OpType::PauliExpBox,
-                             OpType::Composite,    OpType::CliffBox,
+                             OpType::CustomGate,   OpType::CliffBox,
                              OpType::PhasePolyBox, OpType::QControlBox};
 
     std::set<std::string> type_names;
@@ -141,7 +149,7 @@ SCENARIO("Test Circuit serialization") {
     Circuit circ(3);
     add_2qb_gates(circ, OpType::CX, {{0, 1}, {1, 0}, {1, 2}, {2, 1}});
 
-    Transform::clifford_simp().apply(circ);
+    Transforms::clifford_simp().apply(circ);
 
     REQUIRE(check_circuit(circ));
   }
@@ -174,7 +182,6 @@ SCENARIO("Test Circuit serialization") {
     c.add_box(temp_box, {0, 1});
 
     nlohmann::json j_cbox = c;
-    // std::cout << j_cbox;
     const Circuit new_c = j_cbox.get<Circuit>();
 
     const Command cbox_com = new_c.get_commands()[1];
@@ -190,7 +197,7 @@ SCENARIO("Test Circuit serialization") {
     c.add_op<unsigned>(OpType::Rz, 0.2, {0});
 
     Circuit setup(1);
-    setup.add_op<unsigned>(OpType::tk1, {0.2374, 1.0353, 0.5372}, {0});
+    setup.add_op<unsigned>(OpType::TK1, {0.2374, 1.0353, 0.5372}, {0});
     Eigen::Matrix2cd m = get_matrix_from_circ(setup);
     Unitary1qBox mbox(m);
     c.add_box(mbox, {1});
@@ -258,7 +265,7 @@ SCENARIO("Test Circuit serialization") {
     REQUIRE(p_b == pbox);
   }
 
-  GIVEN("Composite Gate") {
+  GIVEN("CustomGate") {
     Circuit setup(2);
     Sym a = SymTable::fresh_symbol("a");
     Sym c = SymTable::fresh_symbol("c");
@@ -267,8 +274,8 @@ SCENARIO("Test Circuit serialization") {
     setup.add_op<unsigned>(OpType::CX, {0, 1});
     setup.add_op<unsigned>(OpType::Ry, {a}, {0});
     composite_def_ptr_t def = CompositeGateDef::define_gate("g", setup, {a});
-    CompositeGate g0(def, {0.2374});
-    CompositeGate g1(def, {b});
+    CustomGate g0(def, {0.2374});
+    CustomGate g1(def, {b});
 
     Circuit circ(3);
     circ.add_box(g0, {0, 1});
@@ -279,14 +286,12 @@ SCENARIO("Test Circuit serialization") {
 
     const std::vector<Command> coms = new_c.get_commands();
 
-    const auto& g_0_new =
-        static_cast<const CompositeGate&>(*coms[0].get_op_ptr());
+    const auto& g_0_new = static_cast<const CustomGate&>(*coms[0].get_op_ptr());
 
     REQUIRE(g0.get_params() == g_0_new.get_params());
     REQUIRE(*g0.get_gate() == *g_0_new.get_gate());
     REQUIRE(g0 == g_0_new);
-    const auto& g_1_new =
-        static_cast<const CompositeGate&>(*coms[1].get_op_ptr());
+    const auto& g_1_new = static_cast<const CustomGate&>(*coms[1].get_op_ptr());
 
     REQUIRE(g1.get_params() == g_1_new.get_params());
     REQUIRE(*g1.get_gate() == *g_1_new.get_gate());
@@ -345,14 +350,6 @@ SCENARIO("Test Circuit serialization") {
 }
 
 SCENARIO("Test config serializations") {
-  GIVEN("RoutingConfig") {
-    RoutingConfig orig(20, 6, 3, 2.5);
-    nlohmann::json j_config = orig;
-    RoutingConfig loaded = j_config.get<RoutingConfig>();
-    REQUIRE(orig == loaded);
-    nlohmann::json j_loaded = loaded;
-    REQUIRE(j_config == j_loaded);
-  }
   GIVEN("PlacementConfig") {
     PlacementConfig orig(5, 20, 100000, 10, 1);
     nlohmann::json j_config = orig;
@@ -365,14 +362,14 @@ SCENARIO("Test config serializations") {
 
 SCENARIO("Test device serializations") {
   GIVEN("Architecture") {
-    Architecture full = FullyConnected(4);
-    nlohmann::json j_full = full;
-    Architecture loaded_full = j_full.get<Architecture>();
-    CHECK(full == loaded_full);
-    nlohmann::json j_loaded_full = loaded_full;
-    CHECK(j_full == j_loaded_full);
+    Architecture arc({{0, 1}, {1, 2}});
+    nlohmann::json j_arc = arc;
+    Architecture loaded_arc = j_arc.get<Architecture>();
+    CHECK(arc == loaded_arc);
+    nlohmann::json j_loaded_arc = loaded_arc;
+    CHECK(j_arc == j_loaded_arc);
     Architecture ring = RingArch(6);
-    node_vector_t nodes = ring.get_all_uids_vec();
+    node_vector_t nodes = ring.get_all_nodes_vec();
     ring.add_connection(nodes.at(0), nodes.at(3), 20);
     nlohmann::json j_ring = ring;
     Architecture loaded_ring = j_ring.get<Architecture>();
@@ -380,9 +377,17 @@ SCENARIO("Test device serializations") {
     nlohmann::json j_loaded_ring = loaded_ring;
     CHECK(j_ring == j_loaded_ring);
   }
+  GIVEN("FullyConnected") {
+    FullyConnected full(4);
+    nlohmann::json j_full = full;
+    FullyConnected loaded_full = j_full.get<FullyConnected>();
+    CHECK(full == loaded_full);
+    nlohmann::json j_loaded_full = loaded_full;
+    CHECK(j_full == j_loaded_full);
+  }
   GIVEN("DeviceCharacterisation") {
     Architecture ring = RingArch(3);
-    node_vector_t nodes = ring.get_all_uids_vec();
+    node_vector_t nodes = ring.get_all_nodes_vec();
     op_errors_t node_err0{{{OpType::X, 0.3}, {OpType::Y, 0.4}}};
     op_errors_t node_err1{{{OpType::X, 0.2}, {OpType::Y, 0.5}}};
     op_node_errors_t ne{
@@ -419,6 +424,35 @@ SCENARIO("Test device serializations") {
   }
 }
 
+SCENARIO("Test RoutingMethod serializations") {
+  RoutingMethod rm;
+  nlohmann::json rm_j = rm;
+  RoutingMethod loaded_rm_j = rm_j.get<RoutingMethod>();
+
+  Circuit c(2, 2);
+  c.add_op<unsigned>(OpType::CX, {0, 1});
+
+  MappingFrontier mf(c);
+  MappingFrontier_ptr mf_sp = std::make_shared<MappingFrontier>(mf);
+  CHECK(!loaded_rm_j.routing_method(mf_sp, std::make_shared<SquareGrid>(2, 2))
+             .first);
+
+  std::vector<RoutingMethodPtr> rmp = {
+      std::make_shared<RoutingMethod>(rm),
+      std::make_shared<LexiLabellingMethod>(),
+      std::make_shared<LexiRouteRoutingMethod>(5)};
+
+  nlohmann::json rmp_j = rmp;
+  std::vector<RoutingMethodPtr> loaded_rmp_j =
+      rmp_j.get<std::vector<RoutingMethodPtr>>();
+  CHECK(!loaded_rmp_j[0]
+             ->routing_method(mf_sp, std::make_shared<SquareGrid>(2, 2))
+             .first);
+  CHECK(loaded_rmp_j[1]
+            ->routing_method(mf_sp, std::make_shared<SquareGrid>(2, 2))
+            .first);
+}
+
 SCENARIO("Test predicate serializations") {
 #define BASICPREDJSONTEST(classname)                             \
   GIVEN(#classname) {                                            \
@@ -439,6 +473,7 @@ SCENARIO("Test predicate serializations") {
   BASICPREDJSONTEST(NoBarriersPredicate)
   BASICPREDJSONTEST(NoMidMeasurePredicate)
   BASICPREDJSONTEST(NoSymbolsPredicate)
+  BASICPREDJSONTEST(GlobalPhasedXPredicate)
 #undef BASICPREDJSONTEST
   GIVEN("GateSetPredicate") {
     OpTypeSet ops = {OpType::X, OpType::V, OpType::Rz, OpType::ZZMax};
@@ -506,7 +541,8 @@ SCENARIO("Test predicate serializations") {
 
 SCENARIO("Test compiler pass serializations") {
   Architecture arc = SquareGrid(2, 4, 2);
-  RoutingConfig rcon(20, 6, 3, 2.5);
+  RoutingMethodPtr rmp = std::make_shared<LexiRouteRoutingMethod>(80);
+  std::vector<RoutingMethodPtr> rcon = {rmp};
   PlacementConfig plcon(5, 20, 100000, 10, 1000);
   PlacementPtr place = std::make_shared<GraphPlacement>(arc, plcon);
   std::map<Qubit, Qubit> qmap = {{Qubit(0), Node(1)}, {Qubit(3), Node(2)}};
@@ -534,17 +570,11 @@ SCENARIO("Test compiler pass serializations") {
   COMPPASSJSONTEST(DecomposeSingleQubitsTK1, DecomposeSingleQubitsTK1())
   COMPPASSJSONTEST(PeepholeOptimise2Q, PeepholeOptimise2Q())
   COMPPASSJSONTEST(FullPeepholeOptimise, FullPeepholeOptimise())
-  COMPPASSJSONTEST(RebaseCirq, RebaseCirq())
   COMPPASSJSONTEST(RebaseTket, RebaseTket())
-  COMPPASSJSONTEST(RebaseHQS, RebaseHQS())
-  COMPPASSJSONTEST(RebaseQuil, RebaseQuil())
-  COMPPASSJSONTEST(RebaseProjectQ, RebaseProjectQ())
-  COMPPASSJSONTEST(RebasePyZX, RebasePyZX())
-  COMPPASSJSONTEST(RebaseUMD, RebaseUMD())
   COMPPASSJSONTEST(RebaseUFR, RebaseUFR())
-  COMPPASSJSONTEST(RebaseOQC, RebaseOQC())
   COMPPASSJSONTEST(RemoveRedundancies, RemoveRedundancies())
   COMPPASSJSONTEST(SynthesiseHQS, SynthesiseHQS())
+  COMPPASSJSONTEST(SynthesiseTK, SynthesiseTK())
   COMPPASSJSONTEST(SynthesiseTket, SynthesiseTket())
   COMPPASSJSONTEST(SynthesiseOQC, SynthesiseOQC())
   COMPPASSJSONTEST(SynthesiseUMD, SynthesiseUMD())
@@ -572,19 +602,21 @@ SCENARIO("Test compiler pass serializations") {
   COMPPASSJSONTEST(
       OptimisePairwiseGadgets, gen_pairwise_pauli_gadgets(CXConfigType::Tree))
   COMPPASSJSONTEST(
-      PauliSimp,
-      gen_synthesise_pauli_graph(PauliSynthStrat::Sets, CXConfigType::Tree))
+      PauliSimp, gen_synthesise_pauli_graph(
+                     Transforms::PauliSynthStrat::Sets, CXConfigType::Tree))
   COMPPASSJSONTEST(
       GuidedPauliSimp,
-      gen_special_UCC_synthesis(PauliSynthStrat::Pairwise, CXConfigType::Snake))
+      gen_special_UCC_synthesis(
+          Transforms::PauliSynthStrat::Pairwise, CXConfigType::Snake))
   COMPPASSJSONTEST(
       SimplifyInitial,
       gen_simplify_initial(
-          Transform::AllowClassical::No, Transform::CreateAllQubits::Yes,
+          Transforms::AllowClassical::No, Transforms::CreateAllQubits::Yes,
           std::make_shared<Circuit>(CircPool::X())))
   COMPPASSJSONTEST(PlacementPass, gen_placement_pass(place))
   // TKET-1419
   COMPPASSJSONTEST(NoiseAwarePlacement, gen_placement_pass(na_place))
+  COMPPASSJSONTEST(NaivePlacementPass, gen_naive_placement_pass(arc))
 #undef COMPPASSJSONTEST
   GIVEN("RoutingPass") {
     // Can only be applied to placed circuits
@@ -602,22 +634,25 @@ SCENARIO("Test compiler pass serializations") {
     nlohmann::json j_loaded = loaded;
     REQUIRE(j_pp == j_loaded);
   }
-#define COMPPASSDESERIALIZE(passname, pass)            \
-  GIVEN(#passname) {                                   \
-    Circuit circ = CircuitsForTesting::get().uccsd;    \
-    CompilationUnit cu{circ};                          \
-    CompilationUnit copy = cu;                         \
-    PassPtr pp = pass;                                 \
-    nlohmann::json j_pp;                               \
-    j_pp["pass_class"] = "StandardPass";               \
-    j_pp["StandardPass"]["name"] = #passname;          \
-    PassPtr loaded = j_pp.get<PassPtr>();              \
-    pp->apply(cu);                                     \
-    loaded->apply(copy);                               \
-    REQUIRE(cu.get_circ_ref() == copy.get_circ_ref()); \
+  GIVEN("Routing with multiple routing methods") {
+    RoutingMethodPtr mrmp =
+        std::make_shared<MultiGateReorderRoutingMethod>(60, 80);
+    RoutingMethodPtr brmp = std::make_shared<BoxDecompositionRoutingMethod>();
+    std::vector<RoutingMethodPtr> mrcon = {mrmp, rmp, brmp};
+    Circuit circ = CircuitsForTesting::get().uccsd;
+    CompilationUnit cu{circ};
+    PassPtr placement = gen_placement_pass(place);
+    placement->apply(cu);
+    CompilationUnit copy = cu;
+    PassPtr pp = gen_routing_pass(arc, mrcon);
+    nlohmann::json j_pp = pp;
+    PassPtr loaded = j_pp.get<PassPtr>();
+    pp->apply(cu);
+    loaded->apply(copy);
+    REQUIRE(cu.get_circ_ref() == copy.get_circ_ref());
+    nlohmann::json j_loaded = loaded;
+    REQUIRE(j_pp == j_loaded);
   }
-  COMPPASSDESERIALIZE(SquashHQS, SquashHQS())
-#undef COMPPASSDESERIALIZE
   GIVEN("FullMappingPass") {
     // Sequence pass - deserializable only
     Circuit circ = CircuitsForTesting::get().uccsd;
@@ -629,7 +664,13 @@ SCENARIO("Test compiler pass serializations") {
     j_pp["StandardPass"]["name"] = "FullMappingPass";
     j_pp["StandardPass"]["architecture"] = arc;
     j_pp["StandardPass"]["placement"] = place;
-    j_pp["StandardPass"]["routing_config"] = rcon;
+
+    nlohmann::json config_array;
+    for (const auto& con : rcon) {
+      config_array.push_back(*con);
+    }
+
+    j_pp["StandardPass"]["routing_config"] = config_array;
     PassPtr loaded = j_pp.get<PassPtr>();
     pp->apply(cu);
     loaded->apply(copy);
@@ -640,11 +681,12 @@ SCENARIO("Test compiler pass serializations") {
     Circuit circ = CircuitsForTesting::get().uccsd;
     CompilationUnit cu{circ};
     CompilationUnit copy = cu;
-    PassPtr pp = gen_default_mapping_pass(arc);
+    PassPtr pp = gen_default_mapping_pass(arc, true);
     nlohmann::json j_pp;
     j_pp["pass_class"] = "StandardPass";
     j_pp["StandardPass"]["name"] = "DefaultMappingPass";
     j_pp["StandardPass"]["architecture"] = arc;
+    j_pp["StandardPass"]["delay_measures"] = true;
     PassPtr loaded = j_pp.get<PassPtr>();
     pp->apply(cu);
     loaded->apply(copy);
@@ -661,7 +703,11 @@ SCENARIO("Test compiler pass serializations") {
     j_pp["StandardPass"]["name"] = "CXMappingPass";
     j_pp["StandardPass"]["architecture"] = arc;
     j_pp["StandardPass"]["placement"] = place;
-    j_pp["StandardPass"]["routing_config"] = rcon;
+    nlohmann::json config_array;
+    for (const auto& con : rcon) {
+      config_array.push_back(*con);
+    }
+    j_pp["StandardPass"]["routing_config"] = config_array;
     j_pp["StandardPass"]["directed"] = true;
     j_pp["StandardPass"]["delay_measures"] = false;
     PassPtr loaded = j_pp.get<PassPtr>();
@@ -674,11 +720,13 @@ SCENARIO("Test compiler pass serializations") {
     Circuit circ = CircuitsForTesting::get().uccsd;
     CompilationUnit cu{circ};
     CompilationUnit copy = cu;
-    PassPtr pp = PauliSquash(PauliSynthStrat::Sets, CXConfigType::Star);
+    PassPtr pp =
+        PauliSquash(Transforms::PauliSynthStrat::Sets, CXConfigType::Star);
     nlohmann::json j_pp;
     j_pp["pass_class"] = "StandardPass";
     j_pp["StandardPass"]["name"] = "PauliSquash";
-    j_pp["StandardPass"]["pauli_synth_strat"] = PauliSynthStrat::Sets;
+    j_pp["StandardPass"]["pauli_synth_strat"] =
+        Transforms::PauliSynthStrat::Sets;
     j_pp["StandardPass"]["cx_config"] = CXConfigType::Star;
     PassPtr loaded = j_pp.get<PassPtr>();
     pp->apply(cu);
@@ -692,7 +740,7 @@ SCENARIO("Test compiler pass serializations") {
     CompilationUnit cu{circ};
     CompilationUnit copy = cu;
     PassPtr pp = gen_contextual_pass(
-        Transform::AllowClassical::Yes,
+        Transforms::AllowClassical::Yes,
         std::make_shared<Circuit>(CircPool::X()));
     nlohmann::json j_pp;
     j_pp["pass_class"] = "StandardPass";
@@ -760,6 +808,90 @@ SCENARIO("Test QubitPauliString serialization") {
   QubitPauliString new_qps = j_qps.get<QubitPauliString>();
 
   REQUIRE(qps == new_qps);
+}
+
+SCENARIO("Test MeasurementSetup serializations") {
+  GIVEN("MeasurementBitMap") {
+    MeasurementSetup::MeasurementBitMap map(0, {0, 1}, 1);
+    nlohmann::json j_map = map;
+    nlohmann::json j_correct_map = {
+        {"circ_index", 0}, {"bits", {0, 1}}, {"invert", true}};
+    REQUIRE(j_map == j_correct_map);
+    MeasurementSetup::MeasurementBitMap map_loaded =
+        j_map.get<MeasurementSetup::MeasurementBitMap>();
+    nlohmann::json j_loaded_map = map_loaded;
+    REQUIRE(j_loaded_map == j_map);
+  }
+  GIVEN("MeasurementBitMap with default constructor") {
+    MeasurementSetup::MeasurementBitMap map;
+    nlohmann::json j_map = map;
+    nlohmann::json j_correct_map = {
+        {"circ_index", 0},
+        {"bits", nlohmann::json::array()},
+        {"invert", false}};
+    REQUIRE(j_map == j_correct_map);
+    MeasurementSetup::MeasurementBitMap map_loaded =
+        j_map.get<MeasurementSetup::MeasurementBitMap>();
+    nlohmann::json j_loaded_map = map_loaded;
+    REQUIRE(j_loaded_map == j_map);
+  }
+  GIVEN("MeasurementSetup") {
+    MeasurementSetup ms;
+    Circuit mc(2, 2);
+    mc.add_measure(0, 0);
+    mc.add_measure(1, 1);
+    Circuit mc2(2, 2);
+    mc2.add_measure(0, 1);
+    mc2.add_measure(1, 0);
+    ms.add_measurement_circuit(mc);
+    ms.add_measurement_circuit(mc2);
+    Qubit q0(q_default_reg(), 0);
+    Qubit q1(q_default_reg(), 1);
+    QubitPauliString ii;
+    QubitPauliString zi({{q0, Pauli::Z}});
+    QubitPauliString iz({{q1, Pauli::Z}});
+    QubitPauliString zz({{q0, Pauli::Z}, {q1, Pauli::Z}});
+    QubitPauliString xx({{q0, Pauli::X}, {q1, Pauli::X}});
+    QubitPauliString yy({{q0, Pauli::Y}, {q1, Pauli::Y}});
+    ms.add_result_for_term(ii, {0, {}, false});
+    ms.add_result_for_term(zi, {0, {0}, false});
+    ms.add_result_for_term(iz, {0, {1}, false});
+    ms.add_result_for_term(zz, {0, {0, 1}, false});
+    ms.add_result_for_term(zi, {1, {0}, true});
+    ms.add_result_for_term(xx, {1, {0, 1}, true});
+    ms.add_result_for_term(yy, {1, {0, 1}, true});
+    nlohmann::json j_ms = ms;
+    nlohmann::json j_circs = {mc, mc2};
+    nlohmann::json j_result_map = {
+        {ii,
+         {{{"circ_index", 0},
+           {"bits", nlohmann::json::array()},
+           {"invert", false}}}},
+        {iz, {{{"circ_index", 0}, {"bits", {1}}, {"invert", false}}}},
+        {xx, {{{"circ_index", 1}, {"bits", {0, 1}}, {"invert", true}}}},
+        {yy, {{{"circ_index", 1}, {"bits", {0, 1}}, {"invert", true}}}},
+        {zi,
+         {{{"circ_index", 0}, {"bits", {0}}, {"invert", false}},
+          {{"circ_index", 1}, {"bits", {0}}, {"invert", true}}}},
+        {zz, {{{"circ_index", 0}, {"bits", {0, 1}}, {"invert", false}}}},
+    };
+    REQUIRE(j_ms["circs"] == j_circs);
+    REQUIRE(j_ms["result_map"] == j_result_map);
+    MeasurementSetup ms_loaded = j_ms.get<MeasurementSetup>();
+    nlohmann::json j_loaded_ms = ms_loaded;
+    REQUIRE(j_loaded_ms == j_ms);
+  }
+  GIVEN("Empty MeasurementSetup") {
+    MeasurementSetup ms;
+    nlohmann::json j_ms = ms;
+    nlohmann::json j_correct_ms = {
+        {"circs", nlohmann::json::array()},
+        {"result_map", nlohmann::json::array()}};
+    REQUIRE(j_ms == j_correct_ms);
+    MeasurementSetup ms_loaded = j_ms.get<MeasurementSetup>();
+    nlohmann::json j_loaded_ms = ms_loaded;
+    REQUIRE(j_loaded_ms == j_ms);
+  }
 }
 
 }  // namespace test_json

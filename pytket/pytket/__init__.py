@@ -1,4 +1,4 @@
-# Copyright 2019-2021 Cambridge Quantum Computing
+# Copyright 2019-2022 Cambridge Quantum Computing
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,15 +14,23 @@
 
 """Python Interface to CQC tket
 """
-
 from pytket.circuit import (  # type: ignore
     Circuit,
     OpType,
     Qubit,
     Bit,
 )
-import pytket.routing
+import pytket.mapping
+import pytket.architecture
+import pytket.placement
 import pytket.transform
-import pytket.telemetry
+from pytket.config import PytketConfig, get_config_file_path
+from pytket._version import __version__
+
+# Create pytket config file if it does not exist:
+pytket_config_file = get_config_file_path()
+if not pytket_config_file.exists():
+    config = PytketConfig.default()
+    config.write_file(pytket_config_file)
 
 __path__ = __import__("pkgutil").extend_path(__path__, __name__)  # type: ignore

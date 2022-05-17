@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -85,6 +85,7 @@ void init_unitid(py::module &m) {
 
   py::class_<UnitID>(
       m, "UnitID", "A handle to a computational unit (e.g. qubit, bit)")
+      .def(py::init<>())
       .def("__eq__", &UnitID::operator==)
       .def("__lt__", &UnitID::operator<)
       .def("__repr__", &UnitID::repr)

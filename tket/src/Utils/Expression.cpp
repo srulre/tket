@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,10 +14,18 @@
 
 #include "Expression.hpp"
 
+#include <optional>
+
 #include "Constants.hpp"
 #include "Symbols.hpp"
+#include "symengine/symengine_exception.h"
 
 namespace tket {
+
+bool approx_0(const Expr& e, double tol) {
+  std::optional<double> v = eval_expr(e);
+  return v && (std::abs(v.value()) < tol);
+}
 
 double fmodn(double x, unsigned n) {
   x /= n;
@@ -52,7 +60,19 @@ std::optional<double> eval_expr(const Expr& e) {
   if (!SymEngine::free_symbols(e).empty()) {
     return std::nullopt;
   } else {
-    return SymEngine::eval_double(e);
+    try {
+      return SymEngine::eval_double(e);
+    } catch (SymEngine::NotImplementedError&) {
+      return std::nullopt;
+    }
+  }
+}
+
+std::optional<Complex> eval_expr_c(const Expr& e) {
+  if (!SymEngine::free_symbols(e).empty()) {
+    return std::nullopt;
+  } else {
+    return SymEngine::eval_complex_double(e);
   }
 }
 
@@ -88,8 +108,9 @@ Expr cos_halfpi_times(const Expr& e) {
   std::optional<double> x = eval_expr_mod(e / 2);  // >= 0
   if (x) {
     return cos_pi_by_12_times(12 * x.value());
+  } else {
+    return SymEngine::cos(SymEngine::expand(e * SymEngine::pi / 2));
   }
-  return SymEngine::cos(e * SymEngine::pi / 2);
 }
 
 Expr sin_halfpi_times(const Expr& e) {

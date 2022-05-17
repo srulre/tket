@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ static GatesData get_data() {
   };
   data.input_data[1][3] = {
       OpType::U3,
-      OpType::tk1,
+      OpType::TK1,
   };
   data.input_data[2][0] = {
       OpType::CX,   OpType::CY,    OpType::CZ,       OpType::CH,
@@ -56,6 +56,7 @@ static GatesData get_data() {
   };
   data.input_data[2][3] = {
       OpType::CU3,
+      OpType::TK2,
   };
   data.input_data[3][0] = {
       OpType::CCX,
@@ -68,6 +69,9 @@ static GatesData get_data() {
       OpType::PhaseGadget,  // variable number of qubits
       OpType::XXPhase3,
   };
+  data.input_data[3][2] = {
+      OpType::NPhasedX,  // variable number of qubits
+  };
   data.input_data[4][0] = {
       OpType::CnX,  // variable number of qubits
   };
@@ -77,6 +81,7 @@ static GatesData get_data() {
   };
   data.min_number_of_qubits_for_variable_qubit_type[OpType::CnX] = 1;
   data.min_number_of_qubits_for_variable_qubit_type[OpType::CnRy] = 1;
+  data.min_number_of_qubits_for_variable_qubit_type[OpType::NPhasedX] = 0;
   data.min_number_of_qubits_for_variable_qubit_type[OpType::PhaseGadget] = 0;
   return data;
 }

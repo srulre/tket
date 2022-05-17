@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace py = pybind11;
 namespace tket {
 
 static void apply_classical_op_to_registers(
-    Circuit &circ, std::shared_ptr<const ClassicalOp> op,
+    Circuit &circ, std::shared_ptr<const ClassicalEvalOp> op,
     const std::vector<BitRegister> &registers) {
   unsigned n_op_args = registers.size();
   const unsigned n_bits = std::min_element(
@@ -54,11 +54,13 @@ void init_circuit_add_classical_op(
   c.def(
        "add_c_transform",
        [](Circuit &circ, const std::vector<uint32_t> &values,
-          const std::vector<unsigned> &args, const std::string &name) {
+          const std::vector<unsigned> &args,
+          const std::string &name) -> Circuit & {
          unsigned n_args = args.size();
          std::shared_ptr<ClassicalTransformOp> op =
              std::make_shared<ClassicalTransformOp>(n_args, values, name);
-         return circ.add_op(op, args);
+         circ.add_op(op, args);
+         return circ;
        },
        "Appends a purely classical transformation, defined by a table of "
        "values, to "
@@ -76,20 +78,110 @@ void init_circuit_add_classical_op(
       .def(
           "add_c_transform",
           [](Circuit &circ, const std::vector<uint32_t> &values,
-             const std::vector<Bit> &args, const std::string &name) {
+             const std::vector<Bit> &args,
+             const std::string &name) -> Circuit & {
             unsigned n_args = args.size();
             std::shared_ptr<ClassicalTransformOp> op =
                 std::make_shared<ClassicalTransformOp>(n_args, values, name);
-            return circ.add_op(op, args);
+            circ.add_op(op, args);
+            return circ;
           },
           "See :py:meth:`add_c_transform`.", py::arg("values"), py::arg("args"),
           py::arg("name") = "ClassicalTransform")
       .def(
+          "_add_wasm",
+          [](Circuit &circ, const std::string &funcname,
+             const std::string &wasm_uid,
+             const std::vector<unsigned> &i32list_i,
+             const std::vector<unsigned> &i32list_o,
+             const std::vector<unsigned> &args) -> Circuit & {
+            unsigned n_args = args.size();
+            std::shared_ptr<WASMOp> op = std::make_shared<WASMOp>(
+                n_args, i32list_i, i32list_o, funcname, wasm_uid);
+            circ.add_op(op, args);
+            return circ;
+          },
+          "Add a classical function call from a wasm file to the circuit. "
+          "\n\n:param funcname: name of the function that is called"
+          "\n:param wasm_uid: unit id to identify the wasm file"
+          "\n:param i32list_i: list of the number of bits in the input "
+          "variables"
+          "\n:param i32list_o: list of the number of bits in the output "
+          "variables"
+          "\n:param args: vector of circuit bits the wasm op should be added to"
+          "\n:return: the new :py:class:`Circuit`",
+          py::arg("funcname"), py::arg("wasm_uid"), py::arg("i32list_i"),
+          py::arg("i32list_o"), py::arg("args"))
+      .def(
+          "_add_wasm",
+          [](Circuit &circ, const std::string &funcname,
+             const std::string &wasm_uid,
+             const std::vector<unsigned> &i32list_i,
+             const std::vector<unsigned> &i32list_o,
+             const std::vector<Bit> &args) -> Circuit & {
+            unsigned n_args = args.size();
+            std::shared_ptr<WASMOp> op = std::make_shared<WASMOp>(
+                n_args, i32list_i, i32list_o, funcname, wasm_uid);
+            circ.add_op(op, args);
+            return circ;
+          },
+          "See :py:meth:`add_wasm`.", py::arg("funcname"), py::arg("wasm_uid"),
+          py::arg("i32list_i"), py::arg("i32list_o"), py::arg("args"))
+      .def(
+          "_add_wasm",
+          [](Circuit &circ, const std::string &funcname,
+             const std::string &wasm_uid,
+             const std::vector<BitRegister> &list_reg_in,
+             const std::vector<BitRegister> &list_reg_out) -> Circuit & {
+            unsigned n_args = 0;
+
+            for (auto r : list_reg_in) {
+              n_args += r.size();
+            }
+
+            for (auto r : list_reg_out) {
+              n_args += r.size();
+            }
+
+            std::vector<Bit> args(n_args);
+            std::vector<unsigned> i32list_i(list_reg_in.size());
+            std::vector<unsigned> i32list_o(list_reg_out.size());
+
+            unsigned i = 0;
+            unsigned j = 0;
+            for (auto r : list_reg_in) {
+              i32list_i[i] = r.size();
+              for (unsigned k = 0; k < r.size(); ++k) {
+                args[j] = r[k];
+                ++j;
+              }
+              ++i;
+            }
+
+            i = 0;
+            for (auto r : list_reg_out) {
+              i32list_o[i] = r.size();
+              for (unsigned k = 0; k < r.size(); ++k) {
+                args[j] = r[k];
+                ++j;
+              }
+              ++i;
+            }
+
+            std::shared_ptr<WASMOp> op = std::make_shared<WASMOp>(
+                n_args, i32list_i, i32list_o, funcname, wasm_uid);
+            circ.add_op(op, args);
+            return circ;
+          },
+          "See :py:meth:`add_wasm`.", py::arg("funcname"), py::arg("wasm_uid"),
+          py::arg("list_reg_in"), py::arg("list_reg_out"))
+      .def(
           "add_c_setbits",
           [](Circuit &circ, const std::vector<bool> &values,
-             const std::vector<unsigned> args) {
+             const std::vector<unsigned> args) -> Circuit & {
             std::shared_ptr<SetBitsOp> op = std::make_shared<SetBitsOp>(values);
-            return circ.add_op(op, args);
+            circ.add_op(op, args);
+            return circ;
           },
           "Appends an operation to set some bit values."
           "\n\n:param values: values to set"
@@ -99,21 +191,23 @@ void init_circuit_add_classical_op(
       .def(
           "add_c_setbits",
           [](Circuit &circ, const std::vector<bool> &values,
-             const std::vector<Bit> args) {
+             const std::vector<Bit> args) -> Circuit & {
             std::shared_ptr<SetBitsOp> op = std::make_shared<SetBitsOp>(values);
-            return circ.add_op(op, args);
+            circ.add_op(op, args);
+            return circ;
           },
           "See :py:meth:`add_c_setbits`.", py::arg("values"), py::arg("args"))
       .def(
           "add_c_copybits",
           [](Circuit &circ, const std::vector<unsigned> &args_in,
-             const std::vector<unsigned> &args_out) {
+             const std::vector<unsigned> &args_out) -> Circuit & {
             unsigned n_args_in = args_in.size();
             std::shared_ptr<CopyBitsOp> op =
                 std::make_shared<CopyBitsOp>(n_args_in);
             std::vector<unsigned> args = args_in;
             args.insert(args.end(), args_out.begin(), args_out.end());
-            return circ.add_op(op, args);
+            circ.add_op(op, args);
+            return circ;
           },
           "Appends a classical copy operation"
           "\n\n:param args_in: source bits"
@@ -123,13 +217,14 @@ void init_circuit_add_classical_op(
       .def(
           "add_c_copybits",
           [](Circuit &circ, const std::vector<Bit> &args_in,
-             const std::vector<Bit> &args_out) {
+             const std::vector<Bit> &args_out) -> Circuit & {
             unsigned n_args_in = args_in.size();
             std::shared_ptr<CopyBitsOp> op =
                 std::make_shared<CopyBitsOp>(n_args_in);
             std::vector<Bit> args = args_in;
             args.insert(args.end(), args_out.begin(), args_out.end());
-            return circ.add_op(op, args);
+            circ.add_op(op, args);
+            return circ;
           },
           "See :py:meth:`add_c_copybits`.", py::arg("args_in"),
           py::arg("args_out"))
@@ -137,13 +232,14 @@ void init_circuit_add_classical_op(
           "add_c_predicate",
           [](Circuit &circ, const std::vector<bool> &values,
              const std::vector<unsigned> &args_in, unsigned arg_out,
-             const std::string &name) {
+             const std::string &name) -> Circuit & {
             unsigned n_args_in = args_in.size();
             std::shared_ptr<ExplicitPredicateOp> op =
                 std::make_shared<ExplicitPredicateOp>(n_args_in, values, name);
             std::vector<unsigned> args = args_in;
             args.push_back(arg_out);
-            return circ.add_op(op, args);
+            circ.add_op(op, args);
+            return circ;
           },
           "Appends a classical predicate, defined by a truth table, to the end "
           "of the "
@@ -161,13 +257,14 @@ void init_circuit_add_classical_op(
           "add_c_predicate",
           [](Circuit &circ, const std::vector<bool> &values,
              const std::vector<Bit> &args_in, Bit arg_out,
-             const std::string &name) {
+             const std::string &name) -> Circuit & {
             unsigned n_args_in = args_in.size();
             std::shared_ptr<ExplicitPredicateOp> op =
                 std::make_shared<ExplicitPredicateOp>(n_args_in, values, name);
             std::vector<Bit> args = args_in;
             args.push_back(arg_out);
-            return circ.add_op(op, args);
+            circ.add_op(op, args);
+            return circ;
           },
           "See :py:meth:`add_c_predicate`.", py::arg("values"),
           py::arg("args_in"), py::arg("arg_out"),
@@ -176,13 +273,14 @@ void init_circuit_add_classical_op(
           "add_c_modifier",
           [](Circuit &circ, const std::vector<bool> &values,
              const std::vector<unsigned> &args_in, unsigned arg_inout,
-             const std::string &name) {
+             const std::string &name) -> Circuit & {
             unsigned n_args_in = args_in.size();
             std::shared_ptr<ExplicitModifierOp> op =
                 std::make_shared<ExplicitModifierOp>(n_args_in, values, name);
             std::vector<unsigned> args = args_in;
             args.push_back(arg_inout);
-            return circ.add_op(op, args);
+            circ.add_op(op, args);
+            return circ;
           },
           "Appends a classical modifying operation, defined by a truth table, "
           "to the "
@@ -202,13 +300,14 @@ void init_circuit_add_classical_op(
           "add_c_modifier",
           [](Circuit &circ, const std::vector<bool> &values,
              const std::vector<Bit> &args_in, Bit arg_inout,
-             const std::string &name) {
+             const std::string &name) -> Circuit & {
             unsigned n_args_in = args_in.size();
             std::shared_ptr<ExplicitModifierOp> op =
                 std::make_shared<ExplicitModifierOp>(n_args_in, values, name);
             std::vector<Bit> args = args_in;
             args.push_back(arg_inout);
-            return circ.add_op(op, args);
+            circ.add_op(op, args);
+            return circ;
           },
           "See :py:meth:`add_c_modifier`.", py::arg("values"),
           py::arg("args_in"), py::arg("arg_inout"),
@@ -216,15 +315,15 @@ void init_circuit_add_classical_op(
       .def(
           "add_c_and",
           [](Circuit &circ, unsigned arg0_in, unsigned arg1_in,
-             unsigned arg_out) {
+             unsigned arg_out) -> Circuit & {
             if (arg0_in == arg_out) {
-              return circ.add_op<unsigned>(AndWithOp(), {arg1_in, arg_out});
+              circ.add_op<unsigned>(AndWithOp(), {arg1_in, arg_out});
             } else if (arg1_in == arg_out) {
-              return circ.add_op<unsigned>(AndWithOp(), {arg0_in, arg_out});
+              circ.add_op<unsigned>(AndWithOp(), {arg0_in, arg_out});
             } else {
-              return circ.add_op<unsigned>(
-                  AndOp(), {arg0_in, arg1_in, arg_out});
+              circ.add_op<unsigned>(AndOp(), {arg0_in, arg1_in, arg_out});
             }
+            return circ;
           },
           "Appends a binary AND operation to the end of the circuit."
           "\n\n:param arg0_in: first input bit"
@@ -234,28 +333,31 @@ void init_circuit_add_classical_op(
           py::arg("arg0_in"), py::arg("arg1_in"), py::arg("arg_out"))
       .def(
           "add_c_and",
-          [](Circuit &circ, Bit arg0_in, Bit arg1_in, Bit arg_out) {
+          [](Circuit &circ, Bit arg0_in, Bit arg1_in,
+             Bit arg_out) -> Circuit & {
             if (arg0_in == arg_out) {
-              return circ.add_op<Bit>(AndWithOp(), {arg1_in, arg_out});
+              circ.add_op<Bit>(AndWithOp(), {arg1_in, arg_out});
             } else if (arg1_in == arg_out) {
-              return circ.add_op<Bit>(AndWithOp(), {arg0_in, arg_out});
+              circ.add_op<Bit>(AndWithOp(), {arg0_in, arg_out});
             } else {
-              return circ.add_op<Bit>(AndOp(), {arg0_in, arg1_in, arg_out});
+              circ.add_op<Bit>(AndOp(), {arg0_in, arg1_in, arg_out});
             }
+            return circ;
           },
           "See :py:meth:`add_c_and`.", py::arg("arg0_in"), py::arg("arg1_in"),
           py::arg("arg_out"))
       .def(
           "add_c_or",
           [](Circuit &circ, unsigned arg0_in, unsigned arg1_in,
-             unsigned arg_out) {
+             unsigned arg_out) -> Circuit & {
             if (arg0_in == arg_out) {
-              return circ.add_op<unsigned>(OrWithOp(), {arg1_in, arg_out});
+              circ.add_op<unsigned>(OrWithOp(), {arg1_in, arg_out});
             } else if (arg1_in == arg_out) {
-              return circ.add_op<unsigned>(OrWithOp(), {arg0_in, arg_out});
+              circ.add_op<unsigned>(OrWithOp(), {arg0_in, arg_out});
             } else {
-              return circ.add_op<unsigned>(OrOp(), {arg0_in, arg1_in, arg_out});
+              circ.add_op<unsigned>(OrOp(), {arg0_in, arg1_in, arg_out});
             }
+            return circ;
           },
           "Appends a binary OR operation to the end of the circuit."
           "\n\n:param arg0_in: first input bit"
@@ -265,29 +367,31 @@ void init_circuit_add_classical_op(
           py::arg("arg0_in"), py::arg("arg1_in"), py::arg("arg_out"))
       .def(
           "add_c_or",
-          [](Circuit &circ, Bit arg0_in, Bit arg1_in, Bit arg_out) {
+          [](Circuit &circ, Bit arg0_in, Bit arg1_in,
+             Bit arg_out) -> Circuit & {
             if (arg0_in == arg_out) {
-              return circ.add_op<Bit>(OrWithOp(), {arg1_in, arg_out});
+              circ.add_op<Bit>(OrWithOp(), {arg1_in, arg_out});
             } else if (arg1_in == arg_out) {
-              return circ.add_op<Bit>(OrWithOp(), {arg0_in, arg_out});
+              circ.add_op<Bit>(OrWithOp(), {arg0_in, arg_out});
             } else {
-              return circ.add_op<Bit>(OrOp(), {arg0_in, arg1_in, arg_out});
+              circ.add_op<Bit>(OrOp(), {arg0_in, arg1_in, arg_out});
             }
+            return circ;
           },
           "See :py:meth:`add_c_or`.", py::arg("arg0_in"), py::arg("arg1_in"),
           py::arg("arg_out"))
       .def(
           "add_c_xor",
           [](Circuit &circ, unsigned arg0_in, unsigned arg1_in,
-             unsigned arg_out) {
+             unsigned arg_out) -> Circuit & {
             if (arg0_in == arg_out) {
-              return circ.add_op<unsigned>(XorWithOp(), {arg1_in, arg_out});
+              circ.add_op<unsigned>(XorWithOp(), {arg1_in, arg_out});
             } else if (arg1_in == arg_out) {
-              return circ.add_op<unsigned>(XorWithOp(), {arg0_in, arg_out});
+              circ.add_op<unsigned>(XorWithOp(), {arg0_in, arg_out});
             } else {
-              return circ.add_op<unsigned>(
-                  XorOp(), {arg0_in, arg1_in, arg_out});
+              circ.add_op<unsigned>(XorOp(), {arg0_in, arg1_in, arg_out});
             }
+            return circ;
           },
           "Appends a binary XOR operation to the end of the circuit."
           "\n\n:param arg0_in: first input bit"
@@ -297,21 +401,24 @@ void init_circuit_add_classical_op(
           py::arg("arg0_in"), py::arg("arg1_in"), py::arg("arg_out"))
       .def(
           "add_c_xor",
-          [](Circuit &circ, Bit arg0_in, Bit arg1_in, Bit arg_out) {
+          [](Circuit &circ, Bit arg0_in, Bit arg1_in,
+             Bit arg_out) -> Circuit & {
             if (arg0_in == arg_out) {
-              return circ.add_op<Bit>(XorWithOp(), {arg1_in, arg_out});
+              circ.add_op<Bit>(XorWithOp(), {arg1_in, arg_out});
             } else if (arg1_in == arg_out) {
-              return circ.add_op<Bit>(XorWithOp(), {arg0_in, arg_out});
+              circ.add_op<Bit>(XorWithOp(), {arg0_in, arg_out});
             } else {
-              return circ.add_op<Bit>(XorOp(), {arg0_in, arg1_in, arg_out});
+              circ.add_op<Bit>(XorOp(), {arg0_in, arg1_in, arg_out});
             }
+            return circ;
           },
           "See :py:meth:`add_c_xor`.", py::arg("arg0_in"), py::arg("arg1_in"),
           py::arg("arg_out"))
       .def(
           "add_c_not",
-          [](Circuit &circ, unsigned arg_in, unsigned arg_out) {
-            return circ.add_op<unsigned>(NotOp(), {arg_in, arg_out});
+          [](Circuit &circ, unsigned arg_in, unsigned arg_out) -> Circuit & {
+            circ.add_op<unsigned>(NotOp(), {arg_in, arg_out});
+            return circ;
           },
           "Appends a NOT operation to the end of the circuit."
           "\n\n:param arg_in: input bit"
@@ -320,20 +427,23 @@ void init_circuit_add_classical_op(
           py::arg("arg_in"), py::arg("arg_out"))
       .def(
           "add_c_not",
-          [](Circuit &circ, Bit arg_in, Bit arg_out) {
-            return circ.add_op<Bit>(NotOp(), {arg_in, arg_out});
+          [](Circuit &circ, Bit arg_in, Bit arg_out) -> Circuit & {
+            circ.add_op<Bit>(NotOp(), {arg_in, arg_out});
+            return circ;
           },
           "See :py:meth:`add_c_not`.", py::arg("arg_in"), py::arg("arg_out"))
       .def(
           "add_c_range_predicate",
           [](Circuit &circ, uint32_t a, uint32_t b,
-             const std::vector<unsigned> &args_in, unsigned arg_out) {
+             const std::vector<unsigned> &args_in,
+             unsigned arg_out) -> Circuit & {
             unsigned n_args_in = args_in.size();
             std::shared_ptr<RangePredicateOp> op =
                 std::make_shared<RangePredicateOp>(n_args_in, a, b);
             std::vector<unsigned> args = args_in;
             args.push_back(arg_out);
-            return circ.add_op(op, args);
+            circ.add_op(op, args);
+            return circ;
           },
           "Appends a range-predicate operation to the end of the circuit."
           "\n\n:param minval: lower bound of input in little-endian encoding"
@@ -341,19 +451,19 @@ void init_circuit_add_classical_op(
           "\n:param args_in: input bits"
           "\n:param arg_out: output bit (distinct from input bits)"
           "\n:return: the new :py:class:`Circuit`",
-          py::arg("minval") = 0,
-          py::arg("maxval") = std::numeric_limits<uint32_t>::max(),
-          py::arg("args_in"), py::arg("arg_out"))
+          py::arg("minval"), py::arg("maxval"), py::arg("args_in"),
+          py::arg("arg_out"))
       .def(
           "add_c_range_predicate",
           [](Circuit &circ, uint32_t a, uint32_t b,
-             const std::vector<Bit> &args_in, Bit arg_out) {
+             const std::vector<Bit> &args_in, Bit arg_out) -> Circuit & {
             unsigned n_args_in = args_in.size();
             std::shared_ptr<RangePredicateOp> op =
                 std::make_shared<RangePredicateOp>(n_args_in, a, b);
             std::vector<Bit> args = args_in;
             args.push_back(arg_out);
-            return circ.add_op(op, args);
+            circ.add_op(op, args);
+            return circ;
           },
           "Appends a range-predicate operation to the end of the circuit."
           "\n\n:param minval: lower bound of input in little-endian encoding"
@@ -361,9 +471,8 @@ void init_circuit_add_classical_op(
           "\n:param args_in: input bits"
           "\n:param arg_out: output bit (distinct from input bits)"
           "\n:return: the new :py:class:`Circuit`",
-          py::arg("minval") = 0,
-          py::arg("maxval") = std::numeric_limits<uint32_t>::max(),
-          py::arg("args_in"), py::arg("arg_out"))
+          py::arg("minval"), py::arg("maxval"), py::arg("args_in"),
+          py::arg("arg_out"))
       .def(
           "add_c_and_to_registers",
           [](Circuit &circ, const BitRegister &reg0_in,
@@ -442,7 +551,7 @@ void init_circuit_add_classical_op(
       .def(
           "add_c_not_to_registers",
           [](Circuit &circ, const BitRegister &reg_in,
-             const BitRegister &reg_out) {
+             const BitRegister &reg_out) -> Circuit & {
             apply_classical_op_to_registers(circ, NotOp(), {reg_in, reg_out});
             return circ;
           },

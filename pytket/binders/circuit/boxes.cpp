@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -147,6 +147,8 @@ void init_boxes(py::module &m) {
       m, "CustomGateDef",
       "A custom unitary gate definition, given as a composition of other "
       "gates")
+      .def(py::init<
+           const std::string &, const Circuit &, const std::vector<Sym> &>())
       .def_static(
           "define", &CompositeGateDef::define_gate,
           "Define a new custom gate as a composite of other "
@@ -158,44 +160,51 @@ void init_boxes(py::module &m) {
       .def_property_readonly(
           "name", &CompositeGateDef::get_name, "The readable name of the gate")
       .def_property_readonly(
-          "def", &CompositeGateDef::get_def, "Return definition as a circuit.")
+          "definition", &CompositeGateDef::get_def,
+          "Return definition as a circuit.")
       .def_property_readonly(
           "arity", &CompositeGateDef::n_args,
           "The number of real parameters for the gate");
-  py::class_<CompositeGate, std::shared_ptr<CompositeGate>, Op>(
+  py::class_<CustomGate, std::shared_ptr<CustomGate>, Op>(
       m, "CustomGate",
       "A user-defined gate defined by a parametrised :py:class:`Circuit`.")
+      .def(
+          py::init<const composite_def_ptr_t &, const std::vector<Expr> &>(),
+          "Instantiate a custom gate.", py::arg("gatedef"), py::arg("params"))
       .def_property_readonly(
-          "name", &CompositeGate::get_name, "The readable name of the gate.")
+          "name", &CustomGate::get_name, "The readable name of the gate.")
       .def_property_readonly(
-          "params", &CompositeGate::get_params, "The parameters of the gate.")
+          "params", &CustomGate::get_params, "The parameters of the gate.")
       .def_property_readonly(
-          "gate", &CompositeGate::get_gate, "Underlying gate object.")
+          "gate", &CustomGate::get_gate, "Underlying gate object.")
       .def(
           "get_circuit",
-          [](CompositeGate &composite) { return *composite.to_circuit(); },
+          [](CustomGate &composite) { return *composite.to_circuit(); },
           ":return: the :py:class:`Circuit` described by the gate.");
   py::class_<PhasePolyBox, std::shared_ptr<PhasePolyBox>, Op>(
       m, "PhasePolyBox",
       "Box encapsulating any Circuit made up of CNOT and RZ as a phase "
       "polynomial + linear transformation")
       .def(
-          py::init<
-              unsigned, const boost::bimap<Qubit, unsigned> &,
-              const PhasePolynomial &, const MatrixXb &>(),
+          py::init([](unsigned n_qb, const std::map<Qubit, unsigned> &q_ind,
+                      const PhasePolynomial &p_p, const MatrixXb &lin_trans) {
+            boost::bimap<Qubit, unsigned> bmap;
+            for (const auto &pair : q_ind) {
+              bmap.insert({pair.first, pair.second});
+            }
+
+            return PhasePolyBox(n_qb, bmap, p_p, lin_trans);
+          }),
           "Construct from the number of qubits, the mapping from "
           "Qubit to index, the phase polynomial (map from bitstring "
           "to phase) and the linear transformation (boolean matrix)",
           py::arg("n_qubits"), py::arg("qubit_indices"),
           py::arg("phase_polynomial"), py::arg("linear_transformation"))
-      .def(py::init([](unsigned n_qb, const std::map<Qubit, unsigned> &q_ind,
-                       const PhasePolynomial &p_p, const MatrixXb &lin_trans) {
-        boost::bimap<Qubit, unsigned> bmap;
-        for (const auto &pair : q_ind) {
-          bmap.insert({pair.first, pair.second});
-        }
-        return PhasePolyBox(n_qb, bmap, p_p, lin_trans);
-      }))
+      .def(
+          py::init([](const Circuit &circ) { return PhasePolyBox(circ); }),
+          "Construct a PhasePolyBox from a given circuit containing only Rz "
+          "and CX gates.",
+          py::arg("circuit"))
       .def_property_readonly(
           "n_qubits", &PhasePolyBox::get_n_qubits,
           "Number of gates the polynomial acts on.")
@@ -213,6 +222,9 @@ void init_boxes(py::module &m) {
       .def_property_readonly(
           "linear_transformation", &PhasePolyBox::get_linear_transformation,
           "Boolean matrix corresponding to linear transformation.")
+      .def(
+          "get_circuit", [](PhasePolyBox &ppb) { return *ppb.to_circuit(); },
+          ":return: the :py:class:`Circuit` described by the box.")
       .def_property_readonly(
           "qubit_indices",
           [](PhasePolyBox &ppoly) {

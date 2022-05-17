@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,9 +16,8 @@
 
 #include <catch2/catch.hpp>
 
-#include "RNG.hpp"
+#include "Utils/RNG.hpp"
 
-using std::size_t;
 using std::vector;
 
 namespace tket {

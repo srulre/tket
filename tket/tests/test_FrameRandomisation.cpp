@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 #include <catch2/catch.hpp>
 
 #include "Characterisation/FrameRandomisation.hpp"
+#include "Transformations/Rebase.hpp"
 #include "Transformations/Transform.hpp"
 #include "testutil.hpp"
 
@@ -197,8 +198,14 @@ SCENARIO("Test that get_all_circuits returns all frames for all cycles.") {
   GIVEN("A two-qubit circuit with one CX gate.") {
     Circuit circ(2);
     circ.add_op<unsigned>(OpType::CX, {0, 1});
+    const std::vector<Circuit> two_circuits =
+        fr.sample_randomisation_circuits(circ, 2);
+    REQUIRE(two_circuits.size() == 2);
     const std::vector<Circuit> all_circuits = fr.get_all_circuits(circ);
     REQUIRE(all_circuits.size() == 4);
+    REQUIRE(
+        std::find(all_circuits.begin(), all_circuits.end(), two_circuits[0]) !=
+        all_circuits.end());
     for (const Circuit& circ : all_circuits) {
       const auto coms = circ.get_commands();
       REQUIRE(coms.size() == 7);
@@ -319,7 +326,7 @@ SCENARIO(
     circ.add_op<unsigned>(OpType::CX, {0, 1});
     std::vector<Circuit> all_circuits = ufr.get_all_circuits(circ);
     REQUIRE(all_circuits.size() == 256);
-    Transform::rebase_UFR().apply(circ);
+    Transforms::rebase_UFR().apply(circ);
     all_circuits = ufr.get_all_circuits(circ);
     REQUIRE(all_circuits.size() == 16);
   }

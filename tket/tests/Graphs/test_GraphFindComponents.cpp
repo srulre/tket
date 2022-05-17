@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,17 +17,15 @@
 
 #include "Graphs/AdjacencyData.hpp"
 #include "Graphs/GraphRoutines.hpp"
-#include "RNG.hpp"
+#include "Utils/RNG.hpp"
 
 using std::map;
 using std::set;
-using std::size_t;
 using std::vector;
 
 namespace tket {
 namespace graphs {
 namespace tests {
-namespace test_GraphFindComponents {
 
 // For testing the connected component function
 struct ComponentsTestData {
@@ -185,7 +183,6 @@ SCENARIO("Correctly calculates graph components") {
   }
 }
 
-}  // namespace test_GraphFindComponents
 }  // namespace tests
 }  // namespace graphs
 }  // namespace tket

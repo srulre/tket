@@ -1,4 +1,4 @@
-# Copyright 2019-2021 Cambridge Quantum Computing
+# Copyright 2019-2022 Cambridge Quantum Computing
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 from collections import Counter
 
-from hypothesis import given, strategies
+from hypothesis import given, settings, strategies
 import json
 import pytest  # type: ignore
 from typing import Any, List
@@ -24,11 +24,12 @@ import numpy as np
 from pytket.circuit import Circuit, OpType, BasisOrder, Qubit, Bit, Node  # type: ignore
 from pytket.predicates import CompilationUnit  # type: ignore
 from pytket.passes import PauliSimp, CliffordSimp, ContextSimp  # type: ignore
-from pytket.routing import Architecture, route  # type: ignore
+from pytket.mapping import MappingManager, LexiRouteRoutingMethod, LexiLabellingMethod  # type: ignore
+from pytket.architecture import Architecture  # type: ignore
 from pytket.utils.outcomearray import OutcomeArray, readout_counts
 from pytket.utils.prepare import prepare_circuit
 from pytket.backends import CircuitNotValidError
-from pytket.backends.backend import Backend
+from pytket.backends.backend import Backend, ResultHandleTypeError
 from pytket.backends.resulthandle import ResultHandle
 from pytket.backends.backendresult import BackendResult
 from pytket.backends.backend_exceptions import InvalidResultType, CircuitNotRunError
@@ -65,6 +66,17 @@ def test_resulthandle() -> None:
     assert input_str_invalid("sin(2)")
     assert input_str_invalid("({'a':2}, 4)")
     assert input_str_invalid("[3, 'asdf']")
+
+
+def test_check_handle_single() -> None:
+    b = TketSimBackend()
+    c = Circuit(2).measure_all()
+    handles = b.process_circuits([c, c])
+    assert b.get_results(handles)
+
+    with pytest.raises(ResultHandleTypeError) as e:
+        b.get_results(handles[0])
+    assert "Possible use of single ResultHandle" in str(e.value)
 
 
 @pytest.mark.filterwarnings("ignore::PendingDeprecationWarning")
@@ -399,12 +411,21 @@ def test_empty_result(n_shots, n_bits) -> None:
     status=strategies.sampled_from(StatusEnum),
     message=strategies.text(),
 )
-def test_status_serialization(status: StatusEnum, message: str) -> None:
+@settings(deadline=None)
+def test_status_serialization_basic(status: StatusEnum, message: str) -> None:
     c_stat = CircuitStatus(status, message)
     assert CircuitStatus.from_dict(c_stat.to_dict()) == c_stat
     with pytest.raises(ValueError) as errorinfo:
         c_stat = CircuitStatus.from_dict({"message": "asf", "status": "COMPETED"})
         assert "invalid format" in str(errorinfo.value)
+
+
+@given(
+    c_stat=strategies.builds(CircuitStatus),
+)
+@settings(deadline=None)
+def test_status_serialization(c_stat: CircuitStatus) -> None:
+    assert CircuitStatus.from_dict(c_stat.to_dict()) == c_stat
 
 
 def test_shots_with_unmeasured() -> None:
@@ -523,7 +544,10 @@ def test_postprocess_3() -> None:
     qbs = [Node("qn", i) for i in range(4)]
     arc = Architecture([[qbs[i], qbs[i + 1]] for i in range(3)])
     c = Circuit(3, 3).H(0).CX(0, 2).measure_all()
-    rc = route(c, arc)
+
+    mm = MappingManager(arc)
+    rc = c.copy()
+    mm.route_circuit(rc, [LexiLabellingMethod(), LexiRouteRoutingMethod()])
     n_shots = 100
     h = b.process_circuit(b.get_compiled_circuit(c), n_shots=n_shots, postprocess=True)
     r = b.get_result(h)

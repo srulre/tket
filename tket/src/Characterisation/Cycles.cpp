@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,26 +22,6 @@ class CycleError : public std::logic_error {
  public:
   explicit CycleError(const std::string& message) : std::logic_error(message) {}
 };
-
-void Cycle::print() const {
-  std::cout << "Cycle has " << boundary_edges_.size() << " edges and "
-            << coms_.size() << " ops." << std::endl;
-  std::cout << "Edges: ";
-  for (const edge_pair_t& edges : boundary_edges_) {
-    std::cout << edges.first << " " << edges.second << " | ";
-  }
-  std::cout << std::endl;
-
-  std::cout << "Ops: ";
-  for (const CycleCom& entry : coms_) {
-    OpDesc o(entry.type);
-    std::cout << o.name() << " ";
-    for (unsigned i : entry.indices) std::cout << i << " ";
-    std::cout << " | ";
-  }
-
-  std::cout << std::endl;
-}
 
 unsigned Cycle::size() const { return boundary_edges_.size(); }
 

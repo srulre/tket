@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -215,13 +215,15 @@ BruteForceColouring::BruteForceColouring(
     }
     throw std::runtime_error("suggested_number_of_colours hit number_of_nodes");
   } catch (const std::exception& e) {
-    std::stringstream ss;
-    ss << "BruteForceColouring: initial_suggested_number_of_colours = "
-       << initial_suggested_number_of_colours
-       << ", reached suggested_number_of_colours = "
-       << suggested_number_of_colours << ", had " << number_of_nodes
-       << " nodes. Error: " << e.what() << priority.print_raw_data();
-    throw std::runtime_error(ss.str());
+    // GCOVR_EXCL_START
+    TKET_ASSERT(
+        AssertMessage() << "initial_suggested_number_of_colours = "
+                        << initial_suggested_number_of_colours
+                        << ", reached suggested_number_of_colours = "
+                        << suggested_number_of_colours << ", had "
+                        << number_of_nodes << " nodes. Error: " << e.what()
+                        << priority.print_raw_data());
+    // GCOVR_EXCL_STOP
   }
 }
 

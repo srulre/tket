@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,16 +18,14 @@
 #include "Graphs/AdjacencyData.hpp"
 #include "Graphs/GraphRoutines.hpp"
 #include "Graphs/LargeCliquesResult.hpp"
-#include "RNG.hpp"
+#include "Utils/RNG.hpp"
 
 using std::set;
-using std::size_t;
 using std::vector;
 
 namespace tket {
 namespace graphs {
 namespace tests {
-namespace test_GraphFindMaxClique {
 
 struct MaxCliqueTestData {
   vector<vector<size_t>> raw_adjacency_data;
@@ -256,7 +254,6 @@ SCENARIO("Correctly calculates max cliques") {
   CHECK(cliques_seen == 160);
 }
 
-}  // namespace test_GraphFindMaxClique
 }  // namespace tests
 }  // namespace graphs
 }  // namespace tket

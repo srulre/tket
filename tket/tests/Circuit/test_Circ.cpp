@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,6 +30,8 @@
 #include "Ops/Op.hpp"
 #include "Ops/OpPtr.hpp"
 #include "Simulation/CircuitSimulator.hpp"
+#include "Transformations/Decomposition.hpp"
+#include "Transformations/OptimisationPass.hpp"
 #include "Transformations/Replacement.hpp"
 #include "Transformations/Transform.hpp"
 #include "Utils/Exceptions.hpp"
@@ -42,7 +44,7 @@ namespace test_Circ {
 static std::pair<Op_ptr, Expr> op_to_tk1(const Op_ptr& op) {
   std::vector<Expr> angles = as_gate_ptr(op)->get_tk1_angles();
   return {
-      get_op_ptr(OpType::tk1, {angles[0], angles[1], angles[2]}), angles[3]};
+      get_op_ptr(OpType::TK1, {angles[0], angles[1], angles[2]}), angles[3]};
 }
 
 SCENARIO(
@@ -1044,7 +1046,7 @@ SCENARIO("circuit equality ", "[equality]") {
 
     Circuit cliff_simp(test1);
     add_2qb_gates(cliff_simp, OpType::CX, {{0, 1}, {1, 0}});
-    Transform::clifford_simp().apply(cliff_simp);
+    Transforms::clifford_simp().apply(cliff_simp);
 
     test1.add_op<unsigned>(OpType::CX, {1, 0});
 
@@ -1286,6 +1288,35 @@ SCENARIO("Test next slice") {
   }
 }
 
+SCENARIO("Test next quantum slice") {
+  GIVEN("A simple circuit") {
+    Circuit circ(3, 1);
+    Vertex v1 = circ.add_op<unsigned>(OpType::X, {0});
+    Vertex v2 =
+        circ.add_conditional_gate<unsigned>(OpType::Rx, {0.6}, {1}, {0}, 1);
+    Vertex v3 =
+        circ.add_conditional_gate<unsigned>(OpType::Ry, {0.6}, {2}, {0}, 1);
+    Vertex v4 = circ.add_op<unsigned>(OpType::S, {2});
+    Vertex v5 = circ.add_op<unsigned>(OpType::T, {1});
+
+    auto frontier = std::make_shared<unit_frontier_t>();
+    for (const Qubit& q : circ.all_qubits()) {
+      Vertex in = circ.get_in(q);
+      frontier->insert({q, circ.get_nth_out_edge(in, 0)});
+    }
+    CutFrontier slice_front = circ.next_q_cut(frontier);
+    Slice sl = *slice_front.slice;
+    WHEN("The frontier is calculated from inputs") {
+      THEN("The first slice is recovered accurately.") {
+        REQUIRE(sl.size() == 3);
+        REQUIRE(sl[0] == v1);
+        REQUIRE(sl[1] == v2);
+        REQUIRE(sl[2] == v3);
+      }
+    }
+  }
+}
+
 SCENARIO("Test circuit.transpose() method") {
   GIVEN("Simple circuit") {
     Circuit circ(2);
@@ -1339,7 +1370,7 @@ SCENARIO("Test circuit.dagger() method") {
     Eigen::Matrix4cd mat;
     mat << 1, 0, 0, 0, 0, i_, 0, 0, 0, 0, 0, -i_, 0, 0, i_, 0;
     circ.add_box(Unitary2qBox(mat), {1, 2});
-    circ.add_op<unsigned>(OpType::tk1, {0.3, 0.7, 0.8}, {1});
+    circ.add_op<unsigned>(OpType::TK1, {0.3, 0.7, 0.8}, {1});
     Circuit daggered = circ.dagger();
     daggered.assert_valid();
 
@@ -1541,7 +1572,7 @@ SCENARIO("Test substitute_all") {
     REQUIRE(circ.n_gates() == 1);
     Circuit newswap(2);
     add_2qb_gates(newswap, OpType::CX, {{0, 1}, {1, 0}, {0, 1}});
-    REQUIRE(Transform::decompose_SWAP(newswap).apply(circ));
+    REQUIRE(Transforms::decompose_SWAP(newswap).apply(circ));
     REQUIRE(circ.n_gates() == 3);
   }
 }
@@ -1636,6 +1667,22 @@ SCENARIO("Decomposing a multi-qubit operation into CXs") {
             0, 0, 0, sq + sq * i_;
     // clang-format on
     REQUIRE((u - correct).cwiseAbs().sum() < ERR_EPS);
+    REQUIRE(rep.count_gates(OpType::CX) == 2);
+  }
+  GIVEN("A CRz(+-pi) gate") {
+    Circuit circ(2);
+    Vertex v;
+    WHEN("CRz(+pi)") { v = circ.add_op<unsigned>(OpType::CRz, 1., {0, 1}); }
+    WHEN("CRz(-pi)") { v = circ.add_op<unsigned>(OpType::CRz, -1., {0, 1}); }
+    const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
+    Circuit rep;
+    rep = CX_circ_from_multiq(op);
+
+    REQUIRE(rep.count_gates(OpType::CX) == 1);
+
+    const auto u = tket_sim::get_unitary(rep);
+    const auto u_correct = tket_sim::get_unitary(circ);
+    REQUIRE((u - u_correct).cwiseAbs().sum() < ERR_EPS);
   }
   GIVEN("A CRx gate") {
     Circuit circ(2);
@@ -1654,6 +1701,22 @@ SCENARIO("Decomposing a multi-qubit operation into CXs") {
             0, 0, -sq* i_, sq;
     // clang-format on
     REQUIRE((u - correct).cwiseAbs().sum() < ERR_EPS);
+    REQUIRE(rep.count_gates(OpType::CX) == 2);
+  }
+  GIVEN("A CRx(+-pi) gate") {
+    Circuit circ(2);
+    Vertex v;
+    WHEN("CRx(+pi)") { v = circ.add_op<unsigned>(OpType::CRx, 1., {0, 1}); }
+    WHEN("CRx(-pi)") { v = circ.add_op<unsigned>(OpType::CRx, -1., {0, 1}); }
+    const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
+    Circuit rep;
+    rep = CX_circ_from_multiq(op);
+
+    REQUIRE(rep.count_gates(OpType::CX) == 1);
+
+    const auto u = tket_sim::get_unitary(rep);
+    const auto u_correct = tket_sim::get_unitary(circ);
+    REQUIRE((u - u_correct).cwiseAbs().sum() < ERR_EPS);
   }
   GIVEN("A CRy gate") {
     Circuit circ(2);
@@ -1672,6 +1735,22 @@ SCENARIO("Decomposing a multi-qubit operation into CXs") {
             0, 0, sq, sq;
     // clang-format on
     REQUIRE((u - correct).cwiseAbs().sum() < ERR_EPS);
+    REQUIRE(rep.count_gates(OpType::CX) == 2);
+  }
+  GIVEN("A CRy(+-pi) gate") {
+    Circuit circ(2);
+    Vertex v;
+    WHEN("CRy(+pi)") { v = circ.add_op<unsigned>(OpType::CRy, 1., {0, 1}); }
+    WHEN("CRy(-pi)") { v = circ.add_op<unsigned>(OpType::CRy, -1., {0, 1}); }
+    const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
+    Circuit rep;
+    rep = CX_circ_from_multiq(op);
+
+    REQUIRE(rep.count_gates(OpType::CX) == 1);
+
+    const auto u = tket_sim::get_unitary(rep);
+    const auto u_correct = tket_sim::get_unitary(circ);
+    REQUIRE((u - u_correct).cwiseAbs().sum() < ERR_EPS);
   }
   GIVEN("A CV gate") {
     Circuit circ(2);
@@ -1892,6 +1971,22 @@ SCENARIO("Decomposing a multi-qubit operation into CXs") {
         {{Qubit(0), Pauli::Z}, {Qubit(1), Pauli::Z}});
     Eigen::MatrixXcd exponent = -pauliop.to_sparse_matrix(2) * 0.25 * PI * i_;
     Eigen::MatrixXcd correct = exponent.exp();
+    REQUIRE((u - correct).cwiseAbs().sum() < ERR_EPS);
+  }
+  GIVEN("An NPhasedX gate") {
+    Circuit circ(3);
+    Vertex v = circ.add_op<unsigned>(OpType::NPhasedX, {0.5, 1.5}, {0, 1, 2});
+    const Op_ptr op = circ.get_Op_ptr_from_Vertex(v);
+    Circuit rep;
+    WHEN("tket-sim NPhasedX unitary") { rep = circ; }
+    WHEN("Default circuit replacement") { rep = CX_circ_from_multiq(op); }
+
+    const auto u = tket_sim::get_unitary(rep);
+    Circuit phasedx(1);
+    phasedx.add_op<unsigned>(OpType::PhasedX, {0.5, 1.5}, {0});
+    const auto phasedx_u = tket_sim::get_unitary(phasedx);
+    Eigen::MatrixXcd correct = Eigen::kroneckerProduct(
+        phasedx_u, Eigen::kroneckerProduct(phasedx_u, phasedx_u));
     REQUIRE((u - correct).cwiseAbs().sum() < ERR_EPS);
   }
   GIVEN("A gate with no defined decomposition") {
@@ -2374,7 +2469,7 @@ SCENARIO("Represent symbolic operations correctly") {
   REQUIRE(cmd_1.str() == expected_1);
 }
 
-SCENARIO("Confirm that LaTeX output compiles", "[latex]") {
+SCENARIO("Confirm that LaTeX output compiles", "[latex][.long]") {
   Circuit c(5, 2);
   c.add_conditional_gate<unsigned>(OpType::Z, {}, uvec{0}, {}, 0);
   c.add_conditional_gate<unsigned>(OpType::U1, {0.3}, uvec{1}, {}, 0);
@@ -2562,10 +2657,16 @@ SCENARIO("Named operation groups") {
     Op_ptr x_op = get_op_ptr(OpType::X);
     REQUIRE(c.substitute_named(x_op, "group1"));
 
+    std::unordered_set<std::string> opgroups({"group1", "group2"});
+    REQUIRE(c.get_opgroups() == opgroups);
+
     Circuit c2(2);
     c2.add_op<unsigned>(OpType::T, {0});
     c2.add_op<unsigned>(OpType::CRx, 0.1, {0, 1}, "group2a");
     REQUIRE(c.substitute_named(c2, "group2"));
+
+    std::unordered_set<std::string> opgroups2({"group1", "group2a"});
+    REQUIRE(c.get_opgroups() == opgroups2);
 
     REQUIRE(c.count_gates(OpType::H) == 1);
     REQUIRE(c.count_gates(OpType::S) == 0);
@@ -2600,6 +2701,8 @@ SCENARIO("Named operation groups") {
 
     Circuit c1 = c;
     REQUIRE(c == c1);
+    REQUIRE(c.get_opgroups() == opgroups2);
+    REQUIRE(c1.get_opgroups() == opgroups2);
   }
   GIVEN("Negative tests for operation groups") {
     Circuit c(2);

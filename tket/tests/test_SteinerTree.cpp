@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -772,7 +772,7 @@ SCENARIO("Build some basic trees") {
         aas::SteinerNodeType::OutOfTree};  // 4
     REQUIRE(st.node_types == correct_types_2);
   }
-  GIVEN("get_all_nodes") {
+  GIVEN("nodes") {
     const Architecture archi(
         {{Node(0), Node(1)},
          {Node(1), Node(2)},
@@ -790,13 +790,13 @@ SCENARIO("Build some basic trees") {
         aas::SteinerNodeType::OutOfTree,   // 3
         aas::SteinerNodeType::OutOfTree};  // 4
     REQUIRE(st.node_types == correct_types);
-    std::vector<unsigned> all_nodes = st.get_all_nodes();
+    std::vector<unsigned> all_nodes = st.nodes();
 
     std::vector<unsigned> expected_all_nodes = {0, 1, 2};
 
     REQUIRE(all_nodes == expected_all_nodes);
   }
-  GIVEN("get_all_nodes") {
+  GIVEN("nodes") {
     const Architecture archi(
         {{Node(0), Node(1)},
          {Node(1), Node(2)},
@@ -814,7 +814,7 @@ SCENARIO("Build some basic trees") {
         aas::SteinerNodeType::Leaf,        // 3
         aas::SteinerNodeType::OutOfTree};  // 4
     REQUIRE(st.node_types == correct_types);
-    std::vector<unsigned> all_nodes = st.get_all_nodes();
+    std::vector<unsigned> all_nodes = st.nodes();
 
     std::vector<unsigned> expected_all_nodes = {0, 1, 3};
 

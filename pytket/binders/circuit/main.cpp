@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,10 +26,12 @@
 #include "Ops/Op.hpp"
 #include "Utils/Constants.hpp"
 #include "Utils/Symbols.hpp"
+#include "binder_json.hpp"
 #include "binder_utils.hpp"
 #include "typecast.hpp"
 
 namespace py = pybind11;
+using json = nlohmann::json;
 
 namespace tket {
 
@@ -37,6 +39,7 @@ void init_unitid(py::module &m);
 void init_circuit(py::module &m);
 void init_classical(py::module &m);
 void init_boxes(py::module &m);
+void init_library(py::module &m);
 
 PYBIND11_MODULE(circuit, m) {
   init_unitid(m);
@@ -67,17 +70,23 @@ PYBIND11_MODULE(circuit, m) {
           "for some operations (e.g. Rx, Ry and Rz) is [0,4).")
       .def_property_readonly(
           "n_qubits", &Op::n_qubits, "Number of qubits of op")
+      .def_property_readonly("dagger", &Op::dagger, "Dagger of op")
+      .def_property_readonly("transpose", &Op::transpose, "Transpose of op")
       .def(
           "get_name", &Op::get_name, "String representation of op",
           py::arg("latex") = false)
       .def("__eq__", &Op::operator==)
       .def("__repr__", [](const Op &op) { return op.get_name(); })
+      .def("free_symbols", [](const Op &op) { return op.free_symbols(); })
       .def(
           "get_unitary",
           [](const Op *op) {
             const auto &gate = static_cast<const Gate &>(*op);
             return gate.get_unitary();
           })
+      .def(
+          "is_clifford_type",
+          [](const Op &op) { return op.get_desc().is_clifford_gate(); })
       .def("is_gate", [](const Op &op) { return op.get_desc().is_gate(); });
 
   // NOTE: Sphinx does not automatically pick up the docstring for OpType
@@ -189,10 +198,16 @@ PYBIND11_MODULE(circuit, m) {
           "\\mathrm{Rz}(\\phi) \\mathrm{Ry}(\\theta) "
           "\\mathrm{Rz}(\\lambda)`")
       .value(
-          "TK1", OpType::tk1,
+          "TK1", OpType::TK1,
           ":math:`(\\alpha, \\beta, \\gamma) \\mapsto "
           "\\mathrm{Rz}(\\alpha) \\mathrm{Rx}(\\beta) "
           "\\mathrm{Rz}(\\gamma)`")
+      .value(
+          "TK2", OpType::TK2,
+          ":math:`(\\alpha, \\beta, \\gamma) \\mapsto "
+          "\\mathrm{XXPhase}(\\alpha) "
+          "\\mathrm{YYPhase}(\\beta) "
+          "\\mathrm{ZZPhase}(\\gamma)`")
       .value("CX", OpType::CX, "Controlled :math:`\\mathrm{X}` gate")
       .value("CY", OpType::CY, "Controlled :math:`\\mathrm{Y}` gate")
       .value("CZ", OpType::CZ, "Controlled :math:`\\mathrm{Z}` gate")
@@ -279,6 +294,11 @@ PYBIND11_MODULE(circuit, m) {
           "Resets the qubit to :math:`\\left|0\\right>`")
       .value("CircBox", OpType::CircBox, "Represents an arbitrary subcircuit")
       .value(
+          "PhasePolyBox", OpType::PhasePolyBox,
+          "An operation representing arbitrary circuits made up of CX and Rz "
+          "gates, represented as a phase polynomial together with a boolean "
+          "matrix representing an additional linear transformation.")
+      .value(
           "Unitary1qBox", OpType::Unitary1qBox,
           "Represents an arbitrary one-qubit unitary operation by its "
           "matrix")
@@ -303,14 +323,14 @@ PYBIND11_MODULE(circuit, m) {
           "QControlBox", OpType::QControlBox,
           "An arbitrary n-controlled operation")
       .value(
-          "Custom", OpType::Composite,
+          "CustomGate", OpType::CustomGate,
           ":math:`(\\alpha, \\beta, \\ldots) \\mapsto` A user-defined "
           "operation, based on a :py:class:`Circuit` :math:`C` with "
           "parameters :math:`\\alpha, \\beta, \\ldots` substituted in "
           "place of bound symbolic variables in :math:`C`, as defined "
           "by the :py:class:`CustomGateDef`.")
       .value(
-          "ConditionalGate", OpType::Conditional,
+          "Conditional", OpType::Conditional,
           "An operation to be applied conditionally on the value of "
           "some classical register")
       .value(
@@ -374,6 +394,11 @@ PYBIND11_MODULE(circuit, m) {
           "\\mathrm{Rz}(\\beta)\\mathrm{Rx}(\\alpha)\\mathrm{Rz}(-"
           "\\beta)` (matrix-multiplication order)")
       .value(
+          "NPhasedX", OpType::NPhasedX,
+          ":math:`(\\alpha, \\beta) \\mapsto \\mathrm{PhasedX}(\\alpha, \\beta)"
+          "^{\\otimes n}` (n-qubit gate composed of identical PhasedX in "
+          "parallel.")
+      .value(
           "CnRy", OpType::CnRy,
           ":math:`(\\alpha)` := n-controlled "
           ":math:`\\mathrm{Ry}(\\alpha)` gate.")
@@ -413,6 +438,8 @@ PYBIND11_MODULE(circuit, m) {
           "ClassicalTransform", OpType::ClassicalTransform,
           "A general classical operation where all inputs are also outputs")
       .value(
+          "WASM", OpType::WASM, "Op containing a classical wasm function call")
+      .value(
           "SetBits", OpType::SetBits,
           "An operation to set some bits to specified values")
       .value(
@@ -432,7 +459,10 @@ PYBIND11_MODULE(circuit, m) {
           "A classical operation applied to multiple bits simultaneously")
       .value(
           "ClassicalExpBox", OpType::ClassicalExpBox,
-          "A box for holding compound classical operations on Bits.");
+          "A box for holding compound classical operations on Bits.")
+      .def_static(
+          "from_name", [](const json &j) { return j.get<OpType>(); },
+          "Construct from name");
   py::enum_<BasisOrder>(
       m, "BasisOrder",
       "Enum for readout basis and ordering.\n"
@@ -462,6 +492,10 @@ PYBIND11_MODULE(circuit, m) {
       m, "Command",
       "A single quantum command in the circuit, defined by the Op, the "
       "qubits it acts on, and the op group name if any.")
+      .def(
+          py::init<const Op_ptr, unit_vector_t>(),
+          "Construct from an operation and a vector of unit IDs", py::arg("op"),
+          py::arg("args"))
       .def("__eq__", &Command::operator==)
       .def("__repr__", &Command::to_str)
       .def_property_readonly(
@@ -483,9 +517,10 @@ PYBIND11_MODULE(circuit, m) {
           [](const Command &com) { return com.get_op_ptr()->free_symbols(); },
           ":return: set of symbolic parameters for the command");
 
-  init_circuit(m);
+  init_library(m);
   init_boxes(m);
   init_classical(m);
+  init_circuit(m);
 
   m.def(
       "fresh_symbol", &SymTable::fresh_symbol,

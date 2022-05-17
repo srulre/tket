@@ -40,7 +40,7 @@ The following compiler toolchains are used to build tket on the CI and are
 therefore known to work:
 
 * Linux: gcc-10
-* MacOS: apple-clang 12
+* MacOS: apple-clang 13
 * Windows: MSVC 19
 
 It is recommended that you use these versions to build locally, as code may
@@ -48,7 +48,7 @@ depend on the features they support. The compiler version can be controlled by
 setting `CC` and `CXX` in your environment (e.g. `CC=gcc-10` and `CXX=g++-10`),
 or on Debian-based Linux systems using `update-alternatives`.
 
-You should also have Python (3.7, 3.8 or 3.9) and `pip` installed. We use
+You should also have Python (3.8, 3.9 or 3.10) and `pip` installed. We use
 `cmake` and the package manager `conan` to build tket. Both can be installed
 with `pip`:
 
@@ -82,19 +82,29 @@ recommended in the warning message:
 conan profile update settings.compiler.libcxx=libstdc++11 tket
 ```
 
+Add the `tket.conan` repository to your remotes:
+
+```shell
+conan remote add tket-conan https://tket.jfrog.io/artifactory/api/conan/tket-conan
+```
+
+Enable revisions:
+
+```shell
+conan config set general.revisions_enabled=1
+```
+
+We want to build shared rather than static libraries, so set this in the
+profile:
+
+```shell
+conan profile update options.tket:shared=True tket
+```
+
 If you wish you can set your profile to Debug mode:
 
 ```shell
 conan profile update settings.build_type=Debug tket
-```
-
-#### Enable revisions
-
-In order to pick up the proper revision of the `pybind11` package, it is
-currently necessary to do the following (or equivalent):
-
-```shell
-conan config set general.revisions_enabled=1
 ```
 
 #### Test dependencies
@@ -115,6 +125,32 @@ The Python tests require a few more packages. These can be installed with:
 ```shell
 pip install -r pytket/tests/requirements.txt
 ```
+
+### Adding local `pybind11`
+
+There is a known [issue](https://github.com/conan-io/conan-center-index/issues/6605) with using `pybind11`
+from the `conan-center` that can lead to a Python crash when importing `pytket`. To remedy this, 
+`pybind11` must be installed from the local recipe:
+
+```shell
+conan remove -f pybind11/*
+conan create --profile=tket recipes/pybind11
+```
+
+where the first line serves to remove any version already installed.
+
+### Building symengine
+
+The `symengine` dependency is built from a local conan recipe. Run:
+
+```shell
+conan create --profile=tket recipes/symengine
+```
+
+to build it. If you are using a conan configuration supported by the CI
+(see above under "Build tools"), this is unnecessary as a pre-built package
+will be downloaded from the `tket-conan` repository when you build `tket`.
+
 ### Building tket
 
 #### Method 1
@@ -127,21 +163,37 @@ conan create --profile=tket recipes/tket
 
 to build the tket library.
 
-Note: by default, `tket` uses the header-only version of `spdlog`. This avoids
-an
-[issue](https://github.com/conan-io/conan-docker-tools/issues/303#issuecomment-922492130)
-with an undefined symbol when run in some Linux virtual environments, but makes
-builds slower. For faster local builds you can supply the option
-`-o tket:spdlog_ho=False` to the above `conan create` command.
-
 To build and run the tket tests:
 
 ```shell
 conan create --profile=tket recipes/tket-tests
 ```
 
-If you want to build them without running them, pass `--test-folder None` to the
-`conan` command. (You can still run them manually afterwards.)
+The tests with a running time >=1 second (on a regular modern laptop) are marked as hidden,
+tagged with `"[long]"`, and are not run by default. To run the full suite of tests,
+add `-o tket-tests:full=True` to the above `conan create` command (or to the tket profile).
+The option `-o tket-tests:long=True` can also be used to run only the long tests.
+
+If you want to build the tests without running them, pass `--test-folder None` to the
+`conan` command. Then, you can manually run the binary.
+If no arguments are provided only the default (short) tests are run.
+To run the long tests use the `"[long]"` tag as an argument:
+
+```shell
+<package_folder>/bin/test_tket "[long]"
+```
+
+To run the full suite manually you need to include also the short tests, like:
+
+```shell
+<package_folder>/bin/test_tket "[long],~[long]"
+```
+
+A smaller selection of the compiled tests can also be run by passing a filter of the test file name:
+
+```shell
+<package_folder>/bin/test_tket -# "[#test_name]"
+```
 
 There is also a small set of property-based tests which you can build and run
 with:
@@ -150,7 +202,13 @@ with:
 conan create --profile=tket recipes/tket-proptests
 ```
 
-Now to build pytket:
+Now to build pytket, first install the `pybind11` headers:
+
+```shell
+conan create --profile=tket recipes/pybind11
+```
+
+Then build the pytket module:
 
 ```shell
 cd pytket

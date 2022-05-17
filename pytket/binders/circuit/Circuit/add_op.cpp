@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Cambridge Quantum Computing
+// Copyright 2019-2022 Cambridge Quantum Computing
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -36,12 +36,6 @@ namespace tket {
 
 const bit_vector_t no_bits;
 
-static const py::module &condition_module() {
-  static const py::module module_ =
-      py::module::import("pytket.circuit.add_condition");
-  return module_;
-}
-
 template <typename ID>
 static Circuit *add_gate_method(
     Circuit *circ, const Op_ptr &op, const std::vector<ID> &args,
@@ -76,7 +70,8 @@ static Circuit *add_gate_method(
         "`condition_value` specified without `condition_bits`");
   }
   if (condition_given) {
-    py::object add_condition = condition_module().attr("_add_condition");
+    py::module condition = py::module::import("pytket.circuit.add_condition");
+    py::object add_condition = condition.attr("_add_condition");
     auto conditions =
         add_condition(circ, kwargs["condition"]).cast<std::pair<Bit, bool>>();
     unit_vector_t new_args = {conditions.first};
@@ -414,11 +409,11 @@ void init_circuit_add_op(py::class_<Circuit, std::shared_ptr<Circuit>> &c) {
           py::arg("expression"), py::arg("target"))
       .def(
           "add_custom_gate",
-          [](Circuit *circ, const composite_def_ptr_t &def,
+          [](Circuit *circ, const composite_def_ptr_t &definition,
              const std::vector<Expr> &params,
              const std::vector<unsigned> &qubits, const py::kwargs &kwargs) {
             return add_box_method<unsigned>(
-                circ, std::make_shared<CompositeGate>(def, params), qubits,
+                circ, std::make_shared<CustomGate>(definition, params), qubits,
                 kwargs);
           },
           "Append an instance of a :py:class:`CustomGateDef` to the "
@@ -427,7 +422,7 @@ void init_circuit_add_op(py::class_<Circuit, std::shared_ptr<Circuit>> &c) {
           "instantiate the gate with, in halfturns\n:param qubits: "
           "Indices of the qubits to append the box to"
           "\n:return: the new :py:class:`Circuit`",
-          py::arg("def"), py::arg("params"), py::arg("qubits"))
+          py::arg("definition"), py::arg("params"), py::arg("qubits"))
       .def(
           "add_barrier",
           [](Circuit *circ, const unit_vector_t &units) {
@@ -543,11 +538,11 @@ void init_circuit_add_op(py::class_<Circuit, std::shared_ptr<Circuit>> &c) {
           py::arg("phasepolybox"), py::arg("qubits"))
       .def(
           "add_custom_gate",
-          [](Circuit *circ, const composite_def_ptr_t &def,
+          [](Circuit *circ, const composite_def_ptr_t &definition,
              const std::vector<Expr> &params, const qubit_vector_t &qubits,
              const py::kwargs &kwargs) {
             return add_box_method<UnitID>(
-                circ, std::make_shared<CompositeGate>(def, params),
+                circ, std::make_shared<CustomGate>(definition, params),
                 {qubits.begin(), qubits.end()}, kwargs);
           },
           "Append an instance of a :py:class:`CustomGateDef` to the "
@@ -556,13 +551,13 @@ void init_circuit_add_op(py::class_<Circuit, std::shared_ptr<Circuit>> &c) {
           "instantiate the gate with, in halfturns\n:param qubits: "
           "The qubits to append the box to"
           "\n:return: the new :py:class:`Circuit`",
-          py::arg("def"), py::arg("params"), py::arg("qubits"))
+          py::arg("definition"), py::arg("params"), py::arg("qubits"))
       .def(
           "add_assertion",
           [](Circuit *circ, const ProjectorAssertionBox &box,
              const std::vector<unsigned> &qubits,
              const std::optional<unsigned> &ancilla,
-             const std::optional<std::string> &name) {
+             const std::optional<std::string> &name) -> Circuit * {
             std::vector<Qubit> qubits_;
             for (unsigned i = 0; i < qubits.size(); ++i) {
               qubits_.push_back(Qubit(qubits[i]));
@@ -573,7 +568,8 @@ void init_circuit_add_op(py::class_<Circuit, std::shared_ptr<Circuit>> &c) {
             } else {
               ancilla_ = Qubit(ancilla.value());
             }
-            return circ->add_assertion(box, qubits_, ancilla_, name);
+            circ->add_assertion(box, qubits_, ancilla_, name);
+            return circ;
           },
           "Append a :py:class:`ProjectorAssertionBox` to the circuit."
           "\n\n:param box: ProjectorAssertionBox to append"
@@ -588,8 +584,9 @@ void init_circuit_add_op(py::class_<Circuit, std::shared_ptr<Circuit>> &c) {
           [](Circuit *circ, const ProjectorAssertionBox &box,
              const std::vector<Qubit> &qubits,
              const std::optional<Qubit> &ancilla,
-             const std::optional<std::string> &name) {
-            return circ->add_assertion(box, qubits, ancilla, name);
+             const std::optional<std::string> &name) -> Circuit * {
+            circ->add_assertion(box, qubits, ancilla, name);
+            return circ;
           },
           "Append a :py:class:`ProjectorAssertionBox` to the circuit."
           "\n\n:param box: ProjectorAssertionBox to append"
@@ -603,13 +600,14 @@ void init_circuit_add_op(py::class_<Circuit, std::shared_ptr<Circuit>> &c) {
           "add_assertion",
           [](Circuit *circ, const StabiliserAssertionBox &box,
              const std::vector<unsigned> &qubits, const unsigned &ancilla,
-             const std::optional<std::string> &name) {
+             const std::optional<std::string> &name) -> Circuit * {
             std::vector<Qubit> qubits_;
             for (unsigned i = 0; i < qubits.size(); ++i) {
               qubits_.push_back(Qubit(qubits[i]));
             }
             Qubit ancilla_(ancilla);
-            return circ->add_assertion(box, qubits_, ancilla_, name);
+            circ->add_assertion(box, qubits_, ancilla_, name);
+            return circ;
           },
           "Append a :py:class:`StabiliserAssertionBox` to the circuit."
           "\n\n:param box: StabiliserAssertionBox to append"
@@ -623,8 +621,9 @@ void init_circuit_add_op(py::class_<Circuit, std::shared_ptr<Circuit>> &c) {
           "add_assertion",
           [](Circuit *circ, const StabiliserAssertionBox &box,
              const std::vector<Qubit> &qubits, const Qubit &ancilla,
-             const std::optional<std::string> &name) {
-            return circ->add_assertion(box, qubits, ancilla, name);
+             const std::optional<std::string> &name) -> Circuit * {
+            circ->add_assertion(box, qubits, ancilla, name);
+            return circ;
           },
           "Append a :py:class:`StabiliserAssertionBox` to the circuit."
           "\n\n:param box: StabiliserAssertionBox to append"
@@ -920,6 +919,16 @@ void init_circuit_add_op(py::class_<Circuit, std::shared_ptr<Circuit>> &c) {
           "\n\n:return: the new :py:class:`Circuit`",
           py::arg("angle"), py::arg("qubit0"), py::arg("qubit1"))
       .def(
+          "ZZMax",
+          [](Circuit *circ, unsigned qb0, unsigned qb1,
+             const py::kwargs &kwargs) {
+            return add_gate_method_noparams<unsigned>(
+                circ, OpType::ZZMax, {qb0, qb1}, kwargs);
+          },
+          "Appends a ZZMax gate on the wires for the specified two qubits."
+          "\n\n:return: the new :py:class:`Circuit`",
+          py::arg("qubit0"), py::arg("qubit1"))
+      .def(
           "XXPhase",
           [](Circuit *circ, const Expr &angle, unsigned qb0, unsigned qb1,
              const py::kwargs &kwargs) {
@@ -1016,6 +1025,26 @@ void init_circuit_add_op(py::class_<Circuit, std::shared_ptr<Circuit>> &c) {
           "in the default classical register. Bits are added to the "
           "circuit if they do not already exist."
           "\n\n:return: the new :py:class:`Circuit`")
+      .def(
+          "measure_register",
+          [](Circuit *circ, const QubitRegister &qreg,
+             const std::string &creg_name) {
+            if (!circ->get_reg_info(qreg.name())) {
+              throw CircuitInvalidity(
+                  "The given QubitRegister is not in use, please use "
+                  "add_q_register to add it to the circuit first.");
+            }
+            circ->add_c_register(creg_name, qreg.size());
+            for (unsigned i = 0; i < qreg.size(); i++) {
+              circ->add_measure(qreg[i], Bit(creg_name, i));
+            }
+            return circ;
+          },
+          "Appends a measure gate to all qubits in the given register, storing "
+          "the results in a newly created classical register."
+          "\n\n:param qreg: the QubitRegister to be measured"
+          "\n:param creg_name: the name of the BitRegister to be created"
+          "\n:return: the new :py:class:`Circuit`")
       .def(
           "H",
           [](Circuit *circ, const Qubit &qb, const py::kwargs &kwargs) {
@@ -1305,6 +1334,16 @@ void init_circuit_add_op(py::class_<Circuit, std::shared_ptr<Circuit>> &c) {
           "half-turns) on the wires for the specified two qubits."
           "\n\n:return: the new :py:class:`Circuit`",
           py::arg("qubit0"), py::arg("qubit1"), py::arg("angle"))
+      .def(
+          "ZZMax",
+          [](Circuit *circ, const Qubit &qb0, const Qubit &qb1,
+             const py::kwargs &kwargs) {
+            return add_gate_method_noparams<UnitID>(
+                circ, OpType::ZZMax, {qb0, qb1}, kwargs);
+          },
+          "Appends a ZZMax gate on the wires for the specified two qubits."
+          "\n\n:return: the new :py:class:`Circuit`",
+          py::arg("qubit0"), py::arg("qubit1"))
       .def(
           "XXPhase",
           [](Circuit *circ, const Expr &angle, const Qubit &qb0,
