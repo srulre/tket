@@ -140,6 +140,7 @@ Therefore, for instance <cite>circuit.add_gate(OpType.Rx, 1, [0])</cite> is equi
 <p>U2 : <span class="math notranslate nohighlight">\((\phi, \lambda) \mapsto \mathrm{U3}(\frac12, \phi, \lambda) = e^{\frac12 i\pi(\lambda+\phi)} \mathrm{Rz}(\phi) \mathrm{Ry}(\frac12) \mathrm{Rz}(\lambda)\)</span>, defined by matrix multiplication</p>
 <p>U3 : <span class="math notranslate nohighlight">\((\theta, \phi, \lambda) \mapsto  \left[ \begin{array}{cc} \cos\frac{\pi\theta}{2} &amp; -e^{i\pi\lambda} \sin\frac{\pi\theta}{2} \\ e^{i\pi\phi} \sin\frac{\pi\theta}{2} &amp; e^{i\pi(\lambda+\phi)} \cos\frac{\pi\theta}{2} \end{array} \right] = e^{\frac12 i\pi(\lambda+\phi)} \mathrm{Rz}(\phi) \mathrm{Ry}(\theta) \mathrm{Rz}(\lambda)\)</span></p>
 <p>TK1 : <span class="math notranslate nohighlight">\((\alpha, \beta, \gamma) \mapsto \mathrm{Rz}(\alpha) \mathrm{Rx}(\beta) \mathrm{Rz}(\gamma)\)</span></p>
+<p>TK2 : <span class="math notranslate nohighlight">\((\alpha, \beta, \gamma) \mapsto \mathrm{XXPhase}(\alpha) \mathrm{YYPhase}(\beta) \mathrm{ZZPhase}(\gamma)\)</span></p>
 <p>CX : Controlled <span class="math notranslate nohighlight">\(\mathrm{X}\)</span> gate</p>
 <p>CY : Controlled <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span> gate</p>
 <p>CZ : Controlled <span class="math notranslate nohighlight">\(\mathrm{Z}\)</span> gate</p>
@@ -167,6 +168,7 @@ Therefore, for instance <cite>circuit.add_gate(OpType.Rx, 1, [0])</cite> is equi
 <p>Measure : Z-basis projective measurement, storing the measurement outcome in a specified bit</p>
 <p>Reset : Resets the qubit to <span class="math notranslate nohighlight">\(\left|0\right&gt;\)</span></p>
 <p>CircBox : Represents an arbitrary subcircuit</p>
+<p>PhasePolyBox : An operation representing arbitrary circuits made up of CX and Rz gates, represented as a phase polynomial together with a boolean matrix representing an additional linear transformation.</p>
 <p>Unitary1qBox : Represents an arbitrary one-qubit unitary operation by its matrix</p>
 <p>Unitary2qBox : Represents an arbitrary two-qubit unitary operation by its matrix</p>
 <p>Unitary3qBox : Represents an arbitrary three-qubit unitary operation by its matrix</p>
@@ -191,6 +193,7 @@ Therefore, for instance <cite>circuit.add_gate(OpType.Rx, 1, [0])</cite> is equi
 <p>Sycamore : <span class="math notranslate nohighlight">\(\mathrm{FSim}(\frac12, \frac16)\)</span></p>
 <p>ISWAPMax : <span class="math notranslate nohighlight">\(\mathrm{ISWAP}(1) = \left[ \begin{array}{cccc} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; i &amp; 0 \\ 0 &amp; i &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{array} \right]\)</span></p>
 <p>ClassicalTransform : A general classical operation where all inputs are also outputs</p>
+<p>WASM : Op containing a classical wasm function call</p>
 <p>SetBits : An operation to set some bits to specified values</p>
 <p>CopyBits : An operation to copy some bit values</p>
 <p>RangePredicate : A classical predicate defined by a range of values in binary encoding</p>

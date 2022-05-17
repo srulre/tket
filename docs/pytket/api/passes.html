@@ -60,6 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="pauli.html">pytket.pauli</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">pytket.passes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytket.passes.script">pytket.passes.script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytket.passes.auto_rebase">pytket.passes.auto_rebase</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="predicates.html">pytket.predicates</a></li>
@@ -800,6 +801,12 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="pytket.passes.SynthesiseTK">
+<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">SynthesiseTK</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.SynthesiseTK" title="Permalink to this definition"></a></dt>
+<dd><p>Optimises and converts all gates to TK2 and TK1 gates.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="pytket.passes.SynthesiseTket">
 <span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">SynthesiseTket</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.SynthesiseTket" title="Permalink to this definition"></a></dt>
 <dd><p>Optimises and converts all gates to CX and TK1 gates.</p>
@@ -869,6 +876,53 @@ lambdas or circuits.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>grammar in extended Backus–Naur form</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pytket.passes.auto_rebase">
+<span id="pytket-passes-auto-rebase"></span><h2>pytket.passes.auto_rebase<a class="headerlink" href="#module-pytket.passes.auto_rebase" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pytket.passes.auto_rebase.auto_rebase_pass">
+<span class="sig-prename descclassname"><span class="pre">pytket.passes.auto_rebase.</span></span><span class="sig-name descname"><span class="pre">auto_rebase_pass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gateset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.10)"><span class="pre">Set</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="optype.html#pytket.circuit.OpType" title="pytket.circuit.OpType"><span class="pre">pytket.circuit.OpType</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pytket.passes.PyCapsule.RebaseCustom</span></span></span><a class="headerlink" href="#pytket.passes.auto_rebase.auto_rebase_pass" title="Permalink to this definition"></a></dt>
+<dd><p>Attempt to generate a rebase pass automatically for the given target
+gateset.</p>
+<p>Checks if there are known existing decompositions from CX
+to target gateset and TK1 to target gateset and uses those to construct a
+custom rebase.
+Raises an error if no known decompositions can be found, in which case try
+using RebaseCustom with your own decompositions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>gateset</strong> (<em>FrozenSet</em><em>[</em><a class="reference internal" href="optype.html#pytket.circuit.OpType" title="pytket.circuit.OpType"><em>OpType</em></a><em>]</em>) – Set of supported OpTypes, target gate set.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>NoAutoRebase</strong> – No suitable CX or TK1 decomposition found.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Rebase pass.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>RebaseCustom</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytket.passes.auto_rebase.auto_squash_pass">
+<span class="sig-prename descclassname"><span class="pre">pytket.passes.auto_rebase.</span></span><span class="sig-name descname"><span class="pre">auto_squash_pass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gateset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.10)"><span class="pre">Set</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="optype.html#pytket.circuit.OpType" title="pytket.circuit.OpType"><span class="pre">pytket.circuit.OpType</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pytket.passes.PyCapsule.SquashCustom</span></span></span><a class="headerlink" href="#pytket.passes.auto_rebase.auto_squash_pass" title="Permalink to this definition"></a></dt>
+<dd><p>Attempt to generate a squash pass automatically for the given target
+single qubit gateset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>gateset</strong> (<em>Set</em><em>[</em><a class="reference internal" href="optype.html#pytket.circuit.OpType" title="pytket.circuit.OpType"><em>OpType</em></a><em>]</em>) – Available single qubit gateset</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Squash to target gateset</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>SquashCustom</p>
 </dd>
 </dl>
 </dd></dl>
