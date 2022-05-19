@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['mappingfrontier_5fptr_4648',['MappingFrontier_ptr',['../namespacetket.html#a6f41065ab0b4ecd3f4672c64f3afbecc',1,'tket']]],
-  ['matrix8cd_4649',['Matrix8cd',['../namespacetket.html#aaa2b97f86243fa7a09b21e1ec946f652',1,'tket']]],
-  ['matrixxb_4650',['MatrixXb',['../namespacetket.html#afc6a69cf78c26da6848112274764acc6',1,'tket']]],
-  ['matrixxu_4651',['MatrixXu',['../namespacetket_1_1aas.html#aba03001899901461f8726ab4a84b38c8',1,'tket::aas']]],
-  ['measure_5fresult_5fmap_5ft_4652',['measure_result_map_t',['../classtket_1_1MeasurementSetup.html#a4d7a3d1502ef5eff1bd7532b819e6126',1,'tket::MeasurementSetup']]],
-  ['metric_4653',['Metric',['../classtket_1_1Transform.html#aea73566447b188f796422276ba1fc194',1,'tket::Transform::Metric()'],['../classtket_1_1zx_1_1Rewrite.html#a57c261f6d93d161d8018771410e63cca',1,'tket::zx::Rewrite::Metric()']]],
-  ['mult_5fmatrix_4654',['Mult_Matrix',['../classtket_1_1QubitPauliTensor.html#a4ac252caae512ab9bbb9ef4956c34678',1,'tket::QubitPauliTensor']]]
+  ['l_5fconst_5fiterator_5ft_4709',['l_const_iterator_t',['../namespacetket.html#a2fe02cde6cc79e96ebc17cd6c4610ea9',1,'tket']]],
+  ['left_5fmap_4710',['left_map',['../classtket_1_1graphs_1_1DirectedGraphBase.html#aab725a6ee1754e41419f2b6e2dcbf308',1,'tket::graphs::DirectedGraphBase']]],
+  ['lexicographical_5fdistances_5ft_4711',['lexicographical_distances_t',['../namespacetket.html#ab4c7d0d5df6f3f632b227405be98884d',1,'tket']]],
+  ['logptr_5ft_4712',['LogPtr_t',['../namespacetket.html#a27b002f26f9868b0e12cb8a3ab3ac1bf',1,'tket']]]
 ];

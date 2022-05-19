@@ -1,11 +1,13 @@
 var searchData=
 [
-  ['r_5fconst_5fiterator_5ft_4708',['r_const_iterator_t',['../namespacetket.html#a9e8349e5eee70e6d65e55c225a0167ad',1,'tket']]],
-  ['readout_5ferror_5ft_4709',['readout_error_t',['../namespacetket.html#a97c5aa77894720f0dd93708e11b4185d',1,'tket']]],
-  ['register_5finfo_5ft_4710',['register_info_t',['../namespacetket.html#abb27af8bae904386e407c61014c8e510',1,'tket']]],
-  ['register_5ft_4711',['register_t',['../namespacetket.html#a0c364318363e43cfb441df48c8a6bb10',1,'tket']]],
-  ['resultvec_4712',['ResultVec',['../classtket_1_1NeighbourPlacements.html#a711946fa7b446156dc1c40be2fbf9765',1,'tket::NeighbourPlacements']]],
-  ['rewritefun_4713',['RewriteFun',['../classtket_1_1zx_1_1Rewrite.html#adedcb5889dbcfc2998420781689d87bc',1,'tket::zx::Rewrite']]],
-  ['right_5fmap_4714',['right_map',['../classtket_1_1graphs_1_1DirectedGraphBase.html#a7d953086d831f7b2093e72ad7161429a',1,'tket::graphs::DirectedGraphBase']]],
-  ['routingmethodptr_4715',['RoutingMethodPtr',['../namespacetket.html#a89f72898de88e44cf69e85ee09d30f19',1,'tket']]]
+  ['qmap_4767',['QMap',['../namespacetket_1_1tket__sim_1_1internal.html#a49c6834307912bc1478f9c25a4548aec',1,'tket::tket_sim::internal']]],
+  ['qpathdetailed_4768',['QPathDetailed',['../namespacetket.html#a28fceaabe93f27742231e9870efb3b0b',1,'tket']]],
+  ['qubit_5fbimap_5ft_4769',['qubit_bimap_t',['../namespacetket.html#a0e7c9f29964bb7b8f23a98bafe824702',1,'tket']]],
+  ['qubit_5fmap_5ft_4770',['qubit_map_t',['../namespacetket.html#a450cc2961f11bfc1999916262675f08f',1,'tket']]],
+  ['qubit_5fmapping_5ft_4771',['qubit_mapping_t',['../namespacetket.html#a966ac0999b4d9e8b395ed7c69f0fbeb6',1,'tket']]],
+  ['qubit_5fvector_5ft_4772',['qubit_vector_t',['../namespacetket.html#ad949814c463d9f998540c0f812e76aa6',1,'tket']]],
+  ['qubitline_4773',['QubitLine',['../namespacetket.html#adf22cb3690b86b7dec8050a2ef7216b0',1,'tket']]],
+  ['qubitlinelist_4774',['QubitLineList',['../namespacetket.html#a395b2a6581622ba168664c866fa57ac0',1,'tket']]],
+  ['qubitoperator_4775',['QubitOperator',['../namespacetket.html#a47a141804781ea2c3f8b6175fc14bb1e',1,'tket']]],
+  ['qubitpaulimap_4776',['QubitPauliMap',['../namespacetket.html#a5d170f953029bfd42ce8a82ef89fb814',1,'tket']]]
 ];

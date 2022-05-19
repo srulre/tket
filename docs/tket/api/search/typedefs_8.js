@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['l_5fconst_5fiterator_5ft_4644',['l_const_iterator_t',['../namespacetket.html#a2fe02cde6cc79e96ebc17cd6c4610ea9',1,'tket']]],
-  ['left_5fmap_4645',['left_map',['../classtket_1_1graphs_1_1DirectedGraphBase.html#aab725a6ee1754e41419f2b6e2dcbf308',1,'tket::graphs::DirectedGraphBase']]],
-  ['lexicographical_5fdistances_5ft_4646',['lexicographical_distances_t',['../namespacetket.html#ab4c7d0d5df6f3f632b227405be98884d',1,'tket']]],
-  ['logptr_5ft_4647',['LogPtr_t',['../namespacetket.html#a27b002f26f9868b0e12cb8a3ab3ac1bf',1,'tket']]]
+  ['jsonconstruct_4707',['JsonConstruct',['../classtket_1_1OpJsonFactory.html#a026954951382bc69f16bc5e96d721560',1,'tket::OpJsonFactory']]],
+  ['jsonproduce_4708',['JsonProduce',['../classtket_1_1OpJsonFactory.html#ab3630ea3fbccf05f29423be2b0ead977',1,'tket::OpJsonFactory']]]
 ];

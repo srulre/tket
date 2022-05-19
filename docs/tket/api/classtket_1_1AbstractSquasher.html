@@ -90,16 +90,17 @@ Inheritance diagram for tket::AbstractSquasher:</div>
 <div class="center"><img src="classtket_1_1AbstractSquasher__inherit__graph.png" border="0" usemap="#tket_1_1AbstractSquasher_inherit__map" alt="Inheritance graph"/></div>
 <map name="tket_1_1AbstractSquasher_inherit__map" id="tket_1_1AbstractSquasher_inherit__map">
 <area shape="rect" title="Abstract Squasher interface." alt="" coords="147,5,317,32"/>
-<area shape="rect" title="Implements the AbstractSquasher interface for SingleQubitSquash." alt="" coords="5,87,227,114"/>
-<area shape="rect" title="Implements the AbstractSquasher interface for SingleQubitSquash." alt="" coords="251,80,445,121"/>
+<area shape="rect" href="classtket_1_1Transforms_1_1PQPSquasher.html" title="Implements the AbstractSquasher interface for SingleQubitSquash." alt="" coords="5,87,227,114"/>
+<area shape="rect" href="classtket_1_1Transforms_1_1StandardSquasher.html" title="Implements the AbstractSquasher interface for SingleQubitSquash." alt="" coords="251,80,445,121"/>
+<area shape="rect" title="Implements the AbstractSquasher interface for squashing to PhasedX+Rz." alt="" coords="257,169,439,211"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a608b002a1b187b864fe974e34a14078b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1AbstractSquasher.html#a608b002a1b187b864fe974e34a14078b">accepts</a> (<a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3">OpType</a> ot) const =0</td></tr>
-<tr class="memdesc:a608b002a1b187b864fe974e34a14078b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the OpType can be added to current squash.  <a href="classtket_1_1AbstractSquasher.html#a608b002a1b187b864fe974e34a14078b">More...</a><br /></td></tr>
-<tr class="separator:a608b002a1b187b864fe974e34a14078b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af273c13dff28c8256eef4db53a5e758c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1AbstractSquasher.html#af273c13dff28c8256eef4db53a5e758c">accepts</a> (<a class="el" href="namespacetket.html#a2301654e82cbcf188ca05907e97d5738">Gate_ptr</a> gp) const =0</td></tr>
+<tr class="memdesc:af273c13dff28c8256eef4db53a5e758c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the OpType can be added to current squash.  <a href="classtket_1_1AbstractSquasher.html#af273c13dff28c8256eef4db53a5e758c">More...</a><br /></td></tr>
+<tr class="separator:af273c13dff28c8256eef4db53a5e758c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9694fb6007f83d4cec31e119311c17e5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1AbstractSquasher.html#a9694fb6007f83d4cec31e119311c17e5">append</a> (<a class="el" href="namespacetket.html#a2301654e82cbcf188ca05907e97d5738">Gate_ptr</a> gp)=0</td></tr>
 <tr class="memdesc:a9694fb6007f83d4cec31e119311c17e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add gate to current squash.  <a href="classtket_1_1AbstractSquasher.html#a9694fb6007f83d4cec31e119311c17e5">More...</a><br /></td></tr>
 <tr class="separator:a9694fb6007f83d4cec31e119311c17e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -109,6 +110,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1270575ecd06dee2ea79c551e23c60b7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1AbstractSquasher.html#a1270575ecd06dee2ea79c551e23c60b7">clear</a> ()=0</td></tr>
 <tr class="memdesc:a1270575ecd06dee2ea79c551e23c60b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the current squash.  <a href="classtket_1_1AbstractSquasher.html#a1270575ecd06dee2ea79c551e23c60b7">More...</a><br /></td></tr>
 <tr class="separator:a1270575ecd06dee2ea79c551e23c60b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa8ad84b05b108134c9af44d3197c62c"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classtket_1_1AbstractSquasher.html">AbstractSquasher</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1AbstractSquasher.html#aaa8ad84b05b108134c9af44d3197c62c">clone</a> () const =0</td></tr>
+<tr class="memdesc:aaa8ad84b05b108134c9af44d3197c62c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual constructor.  <a href="classtket_1_1AbstractSquasher.html#aaa8ad84b05b108134c9af44d3197c62c">More...</a><br /></td></tr>
+<tr class="separator:aaa8ad84b05b108134c9af44d3197c62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadeb94ebc78141ba709429d6348b0464"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1AbstractSquasher.html#aadeb94ebc78141ba709429d6348b0464">~AbstractSquasher</a> ()</td></tr>
 <tr class="separator:aadeb94ebc78141ba709429d6348b0464"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -117,7 +121,7 @@ Public Member Functions</h2></td></tr>
 <p>Subclasses must implement these methods to be used as a squasher in <a class="el" href="classtket_1_1SingleQubitSquash.html" title="Squashes single qubit gates using given Squasher.">SingleQubitSquash</a></p>
 <p>Squashers should always squash circuits into a "normal form", which is left invariant under further squashing. This is to avoid infinite loops where circuits would get squashed in a cycle, never reaching an equilibrium. </p>
 
-<p class="definition">Definition at line <a class="el" href="SingleQubitSquash_8hpp_source.html#l00034">34</a> of file <a class="el" href="SingleQubitSquash_8hpp_source.html">SingleQubitSquash.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SingleQubitSquash_8hpp_source.html#l00035">35</a> of file <a class="el" href="SingleQubitSquash_8hpp_source.html">SingleQubitSquash.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aadeb94ebc78141ba709429d6348b0464"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aadeb94ebc78141ba709429d6348b0464">&#9670;&nbsp;</a></span>~AbstractSquasher()</h2>
@@ -142,13 +146,13 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SingleQubitSquash_8hpp_source.html#l00073">73</a> of file <a class="el" href="SingleQubitSquash_8hpp_source.html">SingleQubitSquash.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SingleQubitSquash_8hpp_source.html#l00081">81</a> of file <a class="el" href="SingleQubitSquash_8hpp_source.html">SingleQubitSquash.hpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a608b002a1b187b864fe974e34a14078b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a608b002a1b187b864fe974e34a14078b">&#9670;&nbsp;</a></span>accepts()</h2>
+<a id="af273c13dff28c8256eef4db53a5e758c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af273c13dff28c8256eef4db53a5e758c">&#9670;&nbsp;</a></span>accepts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,8 +163,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual bool tket::AbstractSquasher::accepts </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3">OpType</a>&#160;</td>
-          <td class="paramname"><em>ot</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="namespacetket.html#a2301654e82cbcf188ca05907e97d5738">Gate_ptr</a>&#160;</td>
+          <td class="paramname"><em>gp</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -174,7 +178,7 @@ Public Member Functions</h2></td></tr>
 <p>Whether the OpType can be added to current squash. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ot</td><td>OpType to be accepted. </td></tr>
+    <tr><td class="paramname">gp</td><td>Gate_ptr to be accepted. </td></tr>
   </table>
   </dd>
 </dl>
@@ -185,6 +189,8 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p>Implemented in <a class="el" href="classtket_1_1Transforms_1_1PQPSquasher.html#a4e5a948fa7ebf59a3934b364e47e5613">tket::Transforms::PQPSquasher</a>, and <a class="el" href="classtket_1_1Transforms_1_1StandardSquasher.html#a35c9835f9ab172b3bffcd6e9d5541eef">tket::Transforms::StandardSquasher</a>.</p>
 
 </div>
 </div>
@@ -221,6 +227,8 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p>Implemented in <a class="el" href="classtket_1_1Transforms_1_1PQPSquasher.html#a611d2094c51153bddfb605917659eedc">tket::Transforms::PQPSquasher</a>, and <a class="el" href="classtket_1_1Transforms_1_1StandardSquasher.html#af14b250f9a83efd54c2767a96b8ee26f">tket::Transforms::StandardSquasher</a>.</p>
+
 </div>
 </div>
 <a id="a1270575ecd06dee2ea79c551e23c60b7"></a>
@@ -247,6 +255,38 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reset the current squash. </p>
+
+<p>Implemented in <a class="el" href="classtket_1_1Transforms_1_1PQPSquasher.html#add1ee304d38d80b8c4882f144037f438">tket::Transforms::PQPSquasher</a>, and <a class="el" href="classtket_1_1Transforms_1_1StandardSquasher.html#ac728cfd3bd2d9fa07d793f5f0b8ee731">tket::Transforms::StandardSquasher</a>.</p>
+
+</div>
+</div>
+<a id="aaa8ad84b05b108134c9af44d3197c62c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa8ad84b05b108134c9af44d3197c62c">&#9670;&nbsp;</a></span>clone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::unique_ptr&lt;<a class="el" href="classtket_1_1AbstractSquasher.html">AbstractSquasher</a>&gt; tket::AbstractSquasher::clone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Virtual constructor. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::unique_ptr&lt;AbstractSquasher&gt; A copy of *this. </dd></dl>
+
+<p>Implemented in <a class="el" href="classtket_1_1Transforms_1_1PQPSquasher.html#ad79918392dda520b0331487afc31f166">tket::Transforms::PQPSquasher</a>, and <a class="el" href="classtket_1_1Transforms_1_1StandardSquasher.html#af485f187ca51d7c2649171b1a803e388">tket::Transforms::StandardSquasher</a>.</p>
 
 </div>
 </div>
@@ -283,6 +323,8 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::pair&lt;Circuit, Gate_ptr&gt; </dd></dl>
+
+<p>Implemented in <a class="el" href="classtket_1_1Transforms_1_1StandardSquasher.html#a1053cea30657233a32e5e5176f1e43ca">tket::Transforms::StandardSquasher</a>, and <a class="el" href="classtket_1_1Transforms_1_1PQPSquasher.html#a884a6af989b3e69c540be70cf0b2b606">tket::Transforms::PQPSquasher</a>.</p>
 
 </div>
 </div>
