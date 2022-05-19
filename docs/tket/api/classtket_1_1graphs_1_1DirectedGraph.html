@@ -130,9 +130,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6153644c140f51d101d243812072003d"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1graphs_1_1DirectedGraph.html#a6153644c140f51d101d243812072003d">get_distance</a> (const T &amp;node1, const T &amp;node2) const override</td></tr>
 <tr class="memdesc:a6153644c140f51d101d243812072003d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the distance between two nodes.  <a href="classtket_1_1graphs_1_1DirectedGraph.html#a6153644c140f51d101d243812072003d">More...</a><br /></td></tr>
 <tr class="separator:a6153644c140f51d101d243812072003d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a455d823ab24fdc5c50c998e27f1813e6"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1graphs_1_1DirectedGraph.html#a455d823ab24fdc5c50c998e27f1813e6">get_diameter</a> () const override</td></tr>
-<tr class="memdesc:a455d823ab24fdc5c50c998e27f1813e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diameter of graph.  <a href="classtket_1_1graphs_1_1DirectedGraph.html#a455d823ab24fdc5c50c998e27f1813e6">More...</a><br /></td></tr>
-<tr class="separator:a455d823ab24fdc5c50c998e27f1813e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9e850ec5258cc85dfa8258a96946eaa"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1graphs_1_1DirectedGraph.html#ad9e850ec5258cc85dfa8258a96946eaa">get_diameter</a> () override</td></tr>
+<tr class="memdesc:ad9e850ec5258cc85dfa8258a96946eaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diameter of graph.  <a href="classtket_1_1graphs_1_1DirectedGraph.html#ad9e850ec5258cc85dfa8258a96946eaa">More...</a><br /></td></tr>
+<tr class="separator:ad9e850ec5258cc85dfa8258a96946eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe1dae97a811ca738f1fd68cc42b6438"><td class="memItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1graphs_1_1DirectedGraph.html#afe1dae97a811ca738f1fd68cc42b6438">nodes_at_distance</a> (const T &amp;root, std::size_t distance) const</td></tr>
 <tr class="memdesc:afe1dae97a811ca738f1fd68cc42b6438"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns all nodes at a given distance from a given 'source' node.  <a href="classtket_1_1graphs_1_1DirectedGraph.html#afe1dae97a811ca738f1fd68cc42b6438">More...</a><br /></td></tr>
 <tr class="separator:afe1dae97a811ca738f1fd68cc42b6438"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -307,6 +307,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_classtket_1_1graphs_1_1AbstractGraph"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtket_1_1graphs_1_1AbstractGraph')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html">tket::graphs::AbstractGraph&lt; T &gt;</a></td></tr>
 <tr class="memitem:a0be1b923de1c7dfca3ec9b514c605834 inherit pro_attribs_classtket_1_1graphs_1_1AbstractGraph"><td class="memItemLeft" align="right" valign="top">std::set&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html#a0be1b923de1c7dfca3ec9b514c605834">nodes_</a></td></tr>
 <tr class="separator:a0be1b923de1c7dfca3ec9b514c605834 inherit pro_attribs_classtket_1_1graphs_1_1AbstractGraph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a216fdb9ddc8a044aaa7de0e9dc1baff1 inherit pro_attribs_classtket_1_1graphs_1_1AbstractGraph"><td class="memItemLeft" align="right" valign="top">std::optional&lt; unsigned &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html#a216fdb9ddc8a044aaa7de0e9dc1baff1">diameter_</a></td></tr>
+<tr class="separator:a216fdb9ddc8a044aaa7de0e9dc1baff1 inherit pro_attribs_classtket_1_1graphs_1_1AbstractGraph"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T&gt;<br />
@@ -436,7 +438,7 @@ template&lt;typename T &gt; </div>
 
 <p>Add a (weighted) edge between two nodes. </p>
 
-<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00502">502</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00504">504</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -468,12 +470,12 @@ template&lt;typename T &gt; </div>
 
 <p>Add a node to the graph. </p>
 
-<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00490">490</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00492">492</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
 
 </div>
 </div>
-<a id="a455d823ab24fdc5c50c998e27f1813e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a455d823ab24fdc5c50c998e27f1813e6">&#9670;&nbsp;</a></span>get_diameter()</h2>
+<a id="ad9e850ec5258cc85dfa8258a96946eaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9e850ec5258cc85dfa8258a96946eaa">&#9670;&nbsp;</a></span>get_diameter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -487,7 +489,7 @@ template&lt;typename T &gt; </div>
           <td class="memname">unsigned <a class="el" href="classtket_1_1graphs_1_1DirectedGraph.html">tket::graphs::DirectedGraph</a>&lt; T &gt;::get_diameter </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -499,7 +501,7 @@ template&lt;typename T &gt; </div>
 
 <p>Diameter of graph. </p>
 
-<p>Implements <a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html#a009fa8b9dab52d0c6c0414dc14086a08">tket::graphs::AbstractGraph&lt; T &gt;</a>.</p>
+<p>Implements <a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html#a4eebeda86cbad8ac909cb9c60e292ba7">tket::graphs::AbstractGraph&lt; T &gt;</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00436">436</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
 
@@ -640,7 +642,7 @@ template&lt;typename T &gt; </div>
 
 <p>Return an unweighted undirected graph with the same connectivity. </p>
 
-<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00465">465</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00467">467</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -671,7 +673,7 @@ template&lt;typename T &gt; </div>
 
 <p>Return an unweighted undirected graph with the same connectivity. </p>
 
-<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00474">474</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00476">476</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -713,7 +715,7 @@ template&lt;typename T &gt; </div>
 
 <p>Returns all nodes at a given distance from a given 'source' node. </p>
 
-<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00453">453</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00455">455</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -745,7 +747,7 @@ template&lt;typename T &gt; </div>
 
 <p>Remove an edge. </p>
 
-<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00508">508</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00510">510</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -787,7 +789,7 @@ template&lt;typename T &gt; </div>
 
 <p>Remove a connection between two nodes. </p>
 
-<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00514">514</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00516">516</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -819,7 +821,7 @@ template&lt;typename T &gt; </div>
 
 <p>Remove a node from the graph. </p>
 
-<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00484">484</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00486">486</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -850,7 +852,7 @@ template&lt;typename T &gt; </div>
 
 <p>Remove nodes with degree 0. </p>
 
-<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00496">496</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DirectedGraph_8hpp_source.html#l00498">498</a> of file <a class="el" href="DirectedGraph_8hpp_source.html">DirectedGraph.hpp</a>.</p>
 
 </div>
 </div>

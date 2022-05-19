@@ -123,7 +123,7 @@ var searchData=
   ['architecturemapping_123',['ArchitectureMapping',['../classtket_1_1ArchitectureMapping.html',1,'tket::ArchitectureMapping'],['../classtket_1_1ArchitectureMapping.html#aed3743189b9c08ee009a2c95752720c6',1,'tket::ArchitectureMapping::ArchitectureMapping(const Architecture &amp;arch)'],['../classtket_1_1ArchitectureMapping.html#a0850a3b4a225762b6f6b28efcf2fc2d9',1,'tket::ArchitectureMapping::ArchitectureMapping(const Architecture &amp;arch, const std::vector&lt; std::pair&lt; unsigned, unsigned &gt;&gt; &amp;edges)']]],
   ['architecturemapping_2ecpp_124',['ArchitectureMapping.cpp',['../ArchitectureMapping_8cpp.html',1,'']]],
   ['architecturemapping_2ehpp_125',['ArchitectureMapping.hpp',['../ArchitectureMapping_8hpp.html',1,'']]],
-  ['architectureptr_126',['ArchitecturePtr',['../namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f',1,'tket']]],
+  ['architectureptr_126',['ArchitecturePtr',['../namespacetket.html#aa48f675e04cadd3b47c165f6b033e887',1,'tket']]],
   ['args_5ffrom_5ffrontier_127',['args_from_frontier',['../classtket_1_1Circuit.html#a3da4e8b21648f5dbf99a8765d4dc8752',1,'tket::Circuit']]],
   ['articulationpoints_2ecpp_128',['ArticulationPoints.cpp',['../ArticulationPoints_8cpp.html',1,'']]],
   ['articulationpoints_2ehpp_129',['ArticulationPoints.hpp',['../ArticulationPoints_8hpp.html',1,'']]],

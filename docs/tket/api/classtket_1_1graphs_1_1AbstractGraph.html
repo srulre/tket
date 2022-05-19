@@ -140,9 +140,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abfc35066f0b6d02dbd1db04cc65f308c"><td class="memItemLeft" align="right" valign="top">virtual unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html#abfc35066f0b6d02dbd1db04cc65f308c">get_distance</a> (const T &amp;node1, const T &amp;node2) const =0</td></tr>
 <tr class="memdesc:abfc35066f0b6d02dbd1db04cc65f308c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Graph distance between two nodes.  <a href="classtket_1_1graphs_1_1AbstractGraph.html#abfc35066f0b6d02dbd1db04cc65f308c">More...</a><br /></td></tr>
 <tr class="separator:abfc35066f0b6d02dbd1db04cc65f308c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a009fa8b9dab52d0c6c0414dc14086a08"><td class="memItemLeft" align="right" valign="top">virtual unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html#a009fa8b9dab52d0c6c0414dc14086a08">get_diameter</a> () const =0</td></tr>
-<tr class="memdesc:a009fa8b9dab52d0c6c0414dc14086a08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diameter of graph.  <a href="classtket_1_1graphs_1_1AbstractGraph.html#a009fa8b9dab52d0c6c0414dc14086a08">More...</a><br /></td></tr>
-<tr class="separator:a009fa8b9dab52d0c6c0414dc14086a08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eebeda86cbad8ac909cb9c60e292ba7"><td class="memItemLeft" align="right" valign="top">virtual unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html#a4eebeda86cbad8ac909cb9c60e292ba7">get_diameter</a> ()=0</td></tr>
+<tr class="memdesc:a4eebeda86cbad8ac909cb9c60e292ba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diameter of graph.  <a href="classtket_1_1graphs_1_1AbstractGraph.html#a4eebeda86cbad8ac909cb9c60e292ba7">More...</a><br /></td></tr>
+<tr class="separator:a4eebeda86cbad8ac909cb9c60e292ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b4e908045397f5f645424ceb020b24d"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html#a5b4e908045397f5f645424ceb020b24d">~AbstractGraph</a> ()</td></tr>
 <tr class="separator:a5b4e908045397f5f645424ceb020b24d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -155,6 +155,8 @@ Protected Types</h2></td></tr>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a0be1b923de1c7dfca3ec9b514c605834"><td class="memItemLeft" align="right" valign="top">std::set&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html#a0be1b923de1c7dfca3ec9b514c605834">nodes_</a></td></tr>
 <tr class="separator:a0be1b923de1c7dfca3ec9b514c605834"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a216fdb9ddc8a044aaa7de0e9dc1baff1"><td class="memItemLeft" align="right" valign="top">std::optional&lt; unsigned &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html#a216fdb9ddc8a044aaa7de0e9dc1baff1">diameter_</a></td></tr>
+<tr class="separator:a216fdb9ddc8a044aaa7de0e9dc1baff1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T&gt;<br />
@@ -168,7 +170,7 @@ class tket::graphs::AbstractGraph&lt; T &gt;</h3>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00038">38</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00039">39</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a505720476bea924e4685ecaef2d73f73"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a505720476bea924e4685ecaef2d73f73">&#9670;&nbsp;</a></span>Edge</h2>
@@ -192,7 +194,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00042">42</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00043">43</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -224,7 +226,7 @@ template&lt;typename T &gt; </div>
 
 <p>Construct an empty graph. </p>
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00047">47</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00049">49</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -256,7 +258,7 @@ template&lt;typename T &gt; </div>
 
 <p>Construct from vector of nodes. </p>
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00050">50</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00052">52</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -285,7 +287,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00084">84</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00086">86</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -328,7 +330,7 @@ template&lt;typename T &gt; </div>
 
 <p>Check if an edge exists between two nodes. </p>
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00057">57</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00059">59</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -432,12 +434,12 @@ template&lt;typename T &gt; </div>
 
 <p>All nodes as a vector. </p>
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00068">68</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00070">70</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 
 </div>
 </div>
-<a id="a009fa8b9dab52d0c6c0414dc14086a08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a009fa8b9dab52d0c6c0414dc14086a08">&#9670;&nbsp;</a></span>get_diameter()</h2>
+<a id="a4eebeda86cbad8ac909cb9c60e292ba7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eebeda86cbad8ac909cb9c60e292ba7">&#9670;&nbsp;</a></span>get_diameter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -451,7 +453,7 @@ template&lt;typename T &gt; </div>
           <td class="memname">virtual unsigned <a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html">tket::graphs::AbstractGraph</a>&lt; T &gt;::get_diameter </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -463,7 +465,7 @@ template&lt;typename T &gt; </div>
 
 <p>Diameter of graph. </p>
 
-<p>Implemented in <a class="el" href="classtket_1_1graphs_1_1DirectedGraph.html#a455d823ab24fdc5c50c998e27f1813e6">tket::graphs::DirectedGraph&lt; T &gt;</a>, <a class="el" href="classtket_1_1graphs_1_1DirectedGraph.html#a455d823ab24fdc5c50c998e27f1813e6">tket::graphs::DirectedGraph&lt; Node &gt;</a>, <a class="el" href="classtket_1_1graphs_1_1DirectedGraph.html#a455d823ab24fdc5c50c998e27f1813e6">tket::graphs::DirectedGraph&lt; Qubit &gt;</a>, <a class="el" href="classtket_1_1graphs_1_1CompleteGraph.html#a4f26c66c69d8b0d80c709cd4a179940e">tket::graphs::CompleteGraph&lt; T &gt;</a>, and <a class="el" href="classtket_1_1graphs_1_1CompleteGraph.html#a4f26c66c69d8b0d80c709cd4a179940e">tket::graphs::CompleteGraph&lt; Node &gt;</a>.</p>
+<p>Implemented in <a class="el" href="classtket_1_1graphs_1_1DirectedGraph.html#ad9e850ec5258cc85dfa8258a96946eaa">tket::graphs::DirectedGraph&lt; T &gt;</a>, <a class="el" href="classtket_1_1graphs_1_1DirectedGraph.html#ad9e850ec5258cc85dfa8258a96946eaa">tket::graphs::DirectedGraph&lt; Node &gt;</a>, <a class="el" href="classtket_1_1graphs_1_1DirectedGraph.html#ad9e850ec5258cc85dfa8258a96946eaa">tket::graphs::DirectedGraph&lt; Qubit &gt;</a>, <a class="el" href="classtket_1_1graphs_1_1CompleteGraph.html#afa219f1ffa774a60ae18f8b6393580b1">tket::graphs::CompleteGraph&lt; T &gt;</a>, and <a class="el" href="classtket_1_1graphs_1_1CompleteGraph.html#afa219f1ffa774a60ae18f8b6393580b1">tket::graphs::CompleteGraph&lt; Node &gt;</a>.</p>
 
 </div>
 </div>
@@ -536,7 +538,7 @@ template&lt;typename T &gt; </div>
 
 <p>Number of nodes. </p>
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00073">73</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00075">75</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -568,7 +570,7 @@ template&lt;typename T &gt; </div>
 
 <p>Check if a node exists. </p>
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00062">62</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00064">64</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 
 </div>
 </div>
@@ -599,11 +601,37 @@ template&lt;typename T &gt; </div>
 
 <p>Reference to the underlying node set. </p>
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00065">65</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00067">67</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a216fdb9ddc8a044aaa7de0e9dc1baff1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a216fdb9ddc8a044aaa7de0e9dc1baff1">&#9670;&nbsp;</a></span>diameter_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;unsigned&gt; <a class="el" href="classtket_1_1graphs_1_1AbstractGraph.html">tket::graphs::AbstractGraph</a>&lt; T &gt;::diameter_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00045">45</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+
+</div>
+</div>
 <a id="a0be1b923de1c7dfca3ec9b514c605834"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0be1b923de1c7dfca3ec9b514c605834">&#9670;&nbsp;</a></span>nodes_</h2>
 
@@ -626,7 +654,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00043">43</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AbstractGraph_8hpp_source.html#l00044">44</a> of file <a class="el" href="AbstractGraph_8hpp_source.html">AbstractGraph.hpp</a>.</p>
 
 </div>
 </div>

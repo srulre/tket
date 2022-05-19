@@ -156,17 +156,16 @@ $(function() {
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        distance_entry &gt; 0 ||</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="classtket_1_1AssertMessage.html">AssertMessage</a>() &lt;&lt; <span class="stringliteral">&quot;DistancesFromArchitecture: architecture has &quot;</span></div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                        &lt;&lt; arch.n_nodes() &lt;&lt; <span class="stringliteral">&quot; vertices, &quot;</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                        &lt;&lt; arch.n_connections() &lt;&lt; <span class="stringliteral">&quot; edges; returned diameter &quot;</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                        &lt;&lt; arch.get_diameter() &lt;&lt; <span class="stringliteral">&quot; and d(&quot;</span> &lt;&lt; vertex1 &lt;&lt; <span class="stringliteral">&quot;,&quot;</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                        &lt;&lt; vertex2</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                        &lt;&lt; <span class="stringliteral">&quot;)=0. &quot;</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                           <span class="stringliteral">&quot;Is the graph connected?&quot;</span>);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">// GCOVR_EXCL_STOP</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="keywordflow">return</span> distance_entry;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}  <span class="comment">// namespace tket</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                        &lt;&lt; arch.n_connections() &lt;&lt; <span class="stringliteral">&quot; edges; &quot;</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                        &lt;&lt; <span class="stringliteral">&quot; and d(&quot;</span> &lt;&lt; vertex1 &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; vertex2</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                        &lt;&lt; <span class="stringliteral">&quot;)=0. &quot;</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                           <span class="stringliteral">&quot;Is the graph connected?&quot;</span>);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">// GCOVR_EXCL_STOP</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  <span class="keywordflow">return</span> distance_entry;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}  <span class="comment">// namespace tket</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="anamespacetket_html_a60b3ce7f2e414317a02c3b1c217d96b0"><div class="ttname"><a href="namespacetket.html#a60b3ce7f2e414317a02c3b1c217d96b0">tket::get_swap</a></div><div class="ttdeci">Swap get_swap(size_t v1, size_t v2)</div><div class="ttdoc">No distinction between (v1, v2) and (v2, v1).</div><div class="ttdef"><b>Definition:</b> <a href="SwapFunctions_8cpp_source.html#l00022">SwapFunctions.cpp:22</a></div></div>
 <div class="ttc" id="aAssert_8hpp_html_ae053544861204d4c3f5e8422252ca22e"><div class="ttname"><a href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a></div><div class="ttdeci">#define TKET_ASSERT(condition)</div><div class="ttdoc">If condition is not satisfied, log a diagnostic message and abort.</div><div class="ttdef"><b>Definition:</b> <a href="Assert_8hpp_source.html#l00076">Assert.hpp:76</a></div></div>

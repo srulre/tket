@@ -120,7 +120,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a13da953c9d705d4903d79fdfccca920a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtket_1_1MappingFrontier.html#a13da953c9d705d4903d79fdfccca920a">advance_next_2qb_slice</a> (unsigned max_advance)</td></tr>
 <tr class="memdesc:a13da953c9d705d4903d79fdfccca920a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given some <a class="el" href="classtket_1_1Circuit.html" title="A circuit.">Circuit</a> Cut (or routed/unrouted boundary), advances the cut to the next cut of just two-qubit vertices, not including the current boundary.  <a href="structtket_1_1MappingFrontier.html#a13da953c9d705d4903d79fdfccca920a">More...</a><br /></td></tr>
 <tr class="separator:a13da953c9d705d4903d79fdfccca920a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa620c9642c9583fd645d32a128de07f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtket_1_1MappingFrontier.html#aa620c9642c9583fd645d32a128de07f6">advance_frontier_boundary</a> (const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;architecture)</td></tr>
+<tr class="memitem:aa620c9642c9583fd645d32a128de07f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtket_1_1MappingFrontier.html#aa620c9642c9583fd645d32a128de07f6">advance_frontier_boundary</a> (const <a class="el" href="namespacetket.html#aa48f675e04cadd3b47c165f6b033e887">ArchitecturePtr</a> &amp;architecture)</td></tr>
 <tr class="memdesc:aa620c9642c9583fd645d32a128de07f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">mapping_frontier data members updated to reflect the routed/non-routed boundary of mapping_frontier-&gt;circ architecture.valid_gate confirms whether circuit vertices are physically valid  <a href="structtket_1_1MappingFrontier.html#aa620c9642c9583fd645d32a128de07f6">More...</a><br /></td></tr>
 <tr class="separator:aa620c9642c9583fd645d32a128de07f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd371175ee6c1fefe88a671668760d3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtket_1_1Subcircuit.html">Subcircuit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtket_1_1MappingFrontier.html#afd371175ee6c1fefe88a671668760d3f">get_frontier_subcircuit</a> (unsigned _max_subcircuit_depth, unsigned _max_subcircuit_size) const</td></tr>
@@ -150,7 +150,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a74b7181dfdcd96e7d45374d3f3324466"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtket_1_1MappingFrontier.html#a74b7181dfdcd96e7d45374d3f3324466">set_linear_boundary</a> (const <a class="el" href="namespacetket.html#a1d2b39b141fc098257835665b8d5830f">unit_vertport_frontier_t</a> &amp;new_boundary)</td></tr>
 <tr class="memdesc:a74b7181dfdcd96e7d45374d3f3324466"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns the linear_boundary_ attribute to that passed to method.  <a href="structtket_1_1MappingFrontier.html#a74b7181dfdcd96e7d45374d3f3324466">More...</a><br /></td></tr>
 <tr class="separator:a74b7181dfdcd96e7d45374d3f3324466"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd560ec03de0540191f837921516856e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtket_1_1MappingFrontier.html#afd560ec03de0540191f837921516856e">valid_boundary_operation</a> (const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;architecture, const <a class="el" href="namespacetket.html#a75405147f5ffd3ff1ff1118fba63bcd0">Op_ptr</a> &amp;op, const std::vector&lt; <a class="el" href="classtket_1_1Node.html">Node</a> &gt; &amp;uids) const</td></tr>
+<tr class="memitem:afd560ec03de0540191f837921516856e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtket_1_1MappingFrontier.html#afd560ec03de0540191f837921516856e">valid_boundary_operation</a> (const <a class="el" href="namespacetket.html#aa48f675e04cadd3b47c165f6b033e887">ArchitecturePtr</a> &amp;architecture, const <a class="el" href="namespacetket.html#a75405147f5ffd3ff1ff1118fba63bcd0">Op_ptr</a> &amp;op, const std::vector&lt; <a class="el" href="classtket_1_1Node.html">Node</a> &gt; &amp;uids) const</td></tr>
 <tr class="memdesc:afd560ec03de0540191f837921516856e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the given operation acting on the given nodes can be executed on the <a class="el" href="classtket_1_1Architecture.html">Architecture</a> connectivity graph.  <a href="structtket_1_1MappingFrontier.html#afd560ec03de0540191f837921516856e">More...</a><br /></td></tr>
 <tr class="separator:afd560ec03de0540191f837921516856e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a899d3668583632b6102dc9a1d5d4f0b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtket_1_1MappingFrontier.html#a899d3668583632b6102dc9a1d5d4f0b8">update_bimaps</a> (<a class="el" href="classtket_1_1UnitID.html">UnitID</a> qubit, <a class="el" href="classtket_1_1UnitID.html">UnitID</a> node)</td></tr>
@@ -378,7 +378,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">void tket::MappingFrontier::advance_frontier_boundary </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespacetket.html#aa48f675e04cadd3b47c165f6b033e887">ArchitecturePtr</a> &amp;&#160;</td>
           <td class="paramname"><em>architecture</em></td><td>)</td>
           <td></td>
         </tr>
@@ -698,7 +698,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">bool tket::MappingFrontier::valid_boundary_operation </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacetket.html#a341a5dabd6c48cebe901dd3183f4114f">ArchitecturePtr</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespacetket.html#aa48f675e04cadd3b47c165f6b033e887">ArchitecturePtr</a> &amp;&#160;</td>
           <td class="paramname"><em>architecture</em>, </td>
         </tr>
         <tr>
