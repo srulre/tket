@@ -1130,178 +1130,173 @@ $(function() {
 <div class="line"><a name="l01081"></a><span class="lineno"> 1081</span>&#160;    <span class="keywordflow">if</span> (n_all == 0 || n_target == 0) {</div>
 <div class="line"><a name="l01082"></a><span class="lineno"> 1082</span>&#160;      <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l01083"></a><span class="lineno"> 1083</span>&#160;    }</div>
-<div class="line"><a name="l01084"></a><span class="lineno"> 1084</span>&#160;    <span class="keywordflow">if</span> (n_target == 1 &amp;&amp; frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#a0fdd3c9d52119f761860b74b5a12f174">are_phasedx_left</a>()) {</div>
+<div class="line"><a name="l01084"></a><span class="lineno"> 1084</span>&#160;    <span class="keywordflow">if</span> (n_target == 1 &amp;&amp; n_all == 1) {</div>
 <div class="line"><a name="l01085"></a><span class="lineno"> 1085</span>&#160;      <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l01086"></a><span class="lineno"> 1086</span>&#160;    }</div>
-<div class="line"><a name="l01087"></a><span class="lineno"> 1087</span>&#160;    <span class="keywordflow">return</span> 2;</div>
-<div class="line"><a name="l01088"></a><span class="lineno"> 1088</span>&#160;  };</div>
-<div class="line"><a name="l01089"></a><span class="lineno"> 1089</span>&#160; </div>
-<div class="line"><a name="l01090"></a><span class="lineno"> 1090</span>&#160;  <span class="comment">// the actual transform</span></div>
-<div class="line"><a name="l01091"></a><span class="lineno"> 1091</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="classtket_1_1Transform.html">Transform</a>([squash, choose_strategy](<a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ) {</div>
-<div class="line"><a name="l01092"></a><span class="lineno"> 1092</span>&#160;    <span class="comment">// if we squash, we start by removing all NPhasedX gates</span></div>
-<div class="line"><a name="l01093"></a><span class="lineno"> 1093</span>&#160;    <span class="keywordflow">if</span> (squash) {</div>
-<div class="line"><a name="l01094"></a><span class="lineno"> 1094</span>&#160;      <a class="code" href="namespacetket_1_1Transforms.html#a8b1bdd8d905918c0bf69043023a49706">Transforms::decompose_NPhasedX</a>().<a class="code" href="classtket_1_1Transform.html#acec2765ca73f069d9d379083a31a2783">apply</a>(circ);</div>
-<div class="line"><a name="l01095"></a><span class="lineno"> 1095</span>&#160;    }</div>
-<div class="line"><a name="l01096"></a><span class="lineno"> 1096</span>&#160; </div>
-<div class="line"><a name="l01097"></a><span class="lineno"> 1097</span>&#160;    std::vector&lt;unsigned&gt; range_qbs(circ.<a class="code" href="classtket_1_1Circuit.html#a0baec82ad9c0308fd2655607d30caf3d">n_qubits</a>());</div>
-<div class="line"><a name="l01098"></a><span class="lineno"> 1098</span>&#160;    std::iota(range_qbs.begin(), range_qbs.end(), 0);</div>
-<div class="line"><a name="l01099"></a><span class="lineno"> 1099</span>&#160;    <a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html">PhasedXFrontier</a> frontier(circ);</div>
-<div class="line"><a name="l01100"></a><span class="lineno"> 1100</span>&#160; </div>
-<div class="line"><a name="l01101"></a><span class="lineno"> 1101</span>&#160;    <span class="comment">// find a total ordering of boundary gates (aka non-NPhasedX multi-qb gates)</span></div>
-<div class="line"><a name="l01102"></a><span class="lineno"> 1102</span>&#160;    <span class="keyword">auto</span> is_boundary = [&amp;circ](<a class="code" href="namespacetket.html#a0bf6a146dadc36738e597ab8892a09f5">Vertex</a> v) {</div>
-<div class="line"><a name="l01103"></a><span class="lineno"> 1103</span>&#160;      <a class="code" href="namespacetket.html#a75405147f5ffd3ff1ff1118fba63bcd0">Op_ptr</a> op = circ.<a class="code" href="classtket_1_1Circuit.html#a15fd2bc465a81f45f79171d50590a520">get_Op_ptr_from_Vertex</a>(v);</div>
-<div class="line"><a name="l01104"></a><span class="lineno"> 1104</span>&#160;      <span class="keywordflow">return</span> PhasedXFrontier::is_interval_boundary(op);</div>
-<div class="line"><a name="l01105"></a><span class="lineno"> 1105</span>&#160;    };</div>
-<div class="line"><a name="l01106"></a><span class="lineno"> 1106</span>&#160;    <span class="comment">// get a lexicographic ordering of boundary vertices</span></div>
-<div class="line"><a name="l01107"></a><span class="lineno"> 1107</span>&#160;    <span class="keyword">auto</span> vertices_in_order = circ.<a class="code" href="classtket_1_1Circuit.html#af09e684fc6a778a16e2fe70cbfdd3e04">vertices_in_order</a>();</div>
-<div class="line"><a name="l01108"></a><span class="lineno"> 1108</span>&#160;    <span class="keyword">auto</span> r = vertices_in_order | boost::adaptors::filtered(is_boundary);</div>
-<div class="line"><a name="l01109"></a><span class="lineno"> 1109</span>&#160;    <a class="code" href="namespacetket_1_1Transforms.html#a983092bd8e2ff2858f6b1c5e35198dd9">OptVertexVec</a> boundary_gates(r.begin(), r.end());</div>
-<div class="line"><a name="l01110"></a><span class="lineno"> 1110</span>&#160;    <span class="comment">// Add sentinel to process the gates after last boundary_gate.</span></div>
-<div class="line"><a name="l01111"></a><span class="lineno"> 1111</span>&#160;    <span class="comment">// This is required to force flush the frontier after the last multi-qubit</span></div>
-<div class="line"><a name="l01112"></a><span class="lineno"> 1112</span>&#160;    <span class="comment">// gate.</span></div>
-<div class="line"><a name="l01113"></a><span class="lineno"> 1113</span>&#160;    <a class="code" href="namespacetket_1_1Transforms.html#a1a5e9c920e62f66cdb88ed77d975917f">OptVertex</a> optv;</div>
-<div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;    boundary_gates.push_back(optv);</div>
-<div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160; </div>
-<div class="line"><a name="l01116"></a><span class="lineno"> 1116</span>&#160;    <span class="comment">// whether transform is successful (always true if squash=true)</span></div>
-<div class="line"><a name="l01117"></a><span class="lineno"> 1117</span>&#160;    <span class="keywordtype">bool</span> success = squash;</div>
+<div class="line"><a name="l01087"></a><span class="lineno"> 1087</span>&#160;    <span class="keywordflow">if</span> (n_target == 1 &amp;&amp; frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#a0fdd3c9d52119f761860b74b5a12f174">are_phasedx_left</a>()) {</div>
+<div class="line"><a name="l01088"></a><span class="lineno"> 1088</span>&#160;      <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l01089"></a><span class="lineno"> 1089</span>&#160;    }</div>
+<div class="line"><a name="l01090"></a><span class="lineno"> 1090</span>&#160;    <span class="keywordflow">return</span> 2;</div>
+<div class="line"><a name="l01091"></a><span class="lineno"> 1091</span>&#160;  };</div>
+<div class="line"><a name="l01092"></a><span class="lineno"> 1092</span>&#160; </div>
+<div class="line"><a name="l01093"></a><span class="lineno"> 1093</span>&#160;  <span class="comment">// the actual transform</span></div>
+<div class="line"><a name="l01094"></a><span class="lineno"> 1094</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="classtket_1_1Transform.html">Transform</a>([squash, choose_strategy](<a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ) {</div>
+<div class="line"><a name="l01095"></a><span class="lineno"> 1095</span>&#160;    <span class="comment">// if we squash, we start by removing all NPhasedX gates</span></div>
+<div class="line"><a name="l01096"></a><span class="lineno"> 1096</span>&#160;    <span class="keywordflow">if</span> (squash) {</div>
+<div class="line"><a name="l01097"></a><span class="lineno"> 1097</span>&#160;      <a class="code" href="namespacetket_1_1Transforms.html#a8b1bdd8d905918c0bf69043023a49706">Transforms::decompose_NPhasedX</a>().<a class="code" href="classtket_1_1Transform.html#acec2765ca73f069d9d379083a31a2783">apply</a>(circ);</div>
+<div class="line"><a name="l01098"></a><span class="lineno"> 1098</span>&#160;    }</div>
+<div class="line"><a name="l01099"></a><span class="lineno"> 1099</span>&#160; </div>
+<div class="line"><a name="l01100"></a><span class="lineno"> 1100</span>&#160;    std::vector&lt;unsigned&gt; range_qbs(circ.<a class="code" href="classtket_1_1Circuit.html#a0baec82ad9c0308fd2655607d30caf3d">n_qubits</a>());</div>
+<div class="line"><a name="l01101"></a><span class="lineno"> 1101</span>&#160;    std::iota(range_qbs.begin(), range_qbs.end(), 0);</div>
+<div class="line"><a name="l01102"></a><span class="lineno"> 1102</span>&#160;    <a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html">PhasedXFrontier</a> frontier(circ);</div>
+<div class="line"><a name="l01103"></a><span class="lineno"> 1103</span>&#160; </div>
+<div class="line"><a name="l01104"></a><span class="lineno"> 1104</span>&#160;    <span class="comment">// find a total ordering of boundary gates (aka non-NPhasedX multi-qb gates)</span></div>
+<div class="line"><a name="l01105"></a><span class="lineno"> 1105</span>&#160;    <span class="keyword">auto</span> is_boundary = [&amp;circ](<a class="code" href="namespacetket.html#a0bf6a146dadc36738e597ab8892a09f5">Vertex</a> v) {</div>
+<div class="line"><a name="l01106"></a><span class="lineno"> 1106</span>&#160;      <a class="code" href="namespacetket.html#a75405147f5ffd3ff1ff1118fba63bcd0">Op_ptr</a> op = circ.<a class="code" href="classtket_1_1Circuit.html#a15fd2bc465a81f45f79171d50590a520">get_Op_ptr_from_Vertex</a>(v);</div>
+<div class="line"><a name="l01107"></a><span class="lineno"> 1107</span>&#160;      <span class="keywordflow">return</span> PhasedXFrontier::is_interval_boundary(op);</div>
+<div class="line"><a name="l01108"></a><span class="lineno"> 1108</span>&#160;    };</div>
+<div class="line"><a name="l01109"></a><span class="lineno"> 1109</span>&#160;    <span class="comment">// get a lexicographic ordering of boundary vertices</span></div>
+<div class="line"><a name="l01110"></a><span class="lineno"> 1110</span>&#160;    <span class="keyword">auto</span> vertices_in_order = circ.<a class="code" href="classtket_1_1Circuit.html#af09e684fc6a778a16e2fe70cbfdd3e04">vertices_in_order</a>();</div>
+<div class="line"><a name="l01111"></a><span class="lineno"> 1111</span>&#160;    <span class="keyword">auto</span> r = vertices_in_order | boost::adaptors::filtered(is_boundary);</div>
+<div class="line"><a name="l01112"></a><span class="lineno"> 1112</span>&#160;    <a class="code" href="namespacetket_1_1Transforms.html#a983092bd8e2ff2858f6b1c5e35198dd9">OptVertexVec</a> boundary_gates(r.begin(), r.end());</div>
+<div class="line"><a name="l01113"></a><span class="lineno"> 1113</span>&#160;    <span class="comment">// Add sentinel to process the gates after last boundary_gate.</span></div>
+<div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;    <span class="comment">// This is required to force flush the frontier after the last multi-qubit</span></div>
+<div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160;    <span class="comment">// gate.</span></div>
+<div class="line"><a name="l01116"></a><span class="lineno"> 1116</span>&#160;    <a class="code" href="namespacetket_1_1Transforms.html#a1a5e9c920e62f66cdb88ed77d975917f">OptVertex</a> optv;</div>
+<div class="line"><a name="l01117"></a><span class="lineno"> 1117</span>&#160;    boundary_gates.push_back(optv);</div>
 <div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160; </div>
-<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;    <span class="comment">// Loop through each multi-qb gate.</span></div>
-<div class="line"><a name="l01120"></a><span class="lineno"> 1120</span>&#160;    <span class="comment">// At each iteration, decide how to decompose the single-qb gates</span></div>
-<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;    <span class="comment">// immediately preceding the current multi-qb gate into global gates.</span></div>
-<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160;    <span class="comment">// The rationale: defer any computation until just before the next multi-qb</span></div>
-<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;    <span class="comment">// gate. At that point, the single-qb gates on the qubits where the multi-qb</span></div>
-<div class="line"><a name="l01125"></a><span class="lineno"> 1125</span>&#160;    <span class="comment">// gate is acting HAVE TO be decomposed. Figure out how to do that and take</span></div>
-<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160;    <span class="comment">// care of the garbage you might have created on other qubits at a later</span></div>
-<div class="line"><a name="l01127"></a><span class="lineno"> 1127</span>&#160;    <span class="comment">// point.</span></div>
-<div class="line"><a name="l01128"></a><span class="lineno"> 1128</span>&#160; </div>
-<div class="line"><a name="l01129"></a><span class="lineno"> 1129</span>&#160;    <span class="keywordflow">for</span> (<a class="code" href="namespacetket_1_1Transforms.html#a1a5e9c920e62f66cdb88ed77d975917f">OptVertex</a> v : boundary_gates) {</div>
-<div class="line"><a name="l01130"></a><span class="lineno"> 1130</span>&#160;      <span class="comment">// the qubits whose intervals must be decomposed into global gates</span></div>
-<div class="line"><a name="l01131"></a><span class="lineno"> 1131</span>&#160;      std::set&lt;unsigned&gt; curr_qubits;</div>
-<div class="line"><a name="l01132"></a><span class="lineno"> 1132</span>&#160;      <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
-<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160;        <span class="keywordflow">if</span> (v) {</div>
-<div class="line"><a name="l01134"></a><span class="lineno"> 1134</span>&#160;          curr_qubits = frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#aeca04da8e33b207d6090fba689e40aad">qubits_ending_in</a>(*v);</div>
-<div class="line"><a name="l01135"></a><span class="lineno"> 1135</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;          curr_qubits.clear();</div>
-<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160;          <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; circ.<a class="code" href="classtket_1_1Circuit.html#a0baec82ad9c0308fd2655607d30caf3d">n_qubits</a>(); ++i) {</div>
-<div class="line"><a name="l01138"></a><span class="lineno"> 1138</span>&#160;            curr_qubits.insert(curr_qubits.end(), i);</div>
-<div class="line"><a name="l01139"></a><span class="lineno"> 1139</span>&#160;          }</div>
-<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160;        }</div>
-<div class="line"><a name="l01141"></a><span class="lineno"> 1141</span>&#160;        <span class="keywordflow">if</span> (squash) {</div>
-<div class="line"><a name="l01142"></a><span class="lineno"> 1142</span>&#160;          frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#a37db4123fa524a8c925e022a25864224">squash_intervals</a>();</div>
+<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;    <span class="comment">// whether transform is successful (always true if squash=true)</span></div>
+<div class="line"><a name="l01120"></a><span class="lineno"> 1120</span>&#160;    <span class="keywordtype">bool</span> success = squash;</div>
+<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160; </div>
+<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;    <span class="comment">// Loop through each multi-qb gate.</span></div>
+<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160;    <span class="comment">// At each iteration, decide how to decompose the single-qb gates</span></div>
+<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;    <span class="comment">// immediately preceding the current multi-qb gate into global gates.</span></div>
+<div class="line"><a name="l01125"></a><span class="lineno"> 1125</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160;    <span class="comment">// The rationale: defer any computation until just before the next multi-qb</span></div>
+<div class="line"><a name="l01127"></a><span class="lineno"> 1127</span>&#160;    <span class="comment">// gate. At that point, the single-qb gates on the qubits where the multi-qb</span></div>
+<div class="line"><a name="l01128"></a><span class="lineno"> 1128</span>&#160;    <span class="comment">// gate is acting HAVE TO be decomposed. Figure out how to do that and take</span></div>
+<div class="line"><a name="l01129"></a><span class="lineno"> 1129</span>&#160;    <span class="comment">// care of the garbage you might have created on other qubits at a later</span></div>
+<div class="line"><a name="l01130"></a><span class="lineno"> 1130</span>&#160;    <span class="comment">// point.</span></div>
+<div class="line"><a name="l01131"></a><span class="lineno"> 1131</span>&#160; </div>
+<div class="line"><a name="l01132"></a><span class="lineno"> 1132</span>&#160;    <span class="keywordflow">for</span> (<a class="code" href="namespacetket_1_1Transforms.html#a1a5e9c920e62f66cdb88ed77d975917f">OptVertex</a> v : boundary_gates) {</div>
+<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160;      <span class="comment">// the qubits whose intervals must be decomposed into global gates</span></div>
+<div class="line"><a name="l01134"></a><span class="lineno"> 1134</span>&#160;      std::set&lt;unsigned&gt; curr_qubits;</div>
+<div class="line"><a name="l01135"></a><span class="lineno"> 1135</span>&#160;      <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
+<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;        <span class="keywordflow">if</span> (v) {</div>
+<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160;          curr_qubits = frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#aeca04da8e33b207d6090fba689e40aad">qubits_ending_in</a>(*v);</div>
+<div class="line"><a name="l01138"></a><span class="lineno"> 1138</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l01139"></a><span class="lineno"> 1139</span>&#160;          curr_qubits.clear();</div>
+<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160;          <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; circ.<a class="code" href="classtket_1_1Circuit.html#a0baec82ad9c0308fd2655607d30caf3d">n_qubits</a>(); ++i) {</div>
+<div class="line"><a name="l01141"></a><span class="lineno"> 1141</span>&#160;            curr_qubits.insert(curr_qubits.end(), i);</div>
+<div class="line"><a name="l01142"></a><span class="lineno"> 1142</span>&#160;          }</div>
 <div class="line"><a name="l01143"></a><span class="lineno"> 1143</span>&#160;        }</div>
-<div class="line"><a name="l01144"></a><span class="lineno"> 1144</span>&#160;        <a class="code" href="namespacetket_1_1Transforms.html#a983092bd8e2ff2858f6b1c5e35198dd9">OptVertexVec</a> all_phasedx = frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#aa641a5b73fea84a1dbea9b563f9dd02e">get_all_beta_vertices</a>();</div>
-<div class="line"><a name="l01145"></a><span class="lineno"> 1145</span>&#160;        <a class="code" href="namespacetket_1_1Transforms.html#a983092bd8e2ff2858f6b1c5e35198dd9">OptVertexVec</a> curr_phasedx;</div>
-<div class="line"><a name="l01146"></a><span class="lineno"> 1146</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> q : curr_qubits) {</div>
-<div class="line"><a name="l01147"></a><span class="lineno"> 1147</span>&#160;          curr_phasedx.push_back(all_phasedx[q]);</div>
-<div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160;        }</div>
-<div class="line"><a name="l01149"></a><span class="lineno"> 1149</span>&#160; </div>
-<div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="namespacetket_1_1Transforms.html#a408c6af4a5804e3c5047d944a8cf5082">all_nullopt</a>(curr_phasedx)) {</div>
-<div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;          <span class="comment">// there is nothing to decompose anymore, move to next boundary_gate</span></div>
-<div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160;          <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;        }</div>
-<div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="namespacetket_1_1Transforms.html#ad126629a6f64acb20d3f23db96aaa039">all_equal</a>(all_phasedx)) {</div>
-<div class="line"><a name="l01155"></a><span class="lineno"> 1155</span>&#160;          <span class="comment">// this is already a global NPhasedX gate, leave untouched</span></div>
-<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;          frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#ae16b74bfd0db0a55ac8305e1b04ffbf6">skip_global_gates</a>(1);</div>
-<div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160;          <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;        }</div>
-<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160; </div>
-<div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;        <span class="comment">// find best decomposition strategy</span></div>
-<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;        <span class="keywordtype">unsigned</span> n_curr_betas = n_distinct_beta(circ, curr_phasedx);</div>
-<div class="line"><a name="l01162"></a><span class="lineno"> 1162</span>&#160;        <span class="keywordtype">unsigned</span> n_all_betas = n_distinct_beta(circ, all_phasedx);</div>
-<div class="line"><a name="l01163"></a><span class="lineno"> 1163</span>&#160;        <span class="keywordtype">unsigned</span> strategy;</div>
-<div class="line"><a name="l01164"></a><span class="lineno"> 1164</span>&#160;        <span class="keywordflow">if</span> (squash) {</div>
-<div class="line"><a name="l01165"></a><span class="lineno"> 1165</span>&#160;          strategy = choose_strategy(frontier, n_curr_betas, n_all_betas);</div>
-<div class="line"><a name="l01166"></a><span class="lineno"> 1166</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160;          <span class="comment">// if we don&#39;t squash we decompose each NPhasedX with 2x global</span></div>
-<div class="line"><a name="l01168"></a><span class="lineno"> 1168</span>&#160;          strategy = 2;</div>
-<div class="line"><a name="l01169"></a><span class="lineno"> 1169</span>&#160;        }</div>
-<div class="line"><a name="l01170"></a><span class="lineno"> 1170</span>&#160;        <span class="keywordflow">switch</span> (strategy) {</div>
-<div class="line"><a name="l01171"></a><span class="lineno"> 1171</span>&#160;          <span class="keywordflow">case</span> 0:</div>
-<div class="line"><a name="l01172"></a><span class="lineno"> 1172</span>&#160;            <span class="comment">// do nothing</span></div>
-<div class="line"><a name="l01173"></a><span class="lineno"> 1173</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01174"></a><span class="lineno"> 1174</span>&#160;          <span class="keywordflow">case</span> 1:</div>
-<div class="line"><a name="l01175"></a><span class="lineno"> 1175</span>&#160;            <span class="comment">// insert one single global NPhasedX</span></div>
-<div class="line"><a name="l01176"></a><span class="lineno"> 1176</span>&#160;            <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(curr_qubits.size() &gt; 0);</div>
-<div class="line"><a name="l01177"></a><span class="lineno"> 1177</span>&#160;            frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#a56596bf9d19e59e7df5b578290f54a56">insert_1_phasedx</a>(*(curr_qubits.begin()));</div>
-<div class="line"><a name="l01178"></a><span class="lineno"> 1178</span>&#160;            success = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l01179"></a><span class="lineno"> 1179</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01180"></a><span class="lineno"> 1180</span>&#160;          <span class="keywordflow">case</span> 2:</div>
-<div class="line"><a name="l01181"></a><span class="lineno"> 1181</span>&#160;            <span class="comment">// insert two global NPhasedX</span></div>
-<div class="line"><a name="l01182"></a><span class="lineno"> 1182</span>&#160;            frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#afd180925218f0f8d7b83c642ccd9df98">insert_2_phasedx</a>();</div>
-<div class="line"><a name="l01183"></a><span class="lineno"> 1183</span>&#160;            success = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01185"></a><span class="lineno"> 1185</span>&#160;          <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l01186"></a><span class="lineno"> 1186</span>&#160;            <span class="keywordflow">throw</span> <a class="code" href="classtket_1_1NotValid.html">NotValid</a>(<span class="stringliteral">&quot;Invalid strategy in replace_non_global_phasedx&quot;</span>);</div>
-<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;        }</div>
-<div class="line"><a name="l01188"></a><span class="lineno"> 1188</span>&#160;      }</div>
-<div class="line"><a name="l01189"></a><span class="lineno"> 1189</span>&#160;      <span class="keywordflow">if</span> (v) {</div>
-<div class="line"><a name="l01190"></a><span class="lineno"> 1190</span>&#160;        frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#a1f347741f4a20750fee928d45323f099">next_multiqb</a>(*v);</div>
+<div class="line"><a name="l01144"></a><span class="lineno"> 1144</span>&#160;        <span class="keywordflow">if</span> (squash) {</div>
+<div class="line"><a name="l01145"></a><span class="lineno"> 1145</span>&#160;          frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#a37db4123fa524a8c925e022a25864224">squash_intervals</a>();</div>
+<div class="line"><a name="l01146"></a><span class="lineno"> 1146</span>&#160;        }</div>
+<div class="line"><a name="l01147"></a><span class="lineno"> 1147</span>&#160;        <a class="code" href="namespacetket_1_1Transforms.html#a983092bd8e2ff2858f6b1c5e35198dd9">OptVertexVec</a> all_phasedx = frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#aa641a5b73fea84a1dbea9b563f9dd02e">get_all_beta_vertices</a>();</div>
+<div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160;        <a class="code" href="namespacetket_1_1Transforms.html#a983092bd8e2ff2858f6b1c5e35198dd9">OptVertexVec</a> curr_phasedx;</div>
+<div class="line"><a name="l01149"></a><span class="lineno"> 1149</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> q : curr_qubits) {</div>
+<div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;          curr_phasedx.push_back(all_phasedx[q]);</div>
+<div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;        }</div>
+<div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160; </div>
+<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="namespacetket_1_1Transforms.html#a408c6af4a5804e3c5047d944a8cf5082">all_nullopt</a>(curr_phasedx)) {</div>
+<div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160;          <span class="comment">// there is nothing to decompose anymore, move to next boundary_gate</span></div>
+<div class="line"><a name="l01155"></a><span class="lineno"> 1155</span>&#160;          <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;        }</div>
+<div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="namespacetket_1_1Transforms.html#ad126629a6f64acb20d3f23db96aaa039">all_equal</a>(all_phasedx)) {</div>
+<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;          <span class="comment">// this is already a global NPhasedX gate, leave untouched</span></div>
+<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;          frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#ae16b74bfd0db0a55ac8305e1b04ffbf6">skip_global_gates</a>(1);</div>
+<div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;          <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;        }</div>
+<div class="line"><a name="l01162"></a><span class="lineno"> 1162</span>&#160; </div>
+<div class="line"><a name="l01163"></a><span class="lineno"> 1163</span>&#160;        <span class="comment">// find best decomposition strategy</span></div>
+<div class="line"><a name="l01164"></a><span class="lineno"> 1164</span>&#160;        <span class="keywordtype">unsigned</span> n_curr_betas = n_distinct_beta(circ, curr_phasedx);</div>
+<div class="line"><a name="l01165"></a><span class="lineno"> 1165</span>&#160;        <span class="keywordtype">unsigned</span> n_all_betas = n_distinct_beta(circ, all_phasedx);</div>
+<div class="line"><a name="l01166"></a><span class="lineno"> 1166</span>&#160;        <span class="keywordtype">unsigned</span> strategy;</div>
+<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160;        <span class="keywordflow">if</span> (squash) {</div>
+<div class="line"><a name="l01168"></a><span class="lineno"> 1168</span>&#160;          strategy = choose_strategy(frontier, n_curr_betas, n_all_betas);</div>
+<div class="line"><a name="l01169"></a><span class="lineno"> 1169</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l01170"></a><span class="lineno"> 1170</span>&#160;          <span class="comment">// if we don&#39;t squash we decompose each NPhasedX with 2x global</span></div>
+<div class="line"><a name="l01171"></a><span class="lineno"> 1171</span>&#160;          strategy = 2;</div>
+<div class="line"><a name="l01172"></a><span class="lineno"> 1172</span>&#160;        }</div>
+<div class="line"><a name="l01173"></a><span class="lineno"> 1173</span>&#160;        <span class="keywordflow">switch</span> (strategy) {</div>
+<div class="line"><a name="l01174"></a><span class="lineno"> 1174</span>&#160;          <span class="keywordflow">case</span> 0:</div>
+<div class="line"><a name="l01175"></a><span class="lineno"> 1175</span>&#160;            <span class="comment">// do nothing</span></div>
+<div class="line"><a name="l01176"></a><span class="lineno"> 1176</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01177"></a><span class="lineno"> 1177</span>&#160;          <span class="keywordflow">case</span> 1:</div>
+<div class="line"><a name="l01178"></a><span class="lineno"> 1178</span>&#160;            <span class="comment">// insert one single global NPhasedX</span></div>
+<div class="line"><a name="l01179"></a><span class="lineno"> 1179</span>&#160;            <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(curr_qubits.size() &gt; 0);</div>
+<div class="line"><a name="l01180"></a><span class="lineno"> 1180</span>&#160;            frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#a56596bf9d19e59e7df5b578290f54a56">insert_1_phasedx</a>(*(curr_qubits.begin()));</div>
+<div class="line"><a name="l01181"></a><span class="lineno"> 1181</span>&#160;            success = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l01182"></a><span class="lineno"> 1182</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01183"></a><span class="lineno"> 1183</span>&#160;          <span class="keywordflow">case</span> 2:</div>
+<div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160;            <span class="comment">// insert two global NPhasedX</span></div>
+<div class="line"><a name="l01185"></a><span class="lineno"> 1185</span>&#160;            frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#afd180925218f0f8d7b83c642ccd9df98">insert_2_phasedx</a>();</div>
+<div class="line"><a name="l01186"></a><span class="lineno"> 1186</span>&#160;            success = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01188"></a><span class="lineno"> 1188</span>&#160;          <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l01189"></a><span class="lineno"> 1189</span>&#160;            <span class="keywordflow">throw</span> <a class="code" href="classtket_1_1NotValid.html">NotValid</a>(<span class="stringliteral">&quot;Invalid strategy in replace_non_global_phasedx&quot;</span>);</div>
+<div class="line"><a name="l01190"></a><span class="lineno"> 1190</span>&#160;        }</div>
 <div class="line"><a name="l01191"></a><span class="lineno"> 1191</span>&#160;      }</div>
-<div class="line"><a name="l01192"></a><span class="lineno"> 1192</span>&#160;    }</div>
-<div class="line"><a name="l01193"></a><span class="lineno"> 1193</span>&#160;    <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#a9d6dc99c6ce9cecd76d5cfc589ba1b10">is_finished</a>());</div>
-<div class="line"><a name="l01194"></a><span class="lineno"> 1194</span>&#160;    <span class="keywordflow">return</span> success;</div>
-<div class="line"><a name="l01195"></a><span class="lineno"> 1195</span>&#160;  });</div>
-<div class="line"><a name="l01196"></a><span class="lineno"> 1196</span>&#160;}</div>
-<div class="line"><a name="l01197"></a><span class="lineno"> 1197</span>&#160; </div>
-<div class="line"><a name="l01198"></a><span class="lineno"> 1198</span>&#160;<span class="comment">// The number of distinct beta angles in `gates`.</span></div>
-<div class="line"><a name="l01199"></a><span class="lineno"> 1199</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l01200"></a><span class="lineno"> 1200</span>&#160;<span class="comment">// Handles symbolic angles by trying to evaluate them, and otherwise performing</span></div>
-<div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;<span class="comment">// pairwise equivalence comparisons between expressions.</span></div>
-<div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160;<span class="keywordtype">unsigned</span> n_distinct_beta(<span class="keyword">const</span> <a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ, <span class="keyword">const</span> <a class="code" href="namespacetket_1_1Transforms.html#a983092bd8e2ff2858f6b1c5e35198dd9">OptVertexVec</a> &amp;gates) {</div>
-<div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160;  std::set&lt;double&gt; vals;</div>
-<div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160;  std::vector&lt;Expr&gt; non_vals;</div>
-<div class="line"><a name="l01205"></a><span class="lineno"> 1205</span>&#160; </div>
-<div class="line"><a name="l01206"></a><span class="lineno"> 1206</span>&#160;  <span class="comment">// split evaluatable angles from unevaluatable</span></div>
-<div class="line"><a name="l01207"></a><span class="lineno"> 1207</span>&#160;  <span class="keywordflow">for</span> (<a class="code" href="namespacetket_1_1Transforms.html#a1a5e9c920e62f66cdb88ed77d975917f">OptVertex</a> v : gates) {</div>
-<div class="line"><a name="l01208"></a><span class="lineno"> 1208</span>&#160;    <span class="keywordflow">if</span> (v) {</div>
-<div class="line"><a name="l01209"></a><span class="lineno"> 1209</span>&#160;      <a class="code" href="namespacetket.html#a6817cd1c8a5630b406c86a59173edd21">Expr</a> angle = circ.<a class="code" href="classtket_1_1Circuit.html#a15fd2bc465a81f45f79171d50590a520">get_Op_ptr_from_Vertex</a>(*v)-&gt;get_params()[0];</div>
-<div class="line"><a name="l01210"></a><span class="lineno"> 1210</span>&#160;      std::optional&lt;double&gt; eval = <a class="code" href="namespacetket.html#ae9f9aa5cee9cf61bba2c5ca5bd4b0dea">eval_expr_mod</a>(angle, 4);</div>
-<div class="line"><a name="l01211"></a><span class="lineno"> 1211</span>&#160;      <span class="keywordflow">if</span> (eval) {</div>
-<div class="line"><a name="l01212"></a><span class="lineno"> 1212</span>&#160;        vals.insert(*eval);</div>
-<div class="line"><a name="l01213"></a><span class="lineno"> 1213</span>&#160;      } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l01214"></a><span class="lineno"> 1214</span>&#160;        non_vals.push_back(angle);</div>
-<div class="line"><a name="l01215"></a><span class="lineno"> 1215</span>&#160;      }</div>
-<div class="line"><a name="l01216"></a><span class="lineno"> 1216</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l01217"></a><span class="lineno"> 1217</span>&#160;      vals.insert(0.);</div>
-<div class="line"><a name="l01218"></a><span class="lineno"> 1218</span>&#160;    }</div>
-<div class="line"><a name="l01219"></a><span class="lineno"> 1219</span>&#160;  }</div>
-<div class="line"><a name="l01220"></a><span class="lineno"> 1220</span>&#160; </div>
-<div class="line"><a name="l01221"></a><span class="lineno"> 1221</span>&#160;  <span class="keywordtype">unsigned</span> n_distinct = vals.size();</div>
-<div class="line"><a name="l01222"></a><span class="lineno"> 1222</span>&#160; </div>
-<div class="line"><a name="l01223"></a><span class="lineno"> 1223</span>&#160;  <span class="comment">// for unevaluatable angles, perform pairwise equivalence checks</span></div>
-<div class="line"><a name="l01224"></a><span class="lineno"> 1224</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; non_vals.size(); ++i) {</div>
-<div class="line"><a name="l01225"></a><span class="lineno"> 1225</span>&#160;    <span class="keywordtype">bool</span> is_unique = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l01226"></a><span class="lineno"> 1226</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = i + 1; j &lt; non_vals.size(); ++j) {</div>
-<div class="line"><a name="l01227"></a><span class="lineno"> 1227</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="namespacetket.html#ad278436c77c104f3f9b1df4407eed2ae">equiv_expr</a>(non_vals[i], non_vals[j])) {</div>
-<div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;        is_unique = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01230"></a><span class="lineno"> 1230</span>&#160;      }</div>
-<div class="line"><a name="l01231"></a><span class="lineno"> 1231</span>&#160;    }</div>
-<div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160;    <span class="keywordflow">if</span> (is_unique) {</div>
-<div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;      ++n_distinct;</div>
-<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;    }</div>
-<div class="line"><a name="l01235"></a><span class="lineno"> 1235</span>&#160;  }</div>
-<div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;  <span class="keywordflow">return</span> n_distinct;</div>
-<div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160;}</div>
-<div class="line"><a name="l01238"></a><span class="lineno"> 1238</span>&#160; </div>
-<div class="line"><a name="l01239"></a><span class="lineno"> 1239</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l01240"></a><span class="lineno"><a class="line" href="namespacetket_1_1Transforms.html#ad126629a6f64acb20d3f23db96aaa039"> 1240</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacetket_1_1Transforms.html#ad126629a6f64acb20d3f23db96aaa039">all_equal</a>(<span class="keyword">const</span> std::vector&lt;T&gt; &amp;vs) {</div>
-<div class="line"><a name="l01241"></a><span class="lineno"> 1241</span>&#160;  <span class="keywordflow">if</span> (vs.empty()) {</div>
-<div class="line"><a name="l01242"></a><span class="lineno"> 1242</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l01243"></a><span class="lineno"> 1243</span>&#160;  }</div>
-<div class="line"><a name="l01244"></a><span class="lineno"> 1244</span>&#160;  <a class="code" href="GateUnitaryMatrixFixedMatrices_8cpp.html#afdffb91c41fcbf6d0bc8de4f6cf62626">T</a> front = vs.front();</div>
-<div class="line"><a name="l01245"></a><span class="lineno"> 1245</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> v : vs) {</div>
-<div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;    <span class="keywordflow">if</span> (front != v) {</div>
-<div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l01248"></a><span class="lineno"> 1248</span>&#160;    }</div>
-<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;  }</div>
-<div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l01251"></a><span class="lineno"> 1251</span>&#160;}</div>
-<div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160; </div>
-<div class="line"><a name="l01253"></a><span class="lineno"> 1253</span>&#160;}  <span class="comment">// namespace Transforms</span></div>
-<div class="line"><a name="l01254"></a><span class="lineno"> 1254</span>&#160; </div>
-<div class="line"><a name="l01255"></a><span class="lineno"> 1255</span>&#160;}  <span class="comment">// namespace tket</span></div>
+<div class="line"><a name="l01192"></a><span class="lineno"> 1192</span>&#160;      <span class="keywordflow">if</span> (v) {</div>
+<div class="line"><a name="l01193"></a><span class="lineno"> 1193</span>&#160;        frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#a1f347741f4a20750fee928d45323f099">next_multiqb</a>(*v);</div>
+<div class="line"><a name="l01194"></a><span class="lineno"> 1194</span>&#160;      }</div>
+<div class="line"><a name="l01195"></a><span class="lineno"> 1195</span>&#160;    }</div>
+<div class="line"><a name="l01196"></a><span class="lineno"> 1196</span>&#160;    <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#a9d6dc99c6ce9cecd76d5cfc589ba1b10">is_finished</a>());</div>
+<div class="line"><a name="l01197"></a><span class="lineno"> 1197</span>&#160;    <span class="keywordflow">return</span> success;</div>
+<div class="line"><a name="l01198"></a><span class="lineno"> 1198</span>&#160;  });</div>
+<div class="line"><a name="l01199"></a><span class="lineno"> 1199</span>&#160;}</div>
+<div class="line"><a name="l01200"></a><span class="lineno"> 1200</span>&#160; </div>
+<div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;<span class="comment">// The number of distinct beta angles in `gates`.</span></div>
+<div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160;<span class="comment">// Performs O(n^2) pairwise equivalence comparisons between expressions to</span></div>
+<div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160;<span class="comment">// handle symbolic variables and floating point errors</span></div>
+<div class="line"><a name="l01205"></a><span class="lineno"> 1205</span>&#160;<span class="keywordtype">unsigned</span> n_distinct_beta(<span class="keyword">const</span> <a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ, <span class="keyword">const</span> <a class="code" href="namespacetket_1_1Transforms.html#a983092bd8e2ff2858f6b1c5e35198dd9">OptVertexVec</a> &amp;gates) {</div>
+<div class="line"><a name="l01206"></a><span class="lineno"> 1206</span>&#160;  std::vector&lt;Expr&gt; vals;</div>
+<div class="line"><a name="l01207"></a><span class="lineno"> 1207</span>&#160; </div>
+<div class="line"><a name="l01208"></a><span class="lineno"> 1208</span>&#160;  <span class="comment">// collect all epxressions</span></div>
+<div class="line"><a name="l01209"></a><span class="lineno"> 1209</span>&#160;  <span class="keywordflow">for</span> (<a class="code" href="namespacetket_1_1Transforms.html#a1a5e9c920e62f66cdb88ed77d975917f">OptVertex</a> v : gates) {</div>
+<div class="line"><a name="l01210"></a><span class="lineno"> 1210</span>&#160;    <span class="keywordflow">if</span> (v) {</div>
+<div class="line"><a name="l01211"></a><span class="lineno"> 1211</span>&#160;      <a class="code" href="namespacetket.html#a6817cd1c8a5630b406c86a59173edd21">Expr</a> angle = circ.<a class="code" href="classtket_1_1Circuit.html#a15fd2bc465a81f45f79171d50590a520">get_Op_ptr_from_Vertex</a>(*v)-&gt;get_params()[0];</div>
+<div class="line"><a name="l01212"></a><span class="lineno"> 1212</span>&#160;      vals.push_back(angle);</div>
+<div class="line"><a name="l01213"></a><span class="lineno"> 1213</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l01214"></a><span class="lineno"> 1214</span>&#160;      vals.push_back(0.);</div>
+<div class="line"><a name="l01215"></a><span class="lineno"> 1215</span>&#160;    }</div>
+<div class="line"><a name="l01216"></a><span class="lineno"> 1216</span>&#160;  }</div>
+<div class="line"><a name="l01217"></a><span class="lineno"> 1217</span>&#160; </div>
+<div class="line"><a name="l01218"></a><span class="lineno"> 1218</span>&#160;  <span class="keywordtype">unsigned</span> n_distinct = 0;</div>
+<div class="line"><a name="l01219"></a><span class="lineno"> 1219</span>&#160; </div>
+<div class="line"><a name="l01220"></a><span class="lineno"> 1220</span>&#160;  <span class="comment">// perform pairwise equivalence checks</span></div>
+<div class="line"><a name="l01221"></a><span class="lineno"> 1221</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; vals.size(); ++i) {</div>
+<div class="line"><a name="l01222"></a><span class="lineno"> 1222</span>&#160;    <span class="keywordtype">bool</span> is_unique = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l01223"></a><span class="lineno"> 1223</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = i + 1; j &lt; vals.size(); ++j) {</div>
+<div class="line"><a name="l01224"></a><span class="lineno"> 1224</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="namespacetket.html#ad278436c77c104f3f9b1df4407eed2ae">equiv_expr</a>(vals[i], vals[j])) {</div>
+<div class="line"><a name="l01225"></a><span class="lineno"> 1225</span>&#160;        is_unique = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l01226"></a><span class="lineno"> 1226</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01227"></a><span class="lineno"> 1227</span>&#160;      }</div>
+<div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;    }</div>
+<div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160;    n_distinct += is_unique;</div>
+<div class="line"><a name="l01230"></a><span class="lineno"> 1230</span>&#160;  }</div>
+<div class="line"><a name="l01231"></a><span class="lineno"> 1231</span>&#160;  <span class="keywordflow">return</span> n_distinct;</div>
+<div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160;}</div>
+<div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160; </div>
+<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l01235"></a><span class="lineno"><a class="line" href="namespacetket_1_1Transforms.html#ad126629a6f64acb20d3f23db96aaa039"> 1235</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacetket_1_1Transforms.html#ad126629a6f64acb20d3f23db96aaa039">all_equal</a>(<span class="keyword">const</span> std::vector&lt;T&gt; &amp;vs) {</div>
+<div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;  <span class="keywordflow">if</span> (vs.empty()) {</div>
+<div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l01238"></a><span class="lineno"> 1238</span>&#160;  }</div>
+<div class="line"><a name="l01239"></a><span class="lineno"> 1239</span>&#160;  <a class="code" href="GateUnitaryMatrixFixedMatrices_8cpp.html#afdffb91c41fcbf6d0bc8de4f6cf62626">T</a> front = vs.front();</div>
+<div class="line"><a name="l01240"></a><span class="lineno"> 1240</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> v : vs) {</div>
+<div class="line"><a name="l01241"></a><span class="lineno"> 1241</span>&#160;    <span class="keywordflow">if</span> (front != v) {</div>
+<div class="line"><a name="l01242"></a><span class="lineno"> 1242</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l01243"></a><span class="lineno"> 1243</span>&#160;    }</div>
+<div class="line"><a name="l01244"></a><span class="lineno"> 1244</span>&#160;  }</div>
+<div class="line"><a name="l01245"></a><span class="lineno"> 1245</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;}</div>
+<div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160; </div>
+<div class="line"><a name="l01248"></a><span class="lineno"> 1248</span>&#160;}  <span class="comment">// namespace Transforms</span></div>
+<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160; </div>
+<div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;}  <span class="comment">// namespace tket</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclasstket_1_1Circuit_html_a7ac875c3a725b691b6ec1fc5b8613a2f"><div class="ttname"><a href="classtket_1_1Circuit.html#a7ac875c3a725b691b6ec1fc5b8613a2f">tket::Circuit::substitute_all</a></div><div class="ttdeci">bool substitute_all(const Circuit &amp;to_insert, const Op_ptr op)</div><div class="ttdoc">Substitute all vertices matching the given op with the given circuit.</div><div class="ttdef"><b>Definition:</b> <a href="macro__manipulation_8cpp_source.html#l00499">macro_manipulation.cpp:499</a></div></div>
 <div class="ttc" id="aclasstket_1_1Transforms_1_1PhasedXFrontier_html_afd180925218f0f8d7b83c642ccd9df98"><div class="ttname"><a href="classtket_1_1Transforms_1_1PhasedXFrontier.html#afd180925218f0f8d7b83c642ccd9df98">tket::Transforms::PhasedXFrontier::insert_2_phasedx</a></div><div class="ttdeci">void insert_2_phasedx()</div><div class="ttdoc">Insert two global NPhasedX gates at the current frontier.</div><div class="ttdef"><b>Definition:</b> <a href="PhasedXFrontier_8cpp_source.html#l00376">PhasedXFrontier.cpp:376</a></div></div>
@@ -1381,7 +1376,7 @@ $(function() {
 <div class="ttc" id="aclasstket_1_1Circuit_html"><div class="ttname"><a href="classtket_1_1Circuit.html">tket::Circuit</a></div><div class="ttdoc">A circuit.</div><div class="ttdef"><b>Definition:</b> <a href="Circuit_8hpp_source.html#l00247">Circuit.hpp:247</a></div></div>
 <div class="ttc" id="anamespacetket_html_a13e81344da4794f2648eb9a7b286fcf3a605943552629c6e31b20ee3733694927"><div class="ttname"><a href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a605943552629c6e31b20ee3733694927">tket::OpType::TK2</a></div><div class="ttdeci">@ TK2</div></div>
 <div class="ttc" id="anamespacetket_1_1Transforms_html_a0822ee75b1d687db1fbf6546dcd705c8"><div class="ttname"><a href="namespacetket_1_1Transforms.html#a0822ee75b1d687db1fbf6546dcd705c8">tket::Transforms::compose_phase_poly_boxes</a></div><div class="ttdeci">Transform compose_phase_poly_boxes(const unsigned min_size)</div><div class="ttdoc">Replaces all CX+Rz sub circuits by PhasePolyBox Expects: only CX + Rz + H (and measure + reset + coll...</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00782">Decomposition.cpp:782</a></div></div>
-<div class="ttc" id="anamespacetket_1_1Transforms_html_ad126629a6f64acb20d3f23db96aaa039"><div class="ttname"><a href="namespacetket_1_1Transforms.html#ad126629a6f64acb20d3f23db96aaa039">tket::Transforms::all_equal</a></div><div class="ttdeci">bool all_equal(const std::vector&lt; T &gt; &amp;vs)</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l01240">Decomposition.cpp:1240</a></div></div>
+<div class="ttc" id="anamespacetket_1_1Transforms_html_ad126629a6f64acb20d3f23db96aaa039"><div class="ttname"><a href="namespacetket_1_1Transforms.html#ad126629a6f64acb20d3f23db96aaa039">tket::Transforms::all_equal</a></div><div class="ttdeci">bool all_equal(const std::vector&lt; T &gt; &amp;vs)</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l01235">Decomposition.cpp:1235</a></div></div>
 <div class="ttc" id="anamespacetket_html_a13e81344da4794f2648eb9a7b286fcf3a3093b0af32d5a67378a948d9e90ac005"><div class="ttname"><a href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a3093b0af32d5a67378a948d9e90ac005">tket::OpType::ZZPhase</a></div><div class="ttdeci">@ ZZPhase</div></div>
 <div class="ttc" id="anamespacetket_html_a9cdfe3f23ec01d10a956474db74c9fc1"><div class="ttname"><a href="namespacetket.html#a9cdfe3f23ec01d10a956474db74c9fc1">tket::EPS</a></div><div class="ttdeci">constexpr double EPS</div><div class="ttdoc">Default tolerance for floating-point comparisons.</div><div class="ttdef"><b>Definition:</b> <a href="Constants_8hpp_source.html#l00038">Constants.hpp:38</a></div></div>
 <div class="ttc" id="aclasstket_1_1Circuit_html_a09fc52c1c4dd3a2fe49ff29085189d85"><div class="ttname"><a href="classtket_1_1Circuit.html#a09fc52c1c4dd3a2fe49ff29085189d85">tket::Circuit::get_predecessors</a></div><div class="ttdeci">VertexVec get_predecessors(const Vertex &amp;vert) const</div><div class="ttdef"><b>Definition:</b> <a href="setters__and__getters_8cpp_source.html#l00314">setters_and_getters.cpp:314</a></div></div>
