@@ -135,9 +135,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab1ac215a6bfe400ad4be5cad77b4b99c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacetket.html#aa08fc2d553413efa43b68fa1269fba77">unit_map_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtket_1_1MappingFrontier.html#ab1ac215a6bfe400ad4be5cad77b4b99c">get_default_to_linear_boundary_unit_map</a> () const</td></tr>
 <tr class="memdesc:ab1ac215a6bfe400ad4be5cad77b4b99c"><td class="mdescLeft">&#160;</td><td class="mdescRight">get_default_to_linear_boundary_unit_map subcircuit circuits created with default q register method returns map between default q register and physical qubit permutation at frontier used for circuit.rename_units  <a href="structtket_1_1MappingFrontier.html#ab1ac215a6bfe400ad4be5cad77b4b99c">More...</a><br /></td></tr>
 <tr class="separator:ab1ac215a6bfe400ad4be5cad77b4b99c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe4f9579d3287a67832684123470a35d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtket_1_1MappingFrontier.html#afe4f9579d3287a67832684123470a35d">add_swap</a> (const <a class="el" href="classtket_1_1UnitID.html">UnitID</a> &amp;uid_0, const <a class="el" href="classtket_1_1UnitID.html">UnitID</a> &amp;uid_1)</td></tr>
-<tr class="memdesc:afe4f9579d3287a67832684123470a35d"><td class="mdescLeft">&#160;</td><td class="mdescRight">add_swap Inserts an <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a46fc23bc4e4d57e5469a39658a6dd3e8" title="Swap two qubits.">OpType::SWAP</a> gate into the uid_0 and uid_1 edges held in linear_boundary.  <a href="structtket_1_1MappingFrontier.html#afe4f9579d3287a67832684123470a35d">More...</a><br /></td></tr>
-<tr class="separator:afe4f9579d3287a67832684123470a35d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17078bd5fdb3f6b370db5f0d59361351"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtket_1_1MappingFrontier.html#a17078bd5fdb3f6b370db5f0d59361351">add_swap</a> (const <a class="el" href="classtket_1_1UnitID.html">UnitID</a> &amp;uid_0, const <a class="el" href="classtket_1_1UnitID.html">UnitID</a> &amp;uid_1)</td></tr>
+<tr class="memdesc:a17078bd5fdb3f6b370db5f0d59361351"><td class="mdescLeft">&#160;</td><td class="mdescRight">add_swap Inserts an <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a46fc23bc4e4d57e5469a39658a6dd3e8" title="Swap two qubits.">OpType::SWAP</a> gate into the uid_0 and uid_1 edges held in linear_boundary.  <a href="structtket_1_1MappingFrontier.html#a17078bd5fdb3f6b370db5f0d59361351">More...</a><br /></td></tr>
+<tr class="separator:a17078bd5fdb3f6b370db5f0d59361351"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79935f5f467750f240b5adc29cc63a23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtket_1_1MappingFrontier.html#a79935f5f467750f240b5adc29cc63a23">add_bridge</a> (const <a class="el" href="classtket_1_1UnitID.html">UnitID</a> &amp;control, const <a class="el" href="classtket_1_1UnitID.html">UnitID</a> &amp;central, const <a class="el" href="classtket_1_1UnitID.html">UnitID</a> &amp;target)</td></tr>
 <tr class="memdesc:a79935f5f467750f240b5adc29cc63a23"><td class="mdescLeft">&#160;</td><td class="mdescRight">add_bridge Inserts an <a class="el" href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3aa75a1789547188e39e2e344c286d2b62" title="Three-qubit gate that swaps the first and third qubits.">OpType::BRIDGE</a> gate into edges relevant to passed <a class="el" href="classtket_1_1UnitID.html" title="Location holding a bit or qubit of information.">UnitID</a>.  <a href="structtket_1_1MappingFrontier.html#a79935f5f467750f240b5adc29cc63a23">More...</a><br /></td></tr>
 <tr class="separator:a79935f5f467750f240b5adc29cc63a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -278,7 +278,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="MappingFrontier_8cpp_source.html#l00685">685</a> of file <a class="el" href="MappingFrontier_8cpp_source.html">MappingFrontier.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MappingFrontier_8cpp_source.html#l00698">698</a> of file <a class="el" href="MappingFrontier_8cpp_source.html">MappingFrontier.cpp</a>.</p>
 
 </div>
 </div>
@@ -324,18 +324,18 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="MappingFrontier_8cpp_source.html#l00648">648</a> of file <a class="el" href="MappingFrontier_8cpp_source.html">MappingFrontier.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MappingFrontier_8cpp_source.html#l00661">661</a> of file <a class="el" href="MappingFrontier_8cpp_source.html">MappingFrontier.cpp</a>.</p>
 
 </div>
 </div>
-<a id="afe4f9579d3287a67832684123470a35d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe4f9579d3287a67832684123470a35d">&#9670;&nbsp;</a></span>add_swap()</h2>
+<a id="a17078bd5fdb3f6b370db5f0d59361351"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17078bd5fdb3f6b370db5f0d59361351">&#9670;&nbsp;</a></span>add_swap()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void tket::MappingFrontier::add_swap </td>
+          <td class="memname">bool tket::MappingFrontier::add_swap </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classtket_1_1UnitID.html">UnitID</a> &amp;&#160;</td>
           <td class="paramname"><em>uid_0</em>, </td>
@@ -364,6 +364,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>true if SWAP added </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="MappingFrontier_8cpp_source.html#l00570">570</a> of file <a class="el" href="MappingFrontier_8cpp_source.html">MappingFrontier.cpp</a>.</p>
 
@@ -550,7 +551,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="MappingFrontier_8cpp_source.html#l00701">701</a> of file <a class="el" href="MappingFrontier_8cpp_source.html">MappingFrontier.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MappingFrontier_8cpp_source.html#l00714">714</a> of file <a class="el" href="MappingFrontier_8cpp_source.html">MappingFrontier.cpp</a>.</p>
 
 </div>
 </div>
@@ -731,7 +732,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="MappingFrontier_8cpp_source.html#l00776">776</a> of file <a class="el" href="MappingFrontier_8cpp_source.html">MappingFrontier.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MappingFrontier_8cpp_source.html#l00789">789</a> of file <a class="el" href="MappingFrontier_8cpp_source.html">MappingFrontier.cpp</a>.</p>
 
 </div>
 </div>
