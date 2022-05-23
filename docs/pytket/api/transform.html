@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytket.transform &mdash; pytket 1.2.1 documentation</title>
+  <title>pytket.transform &mdash; pytket 1.2.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -215,6 +215,12 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pytket.transform.Transform.DecomposeNPhasedX">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DecomposeNPhasedX</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.transform.Transform" title="pytket.transform.Transform"><span class="pre">pytket.transform.Transform</span></a></span></span><a class="headerlink" href="#pytket.transform.Transform.DecomposeNPhasedX" title="Permalink to this definition"></a></dt>
+<dd><p>Decompose NPhasedX gates into single-qubit PhasedX gates.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pytket.transform.Transform.DecomposeSWAP">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DecomposeSWAP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="circuit_class.html#pytket.circuit.Circuit" title="pytket.circuit.Circuit"><span class="pre">pytket.circuit.Circuit</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.transform.Transform" title="pytket.transform.Transform"><span class="pre">pytket.transform.Transform</span></a></span></span><a class="headerlink" href="#pytket.transform.Transform.DecomposeSWAP" title="Permalink to this definition"></a></dt>
 <dd><p>Decomposes all SWAP gates to provided replacement circuit.</p>
@@ -238,11 +244,16 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.transform.Transform.GlobalisePhasedX">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GlobalisePhasedX</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.transform.Transform" title="pytket.transform.Transform"><span class="pre">pytket.transform.Transform</span></a></span></span><a class="headerlink" href="#pytket.transform.Transform.GlobalisePhasedX" title="Permalink to this definition"></a></dt>
-<dd><p>Replaces every occurence of PhasedX or NPhasedX gates with NPhasedX gates acting on all qubits, and correcting rotation gates.</p>
-<p>This is achieved using the identity
-PhX(α, β) = PhX(-1/2, β + 1/2) Rz(α) PhX(1/2, β + 1/2)
-(circuit order).</p>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GlobalisePhasedX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">squash</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.transform.Transform" title="pytket.transform.Transform"><span class="pre">pytket.transform.Transform</span></a></span></span><a class="headerlink" href="#pytket.transform.Transform.GlobalisePhasedX" title="Permalink to this definition"></a></dt>
+<dd><p>Turns all PhasedX and NPhasedX gates into global gates</p>
+<p>Replaces any PhasedX gates with global NPhasedX gates. By default, this transform will squash all single-qubit gates to PhasedX and Rz gates before proceeding further. Existing non-global NPhasedX will not be preserved. This is the recommended setting for best performance. If squashing is disabled, each non-global PhasedX gate will be replaced with two global NPhasedX, but any other gates will be left untouched.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>squash</strong> – Whether to squash the circuit in pre-processing (default: true).</p>
+</dd>
+</dl>
+<p>If squash=true (default), the <cite>GlobalisePhasedX().apply</cite> method will always returns true. For squash=false, <cite>apply()</cite> will return true if the circuit was changed and false otherwise.</p>
+<p>It is not recommended to use this transformation with symbolic expressions, as in certain cases a blow-up in symbolic expression sizes may occur.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -300,7 +311,7 @@ PhX(α, β) = PhX(-1/2, β + 1/2) Rz(α) PhX(1/2, β + 1/2)
 <dl class="py method">
 <dt class="sig sig-object py" id="pytket.transform.Transform.RebaseToCliffordSingles">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RebaseToCliffordSingles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.transform.Transform" title="pytket.transform.Transform"><span class="pre">pytket.transform.Transform</span></a></span></span><a class="headerlink" href="#pytket.transform.Transform.RebaseToCliffordSingles" title="Permalink to this definition"></a></dt>
-<dd><p>Identify Clifford-angle rotations (from U1, U2, U3, Rx, Ry, Rz, TK1, PhasedX), replacing them with Z, X, S, V gates. Any non-Clifford rotations will stay as they are.</p>
+<dd><p>Replace all single-qubit unitary gates outside the set {Z, X, S, V} that are recognized as Clifford operations with an equivalent sequence of gates from that set.</p>
 </dd></dl>
 
 <dl class="py method">

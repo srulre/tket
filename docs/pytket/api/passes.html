@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytket.passes &mdash; pytket 1.2.1 documentation</title>
+  <title>pytket.passes &mdash; pytket 1.2.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -563,8 +563,16 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pytket.passes.GlobalisePhasedX">
-<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">GlobalisePhasedX</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.GlobalisePhasedX" title="Permalink to this definition"></a></dt>
-<dd><p>Replaces every occurence of PhasedX or NPhasedX gates with NPhasedX gates acting on all qubits, and correcting rotation gates, so that the GlobalPhasedXPredicate is satisfied.</p>
+<span class="sig-prename descclassname"><span class="pre">pytket.passes.</span></span><span class="sig-name descname"><span class="pre">GlobalisePhasedX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">squash</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytket.passes.BasePass" title="pytket.passes.BasePass"><span class="pre">pytket.passes.BasePass</span></a></span></span><a class="headerlink" href="#pytket.passes.GlobalisePhasedX" title="Permalink to this definition"></a></dt>
+<dd><p>Turns all PhasedX and NPhasedX gates into global gates</p>
+<p>Replaces any PhasedX gates with global NPhasedX gates. By default, this transform will squash all single-qubit gates to PhasedX and Rz gates before proceeding further. Existing non-global NPhasedX will not be preserved. This is the recommended setting for best performance. If squashing is disabled, each non-global PhasedX gate will be replaced with two global NPhasedX, but any other gates will be left untouched.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>squash</strong> – Whether to squash the circuit in pre-processing (default: true).</p>
+</dd>
+</dl>
+<p>If squash=true (default), the <cite>GlobalisePhasedX().apply</cite> method will always return true. For squash=false, <cite>apply()</cite> will return true if the circuit was changed and false otherwise.</p>
+<p>It is not recommended to use this pass with symbolic expressions, as in certain cases a blow-up in symbolic expression sizes may occur.</p>
 </dd></dl>
 
 <dl class="py function">
