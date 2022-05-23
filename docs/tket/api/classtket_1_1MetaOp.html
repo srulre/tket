@@ -120,6 +120,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a20df7381d08d6f95efbf6100ef75f576"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacetket.html#ac9cc41e0b406b456fabc9ae1e4517ebd">op_signature_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1MetaOp.html#a20df7381d08d6f95efbf6100ef75f576">get_signature</a> () const override</td></tr>
 <tr class="memdesc:a20df7381d08d6f95efbf6100ef75f576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector specifying type of data for each port on op.  <a href="classtket_1_1MetaOp.html#a20df7381d08d6f95efbf6100ef75f576">More...</a><br /></td></tr>
 <tr class="separator:a20df7381d08d6f95efbf6100ef75f576"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fa139733fd6e4dee833807cdfbf5717"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1MetaOp.html#a5fa139733fd6e4dee833807cdfbf5717">is_clifford</a> () const override</td></tr>
+<tr class="memdesc:a5fa139733fd6e4dee833807cdfbf5717"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether operation is in the Clifford group.  <a href="classtket_1_1MetaOp.html#a5fa139733fd6e4dee833807cdfbf5717">More...</a><br /></td></tr>
+<tr class="separator:a5fa139733fd6e4dee833807cdfbf5717"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a761baafcd4b045b6a50d0de09ff3c5ae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1MetaOp.html#a761baafcd4b045b6a50d0de09ff3c5ae">~MetaOp</a> () override</td></tr>
 <tr class="separator:a761baafcd4b045b6a50d0de09ff3c5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60ac0c444fdb2beed250caf055a1c239"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1MetaOp.html#a60ac0c444fdb2beed250caf055a1c239">is_equal</a> (const <a class="el" href="classtket_1_1Op.html">Op</a> &amp;other) const override</td></tr>
@@ -260,7 +263,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MetaOp_8cpp_source.html#l00064">64</a> of file <a class="el" href="MetaOp_8cpp_source.html">MetaOp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MetaOp_8cpp_source.html#l00066">66</a> of file <a class="el" href="MetaOp_8cpp_source.html">MetaOp.cpp</a>.</p>
 
 </div>
 </div>
@@ -287,7 +290,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MetaOp_8cpp_source.html#l00071">71</a> of file <a class="el" href="MetaOp_8cpp_source.html">MetaOp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MetaOp_8cpp_source.html#l00073">73</a> of file <a class="el" href="MetaOp_8cpp_source.html">MetaOp.cpp</a>.</p>
 
 </div>
 </div>
@@ -382,6 +385,44 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a5fa139733fd6e4dee833807cdfbf5717"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fa139733fd6e4dee833807cdfbf5717">&#9670;&nbsp;</a></span>is_clifford()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tket::MetaOp::is_clifford </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Test whether operation is in the Clifford group. </p>
+<p>A return value of true guarantees that the operation is Clifford. (Note that the converse is not the case: some Clifford operations may not be detected as such.)</p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>operation is in the Clifford group </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classtket_1_1Op.html#afa315c1326624b437013bd990be146bd">tket::Op</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="MetaOp_8cpp_source.html#l00064">64</a> of file <a class="el" href="MetaOp_8cpp_source.html">MetaOp.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a60ac0c444fdb2beed250caf055a1c239"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a60ac0c444fdb2beed250caf055a1c239">&#9670;&nbsp;</a></span>is_equal()</h2>
 
@@ -410,7 +451,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#a1267ba5bf1c744782e6ff73cb7032da6">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="MetaOp_8cpp_source.html#l00066">66</a> of file <a class="el" href="MetaOp_8cpp_source.html">MetaOp.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MetaOp_8cpp_source.html#l00068">68</a> of file <a class="el" href="MetaOp_8cpp_source.html">MetaOp.cpp</a>.</p>
 
 </div>
 </div>

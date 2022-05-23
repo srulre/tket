@@ -149,6 +149,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7bd4affb15b40b0c24637c75bc42215a"><td class="memItemLeft" align="right" valign="top">std::optional&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Gate.html#a7bd4affb15b40b0c24637c75bc42215a">is_identity</a> () const override</td></tr>
 <tr class="memdesc:a7bd4affb15b40b0c24637c75bc42215a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether operation is identity up to a phase and return phase if so.  <a href="classtket_1_1Gate.html#a7bd4affb15b40b0c24637c75bc42215a">More...</a><br /></td></tr>
 <tr class="separator:a7bd4affb15b40b0c24637c75bc42215a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfa3f26f8a39613cef32f34cc44455d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Gate.html#adfa3f26f8a39613cef32f34cc44455d0">is_clifford</a> () const override</td></tr>
+<tr class="memdesc:adfa3f26f8a39613cef32f34cc44455d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether operation is in the Clifford group.  <a href="classtket_1_1Gate.html#adfa3f26f8a39613cef32f34cc44455d0">More...</a><br /></td></tr>
+<tr class="separator:adfa3f26f8a39613cef32f34cc44455d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae11edd0093980d96ec12d5da3bc6cb8a"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXcd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Gate.html#ae11edd0093980d96ec12d5da3bc6cb8a">get_unitary</a> () const override</td></tr>
 <tr class="memdesc:ae11edd0093980d96ec12d5da3bc6cb8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">If meaningful and implemented, return the numerical unitary matrix (in ILO-BE convention) which this <a class="el" href="classtket_1_1Op.html" title="Abstract class representing an operation type.">Op</a> represents.  <a href="classtket_1_1Gate.html#ae11edd0093980d96ec12d5da3bc6cb8a">More...</a><br /></td></tr>
 <tr class="separator:ae11edd0093980d96ec12d5da3bc6cb8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -221,7 +224,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Gate_8hpp_source.html#l00072">72</a> of file <a class="el" href="Gate_8hpp_source.html">Gate.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8hpp_source.html#l00073">73</a> of file <a class="el" href="Gate_8hpp_source.html">Gate.hpp</a>.</p>
 
 </div>
 </div>
@@ -257,7 +260,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00732">732</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00767">767</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -276,7 +279,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00742">742</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00777">777</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -332,7 +335,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#aff05ec43a07be6a5fda3fd68113cb0a5">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00663">663</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00698">698</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -384,7 +387,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#a7ea2e26493612bf27d0a65a1b8a8cf21">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00563">563</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00598">598</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -421,7 +424,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#a0184322dc89669726f8ddae2f5b8c005">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00031">31</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00034">34</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -449,7 +452,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00695">695</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00730">730</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -480,7 +483,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classtket_1_1Op.html#aaf39768595adfe922e0278dfed20ecf6">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00561">561</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00596">596</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -512,7 +515,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#aafca574024c45736ebd97193a507b7f5">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00418">418</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00453">453</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -544,7 +547,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#a02b86c2cff05e508700ad47c546fdf44">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00392">392</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00427">427</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -575,7 +578,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#ac4135b5708691d7eade13050359015cf">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00559">559</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00594">594</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -606,7 +609,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#a785df73a0d9ae54a994564d301bdc2eb">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00452">452</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00487">487</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -637,7 +640,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classtket_1_1Op.html#af064c3b97d9c69ab70d622a425bf353b">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00672">672</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00707">707</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -660,7 +663,7 @@ Additional Inherited Members</h2></td></tr>
 <p>This decomposition is in matrix-multiplication order, i.e. the reverse of circuit order.</p>
 <dl class="section return"><dt>Returns</dt><dd>a, b, c and a global phase </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00468">468</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00503">503</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -699,7 +702,45 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#a8036a6e71f1a9c064f692aedb654ddec">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00716">716</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00751">751</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+
+</div>
+</div>
+<a id="adfa3f26f8a39613cef32f34cc44455d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfa3f26f8a39613cef32f34cc44455d0">&#9670;&nbsp;</a></span>is_clifford()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tket::Gate::is_clifford </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Test whether operation is in the Clifford group. </p>
+<p>A return value of true guarantees that the operation is Clifford. (Note that the converse is not the case: some Clifford operations may not be detected as such.)</p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>operation is in the Clifford group </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classtket_1_1Op.html#afa315c1326624b437013bd990be146bd">tket::Op</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00395">395</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -731,7 +772,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#a1267ba5bf1c744782e6ff73cb7032da6">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00437">437</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00472">472</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -769,7 +810,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#aec40f952e682dad32f992efa6eb0cdc9">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00311">311</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00314">314</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -798,7 +839,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#a6496958fad861149e35162d6536b6b44">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00428">428</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00463">463</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -827,7 +868,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#a77ea214cee91f2366aa4ee3f2aabcd4f">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00680">680</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00715">715</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -866,7 +907,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classtket_1_1Op.html#a1e06f818450f001dd255c902dd06c172">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00266">266</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00269">269</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>
@@ -897,7 +938,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#ac1f550854b098bff3ebdb090c5687ab1">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00150">150</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Gate_8cpp_source.html#l00153">153</a> of file <a class="el" href="Gate_8cpp_source.html">Gate.cpp</a>.</p>
 
 </div>
 </div>

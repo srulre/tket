@@ -206,6 +206,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aec40f952e682dad32f992efa6eb0cdc9 inherit pub_methods_classtket_1_1Op"><td class="memItemLeft" align="right" valign="top">virtual std::optional&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Op.html#aec40f952e682dad32f992efa6eb0cdc9">is_identity</a> () const</td></tr>
 <tr class="memdesc:aec40f952e682dad32f992efa6eb0cdc9 inherit pub_methods_classtket_1_1Op"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether operation is identity up to a phase and return phase if so.  <a href="classtket_1_1Op.html#aec40f952e682dad32f992efa6eb0cdc9">More...</a><br /></td></tr>
 <tr class="separator:aec40f952e682dad32f992efa6eb0cdc9 inherit pub_methods_classtket_1_1Op"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa315c1326624b437013bd990be146bd inherit pub_methods_classtket_1_1Op"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Op.html#afa315c1326624b437013bd990be146bd">is_clifford</a> () const</td></tr>
+<tr class="memdesc:afa315c1326624b437013bd990be146bd inherit pub_methods_classtket_1_1Op"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether operation is in the Clifford group.  <a href="classtket_1_1Op.html#afa315c1326624b437013bd990be146bd">More...</a><br /></td></tr>
+<tr class="separator:afa315c1326624b437013bd990be146bd inherit pub_methods_classtket_1_1Op"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8036a6e71f1a9c064f692aedb654ddec inherit pub_methods_classtket_1_1Op"><td class="memItemLeft" align="right" valign="top">virtual Eigen::MatrixXcd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Op.html#a8036a6e71f1a9c064f692aedb654ddec">get_unitary</a> () const</td></tr>
 <tr class="memdesc:a8036a6e71f1a9c064f692aedb654ddec inherit pub_methods_classtket_1_1Op"><td class="mdescLeft">&#160;</td><td class="mdescRight">If meaningful and implemented, return the numerical unitary matrix (in ILO-BE convention) which this <a class="el" href="classtket_1_1Op.html" title="Abstract class representing an operation type.">Op</a> represents.  <a href="classtket_1_1Op.html#a8036a6e71f1a9c064f692aedb654ddec">More...</a><br /></td></tr>
 <tr class="separator:a8036a6e71f1a9c064f692aedb654ddec inherit pub_methods_classtket_1_1Op"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -257,7 +260,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Wraps another quantum op, adding control qubits. </p>
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8hpp_source.html#l00535">535</a> of file <a class="el" href="Boxes_8hpp_source.html">Boxes.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8hpp_source.html#l00543">543</a> of file <a class="el" href="Boxes_8hpp_source.html">Boxes.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8a47af198d3794d80588a19cc0cc76e3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8a47af198d3794d80588a19cc0cc76e3">&#9670;&nbsp;</a></span>QControlBox() <span class="overload">[1/3]</span></h2>
@@ -302,7 +305,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00306">306</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00335">335</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
 
 </div>
 </div>
@@ -324,7 +327,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Copy constructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00317">317</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00346">346</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
 
 </div>
 </div>
@@ -351,7 +354,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8hpp_source.html#l00550">550</a> of file <a class="el" href="Boxes_8hpp_source.html">Boxes.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8hpp_source.html#l00558">558</a> of file <a class="el" href="Boxes_8hpp_source.html">Boxes.hpp</a>.</p>
 
 </div>
 </div>
@@ -378,7 +381,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8hpp_source.html#l00580">580</a> of file <a class="el" href="Boxes_8hpp_source.html">Boxes.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8hpp_source.html#l00588">588</a> of file <a class="el" href="Boxes_8hpp_source.html">Boxes.hpp</a>.</p>
 
 </div>
 </div>
@@ -416,7 +419,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#a0184322dc89669726f8ddae2f5b8c005">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00355">355</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00384">384</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
 
 </div>
 </div>
@@ -447,7 +450,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classtket_1_1Op.html#aaf39768595adfe922e0278dfed20ecf6">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00329">329</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00358">358</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
 
 </div>
 </div>
@@ -475,7 +478,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00583">583</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00612">612</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
 
 </div>
 </div>
@@ -504,7 +507,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classtket_1_1Box.html#afa60507ad9bb7463edc3775ca8e908a1">tket::Box</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00345">345</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00374">374</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
 
 </div>
 </div>
@@ -536,7 +539,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#aafca574024c45736ebd97193a507b7f5">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00331">331</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00360">360</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
 
 </div>
 </div>
@@ -563,7 +566,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8hpp_source.html#l00572">572</a> of file <a class="el" href="Boxes_8hpp_source.html">Boxes.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8hpp_source.html#l00580">580</a> of file <a class="el" href="Boxes_8hpp_source.html">Boxes.hpp</a>.</p>
 
 </div>
 </div>
@@ -590,7 +593,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8hpp_source.html#l00571">571</a> of file <a class="el" href="Boxes_8hpp_source.html">Boxes.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8hpp_source.html#l00579">579</a> of file <a class="el" href="Boxes_8hpp_source.html">Boxes.hpp</a>.</p>
 
 </div>
 </div>
@@ -622,7 +625,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#a1267ba5bf1c744782e6ff73cb7032da6">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8hpp_source.html#l00560">560</a> of file <a class="el" href="Boxes_8hpp_source.html">Boxes.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8hpp_source.html#l00568">568</a> of file <a class="el" href="Boxes_8hpp_source.html">Boxes.hpp</a>.</p>
 
 </div>
 </div>
@@ -661,7 +664,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classtket_1_1Op.html#a1e06f818450f001dd255c902dd06c172">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00323">323</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00352">352</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
 
 </div>
 </div>
@@ -689,7 +692,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00575">575</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00604">604</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
 
 </div>
 </div>
@@ -720,7 +723,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classtket_1_1Op.html#ac1f550854b098bff3ebdb090c5687ab1">tket::Op</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00360">360</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Boxes_8cpp_source.html#l00389">389</a> of file <a class="el" href="Boxes_8cpp_source.html">Boxes.cpp</a>.</p>
 
 </div>
 </div>

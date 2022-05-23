@@ -152,64 +152,58 @@ $(function() {
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">// into ZZ gates Expects: CX, Rz Produces: ZZ, CX, Rz</span></div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#a490b106f2cfab609086f4873655b5afe">decompose_ZZPhase</a>();</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">// identifies any TK1, Rz,Ry,Rx,u3,u2,u1 gate sequences that can be naively</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">// decomposed into S,Z,X,V returns clifford sequences in a standard form</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">// (Z)(X)(S)(V)(S)</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">// Expects: TK1, U3, U2, U1, Rx, Ry, Rz, and any multi-qubit gates</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">// Produces: Z, X, S, V, and any remaining non-clifford single-qubit gates,</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">// and any multi-qubit gates</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#a6195d1cae2fc9f46bc761c981188c26d">decompose_cliffords_std</a>();</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#aefaeaababb6b384030bc96a88da4d967">decompose_ZX_to_cliffords</a>();</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">// converts all valid CX-Rz-CX strings and CX-Rx-CX strings to 2qb</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">// PhaseGadgets Expects: CX, Rz, Rx and any other single-qubit gates Produces:</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">// PhaseGadgets, and any other gates</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#a71005e0ba2d95e2bf2e2d355723a13f5">decompose_PhaseGadgets</a>();</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#a373cfcdea1005b57fd2a5c6f4adbe15e">decomp_boxes</a>();</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#a0822ee75b1d687db1fbf6546dcd705c8">compose_phase_poly_boxes</a>(<span class="keywordtype">unsigned</span> min_size = 0);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">// converts all SWAP gates to given replacement circuit (not checked to</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment">// preserve unitary) Expects: SWAP gates, replacement circuit Produces:</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">// Instances of the replacement circuit,</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#aa529d9f5779cbfdaa4b5a846e504de43">decompose_SWAP</a>(<span class="keyword">const</span> Circuit&amp; replacement_circuit);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">// converts all SWAP gates to 3 CX gates</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">// providing an Architecture will prefer an orientation that reduces H</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">// redirection cost -X-    -C-X-C-   -X-C-X-</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment">//  |   =  | | |  =  | | |</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment">// -X-    -X-C-X-   -C-X-C-</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">// Expects: SWAP gates</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment">// Produces: CX gates</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#aacebf9ac8d1a3f978cab3ca3611de2e1">decompose_SWAP_to_CX</a>(<span class="keyword">const</span> Architecture&amp; arc = Architecture());</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">// converts all BRIDGE (distance 2 CX) gates to 4 CX gates</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">// -B-   -C-   -C---C---   ---C---C-</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment">//  R     |     |   |         |   |</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">// -I- = --- = -X-C-X-C- = -C-X-C-X-</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment">//  D     |       |   |     |   |</span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">// -G-   -X-   ---X---X-   -X---X---</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">//  E</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">// Expects: BRIDGE gates</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">// Produces: CX gates</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#aedc2a6c73363553bc6a3fcc7d4fe1e1d">decompose_BRIDGE_to_CX</a>();</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">// converts -C- gates to -H-X-H- depending on direction of Architecture edges</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">//           |              |</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">//          -X-          -H-C-H-</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">// Expects: CX gates</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">// Produces CX and H gates</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#aaf31d7ea658935d1bd052285919074e6">decompose_CX_directed</a>(<span class="keyword">const</span> Architecture&amp; arc);</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#a8b1bdd8d905918c0bf69043023a49706">decompose_NPhasedX</a>();</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#a6a9294d7f5c7ebd3637640781484843f">globalise_PhasedX</a>(<span class="keywordtype">bool</span> squash = <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;}  <span class="comment">// namespace Transforms</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;}  <span class="comment">// namespace tket</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#a6195d1cae2fc9f46bc761c981188c26d">decompose_cliffords_std</a>();</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#aefaeaababb6b384030bc96a88da4d967">decompose_ZX_to_cliffords</a>();</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">// converts all valid CX-Rz-CX strings and CX-Rx-CX strings to 2qb</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">// PhaseGadgets Expects: CX, Rz, Rx and any other single-qubit gates Produces:</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">// PhaseGadgets, and any other gates</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#a71005e0ba2d95e2bf2e2d355723a13f5">decompose_PhaseGadgets</a>();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#a373cfcdea1005b57fd2a5c6f4adbe15e">decomp_boxes</a>();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#a0822ee75b1d687db1fbf6546dcd705c8">compose_phase_poly_boxes</a>(<span class="keywordtype">unsigned</span> min_size = 0);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment">// converts all SWAP gates to given replacement circuit (not checked to</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">// preserve unitary) Expects: SWAP gates, replacement circuit Produces:</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">// Instances of the replacement circuit,</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#aa529d9f5779cbfdaa4b5a846e504de43">decompose_SWAP</a>(<span class="keyword">const</span> Circuit&amp; replacement_circuit);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">// converts all SWAP gates to 3 CX gates</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">// providing an Architecture will prefer an orientation that reduces H</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment">// redirection cost -X-    -C-X-C-   -X-C-X-</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment">//  |   =  | | |  =  | | |</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">// -X-    -X-C-X-   -C-X-C-</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment">// Expects: SWAP gates</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment">// Produces: CX gates</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#aacebf9ac8d1a3f978cab3ca3611de2e1">decompose_SWAP_to_CX</a>(<span class="keyword">const</span> Architecture&amp; arc = Architecture());</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">// converts all BRIDGE (distance 2 CX) gates to 4 CX gates</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment">// -B-   -C-   -C---C---   ---C---C-</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">//  R     |     |   |         |   |</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment">// -I- = --- = -X-C-X-C- = -C-X-C-X-</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">//  D     |       |   |     |   |</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">// -G-   -X-   ---X---X-   -X---X---</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">//  E</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">// Expects: BRIDGE gates</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment">// Produces: CX gates</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#aedc2a6c73363553bc6a3fcc7d4fe1e1d">decompose_BRIDGE_to_CX</a>();</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">// converts -C- gates to -H-X-H- depending on direction of Architecture edges</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">//           |              |</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">//          -X-          -H-C-H-</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">// Expects: CX gates</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment">// Produces CX and H gates</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#aaf31d7ea658935d1bd052285919074e6">decompose_CX_directed</a>(<span class="keyword">const</span> Architecture&amp; arc);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#a8b1bdd8d905918c0bf69043023a49706">decompose_NPhasedX</a>();</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;Transform <a class="code" href="namespacetket_1_1Transforms.html#a6a9294d7f5c7ebd3637640781484843f">globalise_PhasedX</a>(<span class="keywordtype">bool</span> squash = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;}  <span class="comment">// namespace Transforms</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;}  <span class="comment">// namespace tket</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="anamespacetket_1_1Transforms_html_ad790e55412d4391a7f0f065385c105d0"><div class="ttname"><a href="namespacetket_1_1Transforms.html#ad790e55412d4391a7f0f065385c105d0">tket::Transforms::decompose_tk1_to_rzrx</a></div><div class="ttdeci">Transform decompose_tk1_to_rzrx()</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00267">Decomposition.cpp:267</a></div></div>
 <div class="ttc" id="anamespacetket_1_1Transforms_html_aefaeaababb6b384030bc96a88da4d967"><div class="ttname"><a href="namespacetket_1_1Transforms.html#aefaeaababb6b384030bc96a88da4d967">tket::Transforms::decompose_ZX_to_cliffords</a></div><div class="ttdeci">Transform decompose_ZX_to_cliffords()</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00639">Decomposition.cpp:639</a></div></div>
@@ -233,7 +227,7 @@ $(function() {
 <div class="ttc" id="anamespacetket_1_1Transforms_html_aaf31d7ea658935d1bd052285919074e6"><div class="ttname"><a href="namespacetket_1_1Transforms.html#aaf31d7ea658935d1bd052285919074e6">tket::Transforms::decompose_CX_directed</a></div><div class="ttdeci">Transform decompose_CX_directed(const Architecture &amp;arc)</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00968">Decomposition.cpp:968</a></div></div>
 <div class="ttc" id="anamespacetket_1_1Transforms_html_aacebf9ac8d1a3f978cab3ca3611de2e1"><div class="ttname"><a href="namespacetket_1_1Transforms.html#aacebf9ac8d1a3f978cab3ca3611de2e1">tket::Transforms::decompose_SWAP_to_CX</a></div><div class="ttdeci">Transform decompose_SWAP_to_CX(const Architecture &amp;arc)</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00822">Decomposition.cpp:822</a></div></div>
 <div class="ttc" id="anamespacetket_1_1Transforms_html_a373cfcdea1005b57fd2a5c6f4adbe15e"><div class="ttname"><a href="namespacetket_1_1Transforms.html#a373cfcdea1005b57fd2a5c6f4adbe15e">tket::Transforms::decomp_boxes</a></div><div class="ttdeci">Transform decomp_boxes()</div><div class="ttdoc">Replaces all boxes by their decomposition using Box::to_circuit Expects: any gateset returns potentia...</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00778">Decomposition.cpp:778</a></div></div>
-<div class="ttc" id="anamespacetket_1_1Transforms_html_a6195d1cae2fc9f46bc761c981188c26d"><div class="ttname"><a href="namespacetket_1_1Transforms.html#a6195d1cae2fc9f46bc761c981188c26d">tket::Transforms::decompose_cliffords_std</a></div><div class="ttdeci">Transform decompose_cliffords_std()</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00595">Decomposition.cpp:595</a></div></div>
+<div class="ttc" id="anamespacetket_1_1Transforms_html_a6195d1cae2fc9f46bc761c981188c26d"><div class="ttname"><a href="namespacetket_1_1Transforms.html#a6195d1cae2fc9f46bc761c981188c26d">tket::Transforms::decompose_cliffords_std</a></div><div class="ttdeci">Transform decompose_cliffords_std()</div><div class="ttdoc">Decompose single-qubit Clifford gates to a standard Cliffford gate set.</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00595">Decomposition.cpp:595</a></div></div>
 <div class="ttc" id="anamespacetket_1_1Transforms_html_a43adf4cb25bec02a6eb9188afa0b93b2"><div class="ttname"><a href="namespacetket_1_1Transforms.html#a43adf4cb25bec02a6eb9188afa0b93b2">tket::Transforms::decompose_multi_qubits_CX</a></div><div class="ttdeci">Transform decompose_multi_qubits_CX()</div><div class="ttdoc">Decomposes all multi-qubit unitary gates into CX and single-qubit gates.</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00168">Decomposition.cpp:168</a></div></div>
 <div class="ttc" id="anamespacetket_1_1Transforms_html_ac0429ef3d3beee25f6e5f582b096172c"><div class="ttname"><a href="namespacetket_1_1Transforms.html#ac0429ef3d3beee25f6e5f582b096172c">tket::Transforms::decompose_XY</a></div><div class="ttdeci">Transform decompose_XY()</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00265">Decomposition.cpp:265</a></div></div>
 <div class="ttc" id="anamespacetket_1_1Transforms_html_adb83df7b894b56b844223af7c4841329"><div class="ttname"><a href="namespacetket_1_1Transforms.html#adb83df7b894b56b844223af7c4841329">tket::Transforms::decompose_ZY</a></div><div class="ttdeci">Transform decompose_ZY()</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00263">Decomposition.cpp:263</a></div></div>
