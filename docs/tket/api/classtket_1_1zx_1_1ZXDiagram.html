@@ -176,6 +176,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afae6861b00325e8649f0772c69babe73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a391f1db360e49847f4ca444f641910c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacetket_1_1zx.html#a88a1c6316f25d021c01e4bb266cda567">ZXVert</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1zx_1_1ZXDiagram.html#a391f1db360e49847f4ca444f641910c0">other_end</a> (const <a class="el" href="namespacetket_1_1zx.html#a4ff48ca2f041c0efcc6ef34a5e1348d2">Wire</a> &amp;w, const <a class="el" href="namespacetket_1_1zx.html#a88a1c6316f25d021c01e4bb266cda567">ZXVert</a> &amp;u) const</td></tr>
 <tr class="separator:a391f1db360e49847f4ca444f641910c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f735c659636a16cdc766170d7f7d734"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacetket_1_1zx.html#a88a1c6316f25d021c01e4bb266cda567">ZXVert</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1zx_1_1ZXDiagram.html#a4f735c659636a16cdc766170d7f7d734">vertex_at_end</a> (const <a class="el" href="namespacetket_1_1zx.html#a4ff48ca2f041c0efcc6ef34a5e1348d2">Wire</a> &amp;w, <a class="el" href="namespacetket_1_1zx.html#a4a9af3f5180d9fb71107b0e917d71a4d">WireEnd</a> we) const</td></tr>
+<tr class="separator:a4f735c659636a16cdc766170d7f7d734"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24430a5cf55d401d5e566a82c4fe2b3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacetket_1_1zx.html#a4a9af3f5180d9fb71107b0e917d71a4d">WireEnd</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1zx_1_1ZXDiagram.html#a24430a5cf55d401d5e566a82c4fe2b3e">end_of</a> (const <a class="el" href="namespacetket_1_1zx.html#a4ff48ca2f041c0efcc6ef34a5e1348d2">Wire</a> &amp;w, const <a class="el" href="namespacetket_1_1zx.html#a88a1c6316f25d021c01e4bb266cda567">ZXVert</a> &amp;u) const</td></tr>
 <tr class="separator:a24430a5cf55d401d5e566a82c4fe2b3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1757fbbd7d06b312915a0412e0e40263"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1zx_1_1ZXDiagram.html#a1757fbbd7d06b312915a0412e0e40263">set_wire_info</a> (const <a class="el" href="namespacetket_1_1zx.html#a4ff48ca2f041c0efcc6ef34a5e1348d2">Wire</a> &amp;w, const <a class="el" href="structtket_1_1zx_1_1WireProperties.html">WireProperties</a> &amp;wp)</td></tr>
@@ -237,6 +239,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a400334344e4d477e01d78ab034846321"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1zx_1_1ZXDiagram.html">ZXDiagram</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1zx_1_1ZXDiagram.html#a400334344e4d477e01d78ab034846321">to_quantum_embedding</a> () const</td></tr>
 <tr class="memdesc:a400334344e4d477e01d78ab034846321"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expands classical boundary vertices into quantum boundaries via input extension with a ZSpider.  <a href="classtket_1_1zx_1_1ZXDiagram.html#a400334344e4d477e01d78ab034846321">More...</a><br /></td></tr>
 <tr class="separator:a400334344e4d477e01d78ab034846321"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac50787ed95b947fbf18a4b155f7630d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1zx_1_1ZXDiagram.html#ac50787ed95b947fbf18a4b155f7630d4">substitute</a> (const <a class="el" href="classtket_1_1zx_1_1ZXDiagram.html">ZXDiagram</a> &amp;to_insert, const <a class="el" href="structtket_1_1zx_1_1ZXDiagram_1_1Subdiagram.html">Subdiagram</a> &amp;to_replace)</td></tr>
+<tr class="separator:ac50787ed95b947fbf18a4b155f7630d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -430,6 +434,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Diagram manipulation. </p>
+<p>Adds a vertex with a given generator to the diagram. It is initially disconnected from any other vertex. Automatically adds boundary generators to the boundary. </p>
 
 <p class="definition">Definition at line <a class="el" href="ZXDManipulation_8cpp_source.html#l00023">23</a> of file <a class="el" href="ZXDManipulation_8cpp_source.html">ZXDManipulation.cpp</a>.</p>
 
@@ -761,7 +766,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00202">202</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00209">209</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
 
 </div>
 </div>
@@ -932,7 +937,7 @@ template&lt;typename T , typename &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZXDiagram_8hpp_source.html#l00334">334</a> of file <a class="el" href="ZXDiagram_8hpp_source.html">ZXDiagram.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ZXDiagram_8hpp_source.html#l00347">347</a> of file <a class="el" href="ZXDiagram_8hpp_source.html">ZXDiagram.hpp</a>.</p>
 
 </div>
 </div>
@@ -1072,7 +1077,7 @@ template&lt;typename T , typename &gt; </div>
 
 <p>Shortcut utilities to detect whether <code>v</code> is a spider with a Pauli / proper Clifford phase. </p>
 
-<p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00224">224</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00231">231</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
 
 </div>
 </div>
@@ -1092,7 +1097,7 @@ template&lt;typename T , typename &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00232">232</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00239">239</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
 
 </div>
 </div>
@@ -1407,7 +1412,7 @@ template&lt;typename T , typename &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00212">212</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00219">219</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
 
 </div>
 </div>
@@ -1437,7 +1442,7 @@ template&lt;typename T , typename &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00216">216</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00223">223</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
 
 </div>
 </div>
@@ -1467,7 +1472,7 @@ template&lt;typename T , typename &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00220">220</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00227">227</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
 
 </div>
 </div>
@@ -1508,6 +1513,36 @@ template&lt;typename T , typename &gt; </div>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00182">182</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ac50787ed95b947fbf18a4b155f7630d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac50787ed95b947fbf18a4b155f7630d4">&#9670;&nbsp;</a></span>substitute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tket::zx::ZXDiagram::substitute </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classtket_1_1zx_1_1ZXDiagram.html">ZXDiagram</a> &amp;&#160;</td>
+          <td class="paramname"><em>to_insert</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structtket_1_1zx_1_1ZXDiagram_1_1Subdiagram.html">Subdiagram</a> &amp;&#160;</td>
+          <td class="paramname"><em>to_replace</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ZXDSubdiagram_8cpp_source.html#l00112">112</a> of file <a class="el" href="ZXDSubdiagram_8cpp_source.html">ZXDSubdiagram.cpp</a>.</p>
 
 </div>
 </div>
@@ -1665,7 +1700,7 @@ template&lt;typename T , typename &gt; </div>
 <p>Draw the edges. By default, the edges are assumed to be quantum edges <code>penwidth=3</code>, that is, they are drawn 'thick'. Classical edges will be made thinner: that is, <code>penwidth=1</code>.</p>
 <p>Invisible nodes &amp; connections to force the same ordering for the vertices within the same rank - such that inputs / outputs will be at the same level and with it, have a fixed ordering.</p>
 
-<p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00323">323</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00331">331</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
 
 </div>
 </div>
@@ -1688,6 +1723,36 @@ template&lt;typename T , typename &gt; </div>
 <p>Effectively prepends Z basis measurements and appends Z basis initialisations for each classical bit. This is used to map the entire semantics into a single CPTP-map, which can be represented by its Choi matrix. </p>
 
 <p class="definition">Definition at line <a class="el" href="ZXDExpansions_8cpp_source.html#l00196">196</a> of file <a class="el" href="ZXDExpansions_8cpp_source.html">ZXDExpansions.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a4f735c659636a16cdc766170d7f7d734"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f735c659636a16cdc766170d7f7d734">&#9670;&nbsp;</a></span>vertex_at_end()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacetket_1_1zx.html#a88a1c6316f25d021c01e4bb266cda567">ZXVert</a> tket::zx::ZXDiagram::vertex_at_end </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacetket_1_1zx.html#a4ff48ca2f041c0efcc6ef34a5e1348d2">Wire</a> &amp;&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacetket_1_1zx.html#a4a9af3f5180d9fb71107b0e917d71a4d">WireEnd</a>&#160;</td>
+          <td class="paramname"><em>we</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ZXDGettersSetters_8cpp_source.html#l00202">202</a> of file <a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a>.</p>
 
 </div>
 </div>
@@ -1800,7 +1865,7 @@ template&lt;typename T , typename &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZXDiagram_8hpp_source.html#l00310">310</a> of file <a class="el" href="ZXDiagram_8hpp_source.html">ZXDiagram.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ZXDiagram_8hpp_source.html#l00323">323</a> of file <a class="el" href="ZXDiagram_8hpp_source.html">ZXDiagram.hpp</a>.</p>
 
 </div>
 </div>
@@ -1816,7 +1881,7 @@ template&lt;typename T , typename &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZXDiagram_8hpp_source.html#l00308">308</a> of file <a class="el" href="ZXDiagram_8hpp_source.html">ZXDiagram.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ZXDiagram_8hpp_source.html#l00321">321</a> of file <a class="el" href="ZXDiagram_8hpp_source.html">ZXDiagram.hpp</a>.</p>
 
 </div>
 </div>
@@ -1832,7 +1897,7 @@ template&lt;typename T , typename &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZXDiagram_8hpp_source.html#l00309">309</a> of file <a class="el" href="ZXDiagram_8hpp_source.html">ZXDiagram.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ZXDiagram_8hpp_source.html#l00322">322</a> of file <a class="el" href="ZXDiagram_8hpp_source.html">ZXDiagram.hpp</a>.</p>
 
 </div>
 </div>
@@ -1843,6 +1908,7 @@ template&lt;typename T , typename &gt; </div>
 <li>src/ZX/<a class="el" href="ZXDFormats_8cpp_source.html">ZXDFormats.cpp</a></li>
 <li>src/ZX/<a class="el" href="ZXDGettersSetters_8cpp_source.html">ZXDGettersSetters.cpp</a></li>
 <li>src/ZX/<a class="el" href="ZXDManipulation_8cpp_source.html">ZXDManipulation.cpp</a></li>
+<li>src/ZX/<a class="el" href="ZXDSubdiagram_8cpp_source.html">ZXDSubdiagram.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
