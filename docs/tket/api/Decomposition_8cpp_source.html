@@ -1554,60 +1554,63 @@ $(function() {
 <div class="line"><a name="l01522"></a><span class="lineno"> 1522</span>&#160;      }</div>
 <div class="line"><a name="l01523"></a><span class="lineno"> 1523</span>&#160;    }</div>
 <div class="line"><a name="l01524"></a><span class="lineno"> 1524</span>&#160;    <a class="code" href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a>(frontier.<a class="code" href="classtket_1_1Transforms_1_1PhasedXFrontier.html#a9d6dc99c6ce9cecd76d5cfc589ba1b10">is_finished</a>());</div>
-<div class="line"><a name="l01525"></a><span class="lineno"> 1525</span>&#160;    <span class="keywordflow">return</span> success;</div>
-<div class="line"><a name="l01526"></a><span class="lineno"> 1526</span>&#160;  });</div>
-<div class="line"><a name="l01527"></a><span class="lineno"> 1527</span>&#160;}</div>
-<div class="line"><a name="l01528"></a><span class="lineno"> 1528</span>&#160; </div>
-<div class="line"><a name="l01529"></a><span class="lineno"> 1529</span>&#160;<span class="comment">// The number of distinct beta angles in `gates`.</span></div>
-<div class="line"><a name="l01530"></a><span class="lineno"> 1530</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l01531"></a><span class="lineno"> 1531</span>&#160;<span class="comment">// Performs O(n^2) pairwise equivalence comparisons between expressions to</span></div>
-<div class="line"><a name="l01532"></a><span class="lineno"> 1532</span>&#160;<span class="comment">// handle symbolic variables and floating point errors</span></div>
-<div class="line"><a name="l01533"></a><span class="lineno"> 1533</span>&#160;<span class="keywordtype">unsigned</span> n_distinct_beta(<span class="keyword">const</span> <a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ, <span class="keyword">const</span> <a class="code" href="namespacetket_1_1Transforms.html#a983092bd8e2ff2858f6b1c5e35198dd9">OptVertexVec</a> &amp;gates) {</div>
-<div class="line"><a name="l01534"></a><span class="lineno"> 1534</span>&#160;  std::vector&lt;Expr&gt; vals;</div>
-<div class="line"><a name="l01535"></a><span class="lineno"> 1535</span>&#160; </div>
-<div class="line"><a name="l01536"></a><span class="lineno"> 1536</span>&#160;  <span class="comment">// collect all epxressions</span></div>
-<div class="line"><a name="l01537"></a><span class="lineno"> 1537</span>&#160;  <span class="keywordflow">for</span> (<a class="code" href="namespacetket_1_1Transforms.html#a1a5e9c920e62f66cdb88ed77d975917f">OptVertex</a> v : gates) {</div>
-<div class="line"><a name="l01538"></a><span class="lineno"> 1538</span>&#160;    <span class="keywordflow">if</span> (v) {</div>
-<div class="line"><a name="l01539"></a><span class="lineno"> 1539</span>&#160;      <a class="code" href="namespacetket.html#a6817cd1c8a5630b406c86a59173edd21">Expr</a> angle = circ.<a class="code" href="classtket_1_1Circuit.html#a15fd2bc465a81f45f79171d50590a520">get_Op_ptr_from_Vertex</a>(*v)-&gt;get_params()[0];</div>
-<div class="line"><a name="l01540"></a><span class="lineno"> 1540</span>&#160;      vals.push_back(angle);</div>
-<div class="line"><a name="l01541"></a><span class="lineno"> 1541</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l01542"></a><span class="lineno"> 1542</span>&#160;      vals.push_back(0.);</div>
-<div class="line"><a name="l01543"></a><span class="lineno"> 1543</span>&#160;    }</div>
-<div class="line"><a name="l01544"></a><span class="lineno"> 1544</span>&#160;  }</div>
-<div class="line"><a name="l01545"></a><span class="lineno"> 1545</span>&#160; </div>
-<div class="line"><a name="l01546"></a><span class="lineno"> 1546</span>&#160;  <span class="keywordtype">unsigned</span> n_distinct = 0;</div>
-<div class="line"><a name="l01547"></a><span class="lineno"> 1547</span>&#160; </div>
-<div class="line"><a name="l01548"></a><span class="lineno"> 1548</span>&#160;  <span class="comment">// perform pairwise equivalence checks</span></div>
-<div class="line"><a name="l01549"></a><span class="lineno"> 1549</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; vals.size(); ++i) {</div>
-<div class="line"><a name="l01550"></a><span class="lineno"> 1550</span>&#160;    <span class="keywordtype">bool</span> is_unique = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l01551"></a><span class="lineno"> 1551</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = i + 1; j &lt; vals.size(); ++j) {</div>
-<div class="line"><a name="l01552"></a><span class="lineno"> 1552</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="namespacetket.html#ad278436c77c104f3f9b1df4407eed2ae">equiv_expr</a>(vals[i], vals[j])) {</div>
-<div class="line"><a name="l01553"></a><span class="lineno"> 1553</span>&#160;        is_unique = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l01554"></a><span class="lineno"> 1554</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01555"></a><span class="lineno"> 1555</span>&#160;      }</div>
-<div class="line"><a name="l01556"></a><span class="lineno"> 1556</span>&#160;    }</div>
-<div class="line"><a name="l01557"></a><span class="lineno"> 1557</span>&#160;    n_distinct += is_unique;</div>
-<div class="line"><a name="l01558"></a><span class="lineno"> 1558</span>&#160;  }</div>
-<div class="line"><a name="l01559"></a><span class="lineno"> 1559</span>&#160;  <span class="keywordflow">return</span> n_distinct;</div>
-<div class="line"><a name="l01560"></a><span class="lineno"> 1560</span>&#160;}</div>
-<div class="line"><a name="l01561"></a><span class="lineno"> 1561</span>&#160; </div>
-<div class="line"><a name="l01562"></a><span class="lineno"> 1562</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l01563"></a><span class="lineno"><a class="line" href="namespacetket_1_1Transforms.html#ad126629a6f64acb20d3f23db96aaa039"> 1563</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacetket_1_1Transforms.html#ad126629a6f64acb20d3f23db96aaa039">all_equal</a>(<span class="keyword">const</span> std::vector&lt;T&gt; &amp;vs) {</div>
-<div class="line"><a name="l01564"></a><span class="lineno"> 1564</span>&#160;  <span class="keywordflow">if</span> (vs.empty()) {</div>
-<div class="line"><a name="l01565"></a><span class="lineno"> 1565</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l01566"></a><span class="lineno"> 1566</span>&#160;  }</div>
-<div class="line"><a name="l01567"></a><span class="lineno"> 1567</span>&#160;  <a class="code" href="GateUnitaryMatrixFixedMatrices_8cpp.html#afdffb91c41fcbf6d0bc8de4f6cf62626">T</a> front = vs.front();</div>
-<div class="line"><a name="l01568"></a><span class="lineno"> 1568</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> v : vs) {</div>
-<div class="line"><a name="l01569"></a><span class="lineno"> 1569</span>&#160;    <span class="keywordflow">if</span> (front != v) {</div>
-<div class="line"><a name="l01570"></a><span class="lineno"> 1570</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l01571"></a><span class="lineno"> 1571</span>&#160;    }</div>
-<div class="line"><a name="l01572"></a><span class="lineno"> 1572</span>&#160;  }</div>
-<div class="line"><a name="l01573"></a><span class="lineno"> 1573</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l01574"></a><span class="lineno"> 1574</span>&#160;}</div>
-<div class="line"><a name="l01575"></a><span class="lineno"> 1575</span>&#160; </div>
-<div class="line"><a name="l01576"></a><span class="lineno"> 1576</span>&#160;}  <span class="comment">// namespace Transforms</span></div>
-<div class="line"><a name="l01577"></a><span class="lineno"> 1577</span>&#160; </div>
-<div class="line"><a name="l01578"></a><span class="lineno"> 1578</span>&#160;}  <span class="comment">// namespace tket</span></div>
+<div class="line"><a name="l01525"></a><span class="lineno"> 1525</span>&#160; </div>
+<div class="line"><a name="l01526"></a><span class="lineno"> 1526</span>&#160;    success |= <a class="code" href="namespacetket_1_1Transforms.html#adee710165c3b4aaac9e4521e9d74fbfa">absorb_Rz_NPhasedX</a>().<a class="code" href="classtket_1_1Transform.html#acec2765ca73f069d9d379083a31a2783">apply</a>(circ);</div>
+<div class="line"><a name="l01527"></a><span class="lineno"> 1527</span>&#160; </div>
+<div class="line"><a name="l01528"></a><span class="lineno"> 1528</span>&#160;    <span class="keywordflow">return</span> success;</div>
+<div class="line"><a name="l01529"></a><span class="lineno"> 1529</span>&#160;  });</div>
+<div class="line"><a name="l01530"></a><span class="lineno"> 1530</span>&#160;}</div>
+<div class="line"><a name="l01531"></a><span class="lineno"> 1531</span>&#160; </div>
+<div class="line"><a name="l01532"></a><span class="lineno"> 1532</span>&#160;<span class="comment">// The number of distinct beta angles in `gates`.</span></div>
+<div class="line"><a name="l01533"></a><span class="lineno"> 1533</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l01534"></a><span class="lineno"> 1534</span>&#160;<span class="comment">// Performs O(n^2) pairwise equivalence comparisons between expressions to</span></div>
+<div class="line"><a name="l01535"></a><span class="lineno"> 1535</span>&#160;<span class="comment">// handle symbolic variables and floating point errors</span></div>
+<div class="line"><a name="l01536"></a><span class="lineno"> 1536</span>&#160;<span class="keywordtype">unsigned</span> n_distinct_beta(<span class="keyword">const</span> <a class="code" href="classtket_1_1Circuit.html">Circuit</a> &amp;circ, <span class="keyword">const</span> <a class="code" href="namespacetket_1_1Transforms.html#a983092bd8e2ff2858f6b1c5e35198dd9">OptVertexVec</a> &amp;gates) {</div>
+<div class="line"><a name="l01537"></a><span class="lineno"> 1537</span>&#160;  std::vector&lt;Expr&gt; vals;</div>
+<div class="line"><a name="l01538"></a><span class="lineno"> 1538</span>&#160; </div>
+<div class="line"><a name="l01539"></a><span class="lineno"> 1539</span>&#160;  <span class="comment">// collect all epxressions</span></div>
+<div class="line"><a name="l01540"></a><span class="lineno"> 1540</span>&#160;  <span class="keywordflow">for</span> (<a class="code" href="namespacetket_1_1Transforms.html#a1a5e9c920e62f66cdb88ed77d975917f">OptVertex</a> v : gates) {</div>
+<div class="line"><a name="l01541"></a><span class="lineno"> 1541</span>&#160;    <span class="keywordflow">if</span> (v) {</div>
+<div class="line"><a name="l01542"></a><span class="lineno"> 1542</span>&#160;      <a class="code" href="namespacetket.html#a6817cd1c8a5630b406c86a59173edd21">Expr</a> angle = circ.<a class="code" href="classtket_1_1Circuit.html#a15fd2bc465a81f45f79171d50590a520">get_Op_ptr_from_Vertex</a>(*v)-&gt;get_params()[0];</div>
+<div class="line"><a name="l01543"></a><span class="lineno"> 1543</span>&#160;      vals.push_back(angle);</div>
+<div class="line"><a name="l01544"></a><span class="lineno"> 1544</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l01545"></a><span class="lineno"> 1545</span>&#160;      vals.push_back(0.);</div>
+<div class="line"><a name="l01546"></a><span class="lineno"> 1546</span>&#160;    }</div>
+<div class="line"><a name="l01547"></a><span class="lineno"> 1547</span>&#160;  }</div>
+<div class="line"><a name="l01548"></a><span class="lineno"> 1548</span>&#160; </div>
+<div class="line"><a name="l01549"></a><span class="lineno"> 1549</span>&#160;  <span class="keywordtype">unsigned</span> n_distinct = 0;</div>
+<div class="line"><a name="l01550"></a><span class="lineno"> 1550</span>&#160; </div>
+<div class="line"><a name="l01551"></a><span class="lineno"> 1551</span>&#160;  <span class="comment">// perform pairwise equivalence checks</span></div>
+<div class="line"><a name="l01552"></a><span class="lineno"> 1552</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; vals.size(); ++i) {</div>
+<div class="line"><a name="l01553"></a><span class="lineno"> 1553</span>&#160;    <span class="keywordtype">bool</span> is_unique = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l01554"></a><span class="lineno"> 1554</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = i + 1; j &lt; vals.size(); ++j) {</div>
+<div class="line"><a name="l01555"></a><span class="lineno"> 1555</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="namespacetket.html#ad278436c77c104f3f9b1df4407eed2ae">equiv_expr</a>(vals[i], vals[j])) {</div>
+<div class="line"><a name="l01556"></a><span class="lineno"> 1556</span>&#160;        is_unique = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l01557"></a><span class="lineno"> 1557</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01558"></a><span class="lineno"> 1558</span>&#160;      }</div>
+<div class="line"><a name="l01559"></a><span class="lineno"> 1559</span>&#160;    }</div>
+<div class="line"><a name="l01560"></a><span class="lineno"> 1560</span>&#160;    n_distinct += is_unique;</div>
+<div class="line"><a name="l01561"></a><span class="lineno"> 1561</span>&#160;  }</div>
+<div class="line"><a name="l01562"></a><span class="lineno"> 1562</span>&#160;  <span class="keywordflow">return</span> n_distinct;</div>
+<div class="line"><a name="l01563"></a><span class="lineno"> 1563</span>&#160;}</div>
+<div class="line"><a name="l01564"></a><span class="lineno"> 1564</span>&#160; </div>
+<div class="line"><a name="l01565"></a><span class="lineno"> 1565</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l01566"></a><span class="lineno"><a class="line" href="namespacetket_1_1Transforms.html#ad126629a6f64acb20d3f23db96aaa039"> 1566</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacetket_1_1Transforms.html#ad126629a6f64acb20d3f23db96aaa039">all_equal</a>(<span class="keyword">const</span> std::vector&lt;T&gt; &amp;vs) {</div>
+<div class="line"><a name="l01567"></a><span class="lineno"> 1567</span>&#160;  <span class="keywordflow">if</span> (vs.empty()) {</div>
+<div class="line"><a name="l01568"></a><span class="lineno"> 1568</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l01569"></a><span class="lineno"> 1569</span>&#160;  }</div>
+<div class="line"><a name="l01570"></a><span class="lineno"> 1570</span>&#160;  <a class="code" href="GateUnitaryMatrixFixedMatrices_8cpp.html#afdffb91c41fcbf6d0bc8de4f6cf62626">T</a> front = vs.front();</div>
+<div class="line"><a name="l01571"></a><span class="lineno"> 1571</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> v : vs) {</div>
+<div class="line"><a name="l01572"></a><span class="lineno"> 1572</span>&#160;    <span class="keywordflow">if</span> (front != v) {</div>
+<div class="line"><a name="l01573"></a><span class="lineno"> 1573</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l01574"></a><span class="lineno"> 1574</span>&#160;    }</div>
+<div class="line"><a name="l01575"></a><span class="lineno"> 1575</span>&#160;  }</div>
+<div class="line"><a name="l01576"></a><span class="lineno"> 1576</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l01577"></a><span class="lineno"> 1577</span>&#160;}</div>
+<div class="line"><a name="l01578"></a><span class="lineno"> 1578</span>&#160; </div>
+<div class="line"><a name="l01579"></a><span class="lineno"> 1579</span>&#160;}  <span class="comment">// namespace Transforms</span></div>
+<div class="line"><a name="l01580"></a><span class="lineno"> 1580</span>&#160; </div>
+<div class="line"><a name="l01581"></a><span class="lineno"> 1581</span>&#160;}  <span class="comment">// namespace tket</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclasstket_1_1Circuit_html_a7ac875c3a725b691b6ec1fc5b8613a2f"><div class="ttname"><a href="classtket_1_1Circuit.html#a7ac875c3a725b691b6ec1fc5b8613a2f">tket::Circuit::substitute_all</a></div><div class="ttdeci">bool substitute_all(const Circuit &amp;to_insert, const Op_ptr op)</div><div class="ttdoc">Substitute all vertices matching the given op with the given circuit.</div><div class="ttdef"><b>Definition:</b> <a href="macro__manipulation_8cpp_source.html#l00499">macro_manipulation.cpp:499</a></div></div>
 <div class="ttc" id="aclasstket_1_1Transforms_1_1PhasedXFrontier_html_afd180925218f0f8d7b83c642ccd9df98"><div class="ttname"><a href="classtket_1_1Transforms_1_1PhasedXFrontier.html#afd180925218f0f8d7b83c642ccd9df98">tket::Transforms::PhasedXFrontier::insert_2_phasedx</a></div><div class="ttdeci">void insert_2_phasedx()</div><div class="ttdoc">Insert two global NPhasedX gates at the current frontier.</div><div class="ttdef"><b>Definition:</b> <a href="PhasedXFrontier_8cpp_source.html#l00376">PhasedXFrontier.cpp:376</a></div></div>
@@ -1617,6 +1620,7 @@ $(function() {
 <div class="ttc" id="anamespacetket_html_ad278436c77c104f3f9b1df4407eed2ae"><div class="ttname"><a href="namespacetket.html#ad278436c77c104f3f9b1df4407eed2ae">tket::equiv_expr</a></div><div class="ttdeci">bool equiv_expr(const Expr &amp;e0, const Expr &amp;e1, unsigned n, double tol)</div><div class="ttdoc">Test approximate equality of expressions modulo n.</div><div class="ttdef"><b>Definition:</b> <a href="Expression_8cpp_source.html#l00130">Expression.cpp:130</a></div></div>
 <div class="ttc" id="anamespacetket_1_1CircPool_html_ad9e886e0e7cbb35904ccbfe3aa36a886"><div class="ttname"><a href="namespacetket_1_1CircPool.html#ad9e886e0e7cbb35904ccbfe3aa36a886">tket::CircPool::BRIDGE_using_CX_0</a></div><div class="ttdeci">const Circuit &amp; BRIDGE_using_CX_0()</div><div class="ttdoc">Equivalent to BRIDGE, using four CX, first CX has control on qubit 0.</div><div class="ttdef"><b>Definition:</b> <a href="CircPool_8cpp_source.html#l00023">CircPool.cpp:23</a></div></div>
 <div class="ttc" id="aclasstket_1_1graphs_1_1AbstractGraph_html_a1dd52e51660aae6f70754eb64167e8f7"><div class="ttname"><a href="classtket_1_1graphs_1_1AbstractGraph.html#a1dd52e51660aae6f70754eb64167e8f7">tket::graphs::AbstractGraph::n_nodes</a></div><div class="ttdeci">unsigned n_nodes() const</div><div class="ttdoc">Number of nodes.</div><div class="ttdef"><b>Definition:</b> <a href="AbstractGraph_8hpp_source.html#l00075">AbstractGraph.hpp:75</a></div></div>
+<div class="ttc" id="anamespacetket_1_1Transforms_html_adee710165c3b4aaac9e4521e9d74fbfa"><div class="ttname"><a href="namespacetket_1_1Transforms.html#adee710165c3b4aaac9e4521e9d74fbfa">tket::Transforms::absorb_Rz_NPhasedX</a></div><div class="ttdeci">Transform absorb_Rz_NPhasedX()</div><div class="ttdoc">Absorb Rz gates into NPhasedX where possible.</div><div class="ttdef"><b>Definition:</b> <a href="BasicOptimisation_8cpp_source.html#l00583">BasicOptimisation.cpp:583</a></div></div>
 <div class="ttc" id="aclasstket_1_1Transforms_1_1PhasedXFrontier_html_a37db4123fa524a8c925e022a25864224"><div class="ttname"><a href="classtket_1_1Transforms_1_1PhasedXFrontier.html#a37db4123fa524a8c925e022a25864224">tket::Transforms::PhasedXFrontier::squash_intervals</a></div><div class="ttdeci">void squash_intervals()</div><div class="ttdoc">Squash the current intervals on each qubit.</div><div class="ttdef"><b>Definition:</b> <a href="PhasedXFrontier_8cpp_source.html#l00063">PhasedXFrontier.cpp:63</a></div></div>
 <div class="ttc" id="aAssert_8hpp_html_ae053544861204d4c3f5e8422252ca22e"><div class="ttname"><a href="Assert_8hpp.html#ae053544861204d4c3f5e8422252ca22e">TKET_ASSERT</a></div><div class="ttdeci">#define TKET_ASSERT(condition)</div><div class="ttdoc">If condition is not satisfied, log a diagnostic message and abort.</div><div class="ttdef"><b>Definition:</b> <a href="Assert_8hpp_source.html#l00076">Assert.hpp:76</a></div></div>
 <div class="ttc" id="anamespacetket_1_1Transforms_html_ad790e55412d4391a7f0f065385c105d0"><div class="ttname"><a href="namespacetket_1_1Transforms.html#ad790e55412d4391a7f0f065385c105d0">tket::Transforms::decompose_tk1_to_rzrx</a></div><div class="ttdeci">Transform decompose_tk1_to_rzrx()</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l00270">Decomposition.cpp:270</a></div></div>
@@ -1696,7 +1700,7 @@ $(function() {
 <div class="ttc" id="aclasstket_1_1Circuit_html"><div class="ttname"><a href="classtket_1_1Circuit.html">tket::Circuit</a></div><div class="ttdoc">A circuit.</div><div class="ttdef"><b>Definition:</b> <a href="Circuit_8hpp_source.html#l00247">Circuit.hpp:247</a></div></div>
 <div class="ttc" id="anamespacetket_html_a13e81344da4794f2648eb9a7b286fcf3a605943552629c6e31b20ee3733694927"><div class="ttname"><a href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a605943552629c6e31b20ee3733694927">tket::OpType::TK2</a></div><div class="ttdeci">@ TK2</div></div>
 <div class="ttc" id="anamespacetket_1_1Transforms_html_a0822ee75b1d687db1fbf6546dcd705c8"><div class="ttname"><a href="namespacetket_1_1Transforms.html#a0822ee75b1d687db1fbf6546dcd705c8">tket::Transforms::compose_phase_poly_boxes</a></div><div class="ttdeci">Transform compose_phase_poly_boxes(const unsigned min_size)</div><div class="ttdoc">Replaces all CX+Rz sub circuits by PhasePolyBox Expects: only CX + Rz + H (and measure + reset + coll...</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l01111">Decomposition.cpp:1111</a></div></div>
-<div class="ttc" id="anamespacetket_1_1Transforms_html_ad126629a6f64acb20d3f23db96aaa039"><div class="ttname"><a href="namespacetket_1_1Transforms.html#ad126629a6f64acb20d3f23db96aaa039">tket::Transforms::all_equal</a></div><div class="ttdeci">bool all_equal(const std::vector&lt; T &gt; &amp;vs)</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l01563">Decomposition.cpp:1563</a></div></div>
+<div class="ttc" id="anamespacetket_1_1Transforms_html_ad126629a6f64acb20d3f23db96aaa039"><div class="ttname"><a href="namespacetket_1_1Transforms.html#ad126629a6f64acb20d3f23db96aaa039">tket::Transforms::all_equal</a></div><div class="ttdeci">bool all_equal(const std::vector&lt; T &gt; &amp;vs)</div><div class="ttdef"><b>Definition:</b> <a href="Decomposition_8cpp_source.html#l01566">Decomposition.cpp:1566</a></div></div>
 <div class="ttc" id="anamespacetket_html_a13e81344da4794f2648eb9a7b286fcf3a3093b0af32d5a67378a948d9e90ac005"><div class="ttname"><a href="namespacetket.html#a13e81344da4794f2648eb9a7b286fcf3a3093b0af32d5a67378a948d9e90ac005">tket::OpType::ZZPhase</a></div><div class="ttdeci">@ ZZPhase</div></div>
 <div class="ttc" id="anamespacetket_html_a9cdfe3f23ec01d10a956474db74c9fc1"><div class="ttname"><a href="namespacetket.html#a9cdfe3f23ec01d10a956474db74c9fc1">tket::EPS</a></div><div class="ttdeci">constexpr double EPS</div><div class="ttdoc">Default tolerance for floating-point comparisons.</div><div class="ttdef"><b>Definition:</b> <a href="Constants_8hpp_source.html#l00038">Constants.hpp:38</a></div></div>
 <div class="ttc" id="aclasstket_1_1Circuit_html_a09fc52c1c4dd3a2fe49ff29085189d85"><div class="ttname"><a href="classtket_1_1Circuit.html#a09fc52c1c4dd3a2fe49ff29085189d85">tket::Circuit::get_predecessors</a></div><div class="ttdeci">VertexVec get_predecessors(const Vertex &amp;vert) const</div><div class="ttdef"><b>Definition:</b> <a href="setters__and__getters_8cpp_source.html#l00314">setters_and_getters.cpp:314</a></div></div>

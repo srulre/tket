@@ -147,6 +147,9 @@ Functions</h2></td></tr>
 <tr class="separator:abc5ed5a372aa369b67d538eb51075ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdc511e75f51aba23dc8f3d1e8bab989"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#acdc511e75f51aba23dc8f3d1e8bab989">commute_SQ_gates_through_SWAPS</a> (const <a class="el" href="namespacetket.html#a898c434c90155261b12c45ebb3a944d2">op_node_errors_t</a> &amp;node_errors)</td></tr>
 <tr class="separator:acdc511e75f51aba23dc8f3d1e8bab989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adee710165c3b4aaac9e4521e9d74fbfa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#adee710165c3b4aaac9e4521e9d74fbfa">absorb_Rz_NPhasedX</a> ()</td></tr>
+<tr class="memdesc:adee710165c3b4aaac9e4521e9d74fbfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Absorb Rz gates into NPhasedX where possible.  <a href="namespacetket_1_1Transforms.html#adee710165c3b4aaac9e4521e9d74fbfa">More...</a><br /></td></tr>
+<tr class="separator:adee710165c3b4aaac9e4521e9d74fbfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecf3aac5977a57e0c88dd2d0b1952cd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#aecf3aac5977a57e0c88dd2d0b1952cd1">multiq_clifford_replacement</a> (bool allow_swaps)</td></tr>
 <tr class="separator:aecf3aac5977a57e0c88dd2d0b1952cd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6575b6ec25eab321e6b28066f5029ded"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#a6575b6ec25eab321e6b28066f5029ded">copy_pi_through_CX</a> ()</td></tr>
@@ -527,6 +530,28 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="adee710165c3b4aaac9e4521e9d74fbfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adee710165c3b4aaac9e4521e9d74fbfa">&#9670;&nbsp;</a></span>absorb_Rz_NPhasedX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classtket_1_1Transform.html">Transform</a> tket::Transforms::absorb_Rz_NPhasedX </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Absorb Rz gates into NPhasedX where possible. </p>
+<p>For any gate NPhasedX(𝛼, 𝛽) in the circuit, try to change 𝛽 to reduce the number of surrounding Rz gates. </p>
+
+<p class="definition">Definition at line <a class="el" href="BasicOptimisation_8cpp_source.html#l00583">583</a> of file <a class="el" href="BasicOptimisation_8cpp_source.html">BasicOptimisation.cpp</a>.</p>
+
+</div>
+</div>
 <a id="af0b70fde74e9a8bbd8b038b519325db7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af0b70fde74e9a8bbd8b038b519325db7">&#9670;&nbsp;</a></span>align_PhaseGadgets()</h2>
 
@@ -564,7 +589,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l01563">1563</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l01566">1566</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
