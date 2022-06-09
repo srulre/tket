@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['std_5fclifford_5fdecomp_2712',['std_clifford_decomp',['../namespacestd__clifford__decomp.html',1,'']]]
+  ['std_5fclifford_5fdecomp_2729',['std_clifford_decomp',['../namespacestd__clifford__decomp.html',1,'']]]
 ];

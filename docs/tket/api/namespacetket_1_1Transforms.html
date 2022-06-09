@@ -96,6 +96,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtket_1_1Transforms_1_1StandardSquasher.html">StandardSquasher</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the <a class="el" href="classtket_1_1AbstractSquasher.html" title="Abstract Squasher interface.">AbstractSquasher</a> interface for <a class="el" href="classtket_1_1SingleQubitSquash.html" title="Squashes single qubit gates using given Squasher.">SingleQubitSquash</a>.  <a href="classtket_1_1Transforms_1_1StandardSquasher.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtket_1_1Transforms_1_1TwoQbFidelities.html">TwoQbFidelities</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple struct to store some two-qubit gate fidelities.  <a href="structtket_1_1Transforms_1_1TwoQbFidelities.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -218,7 +221,13 @@ Functions</h2></td></tr>
 <tr class="separator:a3b7cc6ed4f43ceaac2407014ad24800a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afed169155f9056acecc68b587fe34b04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#afed169155f9056acecc68b587fe34b04">decompose_MolmerSorensen</a> ()</td></tr>
 <tr class="separator:afed169155f9056acecc68b587fe34b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29d749e10f9346f7ca92af25dcd4741f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#a29d749e10f9346f7ca92af25dcd4741f">decompose_TK2</a> ()</td></tr>
+<tr class="separator:a29d749e10f9346f7ca92af25dcd4741f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6ad97b7df139c726d2786d3b03d411d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#ab6ad97b7df139c726d2786d3b03d411d">decompose_TK2</a> (const <a class="el" href="structtket_1_1Transforms_1_1TwoQbFidelities.html">TwoQbFidelities</a> &amp;fid)</td></tr>
+<tr class="memdesc:ab6ad97b7df139c726d2786d3b03d411d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decomposes each TK2 gate into two-qubit gates.  <a href="namespacetket_1_1Transforms.html#ab6ad97b7df139c726d2786d3b03d411d">More...</a><br /></td></tr>
+<tr class="separator:ab6ad97b7df139c726d2786d3b03d411d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a490b106f2cfab609086f4873655b5afe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#a490b106f2cfab609086f4873655b5afe">decompose_ZZPhase</a> ()</td></tr>
+<tr class="memdesc:a490b106f2cfab609086f4873655b5afe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synthesise ZZPhase gates from CX and Rz, as well as XX/YYPhase.  <a href="namespacetket_1_1Transforms.html#a490b106f2cfab609086f4873655b5afe">More...</a><br /></td></tr>
 <tr class="separator:a490b106f2cfab609086f4873655b5afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6195d1cae2fc9f46bc761c981188c26d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtket_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetket_1_1Transforms.html#a6195d1cae2fc9f46bc761c981188c26d">decompose_cliffords_std</a> ()</td></tr>
 <tr class="memdesc:a6195d1cae2fc9f46bc761c981188c26d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decompose single-qubit Clifford gates to a standard Cliffford gate set.  <a href="namespacetket_1_1Transforms.html#a6195d1cae2fc9f46bc761c981188c26d">More...</a><br /></td></tr>
@@ -359,7 +368,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ThreeQubitSquash_8cpp_source.html#l00106">106</a> of file <a class="el" href="ThreeQubitSquash_8cpp_source.html">ThreeQubitSquash.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ThreeQubitSquash_8cpp_source.html#l00107">107</a> of file <a class="el" href="ThreeQubitSquash_8cpp_source.html">ThreeQubitSquash.cpp</a>.</p>
 
 </div>
 </div>
@@ -555,7 +564,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l01235">1235</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l01563">1563</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -715,7 +724,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BasicOptimisation_8cpp_source.html#l00294">294</a> of file <a class="el" href="BasicOptimisation_8cpp_source.html">BasicOptimisation.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BasicOptimisation_8cpp_source.html#l00299">299</a> of file <a class="el" href="BasicOptimisation_8cpp_source.html">BasicOptimisation.cpp</a>.</p>
 
 </div>
 </div>
@@ -735,7 +744,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BasicOptimisation_8cpp_source.html#l00569">569</a> of file <a class="el" href="BasicOptimisation_8cpp_source.html">BasicOptimisation.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BasicOptimisation_8cpp_source.html#l00574">574</a> of file <a class="el" href="BasicOptimisation_8cpp_source.html">BasicOptimisation.cpp</a>.</p>
 
 </div>
 </div>
@@ -755,7 +764,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BasicOptimisation_8cpp_source.html#l00573">573</a> of file <a class="el" href="BasicOptimisation_8cpp_source.html">BasicOptimisation.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BasicOptimisation_8cpp_source.html#l00578">578</a> of file <a class="el" href="BasicOptimisation_8cpp_source.html">BasicOptimisation.cpp</a>.</p>
 
 </div>
 </div>
@@ -803,7 +812,7 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Transformation to perform the conversion </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00782">782</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l01111">1111</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -862,7 +871,7 @@ template&lt;typename T &gt; </div>
 
 <p>Replaces all boxes by their decomposition using <a class="el" href="classtket_1_1Box.html#aa8189b7ff8c3c0b8fd90cbc71cf19c3f" title="Circuit represented by box.">Box::to_circuit</a> Expects: any gateset returns potentially all gates. </p>
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00778">778</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l01107">1107</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -919,7 +928,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00889">889</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l01217">1217</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -941,7 +950,7 @@ template&lt;typename T &gt; </div>
 <p>Decompose single-qubit Clifford gates to a standard Cliffford gate set. </p>
 <p>Replaces all single-qubit unitary gates outside the set {Z, X, S, V} that are recognized as Clifford operations with an equivalent sequence of gates from that set. </p>
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00595">595</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00914">914</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -961,7 +970,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00968">968</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l01296">1296</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -980,7 +989,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00288">288</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00291">291</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -999,7 +1008,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00305">305</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00308">308</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1018,7 +1027,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00368">368</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00371">371</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1041,7 +1050,7 @@ template&lt;typename T &gt; </div>
 <p>Ignores boxes.</p>
 <p>Expects: any gates Produces: CX and any single-qubit gates </p>
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00168">168</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00171">171</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1064,7 +1073,7 @@ template&lt;typename T &gt; </div>
 <p>Ignores boxes.</p>
 <p>Expects: any gates Produces: TK2 and any single-qubit gates </p>
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00164">164</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00167">167</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1085,7 +1094,7 @@ template&lt;typename T &gt; </div>
 
 <p>Decompose NPhasedX gates into single-qubit PhasedX gates. </p>
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l01033">1033</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l01361">1361</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1104,7 +1113,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00706">706</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l01035">1035</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1126,7 +1135,7 @@ template&lt;typename T &gt; </div>
 <p>Decomposes all single-qubit unitary gates into TK1 gates. </p>
 <p>Ignores boxes. </p>
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00193">193</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00196">196</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1146,7 +1155,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00802">802</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l01131">1131</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1166,7 +1175,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00822">822</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l01151">1151</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1185,7 +1194,59 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00267">267</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00270">270</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a29d749e10f9346f7ca92af25dcd4741f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29d749e10f9346f7ca92af25dcd4741f">&#9670;&nbsp;</a></span>decompose_TK2() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classtket_1_1Transform.html">Transform</a> tket::Transforms::decompose_TK2 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00671">671</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ab6ad97b7df139c726d2786d3b03d411d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6ad97b7df139c726d2786d3b03d411d">&#9670;&nbsp;</a></span>decompose_TK2() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classtket_1_1Transform.html">Transform</a> tket::Transforms::decompose_TK2 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structtket_1_1Transforms_1_1TwoQbFidelities.html">TwoQbFidelities</a> &amp;&#160;</td>
+          <td class="paramname"><em>fid</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decomposes each TK2 gate into two-qubit gates. </p>
+<p>We currently support CX, ZZMax and ZZPhase.</p>
+<p>Decompose each TK2 gate into two-qubit gates in a noise-aware way. Supported two-qubit gate fidelities will be used to return the optimal decomposition of each TK2 gate, taking noise into consideration.</p>
+<p>If no fidelities are provided, the decomposition will be exact, using CX gates.</p>
+<p>If the TK2 angles are symbolic values, the decomposition will be exact (i.e. not noise-aware). It is not possible in general to obtain optimal decompositions for arbitrary symbolic parameters, so consider substituting for concrete values if possible.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fid</td><td>The two-qubit gate fidelities (optional). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classtket_1_1Transform.html" title="A transformation of a circuit that preserves its semantics.">Transform</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00672">672</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1204,7 +1265,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00265">265</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00268">268</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1223,7 +1284,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00261">261</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00264">264</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1242,7 +1303,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00639">639</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00968">968</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1261,7 +1322,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00325">325</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00328">328</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1280,7 +1341,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00263">263</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00266">266</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1301,7 +1362,7 @@ template&lt;typename T &gt; </div>
 
 <p>Starting with Rz, Ry and multi-qubit gates, replace all singles with TK1. </p>
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00197">197</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00200">200</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1320,7 +1381,10 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00422">422</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p>Synthesise ZZPhase gates from CX and Rz, as well as XX/YYPhase. </p>
+<p>Expects: CX, Rz, XXPhase, YYPhase Produces: ZZPhase, CX, Rz. </p>
+
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l00713">713</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -1432,7 +1496,7 @@ template&lt;typename T &gt; </div>
 <p>If squash=true (default), this transform always returns true. For squash=false, it will return true if the circuit was transformed and false otherwise.</p>
 <p>It is not recommended to use this pass with symbolic expressions, as in certain cases a blow-up in symbolic expression sizes may occur. </p>
 
-<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l01067">1067</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Decomposition_8cpp_source.html#l01395">1395</a> of file <a class="el" href="Decomposition_8cpp_source.html">Decomposition.cpp</a>.</p>
 
 </div>
 </div>
@@ -2344,7 +2408,7 @@ template&lt;typename T &gt; </div>
 <p>The circuit should comprise only CX and single-qubit gates. The transform may perform a combination of 2-qubit (KAK) and 3-qubit decompositions of subcircuits, but only does so if this reduces the CX count.</p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classtket_1_1Transform.html" title="A transformation of a circuit that preserves its semantics.">Transform</a> implementing the squash </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ThreeQubitSquash_8cpp_source.html#l00295">295</a> of file <a class="el" href="ThreeQubitSquash_8cpp_source.html">ThreeQubitSquash.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ThreeQubitSquash_8cpp_source.html#l00300">300</a> of file <a class="el" href="ThreeQubitSquash_8cpp_source.html">ThreeQubitSquash.cpp</a>.</p>
 
 </div>
 </div>
@@ -2364,7 +2428,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BasicOptimisation_8cpp_source.html#l00342">342</a> of file <a class="el" href="BasicOptimisation_8cpp_source.html">BasicOptimisation.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BasicOptimisation_8cpp_source.html#l00347">347</a> of file <a class="el" href="BasicOptimisation_8cpp_source.html">BasicOptimisation.cpp</a>.</p>
 
 </div>
 </div>

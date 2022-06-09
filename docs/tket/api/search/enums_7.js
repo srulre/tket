@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['pauli_4913',['Pauli',['../namespacetket.html#a342a289d54f4f5f5a405373c07aca66a',1,'tket']]],
-  ['paulipartitionstrat_4914',['PauliPartitionStrat',['../namespacetket.html#a2d578ba7a7267e8172ac6a302fab7f67',1,'tket']]],
-  ['paulisynthstrat_4915',['PauliSynthStrat',['../namespacetket_1_1Transforms.html#af9aeecd429f293a2082ec31a14284028',1,'tket::Transforms']]],
-  ['porttype_4916',['PortType',['../namespacetket.html#a8e33f26891628ded8365c5855a6e832d',1,'tket']]]
+  ['pauli_4945',['Pauli',['../namespacetket.html#a342a289d54f4f5f5a405373c07aca66a',1,'tket']]],
+  ['paulipartitionstrat_4946',['PauliPartitionStrat',['../namespacetket.html#a2d578ba7a7267e8172ac6a302fab7f67',1,'tket']]],
+  ['paulisynthstrat_4947',['PauliSynthStrat',['../namespacetket_1_1Transforms.html#af9aeecd429f293a2082ec31a14284028',1,'tket::Transforms']]],
+  ['porttype_4948',['PortType',['../namespacetket.html#a8e33f26891628ded8365c5855a6e832d',1,'tket']]]
 ];

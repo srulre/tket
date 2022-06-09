@@ -83,16 +83,18 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;complex&gt;</code><br />
 <code>#include &lt;exception&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
 <code>#include &lt;nlohmann/json.hpp&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Json.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="Json_8hpp__incl.png" border="0" usemap="#src_2Utils_2include_2Utils_2Json_8hpp" alt=""/></div>
 <map name="src_2Utils_2include_2Utils_2Json_8hpp" id="src_2Utils_2include_2Utils_2Json_8hpp">
-<area shape="rect" title=" " alt="" coords="71,5,231,47"/>
+<area shape="rect" title=" " alt="" coords="123,5,283,47"/>
 <area shape="rect" title=" " alt="" coords="5,95,84,121"/>
 <area shape="rect" title=" " alt="" coords="108,95,195,121"/>
-<area shape="rect" title=" " alt="" coords="219,95,366,121"/>
+<area shape="rect" title=" " alt="" coords="219,95,294,121"/>
+<area shape="rect" title=" " alt="" coords="318,95,465,121"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -179,6 +181,12 @@ Functions</h2></td></tr>
 <tr class="memitem:aaf0428fe49694a938be1facdfa2fea87"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:aaf0428fe49694a938be1facdfa2fea87"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="Json_8hpp.html#aaf0428fe49694a938be1facdfa2fea87">std::from_json</a> (const nlohmann::json &amp;j, std::complex&lt; <a class="el" href="GateUnitaryMatrixFixedMatrices_8cpp.html#afdffb91c41fcbf6d0bc8de4f6cf62626">T</a> &gt; &amp;p)</td></tr>
 <tr class="separator:aaf0428fe49694a938be1facdfa2fea87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79c5121e712d01dcc8034f5ef0f30143"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a79c5121e712d01dcc8034f5ef0f30143"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="Json_8hpp.html#a79c5121e712d01dcc8034f5ef0f30143">std::to_json</a> (nlohmann::json &amp;j, const std::optional&lt; <a class="el" href="GateUnitaryMatrixFixedMatrices_8cpp.html#afdffb91c41fcbf6d0bc8de4f6cf62626">T</a> &gt; &amp;v)</td></tr>
+<tr class="separator:a79c5121e712d01dcc8034f5ef0f30143"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65c6a577b75c203b81e733a43910ff3d"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a65c6a577b75c203b81e733a43910ff3d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="Json_8hpp.html#a65c6a577b75c203b81e733a43910ff3d">std::from_json</a> (const nlohmann::json &amp;j, std::optional&lt; <a class="el" href="GateUnitaryMatrixFixedMatrices_8cpp.html#afdffb91c41fcbf6d0bc8de4f6cf62626">T</a> &gt; &amp;v)</td></tr>
+<tr class="separator:a65c6a577b75c203b81e733a43910ff3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="ad5ebc0f481e96641bcd48332ab5a8968"></a>
@@ -199,13 +207,13 @@ Functions</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">  <span class="keywordtype">void</span> <a class="code" href="namespacetket.html#ad4ffe8a33fb155115f7cc9b02740797d">to_json</a>(nlohmann::json&amp; j, <span class="keyword">const</span> <a class="code" href="GateUnitaryMatrixFixedMatrices_8cpp.html#afdffb91c41fcbf6d0bc8de4f6cf62626">T</a>&amp; type); \</div>
 <div class="line">  void <a class="code" href="namespacetket.html#ab465389a1775c7abac371775b9c3a938">from_json</a>(<span class="keyword">const</span> nlohmann::json&amp; j, <a class="code" href="GateUnitaryMatrixFixedMatrices_8cpp.html#afdffb91c41fcbf6d0bc8de4f6cf62626">T</a>&amp; type);</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="Json_8hpp_source.html#l00026">26</a> of file <a class="el" href="Json_8hpp_source.html">Json.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Json_8hpp_source.html#l00027">27</a> of file <a class="el" href="Json_8hpp_source.html">Json.hpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="aaf0428fe49694a938be1facdfa2fea87"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf0428fe49694a938be1facdfa2fea87">&#9670;&nbsp;</a></span>from_json()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf0428fe49694a938be1facdfa2fea87">&#9670;&nbsp;</a></span>from_json() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -232,12 +240,44 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Json_8hpp_source.html#l00048">48</a> of file <a class="el" href="Json_8hpp_source.html">Json.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Json_8hpp_source.html#l00049">49</a> of file <a class="el" href="Json_8hpp_source.html">Json.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a65c6a577b75c203b81e733a43910ff3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65c6a577b75c203b81e733a43910ff3d">&#9670;&nbsp;</a></span>from_json() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void std::from_json </td>
+          <td>(</td>
+          <td class="paramtype">const nlohmann::json &amp;&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::optional&lt; <a class="el" href="GateUnitaryMatrixFixedMatrices_8cpp.html#afdffb91c41fcbf6d0bc8de4f6cf62626">T</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>v</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Json_8hpp_source.html#l00064">64</a> of file <a class="el" href="Json_8hpp_source.html">Json.hpp</a>.</p>
 
 </div>
 </div>
 <a id="acf1e425d7cecc90ed9f603b9de25f99b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf1e425d7cecc90ed9f603b9de25f99b">&#9670;&nbsp;</a></span>to_json()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acf1e425d7cecc90ed9f603b9de25f99b">&#9670;&nbsp;</a></span>to_json() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -264,7 +304,39 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Json_8hpp_source.html#l00043">43</a> of file <a class="el" href="Json_8hpp_source.html">Json.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Json_8hpp_source.html#l00044">44</a> of file <a class="el" href="Json_8hpp_source.html">Json.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a79c5121e712d01dcc8034f5ef0f30143"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79c5121e712d01dcc8034f5ef0f30143">&#9670;&nbsp;</a></span>to_json() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void std::to_json </td>
+          <td>(</td>
+          <td class="paramtype">nlohmann::json &amp;&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::optional&lt; <a class="el" href="GateUnitaryMatrixFixedMatrices_8cpp.html#afdffb91c41fcbf6d0bc8de4f6cf62626">T</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>v</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Json_8hpp_source.html#l00056">56</a> of file <a class="el" href="Json_8hpp_source.html">Json.hpp</a>.</p>
 
 </div>
 </div>
