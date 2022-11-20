@@ -9,11 +9,12 @@
   </head>
 
   <body>
-    <h1>GCC Code Coverage Report</h1>
+    <header>
+      <h1>GCC Code Coverage Report</h1>
 
-    <hr/>
+      <hr/>
 
-    <div class="summary">
+      <div class="summary">
 <div>
   <table class="legend">
     <tr>
@@ -26,7 +27,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2022-06-10 17:22:19</td>
+      <td>2022-11-20 11:12:16</td>
     </tr>
   </table>
 </div>
@@ -45,22 +46,61 @@
       <td class="coverage-high">100.0%</td>
     </tr>
     <tr>
+      <th scope="row">Functions:</th>
+      <td>1</td>
+      <td>1</td>
+      <td class="coverage-high">100.0%</td>
+    </tr>
+    <tr>
       <th scope="row">Branches:</th>
+      <td>0</td>
+      <td>0</td>
+      <td class="coverage-unknown">-%</td>
+    </tr>
+    <tr>
+      <th scope="row">Decisions:</th>
       <td>0</td>
       <td>0</td>
       <td class="coverage-unknown">-%</td>
     </tr>
   </table>
 </div>
-    </div>
+      </div>
 
-    <hr/>
+      <hr/>
+    </header>
 
+    <nav>
+<details>
+  <summary>List of functions</summary>
+  <table class="listOfFunctions">
+    <tr>
+      <th>Function</th>
+      <th>Line</th>
+      <th>Call count</th>
+    </tr>
+    <tr>
+      <td>
+        <a href="#l26">tket::LexiRouteError::LexiRouteError(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)</a>
+      </td>
+      <td>
+        <a href="#l26">26</a>
+      </td>
+      <td>
+        <a href="#l26"> called 3 times</a>
+      </td>
+    </tr>
+  </table>
+</details>
+    </nav>
+
+    <main>
 <div class="file-source">
   <table>
     <tr>
       <th align="right">Line</th>
       <th align="right">Branch</th>
+      <th align="right">Decision</th>
       <th align="right">Exec</th>
       <th align="left">Source</th>
     </tr>
@@ -70,6 +110,8 @@
       <td class="lineno"><a id="l1" href="#l1">1</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// Copyright 2019-2022 Cambridge Quantum Computing</span></td>
     </tr>
@@ -77,6 +119,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l2" href="#l2">2</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">//</span></td>
@@ -86,6 +130,8 @@
       <td class="lineno"><a id="l3" href="#l3">3</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></td>
     </tr>
@@ -93,6 +139,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l4" href="#l4">4</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// you may not use this file except in compliance with the License.</span></td>
@@ -102,6 +150,8 @@
       <td class="lineno"><a id="l5" href="#l5">5</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// You may obtain a copy of the License at</span></td>
     </tr>
@@ -109,6 +159,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l6" href="#l6">6</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">//</span></td>
@@ -118,6 +170,8 @@
       <td class="lineno"><a id="l7" href="#l7">7</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">//     http://www.apache.org/licenses/LICENSE-2.0</span></td>
     </tr>
@@ -125,6 +179,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l8" href="#l8">8</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">//</span></td>
@@ -134,6 +190,8 @@
       <td class="lineno"><a id="l9" href="#l9">9</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// Unless required by applicable law or agreed to in writing, software</span></td>
     </tr>
@@ -141,6 +199,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l10" href="#l10">10</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></td>
@@ -150,6 +210,8 @@
       <td class="lineno"><a id="l11" href="#l11">11</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></td>
     </tr>
@@ -157,6 +219,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l12" href="#l12">12</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// See the License for the specific language governing permissions and</span></td>
@@ -166,6 +230,8 @@
       <td class="lineno"><a id="l13" href="#l13">13</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// limitations under the License.</span></td>
     </tr>
@@ -173,6 +239,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l14" href="#l14">14</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -182,6 +250,8 @@
       <td class="lineno"><a id="l15" href="#l15">15</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cp">#pragma once</span></td>
     </tr>
@@ -189,6 +259,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l16" href="#l16">16</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -198,37 +270,47 @@
       <td class="lineno"><a id="l17" href="#l17">17</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cp">#include</span> <span class="cpf">&quot;Mapping/LexicographicalComparison.hpp&quot;</span><span class="cp"></span></td>
+      <td class="src "><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Mapping/LexicographicalComparison.hpp&quot;</span><span class="cp"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l18" href="#l18">18</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cp">#include</span> <span class="cpf">&quot;Mapping/MappingFrontier.hpp&quot;</span><span class="cp"></span></td>
+      <td class="src "><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Mapping/MappingFrontier.hpp&quot;</span><span class="cp"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l19" href="#l19">19</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cp">#include</span> <span class="cpf">&quot;Mapping/RoutingMethod.hpp&quot;</span><span class="cp"></span></td>
+      <td class="src "><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Mapping/RoutingMethod.hpp&quot;</span><span class="cp"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l20" href="#l20">20</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cp">#include</span> <span class="cpf">&quot;Mapping/RoutingMethodJson.hpp&quot;</span><span class="cp"></span></td>
+      <td class="src "><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Mapping/RoutingMethodJson.hpp&quot;</span><span class="cp"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l21" href="#l21">21</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -238,13 +320,17 @@
       <td class="lineno"><a id="l22" href="#l22">22</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="k">namespace</span> <span class="n">tket</span> <span class="p">{</span></td>
+      <td class="src "><span class="k">namespace</span><span class="w"> </span><span class="nn">tket</span><span class="w"> </span><span class="p">{</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l23" href="#l23">23</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -254,45 +340,57 @@
       <td class="lineno"><a id="l24" href="#l24">24</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="k">class</span> <span class="nc">LexiRouteError</span> <span class="o">:</span> <span class="k">public</span> <span class="n">std</span><span class="o">::</span><span class="n">logic_error</span> <span class="p">{</span></td>
+      <td class="src "><span class="k">class</span><span class="w"> </span><span class="nc">LexiRouteError</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="w"> </span><span class="p">{</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l25" href="#l25">25</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "> <span class="k">public</span><span class="o">:</span></td>
+      <td class="src "><span class="w"> </span><span class="k">public</span><span class="o">:</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l26" href="#l26">26</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">3</td>
-      <td class="src coveredLine">  <span class="k">explicit</span> <span class="n">LexiRouteError</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">message</span><span class="p">)</span></td>
+      <td class="src coveredLine"><span class="w">  </span><span class="k">explicit</span><span class="w"> </span><span class="n">LexiRouteError</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l27" href="#l27">27</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">3</td>
-      <td class="src coveredLine">      <span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="p">{}</span></td>
+      <td class="src coveredLine"><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l28" href="#l28">28</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">};</span></td>
+      <td class="src "><span class="p">};</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l29" href="#l29">29</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -302,6 +400,8 @@
       <td class="lineno"><a id="l30" href="#l30">30</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">/**</span></td>
     </tr>
@@ -309,6 +409,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l31" href="#l31">31</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm"> * A class for modifiying a Circuit held in a MappingFrontier object</span></td>
@@ -318,6 +420,8 @@
       <td class="lineno"><a id="l32" href="#l32">32</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm"> * with either an Architecture permitted single SWAP gate or BRIDGE gate.</span></td>
     </tr>
@@ -325,6 +429,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l33" href="#l33">33</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm"> * Used in the LexiRouteRoutingMethod class which provides a subcircuit</span></td>
@@ -334,6 +440,8 @@
       <td class="lineno"><a id="l34" href="#l34">34</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm"> * modification method for MappingManager. Used in solution presented in &quot;On the</span></td>
     </tr>
@@ -341,6 +449,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l35" href="#l35">35</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm"> * qubit routing problem&quot; -&gt; arXiv:1902.08091</span></td>
@@ -350,37 +460,47 @@
       <td class="lineno"><a id="l36" href="#l36">36</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm"> */</span></td>
+      <td class="src "><span class="cm"> */</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l37" href="#l37">37</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="k">class</span> <span class="nc">LexiRoute</span> <span class="p">{</span></td>
+      <td class="src "><span class="k">class</span><span class="w"> </span><span class="nc">LexiRoute</span><span class="w"> </span><span class="p">{</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l38" href="#l38">38</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "> <span class="k">public</span><span class="o">:</span></td>
+      <td class="src "><span class="w"> </span><span class="k">public</span><span class="o">:</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l39" href="#l39">39</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="w">  </span><span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l40" href="#l40">40</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * Class Constructor</span></td>
@@ -390,6 +510,8 @@
       <td class="lineno"><a id="l41" href="#l41">41</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param _architecture Architecture object added operations must respect</span></td>
     </tr>
@@ -397,6 +519,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l42" href="#l42">42</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param _mapping_frontier Contains Circuit object to be modified</span></td>
@@ -406,37 +530,47 @@
       <td class="lineno"><a id="l43" href="#l43">43</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   */</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l44" href="#l44">44</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">LexiRoute</span><span class="p">(</span></td>
+      <td class="src "><span class="w">  </span><span class="n">LexiRoute</span><span class="p">(</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l45" href="#l45">45</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">ArchitecturePtr</span><span class="o">&amp;</span> <span class="n">_architecture</span><span class="p">,</span></td>
+      <td class="src "><span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="n">ArchitecturePtr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">_architecture</span><span class="p">,</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l46" href="#l46">46</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="n">MappingFrontier_ptr</span><span class="o">&amp;</span> <span class="n">_mapping_frontier</span><span class="p">);</span></td>
+      <td class="src "><span class="w">      </span><span class="n">MappingFrontier_ptr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">_mapping_frontier</span><span class="p">);</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l47" href="#l47">47</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -446,13 +580,17 @@
       <td class="lineno"><a id="l48" href="#l48">48</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="w">  </span><span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l49" href="#l49">49</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * When called, LexiRoute::solve will modify the Circuit held in</span></td>
@@ -462,6 +600,8 @@
       <td class="lineno"><a id="l50" href="#l50">50</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * MappingFrontier object passed at class construction. Either a SWAP gate</span></td>
     </tr>
@@ -469,6 +609,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l51" href="#l51">51</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * will be inserted at the input boundary of the held Circuit or a CX gate</span></td>
@@ -478,6 +620,8 @@
       <td class="lineno"><a id="l52" href="#l52">52</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * will be transformed into a BRIDGE gate. The added SWAP or BRIDGE gate will</span></td>
     </tr>
@@ -485,6 +629,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l53" href="#l53">53</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * be valid for the Architecture passed at class construction.</span></td>
@@ -494,6 +640,8 @@
       <td class="lineno"><a id="l54" href="#l54">54</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * The decision making is based on the heuristic outlined in arXiv:1902.08091.</span></td>
     </tr>
@@ -501,6 +649,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l55" href="#l55">55</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   *</span></td>
@@ -510,6 +660,8 @@
       <td class="lineno"><a id="l56" href="#l56">56</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param lookahead Number of slices to lookahead at when determining best</span></td>
     </tr>
@@ -517,6 +669,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l57" href="#l57">57</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * SWAP or BRIDGE</span></td>
@@ -526,6 +680,8 @@
       <td class="lineno"><a id="l58" href="#l58">58</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   *</span></td>
     </tr>
@@ -533,6 +689,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l59" href="#l59">59</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @return True if solve has modified circuit for mapping purposes</span></td>
@@ -542,21 +700,27 @@
       <td class="lineno"><a id="l60" href="#l60">60</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   */</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l61" href="#l61">61</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">bool</span> <span class="nf">solve</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">lookahead</span><span class="p">);</span></td>
+      <td class="src "><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">lookahead</span><span class="p">);</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l62" href="#l62">62</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -566,13 +730,17 @@
       <td class="lineno"><a id="l63" href="#l63">63</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="w">  </span><span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l64" href="#l64">64</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * When called an &quot;unlabelled&quot; Qubit in the Circuit may be relabelled to a</span></td>
@@ -582,6 +750,8 @@
       <td class="lineno"><a id="l65" href="#l65">65</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * Node in the Architecture, or an &quot;unlabelled&quot; Qubit may have its path merged</span></td>
     </tr>
@@ -589,6 +759,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l66" href="#l66">66</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * with an ancilla qubit. The decision making is based on the heuristic</span></td>
@@ -598,6 +770,8 @@
       <td class="lineno"><a id="l67" href="#l67">67</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * outlined in arXiv:1902.08091.</span></td>
     </tr>
@@ -605,6 +779,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l68" href="#l68">68</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   *</span></td>
@@ -614,6 +790,8 @@
       <td class="lineno"><a id="l69" href="#l69">69</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @return True if solve_labelling has modified circuit for mapping purposes</span></td>
     </tr>
@@ -622,21 +800,27 @@
       <td class="lineno"><a id="l70" href="#l70">70</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   */</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l71" href="#l71">71</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">bool</span> <span class="nf">solve_labelling</span><span class="p">();</span></td>
+      <td class="src "><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">solve_labelling</span><span class="p">();</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l72" href="#l72">72</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -646,77 +830,97 @@
       <td class="lineno"><a id="l73" href="#l73">73</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "> <span class="k">private</span><span class="o">:</span></td>
+      <td class="src "><span class="w"> </span><span class="k">private</span><span class="o">:</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l74" href="#l74">74</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/** Only considers two-qubit vertices if both qubits are labelled to</span></td>
+      <td class="src "><span class="w">  </span><span class="cm">/** Only considers two-qubit vertices if both qubits are labelled to</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l75" href="#l75">75</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * Architecture */</span></td>
+      <td class="src "><span class="cm">   * Architecture */</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l76" href="#l76">76</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="k">enum</span> <span class="k">class</span> <span class="nc">AssignedOnly</span> <span class="p">{</span> <span class="n">Yes</span><span class="p">,</span> <span class="n">No</span> <span class="p">};</span></td>
+      <td class="src "><span class="w">  </span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">AssignedOnly</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Yes</span><span class="p">,</span><span class="w"> </span><span class="n">No</span><span class="w"> </span><span class="p">};</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l77" href="#l77">77</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/** Returns a bool confirming if vertices are valid for LexiRoute::solve */</span></td>
+      <td class="src "><span class="w">  </span><span class="cm">/** Returns a bool confirming if vertices are valid for LexiRoute::solve */</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l78" href="#l78">78</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="k">enum</span> <span class="k">class</span> <span class="nc">CheckRoutingValidity</span> <span class="p">{</span> <span class="n">Yes</span><span class="p">,</span> <span class="n">No</span> <span class="p">};</span></td>
+      <td class="src "><span class="w">  </span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CheckRoutingValidity</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Yes</span><span class="p">,</span><span class="w"> </span><span class="n">No</span><span class="w"> </span><span class="p">};</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l79" href="#l79">79</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/** Returns a bool confirming if vertices are valid for</span></td>
+      <td class="src "><span class="w">  </span><span class="cm">/** Returns a bool confirming if vertices are valid for</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l80" href="#l80">80</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   * LexiRoute::solve_labelling */</span></td>
+      <td class="src "><span class="cm">   * LexiRoute::solve_labelling */</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l81" href="#l81">81</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="k">enum</span> <span class="k">class</span> <span class="nc">CheckLabellingValidity</span> <span class="p">{</span> <span class="n">Yes</span><span class="p">,</span> <span class="n">No</span> <span class="p">};</span></td>
+      <td class="src "><span class="w">  </span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CheckLabellingValidity</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Yes</span><span class="p">,</span><span class="w"> </span><span class="n">No</span><span class="w"> </span><span class="p">};</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l82" href="#l82">82</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -726,13 +930,17 @@
       <td class="lineno"><a id="l83" href="#l83">83</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="w">  </span><span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l84" href="#l84">84</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * this-&gt;interacting_uids_ attribute is a map where key is one UnitID</span></td>
@@ -742,6 +950,8 @@
       <td class="lineno"><a id="l85" href="#l85">85</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * and value is the UnitID it needs to be adjacent to.</span></td>
     </tr>
@@ -749,6 +959,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l86" href="#l86">86</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * This map is implicitly updated whenever a logical SWAP is inserted.</span></td>
@@ -758,6 +970,8 @@
       <td class="lineno"><a id="l87" href="#l87">87</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * set_interacting_uids determines this map for the first parallel set of</span></td>
     </tr>
@@ -765,6 +979,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l88" href="#l88">88</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * interacting UnitID in the Circuit held in this-&gt;mapping_frontier_</span></td>
@@ -774,6 +990,8 @@
       <td class="lineno"><a id="l89" href="#l89">89</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param assigned_only If Yes, only include interactions where both UnitID</span></td>
     </tr>
@@ -781,6 +999,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l90" href="#l90">90</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * are in this-&gt;architecture_.</span></td>
@@ -790,6 +1010,8 @@
       <td class="lineno"><a id="l91" href="#l91">91</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param route_check If Yes, return false if solve not possible</span></td>
     </tr>
@@ -797,6 +1019,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l92" href="#l92">92</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param label_check If Yes, return false if solve_labelling not possible</span></td>
@@ -806,6 +1030,8 @@
       <td class="lineno"><a id="l93" href="#l93">93</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   *</span></td>
     </tr>
@@ -813,6 +1039,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l94" href="#l94">94</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @return bool depending on ENUM conditions</span></td>
@@ -822,37 +1050,47 @@
       <td class="lineno"><a id="l95" href="#l95">95</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   */</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l96" href="#l96">96</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">bool</span> <span class="nf">set_interacting_uids</span><span class="p">(</span></td>
+      <td class="src "><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">set_interacting_uids</span><span class="p">(</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l97" href="#l97">97</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="n">AssignedOnly</span> <span class="n">assigned_only</span><span class="p">,</span> <span class="n">CheckRoutingValidity</span> <span class="n">route_check</span><span class="p">,</span></td>
+      <td class="src "><span class="w">      </span><span class="n">AssignedOnly</span><span class="w"> </span><span class="n">assigned_only</span><span class="p">,</span><span class="w"> </span><span class="n">CheckRoutingValidity</span><span class="w"> </span><span class="n">route_check</span><span class="p">,</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l98" href="#l98">98</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="n">CheckLabellingValidity</span> <span class="n">label_check</span><span class="p">);</span></td>
+      <td class="src "><span class="w">      </span><span class="n">CheckLabellingValidity</span><span class="w"> </span><span class="n">label_check</span><span class="p">);</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l99" href="#l99">99</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -862,13 +1100,17 @@
       <td class="lineno"><a id="l100" href="#l100">100</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="w">  </span><span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l101" href="#l101">101</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * If there is some &quot;free&quot; Node in Architecture at distance &quot;distances&quot; on</span></td>
@@ -878,6 +1120,8 @@
       <td class="lineno"><a id="l102" href="#l102">102</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * the connectivity graph, assign (relable) UnitID assignee to it. &quot;free&quot;</span></td>
     </tr>
@@ -885,6 +1129,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l103" href="#l103">103</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * =&gt; not in Circuit. If no unassigned node at distances from root, return</span></td>
@@ -894,6 +1140,8 @@
       <td class="lineno"><a id="l104" href="#l104">104</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * false.</span></td>
     </tr>
@@ -901,6 +1149,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l105" href="#l105">105</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param assignee UnitID not in Architecture to relabel</span></td>
@@ -910,6 +1160,8 @@
       <td class="lineno"><a id="l106" href="#l106">106</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param root Node in Architecture</span></td>
     </tr>
@@ -917,6 +1169,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l107" href="#l107">107</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param distances Distance at which to find free Node from root at</span></td>
@@ -926,6 +1180,8 @@
       <td class="lineno"><a id="l108" href="#l108">108</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @return True if assigned, else False</span></td>
     </tr>
@@ -934,29 +1190,37 @@
       <td class="lineno"><a id="l109" href="#l109">109</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   */</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l110" href="#l110">110</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">bool</span> <span class="nf">assign_at_distance</span><span class="p">(</span></td>
+      <td class="src "><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">assign_at_distance</span><span class="p">(</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l111" href="#l111">111</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">UnitID</span><span class="o">&amp;</span> <span class="n">assignee</span><span class="p">,</span> <span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">root</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">distances</span><span class="p">);</span></td>
+      <td class="src "><span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="n">UnitID</span><span class="o">&amp;</span><span class="w"> </span><span class="n">assignee</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Node</span><span class="o">&amp;</span><span class="w"> </span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">distances</span><span class="p">);</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l112" href="#l112">112</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -966,13 +1230,17 @@
       <td class="lineno"><a id="l113" href="#l113">113</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="w">  </span><span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l114" href="#l114">114</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * If this-&gt;set_interacting_uids assigned_only bool is false then the</span></td>
@@ -982,6 +1250,8 @@
       <td class="lineno"><a id="l115" href="#l115">115</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * this-&gt;interacting_uids attribute may have key and value UnitID not in</span></td>
     </tr>
@@ -989,6 +1259,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l116" href="#l116">116</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * this-&gt;architecture_.</span></td>
@@ -998,6 +1270,8 @@
       <td class="lineno"><a id="l117" href="#l117">117</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * update_labelling assigns these non-architecture UnitID to some Architecture</span></td>
     </tr>
@@ -1005,6 +1279,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l118" href="#l118">118</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * UnitID, updating the this-&gt;labelling_ attribute.</span></td>
@@ -1014,6 +1290,8 @@
       <td class="lineno"><a id="l119" href="#l119">119</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @return True if anything relabelled, else false</span></td>
     </tr>
@@ -1022,21 +1300,27 @@
       <td class="lineno"><a id="l120" href="#l120">120</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   */</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l121" href="#l121">121</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">bool</span> <span class="nf">update_labelling</span><span class="p">();</span></td>
+      <td class="src "><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">update_labelling</span><span class="p">();</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l122" href="#l122">122</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -1046,13 +1330,17 @@
       <td class="lineno"><a id="l123" href="#l123">123</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="w">  </span><span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l124" href="#l124">124</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * Returns a set of pair of UnitID, each denoting a SWAP.</span></td>
@@ -1062,6 +1350,8 @@
       <td class="lineno"><a id="l125" href="#l125">125</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * Returned SWAP have at least one UnitID in interacting_uids_.</span></td>
     </tr>
@@ -1069,6 +1359,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l126" href="#l126">126</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * This is such that enacting any of these SWAP will alter the distance</span></td>
@@ -1078,6 +1370,8 @@
       <td class="lineno"><a id="l127" href="#l127">127</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * between some interacting UnitID.</span></td>
     </tr>
@@ -1085,6 +1379,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l128" href="#l128">128</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @return std::pair&lt;UnitID, UnitID&gt; suitable for addition to Circuit</span></td>
@@ -1094,21 +1390,27 @@
       <td class="lineno"><a id="l129" href="#l129">129</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   */</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l130" href="#l130">130</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">swap_set_t</span> <span class="nf">get_candidate_swaps</span><span class="p">();</span></td>
+      <td class="src "><span class="w">  </span><span class="n">swap_set_t</span><span class="w"> </span><span class="nf">get_candidate_swaps</span><span class="p">();</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l131" href="#l131">131</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -1118,13 +1420,17 @@
       <td class="lineno"><a id="l132" href="#l132">132</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="w">  </span><span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l133" href="#l133">133</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * Proposed swap will have two Node</span></td>
@@ -1134,6 +1440,8 @@
       <td class="lineno"><a id="l134" href="#l134">134</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * Each of these Node may be in some interaction in the first layer of circuit</span></td>
     </tr>
@@ -1141,6 +1449,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l135" href="#l135">135</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * held in mapping_frontier. If either of these Node are in an interaction,</span></td>
@@ -1150,6 +1460,8 @@
       <td class="lineno"><a id="l136" href="#l136">136</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * check whether said interaction is a CX interaction, and if the pair of Node</span></td>
     </tr>
@@ -1157,6 +1469,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l137" href="#l137">137</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * in the interaction are at distance 2. If true, compare lexicographical</span></td>
@@ -1166,6 +1480,8 @@
       <td class="lineno"><a id="l138" href="#l138">138</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * distances between no swap and given swap assuming distance 2 interactions</span></td>
     </tr>
@@ -1173,6 +1489,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l139" href="#l139">139</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * are  complete. If no swap is better, update return object to reflect this.</span></td>
@@ -1182,6 +1500,8 @@
       <td class="lineno"><a id="l140" href="#l140">140</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param swap Pair of Node comprising SWAP for checking</span></td>
     </tr>
@@ -1189,6 +1509,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l141" href="#l141">141</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param lookahead Number of steps of lookahead emplyed for comparison</span></td>
@@ -1198,6 +1520,8 @@
       <td class="lineno"><a id="l142" href="#l142">142</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @return Pair of bool, where true implies BRIDGE to be added</span></td>
     </tr>
@@ -1206,29 +1530,37 @@
       <td class="lineno"><a id="l143" href="#l143">143</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   */</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l144" href="#l144">144</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="kt">bool</span><span class="o">&gt;</span> <span class="n">check_bridge</span><span class="p">(</span></td>
+      <td class="src "><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">check_bridge</span><span class="p">(</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l145" href="#l145">145</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">Node</span><span class="p">,</span> <span class="n">Node</span><span class="o">&gt;&amp;</span> <span class="n">swap</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">lookahead</span><span class="p">);</span></td>
+      <td class="src "><span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">Node</span><span class="p">,</span><span class="w"> </span><span class="n">Node</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">swap</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">lookahead</span><span class="p">);</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l146" href="#l146">146</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -1238,13 +1570,17 @@
       <td class="lineno"><a id="l147" href="#l147">147</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="w">  </span><span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l148" href="#l148">148</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * Returns a pair of distances, where the distances are between n1 &amp; p1, and</span></td>
@@ -1254,6 +1590,8 @@
       <td class="lineno"><a id="l149" href="#l149">149</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * n2 &amp; p2. Pair object is ordered such that the greatest distance is first.</span></td>
     </tr>
@@ -1261,6 +1599,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l150" href="#l150">150</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   *</span></td>
@@ -1270,6 +1610,8 @@
       <td class="lineno"><a id="l151" href="#l151">151</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param p0_first First Node in first interaction to find distance between</span></td>
     </tr>
@@ -1277,6 +1619,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l152" href="#l152">152</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param p0_second Second Node in first interaction to find distance between</span></td>
@@ -1286,6 +1630,8 @@
       <td class="lineno"><a id="l153" href="#l153">153</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param p1_first First Node in second interaction to find distance between</span></td>
     </tr>
@@ -1293,6 +1639,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l154" href="#l154">154</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param p1_second Second Node in second interaction to find distance between</span></td>
@@ -1302,6 +1650,8 @@
       <td class="lineno"><a id="l155" href="#l155">155</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @return Pair of size_t, being distances on architecture graph</span></td>
     </tr>
@@ -1310,37 +1660,47 @@
       <td class="lineno"><a id="l156" href="#l156">156</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   */</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l157" href="#l157">157</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span> <span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">pair_distances</span><span class="p">(</span></td>
+      <td class="src "><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pair_distances</span><span class="p">(</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l158" href="#l158">158</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">p0_first</span><span class="p">,</span> <span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">p0_second</span><span class="p">,</span> <span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">p1_first</span><span class="p">,</span></td>
+      <td class="src "><span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="n">Node</span><span class="o">&amp;</span><span class="w"> </span><span class="n">p0_first</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Node</span><span class="o">&amp;</span><span class="w"> </span><span class="n">p0_second</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Node</span><span class="o">&amp;</span><span class="w"> </span><span class="n">p1_first</span><span class="p">,</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l159" href="#l159">159</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">      <span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">p1_second</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span></td>
+      <td class="src "><span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="n">Node</span><span class="o">&amp;</span><span class="w"> </span><span class="n">p1_second</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l160" href="#l160">160</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -1350,13 +1710,17 @@
       <td class="lineno"><a id="l161" href="#l161">161</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="cm">/**</span></td>
+      <td class="src "><span class="w">  </span><span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l162" href="#l162">162</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * It is always expected that at least one Node in a SWAP will be in some</span></td>
@@ -1366,6 +1730,8 @@
       <td class="lineno"><a id="l163" href="#l163">163</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * interaction. This method checks that the given swap will strictly decrease</span></td>
     </tr>
@@ -1373,6 +1739,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l164" href="#l164">164</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * the distance for this interaction, and removes it from the swaps set if</span></td>
@@ -1382,6 +1750,8 @@
       <td class="lineno"><a id="l165" href="#l165">165</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * not.</span></td>
     </tr>
@@ -1389,6 +1759,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l166" href="#l166">166</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   *</span></td>
@@ -1398,6 +1770,8 @@
       <td class="lineno"><a id="l167" href="#l167">167</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="cm">   * @param swaps Potential swaps to remove from</span></td>
     </tr>
@@ -1406,21 +1780,27 @@
       <td class="lineno"><a id="l168" href="#l168">168</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">   */</span></td>
+      <td class="src "><span class="cm">   */</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l169" href="#l169">169</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="kt">void</span> <span class="nf">remove_swaps_decreasing</span><span class="p">(</span><span class="n">swap_set_t</span><span class="o">&amp;</span> <span class="n">swaps</span><span class="p">);</span></td>
+      <td class="src "><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">remove_swaps_decreasing</span><span class="p">(</span><span class="n">swap_set_t</span><span class="o">&amp;</span><span class="w"> </span><span class="n">swaps</span><span class="p">);</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l170" href="#l170">170</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -1430,117 +1810,247 @@
       <td class="lineno"><a id="l171" href="#l171">171</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="c1">// Architecture all new physical operations must respect</span></td>
+      <td class="src "><span class="w">  </span><span class="cm">/**</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l172" href="#l172">172</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">ArchitecturePtr</span> <span class="n">architecture_</span><span class="p">;</span></td>
+      <td class="src "><span class="cm">   * In some cases, we may want to assign an unlabelled Qubit</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l173" href="#l173">173</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="c1">//   Contains circuit for finding SWAP from and non-routed/routed boundary</span></td>
+      <td class="src "><span class="cm">   * to a Node that&#39;s already been used (but can reasonably be reassigned)</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l174" href="#l174">174</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">MappingFrontier_ptr</span><span class="o">&amp;</span> <span class="n">mapping_frontier_</span><span class="p">;</span></td>
+      <td class="src "><span class="cm">   *</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l175" href="#l175">175</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="c1">//   Map between UnitID and UnitID they interact with at boundary</span></td>
+      <td class="src "><span class="cm">   * @param pre_assigned Node to reassign</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l176" href="#l176">176</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="n">unit_map_t</span> <span class="n">interacting_uids_</span><span class="p">;</span></td>
+      <td class="src "><span class="cm">   * @param assigned Node to newly assign</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l177" href="#l177">177</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="c1">//   Map between original circuit UnitID and new UnitID due to dynamic</span></td>
+      <td class="src "><span class="cm">   */</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l178" href="#l178">178</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="c1">//   placement</span></td>
+      <td class="src "><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">reassign_node</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Node</span><span class="o">&amp;</span><span class="w"> </span><span class="n">pre_assigned</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">UnitID</span><span class="o">&amp;</span><span class="w"> </span><span class="n">asignee</span><span class="p">);</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l179" href="#l179">179</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="n">unit_map_t</span> <span class="n">labelling_</span><span class="p">;</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l180" href="#l180">180</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="c1">//   Set tracking which Architecture Node are present in Circuit</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l181" href="#l181">181</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src ">  <span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">assigned_nodes_</span><span class="p">;</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l182" href="#l182">182</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="p">};</span></td>
-    </tr>
-
-    <tr class="source-line">
-      <td class="lineno"><a id="l183" href="#l183">183</a></td>
-      <td class="linebranch">
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
     </tr>
 
     <tr class="source-line">
+      <td class="lineno"><a id="l180" href="#l180">180</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">assign_valid_node</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UnitID</span><span class="o">&amp;</span><span class="w"> </span><span class="n">assignee</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">UnitID</span><span class="o">&amp;</span><span class="w"> </span><span class="n">replacement</span><span class="p">);</span><span class="w"></span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l181" href="#l181">181</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="w">  </span><span class="c1">// Architecture all new physical operations must respect</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l182" href="#l182">182</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="w">  </span><span class="n">ArchitecturePtr</span><span class="w"> </span><span class="n">architecture_</span><span class="p">;</span><span class="w"></span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l183" href="#l183">183</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="w">  </span><span class="c1">//   Contains circuit for finding SWAP from and non-routed/routed boundary</span></td>
+    </tr>
+
+    <tr class="source-line">
       <td class="lineno"><a id="l184" href="#l184">184</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">}</span>  <span class="c1">// namespace tket</span></td>
+      <td class="src "><span class="w">  </span><span class="n">MappingFrontier_ptr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">mapping_frontier_</span><span class="p">;</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l185" href="#l185">185</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="w">  </span><span class="c1">//   Map between UnitID and UnitID they interact with at boundary</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l186" href="#l186">186</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="w">  </span><span class="n">unit_map_t</span><span class="w"> </span><span class="n">interacting_uids_</span><span class="p">;</span><span class="w"></span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l187" href="#l187">187</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="w">  </span><span class="c1">//   Map between original circuit UnitID and new UnitID due to dynamic</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l188" href="#l188">188</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="w">  </span><span class="c1">//   placement</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l189" href="#l189">189</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="w">  </span><span class="n">unit_map_t</span><span class="w"> </span><span class="n">labelling_</span><span class="p">;</span><span class="w"></span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l190" href="#l190">190</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="w">  </span><span class="c1">//   Set tracking which Architecture Node are present in Circuit</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l191" href="#l191">191</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="n">assigned_nodes_</span><span class="p">;</span><span class="w"></span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l192" href="#l192">192</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="p">};</span><span class="w"></span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l193" href="#l193">193</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l194" href="#l194">194</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="p">}</span><span class="w">  </span><span class="c1">// namespace tket</span></td>
+    </tr>
+
+    <tr class="source-line">
+      <td class="lineno"><a id="l195" href="#l195">195</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -1548,11 +2058,11 @@
 
   </table>
 </div>
-
-    <hr/>
+      <hr/>
+    </main>
 
     <footer>
-      Generated by: <a href="http://gcovr.com">GCOVR (Version 5.0)</a>
+      Generated by: <a href="http://gcovr.com">GCOVR (Version 5.2)</a>
     </footer>
   </body>
 </html>

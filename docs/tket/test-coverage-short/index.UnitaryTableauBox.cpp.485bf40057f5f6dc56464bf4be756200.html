@@ -9,11 +9,12 @@
   </head>
 
   <body>
-    <h1>GCC Code Coverage Report</h1>
+    <header>
+      <h1>GCC Code Coverage Report</h1>
 
-    <hr/>
+      <hr/>
 
-    <div class="summary">
+      <div class="summary">
 <div>
   <table class="legend">
     <tr>
@@ -26,7 +27,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2022-06-10 17:22:19</td>
+      <td>2022-11-20 11:12:16</td>
     </tr>
   </table>
 </div>
@@ -40,27 +41,187 @@
     </tr>
     <tr>
       <th scope="row">Lines:</th>
-      <td>33</td>
-      <td>38</td>
-      <td class="coverage-medium">86.8%</td>
+      <td>34</td>
+      <td>39</td>
+      <td class="coverage-medium">87.2%</td>
+    </tr>
+    <tr>
+      <th scope="row">Functions:</th>
+      <td>10</td>
+      <td>12</td>
+      <td class="coverage-medium">83.3%</td>
     </tr>
     <tr>
       <th scope="row">Branches:</th>
-      <td>25</td>
-      <td>52</td>
-      <td class="coverage-low">48.1%</td>
+      <td>24</td>
+      <td>48</td>
+      <td class="coverage-low">50.0%</td>
+    </tr>
+    <tr>
+      <th scope="row">Decisions:</th>
+      <td>3</td>
+      <td>4</td>
+      <td class="coverage-medium">75.0%</td>
     </tr>
   </table>
 </div>
-    </div>
+      </div>
 
-    <hr/>
+      <hr/>
+    </header>
 
+    <nav>
+<details>
+  <summary>List of functions</summary>
+  <table class="listOfFunctions">
+    <tr>
+      <th>Function</th>
+      <th>Line</th>
+      <th>Call count</th>
+    </tr>
+    <tr>
+      <td>
+        <a href="#l34">tket::UnitaryTableauBox::UnitaryTableauBox(Eigen::Matrix&lt;bool, -1, -1, 0, -1, -1&gt; const&amp;, Eigen::Matrix&lt;bool, -1, -1, 0, -1, -1&gt; const&amp;, Eigen::Matrix&lt;bool, -1, 1, 0, -1, 1&gt; const&amp;, Eigen::Matrix&lt;bool, -1, -1, 0, -1, -1&gt; const&amp;, Eigen::Matrix&lt;bool, -1, -1, 0, -1, -1&gt; const&amp;, Eigen::Matrix&lt;bool, -1, 1, 0, -1, 1&gt; const&amp;)</a>
+      </td>
+      <td>
+        <a href="#l34">34</a>
+      </td>
+      <td>
+        <a href="#l34"> called 1 time</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="#l21">tket::UnitaryTableauBox::UnitaryTableauBox(tket::UnitaryTableau const&amp;)</a>
+      </td>
+      <td>
+        <a href="#l21">21</a>
+      </td>
+      <td>
+        <a href="#l21"> called 6 times</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="#l39">tket::UnitaryTableauBox::dagger() const</a>
+      </td>
+      <td>
+        <a href="#l39">39</a>
+      </td>
+      <td>
+        <a href="#l39"> called 1 time</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="#l52">tket::UnitaryTableauBox::free_symbols() const</a>
+      </td>
+      <td>
+        <a href="#l52">52</a>
+      </td>
+      <td>
+        <a href="#l52"> not called</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="#l69">tket::UnitaryTableauBox::from_json(nlohmann::json_abi_v3_11_2::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::json_abi_v3_11_2::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; const&amp;)</a>
+      </td>
+      <td>
+        <a href="#l69">69</a>
+      </td>
+      <td>
+        <a href="#l69"> called 1 time</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="#l81">tket::UnitaryTableauBox::generate_circuit() const</a>
+      </td>
+      <td>
+        <a href="#l81">81</a>
+      </td>
+      <td>
+        <a href="#l81"> called 3 times</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="#l77">tket::UnitaryTableauBox::get_signature() const</a>
+      </td>
+      <td>
+        <a href="#l77">77</a>
+      </td>
+      <td>
+        <a href="#l77"> called 11 times</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="#l60">tket::UnitaryTableauBox::get_tableau() const</a>
+      </td>
+      <td>
+        <a href="#l60">60</a>
+      </td>
+      <td>
+        <a href="#l60"> called 1 time</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="#l54">tket::UnitaryTableauBox::is_equal(tket::Op const&amp;) const</a>
+      </td>
+      <td>
+        <a href="#l54">54</a>
+      </td>
+      <td>
+        <a href="#l54"> called 1 time</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="#l47">tket::UnitaryTableauBox::symbol_substitution(std::map&lt;Teuchos::RCP&lt;SymEngine::Basic const&gt;, Teuchos::RCP&lt;SymEngine::Basic const&gt;, SymEngine::RCPBasicKeyLess, std::allocator&lt;std::pair&lt;Teuchos::RCP&lt;SymEngine::Basic const&gt; const, Teuchos::RCP&lt;SymEngine::Basic const&gt; &gt; &gt; &gt; const&amp;) const</a>
+      </td>
+      <td>
+        <a href="#l47">47</a>
+      </td>
+      <td>
+        <a href="#l47"> not called</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="#l62">tket::UnitaryTableauBox::to_json[abi:cxx11](std::shared_ptr&lt;tket::Op const&gt; const&amp;)</a>
+      </td>
+      <td>
+        <a href="#l62">62</a>
+      </td>
+      <td>
+        <a href="#l62"> called 1 time</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="#l43">tket::UnitaryTableauBox::transpose() const</a>
+      </td>
+      <td>
+        <a href="#l43">43</a>
+      </td>
+      <td>
+        <a href="#l43"> called 1 time</a>
+      </td>
+    </tr>
+  </table>
+</details>
+    </nav>
+
+    <main>
 <div class="file-source">
   <table>
     <tr>
       <th align="right">Line</th>
       <th align="right">Branch</th>
+      <th align="right">Decision</th>
       <th align="right">Exec</th>
       <th align="left">Source</th>
     </tr>
@@ -70,6 +231,8 @@
       <td class="lineno"><a id="l1" href="#l1">1</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// Copyright 2019-2022 Cambridge Quantum Computing</span></td>
     </tr>
@@ -77,6 +240,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l2" href="#l2">2</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">//</span></td>
@@ -86,6 +251,8 @@
       <td class="lineno"><a id="l3" href="#l3">3</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></td>
     </tr>
@@ -93,6 +260,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l4" href="#l4">4</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// you may not use this file except in compliance with the License.</span></td>
@@ -102,6 +271,8 @@
       <td class="lineno"><a id="l5" href="#l5">5</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// You may obtain a copy of the License at</span></td>
     </tr>
@@ -109,6 +280,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l6" href="#l6">6</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">//</span></td>
@@ -118,6 +291,8 @@
       <td class="lineno"><a id="l7" href="#l7">7</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">//     http://www.apache.org/licenses/LICENSE-2.0</span></td>
     </tr>
@@ -125,6 +300,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l8" href="#l8">8</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">//</span></td>
@@ -134,6 +311,8 @@
       <td class="lineno"><a id="l9" href="#l9">9</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// Unless required by applicable law or agreed to in writing, software</span></td>
     </tr>
@@ -141,6 +320,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l10" href="#l10">10</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></td>
@@ -150,6 +331,8 @@
       <td class="lineno"><a id="l11" href="#l11">11</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></td>
     </tr>
@@ -157,6 +340,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l12" href="#l12">12</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// See the License for the specific language governing permissions and</span></td>
@@ -166,6 +351,8 @@
       <td class="lineno"><a id="l13" href="#l13">13</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
       <td class="src "><span class="c1">// limitations under the License.</span></td>
     </tr>
@@ -173,6 +360,8 @@
     <tr class="source-line">
       <td class="lineno"><a id="l14" href="#l14">14</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -182,13 +371,17 @@
       <td class="lineno"><a id="l15" href="#l15">15</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cp">#include</span> <span class="cpf">&quot;UnitaryTableauBox.hpp&quot;</span><span class="cp"></span></td>
+      <td class="src "><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;UnitaryTableauBox.hpp&quot;</span><span class="cp"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l16" href="#l16">16</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -198,13 +391,17 @@
       <td class="lineno"><a id="l17" href="#l17">17</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cp">#include</span> <span class="cpf">&quot;Ops/OpJsonFactory.hpp&quot;</span><span class="cp"></span></td>
+      <td class="src "><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Ops/OpJsonFactory.hpp&quot;</span><span class="cp"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l18" href="#l18">18</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -214,13 +411,17 @@
       <td class="lineno"><a id="l19" href="#l19">19</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="k">namespace</span> <span class="n">tket</span> <span class="p">{</span></td>
+      <td class="src "><span class="k">namespace</span><span class="w"> </span><span class="nn">tket</span><span class="w"> </span><span class="p">{</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l20" href="#l20">20</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -230,8 +431,10 @@
       <td class="lineno"><a id="l21" href="#l21">21</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">6</td>
-      <td class="src coveredLine"><span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">UnitaryTableauBox</span><span class="p">(</span><span class="k">const</span> <span class="n">UnitaryTableau</span><span class="o">&amp;</span> <span class="n">tab</span><span class="p">)</span></td>
+      <td class="src coveredLine"><span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">UnitaryTableauBox</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UnitaryTableau</span><span class="o">&amp;</span><span class="w"> </span><span class="n">tab</span><span class="p">)</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -247,8 +450,10 @@
         </div>
         </details>
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">6</td>
-      <td class="src coveredLine">    <span class="o">:</span> <span class="n">Box</span><span class="p">(</span><span class="n">OpType</span><span class="o">::</span><span class="n">UnitaryTableauBox</span><span class="p">),</span> <span class="n">tab_</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span> <span class="p">{</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">Box</span><span class="p">(</span><span class="n">OpType</span><span class="o">::</span><span class="n">UnitaryTableauBox</span><span class="p">),</span><span class="w"> </span><span class="n">tab_</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -262,16 +467,20 @@
         </div>
         </details>
       </td>
-      <td class="linecount coveredLine">12</td>
-      <td class="src coveredLine">  <span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">Qubit</span><span class="o">&gt;</span> <span class="n">tab_qbs</span> <span class="o">=</span> <span class="n">tab_</span><span class="p">.</span><span class="n">get_qubits</span><span class="p">();</span></td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount coveredLine">6</td>
+      <td class="src coveredLine"><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">Qubit</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tab_qbs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tab_</span><span class="p">.</span><span class="n">get_qubits</span><span class="p">();</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l24" href="#l24">24</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">12</td>
-      <td class="src coveredLine">  <span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">Qubit</span><span class="o">&gt;</span> <span class="n">qbs</span><span class="p">;</span></td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount coveredLine">6</td>
+      <td class="src coveredLine"><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">Qubit</span><span class="o">&gt;</span><span class="w"> </span><span class="n">qbs</span><span class="p">;</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -285,8 +494,17 @@
         </div>
         </details>
       </td>
+      <td class="linedecision">
+        <details class="linedecisionDetails">
+          <summary class="linedecisionSummary">2/2</summary>
+          <div class="linedecisionContents">
+            <div class="takenDecision">&check; Decision 'true' taken 18 times.</div>
+            <div class="takenDecision">&check; Decision 'false' taken 6 times.</div>
+          </div>
+        </details>
+      </td>
       <td class="linecount coveredLine">24</td>
-      <td class="src coveredLine">  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">tab_qbs</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span></td>
+      <td class="src coveredLine"><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">tab_qbs</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -302,16 +520,20 @@
         </div>
         </details>
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">18</td>
-      <td class="src coveredLine">    <span class="n">qbs</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">Qubit</span><span class="p">(</span><span class="n">i</span><span class="p">));</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="n">qbs</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">Qubit</span><span class="p">(</span><span class="n">i</span><span class="p">));</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l27" href="#l27">27</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="p">}</span></td>
+      <td class="src "><span class="w">  </span><span class="p">}</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -327,45 +549,64 @@
         </div>
         </details>
       </td>
+      <td class="linedecision">
+        <details class="linedecisionDetails">
+          <summary class="linedecisionSummary">1/2</summary>
+          <div class="linedecisionContents">
+            <div class="notTakenDecision">&cross; Decision 'true' not taken.</div>
+            <div class="takenDecision">&check; Decision 'false' taken 6 times.</div>
+          </div>
+        </details>
+      </td>
       <td class="linecount coveredLine">6</td>
-      <td class="src coveredLine">  <span class="k">if</span> <span class="p">(</span><span class="n">tab_qbs</span> <span class="o">!=</span> <span class="n">qbs</span><span class="p">)</span></td>
+      <td class="src coveredLine"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tab_qbs</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">qbs</span><span class="p">)</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l29" href="#l29">29</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine">    <span class="k">throw</span> <span class="n">NotValid</span><span class="p">(</span></td>
+      <td class="src uncoveredLine"><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="p">(</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l30" href="#l30">30</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">        <span class="s">&quot;UnitaryTableauBox requires tableau qubits to have default, &quot;</span></td>
+      <td class="src "><span class="w">        </span><span class="s">&quot;UnitaryTableauBox requires tableau qubits to have default, &quot;</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l31" href="#l31">31</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine">        <span class="s">&quot;consecutive indexing&quot;</span><span class="p">);</span></td>
+      <td class="src uncoveredLine"><span class="w">        </span><span class="s">&quot;consecutive indexing&quot;</span><span class="p">);</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l32" href="#l32">32</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">6</td>
-      <td class="src coveredLine"><span class="p">}</span></td>
+      <td class="src coveredLine"><span class="p">}</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l33" href="#l33">33</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -375,24 +616,30 @@
       <td class="lineno"><a id="l34" href="#l34">34</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine"><span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">UnitaryTableauBox</span><span class="p">(</span></td>
+      <td class="src coveredLine"><span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">UnitaryTableauBox</span><span class="p">(</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l35" href="#l35">35</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">    <span class="k">const</span> <span class="n">MatrixXb</span><span class="o">&amp;</span> <span class="n">xx</span><span class="p">,</span> <span class="k">const</span> <span class="n">MatrixXb</span><span class="o">&amp;</span> <span class="n">xz</span><span class="p">,</span> <span class="k">const</span> <span class="n">VectorXb</span><span class="o">&amp;</span> <span class="n">xph</span><span class="p">,</span></td>
+      <td class="src "><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">MatrixXb</span><span class="o">&amp;</span><span class="w"> </span><span class="n">xx</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">MatrixXb</span><span class="o">&amp;</span><span class="w"> </span><span class="n">xz</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">VectorXb</span><span class="o">&amp;</span><span class="w"> </span><span class="n">xph</span><span class="p">,</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l36" href="#l36">36</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine">    <span class="k">const</span> <span class="n">MatrixXb</span><span class="o">&amp;</span> <span class="n">zx</span><span class="p">,</span> <span class="k">const</span> <span class="n">MatrixXb</span><span class="o">&amp;</span> <span class="n">zz</span><span class="p">,</span> <span class="k">const</span> <span class="n">VectorXb</span><span class="o">&amp;</span> <span class="n">zph</span><span class="p">)</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">MatrixXb</span><span class="o">&amp;</span><span class="w"> </span><span class="n">zx</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">MatrixXb</span><span class="o">&amp;</span><span class="w"> </span><span class="n">zz</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">VectorXb</span><span class="o">&amp;</span><span class="w"> </span><span class="n">zph</span><span class="p">)</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -408,13 +655,17 @@
         </div>
         </details>
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine">    <span class="o">:</span> <span class="n">Box</span><span class="p">(</span><span class="n">OpType</span><span class="o">::</span><span class="n">UnitaryTableauBox</span><span class="p">),</span> <span class="n">tab_</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">xz</span><span class="p">,</span> <span class="n">xph</span><span class="p">,</span> <span class="n">zx</span><span class="p">,</span> <span class="n">zz</span><span class="p">,</span> <span class="n">zph</span><span class="p">)</span> <span class="p">{}</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">Box</span><span class="p">(</span><span class="n">OpType</span><span class="o">::</span><span class="n">UnitaryTableauBox</span><span class="p">),</span><span class="w"> </span><span class="n">tab_</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="w"> </span><span class="n">xz</span><span class="p">,</span><span class="w"> </span><span class="n">xph</span><span class="p">,</span><span class="w"> </span><span class="n">zx</span><span class="p">,</span><span class="w"> </span><span class="n">zz</span><span class="p">,</span><span class="w"> </span><span class="n">zph</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l38" href="#l38">38</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -424,8 +675,10 @@
       <td class="lineno"><a id="l39" href="#l39">39</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine"><span class="n">Op_ptr</span> <span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">dagger</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span></td>
+      <td class="src coveredLine"><span class="n">Op_ptr</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">dagger</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -439,21 +692,27 @@
         </div>
         </details>
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine">  <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">UnitaryTableauBox</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tab_</span><span class="p">.</span><span class="n">dagger</span><span class="p">());</span></td>
+      <td class="src coveredLine"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tab_</span><span class="p">.</span><span class="n">dagger</span><span class="p">());</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l41" href="#l41">41</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">}</span></td>
+      <td class="src "><span class="p">}</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l42" href="#l42">42</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -463,8 +722,10 @@
       <td class="lineno"><a id="l43" href="#l43">43</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine"><span class="n">Op_ptr</span> <span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">transpose</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span></td>
+      <td class="src coveredLine"><span class="n">Op_ptr</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">transpose</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -478,21 +739,27 @@
         </div>
         </details>
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine">  <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">UnitaryTableauBox</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tab_</span><span class="p">.</span><span class="n">transpose</span><span class="p">());</span></td>
+      <td class="src coveredLine"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tab_</span><span class="p">.</span><span class="n">transpose</span><span class="p">());</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l45" href="#l45">45</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">}</span></td>
+      <td class="src "><span class="p">}</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l46" href="#l46">46</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -502,37 +769,47 @@
       <td class="lineno"><a id="l47" href="#l47">47</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine"><span class="n">Op_ptr</span> <span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">symbol_substitution</span><span class="p">(</span></td>
+      <td class="src uncoveredLine"><span class="n">Op_ptr</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">symbol_substitution</span><span class="p">(</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l48" href="#l48">48</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">    <span class="k">const</span> <span class="n">SymEngine</span><span class="o">::</span><span class="n">map_basic_basic</span><span class="o">&amp;</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span></td>
+      <td class="src "><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">SymEngine</span><span class="o">::</span><span class="n">map_basic_basic</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l49" href="#l49">49</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine">  <span class="k">return</span> <span class="n">Op_ptr</span><span class="p">();</span></td>
+      <td class="src uncoveredLine"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">Op_ptr</span><span class="p">();</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l50" href="#l50">50</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">}</span></td>
+      <td class="src "><span class="p">}</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l51" href="#l51">51</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -542,13 +819,17 @@
       <td class="lineno"><a id="l52" href="#l52">52</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine"><span class="n">SymSet</span> <span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">free_symbols</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">SymSet</span><span class="p">();</span> <span class="p">}</span></td>
+      <td class="src uncoveredLine"><span class="n">SymSet</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">free_symbols</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">SymSet</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l53" href="#l53">53</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -558,16 +839,20 @@
       <td class="lineno"><a id="l54" href="#l54">54</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine"><span class="kt">bool</span> <span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">is_equal</span><span class="p">(</span><span class="k">const</span> <span class="n">Op</span><span class="o">&amp;</span> <span class="n">op_other</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span></td>
+      <td class="src coveredLine"><span class="kt">bool</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">is_equal</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Op</span><span class="o">&amp;</span><span class="w"> </span><span class="n">op_other</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l55" href="#l55">55</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src ">  <span class="k">const</span> <span class="n">UnitaryTableauBox</span><span class="o">&amp;</span> <span class="n">other</span> <span class="o">=</span></td>
+      <td class="src "><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="o">=</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -581,29 +866,37 @@
         </div>
         </details>
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine">      <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">UnitaryTableauBox</span><span class="o">&amp;&gt;</span><span class="p">(</span><span class="n">op_other</span><span class="p">);</span></td>
+      <td class="src coveredLine"><span class="w">      </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">&amp;&gt;</span><span class="p">(</span><span class="n">op_other</span><span class="p">);</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l57" href="#l57">57</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine">  <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">tab_</span> <span class="o">==</span> <span class="n">other</span><span class="p">.</span><span class="n">tab_</span><span class="p">;</span></td>
+      <td class="src coveredLine"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">tab_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">tab_</span><span class="p">;</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l58" href="#l58">58</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">}</span></td>
+      <td class="src "><span class="p">}</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l59" href="#l59">59</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -613,13 +906,17 @@
       <td class="lineno"><a id="l60" href="#l60">60</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine"><span class="k">const</span> <span class="n">UnitaryTableau</span><span class="o">&amp;</span> <span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">get_tableau</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">tab_</span><span class="p">;</span> <span class="p">}</span></td>
+      <td class="src coveredLine"><span class="k">const</span><span class="w"> </span><span class="n">UnitaryTableau</span><span class="o">&amp;</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">get_tableau</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">tab_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l61" href="#l61">61</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -629,24 +926,30 @@
       <td class="lineno"><a id="l62" href="#l62">62</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine"><span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span> <span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">to_json</span><span class="p">(</span><span class="k">const</span> <span class="n">Op_ptr</span><span class="o">&amp;</span> <span class="n">op</span><span class="p">)</span> <span class="p">{</span></td>
+      <td class="src coveredLine"><span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">to_json</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Op_ptr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">op</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l63" href="#l63">63</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine">  <span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="n">box</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">UnitaryTableauBox</span><span class="o">&amp;&gt;</span><span class="p">(</span><span class="o">*</span><span class="n">op</span><span class="p">);</span></td>
+      <td class="src coveredLine"><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">&amp;&gt;</span><span class="p">(</span><span class="o">*</span><span class="n">op</span><span class="p">);</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l64" href="#l64">64</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine">  <span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span> <span class="n">j</span> <span class="o">=</span> <span class="n">core_box_json</span><span class="p">(</span><span class="n">box</span><span class="p">);</span></td>
+      <td class="src coveredLine"><span class="w">  </span><span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">core_box_json</span><span class="p">(</span><span class="n">box</span><span class="p">);</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -664,29 +967,37 @@
         </div>
         </details>
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine">  <span class="n">j</span><span class="p">[</span><span class="s">&quot;tab&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">box</span><span class="p">.</span><span class="n">get_tableau</span><span class="p">();</span></td>
+      <td class="src coveredLine"><span class="w">  </span><span class="n">j</span><span class="p">[</span><span class="s">&quot;tab&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">box</span><span class="p">.</span><span class="n">get_tableau</span><span class="p">();</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l66" href="#l66">66</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine">  <span class="k">return</span> <span class="n">j</span><span class="p">;</span></td>
+      <td class="src coveredLine"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l67" href="#l67">67</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">}</span></td>
+      <td class="src "><span class="p">}</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l68" href="#l68">68</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -696,8 +1007,10 @@
       <td class="lineno"><a id="l69" href="#l69">69</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine"><span class="n">Op_ptr</span> <span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">from_json</span><span class="p">(</span><span class="k">const</span> <span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="o">&amp;</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span></td>
+      <td class="src coveredLine"><span class="n">Op_ptr</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">from_json</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="o">&amp;</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -711,27 +1024,29 @@
         </div>
         </details>
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine">  <span class="n">UnitaryTableau</span> <span class="n">tab</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span></td>
+      <td class="src coveredLine"><span class="w">  </span><span class="n">UnitaryTableau</span><span class="w"> </span><span class="nf">tab</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l71" href="#l71">71</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
-        <summary class="linebranchSummary">3/6</summary>
+        <summary class="linebranchSummary">2/4</summary>
         <div class="linebranchContents">
-          <div class="takenBranch">&check; Branch 2 taken 1 times.</div>
-          <div class="notTakenBranch">&cross; Branch 3 not taken.</div>
-          <div class="takenBranch">&check; Branch 5 taken 1 times.</div>
-          <div class="notTakenBranch">&cross; Branch 6 not taken.</div>
-          <div class="takenBranch">&check; Branch 8 taken 1 times.</div>
-          <div class="notTakenBranch">&cross; Branch 9 not taken.</div>
+          <div class="takenBranch">&check; Branch 1 taken 1 times.</div>
+          <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
+          <div class="takenBranch">&check; Branch 4 taken 1 times.</div>
+          <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
         </div>
         </details>
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine">  <span class="n">j</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;tab&quot;</span><span class="p">).</span><span class="n">get_to</span><span class="p">(</span><span class="n">tab</span><span class="p">);</span></td>
+      <td class="src coveredLine"><span class="w">  </span><span class="n">j</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;tab&quot;</span><span class="p">).</span><span class="n">get_to</span><span class="p">(</span><span class="n">tab</span><span class="p">);</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -745,21 +1060,27 @@
         </div>
         </details>
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">2</td>
-      <td class="src coveredLine">  <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">UnitaryTableauBox</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tab</span><span class="p">);</span></td>
+      <td class="src coveredLine"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tab</span><span class="p">);</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l73" href="#l73">73</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="p">}</span></td>
+      <td class="linedecision">
+      </td>
+      <td class="linecount coveredLine">1</td>
+      <td class="src coveredLine"><span class="p">}</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l74" href="#l74">74</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -769,13 +1090,17 @@
       <td class="lineno"><a id="l75" href="#l75">75</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="n">REGISTER_OPFACTORY</span><span class="p">(</span><span class="n">UnitaryTableauBox</span><span class="p">,</span> <span class="n">UnitaryTableauBox</span><span class="p">)</span></td>
+      <td class="src "><span class="n">REGISTER_OPFACTORY</span><span class="p">(</span><span class="n">UnitaryTableauBox</span><span class="p">,</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="p">)</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l76" href="#l76">76</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -785,8 +1110,10 @@
       <td class="lineno"><a id="l77" href="#l77">77</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">11</td>
-      <td class="src coveredLine"><span class="n">op_signature_t</span> <span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">get_signature</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span></td>
+      <td class="src coveredLine"><span class="n">op_signature_t</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">get_signature</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -802,21 +1129,27 @@
         </div>
         </details>
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">22</td>
-      <td class="src coveredLine">  <span class="k">return</span> <span class="n">op_signature_t</span><span class="p">(</span><span class="n">tab_</span><span class="p">.</span><span class="n">get_qubits</span><span class="p">().</span><span class="n">size</span><span class="p">(),</span> <span class="n">EdgeType</span><span class="o">::</span><span class="n">Quantum</span><span class="p">);</span></td>
+      <td class="src coveredLine"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">op_signature_t</span><span class="p">(</span><span class="n">tab_</span><span class="p">.</span><span class="n">get_qubits</span><span class="p">().</span><span class="n">size</span><span class="p">(),</span><span class="w"> </span><span class="n">EdgeType</span><span class="o">::</span><span class="n">Quantum</span><span class="p">);</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l79" href="#l79">79</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">}</span></td>
+      <td class="src "><span class="p">}</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l80" href="#l80">80</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -826,8 +1159,10 @@
       <td class="lineno"><a id="l81" href="#l81">81</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">3</td>
-      <td class="src coveredLine"><span class="kt">void</span> <span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">generate_circuit</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span></td>
+      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="n">UnitaryTableauBox</span><span class="o">::</span><span class="n">generate_circuit</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
@@ -841,21 +1176,27 @@
         </div>
         </details>
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">3</td>
-      <td class="src coveredLine">  <span class="n">circ_</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Circuit</span><span class="o">&gt;</span><span class="p">(</span><span class="n">unitary_tableau_to_circuit</span><span class="p">(</span><span class="n">tab_</span><span class="p">));</span></td>
+      <td class="src coveredLine"><span class="w">  </span><span class="n">circ_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Circuit</span><span class="o">&gt;</span><span class="p">(</span><span class="n">unitary_tableau_to_circuit</span><span class="p">(</span><span class="n">tab_</span><span class="p">));</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l83" href="#l83">83</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount coveredLine">3</td>
-      <td class="src coveredLine"><span class="p">}</span></td>
+      <td class="src coveredLine"><span class="p">}</span><span class="w"></span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l84" href="#l84">84</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -865,13 +1206,17 @@
       <td class="lineno"><a id="l85" href="#l85">85</a></td>
       <td class="linebranch">
       </td>
+      <td class="linedecision">
+      </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">}</span>  <span class="c1">// namespace tket</span></td>
+      <td class="src "><span class="p">}</span><span class="w">  </span><span class="c1">// namespace tket</span></td>
     </tr>
 
     <tr class="source-line">
       <td class="lineno"><a id="l86" href="#l86">86</a></td>
       <td class="linebranch">
+      </td>
+      <td class="linedecision">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
@@ -879,11 +1224,11 @@
 
   </table>
 </div>
-
-    <hr/>
+      <hr/>
+    </main>
 
     <footer>
-      Generated by: <a href="http://gcovr.com">GCOVR (Version 5.0)</a>
+      Generated by: <a href="http://gcovr.com">GCOVR (Version 5.2)</a>
     </footer>
   </body>
 </html>
